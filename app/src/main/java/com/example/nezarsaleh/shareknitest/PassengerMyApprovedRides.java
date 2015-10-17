@@ -1,0 +1,173 @@
+package com.example.nezarsaleh.shareknitest;
+
+import android.annotation.TargetApi;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Parcel;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
+import com.example.nezarsaleh.shareknitest.Arafa.Classes.VolleySingleton;
+import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestRouteDataModel;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class PassengerMyApprovedRides extends AppCompatActivity {
+
+
+    String url = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobRoute.asmx/Passenger_MyApprovedRides?AccountId=";
+
+
+    ListView Passenger_Approved_Rides_Lv;
+    SharedPreferences myPrefs;
+    int Passenger_ID;
+
+    GetData j= new GetData();
+
+    String days;
+    Toolbar toolbar;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_passenger_my_approved_rides);
+        initToolbar();
+        Passenger_Approved_Rides_Lv= (ListView) findViewById(R.id.Passenger_Approved_Rides_Lv);
+
+        myPrefs = this.getSharedPreferences("myPrefs", 0);
+        String ID = myPrefs.getString("account_id",null);
+
+        Passenger_ID = Integer.parseInt(ID);
+        Log.d("Driverid1", String.valueOf(Passenger_ID));
+
+
+
+        new rideJson().execute();
+
+
+
+    }
+
+
+
+
+
+    private class rideJson extends AsyncTask {
+
+        @Override
+        protected Object doInBackground(Object[] params) {
+
+            final GetData GD = new GetData();
+            // Get a RequestQueue
+            RequestQueue queue = VolleySingleton.getInstance(getBaseContext().getApplicationContext()).getRequestQueue();
+            // Request a string response from the provided URL.
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url + Passenger_ID,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            response = response.replaceAll("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
+                            response = response.replaceAll("<string xmlns=\"http://tempuri.org/\">", "");
+                            response = response.replaceAll("</string>", "");
+                            // Display the first 500 characters of the response string.
+                            String data = response.substring(40);
+                            Log.d("url", url + Passenger_ID);
+                            try {
+                                JSONArray jArray = new JSONArray(data);
+                                final BestRouteDataModel[] passenger = new BestRouteDataModel[jArray.length()];
+                                JSONObject json;
+                                for (int i = 0; i < jArray.length(); i++) {
+                                    try {
+                                        BestRouteDataModel item = new BestRouteDataModel(Parcel.obtain());
+                                        days = "";
+                                        json = jArray.getJSONObject(i);
+                                        int Route_ID=  (json.getInt("RouteID"));
+                                        int Driver_Account = (json.getInt("Account"));
+                                        String Route_Name = (json.getString("Name_en"));
+
+                                        Log.d("Route id", String.valueOf(Route_ID));
+                                        Log.d("Driver_account", String.valueOf(Driver_Account));
+                                        Log.d("Route Name", Route_Name);
+
+                                        JSONObject jsonObject = GD.GetRouteById(Route_ID);
+                                        String Routename2 = jsonObject.getString("RouteEnName");
+                                        Log.d("Route name 2 ", Routename2);
+
+                                        item.setFromEm(jsonObject.getString("FromEmirateEnName"));
+                                        item.setFromReg(jsonObject.getString("FromRegionEnName"));
+                                        item.setToEm(jsonObject.getString("ToEmirateEnName"));
+                                        item.setToReg(jsonObject.getString("ToRegionEnName"));
+                                        item.setRouteName(jsonObject.getString("RouteEnName"));
+                                        item.setStartFromTime(jsonObject.getString("StartFromTime"));
+                                        item.setEndToTime_(jsonObject.getString("EndToTime_"));
+                                        item.setDriver_ID(Driver_Account);
+
+                                        passenger[i] = item;
+
+                                        PassngerApprovedRidesAdapter arrayAdapter = new PassngerApprovedRidesAdapter(PassengerMyApprovedRides.this, R.layout.passenger_approved_rides, passenger);
+                                        Passenger_Approved_Rides_Lv.setAdapter(arrayAdapter);
+
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("Error : ", error.toString());
+                    //Ride.setText("That didn't work! : " + error.toString());
+                }
+            });
+            // Add the request to the RequestQueue.
+            queue.add(stringRequest);
+//      Add a request (in this example, called stringRequest) to your RequestQueue.
+            VolleySingleton.getInstance(PassengerMyApprovedRides.this).addToRequestQueue(stringRequest);
+            return null;
+        }  //  do in background
+
+
+    } //  Ride Json
+
+
+
+
+
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void initToolbar() {
+        toolbar = (Toolbar) findViewById(R.id.app_bar);
+        toolbar.setTitle("");
+        toolbar.setTitleTextColor(Color.WHITE);
+        TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
+        textView.setText("My Approved Rides");
+//        toolbar.setElevation(10);
+
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+
+}

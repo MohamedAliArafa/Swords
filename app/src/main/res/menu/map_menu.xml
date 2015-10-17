@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+
+    <item
+        android:id="@+id/Satelltie"
+        android:orderInCategory="100"
+        android:title="Satellite"
+        app:showAsAction="never"
+
+        />
+
+
+    <item
+        android:id="@+id/Terrain"
+        android:orderInCategory="200"
+        android:title="Terrain"
+        app:showAsAction="never"
+
+        />
+
+
+    <item
+        android:id="@+id/HyBird"
+        android:orderInCategory="300"
+        android:title="Hybird"
+        app:showAsAction="never"
+
+        />
+
+
+
+    <item
+        android:id="@+id/Normal"
+        android:orderInCategory="400"
+        android:title="Normal"
+        app:showAsAction="never"
+
+        />
+
+
+
+</menu>
