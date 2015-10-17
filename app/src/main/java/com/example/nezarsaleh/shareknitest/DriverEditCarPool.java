@@ -130,7 +130,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
 
         myPrefs = this.getSharedPreferences("myPrefs", 0);
         Intent in = getIntent();
-        RouteId = Integer.parseInt(in.getStringExtra("RouteId"));
+        RouteId = in.getIntExtra("RouteID",-1);
 
         edit_route_name = (EditText) findViewById(R.id.createCarPool_EnName);
 

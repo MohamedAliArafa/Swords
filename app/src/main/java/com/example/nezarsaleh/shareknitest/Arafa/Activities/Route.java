@@ -32,6 +32,7 @@ import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestDriverDataModel;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestRouteDataModel;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModelAdapter.BestRouteDataModelAdapter;
+import com.example.nezarsaleh.shareknitest.DriverEditCarPool;
 import com.example.nezarsaleh.shareknitest.DriverGetReviewAdapter;
 import com.example.nezarsaleh.shareknitest.DriverGetReviewDataModel;
 import com.example.nezarsaleh.shareknitest.HomePage;
@@ -74,8 +75,9 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
     private Toolbar toolbar;
     private GoogleMap mMap;
     private List<DriverGetReviewDataModel> driverGetReviewDataModels_arr = new ArrayList<>();
+    Bundle in;
 
-    Button Route_Delete_Btn;
+    Button Route_Delete_Btn,Route_Edit_Btn;
     GetData j = new GetData();
 
     public static void setListViewHeightBasedOnChildren(ListView listView) {
@@ -128,11 +130,15 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
 
         ride_details_day_of_week = (TextView) findViewById(R.id.ride_details_day_of_week);
         Driver_get_Review_lv = (ListView) findViewById(R.id.Driver_get_Review_lv);
+
         Route_Delete_Btn = (Button) findViewById(R.id.Route_Delete_Btn);
+        Route_Edit_Btn = (Button) findViewById(R.id.Route_Edit_Btn);
+
         myPrefs = this.getSharedPreferences("myPrefs", 0);
-        Bundle in = getIntent().getExtras();
+        in = getIntent().getExtras();
         Driver_ID = in.getInt("DriverID");
         Route_ID = in.getInt("RouteID");
+
         Log.d("Test Driver id", String.valueOf(Driver_ID));
         Log.d("test Passenger id", String.valueOf(Passenger_ID));
         Log.d("test Route id", String.valueOf(Route_ID));
@@ -155,12 +161,13 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
         Route_Delete_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 try {
                     String response = j.Driver_DeleteRoute(Route_ID);
                     if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
                         Toast.makeText(Route.this, "Cannot Delete This Route", Toast.LENGTH_SHORT).show();
                     } else {
+                        Intent in =  new Intent(Route.this, HomePage.class);
+                        startActivity(in);
                         Toast.makeText(Route.this, "Route Deleted", Toast.LENGTH_SHORT).show();
                     }
                     Log.d("join ride res", String.valueOf(response));
@@ -169,6 +176,16 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
                 }
 
 
+            }
+        });
+
+
+        Route_Edit_Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in =  new Intent(Route.this, DriverEditCarPool.class);
+                in.putExtra("RouteID",Route_ID);
+                startActivity(in);
             }
         });
 
