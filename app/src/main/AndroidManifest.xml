@@ -311,6 +311,15 @@
             android:label="@string/title_activity_history"
             android:theme="@style/AppTheme.Base" >
         </activity>
+        <activity
+            android:name=".TakeATour"
+            android:label="@string/title_activity_take_atour"
+            android:parentActivityName=".OnBoardDir.OnboardingActivity"
+            android:theme="@style/AppTheme.Base" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity" />
+        </activity>
     </application>
 
 </manifest>

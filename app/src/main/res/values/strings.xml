@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SharekniTest</string>
+    <string name="app_name">Sharekni</string>
 
     <string name="title_activity_main">Sharekni</string>
 
@@ -67,6 +67,7 @@
     <string name="title_activity_test_vedio">TestVedio</string>
     <string name="title_activity_passenger_my_approved_rides">PassengerMyApprovedRides</string>
     <string name="title_activity_history">History</string>
+    <string name="title_activity_take_atour">TakeATour</string>
 
 
 

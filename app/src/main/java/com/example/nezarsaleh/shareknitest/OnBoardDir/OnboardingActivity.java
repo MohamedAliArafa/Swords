@@ -20,6 +20,7 @@ import com.example.nezarsaleh.shareknitest.RegisterNewTest;
 import com.example.nezarsaleh.shareknitest.SearchOptions;
 import com.example.nezarsaleh.shareknitest.Sharekni;
 import com.example.nezarsaleh.shareknitest.SplashActivity;
+import com.example.nezarsaleh.shareknitest.TakeATour;
 import com.example.nezarsaleh.shareknitest.TestVedio;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
@@ -27,7 +28,6 @@ import com.ogaclejapan.smarttablayout.SmartTabLayout;
  * Created by nezar on 8/11/2015.
  */
 public class OnboardingActivity extends FragmentActivity {
-
 
 
     private ImageView btn_top_rides;
@@ -61,8 +61,8 @@ public class OnboardingActivity extends FragmentActivity {
 
        setContentView(R.layout.activity_log_in_form_concept_one);
         pager = (ViewPager)findViewById(R.id.pager);
-            indicator = (SmartTabLayout)findViewById(R.id.indicator);
-        indicator.setVisibility(View.INVISIBLE);
+          //  indicator = (SmartTabLayout)findViewById(R.id.indicator);
+      //  indicator.setVisibility(View.INVISIBLE);
 
         btn_register = (ImageView) findViewById(R.id.fr_register);
         btn_search = (ImageView) findViewById(R.id.fr_search);
@@ -106,8 +106,11 @@ public class OnboardingActivity extends FragmentActivity {
         btn_top_rides.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), ImageUp.class);
+
+                Intent intent = new Intent(getBaseContext(), TakeATour.class);
                 startActivity(intent);
+
+
             }
         });
 
@@ -135,32 +138,8 @@ public class OnboardingActivity extends FragmentActivity {
 
 
         pager.setAdapter(adapter);
-        indicator.setViewPager(pager);
 
 
-        indicator.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-//                if (position == 2) {
-//                    skip.setVisibility(View.GONE);
-//                    next.setText("Done");
-//                } else {
-//                    skip.setVisibility(View.VISIBLE);
-//                    next.setText("Next");
-//
-//
-//                }
-
-            }
-
-
-        });
-
-
-
-        
 
     }//oncreate
 
