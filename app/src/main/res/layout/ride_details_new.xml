@@ -215,6 +215,7 @@
                     android:textSize="18sp" />
 
                 <TextView
+
                     android:id="@+id/ride_details_Ride_Days_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
