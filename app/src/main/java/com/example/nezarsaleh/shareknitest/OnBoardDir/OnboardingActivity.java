@@ -103,6 +103,8 @@ public class OnboardingActivity extends FragmentActivity {
 
 
 
+
+
         btn_top_rides.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
