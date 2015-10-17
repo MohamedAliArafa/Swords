@@ -73,6 +73,7 @@ public class GetData {
     String getImage                     = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobAccount.asmx/GetPhotoPath?s_FileName=";
 
     String getBestDriverUrl             = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobDriver.asmx/GetBestDrivers";
+    String DriverEditCarPoolUrl         = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobDriver.asmx/Driver_EditCarpool?";
     String DriverCreateCarPoolUrl       = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobDriver.asmx/Driver_CreateCarpool?";
     String QuickSearchUrl               = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobDriver.asmx/Passenger_FindRide?";
 
@@ -124,6 +125,42 @@ public class GetData {
         GetPassengersByRouteIdStringRequest(GetPassengersByRouteIDUrl + ID, lv, context);
     }
 
+    public void DriverEditCarPoolFrom(int myId, String En_Name, int From_EmID
+            , int To_EmID, int From_RegId, int To_RegId, String isRounded
+            , String Time, String sat, String sun, String mon, String tue, String wed
+            , String thu, String fri, char gender, int VehicleID, int NoOfSeats
+            , double StartLat, double StartLng, double EndLat, double EndLng
+            , int Pref_Lang, int Nat, int AgeRangedId, String Start_Date, Activity context) {
+
+        DriverCreateCarPoolStringRequest(DriverEditCarPoolUrl + "RouteID=" + myId
+                + "&EnName=" + URLEncoder.encode(En_Name)
+                + "&FromEmirateID=" + From_EmID
+                + "&ToEmirateID=" + To_EmID
+                + "&FromRegionID=" + From_RegId
+                + "&ToRegionID=" + To_RegId
+                + "&IsRounded=" + isRounded
+                + "&Time=" + Time
+                + "&Saturday=" + sat
+                + "&Sunday=" + sun
+                + "&Monday=" + mon
+                + "&Tuesday=" + tue
+                + "&Wednesday=" + wed
+                + "&Thursday=" + thu
+                + "&Friday=" + fri
+                + "&PreferredGender=" + gender
+                + "&VehicleID=" + VehicleID
+                + "&NoOfSeats=" + NoOfSeats
+                + "&StartLat=" + StartLat
+                + "&StartLng=" + StartLng
+                + "&EndLat=" + EndLat
+                + "&EndLng=" + EndLng
+                + "&PrefferedLanguageId=" + Pref_Lang
+                + "&PrefferedNationlaities=" + Nat
+                + "&AgeRangeId=" + AgeRangedId
+                + "&StartDate=" + Start_Date
+                , context);
+    }
+
     public void DriverCreateCarPoolFrom(int myId, String En_Name, int From_EmID
             , int To_EmID, int From_RegId, int To_RegId, String isRounded
             , String Time, String sat, String sun, String mon, String tue, String wed
@@ -158,8 +195,6 @@ public class GetData {
                 + "&AgeRangeId=" + AgeRangedId
                 + "&StartDate=" + Start_Date
                 , context);
-
-
     }
 
     public void ForgetPasswordForm(String mobileNumber, String email, Context context) {

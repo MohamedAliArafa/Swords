@@ -126,8 +126,8 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         btn_history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), History.class);
-                startActivity(intent);
+//                Intent intent = new Intent(getBaseContext(), History.class);
+//                startActivity(intent);
             }
         });
 
@@ -166,9 +166,9 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
             @Override
             public void onClick(View v) {
 
-//                Intent intent = new Intent(getBaseContext(), DriverCreatedRides.class);
-//                intent.putExtra("DriverID", Driver_ID);
-//                startActivity(intent);
+                Intent intent = new Intent(getBaseContext(), DriverCreatedRides.class);
+                intent.putExtra("DriverID", Driver_ID);
+                startActivity(intent);
             }
         });
 
