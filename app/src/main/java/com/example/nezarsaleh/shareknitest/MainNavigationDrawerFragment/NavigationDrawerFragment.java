@@ -158,7 +158,7 @@ public class NavigationDrawerFragment extends Fragment {
 //        mrecyclerView.setLayoutManager(mLayoutManager);
 //
 //        final DataListModel[] dataListModel = new DataListModel[7];
-//
+//3
 //        DataListModel object1 = new DataListModel();
 //        object1.setTitle("Top Rides");
 //        object1.setImage(R.drawable.ic_launcher);
