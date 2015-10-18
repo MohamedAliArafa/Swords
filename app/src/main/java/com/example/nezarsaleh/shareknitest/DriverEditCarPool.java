@@ -1,16 +1,20 @@
 package com.example.nezarsaleh.shareknitest;
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -38,6 +42,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -462,58 +469,93 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
     }
 
     private class getAgeRanges extends AsyncTask{
+        boolean exists = false;
 
         @Override
         protected void onPostExecute(Object o) {
+            if (exists) {
 
-            final SimpleAdapter AgeRangesAdapter = new SimpleAdapter(DriverEditCarPool.this, Create_CarPool_AgeRanges_List
-                    , R.layout.autocomplete_row
-                    , new String[]{"RangeId", "Range"}
-                    , new int[]{R.id.row_id, R.id.row_name});
+                final SimpleAdapter AgeRangesAdapter = new SimpleAdapter(DriverEditCarPool.this, Create_CarPool_AgeRanges_List
+                        , R.layout.autocomplete_row
+                        , new String[]{"RangeId", "Range"}
+                        , new int[]{R.id.row_id, R.id.row_name});
 
-            Create_CarPool_Age_Range_txt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                Create_CarPool_Age_Range_txt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-                    Languages_Dilaog = new Dialog(mContext);
-                    Languages_Dilaog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                    Languages_Dilaog.setContentView(R.layout.languages_dialog);
-                    TextView Lang_Dialog_txt_id = (TextView) Languages_Dilaog.findViewById(R.id.Lang_Dialog_txt_id);
-                    Lang_Dialog_txt_id.setText("Age Ranges");
-                    lang_lv = (ListView) Languages_Dilaog.findViewById(R.id.Langs_list);
-                    lang_lv.setAdapter(AgeRangesAdapter);
-                    Languages_Dilaog.show();
-                    lang_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            TextView txt_lang_name = (TextView) view.findViewById(R.id.row_name);
-                            TextView txt_lang_id = (TextView) view.findViewById(R.id.row_id);
-                            Age_ID = Integer.parseInt(txt_lang_id.getText().toString());
-                            Create_CarPool_Age_Range_txt.setText(txt_lang_name.getText().toString());
-                            // Log.d("id of lang", "" + Language_ID);
-                            Languages_Dilaog.dismiss();
-                        }
-                    });
-                }
-            });
+                        Languages_Dilaog = new Dialog(mContext);
+                        Languages_Dilaog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        Languages_Dilaog.setContentView(R.layout.languages_dialog);
+                        TextView Lang_Dialog_txt_id = (TextView) Languages_Dilaog.findViewById(R.id.Lang_Dialog_txt_id);
+                        Lang_Dialog_txt_id.setText("Age Ranges");
+                        lang_lv = (ListView) Languages_Dilaog.findViewById(R.id.Langs_list);
+                        lang_lv.setAdapter(AgeRangesAdapter);
+                        Languages_Dilaog.show();
+                        lang_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                TextView txt_lang_name = (TextView) view.findViewById(R.id.row_name);
+                                TextView txt_lang_id = (TextView) view.findViewById(R.id.row_id);
+                                Age_ID = Integer.parseInt(txt_lang_id.getText().toString());
+                                Create_CarPool_Age_Range_txt.setText(txt_lang_name.getText().toString());
+                                // Log.d("id of lang", "" + Language_ID);
+                                Languages_Dilaog.dismiss();
+                            }
+                        });
+                    }
+                });
+            }
         }
 
         @Override
         protected Object doInBackground(Object[] params) {
             try {
-                JSONArray j = new GetData().GetAgeRanges();
-                for (int i = 0; i < j.length(); i++) {
-                    TreeMap<String, String> valuePairs = new TreeMap<>();
-                    JSONObject jsonObject = j.getJSONObject(i);
-                    valuePairs.put("RangeId", jsonObject.getString("RangeId"));
-                    valuePairs.put("Range", jsonObject.getString("Range"));
-                    Create_CarPool_AgeRanges_List.add(valuePairs);
-                }
-                //Toast.makeText(RegisterNewTest.this, "test pref lang" + Lang_List.toString(), Toast.LENGTH_LONG).show();
-                Log.d("test pref lang", Create_CarPool_AgeRanges_List.toString());
-
-            } catch (JSONException e) {
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                Socket sock = new Socket();
+                int timeoutMs = 2000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                exists = true;
+            } catch (final Exception e) {
                 e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new AlertDialog.Builder(DriverEditCarPool.this)
+                                .setTitle("Connection Problem!")
+                                .setMessage("Make sure you have internet connection")
+                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intentToBeNewRoot = new Intent(DriverEditCarPool.this, DriverEditCarPool.class);
+                                        ComponentName cn = intentToBeNewRoot.getComponent();
+                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        startActivity(mainIntent);
+                                    }
+                                })
+                                .setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                        Toast.makeText(DriverEditCarPool.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            if (exists) {
+                try {
+                    JSONArray j = new GetData().GetAgeRanges();
+                    for (int i = 0; i < j.length(); i++) {
+                        TreeMap<String, String> valuePairs = new TreeMap<>();
+                        JSONObject jsonObject = j.getJSONObject(i);
+                        valuePairs.put("RangeId", jsonObject.getString("RangeId"));
+                        valuePairs.put("Range", jsonObject.getString("Range"));
+                        Create_CarPool_AgeRanges_List.add(valuePairs);
+                    }
+                    //Toast.makeText(RegisterNewTest.this, "test pref lang" + Lang_List.toString(), Toast.LENGTH_LONG).show();
+                    Log.d("test pref lang", Create_CarPool_AgeRanges_List.toString());
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
             return null;
         }

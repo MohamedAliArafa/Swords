@@ -1,6 +1,9 @@
 package com.example.nezarsaleh.shareknitest;
 
+import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -8,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcel;
+import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
@@ -17,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -30,11 +35,16 @@ import com.example.nezarsaleh.shareknitest.Arafa.Classes.ImageDecoder;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.VolleySingleton;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestRouteDataModel;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModelAdapter.BestRouteDataModelAdapter;
+import com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity;
 import com.pkmmte.view.CircularImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
 
 public class MyProfileTest extends AppCompatActivity {
 
@@ -87,28 +97,62 @@ public class MyProfileTest extends AppCompatActivity {
         myPrefs = this.getSharedPreferences("myPrefs", 0);
         Driver_ID = Integer.parseInt(myPrefs.getString("account_id", null));
 
+        boolean exists = false;
         try {
-            JSONObject json = j.GetDriverById(Driver_ID);
-            if(json.getString("EmployerEnName")== "null"){
-                EmployerEnName.setText("Not Employee");
-            }else{
-                EmployerEnName.setText(json.getString("EmployerEnName"));
+            SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+            Socket sock = new Socket();
+            int timeoutMs = 2000;   // 2 seconds
+            sock.connect(sockaddr, timeoutMs);
+            exists = true;
+        } catch (final Exception e) {
+            e.printStackTrace();
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    new AlertDialog.Builder(MyProfileTest.this)
+                            .setTitle("Connection Problem!")
+                            .setMessage("Make sure you have internet connection")
+                            .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intentToBeNewRoot = new Intent(MyProfileTest.this, MyProfileTest.class);
+                                    ComponentName cn = intentToBeNewRoot.getComponent();
+                                    Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                    startActivity(mainIntent);
+                                }
+                            })
+                            .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    finish();
+                                }
+                            }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                    Toast.makeText(MyProfileTest.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        if (exists) {
+
+            try {
+                JSONObject json = j.GetDriverById(Driver_ID);
+                if (json.getString("EmployerEnName") == "null") {
+                    EmployerEnName.setText("Not Employee");
+                } else {
+                    EmployerEnName.setText(json.getString("EmployerEnName"));
+                }
+                if (json.getString("Mobile") == "null") {
+                    Mobile.setText("No Mobile Available");
+                } else {
+                    Mobile.setText(json.getString("Mobile"));
+                }
+                TopName.setText(json.getString("FirstName") + " " + json.getString("MiddleName"));
+                FullName.setText(json.getString("FirstName") + " " + json.getString("MiddleName") + " " + json.getString("LastName"));
+                NationalityEnName.setText(json.getString("NationalityEnName"));
+                AccountTypeEnName.setText(json.getString("AccountTypeEnName"));
+                GenderEn.setText(json.getString("GenderEn"));
+                ImageDecoder im = new ImageDecoder();
+                im.stringRequest(json.getString("PhotoPath"), circularImageView, this);
+                PrefLanguageEnName.setText(json.getString("PrefLanguageEnName"));
+            } catch (JSONException e1) {
+                e1.printStackTrace();
             }
-            if(json.getString("Mobile")== "null"){
-                Mobile.setText("No Mobile Available");
-            }else{
-                Mobile.setText(json.getString("Mobile"));
-            }
-            TopName.setText(json.getString("FirstName")+" "+json.getString("MiddleName"));
-            FullName.setText(json.getString("FirstName")+" "+json.getString("MiddleName")+" "+json.getString("LastName"));
-            NationalityEnName.setText(json.getString("NationalityEnName"));
-            AccountTypeEnName.setText(json.getString("AccountTypeEnName"));
-            GenderEn.setText(json.getString("GenderEn"));
-            ImageDecoder im = new ImageDecoder();
-            im.stringRequest(json.getString("PhotoPath"),circularImageView,this);
-            PrefLanguageEnName.setText(json.getString("PrefLanguageEnName"));
-        } catch (JSONException e1) {
-            e1.printStackTrace();
         }
     }
 

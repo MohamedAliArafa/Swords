@@ -19,8 +19,6 @@ public class DriverProfileTest extends AppCompatActivity {
         circularImageView.setSelectorStrokeWidth(5);
         circularImageView.addShadow();
 
-
-
     }
 
     @Override

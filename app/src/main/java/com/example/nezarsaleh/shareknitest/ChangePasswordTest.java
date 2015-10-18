@@ -1,8 +1,12 @@
 package com.example.nezarsaleh.shareknitest;
 
+import android.app.AlertDialog;
+import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -11,8 +15,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
+
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
 
 
 public class ChangePasswordTest extends AppCompatActivity {
@@ -43,9 +52,41 @@ public class ChangePasswordTest extends AppCompatActivity {
             public void onClick(View v) {
                 oldPass = edit_oldPass.getText().toString();
                 newPass=edit_newPass.getText().toString();
-
+                boolean exists = false;
+                try {
+                    SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                    Socket sock = new Socket();
+                    int timeoutMs = 2000;   // 2 seconds
+                    sock.connect(sockaddr, timeoutMs);
+                    exists = true;
+                } catch (final Exception e) {
+                    e.printStackTrace();
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            new AlertDialog.Builder(ChangePasswordTest.this)
+                                    .setTitle("Connection Problem!")
+                                    .setMessage("Make sure you have internet connection")
+                                    .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent intentToBeNewRoot = new Intent(ChangePasswordTest.this, ChangePasswordTest.class);
+                                            ComponentName cn = intentToBeNewRoot.getComponent();
+                                            Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                            startActivity(mainIntent);
+                                        }
+                                    })
+                                    .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            finish();
+                                        }
+                                    }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                            Toast.makeText(ChangePasswordTest.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                if (exists) {
                     GetData j = new GetData();
-                    j.ChangePasswordForm(Integer.parseInt(MyID),oldPass,newPass,getBaseContext(),txt_change);
+                    j.ChangePasswordForm(Integer.parseInt(MyID), oldPass, newPass, getBaseContext(), txt_change);
+                }
             }
         });
     }

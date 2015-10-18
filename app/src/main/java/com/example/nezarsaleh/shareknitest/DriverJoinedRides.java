@@ -22,18 +22,7 @@ public class DriverJoinedRides extends AppCompatActivity {
         setContentView(R.layout.activity_driver_joined_rides);
         initToolbar();
         user_ride_joined= (ListView) findViewById(R.id.user_ride_joined);
-
-
-
-
     }
-
-
-
-
-
-
-
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void initToolbar() {
@@ -49,6 +38,4 @@ public class DriverJoinedRides extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-
-
 }

@@ -1,6 +1,11 @@
 package com.example.nezarsaleh.shareknitest;
 
+import android.app.AlertDialog;
+import android.content.ComponentName;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -12,6 +17,11 @@ import android.widget.Toast;
 
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestRouteDataModel;
+import com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity;
+
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
 
 
 public class MostRidesDetails extends AppCompatActivity {
@@ -67,11 +77,43 @@ public class MostRidesDetails extends AppCompatActivity {
         }catch (NullPointerException e){
         Toast.makeText(MostRidesDetails.this, e.toString(), Toast.LENGTH_SHORT).show();
     }
-
-        String url="http://sharekni-web.sdg.ae/_mobfiles/CLS_MobRoute.asmx/GetMostDesiredRideDetails?AccountID="+0+"&FromEmirateID="+FromEmirateId+"&FromRegionID="+FromRegionId+"&ToEmirateID="+ToEmirateId+"&ToRegionID="+ToRegionId;
-        Log.wtf("url :",url);
-        GetData j = new GetData();
-        j.bestRouteStringRequestDetails(url,lv,this);
+        boolean exists = false;
+        try {
+            SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+            Socket sock = new Socket();
+            int timeoutMs = 2000;   // 2 seconds
+            sock.connect(sockaddr, timeoutMs);
+            exists = true;
+        } catch (final Exception e) {
+            e.printStackTrace();
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    new AlertDialog.Builder(MostRidesDetails.this)
+                            .setTitle("Connection Problem!")
+                            .setMessage("Make sure you have internet connection")
+                            .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intentToBeNewRoot = new Intent(MostRidesDetails.this, MostRidesDetails.class);
+                                    ComponentName cn = intentToBeNewRoot.getComponent();
+                                    Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                    startActivity(mainIntent);
+                                }
+                            })
+                            .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    finish();
+                                }
+                            }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                    Toast.makeText(MostRidesDetails.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        if (exists) {
+            String url = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobRoute.asmx/GetMostDesiredRideDetails?AccountID=" + 0 + "&FromEmirateID=" + FromEmirateId + "&FromRegionID=" + FromRegionId + "&ToEmirateID=" + ToEmirateId + "&ToRegionID=" + ToRegionId;
+            Log.wtf("url :", url);
+            GetData j = new GetData();
+            j.bestRouteStringRequestDetails(url, lv, this);
+        }
 
         txt_FromEm.setText(data.getFromEm());
         txt_ToEm.setText(data.getFromReg());

@@ -2,8 +2,11 @@ package com.example.nezarsaleh.shareknitest.Arafa.Activities;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -13,6 +16,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
+import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
@@ -22,6 +26,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -39,6 +44,7 @@ import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestRouteDataModel;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModelAdapter.BestDriverDataModelAdapter;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModelAdapter.ProfileRideAdapter;
 import com.example.nezarsaleh.shareknitest.LoginApproved;
+import com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity;
 import com.example.nezarsaleh.shareknitest.R;
 import com.example.nezarsaleh.shareknitest.RideDetailsPassenger;
 
@@ -46,6 +52,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -128,6 +137,7 @@ public class Profile extends AppCompatActivity {
         BestRouteDataModel[] driver;
         private ProgressDialog pDialog;
         private List<BestDriverDataModel> arr = new ArrayList<>();
+        boolean exists = false;
 
         public jsoning(final ListView lv, ProgressDialog pDialog, final Activity con) {
 
@@ -139,12 +149,13 @@ public class Profile extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Object o) {
-            ProfileRideAdapter arrayAdapter = new ProfileRideAdapter(Profile.this, R.layout.driver_profile_rides, driver);
-            lv.setAdapter(arrayAdapter);
-            lv.requestLayout();
-            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            if (exists){
+                ProfileRideAdapter arrayAdapter = new ProfileRideAdapter(Profile.this, R.layout.driver_profile_rides, driver);
+                lv.setAdapter(arrayAdapter);
+                lv.requestLayout();
+                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                         assert AccountType != null;
                         if (Passenger_ID != 0) {
@@ -172,8 +183,9 @@ public class Profile extends AppCompatActivity {
                             in.putExtra("DriverID", Driver_ID);
                             Profile.this.startActivity(in);
                         }
-                }
-            });
+                    }
+                });
+            }
             hidePDialog();
         }
 
@@ -186,62 +198,94 @@ public class Profile extends AppCompatActivity {
 
         @Override
         protected Object doInBackground(Object[] params) {
-            JSONArray response = null;
             try {
-                response = new GetData().GetDriverRides(Driver_ID);
-            } catch (JSONException e) {
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                Socket sock = new Socket();
+                int timeoutMs = 2000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                exists = true;
+            } catch (final Exception e) {
                 e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new AlertDialog.Builder(Profile.this)
+                                .setTitle("Connection Problem!")
+                                .setMessage("Make sure you have internet connection")
+                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intentToBeNewRoot = new Intent(Profile.this, Profile.class);
+                                        ComponentName cn = intentToBeNewRoot.getComponent();
+                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        startActivity(mainIntent);
+                                    }
+                                })
+                                .setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                        Toast.makeText(Profile.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
-            driver = new BestRouteDataModel[response.length()];
-            for (int i = 0; i < response.length(); i++) {
+            if (exists) {
+                JSONArray response = null;
                 try {
-                    JSONObject json = response.getJSONObject(i);
-                    BestRouteDataModel item = new BestRouteDataModel(Parcel.obtain());
-                    days = "";
-                    item.setID(json.getInt("ID"));
-                    item.setFromEm(json.getString("FromEmirateEnName"));
-                    item.setFromReg(json.getString("FromRegionEnName"));
-                    item.setToEm(json.getString("ToEmirateEnName"));
-                    item.setToReg(json.getString("ToRegionEnName"));
-                    item.setRouteName(json.getString("RouteEnName"));
-                    item.setStartFromTime(json.getString("StartFromTime"));
-                    item.setEndToTime_(json.getString("EndToTime_"));
-                    if (json.getString("Saturday").equals("true")) {
-                        days += "Sat , ";
-                    }
-                    if (json.getString("Sunday").equals("true")) {
-                        days += "Sun , ";
-                    }
-                    if (json.getString("Monday").equals("true")) {
-                        days += "Mon , ";
-
-                    }
-                    if (json.getString("Tuesday").equals("true")) {
-                        days += "Tue , ";
-                    }
-                    if (json.getString("Wednesday").equals("true")) {
-                        days += "Wed , ";
-                    }
-                    if (json.getString("Thursday").equals("true")) {
-                        days += "Thu , ";
-
-                    }
-                    if (json.getString("Friday").equals("true")) {
-                        days += "Fri ";
-                    }
-
-
-                    item.setDriver_profile_dayWeek(days);
-                    days = "";
-                    driver[i] = item;
-                    Log.d("ID", String.valueOf(json.getInt("ID")));
-                    Log.d("FromEmlv", json.getString("FromEmirateEnName"));
-                    Log.d("FromReglv", json.getString("FromRegionEnName"));
-                    Log.d("TomEmlv", json.getString("ToEmirateEnName"));
-                    Log.d("ToReglv", json.getString("ToRegionEnName"));
-
+                    response = new GetData().GetDriverRides(Driver_ID);
                 } catch (JSONException e) {
                     e.printStackTrace();
+                }
+                driver = new BestRouteDataModel[response.length()];
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        JSONObject json = response.getJSONObject(i);
+                        BestRouteDataModel item = new BestRouteDataModel(Parcel.obtain());
+                        days = "";
+                        item.setID(json.getInt("ID"));
+                        item.setFromEm(json.getString("FromEmirateEnName"));
+                        item.setFromReg(json.getString("FromRegionEnName"));
+                        item.setToEm(json.getString("ToEmirateEnName"));
+                        item.setToReg(json.getString("ToRegionEnName"));
+                        item.setRouteName(json.getString("RouteEnName"));
+                        item.setStartFromTime(json.getString("StartFromTime"));
+                        item.setEndToTime_(json.getString("EndToTime_"));
+                        if (json.getString("Saturday").equals("true")) {
+                            days += "Sat , ";
+                        }
+                        if (json.getString("Sunday").equals("true")) {
+                            days += "Sun , ";
+                        }
+                        if (json.getString("Monday").equals("true")) {
+                            days += "Mon , ";
+
+                        }
+                        if (json.getString("Tuesday").equals("true")) {
+                            days += "Tue , ";
+                        }
+                        if (json.getString("Wednesday").equals("true")) {
+                            days += "Wed , ";
+                        }
+                        if (json.getString("Thursday").equals("true")) {
+                            days += "Thu , ";
+
+                        }
+                        if (json.getString("Friday").equals("true")) {
+                            days += "Fri ";
+                        }
+
+
+                        item.setDriver_profile_dayWeek(days);
+                        days = "";
+                        driver[i] = item;
+                        Log.d("ID", String.valueOf(json.getInt("ID")));
+                        Log.d("FromEmlv", json.getString("FromEmirateEnName"));
+                        Log.d("FromReglv", json.getString("FromRegionEnName"));
+                        Log.d("TomEmlv", json.getString("ToEmirateEnName"));
+                        Log.d("ToReglv", json.getString("ToRegionEnName"));
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
             return null;

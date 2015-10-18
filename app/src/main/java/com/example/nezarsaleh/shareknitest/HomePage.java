@@ -1,7 +1,10 @@
 package com.example.nezarsaleh.shareknitest;
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -10,6 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.IntentCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -20,6 +24,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nezarsaleh.shareknitest.Arafa.Activities.BestDriversBeforeLogin;
 import com.example.nezarsaleh.shareknitest.Arafa.Activities.Profile;
@@ -33,6 +38,9 @@ import com.pkmmte.view.CircularImageView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
 import java.util.Locale;
 
 
@@ -374,11 +382,44 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         @Override
         protected Object doInBackground(Object[] params) {
             final GetData j = new GetData();
+            boolean exists = false;
             try {
-                jsonArray = j.GetDriverById(Integer.parseInt(String.valueOf(Driver_ID)));
-            } catch (JSONException e) {
-                hidePDialog();
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                Socket sock = new Socket();
+                int timeoutMs = 20000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                exists = true;
+            } catch (final Exception e) {
                 e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new AlertDialog.Builder(HomePage.this)
+                                .setTitle("Connection Problem!")
+                                .setMessage("Make sure you have internet connection")
+                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intentToBeNewRoot = new Intent(HomePage.this, HomePage.class);
+                                        ComponentName cn = intentToBeNewRoot.getComponent();
+                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        startActivity(mainIntent);
+                                    }
+                                })
+                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                        Toast.makeText(HomePage.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            if (exists) {
+                try {
+                    jsonArray = j.GetDriverById(Integer.parseInt(String.valueOf(Driver_ID)));
+                } catch (JSONException e) {
+                    hidePDialog();
+                    e.printStackTrace();
+                }
             }
             return null;
         }

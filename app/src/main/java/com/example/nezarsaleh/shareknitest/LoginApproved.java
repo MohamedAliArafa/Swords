@@ -1,7 +1,10 @@
 package com.example.nezarsaleh.shareknitest;
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -10,6 +13,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
+import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -28,11 +32,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.VolleySingleton;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestDriverDataModel;
+import com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity;
 
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
 import java.net.URLEncoder;
 import java.util.Locale;
 
@@ -148,66 +156,102 @@ public class LoginApproved extends AppCompatActivity {
 
         @Override
         protected Object doInBackground(Object[] params) {
-            StringRequest stringRequest = new StringRequest(Request.Method.GET, url+ "username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass),
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            response = response.replaceAll("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
-                            response = response.replaceAll("<string xmlns=\"http://MobAccount.org/\">", "");
-                            response = response.replaceAll("</string>", "");
-                            // Display the first 500 characters of the response string.
-                            try {
-                                String data = response.substring(40);
-                                Log.d("First Array Json : ", data);
-                                JSONObject json;
-                                json = new JSONObject(data);
-                                Log.d("Json : ", json.toString());
+            boolean exists = false;
+            try {
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                Socket sock = new Socket();
+                int timeoutMs = 2000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                exists = true;
+            } catch (final Exception e) {
+                e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new AlertDialog.Builder(LoginApproved.this)
+                                .setTitle("Connection Problem!")
+                                .setMessage("Make sure you have internet connection")
+                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intentToBeNewRoot = new Intent(LoginApproved.this, LoginApproved.class);
+                                        ComponentName cn = intentToBeNewRoot.getComponent();
+                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        startActivity(mainIntent);
+                                    }
+                                })
+                                .setNegativeButton("Go Back", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intentToBeNewRoot = new Intent(LoginApproved.this, OnboardingActivity.class);
+                                        ComponentName cn = intentToBeNewRoot.getComponent();
+                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        startActivity(mainIntent);
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                        Toast.makeText(LoginApproved.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            if (exists) {
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, url + "username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass),
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                response = response.replaceAll("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
+                                response = response.replaceAll("<string xmlns=\"http://MobAccount.org/\">", "");
+                                response = response.replaceAll("</string>", "");
+                                // Display the first 500 characters of the response string.
                                 try {
-                                    BestDriverDataModel item = new BestDriverDataModel(Parcel.obtain());
-                                    SharedPreferences myPrefs = getBaseContext().getSharedPreferences("myPrefs", 0);
-                                    SharedPreferences.Editor editor = myPrefs.edit();
+                                    String data = response.substring(40);
+                                    Log.d("First Array Json : ", data);
+                                    JSONObject json;
+                                    json = new JSONObject(data);
+                                    Log.d("Json : ", json.toString());
+                                    try {
+                                        BestDriverDataModel item = new BestDriverDataModel(Parcel.obtain());
+                                        SharedPreferences myPrefs = getBaseContext().getSharedPreferences("myPrefs", 0);
+                                        SharedPreferences.Editor editor = myPrefs.edit();
 
-                                    editor.putString("account_id", String.valueOf(json.getInt("ID")));
-                                    editor.putString("account_type", json.getString("AccountStatus"));
+                                        editor.putString("account_id", String.valueOf(json.getInt("ID")));
+                                        editor.putString("account_type", json.getString("AccountStatus"));
 
-                                    editor.commit();
-                                    item.setID(json.getInt("ID"));
-                                    item.setName(json.getString("FirstName"));
-                                    item.setPhotoURL(json.getString("PhotoPath"));
-                                    item.setNationality(json.getString("NationalityEnName"));
-                                    item.setRating(json.getInt("PrefferedLanguage"));
-                                    Intent in = new Intent(getBaseContext(), HomePage.class);
-                                    in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    getBaseContext().startActivity(in);
-                                    Log.d("Item Json : ", item.getName());
-                                } catch (JSONException | NullPointerException e) {
+                                        editor.commit();
+                                        item.setID(json.getInt("ID"));
+                                        item.setName(json.getString("FirstName"));
+                                        item.setPhotoURL(json.getString("PhotoPath"));
+                                        item.setNationality(json.getString("NationalityEnName"));
+                                        item.setRating(json.getInt("PrefferedLanguage"));
+                                        Intent in = new Intent(getBaseContext(), HomePage.class);
+                                        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        getBaseContext().startActivity(in);
+                                        Log.d("Item Json : ", item.getName());
+                                    } catch (JSONException | NullPointerException e) {
+                                        e.printStackTrace();
+                                    }
+                                } catch (StringIndexOutOfBoundsException e) {
+                                    Toast.makeText(getBaseContext(), "Wrong Username Or Passsword", Toast.LENGTH_SHORT).show();
+                                    LoginApproved.pDialog.dismiss();
                                     e.printStackTrace();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                    Toast.makeText(getBaseContext(), "Wrong Username Or Passsword", Toast.LENGTH_SHORT).show();
+                                    LoginApproved.pDialog.dismiss();
+
+
+                                    Log.d("Error Json : ", e.toString());
                                 }
-                            } catch (StringIndexOutOfBoundsException e) {
-                                Toast.makeText(getBaseContext(), "Wrong Username Or Passsword", Toast.LENGTH_SHORT).show();
-                                LoginApproved.pDialog.dismiss();
-                                e.printStackTrace();
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                                Toast.makeText(getBaseContext(), "Wrong Username Or Passsword", Toast.LENGTH_SHORT).show();
-                                LoginApproved.pDialog.dismiss();
-
-
-                                Log.d("Error Json : ", e.toString());
                             }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        if (LoginApproved.pDialog != null) {
+                            LoginApproved.pDialog.dismiss();
+                            LoginApproved.pDialog = null;
                         }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            if (LoginApproved.pDialog != null) {
-                                LoginApproved.pDialog.dismiss();
-                                LoginApproved.pDialog = null;
-                            }
-                            Toast.makeText(getBaseContext(), "Network Error !", Toast.LENGTH_SHORT).show();
-                            Log.d("Error Json : ", error.toString());
-                        }
-                    });
-            VolleySingleton.getInstance(getBaseContext()).addToRequestQueue(stringRequest);
+                        Toast.makeText(getBaseContext(), "Network Error !", Toast.LENGTH_SHORT).show();
+                        Log.d("Error Json : ", error.toString());
+                    }
+                });
+                VolleySingleton.getInstance(getBaseContext()).addToRequestQueue(stringRequest);
+            }
             return null;
         }
     }

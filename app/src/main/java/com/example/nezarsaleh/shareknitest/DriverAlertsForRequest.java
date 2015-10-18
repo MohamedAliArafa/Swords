@@ -2,7 +2,10 @@ package com.example.nezarsaleh.shareknitest;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -13,6 +16,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -20,6 +24,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nezarsaleh.shareknitest.Arafa.Activities.Profile;
 import com.example.nezarsaleh.shareknitest.Arafa.Activities.Route;
@@ -31,6 +36,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -137,31 +145,64 @@ public class DriverAlertsForRequest extends AppCompatActivity {
 
         @Override
         protected Object doInBackground(Object[] params) {
-            JSONArray response = null;
+            boolean exists = false;
             try {
-                response = new GetData().GetDriverAlertsForRequest(Driver_Id);
-            } catch (JSONException e) {
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                Socket sock = new Socket();
+                int timeoutMs = 2000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                exists = true;
+            } catch (final Exception e) {
                 e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new AlertDialog.Builder(DriverAlertsForRequest.this)
+                                .setTitle("Connection Problem!")
+                                .setMessage("Make sure you have internet connection")
+                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intentToBeNewRoot = new Intent(DriverAlertsForRequest.this, DriverAlertsForRequest.class);
+                                        ComponentName cn = intentToBeNewRoot.getComponent();
+                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        startActivity(mainIntent);
+                                    }
+                                })
+                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                        Toast.makeText(DriverAlertsForRequest.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
-            for (int i = 0; i < response.length(); i++) {
+            if (exists) {
+                JSONArray response = null;
                 try {
-                     obj = response.getJSONObject(i);
-                    final DriverAlertsForRequestDataModel Alert = new DriverAlertsForRequestDataModel(Parcel.obtain());
-                    Alert.setPassengerName(obj.getString("PassengerName"));
-                    Alert.setNationalityEnName(obj.getString("NationalityEnName"));
-                    Alert.setAccountPhoto(obj.getString("AccountPhoto"));
-                    Alert.setRouteName(obj.getString("RouteName"));
-                    Alert.setPassengerMobile(obj.getString("PassengerMobile"));
-                    Alert.setRemarks(obj.getString("Remarks"));
-                    Alert.setRequestId(obj.getInt("RequestId"));
-                    Alert.setRequestDate(obj.getString("RequestDate"));
-
-                    //driver.setRating(obj.getInt("Rating"));
-                    arr.add(Alert);
+                    response = new GetData().GetDriverAlertsForRequest(Driver_Id);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                //hidePDialog();
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        obj = response.getJSONObject(i);
+                        final DriverAlertsForRequestDataModel Alert = new DriverAlertsForRequestDataModel(Parcel.obtain());
+                        Alert.setPassengerName(obj.getString("PassengerName"));
+                        Alert.setNationalityEnName(obj.getString("NationalityEnName"));
+                        Alert.setAccountPhoto(obj.getString("AccountPhoto"));
+                        Alert.setRouteName(obj.getString("RouteName"));
+                        Alert.setPassengerMobile(obj.getString("PassengerMobile"));
+                        Alert.setRemarks(obj.getString("Remarks"));
+                        Alert.setRequestId(obj.getInt("RequestId"));
+                        Alert.setRequestDate(obj.getString("RequestDate"));
+
+                        //driver.setRating(obj.getInt("Rating"));
+                        arr.add(Alert);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    //hidePDialog();
+                }
             }
             return null;
         }

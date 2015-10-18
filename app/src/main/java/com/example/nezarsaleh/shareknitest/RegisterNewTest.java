@@ -733,9 +733,12 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                                         startActivity(mainIntent);
                                     }
                                 })
-                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                .setNegativeButton("Go Back", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        finish();
+                                        Intent intentToBeNewRoot = new Intent(RegisterNewTest.this, OnboardingActivity.class);
+                                        ComponentName cn = intentToBeNewRoot.getComponent();
+                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        startActivity(mainIntent);
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
                         Toast.makeText(RegisterNewTest.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();

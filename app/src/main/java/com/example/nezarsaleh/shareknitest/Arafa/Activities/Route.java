@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
 import android.os.Parcel;
+import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -36,6 +38,7 @@ import com.example.nezarsaleh.shareknitest.DriverEditCarPool;
 import com.example.nezarsaleh.shareknitest.DriverGetReviewAdapter;
 import com.example.nezarsaleh.shareknitest.DriverGetReviewDataModel;
 import com.example.nezarsaleh.shareknitest.HomePage;
+import com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity;
 import com.example.nezarsaleh.shareknitest.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -52,16 +55,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Route extends AppCompatActivity implements OnMapReadyCallback {
 
-
-    final JSONArray[] myJsonArray = new JSONArray[1];
-    TextView
-            FromRegionEnName, ToRegionEnName, FromEmirateEnName, ToEmirateEnName, StartFromTime, EndToTime_, AgeRange, PreferredGender, IsSmoking, ride_details_day_of_week, NationalityEnName, PrefLanguageEnName;
+    TextView FromRegionEnName, ToRegionEnName, FromEmirateEnName, ToEmirateEnName, StartFromTime, EndToTime_, AgeRange, PreferredGender, IsSmoking, ride_details_day_of_week, NationalityEnName, PrefLanguageEnName;
     String str_StartFromTime, str_EndToTime_, Smokers_str;
     String days;
     SharedPreferences myPrefs;
@@ -76,7 +79,6 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private List<DriverGetReviewDataModel> driverGetReviewDataModels_arr = new ArrayList<>();
     Bundle in;
-
     Button Route_Delete_Btn,Route_Edit_Btn;
     GetData j = new GetData();
 
@@ -84,7 +86,6 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
         ListAdapter listAdapter = listView.getAdapter();
         if (listAdapter == null)
             return;
-
         int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
         int totalHeight = 0;
         View view = null;
@@ -100,7 +101,6 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
         listView.requestLayout();
-
     }
 
     @Override
@@ -195,77 +195,81 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
     private class loadingBasicInfo extends AsyncTask {
         JSONObject json;
         Exception exception;
+        boolean exists = false;
 
         @Override
         protected void onPostExecute(Object o) {
-            if (exception==null){
-                try {
-                    FromRegionEnName.setText(json.getString("FromRegionEnName"));
-                    ToRegionEnName.setText(json.getString("ToRegionEnName"));
-                    FromEmirateEnName.setText(json.getString("FromEmirateEnName"));
-                    ToEmirateEnName.setText(json.getString("ToEmirateEnName"));
-                    str_StartFromTime = json.getString("StartFromTime");
-                    str_EndToTime_ = json.getString("EndToTime_");
-                    str_StartFromTime = str_StartFromTime.substring(Math.max(0, str_StartFromTime.length() - 7));
-                    Log.d("string", str_StartFromTime);
-                    str_EndToTime_ = str_EndToTime_.substring(Math.max(0, str_EndToTime_.length() - 7));
-                    Log.d("time to", str_EndToTime_);
-                    StartFromTime.setText(str_StartFromTime);
-                    EndToTime_.setText(str_EndToTime_);
-                    NationalityEnName.setText(json.getString("NationalityEnName"));
-                    PrefLanguageEnName.setText(json.getString("PrefLanguageEnName"));
-                    AgeRange.setText(json.getString("AgeRange"));
-                    PreferredGender.setText(json.getString("PreferredGender"));
-                    Smokers_str = "";
-                    //Done
-                    Smokers_str = json.getString("IsSmoking");
-                    if (Smokers_str.equals("true")) {
-                        Smokers_str = "Yes";
-                    } else if (Smokers_str.equals("false")) {
-                        Smokers_str = "No";
+            if (exists){
+                if (exception==null){
+                    try {
+                        FromRegionEnName.setText(json.getString("FromRegionEnName"));
+                        ToRegionEnName.setText(json.getString("ToRegionEnName"));
+                        FromEmirateEnName.setText(json.getString("FromEmirateEnName"));
+                        ToEmirateEnName.setText(json.getString("ToEmirateEnName"));
+                        str_StartFromTime = json.getString("StartFromTime");
+                        str_EndToTime_ = json.getString("EndToTime_");
+                        str_StartFromTime = str_StartFromTime.substring(Math.max(0, str_StartFromTime.length() - 7));
+                        Log.d("string", str_StartFromTime);
+                        str_EndToTime_ = str_EndToTime_.substring(Math.max(0, str_EndToTime_.length() - 7));
+                        Log.d("time to", str_EndToTime_);
+                        StartFromTime.setText(str_StartFromTime);
+                        EndToTime_.setText(str_EndToTime_);
+                        NationalityEnName.setText(json.getString("NationalityEnName"));
+                        PrefLanguageEnName.setText(json.getString("PrefLanguageEnName"));
+                        AgeRange.setText(json.getString("AgeRange"));
+                        PreferredGender.setText(json.getString("PreferredGender"));
+                        Smokers_str = "";
+                        //Done
+                        Smokers_str = json.getString("IsSmoking");
+                        if (Smokers_str.equals("true")) {
+                            Smokers_str = "Yes";
+                        } else if (Smokers_str.equals("false")) {
+                            Smokers_str = "No";
+                        }
+                        IsSmoking.setText(Smokers_str);
+                        StartLat = json.getDouble("StartLat");
+                        StartLng = json.getDouble("StartLng");
+                        EndLat = json.getDouble("EndLat");
+                        EndLng = json.getDouble("EndLng");
+                        Log.d("S Lat", String.valueOf(StartLat));
+                        if (json.getString("Saturday").equals("true")) {
+                            days += "Sat , ";
+                        }
+                        if (json.getString("Sunday").equals("true")) {
+                            days += "Sun , ";
+                        }
+                        if (json.getString("Monday").equals("true")) {
+                            days += "Mon , ";
+                        }
+                        if (json.getString("Tuesday").equals("true")) {
+                            days += "Tue , ";
+                        }
+                        if (json.getString("Wednesday").equals("true")) {
+                            days += "Wed , ";
+                        }
+                        if (json.getString("Thursday").equals("true")) {
+                            days += "Thu , ";
+                        }
+                        if (json.getString("Friday").equals("true")) {
+                            days += "Fri ";
+                        }
+                        ride_details_day_of_week.setText(days);
+                        days = "";
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                    IsSmoking.setText(Smokers_str);
-                    StartLat = json.getDouble("StartLat");
-                    StartLng = json.getDouble("StartLng");
-                    EndLat = json.getDouble("EndLat");
-                    EndLng = json.getDouble("EndLng");
-                    Log.d("S Lat", String.valueOf(StartLat));
-                    if (json.getString("Saturday").equals("true")) {
-                        days += "Sat , ";
-                    }
-                    if (json.getString("Sunday").equals("true")) {
-                        days += "Sun , ";
-                    }
-                    if (json.getString("Monday").equals("true")) {
-                        days += "Mon , ";
-                    }
-                    if (json.getString("Tuesday").equals("true")) {
-                        days += "Tue , ";
-                    }
-                    if (json.getString("Wednesday").equals("true")) {
-                        days += "Wed , ";
-                    }
-                    if (json.getString("Thursday").equals("true")) {
-                        days += "Thu , ";
-                    }
-                    if (json.getString("Friday").equals("true")) {
-                        days += "Fri ";
-                    }
-                    ride_details_day_of_week.setText(days);
-                    days = "";
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                }else {
+                    Dialog dialog = new Dialog(Route.this);
+                    dialog.setTitle("Some Thing Is Wrong !?");
+                    dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public void onCancel(DialogInterface dialog) {
+                            Intent in = new Intent(Route.this, HomePage.class);
+                            startActivity(in);
+                        }
+                    });
                 }
-            }else {
-                Dialog dialog = new Dialog(Route.this);
-                dialog.setTitle("Some Thing Is Wrong !?");
-                dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
-                        Intent in =  new Intent(Route.this, HomePage.class);
-                        startActivity(in);
-                    }
-                });
+
             }
         }
 
@@ -273,11 +277,43 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
         protected Object doInBackground(Object[] params) {
             GetData GD = new GetData();
             try {
-                days = "";
-                json = GD.GetRouteById(Route_ID);
-            } catch (Exception e) {
-                exception = e;
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                Socket sock = new Socket();
+                int timeoutMs = 2000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                exists = true;
+            } catch (final Exception e) {
                 e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new AlertDialog.Builder(Route.this)
+                                .setTitle("Connection Problem!")
+                                .setMessage("Make sure you have internet connection")
+                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intentToBeNewRoot = new Intent(Route.this, Route.class);
+                                        ComponentName cn = intentToBeNewRoot.getComponent();
+                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        startActivity(mainIntent);
+                                    }
+                                })
+                                .setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                        Toast.makeText(Route.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            if (exists) {
+                try {
+                    days = "";
+                    json = GD.GetRouteById(Route_ID);
+                } catch (Exception e) {
+                    exception = e;
+                    e.printStackTrace();
+                }
             }
             return null;
         }

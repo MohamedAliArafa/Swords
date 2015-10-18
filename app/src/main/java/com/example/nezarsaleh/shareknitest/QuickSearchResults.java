@@ -1,19 +1,28 @@
 package com.example.nezarsaleh.shareknitest;
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
+import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
+
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
 
 
 public class QuickSearchResults extends AppCompatActivity {
@@ -36,61 +45,93 @@ public class QuickSearchResults extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quick_search_results);
-        lvResult= (ListView) findViewById(R.id.lv_searchResult);
+        lvResult = (ListView) findViewById(R.id.lv_searchResult);
 
         myPrefs = this.getSharedPreferences("myPrefs", 0);
-        String ID = myPrefs.getString("account_id",null);
+        String ID = myPrefs.getString("account_id", null);
 //        Bundle in = getIntent().getExtras();
 //        Log.d("Intent Id :", String.valueOf(in.getInt("DriverID")));
 
         initToolbar();
         Intent intent = getIntent();
-        From_Em_Id= intent.getIntExtra("From_Em_Id",0);
-        From_Reg_Id=intent.getIntExtra("From_Reg_Id",0);
-        To_Em_Id=intent.getIntExtra("To_Em_Id",0);
-        To_Reg_Id=intent.getIntExtra("To_Reg_Id",0);
+        From_Em_Id = intent.getIntExtra("From_Em_Id", 0);
+        From_Reg_Id = intent.getIntExtra("From_Reg_Id", 0);
+        To_Em_Id = intent.getIntExtra("To_Em_Id", 0);
+        To_Reg_Id = intent.getIntExtra("To_Reg_Id", 0);
 
-        To_EmirateEnName=intent.getStringExtra("To_EmirateEnName");
-        From_EmirateEnName=intent.getStringExtra("From_EmirateEnName");
-        To_RegionEnName=intent.getStringExtra("To_RegionEnName");
-        From_RegionEnName=intent.getStringExtra("From_RegionEnName");
+        To_EmirateEnName = intent.getStringExtra("To_EmirateEnName");
+        From_EmirateEnName = intent.getStringExtra("From_EmirateEnName");
+        To_RegionEnName = intent.getStringExtra("To_RegionEnName");
+        From_RegionEnName = intent.getStringExtra("From_RegionEnName");
 
 
-
-        From_EmirateEnName_txt= (TextView) findViewById(R.id.quick_search_em_from);
-        From_RegionEnName_txt= (TextView) findViewById(R.id.quick_search_reg_from);
-        To_EmirateEnName_txt= (TextView) findViewById(R.id.quick_search_em_to);
-        To_RegionEnName_txt= (TextView) findViewById(R.id.quick_search_reg_to);
+        From_EmirateEnName_txt = (TextView) findViewById(R.id.quick_search_em_from);
+        From_RegionEnName_txt = (TextView) findViewById(R.id.quick_search_reg_from);
+        To_EmirateEnName_txt = (TextView) findViewById(R.id.quick_search_em_to);
+        To_RegionEnName_txt = (TextView) findViewById(R.id.quick_search_reg_to);
 
         From_EmirateEnName_txt.setText(From_EmirateEnName);
         To_EmirateEnName_txt.setText(To_EmirateEnName);
         From_RegionEnName_txt.setText(From_RegionEnName);
         To_RegionEnName_txt.setText(To_RegionEnName);
 
-        char gender='N';
-        String Time="";
-        int FromEmId=2;
-        int FromRegId=4;
-        int ToEmId=4;
-        int ToRegId=20;
-        int pref_lnag=0;
-        int pref_nat=0;
-        int Age_Ranged_id=0;
-        String StartDate="";
-        int saveFind=1;
+        char gender = 'N';
+        String Time = "";
+        int FromEmId = 2;
+        int FromRegId = 4;
+        int ToEmId = 4;
+        int ToRegId = 20;
+        int pref_lnag = 0;
+        int pref_nat = 0;
+        int Age_Ranged_id = 0;
+        String StartDate = "";
+        int saveFind = 1;
 
-        if (ID == null){
-            GetData j = new GetData();
-            j.QuickSearchForm(0,gender,Time,From_Em_Id
-                    ,From_Reg_Id,To_Em_Id,To_Reg_Id,pref_lnag,pref_nat
-                    ,Age_Ranged_id,StartDate,saveFind
-                    ,lvResult,this);
-        }else {
-            GetData j = new GetData();
-            j.QuickSearchForm(Integer.parseInt(ID),gender,Time,From_Em_Id
-                    ,From_Reg_Id,To_Em_Id,To_Reg_Id,pref_lnag,pref_nat
-                    ,Age_Ranged_id,StartDate,saveFind
-                    ,lvResult,this);
+        boolean exists = false;
+        try {
+            SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+            Socket sock = new Socket();
+            int timeoutMs = 2000;   // 2 seconds
+            sock.connect(sockaddr, timeoutMs);
+            exists = true;
+        } catch (final Exception e) {
+            e.printStackTrace();
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    new AlertDialog.Builder(QuickSearchResults.this)
+                            .setTitle("Connection Problem!")
+                            .setMessage("Make sure you have internet connection")
+                            .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intentToBeNewRoot = new Intent(QuickSearchResults.this, QuickSearchResults.class);
+                                    ComponentName cn = intentToBeNewRoot.getComponent();
+                                    Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                    startActivity(mainIntent);
+                                }
+                            })
+                            .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    finish();
+                                }
+                            }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                    Toast.makeText(QuickSearchResults.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        if (exists) {
+            if (ID == null) {
+                GetData j = new GetData();
+                j.QuickSearchForm(0, gender, Time, From_Em_Id
+                        , From_Reg_Id, To_Em_Id, To_Reg_Id, pref_lnag, pref_nat
+                        , Age_Ranged_id, StartDate, saveFind
+                        , lvResult, this);
+            } else {
+                GetData j = new GetData();
+                j.QuickSearchForm(Integer.parseInt(ID), gender, Time, From_Em_Id
+                        , From_Reg_Id, To_Em_Id, To_Reg_Id, pref_lnag, pref_nat
+                        , Age_Ranged_id, StartDate, saveFind
+                        , lvResult, this);
+            }
         }
     }
 

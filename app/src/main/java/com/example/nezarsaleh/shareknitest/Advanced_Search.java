@@ -1,15 +1,19 @@
 package com.example.nezarsaleh.shareknitest;
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -26,6 +30,7 @@ import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
 
@@ -33,6 +38,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -302,169 +310,275 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
     }   //  on create
 
     private class nat extends AsyncTask{
+        boolean exists = false;
 
         @Override
         protected void onPostExecute(Object o) {
-            Log.d("test pref lang  2 :", Advanced_Country_List.toString());
-            SimpleAdapter adapterCountry = new SimpleAdapter(Advanced_Search.this, Advanced_Country_List
-                    , R.layout.autocomplete_row
-                    , new String[]{"ID", "NationalityEnName"}
-                    , new int[]{R.id.row_id, R.id.row_name});
+            if (exists) {
 
-            advanced_search_Nat.setAdapter(adapterCountry);
-            advanced_search_Nat.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    TextView txt_lang_name = (TextView) view.findViewById(R.id.row_name);
-                    TextView txt_lang_id = (TextView) view.findViewById(R.id.row_id);
-                    Nationality_ID = Integer.parseInt(txt_lang_id.getText().toString());
-                    advanced_search_Nat.setText(txt_lang_name.getText().toString());
-                    Log.d("id of lang", "" + Nationality_ID);
-                }
-            });
+                Log.d("test pref lang  2 :", Advanced_Country_List.toString());
+                SimpleAdapter adapterCountry = new SimpleAdapter(Advanced_Search.this, Advanced_Country_List
+                        , R.layout.autocomplete_row
+                        , new String[]{"ID", "NationalityEnName"}
+                        , new int[]{R.id.row_id, R.id.row_name});
+
+                advanced_search_Nat.setAdapter(adapterCountry);
+                advanced_search_Nat.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        TextView txt_lang_name = (TextView) view.findViewById(R.id.row_name);
+                        TextView txt_lang_id = (TextView) view.findViewById(R.id.row_id);
+                        Nationality_ID = Integer.parseInt(txt_lang_id.getText().toString());
+                        advanced_search_Nat.setText(txt_lang_name.getText().toString());
+                        Log.d("id of lang", "" + Nationality_ID);
+                    }
+                });
+            }
         }
 
         @Override
         protected Object doInBackground(Object[] params) {
             try {
-                JSONArray j = new GetData().GetNationalities();
-                for (int i = 0; i < j.length(); i++) {
-                    TreeMap<String, String> valuePairs = new TreeMap<>();
-                    JSONObject jsonObject = j.getJSONObject(i);
-                    valuePairs.put("ID", jsonObject.getString("ID"));
-                    valuePairs.put("NationalityEnName", jsonObject.getString("NationalityEnName"));
-                    Advanced_Country_List.add(valuePairs);
-                }
-                //Toast.makeText(RegisterNewTest.this, "test pref lang" + Lang_List.toString(), Toast.LENGTH_LONG).show();
-                Log.d("test pref lang", Advanced_Country_List.toString());
-            } catch (JSONException e) {
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                Socket sock = new Socket();
+                int timeoutMs = 2000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                exists = true;
+            } catch (final Exception e) {
                 e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new AlertDialog.Builder(Advanced_Search.this)
+                                .setTitle("Connection Problem!")
+                                .setMessage("Make sure you have internet connection")
+                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intentToBeNewRoot = new Intent(Advanced_Search.this, Advanced_Search.class);
+                                        ComponentName cn = intentToBeNewRoot.getComponent();
+                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        startActivity(mainIntent);
+                                    }
+                                })
+                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                        Toast.makeText(Advanced_Search.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            if (exists) {
+                try {
+                    JSONArray j = new GetData().GetNationalities();
+                    for (int i = 0; i < j.length(); i++) {
+                        TreeMap<String, String> valuePairs = new TreeMap<>();
+                        JSONObject jsonObject = j.getJSONObject(i);
+                        valuePairs.put("ID", jsonObject.getString("ID"));
+                        valuePairs.put("NationalityEnName", jsonObject.getString("NationalityEnName"));
+                        Advanced_Country_List.add(valuePairs);
+                    }
+                    //Toast.makeText(RegisterNewTest.this, "test pref lang" + Lang_List.toString(), Toast.LENGTH_LONG).show();
+                    Log.d("test pref lang", Advanced_Country_List.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
             return null;
         }
     }
 
     private class lan extends AsyncTask{
+        boolean exists = false;
 
         @Override
         protected void onPostExecute(Object o) {
-            Log.d("test pref lang  2 :", Advanced_Lang_List.toString());
-            final SimpleAdapter adapter2 = new SimpleAdapter(Advanced_Search.this, Advanced_Lang_List
-                    , R.layout.autocomplete_row
-                    , new String[]{"LanguageId", "LanguageEnName"}
-                    , new int[]{R.id.row_id, R.id.row_name});
-            advanced_search_Preferred_Lang_txt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Languages_Dilaog = new Dialog(mContext);
-                    Languages_Dilaog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                    Languages_Dilaog.setContentView(R.layout.languages_dialog);
-                    lang_lv = (ListView) Languages_Dilaog.findViewById(R.id.Langs_list);
-                    lang_lv.setAdapter(adapter2);
-                    Languages_Dilaog.show();
-                    lang_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            TextView txt_lang_name = (TextView) view.findViewById(R.id.row_name);
-                            TextView txt_lang_id = (TextView) view.findViewById(R.id.row_id);
-                            //   Language_ID = Integer.parseInt(txt_lang_id.getText().toString());
-                            advanced_search_Preferred_Lang_txt.setText(txt_lang_name.getText().toString());
-                            // Log.d("id of lang", "" + Language_ID);
-                            Languages_Dilaog.dismiss();
-                        }
-                    });
-                }
-            });
+            if (exists) {
+                Log.d("test pref lang  2 :", Advanced_Lang_List.toString());
+                final SimpleAdapter adapter2 = new SimpleAdapter(Advanced_Search.this, Advanced_Lang_List
+                        , R.layout.autocomplete_row
+                        , new String[]{"LanguageId", "LanguageEnName"}
+                        , new int[]{R.id.row_id, R.id.row_name});
+                advanced_search_Preferred_Lang_txt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Languages_Dilaog = new Dialog(mContext);
+                        Languages_Dilaog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        Languages_Dilaog.setContentView(R.layout.languages_dialog);
+                        lang_lv = (ListView) Languages_Dilaog.findViewById(R.id.Langs_list);
+                        lang_lv.setAdapter(adapter2);
+                        Languages_Dilaog.show();
+                        lang_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                TextView txt_lang_name = (TextView) view.findViewById(R.id.row_name);
+                                TextView txt_lang_id = (TextView) view.findViewById(R.id.row_id);
+                                //   Language_ID = Integer.parseInt(txt_lang_id.getText().toString());
+                                advanced_search_Preferred_Lang_txt.setText(txt_lang_name.getText().toString());
+                                // Log.d("id of lang", "" + Language_ID);
+                                Languages_Dilaog.dismiss();
+                            }
+                        });
+                    }
+                });
+            }
         }
 
         @Override
         protected Object doInBackground(Object[] params) {
             try {
-                JSONArray j = new GetData().GetPrefLanguage();
-                for (int i = 0; i < j.length(); i++) {
-
-                    TreeMap<String, String> valuePairs = new TreeMap<>();
-                    JSONObject jsonObject = j.getJSONObject(i);
-                    valuePairs.put("LanguageId", jsonObject.getString("LanguageId"));
-                    valuePairs.put("LanguageEnName", jsonObject.getString("LanguageEnName"));
-                    Advanced_Lang_List.add(valuePairs);
-
-
-                }
-                //Toast.makeText(RegisterNewTest.this, "test pref lang" + Lang_List.toString(), Toast.LENGTH_LONG).show();
-                Log.d("test pref lang", Advanced_Lang_List.toString());
-
-            } catch (JSONException e) {
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                Socket sock = new Socket();
+                int timeoutMs = 2000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                exists = true;
+            } catch (final Exception e) {
                 e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new AlertDialog.Builder(Advanced_Search.this)
+                                .setTitle("Connection Problem!")
+                                .setMessage("Make sure you have internet connection")
+                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intentToBeNewRoot = new Intent(Advanced_Search.this, Advanced_Search.class);
+                                        ComponentName cn = intentToBeNewRoot.getComponent();
+                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        startActivity(mainIntent);
+                                    }
+                                })
+                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                        Toast.makeText(Advanced_Search.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            if (exists) {
+                try {
+                    JSONArray j = new GetData().GetPrefLanguage();
+                    for (int i = 0; i < j.length(); i++) {
+
+                        TreeMap<String, String> valuePairs = new TreeMap<>();
+                        JSONObject jsonObject = j.getJSONObject(i);
+                        valuePairs.put("LanguageId", jsonObject.getString("LanguageId"));
+                        valuePairs.put("LanguageEnName", jsonObject.getString("LanguageEnName"));
+                        Advanced_Lang_List.add(valuePairs);
+
+
+                    }
+                    //Toast.makeText(RegisterNewTest.this, "test pref lang" + Lang_List.toString(), Toast.LENGTH_LONG).show();
+                    Log.d("test pref lang", Advanced_Lang_List.toString());
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
             return null;
         }
     }
 
     private class age extends AsyncTask{
+        boolean exists = false;
 
         @Override
         protected void onPostExecute(Object o) {
-            Log.d("test pref lang  2 :", Advanced_AgeRanges_List.toString());
+            if (exists) {
+                Log.d("test pref lang  2 :", Advanced_AgeRanges_List.toString());
 
-            final SimpleAdapter AgeRangesAdapter = new SimpleAdapter(Advanced_Search.this, Advanced_AgeRanges_List
-                    , R.layout.autocomplete_row
-                    , new String[]{"RangeId", "Range"}
-                    , new int[]{R.id.row_id, R.id.row_name});
-
-
-            advanced_search_Age_Range_txt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                final SimpleAdapter AgeRangesAdapter = new SimpleAdapter(Advanced_Search.this, Advanced_AgeRanges_List
+                        , R.layout.autocomplete_row
+                        , new String[]{"RangeId", "Range"}
+                        , new int[]{R.id.row_id, R.id.row_name});
 
 
-                    Languages_Dilaog = new Dialog(mContext);
-                    ;
-                    Languages_Dilaog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                    Languages_Dilaog.setContentView(R.layout.languages_dialog);
+                advanced_search_Age_Range_txt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
 
-                    TextView Lang_Dialog_txt_id = (TextView) Languages_Dilaog.findViewById(R.id.Lang_Dialog_txt_id);
-                    Lang_Dialog_txt_id.setText("Age Ranges");
-                    lang_lv = (ListView) Languages_Dilaog.findViewById(R.id.Langs_list);
-                    lang_lv.setAdapter(AgeRangesAdapter);
-                    Languages_Dilaog.show();
-                    lang_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            TextView txt_lang_name = (TextView) view.findViewById(R.id.row_name);
-                            TextView txt_lang_id = (TextView) view.findViewById(R.id.row_id);
-                            //   Language_ID = Integer.parseInt(txt_lang_id.getText().toString());
-                            advanced_search_Age_Range_txt.setText(txt_lang_name.getText().toString());
-                            // Log.d("id of lang", "" + Language_ID);
-                            Languages_Dilaog.dismiss();
-                        }
-                    });
+                        Languages_Dilaog = new Dialog(mContext);
+                        ;
+                        Languages_Dilaog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        Languages_Dilaog.setContentView(R.layout.languages_dialog);
 
 
-                }
-            });
+                        TextView Lang_Dialog_txt_id = (TextView) Languages_Dilaog.findViewById(R.id.Lang_Dialog_txt_id);
+                        Lang_Dialog_txt_id.setText("Age Ranges");
+                        lang_lv = (ListView) Languages_Dilaog.findViewById(R.id.Langs_list);
+                        lang_lv.setAdapter(AgeRangesAdapter);
+                        Languages_Dilaog.show();
+                        lang_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                TextView txt_lang_name = (TextView) view.findViewById(R.id.row_name);
+                                TextView txt_lang_id = (TextView) view.findViewById(R.id.row_id);
+                                //   Language_ID = Integer.parseInt(txt_lang_id.getText().toString());
+                                advanced_search_Age_Range_txt.setText(txt_lang_name.getText().toString());
+                                // Log.d("id of lang", "" + Language_ID);
+                                Languages_Dilaog.dismiss();
+                            }
+                        });
+
+
+                    }
+                });
+            }
         }
 
         @Override
         protected Object doInBackground(Object[] params) {
             try {
-                JSONArray j = new GetData().GetAgeRanges();
-                for (int i = 0; i < j.length(); i++) {
-
-                    TreeMap<String, String> valuePairs = new TreeMap<>();
-                    JSONObject jsonObject = j.getJSONObject(i);
-                    valuePairs.put("RangeId", jsonObject.getString("RangeId"));
-                    valuePairs.put("Range", jsonObject.getString("Range"));
-                    Advanced_AgeRanges_List.add(valuePairs);
-
-
-                }
-                //Toast.makeText(RegisterNewTest.this, "test pref lang" + Lang_List.toString(), Toast.LENGTH_LONG).show();
-                Log.d("test pref lang", Advanced_AgeRanges_List.toString());
-
-            } catch (JSONException e) {
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                Socket sock = new Socket();
+                int timeoutMs = 2000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                exists = true;
+            } catch (final Exception e) {
                 e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new AlertDialog.Builder(Advanced_Search.this)
+                                .setTitle("Connection Problem!")
+                                .setMessage("Make sure you have internet connection")
+                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intentToBeNewRoot = new Intent(Advanced_Search.this, Advanced_Search.class);
+                                        ComponentName cn = intentToBeNewRoot.getComponent();
+                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        startActivity(mainIntent);
+                                    }
+                                })
+                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                        Toast.makeText(Advanced_Search.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            if (exists) {
+                try {
+                    JSONArray j = new GetData().GetAgeRanges();
+                    for (int i = 0; i < j.length(); i++) {
+
+                        TreeMap<String, String> valuePairs = new TreeMap<>();
+                        JSONObject jsonObject = j.getJSONObject(i);
+                        valuePairs.put("RangeId", jsonObject.getString("RangeId"));
+                        valuePairs.put("Range", jsonObject.getString("Range"));
+                        Advanced_AgeRanges_List.add(valuePairs);
+
+
+                    }
+                    //Toast.makeText(RegisterNewTest.this, "test pref lang" + Lang_List.toString(), Toast.LENGTH_LONG).show();
+                    Log.d("test pref lang", Advanced_AgeRanges_List.toString());
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
             return null;
         }
@@ -527,11 +641,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-
-
         if (v == Advanced_pickup_relative || v == quickSearch_pickUp) {
-
-
             Advanced_Emirates_List.clear();
             try {
                 JSONArray j = new GetData().GetEmitares();
@@ -546,107 +656,140 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                 Log.d("test Emirates ", Advanced_Emirates_List.toString());
             } catch (JSONException e) {
                 e.printStackTrace();
+
             }
-            Advanced_EmAdapter = new SimpleAdapter(Advanced_Search.this, Advanced_Emirates_List
-                    , R.layout.dialog_pick_emirate_lv_row
-                    , new String[]{"EmirateId", "EmirateEnName"}
-                    , new int[]{R.id.row_id_search, R.id.row_name_search});
+            boolean exists = false;
+            try {
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                Socket sock = new Socket();
+                int timeoutMs = 2000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                exists = true;
+            } catch (final Exception e) {
+                e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new AlertDialog.Builder(Advanced_Search.this)
+                                .setTitle("Connection Problem!")
+                                .setMessage("Make sure you have internet connection")
+                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intentToBeNewRoot = new Intent(Advanced_Search.this, Advanced_Search.class);
+                                        ComponentName cn = intentToBeNewRoot.getComponent();
+                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        startActivity(mainIntent);
+                                    }
+                                })
+                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                        Toast.makeText(Advanced_Search.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            if (exists) {
+                Advanced_EmAdapter = new SimpleAdapter(Advanced_Search.this, Advanced_Emirates_List
+                        , R.layout.dialog_pick_emirate_lv_row
+                        , new String[]{"EmirateId", "EmirateEnName"}
+                        , new int[]{R.id.row_id_search, R.id.row_name_search});
 
-            Advanced_MainDialog = new Dialog(Advanced_Search.this);
-            Advanced_MainDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            Advanced_MainDialog.setContentView(R.layout.main_search_dialog);
-            TextView Address = (TextView) Advanced_MainDialog.findViewById(R.id.Lang_Dialog_txt_id);
-            Address.setText("Pick Up");
-            Advanced_btn_submit_pickUp = (Button) Advanced_MainDialog.findViewById(R.id.btn_submit_puckup);
+                Advanced_MainDialog = new Dialog(Advanced_Search.this);
+                Advanced_MainDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                Advanced_MainDialog.setContentView(R.layout.main_search_dialog);
+                TextView Address = (TextView) Advanced_MainDialog.findViewById(R.id.Lang_Dialog_txt_id);
+                Address.setText("Pick Up");
+                Advanced_btn_submit_pickUp = (Button) Advanced_MainDialog.findViewById(R.id.btn_submit_puckup);
 //                MainDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
-            Advanced_txt_regions = (AutoCompleteTextView) Advanced_MainDialog.findViewById(R.id.mainDialog_Regions_auto);
-            Advanced_spinner = (Spinner) Advanced_MainDialog.findViewById(R.id.Emirates_spinner);
-            Advanced_spinner.setAdapter(Advanced_EmAdapter);
+                Advanced_txt_regions = (AutoCompleteTextView) Advanced_MainDialog.findViewById(R.id.mainDialog_Regions_auto);
+                Advanced_spinner = (Spinner) Advanced_MainDialog.findViewById(R.id.Emirates_spinner);
+                Advanced_spinner.setAdapter(Advanced_EmAdapter);
 
-            Advanced_MainDialog.show();
-
-
-            Advanced_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    Advanced_txt_PickUp = "";
-                    TextView txt_em_name = (TextView) view.findViewById(R.id.row_name_search);
-                    TextView txt_em_id = (TextView) view.findViewById(R.id.row_id_search);
-                    From_Em_Id = Integer.parseInt(txt_em_id.getText().toString());
-                    From_EmirateEnName = txt_em_name.getText().toString();
-
-                    Advanced_txt_PickUp += txt_em_name.getText().toString();
-                    Advanced_txt_PickUp += ", ";
-                    Log.d("id of lang", "" + From_Em_Id);
-
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
+                Advanced_MainDialog.show();
 
 
-            Advanced_txt_regions.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                Advanced_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        Advanced_txt_PickUp = "";
+                        TextView txt_em_name = (TextView) view.findViewById(R.id.row_name_search);
+                        TextView txt_em_id = (TextView) view.findViewById(R.id.row_id_search);
+                        From_Em_Id = Integer.parseInt(txt_em_id.getText().toString());
+                        From_EmirateEnName = txt_em_name.getText().toString();
 
+                        Advanced_txt_PickUp += txt_em_name.getText().toString();
+                        Advanced_txt_PickUp += ", ";
+                        Log.d("id of lang", "" + From_Em_Id);
 
-                    GetData getData = new GetData();
-                    try {
-                        JSONArray jsonArray = getData.GetRegionsByEmiratesID(From_Em_Id);
-
-                        for (int i = 0; i < jsonArray.length(); i++) {
-
-                            TreeMap<String, String> valuePairs = new TreeMap<>();
-                            JSONObject jsonObject = jsonArray.getJSONObject(i);
-                            valuePairs.put("ID", jsonObject.getString("ID"));
-                            valuePairs.put("RegionEnName", jsonObject.getString("RegionEnName"));
-                            Advanced_Regions_List.add(valuePairs);
-                        }
-                        Log.d("test Regions search ", Advanced_Regions_List.toString());
-
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
                     }
 
 
-                    final SimpleAdapter RegAdapter = new SimpleAdapter(Advanced_Search.this, Advanced_Regions_List
-                            , R.layout.dialog_pick_emirate_lv_row
-                            , new String[]{"ID", "RegionEnName"}
-                            , new int[]{R.id.row_id_search, R.id.row_name_search});
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
 
-                    Advanced_txt_regions.setAdapter(RegAdapter);
+                    }
+                });
 
 
-                    Advanced_txt_regions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            TextView txt_reg_name = (TextView) view.findViewById(R.id.row_name_search);
-                            TextView txt_reg_id = (TextView) view.findViewById(R.id.row_id_search);
-                            From_Reg_Id = Integer.parseInt(txt_reg_id.getText().toString());
-                            From_RegionEnName = txt_reg_name.getText().toString();
-                            Advanced_txt_regions.setText(txt_reg_name.getText().toString());
-                            Advanced_txt_PickUp += txt_reg_name.getText().toString();
+                Advanced_txt_regions.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        GetData getData = new GetData();
+                        try {
+                            JSONArray jsonArray = getData.GetRegionsByEmiratesID(From_Em_Id);
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+
+                                TreeMap<String, String> valuePairs = new TreeMap<>();
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                valuePairs.put("ID", jsonObject.getString("ID"));
+                                valuePairs.put("RegionEnName", jsonObject.getString("RegionEnName"));
+                                Advanced_Regions_List.add(valuePairs);
+                            }
+                            Log.d("test Regions search ", Advanced_Regions_List.toString());
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    });
 
 
-                }
-            });
+                        final SimpleAdapter RegAdapter = new SimpleAdapter(Advanced_Search.this, Advanced_Regions_List
+                                , R.layout.dialog_pick_emirate_lv_row
+                                , new String[]{"ID", "RegionEnName"}
+                                , new int[]{R.id.row_id_search, R.id.row_name_search});
+
+                        Advanced_txt_regions.setAdapter(RegAdapter);
 
 
-            Advanced_btn_submit_pickUp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Advanced_txt_Selecet_Start_Point.setText(Advanced_txt_PickUp);
-                    Advanced_MainDialog.dismiss();
-                }
-            });
+                        Advanced_txt_regions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                TextView txt_reg_name = (TextView) view.findViewById(R.id.row_name_search);
+                                TextView txt_reg_id = (TextView) view.findViewById(R.id.row_id_search);
+                                From_Reg_Id = Integer.parseInt(txt_reg_id.getText().toString());
+                                From_RegionEnName = txt_reg_name.getText().toString();
+                                Advanced_txt_regions.setText(txt_reg_name.getText().toString());
+                                Advanced_txt_PickUp += txt_reg_name.getText().toString();
+                            }
+                        });
 
 
+                    }
+                });
+
+
+                Advanced_btn_submit_pickUp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Advanced_txt_Selecet_Start_Point.setText(Advanced_txt_PickUp);
+                        Advanced_MainDialog.dismiss();
+                    }
+                });
+
+
+            }
         }
 
 

@@ -637,33 +637,36 @@ public class EditProfileTest extends AppCompatActivity {
     }
 
     private class nat extends AsyncTask {
+        boolean exists = false;
+
         @Override
         protected void onPostExecute(Object o) {
-            SimpleAdapter adapterCountry = new SimpleAdapter(EditProfileTest.this, Country_List
-                    , R.layout.autocomplete_row
-                    , new String[]{"ID", "NationalityEnName"}
-                    , new int[]{R.id.row_id, R.id.row_name});
-            txt_country.setAdapter(adapterCountry);
+            if (exists) {
+                SimpleAdapter adapterCountry = new SimpleAdapter(EditProfileTest.this, Country_List
+                        , R.layout.autocomplete_row
+                        , new String[]{"ID", "NationalityEnName"}
+                        , new int[]{R.id.row_id, R.id.row_name});
+                txt_country.setAdapter(adapterCountry);
 
-            txt_country.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    TextView txt_lang_name = (TextView) view.findViewById(R.id.row_name);
-                    TextView txt_lang_id = (TextView) view.findViewById(R.id.row_id);
-                    Nationality_ID = Integer.parseInt(txt_lang_id.getText().toString());
-                    txt_country.setText(txt_lang_name.getText().toString());
-                    Log.d("id of lang", "" + Nationality_ID);
-                }
-            });
+                txt_country.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        TextView txt_lang_name = (TextView) view.findViewById(R.id.row_name);
+                        TextView txt_lang_id = (TextView) view.findViewById(R.id.row_id);
+                        Nationality_ID = Integer.parseInt(txt_lang_id.getText().toString());
+                        txt_country.setText(txt_lang_name.getText().toString());
+                        Log.d("id of lang", "" + Nationality_ID);
+                    }
+                });
+            }
         }
 
         @Override
         protected Object doInBackground(Object[] params) {
-            boolean exists = false;
             try {
                 SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
                 Socket sock = new Socket();
-                int timeoutMs = 20000;   // 2 seconds
+                int timeoutMs = 2000;   // 2 seconds
                 sock.connect(sockaddr, timeoutMs);
                 exists = true;
             } catch (final Exception e) {

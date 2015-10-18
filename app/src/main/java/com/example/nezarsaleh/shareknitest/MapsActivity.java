@@ -1,14 +1,21 @@
 package com.example.nezarsaleh.shareknitest;
 
+import android.app.AlertDialog;
+import android.content.ComponentName;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.content.IntentCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nezarsaleh.shareknitest.Map.MapJsonParse;
+import com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -16,6 +23,10 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -28,7 +39,40 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        boolean exists = false;
+        try {
+            SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+            Socket sock = new Socket();
+            int timeoutMs = 2000;   // 2 seconds
+            sock.connect(sockaddr, timeoutMs);
+            exists = true;
+        } catch (final Exception e) {
+            e.printStackTrace();
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    new AlertDialog.Builder(MapsActivity.this)
+                            .setTitle("Connection Problem!")
+                            .setMessage("Make sure you have internet connection")
+                            .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intentToBeNewRoot = new Intent(MapsActivity.this, MapsActivity.class);
+                                    ComponentName cn = intentToBeNewRoot.getComponent();
+                                    Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                    startActivity(mainIntent);
+                                }
+                            })
+                            .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    finish();
+                                }
+                            }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                    Toast.makeText(MapsActivity.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        if (exists) {
+            mapFragment.getMapAsync(this);
+        }
     }
 
 
@@ -50,6 +94,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
                 (new LatLng(25.0014511,55.3588621), 8.25f));
+
 
 
         MapJsonParse mapJsonParse =  new MapJsonParse();
@@ -79,17 +124,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 String lat = String.valueOf(latLng.latitude).substring(0, 7);
                 String lon = String.valueOf(latLng.longitude).substring(0, 7);
-
-
                 emirateLat.setText(lat);
                 emiratelong.setText(lon);
                 emirateArName.setText(title);
                 emirateEnName.setText(snippet);
-
-                
-
-
-
                 return v;
 
             }

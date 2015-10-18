@@ -1,15 +1,19 @@
 package com.example.nezarsaleh.shareknitest;
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -25,6 +29,7 @@ import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
@@ -33,6 +38,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -150,7 +158,9 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
     }  // on create
 
     private class getTo extends AsyncTask {
+
         ProgressDialog pDialog;
+        boolean exists = false;
 
         @Override
         protected void onPreExecute() {
@@ -162,128 +172,161 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
         @Override
         protected void onPostExecute(Object o) {
-            if (pDialog != null) {
-                pDialog.dismiss();
-                pDialog = null;
-            }
+            if (exists) {
+                if (pDialog != null) {
+                    pDialog.dismiss();
+                    pDialog = null;
+                }
 
-            EmAdapter = new SimpleAdapter(QSearch.this, Emirates_List
-                    , R.layout.dialog_pick_emirate_lv_row
-                    , new String[]{"EmirateId", "EmirateEnName"}
-                    , new int[]{R.id.row_id_search, R.id.row_name_search});
+                EmAdapter = new SimpleAdapter(QSearch.this, Emirates_List
+                        , R.layout.dialog_pick_emirate_lv_row
+                        , new String[]{"EmirateId", "EmirateEnName"}
+                        , new int[]{R.id.row_id_search, R.id.row_name_search});
 
-            MainDialog = new Dialog(QSearch.this);
-            MainDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            MainDialog.setContentView(R.layout.main_search_dialog);
-            TextView Lang_Dialog_txt_id= (TextView) MainDialog.findViewById(R.id.Lang_Dialog_txt_id);
-            Lang_Dialog_txt_id.setText("Drop Off");
-            btn_submit_pickUp = (Button) MainDialog.findViewById(R.id.btn_submit_puckup);
-            sweep_icon= (ImageView) MainDialog.findViewById(R.id.sweep_icon);
+                MainDialog = new Dialog(QSearch.this);
+                MainDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                MainDialog.setContentView(R.layout.main_search_dialog);
+                TextView Lang_Dialog_txt_id = (TextView) MainDialog.findViewById(R.id.Lang_Dialog_txt_id);
+                Lang_Dialog_txt_id.setText("Drop Off");
+                btn_submit_pickUp = (Button) MainDialog.findViewById(R.id.btn_submit_puckup);
+                sweep_icon = (ImageView) MainDialog.findViewById(R.id.sweep_icon);
 
 //                MainDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
-            txt_regions = (AutoCompleteTextView) MainDialog.findViewById(R.id.mainDialog_Regions_auto);
-            spinner = (Spinner) MainDialog.findViewById(R.id.Emirates_spinner);
-            spinner.setAdapter(EmAdapter);
+                txt_regions = (AutoCompleteTextView) MainDialog.findViewById(R.id.mainDialog_Regions_auto);
+                spinner = (Spinner) MainDialog.findViewById(R.id.Emirates_spinner);
+                spinner.setAdapter(EmAdapter);
 
-            MainDialog.show();
+                MainDialog.show();
 
 
-            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    txt_Drop_Off = "";
-                    TextView txt_em_name = (TextView) view.findViewById(R.id.row_name_search);
-                    TextView txt_em_id = (TextView) view.findViewById(R.id.row_id_search);
-                    To_Em_Id = Integer.parseInt(txt_em_id.getText().toString());
-                    To_EmirateEnName = txt_em_name.getText().toString();
+                spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        txt_Drop_Off = "";
+                        TextView txt_em_name = (TextView) view.findViewById(R.id.row_name_search);
+                        TextView txt_em_id = (TextView) view.findViewById(R.id.row_id_search);
+                        To_Em_Id = Integer.parseInt(txt_em_id.getText().toString());
+                        To_EmirateEnName = txt_em_name.getText().toString();
 
-                    txt_Drop_Off += txt_em_name.getText().toString();
-                    txt_Drop_Off += ", ";
-                    Log.d("id of lang", "" + To_Em_Id);
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-                }
-            });
-
-            txt_regions.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    GetData getData = new GetData();
-                    try {
-                        JSONArray jsonArray = getData.GetRegionsByEmiratesID(To_Em_Id);
-
-                        for (int i = 0; i < jsonArray.length(); i++) {
-
-                            TreeMap<String, String> valuePairs = new TreeMap<>();
-                            JSONObject jsonObject = jsonArray.getJSONObject(i);
-                            valuePairs.put("ID", jsonObject.getString("ID"));
-                            valuePairs.put("RegionEnName", jsonObject.getString("RegionEnName"));
-                            Regions_List2.add(valuePairs);
-                        }
-                        Log.d("test Regions search ", Regions_List2.toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                        txt_Drop_Off += txt_em_name.getText().toString();
+                        txt_Drop_Off += ", ";
+                        Log.d("id of lang", "" + To_Em_Id);
                     }
-                    final SimpleAdapter RegAdapter = new SimpleAdapter(QSearch.this, Regions_List2
-                            , R.layout.dialog_pick_regions_lv_row
-                            , new String[]{"ID", "RegionEnName"}
-                            , new int[]{R.id.row_id_search, R.id.row_name_search});
 
-                    txt_regions.setAdapter(RegAdapter);
-                    txt_regions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            TextView txt_reg_name = (TextView) view.findViewById(R.id.row_name_search);
-                            TextView txt_reg_id = (TextView) view.findViewById(R.id.row_id_search);
-                            To_Reg_Id = Integer.parseInt(txt_reg_id.getText().toString());
-                            To_RegionEnName = txt_reg_name.getText().toString();
-                            txt_regions.setText(txt_reg_name.getText().toString());
-                            txt_Drop_Off += txt_reg_name.getText().toString();
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                });
+
+                txt_regions.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        GetData getData = new GetData();
+                        try {
+                            JSONArray jsonArray = getData.GetRegionsByEmiratesID(To_Em_Id);
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+
+                                TreeMap<String, String> valuePairs = new TreeMap<>();
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                valuePairs.put("ID", jsonObject.getString("ID"));
+                                valuePairs.put("RegionEnName", jsonObject.getString("RegionEnName"));
+                                Regions_List2.add(valuePairs);
+                            }
+                            Log.d("test Regions search ", Regions_List2.toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    });
-                }
-            });
+                        final SimpleAdapter RegAdapter = new SimpleAdapter(QSearch.this, Regions_List2
+                                , R.layout.dialog_pick_regions_lv_row
+                                , new String[]{"ID", "RegionEnName"}
+                                , new int[]{R.id.row_id_search, R.id.row_name_search});
+
+                        txt_regions.setAdapter(RegAdapter);
+                        txt_regions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                TextView txt_reg_name = (TextView) view.findViewById(R.id.row_name_search);
+                                TextView txt_reg_id = (TextView) view.findViewById(R.id.row_id_search);
+                                To_Reg_Id = Integer.parseInt(txt_reg_id.getText().toString());
+                                To_RegionEnName = txt_reg_name.getText().toString();
+                                txt_regions.setText(txt_reg_name.getText().toString());
+                                txt_Drop_Off += txt_reg_name.getText().toString();
+                            }
+                        });
+                    }
+                });
 
 
+                sweep_icon.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-            sweep_icon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                        txt_regions.setText("");
+                        txt_regions.setHint("Enter Region");
 
-                    txt_regions.setText("");
-                    txt_regions.setHint("Enter Region");
-
-                }
-            });
+                    }
+                });
 
 
-            btn_submit_pickUp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    txt_Select_Dest.setText(txt_Drop_Off);
-                    MainDialog.dismiss();
-                }
-            });
+                btn_submit_pickUp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        txt_Select_Dest.setText(txt_Drop_Off);
+                        MainDialog.dismiss();
+                    }
+                });
+            }
         }
 
         @Override
         protected Object doInBackground(Object[] params) {
-            Emirates_List.clear();
             try {
-                JSONArray j = new GetData().GetEmitares();
-                for (int i = 0; i < j.length(); i++) {
-
-                    TreeMap<String, String> valuePairs = new TreeMap<>();
-                    JSONObject jsonObject = j.getJSONObject(i);
-                    valuePairs.put("EmirateId", jsonObject.getString("EmirateId"));
-                    valuePairs.put("EmirateEnName", jsonObject.getString("EmirateEnName"));
-                    Emirates_List.add(valuePairs);
-                }
-                Log.d("test Emirates ", Emirates_List.toString());
-            } catch (JSONException e) {
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                Socket sock = new Socket();
+                int timeoutMs = 2000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                exists = true;
+            } catch (final Exception e) {
                 e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new AlertDialog.Builder(QSearch.this)
+                                .setTitle("Connection Problem!")
+                                .setMessage("Make sure you have internet connection")
+                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intentToBeNewRoot = new Intent(QSearch.this, QSearch.class);
+                                        ComponentName cn = intentToBeNewRoot.getComponent();
+                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        startActivity(mainIntent);
+                                    }
+                                })
+                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                        Toast.makeText(QSearch.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            if (exists) {
+                Emirates_List.clear();
+                try {
+                    JSONArray j = new GetData().GetEmitares();
+                    for (int i = 0; i < j.length(); i++) {
+
+                        TreeMap<String, String> valuePairs = new TreeMap<>();
+                        JSONObject jsonObject = j.getJSONObject(i);
+                        valuePairs.put("EmirateId", jsonObject.getString("EmirateId"));
+                        valuePairs.put("EmirateEnName", jsonObject.getString("EmirateEnName"));
+                        Emirates_List.add(valuePairs);
+                    }
+                    Log.d("test Emirates ", Emirates_List.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
             return null;
         }
@@ -291,6 +334,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
     private class getFrom extends AsyncTask {
         ProgressDialog pDialog;
+        boolean exists = false;
 
         @Override
         protected void onPreExecute() {
@@ -409,19 +453,51 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
         @Override
         protected Object doInBackground(Object[] params) {
-            Emirates_List.clear();
             try {
-                JSONArray j = new GetData().GetEmitares();
-                for (int i = 0; i < j.length(); i++) {
-                    TreeMap<String, String> valuePairs = new TreeMap<>();
-                    JSONObject jsonObject = j.getJSONObject(i);
-                    valuePairs.put("EmirateId", jsonObject.getString("EmirateId"));
-                    valuePairs.put("EmirateEnName", jsonObject.getString("EmirateEnName"));
-                    Emirates_List.add(valuePairs);
-                }
-                Log.d("test Emirates ", Emirates_List.toString());
-            } catch (JSONException e) {
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                Socket sock = new Socket();
+                int timeoutMs = 2000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                exists = true;
+            } catch (final Exception e) {
                 e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new AlertDialog.Builder(QSearch.this)
+                                .setTitle("Connection Problem!")
+                                .setMessage("Make sure you have internet connection")
+                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intentToBeNewRoot = new Intent(QSearch.this, QSearch.class);
+                                        ComponentName cn = intentToBeNewRoot.getComponent();
+                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        startActivity(mainIntent);
+                                    }
+                                })
+                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                        Toast.makeText(QSearch.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            if (exists) {
+                Emirates_List.clear();
+                try {
+                    JSONArray j = new GetData().GetEmitares();
+                    for (int i = 0; i < j.length(); i++) {
+                        TreeMap<String, String> valuePairs = new TreeMap<>();
+                        JSONObject jsonObject = j.getJSONObject(i);
+                        valuePairs.put("EmirateId", jsonObject.getString("EmirateId"));
+                        valuePairs.put("EmirateEnName", jsonObject.getString("EmirateEnName"));
+                        Emirates_List.add(valuePairs);
+                    }
+                    Log.d("test Emirates ", Emirates_List.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
             return null;
         }
