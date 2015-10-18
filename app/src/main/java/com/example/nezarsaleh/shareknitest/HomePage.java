@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -32,6 +33,8 @@ import com.pkmmte.view.CircularImageView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Locale;
+
 
 public class HomePage extends ActionBarActivity implements View.OnClickListener {
 
@@ -58,6 +61,8 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         try {
             if (LoginApproved.getInstance() != null) {
@@ -120,14 +125,14 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         myPrefs = this.getSharedPreferences("myPrefs", 0);
         ID = myPrefs.getString("account_id", null);
         AccountType = myPrefs.getString("account_type", null);
-        Log.d("pass is",ID);
+
         Driver_ID = Integer.parseInt(ID);
 
         btn_history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(getBaseContext(), History.class);
-//                startActivity(intent);
+                Intent intent = new Intent(getBaseContext(), History.class);
+                startActivity(intent);
             }
         });
 

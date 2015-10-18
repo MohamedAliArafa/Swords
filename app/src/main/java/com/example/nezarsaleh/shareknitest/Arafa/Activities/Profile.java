@@ -145,6 +145,7 @@ public class Profile extends AppCompatActivity {
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
                         assert AccountType != null;
                         if (Passenger_ID != 0) {
                             if (Driver_ID != Passenger_ID) {

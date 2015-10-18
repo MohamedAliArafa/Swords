@@ -40,21 +40,24 @@ public class History extends AppCompatActivity {
     String url = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobRoute.asmx/Passenger_GetSavedSearch?AccountId=";
 
     ListView user_ride_created;
-
+    int ID;
     SharedPreferences myPrefs;
-
+    String AccountType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         user_ride_created = (ListView) findViewById(R.id.user_ride_created);
         initToolbar();
+
         myPrefs = this.getSharedPreferences("myPrefs", 0);
-        String ID = myPrefs.getString("account_id",null);
-//        Bundle in = getIntent().getExtras();
-//        Log.d("Intent Id :", String.valueOf(in.getInt("DriverID")));
-        Driver_ID = Integer.parseInt(ID);
-        Log.d("Driverid1", String.valueOf(Driver_ID));
+        ID = Integer.parseInt(myPrefs.getString("account_id", "0"));
+        AccountType = myPrefs.getString("account_type", null);
+        Log.d("Account type his",AccountType);
+        Log.d("id history", String.valueOf(ID));
+
+
+
 
         new rideJson().execute();
     }
@@ -65,7 +68,7 @@ public class History extends AppCompatActivity {
         @Override
         protected Object doInBackground(Object[] params) {
             RequestQueue queue = VolleySingleton.getInstance(getBaseContext().getApplicationContext()).getRequestQueue();
-            StringRequest stringRequest = new StringRequest(Request.Method.GET, url + Driver_ID,
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url + ID,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -74,7 +77,7 @@ public class History extends AppCompatActivity {
                             response = response.replaceAll("</string>", "");
                             // Display the first 500 characters of the response string.
                             String data = response.substring(40);
-                            Log.d("url", url + Driver_ID);
+                            Log.d("url", url + ID);
                             try {
                                 JSONArray jArray = new JSONArray(data);
                                 final BestRouteDataModel[] driver = new BestRouteDataModel[jArray.length()];
@@ -92,6 +95,14 @@ public class History extends AppCompatActivity {
                                         item.setRouteName(json.getString("FromEmirateEnName") + ":" + json.getString("ToEmirateEnName"));
                                         item.setStartFromTime("00:00");
                                         item.setEndToTime_("00:00");
+                                        item.setFromEmId(json.getInt("FromEmirateId"));
+                                        item.setToEmId(json.getInt("ToEmirateId"));
+                                        item.setFromRegid(json.getInt("FromRegionId"));
+                                        item.setToRegId(json.getInt("ToRegionId"));
+
+
+
+
 
                                         if (json.getString("Saturday").equals("true")) {
                                             days += "Sat , ";
@@ -134,10 +145,18 @@ public class History extends AppCompatActivity {
                                         user_ride_created.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                             @Override
                                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                                Intent in = new Intent(History.this, Route.class);
-                                                in.putExtra("RouteID", driver[i].getID());
-                                                in.putExtra("DriverID", Driver_ID);
-                                                History.this.startActivity(in);
+
+                                                Intent intent1 = new Intent(getBaseContext(), QuickSearchResults.class);
+
+                                                intent1.putExtra("From_Em_Id", driver[i].FromEmId);
+                                                intent1.putExtra("To_Em_Id", driver[i].ToEmId);
+                                                intent1.putExtra("From_Reg_Id", driver[i].FromRegid);
+                                                intent1.putExtra("To_Reg_Id", driver[i].ToRegId);
+                                                intent1.putExtra("From_EmirateEnName",driver[i].FromEm);
+                                                intent1.putExtra("From_RegionEnName",driver[i].FromReg);
+                                                intent1.putExtra("To_EmirateEnName",driver[i].ToEm);
+                                                intent1.putExtra("To_RegionEnName",driver[i].ToReg);
+                                                startActivity(intent1);
 
 
                                             }
@@ -171,7 +190,7 @@ public class History extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Created Rides");
+        textView.setText("History");
 //        toolbar.setElevation(10);
 
         setSupportActionBar(toolbar);

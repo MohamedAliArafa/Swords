@@ -41,6 +41,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
+
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -69,9 +72,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Log.d("Reg Ar2", marker.getTitle());
                 Log.d("Reg En2",marker.getSnippet());
 
-
-
-
                 TextView emirateArName = (TextView) v.findViewById(R.id.emirateAr_name_id);
                 TextView emirateEnName = (TextView) v.findViewById(R.id.emirateEn_name_id);
                 TextView emirateLat = (TextView) v.findViewById(R.id.txt_map_lat);
@@ -79,17 +79,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 String lat = String.valueOf(latLng.latitude).substring(0, 7);
                 String lon = String.valueOf(latLng.longitude).substring(0, 7);
-//                placename.setText(marker.getTitle());
-//                tv_snippet.setText(marker.getSnippet());
+
+
                 emirateLat.setText(lat);
                 emiratelong.setText(lon);
                 emirateArName.setText(title);
                 emirateEnName.setText(snippet);
 
                 
-                // Toast.makeText(MapJsonParse.this, title, Toast.LENGTH_SHORT).show();
-                //emirateEnName.setText("Dubai");
-//                im_info.setImageResource(imageplace);
+
 
 
                 return v;
@@ -145,15 +143,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
         }
-
-
-
-
-
-
-
-
-
 
 
         return super.onOptionsItemSelected(item);

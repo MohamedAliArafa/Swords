@@ -67,35 +67,7 @@ public class MapJsonParse extends Activity {
 //      Add a request (in this example, called stringRequest) to your RequestQueue.
         VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
 
-//        map.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-//
-//            @Override
-//            public View getInfoWindow(Marker marker) {
-//                return null;
-//            }
-//
-//            @Override
-//            public View getInfoContents(Marker marker) {
-//                View v = getLayoutInflater().inflate(R.layout.info_window_approved, null);
-//                LatLng latLng = marker.getPosition();
-//                String title = marker.getTitle();
-//                TextView emirateArName = (TextView) v.findViewById(R.id.emirateAr_name_id);
-//                TextView emirateEnName = (TextView) v.findViewById(R.id.emirateEn_name_id);
-//                TextView emirateLat = (TextView) v.findViewById(R.id.txt_map_lat);
-//                TextView emiratelong = (TextView) v.findViewById(R.id.txt_map_long);
-//                String lat = String.valueOf(latLng.latitude).substring(0, 7);
-//                String lon = String.valueOf(latLng.longitude).substring(0, 7);
-////                placename.setText(marker.getTitle());
-////                tv_snippet.setText(marker.getSnippet());
-//                emirateLat.setText(lat);
-//                emiratelong.setText(lon);
-//                emirateArName.setText(title);
-//                // Toast.makeText(MapJsonParse.this, title, Toast.LENGTH_SHORT).show();
-//                //emirateEnName.setText("Dubai");
-////                im_info.setImageResource(imageplace);
-//                return v;
-//            }
-//        });
+
     }
 
 
