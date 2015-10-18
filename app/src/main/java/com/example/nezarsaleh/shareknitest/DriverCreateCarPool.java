@@ -92,13 +92,13 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     RelativeLayout createCarPool_Thu_Day;
     RelativeLayout createCarPool_Fri_Day;
 
-    int SAT_FLAG=0;
-    int SUN_FLAG=0;
-    int MON_FLAG=0;
-    int TUES_FLAG=0;
-    int WED_FLAG=0;
-    int THU_FLAG=0;
-    int FRI_FLAG=0;
+    int SAT_FLAG = 0;
+    int SUN_FLAG = 0;
+    int MON_FLAG = 0;
+    int TUES_FLAG = 0;
+    int WED_FLAG = 0;
+    int THU_FLAG = 0;
+    int FRI_FLAG = 0;
 
 
     SimpleAdapter Create_CarPool_EmAdapter;
@@ -142,7 +142,6 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         showDialogOnButtonClick();
         showTimeDialogOnButtonClick();
         mContext = this;
-
         initToolbar();
 
         myPrefs = this.getSharedPreferences("myPrefs", 0);
@@ -944,89 +943,80 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         }
 
 
-
-
-        if (v==createCarPool_Sat_Day&&SAT_FLAG==0){
+        if (v == createCarPool_Sat_Day && SAT_FLAG == 0) {
 
             createCarPool_Sat_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
-            SAT_FLAG=1;
-        }else if (v==createCarPool_Sat_Day&&SAT_FLAG==1){
+            SAT_FLAG = 1;
+        } else if (v == createCarPool_Sat_Day && SAT_FLAG == 1) {
 
             createCarPool_Sat_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
-            SAT_FLAG=0;
+            SAT_FLAG = 0;
         }
 
 
-
-        if (v==createCarPool_Sun_Day&&SUN_FLAG==0){
+        if (v == createCarPool_Sun_Day && SUN_FLAG == 0) {
 
             createCarPool_Sun_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
-            SUN_FLAG=1;
-        }else if (v==createCarPool_Sun_Day&&SUN_FLAG==1){
+            SUN_FLAG = 1;
+        } else if (v == createCarPool_Sun_Day && SUN_FLAG == 1) {
 
             createCarPool_Sun_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
-            SUN_FLAG=0;
+            SUN_FLAG = 0;
         }
 
 
-
-        if (v==createCarPool_Mon_Day&&MON_FLAG==0){
+        if (v == createCarPool_Mon_Day && MON_FLAG == 0) {
 
             createCarPool_Mon_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
-            MON_FLAG=1;
-        }else if (v==createCarPool_Mon_Day&&MON_FLAG==1){
+            MON_FLAG = 1;
+        } else if (v == createCarPool_Mon_Day && MON_FLAG == 1) {
 
             createCarPool_Mon_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
-            MON_FLAG=0;
+            MON_FLAG = 0;
         }
 
 
-        if (v==createCarPool_Tues_Day&&TUES_FLAG==0){
+        if (v == createCarPool_Tues_Day && TUES_FLAG == 0) {
 
             createCarPool_Tues_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
-            TUES_FLAG=1;
-        }else if (v==createCarPool_Tues_Day&&TUES_FLAG==1){
+            TUES_FLAG = 1;
+        } else if (v == createCarPool_Tues_Day && TUES_FLAG == 1) {
 
             createCarPool_Tues_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
-            TUES_FLAG=0;
+            TUES_FLAG = 0;
         }
 
-        if (v==createCarPool_Wed_Day&&WED_FLAG==0){
+        if (v == createCarPool_Wed_Day && WED_FLAG == 0) {
 
             createCarPool_Wed_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
-            WED_FLAG=1;
-        }else if (v==createCarPool_Wed_Day&&WED_FLAG==1){
+            WED_FLAG = 1;
+        } else if (v == createCarPool_Wed_Day && WED_FLAG == 1) {
 
             createCarPool_Wed_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
-            WED_FLAG=0;
+            WED_FLAG = 0;
         }
 
 
-
-
-        if (v==createCarPool_Thu_Day&&THU_FLAG==0){
+        if (v == createCarPool_Thu_Day && THU_FLAG == 0) {
 
             createCarPool_Thu_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
-            THU_FLAG=1;
-        }else if (v==createCarPool_Thu_Day&&THU_FLAG==1){
+            THU_FLAG = 1;
+        } else if (v == createCarPool_Thu_Day && THU_FLAG == 1) {
 
             createCarPool_Thu_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
-            THU_FLAG=0;
+            THU_FLAG = 0;
         }
 
 
-
-        if (v==createCarPool_Fri_Day&&FRI_FLAG==0){
+        if (v == createCarPool_Fri_Day && FRI_FLAG == 0) {
 
             createCarPool_Fri_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
-            FRI_FLAG=1;
-        }else if (v==createCarPool_Fri_Day&&FRI_FLAG==1){
+            FRI_FLAG = 1;
+        } else if (v == createCarPool_Fri_Day && FRI_FLAG == 1) {
 
             createCarPool_Fri_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
-            FRI_FLAG=0;
+            FRI_FLAG = 0;
         }
-
-
 
 
     }  // on click
