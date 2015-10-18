@@ -1,0 +1,149 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linear2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="25dp"
+    android:paddingBottom="5dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+
+        >
+
+
+    </RelativeLayout>
+
+
+    <TextView
+
+        android:id="@+id/from_txt_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="From "
+        android:textSize="24sp"
+        android:textStyle="bold"
+
+        />
+
+    <TextView
+        android:id="@+id/em_from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/from_txt_id"
+        android:layout_toRightOf="@+id/from_txt_id"
+        android:text="@string/city_from_txt"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/reg_from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/from_txt_id"
+        android:layout_alignStart="@+id/from_txt_id"
+        android:layout_below="@+id/em_from"
+        android:text="@string/Distreict_name_txt"
+        android:textSize="22sp" />
+
+
+    <TextView
+        android:id="@+id/to_txt_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/from_txt_id"
+        android:layout_alignStart="@+id/from_txt_id"
+        android:layout_below="@+id/reg_from"
+        android:layout_marginTop="10dp"
+        android:text="To "
+        android:textSize="24sp"
+        android:textStyle="bold"
+
+        />
+
+
+    <TextView
+        android:id="@+id/em_to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/to_txt_id"
+        android:layout_marginLeft="2dp"
+        android:layout_marginStart="2dp"
+        android:layout_toEndOf="@id/to_txt_id"
+        android:layout_toRightOf="@id/to_txt_id"
+        android:text="@string/city_to_txt"
+        android:textSize="24sp"
+        android:textStyle="bold"
+
+        />
+
+
+    <TextView
+        android:id="@+id/reg_to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/to_txt_id"
+        android:layout_alignStart="@+id/to_txt_id"
+        android:layout_below="@+id/to_txt_id"
+        android:text="@string/district_name_2"
+        android:textSize="22sp" />
+
+
+    <RelativeLayout
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/toprideforma">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+
+            >
+
+            <TextView
+                android:id="@+id/drivers_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Drivers"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/drivers_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/drivers_text"
+                android:text="500"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
