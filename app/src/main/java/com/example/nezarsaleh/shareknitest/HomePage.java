@@ -286,6 +286,12 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
     }
 
     @Override
+    protected void onDestroy() {
+        t.interrupt();
+        super.onDestroy();
+    }
+
+    @Override
     public void onClick(View v) {
 
         if (AccountType.equals("D")) {
