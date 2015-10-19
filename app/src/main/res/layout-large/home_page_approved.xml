@@ -106,20 +106,20 @@
 
 
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="60dp"
+                    android:layout_width="120dp"
+                    android:layout_height="70dp"
                     android:src="@drawable/notifications" />
 
                 <TextView
                     android:id="@+id/DriverMyAlertsCount"
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:gravity="center"
                     android:text="15"
                     android:textColor="@color/primaryColor"
-                    android:textSize="15sp"
+                    android:textSize="24sp"
                     android:textStyle="bold"
                     />
 
@@ -149,7 +149,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:text="United Arab Emirates"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
 
 
             <TextView
@@ -173,17 +173,22 @@
 
                 <RelativeLayout
                     android:id="@+id/driver_rides_Created"
-                    android:layout_width="150dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="18dp"
-                    android:layout_marginStart="18dp">
+                    android:layout_marginStart="18dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    >
 
                     <ImageView
                         android:id="@+id/imageView3"
-                        android:layout_width="130dp"
+                        android:layout_width="150dp"
                         android:layout_centerHorizontal="true"
                         android:layout_height="60dp"
                         android:src="@drawable/homeridecreated" />
@@ -194,7 +199,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="60dp"
                         android:layout_centerHorizontal="true"
-
+                        android:layout_marginRight="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         >
 
                         <TextView
@@ -205,7 +213,7 @@
                             android:text="Ride Created"
                             android:textColor="@color/gray_before_login"
                             android:textStyle="bold"
-                            android:textSize="18sp"
+                            android:textSize="20sp"
                             />
 
                         <TextView
@@ -220,7 +228,7 @@
                             android:text="1"
                             android:textColor="@color/gray_before_login"
                             android:textStyle="bold"
-                            android:textSize="18sp"
+                            android:textSize="22sp"
                             />
 
 
@@ -231,18 +239,22 @@
 
 
                 <RelativeLayout
-                    android:layout_width="150dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/homeridejoined"
                     android:id="@+id/Rides_joined_Relative"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
                     >
 
 
                     <ImageView
                         android:id="@+id/RideJoined_im"
-                        android:layout_width="130dp"
+                        android:layout_width="150dp"
                         android:layout_height="60dp"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
@@ -253,7 +265,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="60dp"
-                        android:layout_centerHorizontal="true">
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        >
 
                         <TextView
                             android:id="@+id/Rides_joined_txt"
@@ -262,7 +279,8 @@
                             android:text="Ride Joined"
                             android:textColor="@color/gray_before_login"
                             android:textStyle="bold"
-                            android:textSize="18sp"
+                            android:textSize="20sp"
+
                             />
 
                         <TextView
@@ -275,9 +293,11 @@
                             android:layout_toEndOf="@+id/Rides_joined_txt"
                             android:layout_toRightOf="@+id/Rides_joined_txt"
                             android:text="1"
-                            android:textSize="18sp"
+                            android:textSize="22sp"
                             android:textColor="@color/gray_before_login"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+
+                            />
 
 
                     </RelativeLayout>
@@ -286,7 +306,7 @@
 
 
                 <RelativeLayout
-                    android:layout_width="150dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
@@ -294,12 +314,16 @@
                     android:layout_marginEnd="18dp"
                     android:layout_marginRight="18dp"
                     android:id="@+id/Home_Realtive_Vehicles"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
                     >
 
 
                     <ImageView
                         android:id="@+id/Vehicles_im"
-                        android:layout_width="130dp"
+                        android:layout_width="150dp"
                         android:layout_height="60dp"
                         android:src="@drawable/homevehicles"
                         android:layout_centerHorizontal="true"
@@ -310,6 +334,10 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="60dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         >
 
                         <TextView
@@ -319,7 +347,7 @@
                             android:text="Vehicles"
                             android:textColor="@color/gray_before_login"
                             android:textStyle="bold"
-                            android:textSize="18sp"
+                            android:textSize="20sp"
                             />
 
                         <TextView
@@ -334,7 +362,7 @@
                             android:text="1"
                             android:textColor="@color/gray_before_login"
                             android:textStyle="bold"
-                            android:textSize="18sp"
+                            android:textSize="22sp"
                             />
 
 
@@ -380,7 +408,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="30dp"
                         android:src="@drawable/homefindridepic" />
 
 
@@ -389,7 +417,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/im12"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="10dp"
                         android:text="Find Ride"
                         android:textColor="#FFFFFF"
                         android:textSize="20sp" />
@@ -417,7 +445,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="30dp"
                         android:src="@drawable/homehistory" />
 
 
@@ -426,7 +454,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/im11"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="10dp"
                         android:text="History"
                         android:textColor="#FFFFFF"
                         android:textSize="20sp" />
@@ -468,7 +496,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="30dp"
                         android:src="@drawable/homecreateridebtn" />
 
 
@@ -477,7 +505,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/im10"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="10dp"
                         android:text="Create Ride"
                         android:textColor="#FFFFFF"
                         android:textSize="20sp" />
@@ -506,7 +534,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="30dp"
                         android:src="@drawable/homepermit" />
 
 
@@ -515,7 +543,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/im13"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="10dp"
                         android:text="Permit"
                         android:textColor="#FFFFFF"
                         android:textSize="20sp" />

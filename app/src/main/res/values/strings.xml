@@ -68,7 +68,13 @@
     <string name="title_activity_passenger_my_approved_rides">PassengerMyApprovedRides</string>
     <string name="title_activity_history">History</string>
     <string name="title_activity_take_atour">TakeATour</string>
-
+    <string name="navy_Home_Page_txt">Home Page</string>
+    <string name="navy_Most_Rides_str">Most Rides</string>
+    <string name="navy_Best_Drivers_str">Best Drivers</string>
+    <string name="navy_Search_Options_str">Search Options</string>
+    <string name="navy_Notifications_str">Notifications</string>
+    <string name="navy_Logout_str">Logout</string>
+    <string name="navy_List_image_content_Desc">navy_image_icon</string>
 
 
 </resources>

@@ -4,10 +4,15 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="navi_drawer_width">280dp</dimen>
-
+    <dimen name="navy_image_width_height">30dp</dimen>
+    <dimen name="navy_list_item_text_size">18sp</dimen>
+    <dimen name="navy_list_item_relative_height">70dp</dimen>
    
     <dimen name="drawer_margin_top">24dp</dimen>
     <dimen name="app_par_paddingTop">0dp</dimen>
+    
+    
+  
 
 
     <!--     the following code for the cordinator   -->
