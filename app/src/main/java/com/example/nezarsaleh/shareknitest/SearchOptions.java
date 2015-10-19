@@ -87,8 +87,6 @@ public class SearchOptions extends AppCompatActivity {
 
     }
 
-
-
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.app_bar);

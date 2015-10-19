@@ -77,9 +77,11 @@ public class QuickSearchResults extends AppCompatActivity {
         From_RegionEnName_txt.setText(From_RegionEnName);
         To_RegionEnName_txt.setText(To_RegionEnName);
 
-
+        new backTread().execute();
 
     }
+
+
 
     private class backTread extends AsyncTask{
 

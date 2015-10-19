@@ -142,6 +142,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
             public void onClick(View v) {
                 Intent intent1 = new Intent(getBaseContext(), QuickSearchResults.class);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent1.putExtra("From_Em_Id", From_Em_Id);
                 intent1.putExtra("To_Em_Id", To_Em_Id);
                 intent1.putExtra("From_Reg_Id", From_Reg_Id);
@@ -158,7 +159,6 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
     private class getTo extends AsyncTask {
         ProgressDialog pDialog;
         boolean exists = false;
-
         @Override
         protected void onPreExecute() {
             super.onPreExecute();

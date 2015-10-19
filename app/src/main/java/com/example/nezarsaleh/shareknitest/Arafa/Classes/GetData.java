@@ -516,6 +516,7 @@ public class GetData {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             Intent in = new Intent(context, Profile.class);
+                            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             in.putExtra("DriverID", searchArray.get(position).getDriverId());
                             in.putExtra("PassengerID", Passenger_ID);
                             Log.d("Array Id :", String.valueOf(searchArray.get(position).getDriverId()));
@@ -709,9 +710,7 @@ public class GetData {
                                 @Override
                                 public void onClick(View v) {
                                     dialog.dismiss();
-                                    Intent intent = new Intent(context, SearchOptions.class);
-                                    context.startActivity(intent);
-
+                                    context.finish();
                                 }
                             });
 
