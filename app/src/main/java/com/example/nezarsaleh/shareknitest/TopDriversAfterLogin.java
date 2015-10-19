@@ -46,8 +46,6 @@ public class TopDriversAfterLogin extends AppCompatActivity {
 
         ProgressDialog pDialog = new ProgressDialog(this);
         pDialog.setMessage("Loading" + "...");
-        pDialog.setCancelable(false);
-        pDialog.setCanceledOnTouchOutside(false);
         pDialog.show();
 
         new jsoning(lv, pDialog, this).execute();

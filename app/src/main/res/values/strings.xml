@@ -5,7 +5,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="next">next</string>
+    <string name="next">Next</string>
     <string name="title_activity_sub_navigate">HelloAppbar</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_colse">Close</string>
@@ -75,6 +75,15 @@
     <string name="navy_Notifications_str">Notifications</string>
     <string name="navy_Logout_str">Logout</string>
     <string name="navy_List_image_content_Desc">navy_image_icon</string>
+    <string name="Reg_appBar_name">Registration</string>
+    <string name="fill_all_error">Fill Al Required fields</string>
+    <string name="Reg_FirstN">First Name</string>
+    <string name="Reg_LastN">Last Name</string>
+    <string name="REg_Mobile">Mobile Number</string>
+    <string name="Reg_Email">User Name (Your Email)</string>
+    <string name="Reg_pass">Password</string>
+    <string name="Reg_Nat">Nationality</string>
+    <string name="Reg_PrefLang">Select Preferred Language</string>
 
 
 </resources>

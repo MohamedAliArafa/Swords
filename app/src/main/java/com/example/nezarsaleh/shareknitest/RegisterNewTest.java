@@ -7,7 +7,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,7 +16,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -37,7 +35,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -74,8 +71,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.TreeMap;
-import java.util.logging.XMLFormatter;
 
 public class RegisterNewTest extends AppCompatActivity implements View.OnClickListener {
 
@@ -98,18 +95,18 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
     ImageView both_toggle_active;
     ImageView passenger_toggle_active;
     ImageView driver_toggle_active;
-    ImageView male_female;
-    ImageView female_male;
+//    ImageView male_female;
+//    ImageView female_male;
     Button btn_save;
     Button btn_upload_image;
     TextView txt_year;
-    TextView txt_month;
-    TextView txt_day;
+//    TextView txt_month;
+//    TextView txt_day;
     TextView txt_dayOfWeek;
     TextView txt_comma;
     TextView txt_beforeCal;
     TextView txt_appbar;
-    ScrollView scroll;
+//    ScrollView scroll;
     String full_date;
     TextView txt_lang;
     AutoCompleteTextView txt_country;
@@ -132,8 +129,12 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
             month_x = monthOfYear + 1;
             day_x = dayOfMonth;
             txt_beforeCal.setVisibility(View.INVISIBLE);
-            SimpleDateFormat simpledateformat = new SimpleDateFormat("EEEE");
-            Date date = new Date(year_x, month_x, day_x + 4);
+            SimpleDateFormat simpledateformat = new SimpleDateFormat("EEEE", Locale.ENGLISH);
+            Calendar cal = Calendar.getInstance();
+            cal.set(Calendar.YEAR, year_x);
+            cal.set(Calendar.MONTH, month_x);
+            cal.set(Calendar.DAY_OF_MONTH, day_x + 4);
+            Date date = cal.getTime();
             String dayOfWeek = simpledateformat.format(date);
             String year_string = String.valueOf(year_x);
             String month_string = String.valueOf(month_x);
@@ -299,7 +300,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar2);
         txt_appbar = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        txt_appbar.setText("Registration");
+        txt_appbar.setText(R.string.Reg_appBar_name);
 
         // get Languages
         new lang().execute();
@@ -321,10 +322,9 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                         String pass = edit_pass.getText().toString();
                         String user = edit_user.getText().toString();
                         String country = txt_country.getText().toString();
-                        String lang = txt_lang.getText().toString();
+//                        String lang = txt_lang.getText().toString();
                         char gender = i;
                         String birthdate = full_date;
-                        //String photoname = "testing.jpg";
                         int x = Language_ID;
                         int y = Nationality_ID;
                         RegisterJsonParse registerJsonParse = new RegisterJsonParse();
@@ -335,7 +335,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                         }
                     }
                 } else {
-                    Toast.makeText(RegisterNewTest.this, "Fill Al Required fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterNewTest.this, R.string.fill_all_error, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -393,7 +393,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         });
 
 
-    }  // on creatw
+    }
 
     private class ImageUpload extends AsyncTask<String,Void,String>{
 
@@ -411,7 +411,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
 
     private boolean callSOAPWebService(String data) {
         OutputStream out = null;
-        int respCode = -1;
+        int respCode;
         boolean isSuccess = false;
         URL url;
         HttpURLConnection httpURLConnection = null;
@@ -419,7 +419,6 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
             url = new URL("http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobAccount.asmx");
             httpURLConnection = (HttpURLConnection) url.openConnection();
             do {
-                // httpURLConnection.setHostnameVerifier(DO_NOT_VERIFY);
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setRequestProperty("Connection", "keep-alive");
                 httpURLConnection.setRequestProperty("Content-Type", "text/xml");
@@ -438,10 +437,8 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                     out.write(getReqData(data));
                     out.flush();
                 }
-                if (httpURLConnection != null) {
-                    respCode = httpURLConnection.getResponseCode();
-                    Log.e("respCode", ":" + respCode);
-                }
+                respCode = httpURLConnection.getResponseCode();
+                Log.e("respCode", ":" + respCode);
             } while (respCode == -1);
 
             // If it works fine
@@ -449,7 +446,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                 try {
                     InputStream responce = httpURLConnection.getInputStream();
                     String str = convertStreamToString(responce);
-                    System.out.println(".....data....." + new String(str));
+                    System.out.println(".....data....." + str);
                     InputStream is = new ByteArrayInputStream(str.getBytes("UTF-8"));
                     XmlPullParserFactory xmlFactoryObject = XmlPullParserFactory.newInstance();
                     XmlPullParser myparser = xmlFactoryObject.newPullParser();
@@ -533,7 +530,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         BufferedReader reader = new BufferedReader(new InputStreamReader(is,
                 "UTF-8"));
         StringBuilder sb = new StringBuilder();
-        String line = null;
+        String line;
         try {
             while ((line = reader.readLine()) != null) {
                 sb.append(line + "\n");
