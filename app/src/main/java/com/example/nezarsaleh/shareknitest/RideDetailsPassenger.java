@@ -4,11 +4,13 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
@@ -86,6 +88,7 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
 
     ListView Driver_get_Review_lv;
     int Pass_id;
+    boolean exists;
 
     Button Passenger_Review_Driver_Btn;
 
@@ -138,247 +141,445 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
         Log.d("test Route id", String.valueOf(Route_ID));
         Log.d("test Passenger id 2", String.valueOf(Passenger_ID));
 
-        boolean exists = false;
-        try {
-            SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
-            Socket sock = new Socket();
-            int timeoutMs = 2000;   // 2 seconds
-            sock.connect(sockaddr, timeoutMs);
-            exists = true;
-        } catch (final Exception e) {
-            e.printStackTrace();
-            runOnUiThread(new Runnable() {
-                public void run() {
-                    new AlertDialog.Builder(RideDetailsPassenger.this)
-                            .setTitle("Connection Problem!")
-                            .setMessage("Make sure you have internet connection")
-                            .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Intent intentToBeNewRoot = new Intent(RideDetailsPassenger.this, RideDetailsPassenger.class);
-                                    ComponentName cn = intentToBeNewRoot.getComponent();
-                                    Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
-                                    startActivity(mainIntent);
-                                }
-                            })
-                            .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    finish();
-                                }
-                            }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                    Toast.makeText(RideDetailsPassenger.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
-                }
-            });
+        exists = false;
+        new back().execute();
+    }  //  on create
+
+
+    private class back extends AsyncTask{
+
+        private ProgressDialog pDialog;
+
+        private void hidePDialog() {
+            if (pDialog != null) {
+                pDialog.dismiss();
+                pDialog = null;
+            }
         }
-        if (exists) {
 
-            GetData GD = new GetData();
-            try {
-                days = "";
-                JSONObject json = GD.GetRouteById(Route_ID);
-                FromRegionEnName.setText(json.getString("FromRegionEnName"));
-                ToRegionEnName.setText(json.getString("ToRegionEnName"));
+        @Override
+        protected void onPreExecute() {
+            pDialog = new ProgressDialog(RideDetailsPassenger.this);
+            pDialog.setMessage("Loading" + "...");
+            pDialog.show();        }
 
-                FromEmirateEnName.setText(json.getString("FromEmirateEnName"));
-                ToEmirateEnName.setText(json.getString("ToEmirateEnName"));
-
-                str_StartFromTime = json.getString("StartFromTime");
-                str_EndToTime_ = json.getString("EndToTime_");
-
-                str_StartFromTime = str_StartFromTime.substring(Math.max(0, str_StartFromTime.length() - 7));
-                Log.d("string", str_StartFromTime);
-
-                str_EndToTime_ = str_EndToTime_.substring(Math.max(0, str_EndToTime_.length() - 7));
-                Log.d("time to", str_EndToTime_);
-
-                StartFromTime.setText(str_StartFromTime);
-                EndToTime_.setText(str_EndToTime_);
-                Nat_txt = (json.getString("NationalityEnName"));
-                if (Nat_txt.equals("null")) {
-                    Nat_txt = "Not Specified";
-                    NationalityEnName.setText(Nat_txt);
-                } else {
-                    NationalityEnName.setText(Nat_txt);
-                }
-                PrefLanguageEnName.setText(json.getString("PrefLanguageEnName"));
-                AgeRange.setText(json.getString("AgeRange"));
-                Gender_ste = "";
-                Gender_ste = json.getString("PreferredGender");
-                switch (Gender_ste) {
-                    case "M":
-                        Gender_ste = "Male";
-                        break;
-                    case "F":
-                        Gender_ste = "Female";
-                        break;
-                    default:
-                        Gender_ste = "Not Specified";
-                        break;
-                }
-                PreferredGender.setText(Gender_ste);
-                Smokers_str = "";
-                Smokers_str = json.getString("IsSmoking");
-                if (Smokers_str.equals("true")) {
-                    Smokers_str = "Yes";
-                } else if (Smokers_str.equals("false")) {
-                    Smokers_str = "No";
-                }
-                IsSmoking.setText(Smokers_str);
-                StartLat = json.getDouble("StartLat");
-                StartLng = json.getDouble("StartLng");
-                EndLat = json.getDouble("EndLat");
-                EndLng = json.getDouble("EndLng");
-                Log.d("S Lat", String.valueOf(StartLat));
-
-                if (json.getString("Saturday").equals("true")) {
-                    days += "Sat , ";
-                }
-                if (json.getString("Sunday").equals("true")) {
-                    days += "Sun , ";
-                }
-                if (json.getString("Monday").equals("true")) {
-                    days += "Mon , ";
-                }
-                if (json.getString("Tuesday").equals("true")) {
-                    days += "Tue , ";
-                }
-                if (json.getString("Wednesday").equals("true")) {
-                    days += "Wed , ";
-                }
-                if (json.getString("Thursday").equals("true")) {
-                    days += "Thu , ";
-                }
-                if (json.getString("Friday").equals("true")) {
-                    days += "Fri ";
-                }
-                ride_details_day_of_week.setText(days);
-                days = "";
-
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-
-            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                    .findFragmentById(R.id.map_ride_details);
-            mapFragment.getMapAsync(this);
-
-            Join_Ride_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    GetData j = new GetData();
-                    if (Passenger_ID == 0) {
-                        final Dialog dialog = new Dialog(RideDetailsPassenger.this);
-                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                        dialog.setContentView(R.layout.noroutesdialog);
-                        Button btn = (Button) dialog.findViewById(R.id.noroute_id);
-                        TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
-                        Text_3.setText("PLease Login First");
-                        btn.setText("Log In");
-                        dialog.show();
-
-                        btn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                dialog.dismiss();
-                                Intent intent = new Intent(RideDetailsPassenger.this, LoginApproved.class);
-                                RideDetailsPassenger.this.startActivity(intent);
-
-                            }
-                        });
-                    } else {
-                        try {
-                            String response = j.Passenger_SendAlert(Driver_ID, Passenger_ID, Route_ID, "TestCase2");
-                            if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
-                                Toast.makeText(RideDetailsPassenger.this, "Cannot Join This Route", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(RideDetailsPassenger.this, "successfully  Joined", Toast.LENGTH_SHORT).show();
-                            }
-                            Log.d("join ride res", String.valueOf(response));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            });
-
-            JSONArray response1 = null;
-            try {
-                response1 = new GetData().Driver_GetReview(Driver_ID, Route_ID);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            for (int i = 0; i < response1.length(); i++) {
+        @Override
+        protected void onPostExecute(Object o) {
+            if (exists) {
+                GetData GD = new GetData();
                 try {
-                    JSONObject obj = response1.getJSONObject(i);
-                    final DriverGetReviewDataModel review = new DriverGetReviewDataModel(Parcel.obtain());
+                    days = "";
+                    JSONObject json = GD.GetRouteById(Route_ID);
+                    FromRegionEnName.setText(json.getString("FromRegionEnName"));
+                    ToRegionEnName.setText(json.getString("ToRegionEnName"));
 
-                    review.setAccountName(obj.getString("AccountName"));
-                    review.setAccountNationalityEn(obj.getString("AccountNationalityEn"));
-                    review.setReview(obj.getString("Review"));
-                    driverGetReviewDataModels_arr.add(review);
+                    FromEmirateEnName.setText(json.getString("FromEmirateEnName"));
+                    ToEmirateEnName.setText(json.getString("ToEmirateEnName"));
+
+                    str_StartFromTime = json.getString("StartFromTime");
+                    str_EndToTime_ = json.getString("EndToTime_");
+
+                    str_StartFromTime = str_StartFromTime.substring(Math.max(0, str_StartFromTime.length() - 7));
+                    Log.d("string", str_StartFromTime);
+
+                    str_EndToTime_ = str_EndToTime_.substring(Math.max(0, str_EndToTime_.length() - 7));
+                    Log.d("time to", str_EndToTime_);
+
+                    StartFromTime.setText(str_StartFromTime);
+                    EndToTime_.setText(str_EndToTime_);
+                    Nat_txt = (json.getString("NationalityEnName"));
+                    if (Nat_txt.equals("null")) {
+                        Nat_txt = "Not Specified";
+                        NationalityEnName.setText(Nat_txt);
+                    } else {
+                        NationalityEnName.setText(Nat_txt);
+                    }
+                    PrefLanguageEnName.setText(json.getString("PrefLanguageEnName"));
+                    AgeRange.setText(json.getString("AgeRange"));
+                    Gender_ste = "";
+                    Gender_ste = json.getString("PreferredGender");
+                    switch (Gender_ste) {
+                        case "M":
+                            Gender_ste = "Male";
+                            break;
+                        case "F":
+                            Gender_ste = "Female";
+                            break;
+                        default:
+                            Gender_ste = "Not Specified";
+                            break;
+                    }
+                    PreferredGender.setText(Gender_ste);
+                    Smokers_str = "";
+                    Smokers_str = json.getString("IsSmoking");
+                    if (Smokers_str.equals("true")) {
+                        Smokers_str = "Yes";
+                    } else if (Smokers_str.equals("false")) {
+                        Smokers_str = "No";
+                    }
+                    IsSmoking.setText(Smokers_str);
+                    StartLat = json.getDouble("StartLat");
+                    StartLng = json.getDouble("StartLng");
+                    EndLat = json.getDouble("EndLat");
+                    EndLng = json.getDouble("EndLng");
+                    Log.d("S Lat", String.valueOf(StartLat));
+
+                    if (json.getString("Saturday").equals("true")) {
+                        days += "Sat , ";
+                    }
+                    if (json.getString("Sunday").equals("true")) {
+                        days += "Sun , ";
+                    }
+                    if (json.getString("Monday").equals("true")) {
+                        days += "Mon , ";
+                    }
+                    if (json.getString("Tuesday").equals("true")) {
+                        days += "Tue , ";
+                    }
+                    if (json.getString("Wednesday").equals("true")) {
+                        days += "Wed , ";
+                    }
+                    if (json.getString("Thursday").equals("true")) {
+                        days += "Thu , ";
+                    }
+                    if (json.getString("Friday").equals("true")) {
+                        days += "Fri ";
+                    }
+                    ride_details_day_of_week.setText(days);
+                    days = "";
+
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
 
-            }
+                SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                        .findFragmentById(R.id.map_ride_details);
+                mapFragment.getMapAsync(RideDetailsPassenger.this);
 
+                Join_Ride_btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        GetData j = new GetData();
+                        if (Passenger_ID == 0) {
+                            final Dialog dialog = new Dialog(RideDetailsPassenger.this);
+                            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(R.layout.noroutesdialog);
+                            Button btn = (Button) dialog.findViewById(R.id.noroute_id);
+                            TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
+                            Text_3.setText("PLease Login First");
+                            btn.setText("Log In");
+                            dialog.show();
 
-            DriverGetReviewAdapter arrayAdapter = new DriverGetReviewAdapter(con, driverGetReviewDataModels_arr);
-            Driver_get_Review_lv.setAdapter(arrayAdapter);
-            setListViewHeightBasedOnChildren(Driver_get_Review_lv);
+                            btn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialog.dismiss();
+                                    Intent intent = new Intent(RideDetailsPassenger.this, LoginApproved.class);
+                                    RideDetailsPassenger.this.startActivity(intent);
 
-
-            Passenger_Review_Driver_Btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    final GetData j = new GetData();
-
-                    Review_str = "";
-                    final Dialog dialog = new Dialog(con);
-                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                    dialog.setContentView(R.layout.review_dialog);
-                    Button btn = (Button) dialog.findViewById(R.id.Review_Btn);
-                    Edit_Review_txt = (EditText) dialog.findViewById(R.id.Edit_Review_txt);
-
-
-                    dialog.show();
-
-                    btn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                            Review_str = Edit_Review_txt.getText().toString();
-                            try {
-                                String response = j.Passenger_Review_Driver(Driver_ID, Passenger_ID, Route_ID, URLEncoder.encode(Review_str));
-
-                                if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
-                                    Toast.makeText(RideDetailsPassenger.this, "Cannot Review", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(RideDetailsPassenger.this, "Done", Toast.LENGTH_SHORT).show();
                                 }
-
-                                dialog.dismiss();
+                            });
+                        } else {
+                            try {
+                                String response = j.Passenger_SendAlert(Driver_ID, Passenger_ID, Route_ID, "TestCase2");
+                                if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
+                                    Toast.makeText(RideDetailsPassenger.this, "Cannot Join This Route", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(RideDetailsPassenger.this, "successfully  Joined", Toast.LENGTH_SHORT).show();
+                                }
+                                Log.d("join ride res", String.valueOf(response));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-
-
                         }
-                    });
+                    }
+                });
+
+                JSONArray response1 = null;
+                try {
+                    response1 = new GetData().Driver_GetReview(Driver_ID, Route_ID);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                for (int i = 0; i < response1.length(); i++) {
+                    try {
+                        JSONObject obj = response1.getJSONObject(i);
+                        final DriverGetReviewDataModel review = new DriverGetReviewDataModel(Parcel.obtain());
+
+                        review.setAccountName(obj.getString("AccountName"));
+                        review.setAccountNationalityEn(obj.getString("AccountNationalityEn"));
+                        review.setReview(obj.getString("Review"));
+                        driverGetReviewDataModels_arr.add(review);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
 
                 }
-            });
+                DriverGetReviewAdapter arrayAdapter = new DriverGetReviewAdapter(con, driverGetReviewDataModels_arr);
+                Driver_get_Review_lv.setAdapter(arrayAdapter);
+                setListViewHeightBasedOnChildren(Driver_get_Review_lv);
+                Passenger_Review_Driver_Btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final GetData j = new GetData();
+
+                        Review_str = "";
+                        final Dialog dialog = new Dialog(con);
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.review_dialog);
+                        Button btn = (Button) dialog.findViewById(R.id.Review_Btn);
+                        Edit_Review_txt = (EditText) dialog.findViewById(R.id.Edit_Review_txt);
+                        dialog.show();
+                        btn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Review_str = Edit_Review_txt.getText().toString();
+                                try {
+                                    String response = j.Passenger_Review_Driver(Driver_ID, Passenger_ID, Route_ID, URLEncoder.encode(Review_str));
+                                    if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
+                                        Toast.makeText(RideDetailsPassenger.this, "Cannot Review", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(RideDetailsPassenger.this, "Done", Toast.LENGTH_SHORT).show();
+                                    }
+                                    dialog.dismiss();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                    }
+                });
+            }if (exists) {
+                GetData GD = new GetData();
+                try {
+                    days = "";
+                    JSONObject json = GD.GetRouteById(Route_ID);
+                    FromRegionEnName.setText(json.getString("FromRegionEnName"));
+                    ToRegionEnName.setText(json.getString("ToRegionEnName"));
+
+                    FromEmirateEnName.setText(json.getString("FromEmirateEnName"));
+                    ToEmirateEnName.setText(json.getString("ToEmirateEnName"));
+
+                    str_StartFromTime = json.getString("StartFromTime");
+                    str_EndToTime_ = json.getString("EndToTime_");
+
+                    str_StartFromTime = str_StartFromTime.substring(Math.max(0, str_StartFromTime.length() - 7));
+                    Log.d("string", str_StartFromTime);
+
+                    str_EndToTime_ = str_EndToTime_.substring(Math.max(0, str_EndToTime_.length() - 7));
+                    Log.d("time to", str_EndToTime_);
+
+                    StartFromTime.setText(str_StartFromTime);
+                    EndToTime_.setText(str_EndToTime_);
+                    Nat_txt = (json.getString("NationalityEnName"));
+                    if (Nat_txt.equals("null")) {
+                        Nat_txt = "Not Specified";
+                        NationalityEnName.setText(Nat_txt);
+                    } else {
+                        NationalityEnName.setText(Nat_txt);
+                    }
+                    PrefLanguageEnName.setText(json.getString("PrefLanguageEnName"));
+                    AgeRange.setText(json.getString("AgeRange"));
+                    Gender_ste = "";
+                    Gender_ste = json.getString("PreferredGender");
+                    switch (Gender_ste) {
+                        case "M":
+                            Gender_ste = "Male";
+                            break;
+                        case "F":
+                            Gender_ste = "Female";
+                            break;
+                        default:
+                            Gender_ste = "Not Specified";
+                            break;
+                    }
+                    PreferredGender.setText(Gender_ste);
+                    Smokers_str = "";
+                    Smokers_str = json.getString("IsSmoking");
+                    if (Smokers_str.equals("true")) {
+                        Smokers_str = "Yes";
+                    } else if (Smokers_str.equals("false")) {
+                        Smokers_str = "No";
+                    }
+                    IsSmoking.setText(Smokers_str);
+                    StartLat = json.getDouble("StartLat");
+                    StartLng = json.getDouble("StartLng");
+                    EndLat = json.getDouble("EndLat");
+                    EndLng = json.getDouble("EndLng");
+                    Log.d("S Lat", String.valueOf(StartLat));
+
+                    if (json.getString("Saturday").equals("true")) {
+                        days += "Sat , ";
+                    }
+                    if (json.getString("Sunday").equals("true")) {
+                        days += "Sun , ";
+                    }
+                    if (json.getString("Monday").equals("true")) {
+                        days += "Mon , ";
+                    }
+                    if (json.getString("Tuesday").equals("true")) {
+                        days += "Tue , ";
+                    }
+                    if (json.getString("Wednesday").equals("true")) {
+                        days += "Wed , ";
+                    }
+                    if (json.getString("Thursday").equals("true")) {
+                        days += "Thu , ";
+                    }
+                    if (json.getString("Friday").equals("true")) {
+                        days += "Fri ";
+                    }
+                    ride_details_day_of_week.setText(days);
+                    days = "";
 
 
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+                SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                        .findFragmentById(R.id.map_ride_details);
+                mapFragment.getMapAsync(RideDetailsPassenger.this);
+
+                Join_Ride_btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        GetData j = new GetData();
+                        if (Passenger_ID == 0) {
+                            final Dialog dialog = new Dialog(RideDetailsPassenger.this);
+                            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(R.layout.noroutesdialog);
+                            Button btn = (Button) dialog.findViewById(R.id.noroute_id);
+                            TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
+                            Text_3.setText("PLease Login First");
+                            btn.setText("Log In");
+                            dialog.show();
+
+                            btn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialog.dismiss();
+                                    Intent intent = new Intent(RideDetailsPassenger.this, LoginApproved.class);
+                                    RideDetailsPassenger.this.startActivity(intent);
+
+                                }
+                            });
+                        } else {
+                            try {
+                                String response = j.Passenger_SendAlert(Driver_ID, Passenger_ID, Route_ID, "TestCase2");
+                                if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
+                                    Toast.makeText(RideDetailsPassenger.this, "Cannot Join This Route", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(RideDetailsPassenger.this, "successfully  Joined", Toast.LENGTH_SHORT).show();
+                                }
+                                Log.d("join ride res", String.valueOf(response));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                });
+
+                JSONArray response1 = null;
+                try {
+                    response1 = new GetData().Driver_GetReview(Driver_ID, Route_ID);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                for (int i = 0; i < response1.length(); i++) {
+                    try {
+                        JSONObject obj = response1.getJSONObject(i);
+                        final DriverGetReviewDataModel review = new DriverGetReviewDataModel(Parcel.obtain());
+
+                        review.setAccountName(obj.getString("AccountName"));
+                        review.setAccountNationalityEn(obj.getString("AccountNationalityEn"));
+                        review.setReview(obj.getString("Review"));
+                        driverGetReviewDataModels_arr.add(review);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+                DriverGetReviewAdapter arrayAdapter = new DriverGetReviewAdapter(con, driverGetReviewDataModels_arr);
+                Driver_get_Review_lv.setAdapter(arrayAdapter);
+                setListViewHeightBasedOnChildren(Driver_get_Review_lv);
+                Passenger_Review_Driver_Btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final GetData j = new GetData();
+
+                        Review_str = "";
+                        final Dialog dialog = new Dialog(con);
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.review_dialog);
+                        Button btn = (Button) dialog.findViewById(R.id.Review_Btn);
+                        Edit_Review_txt = (EditText) dialog.findViewById(R.id.Edit_Review_txt);
+                        dialog.show();
+                        btn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Review_str = Edit_Review_txt.getText().toString();
+                                try {
+                                    String response = j.Passenger_Review_Driver(Driver_ID, Passenger_ID, Route_ID, URLEncoder.encode(Review_str));
+                                    if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
+                                        Toast.makeText(RideDetailsPassenger.this, "Cannot Review", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(RideDetailsPassenger.this, "Done", Toast.LENGTH_SHORT).show();
+                                    }
+                                    dialog.dismiss();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                    }
+                });
+                hidePDialog();
+            }
         }
 
-
-
-    }  //  on create
+        @Override
+        protected Object doInBackground(Object[] params) {
+            try {
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                Socket sock = new Socket();
+                int timeoutMs = 2000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                exists = true;
+            } catch (final Exception e) {
+                e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new AlertDialog.Builder(RideDetailsPassenger.this)
+                                .setTitle("Connection Problem!")
+                                .setMessage("Make sure you have internet connection")
+                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intentToBeNewRoot = new Intent(RideDetailsPassenger.this, RideDetailsPassenger.class);
+                                        ComponentName cn = intentToBeNewRoot.getComponent();
+                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        startActivity(mainIntent);
+                                    }
+                                })
+                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                        Toast.makeText(RideDetailsPassenger.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            return null;
+        }
+    }
 
 
     @Override

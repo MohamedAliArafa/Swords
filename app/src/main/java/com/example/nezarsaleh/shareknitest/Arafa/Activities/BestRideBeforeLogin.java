@@ -173,7 +173,6 @@ public class BestRideBeforeLogin extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    hidePDialog();
                 }
             }
             return null;
