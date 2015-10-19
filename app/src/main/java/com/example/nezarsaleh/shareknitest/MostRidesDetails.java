@@ -27,6 +27,8 @@ import java.net.SocketAddress;
 
 public class MostRidesDetails extends AppCompatActivity {
 
+    private static final String DOMAIN = "http://sharekni.sdgstaff.com";
+
     Toolbar toolbar;
     ListView lv;
     int FromEmirateId,ToEmirateId,FromRegionId,ToRegionId;
@@ -122,7 +124,7 @@ public class MostRidesDetails extends AppCompatActivity {
                 });
             }
             if (exists) {
-                String url = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobRoute.asmx/GetMostDesiredRideDetails?AccountID=" + 0 + "&FromEmirateID=" + FromEmirateId + "&FromRegionID=" + FromRegionId + "&ToEmirateID=" + ToEmirateId + "&ToRegionID=" + ToRegionId;
+                String url = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetMostDesiredRideDetails?AccountID=" + 0 + "&FromEmirateID=" + FromEmirateId + "&FromRegionID=" + FromRegionId + "&ToEmirateID=" + ToEmirateId + "&ToRegionID=" + ToRegionId;
                 Log.wtf("url :", url);
                 GetData j = new GetData();
                 j.bestRouteStringRequestDetails(url, lv, MostRidesDetails.this);

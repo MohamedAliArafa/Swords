@@ -42,7 +42,9 @@ import java.net.SocketAddress;
 public class PassengerMyApprovedRides extends AppCompatActivity {
 
 
-    String url = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobRoute.asmx/Passenger_MyApprovedRides?AccountId=";
+    private static final String DOMAIN = "http://sharekni.sdgstaff.com";
+
+    String url =  DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Passenger_MyApprovedRides?AccountId=";
 
 
     ListView Passenger_Approved_Rides_Lv;

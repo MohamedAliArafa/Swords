@@ -45,11 +45,15 @@ import java.net.URLEncoder;
 import java.util.Locale;
 
 public class LoginApproved extends AppCompatActivity {
+    //http://sharekni.sdgstaff.com/
+
+    private static final String DOMAIN = "http://sharekni.sdgstaff.com";
+
     EditText username, password;
     Button loginBtn;
     String user, pass;
     TextView txt_forgetpass, txt_noaccountsignup;
-    String url = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobAccount.asmx/CheckLogin?";
+    String url =  DOMAIN +"/_mobfiles/CLS_MobAccount.asmx/CheckLogin?";
     static LoginApproved loginActivity;
     private Toolbar toolbar;
     protected static ProgressDialog pDialog;

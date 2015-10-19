@@ -63,37 +63,39 @@ public class GetData {
 
     final JSONArray[] myJsonArray = new JSONArray[1];
 
+    private static final String DOMAIN = "http://sharekni.sdgstaff.com";
+
     String data;
-    String loginFormUrl                 = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobAccount.asmx/CheckLogin?";
-    String getDriverById                = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobAccount.asmx/Get?id=";
-    String ChangePasswordUrl            = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobAccount.asmx/ChangePassword?";
-    String Driver_GetReview             = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobAccount.asmx/Driver_GetReviewList?";
-    String EditProfileUrl               = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobAccount.asmx/EditProfile?";
-    String ForgetPasswordUrl            = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobAccount.asmx/ForgetPassword?";
-    String getImage                     = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobAccount.asmx/GetPhotoPath?s_FileName=";
+    String loginFormUrl                 = DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/CheckLogin?";
+    String getDriverById                = DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/Get?id=";
+    String ChangePasswordUrl            = DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/ChangePassword?";
+    String Driver_GetReview             = DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/Driver_GetReviewList?";
+    String EditProfileUrl               = DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/EditProfile?";
+    String ForgetPasswordUrl            = DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/ForgetPassword?";
+    String getImage                     = DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/GetPhotoPath?s_FileName=";
 
-    String getBestDriverUrl             = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobDriver.asmx/GetBestDrivers";
-    String DriverEditCarPoolUrl         = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobDriver.asmx/Driver_EditCarpool?";
-    String DriverCreateCarPoolUrl       = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobDriver.asmx/Driver_CreateCarpool?";
-    String QuickSearchUrl               = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobDriver.asmx/Passenger_FindRide?";
+    String getBestDriverUrl             = DOMAIN + "/_mobfiles/CLS_MobDriver.asmx/GetBestDrivers";
+    String DriverEditCarPoolUrl         = DOMAIN + "/_mobfiles/CLS_MobDriver.asmx/Driver_EditCarpool?";
+    String DriverCreateCarPoolUrl       = DOMAIN + "/_mobfiles/CLS_MobDriver.asmx/Driver_CreateCarpool?";
+    String QuickSearchUrl               = DOMAIN + "/_mobfiles/CLS_MobDriver.asmx/Passenger_FindRide?";
 
-    String getBestRouteUrl              = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobRoute.asmx/GetMostDesiredRides";
-    String getDriverRideUrl             = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobRoute.asmx/GetDriverDetailsByAccountId?AccountId=";
-    String getRouteByRouteId            = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobRoute.asmx/GetRouteByRouteId?RouteId=";
-    String Passenger_SendAlert          = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobRoute.asmx/Passenger_SendAlert?";
-    String GetPassengersByRouteIDUrl    = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobRoute.asmx/GetPassengersByRouteId?id=";
-    String Passenger_Review_Driver      = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobRoute.asmx/Passenger_ReviewDriver?";
-    String DriverAlertsForRequestUrl    = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobRoute.asmx/Driver_AlertsForRequest?d_AccountId=";
-    String DriverAcceptPassengerUrl     = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobRoute.asmx/Driver_AcceptRequest?RequestId=";
-    String Driver_DeleteRouteUrl        = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobRoute.asmx/Route_Delete?RouteId=";
+    String getBestRouteUrl              = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetMostDesiredRides";
+    String getDriverRideUrl             = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetDriverDetailsByAccountId?AccountId=";
+    String getRouteByRouteId            = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetRouteByRouteId?RouteId=";
+    String Passenger_SendAlert          = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Passenger_SendAlert?";
+    String GetPassengersByRouteIDUrl    = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetPassengersByRouteId?id=";
+    String Passenger_Review_Driver      = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Passenger_ReviewDriver?";
+    String DriverAlertsForRequestUrl    = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Driver_AlertsForRequest?d_AccountId=";
+    String DriverAcceptPassengerUrl     = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Driver_AcceptRequest?RequestId=";
+    String Driver_DeleteRouteUrl        = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Route_Delete?RouteId=";
 
-    String Regions_By_Em_Id             = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobMasterData.asmx/GetRegionsByEmirateId?id=";
-    String Emirates_By_ID               = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobMasterData.asmx/GetEmirates";
-    String getNationalitiesUrl          = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobMasterData.asmx/GetNationalities?id=0";
-    String getPrefLanguageUrl           = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobMasterData.asmx/GetPrefferedLanguages";
-    String GetAgeRanges                 = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobMasterData.asmx/GetAgeRanges";
+    String Regions_By_Em_Id             = DOMAIN + "/_mobfiles/CLS_MobMasterData.asmx/GetRegionsByEmirateId?id=";
+    String Emirates_By_ID               = DOMAIN + "/_mobfiles/CLS_MobMasterData.asmx/GetEmirates";
+    String getNationalitiesUrl          = DOMAIN + "/_mobfiles/CLS_MobMasterData.asmx/GetNationalities?id=0";
+    String getPrefLanguageUrl           = DOMAIN + "/_mobfiles/CLS_MobMasterData.asmx/GetPrefferedLanguages";
+    String GetAgeRanges                 = DOMAIN + "/_mobfiles/CLS_MobMasterData.asmx/GetAgeRanges";
 
-    String GetVehiclesUrl               = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobVehicle.asmx/GetByDriverId?id=20027";
+    String GetVehiclesUrl               = DOMAIN + "/_mobfiles/CLS_MobVehicle.asmx/GetByDriverId?id=20027";
 
 
     public void QuickSearchForm(int myId, char gender, String time
@@ -249,7 +251,7 @@ public class GetData {
     }
 
     public int GetDesiredCount(int FromEmId, int FromRegId, int ToEmId, int ToRegId) throws JSONException {
-        String url = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobRoute.asmx/GetMostDesiredRideDetails?AccountID=" + 0 + "&FromEmirateID=" + FromEmId + "&FromRegionID=" + FromRegId + "&ToEmirateID=" + ToEmId + "&ToRegionID=" + ToRegId;
+        String url = DOMAIN +  "/_mobfiles/CLS_MobRoute.asmx/GetMostDesiredRideDetails?AccountID=" + 0 + "&FromEmirateID=" + FromEmId + "&FromRegionID=" + FromRegId + "&ToEmirateID=" + ToEmId + "&ToRegionID=" + ToRegId;
         HandleXML obj = new HandleXML(url);
         obj.fetchXML();
         while (obj.parsingComplete) ;

@@ -43,10 +43,12 @@ import java.net.SocketAddress;
 
 public class History extends AppCompatActivity {
 
+
+    private static final String DOMAIN = "http://sharekni.sdgstaff.com";
     Toolbar toolbar;
     int Driver_ID;
     String days;
-    String url = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobRoute.asmx/Passenger_GetSavedSearch?AccountId=";
+    String url =  DOMAIN +  "/_mobfiles/CLS_MobRoute.asmx/Passenger_GetSavedSearch?AccountId=";
 
     ListView user_ride_created;
     int ID;
