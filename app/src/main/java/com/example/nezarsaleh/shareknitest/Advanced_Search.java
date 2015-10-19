@@ -99,6 +99,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
     Button quickSearch_pickUp;
     Button quickSearch_Dropoff;
     Button Advanced_btn_search_page;
+    boolean exists = false;
 
     private Toolbar toolbar;
     private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
@@ -306,8 +307,46 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
             }
         });
 
-
+    new networkCheck().execute();
     }   //  on create
+
+    private class networkCheck extends AsyncTask{
+
+        @Override
+        protected Object doInBackground(Object[] params) {
+            try {
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                Socket sock = new Socket();
+                int timeoutMs = 2000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                exists = true;
+            } catch (final Exception e) {
+                e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new AlertDialog.Builder(Advanced_Search.this)
+                                .setTitle("Connection Problem!")
+                                .setMessage("Make sure you have internet connection")
+                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intentToBeNewRoot = new Intent(Advanced_Search.this, Advanced_Search.class);
+                                        ComponentName cn = intentToBeNewRoot.getComponent();
+                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        startActivity(mainIntent);
+                                    }
+                                })
+                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                        Toast.makeText(Advanced_Search.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            return null;
+        }
+    }
 
     private class nat extends AsyncTask{
         boolean exists = false;
@@ -658,38 +697,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                 e.printStackTrace();
 
             }
-            boolean exists = false;
-            try {
-                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
-                Socket sock = new Socket();
-                int timeoutMs = 2000;   // 2 seconds
-                sock.connect(sockaddr, timeoutMs);
-                exists = true;
-            } catch (final Exception e) {
-                e.printStackTrace();
-                runOnUiThread(new Runnable() {
-                    public void run() {
-                        new AlertDialog.Builder(Advanced_Search.this)
-                                .setTitle("Connection Problem!")
-                                .setMessage("Make sure you have internet connection")
-                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        Intent intentToBeNewRoot = new Intent(Advanced_Search.this, Advanced_Search.class);
-                                        ComponentName cn = intentToBeNewRoot.getComponent();
-                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
-                                        startActivity(mainIntent);
-                                    }
-                                })
-                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        finish();
-                                    }
-                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(Advanced_Search.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-            if (exists) {
+
                 Advanced_EmAdapter = new SimpleAdapter(Advanced_Search.this, Advanced_Emirates_List
                         , R.layout.dialog_pick_emirate_lv_row
                         , new String[]{"EmirateId", "EmirateEnName"}
@@ -789,7 +797,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                 });
 
 
-            }
+
         }
 
 

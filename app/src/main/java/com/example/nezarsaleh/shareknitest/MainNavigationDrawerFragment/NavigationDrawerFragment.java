@@ -131,6 +131,7 @@ public class NavigationDrawerFragment extends Fragment {
                 editor.putString("account_id", null);
                 editor.commit();
                 Intent in = new Intent(getContext(), OnboardingActivity.class);
+                in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(in);
             }
 
