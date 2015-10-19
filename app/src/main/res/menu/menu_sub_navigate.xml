@@ -3,6 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.nezar.materialtest.HomePage">
 
+    <item
+        android:id="@+id/Start_Service"
+        android:orderInCategory="100"
+        android:title="Start"
+        app:showAsAction="never" />
 
+    <item
+        android:id="@+id/Stop_Service"
+        android:orderInCategory="200"
+        android:title="Stop"
+        app:showAsAction="never" />
 
 </menu>

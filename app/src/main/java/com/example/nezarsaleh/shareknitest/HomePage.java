@@ -2,6 +2,7 @@ package com.example.nezarsaleh.shareknitest;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
+import android.app.Notification;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
@@ -64,6 +65,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
     RelativeLayout Home_Relative_Permit, Home_Realtive_Vehicles, driver_rides_Created;
     RelativeLayout Rides_joined_Relative;
     String name_str,nat_str;
+    int DRIVER_ALERTS_COUNT=0;
 
     String Firstname,LastName;
 
@@ -234,6 +236,15 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 DriverMyRidesCount_str="";
                 DriverMyRidesCount_str += "(";
                 DriverMyRidesCount_str += (jsonArray.getString("DriverMyRidesCount"));
+
+                 DRIVER_ALERTS_COUNT = jsonArray.getInt("DriverMyAlertsCount");
+//                if (DRIVER_ALERTS_COUNT>0){
+//
+//
+//
+//                }
+
+
                 DriverMyRidesCount_str += ")";
                 DriverMyRidesCount.setText(DriverMyRidesCount_str);
                 DriverMyAlertsCount.setText(jsonArray.getString("DriverMyAlertsCount"));
@@ -267,6 +278,22 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
+
+
+        if (id==R.id.Start_Service){
+
+            Intent intent = new Intent(this,MyNotifications.class);
+            intent.putExtra("Flag",2);
+            startService(intent);
+        }
+
+        if (id==R.id.Stop_Service){
+
+            Intent intent = new Intent(this,MyNotifications.class);
+            stopService(intent);
+
+        }
 
         //noinspection SimplifiableIfStatement
 

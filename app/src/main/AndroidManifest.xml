@@ -330,6 +330,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity" />
         </activity>
+        
+        
+        <service android:name=".MyNotifications"/>
     </application>
 
 </manifest>
