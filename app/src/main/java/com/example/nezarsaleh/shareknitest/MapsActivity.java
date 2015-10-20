@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.IntentCompat;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
 import com.example.nezarsaleh.shareknitest.Map.MapJsonParse;
 import com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -27,52 +29,28 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.util.Map;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    SupportMapFragment mapFragment;
+    MapsActivity context;
+    private static final String DOMAIN = "http://sharekni.sdgstaff.com";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+        mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-        boolean exists = false;
-        try {
-            SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
-            Socket sock = new Socket();
-            int timeoutMs = 2000;   // 2 seconds
-            sock.connect(sockaddr, timeoutMs);
-            exists = true;
-        } catch (final Exception e) {
-            e.printStackTrace();
-            runOnUiThread(new Runnable() {
-                public void run() {
-                    new AlertDialog.Builder(MapsActivity.this)
-                            .setTitle("Connection Problem!")
-                            .setMessage("Make sure you have internet connection")
-                            .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Intent intentToBeNewRoot = new Intent(MapsActivity.this, MapsActivity.class);
-                                    ComponentName cn = intentToBeNewRoot.getComponent();
-                                    Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
-                                    startActivity(mainIntent);
-                                }
-                            })
-                            .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    finish();
-                                }
-                            }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                    Toast.makeText(MapsActivity.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-        if (exists) {
-            mapFragment.getMapAsync(this);
-        }
+
+        new backTread().execute();
+        context = this;
+        mapFragment.getMapAsync(this);
+
+
     }
 
 
@@ -87,20 +65,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
 
 
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
-                (new LatLng(25.0014511,55.3588621), 8.25f));
+                (new LatLng(25.0014511, 55.3588621), 8.25f));
 
 
+        MapJsonParse mapJsonParse = new MapJsonParse();
+        String urlmap = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetAllMostDesiredRides";
+        mapJsonParse.stringRequest(urlmap, mMap, context);
 
-        MapJsonParse mapJsonParse =  new MapJsonParse();
-        String urlmap = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobRoute.asmx/GetMapLookup";
-        mapJsonParse.stringRequest(urlmap,mMap,this);
 
+        mMap.getUiSettings().setMapToolbarEnabled(false);
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.getUiSettings().setZoomGesturesEnabled(true);
+        mMap.setMyLocationEnabled(true);
 
         mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
 
@@ -115,7 +96,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 String snippet = marker.getSnippet();
 
                 Log.d("Reg Ar2", marker.getTitle());
-                Log.d("Reg En2",marker.getSnippet());
+                Log.d("Reg En2", marker.getSnippet());
 
                 TextView emirateArName = (TextView) v.findViewById(R.id.emirateAr_name_id);
                 TextView emirateEnName = (TextView) v.findViewById(R.id.emirateEn_name_id);
@@ -142,7 +123,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
 
-
     }
 
 
@@ -158,26 +138,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         int id = item.getItemId();
 
-        if(id==R.id.Satelltie){
+        if (id == R.id.Satelltie) {
 
             mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 
         }
 
 
-        if (id==R.id.Terrain){
+        if (id == R.id.Terrain) {
             mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
 
         }
 
-        if(id==R.id.HyBird){
+        if (id == R.id.HyBird) {
 
             mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
         }
 
 
-        if (id==R.id.Normal){
+        if (id == R.id.Normal) {
             mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
         }
@@ -186,4 +166,55 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return super.onOptionsItemSelected(item);
 
     }
-}
+
+
+    private class backTread extends AsyncTask {
+
+        @Override
+        protected Object doInBackground(Object[] params) {
+
+
+            boolean exists = false;
+            try {
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                Socket sock = new Socket();
+                int timeoutMs = 2000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                exists = true;
+            } catch (final Exception e) {
+                e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new AlertDialog.Builder(MapsActivity.this)
+                                .setTitle("Connection Problem!")
+                                .setMessage("Make sure you have internet connection")
+                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intentToBeNewRoot = new Intent(MapsActivity.this, QuickSearchResults.class);
+                                        ComponentName cn = intentToBeNewRoot.getComponent();
+                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        startActivity(mainIntent);
+                                    }
+                                })
+                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                        Toast.makeText(MapsActivity.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            if (exists) {
+                return null;
+
+
+            }
+            return null;
+        }
+
+
+    }    // back thread classs
+
+
+}  //  classs

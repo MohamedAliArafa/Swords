@@ -72,9 +72,11 @@ boolean ISRunning=true;
 
     private void CreateNotification(int y){
 
+
+
+
         Intent intent =  new Intent(this,MyNotifications.class);
         PendingIntent pendingIntent  = PendingIntent.getActivity(this,0,intent,0);
-
         Notification.Builder builder = new Notification.Builder(this);
         builder.setContentTitle("New Notification");
         builder.setContentText("subject");

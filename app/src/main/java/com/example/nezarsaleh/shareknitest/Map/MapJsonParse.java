@@ -81,13 +81,13 @@ public class MapJsonParse extends Activity {
                     MapDataModel item = new MapDataModel();
 
                     json = jArray.getJSONObject(i);
-                    item.setFromRegionArName(json.getString("FromRegionArName"));
-                    item.setFromRegionEnName(json.getString("FromRegionEnName"));
-                    item.setLongitude(json.getDouble("StartLongitude"));
-                    item.setLatitude(json.getDouble("StartLatitude"));
+                    item.setFromRegionArName(json.getString("FromRegionNameAr"));
+                    item.setFromRegionEnName(json.getString("FromRegionNameEn"));
+                    item.setLongitude(json.getDouble("FromLng"));
+                    item.setLatitude(json.getDouble("FromLat"));
 
-                    Log.d("Reg Ar", json.getString("FromRegionArName"));
-                    Log.d("Reg En",json.getString("FromRegionEnName"));
+                    Log.d("Reg Ar", json.getString("FromRegionNameAr"));
+                    Log.d("Reg En",json.getString("FromRegionNameEn"));
 
 
                     data[i] = item;
