@@ -2,6 +2,7 @@ package com.example.nezarsaleh.shareknitest;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -66,7 +67,7 @@ public class DriverCreatedRides extends AppCompatActivity {
 //        Bundle in = getIntent().getExtras();
 //        Log.d("Intent Id :", String.valueOf(in.getInt("DriverID")));
         Driver_ID = Integer.parseInt(ID);
-        Log.d("Driverid1", String.valueOf(Driver_ID));
+        Log.d("Driver Id", String.valueOf(Driver_ID));
 
         new rideJson().execute();
 
@@ -75,6 +76,29 @@ public class DriverCreatedRides extends AppCompatActivity {
 
     private class rideJson extends AsyncTask {
         boolean exists = false;
+        ProgressDialog pDialog;
+
+
+        @Override
+        protected void onPostExecute(Object o) {
+            hidePDialog();
+            super.onPostExecute(o);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            pDialog = new ProgressDialog(DriverCreatedRides.this);
+            pDialog.setMessage("Loading" + "...");
+            pDialog.show();
+            super.onPreExecute();
+        }
+
+        private void hidePDialog() {
+            if (pDialog != null) {
+                pDialog.dismiss();
+                pDialog = null;
+            }
+        }
 
         @Override
         protected Object doInBackground(Object[] params) {

@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -197,6 +198,23 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
         Exception exception;
         boolean exists = false;
 
+        ProgressDialog pDialog;
+
+        @Override
+        protected void onPreExecute() {
+            pDialog = new ProgressDialog(Route.this);
+            pDialog.setMessage("Loading" + "...");
+            pDialog.show();
+            super.onPreExecute();
+        }
+
+        private void hidePDialog() {
+            if (pDialog != null) {
+                pDialog.dismiss();
+                pDialog = null;
+            }
+        }
+
         @Override
         protected void onPostExecute(Object o) {
             if (exists){
@@ -214,7 +232,11 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
                         Log.d("time to", str_EndToTime_);
                         StartFromTime.setText(str_StartFromTime);
                         EndToTime_.setText(str_EndToTime_);
-                        NationalityEnName.setText(json.getString("NationalityEnName"));
+                        if (json.getString("NationalityEnName").equals("null")){
+                            NationalityEnName.setText("Not Specified");
+                        }else {
+                            NationalityEnName.setText(json.getString("NationalityEnName"));
+                        }
                         PrefLanguageEnName.setText(json.getString("PrefLanguageEnName"));
                         AgeRange.setText(json.getString("AgeRange"));
                         PreferredGender.setText(json.getString("PreferredGender"));
@@ -271,6 +293,7 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
                 }
 
             }
+            hidePDialog();
         }
 
         @Override

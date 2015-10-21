@@ -180,7 +180,6 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         driver_rides_Created.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(getBaseContext(), DriverCreatedRides.class);
                 intent.putExtra("DriverID", Driver_ID);
                 startActivity(intent);

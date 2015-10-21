@@ -161,7 +161,8 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
         protected void onPreExecute() {
             pDialog = new ProgressDialog(RideDetailsPassenger.this);
             pDialog.setMessage("Loading" + "...");
-            pDialog.show();        }
+            pDialog.show();
+        }
 
         @Override
         protected void onPostExecute(Object o) {
@@ -285,7 +286,7 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                             try {
                                 String response = j.Passenger_SendAlert(Driver_ID, Passenger_ID, Route_ID, "TestCase2");
                                 if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
-                                    Toast.makeText(RideDetailsPassenger.this, "Cannot Join This Route", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RideDetailsPassenger.this, "You Already Joined", Toast.LENGTH_SHORT).show();
                                 } else {
                                     Toast.makeText(RideDetailsPassenger.this, "successfully  Joined", Toast.LENGTH_SHORT).show();
                                 }

@@ -68,6 +68,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     int Vehicle_Id = -1;
     int Age_ID = 1;
     int Language_ID = 1;
+    char gender = 'M';
     String To_EmirateEnName, From_EmirateEnName, To_RegionEnName, From_RegionEnName;
     List<TreeMap<String, String>> Create_CarPool_Emirates_List = new ArrayList<>();
     List<TreeMap<String, String>> Create_CarPool_Regions_List = new ArrayList<>();
@@ -292,6 +293,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         Create_CarPool_malefemale1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                gender = 'F';
                 Create_CarPool_malefemale1.setVisibility(View.INVISIBLE);
                 Create_CarPool_femalemale2.setVisibility(View.VISIBLE);
                 maleFemaleTxt.setTextColor(Color.GRAY);
@@ -302,6 +304,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         Create_CarPool_femalemale2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                gender = 'M';
                 Create_CarPool_femalemale2.setVisibility(View.INVISIBLE);
                 Create_CarPool_malefemale1.setVisibility(View.VISIBLE);
                 maleFemaleTxt.setTextColor(Color.RED);
@@ -312,6 +315,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         FemaleMaleTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                gender = 'F';
                 maleFemaleTxt.setTextColor(Color.GRAY);
                 FemaleMaleTxt.setTextColor(Color.RED);
                 Create_CarPool_malefemale1.setVisibility(View.VISIBLE);
@@ -322,6 +326,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         maleFemaleTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                gender = 'M';
                 maleFemaleTxt.setTextColor(Color.RED);
                 FemaleMaleTxt.setTextColor(Color.GRAY);
                 Create_CarPool_malefemale1.setVisibility(View.INVISIBLE);
@@ -443,7 +448,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         if (v == create) {
-            if (edit_route_name.getText() != null && edit_route_name.getText().toString() != "Ride Name" && From_Em_Id != -1 && To_Em_Id != -1 && From_Reg_Id != -1 && To_Reg_Id != -1 && Single_Periodic_ID != -1 && Vehicle_Id != -1 && id != -1 && Create_CarPool_txt_beforeCal.getText().toString() != "Click to Select" && Create_CarPool_txt_time_selected.getText() != null && Create_CarPool_txt_time_selected.getText().toString() != "Click to Select") {
+            if (edit_route_name.getText() != null && edit_route_name.getText().toString() != "Ride Name" && From_Em_Id != -1 && To_Em_Id != -1 && From_Reg_Id != -1 && To_Reg_Id != -1 && Single_Periodic_ID != -1 && Vehicle_Id != -1 && id != -1 && Create_CarPool_txt_beforeCal.getText() != "Click to Select" && Create_CarPool_txt_time_selected.getText() != null && Create_CarPool_txt_time_selected.getText().toString() != "Click to Select") {
                 String is_Rounded;
                 String EnName = edit_route_name.getText().toString();
                 int FromEmId = From_Em_Id;   // dubai
@@ -455,15 +460,14 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                 } else {
                     is_Rounded = "false";
                 }
-                String Time = "10:00";
-                String Saturday = "1";
-                String Sunday = "0";
-                String Monday = "0";
-                String Tuesday = "0";
-                String Wednesday = "0";
-                String Thursday = "0";
-                String Friday = "0";
-                char gender = 'N';
+                String Time = Create_CarPool_txt_time_selected.getText().toString();
+                String Saturday = String.valueOf(SAT_FLAG);
+                String Sunday = String.valueOf(SUN_FLAG);
+                String Monday = String.valueOf(MON_FLAG);
+                String Tuesday = String.valueOf(TUES_FLAG);
+                String Wednesday = String.valueOf(WED_FLAG);
+                String Thursday = String.valueOf(THU_FLAG);
+                String Friday = String.valueOf(FRI_FLAG);
                 int Vehicle_ID = Vehicle_Id;
                 int No_OF_Seats = id;
                 double Start_Lat = 25.19757887867318;
@@ -473,7 +477,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                 int pref_lnag = Language_ID;
                 int pref_nat = Nationality_ID;
                 int Age_Ranged_id = Age_ID;
-                String StartDate = "15/6/2015";
+                String StartDate = Create_CarPool_full_date;
 
                 GetData j = new GetData();
                 j.DriverCreateCarPoolFrom(MyId, EnName, FromEmId, ToEmId, FromRegId, ToRegId

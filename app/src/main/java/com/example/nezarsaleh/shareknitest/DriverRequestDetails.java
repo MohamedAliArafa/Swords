@@ -7,6 +7,7 @@ import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -94,47 +95,7 @@ public class DriverRequestDetails extends AppCompatActivity {
         Alert_Accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean exists = false;
-                try {
-                    SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
-                    Socket sock = new Socket();
-                    int timeoutMs = 20000;   // 2 seconds
-                    sock.connect(sockaddr, timeoutMs);
-                    exists = true;
-                } catch (final Exception e) {
-                    e.printStackTrace();
-                    runOnUiThread(new Runnable() {
-                        public void run() {
-                            new AlertDialog.Builder(DriverRequestDetails.this)
-                                    .setTitle("Connection Problem!")
-                                    .setMessage("Make sure you have internet connection")
-                                    .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            Intent intentToBeNewRoot = new Intent(DriverRequestDetails.this, DriverRequestDetails.class);
-                                            ComponentName cn = intentToBeNewRoot.getComponent();
-                                            Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
-                                            startActivity(mainIntent);
-                                        }
-                                    })
-                                    .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            finish();
-                                        }
-                                    }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                            Toast.makeText(DriverRequestDetails.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-                if (exists) {
-                    GetData j = new GetData();
-                    try {
-                        j.DriverAcceptPassenger(RequestId, 1);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-                finish();
+                new accept().execute();
             }
         });
 
@@ -142,49 +103,108 @@ public class DriverRequestDetails extends AppCompatActivity {
         Alert_Decline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean exists = false;
-                try {
-                    SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
-                    Socket sock = new Socket();
-                    int timeoutMs = 20000;   // 2 seconds
-                    sock.connect(sockaddr, timeoutMs);
-                    exists = true;
-                } catch (final Exception e) {
-                    e.printStackTrace();
-                    runOnUiThread(new Runnable() {
-                        public void run() {
-                            new AlertDialog.Builder(DriverRequestDetails.this)
-                                    .setTitle("Connection Problem!")
-                                    .setMessage("Make sure you have internet connection")
-                                    .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            Intent intentToBeNewRoot = new Intent(DriverRequestDetails.this, DriverRequestDetails.class);
-                                            ComponentName cn = intentToBeNewRoot.getComponent();
-                                            Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
-                                            startActivity(mainIntent);
-                                        }
-                                    })
-                                    .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            finish();
-                                        }
-                                    }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                            Toast.makeText(DriverRequestDetails.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-                if (exists) {
-                    GetData j = new GetData();
-                    try {
-                        j.DriverAcceptPassenger(RequestId, 0);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-                finish();
+                new decline().execute();
             }
         });
 
+    }
+
+
+    private class decline extends AsyncTask{
+
+        @Override
+        protected Object doInBackground(Object[] params) {
+            boolean exists = false;
+            try {
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                Socket sock = new Socket();
+                int timeoutMs = 20000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                exists = true;
+            } catch (final Exception e) {
+                e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new AlertDialog.Builder(DriverRequestDetails.this)
+                                .setTitle("Connection Problem!")
+                                .setMessage("Make sure you have internet connection")
+                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intentToBeNewRoot = new Intent(DriverRequestDetails.this, DriverRequestDetails.class);
+                                        ComponentName cn = intentToBeNewRoot.getComponent();
+                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        startActivity(mainIntent);
+                                    }
+                                })
+                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                        Toast.makeText(DriverRequestDetails.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            if (exists) {
+                GetData j = new GetData();
+                try {
+                    j.DriverAcceptPassenger(RequestId, 0);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            finish();
+            return null;
+        }
+    }
+
+    private class accept extends AsyncTask{
+
+        @Override
+        protected Object doInBackground(Object[] params) {
+            boolean exists = false;
+            try {
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                Socket sock = new Socket();
+                int timeoutMs = 20000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                exists = true;
+            } catch (final Exception e) {
+                e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new AlertDialog.Builder(DriverRequestDetails.this)
+                                .setTitle("Connection Problem!")
+                                .setMessage("Make sure you have internet connection")
+                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intentToBeNewRoot = new Intent(DriverRequestDetails.this, DriverRequestDetails.class);
+                                        ComponentName cn = intentToBeNewRoot.getComponent();
+                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        startActivity(mainIntent);
+                                    }
+                                })
+                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                        Toast.makeText(DriverRequestDetails.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            if (exists) {
+                GetData j = new GetData();
+                try {
+                    j.DriverAcceptPassenger(RequestId, 1);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            finish();
+            return null;
+        }
     }
 
 
