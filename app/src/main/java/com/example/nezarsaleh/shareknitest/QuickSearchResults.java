@@ -32,11 +32,11 @@ public class QuickSearchResults extends AppCompatActivity {
     int From_Reg_Id;
     int To_Em_Id;
     int To_Reg_Id;
-    String To_EmirateEnName,From_EmirateEnName,To_RegionEnName,From_RegionEnName;
+    String To_EmirateEnName, From_EmirateEnName, To_RegionEnName, From_RegionEnName;
 
     TextView To_EmirateEnName_txt;
     TextView From_EmirateEnName_txt;
-    TextView  To_RegionEnName_txt  ;
+    TextView To_RegionEnName_txt;
     TextView From_RegionEnName_txt;
     SharedPreferences myPrefs;
     ListView lvResult;
@@ -82,17 +82,16 @@ public class QuickSearchResults extends AppCompatActivity {
     }
 
 
-
-    private class backTread extends AsyncTask{
+    private class backTread extends AsyncTask {
 
         @Override
         protected Object doInBackground(Object[] params) {
             char gender = 'N';
             String Time = "";
-            int FromEmId = 2;
-            int FromRegId = 4;
-            int ToEmId = 4;
-            int ToRegId = 20;
+//            int FromEmId = 2;
+//            int FromRegId = 4;
+//            int ToEmId = 4;
+//            int ToRegId = 20;
             int pref_lnag = 0;
             int pref_nat = 0;
             int Age_Ranged_id = 0;
@@ -175,8 +174,6 @@ public class QuickSearchResults extends AppCompatActivity {
 //
 //        return super.onOptionsItemSelected(item);
 //    }
-
-
 
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)

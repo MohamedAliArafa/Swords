@@ -21,7 +21,6 @@ import java.util.List;
 
 public class RegionsAdapter extends ArrayAdapter<RegionsDataModel> {
 
-
     private LayoutInflater inflater;
     int resourse;
     Context context;

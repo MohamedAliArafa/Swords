@@ -97,7 +97,7 @@ public class GetData {
 
     String GetVehiclesUrl               = DOMAIN + "/_mobfiles/CLS_MobVehicle.asmx/GetByDriverId?id=20027";
 
-    String GetMapLookUpUrl              = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetAllMostDesiredRides";
+    String GetMapLookUpUrl              = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetFromOnlyMostDesiredRides";
 
 
     public void QuickSearchForm(int myId, char gender, String time
