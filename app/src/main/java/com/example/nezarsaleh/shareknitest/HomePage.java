@@ -3,6 +3,8 @@ package com.example.nezarsaleh.shareknitest;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
@@ -36,6 +38,7 @@ import com.example.nezarsaleh.shareknitest.MainNavigationDrawerFragment.Navigati
 import com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity;
 import com.pkmmte.view.CircularImageView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -66,7 +69,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
     RelativeLayout Rides_joined_Relative;
     String name_str,nat_str;
     int DRIVER_ALERTS_COUNT=0;
-
+    int y;
     String Firstname,LastName;
 
     @Override
@@ -235,8 +238,10 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 DriverMyRidesCount_str="";
                 DriverMyRidesCount_str += "(";
                 DriverMyRidesCount_str += (jsonArray.getString("DriverMyRidesCount"));
-
-                 DRIVER_ALERTS_COUNT = jsonArray.getInt("DriverMyAlertsCount");
+                if (DRIVER_ALERTS_COUNT < jsonArray.getInt("DriverMyAlertsCount")){
+                    DRIVER_ALERTS_COUNT = jsonArray.getInt("DriverMyAlertsCount");
+                    CreateNotification(y++);
+                }
 //                if (DRIVER_ALERTS_COUNT>0){
 //
 //
@@ -261,6 +266,29 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 e.printStackTrace();
             }
             return null;
+        }
+    }
+
+    private void CreateNotification(int y) {
+        GetData gd = new GetData();
+        try {
+            JSONArray jsonArray = gd.GetDriverAlertsForRequest(Integer.parseInt(ID));
+            for (int i = 0;i< jsonArray.length();i++){
+                JSONObject j = jsonArray.getJSONObject(i);
+                Intent intent = new Intent(this, DriverAlertsForRequest.class);
+                PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+                Notification.Builder builder = new Notification.Builder(this);
+                builder.setContentTitle("Route :" + j.getString("RouteName"));
+                builder.setContentText(j.getString("PassengerName") + " Send You A Join Request ");
+                builder.setSmallIcon(R.drawable.sharekni_logo);
+                builder.setContentIntent(pendingIntent);
+                Notification notification = builder.build();
+                NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                manager.notify(y, notification);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 

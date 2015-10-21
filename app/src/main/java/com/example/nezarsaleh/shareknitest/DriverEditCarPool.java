@@ -99,6 +99,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
     String Create_CarPool_txt_PickUp;
     String Create_CarPool_txt_Drop_Off;
     String Create_CarPool_full_date;
+    String Route_Name;
     EditText edit_route_name;
     TextView Create_CarPool_txt_Selecet_Start_Point;
     TextView Create_CarPool_txt_Select_Dest;
@@ -113,6 +114,8 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
     TextView Create_CarPool_Preferred_Lang_txt;
     TextView Create_CarPool_Age_Range_txt;
     TextView createCarPool_Vehicles;
+    TextView txt_em_name;
+    TextView txt_em_id;
     ListView lang_lv;
     Context mContext;
     ImageView seat1_off, seat2_off, seat3_off, seat4_off;
@@ -137,7 +140,8 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
 
         myPrefs = this.getSharedPreferences("myPrefs", 0);
         Intent in = getIntent();
-        RouteId = in.getIntExtra("RouteID",-1);
+        RouteId = in.getIntExtra("RouteID", -1);
+        Route_Name = in.getStringExtra("RoutName");
 
         edit_route_name = (EditText) findViewById(R.id.createCarPool_EnName);
 
@@ -277,6 +281,8 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
         seat3_off.setOnClickListener(this);
         seat4_off.setOnClickListener(this);
 
+        new load().execute();
+
         // Create_CarPool
         //  code to get nationals and set the adapter to the autotext complete
 
@@ -308,7 +314,32 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
 
         //Toast.makeText(RegisterNewTest.this, "test pref lang" +Lang_List.toString(), Toast.LENGTH_LONG).show();
         Log.d("test pref lang  2 :", Create_CarPool_AgeRanges_List.toString());
+    }
 
+    private class load extends AsyncTask{
+        JSONObject j;
+
+        @Override
+        protected void onPostExecute(Object o) {
+            try {
+                edit_route_name.setText(j.getString("RouteEnName"));
+                Create_CarPool_txt_Selecet_Start_Point.setText(j.getString("FromEmirateEnName")+","+j.getString("FromRegionEnName"));
+                Create_CarPool_txt_Select_Dest.setText(j.getString("ToEmirateEnName")+","+j.getString("ToRegionEnName"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object[] params) {
+            try {
+                j = new GetData().GetRouteById(RouteId);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
     }
 
     private class getNationalities extends AsyncTask{
@@ -750,8 +781,9 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     Create_CarPool_txt_PickUp = "";
-                    TextView txt_em_name = (TextView) view.findViewById(R.id.row_name_search);
-                    TextView txt_em_id = (TextView) view.findViewById(R.id.row_id_search);
+
+                    txt_em_name = (TextView) view.findViewById(R.id.row_name_search);
+                    txt_em_id = (TextView) view.findViewById(R.id.row_id_search);
                     From_Em_Id = Integer.parseInt(txt_em_id.getText().toString());
                     From_EmirateEnName = txt_em_name.getText().toString();
                     Create_CarPool_txt_PickUp += txt_em_name.getText().toString();

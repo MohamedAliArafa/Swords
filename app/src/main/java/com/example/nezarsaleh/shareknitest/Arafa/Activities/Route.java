@@ -56,6 +56,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
@@ -80,6 +81,7 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private List<DriverGetReviewDataModel> driverGetReviewDataModels_arr = new ArrayList<>();
     Bundle in;
+    String Route_name;
     Button Route_Delete_Btn,Route_Edit_Btn;
     GetData j = new GetData();
 
@@ -139,6 +141,7 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
         in = getIntent().getExtras();
         Driver_ID = in.getInt("DriverID");
         Route_ID = in.getInt("RouteID");
+        Route_name = in.getString("RouteName");
 
         Log.d("Test Driver id", String.valueOf(Driver_ID));
         Log.d("test Passenger id", String.valueOf(Passenger_ID));
@@ -181,14 +184,7 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
         });
 
 
-        Route_Edit_Btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in =  new Intent(Route.this, DriverEditCarPool.class);
-                in.putExtra("RouteID",Route_ID);
-                startActivity(in);
-            }
-        });
+
 
 
     }  // on create
@@ -292,6 +288,22 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
                     });
                 }
 
+                Route_Edit_Btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent in =  new Intent(Route.this, DriverEditCarPool.class);
+                        Bundle b = new Bundle();
+                        in.putExtra("Data", b);
+                        in.putExtra("RouteID", Route_ID);
+                        try {
+                            in.putExtra("RouteName",json.getString("RouteEnName"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        startActivity(in);
+                    }
+                });
+
             }
             hidePDialog();
         }
@@ -344,7 +356,6 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
 
     private class loadingReviews extends AsyncTask {
         JSONArray response1 = null;
-
         @Override
         protected void onPostExecute(Object o) {
             for (int i = 0; i < response1.length(); i++) {

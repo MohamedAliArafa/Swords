@@ -170,6 +170,7 @@ public class Profile extends AppCompatActivity {
                             } else {
                                 Intent in = new Intent(Profile.this, Route.class);
                                 in.putExtra("RouteID", driver[i].getID());
+                                in.putExtra("RouteName",driver[i].getRouteName());
                                 in.putExtra("PassengerID", Passenger_ID);
                                 Log.d("Last 3", String.valueOf(Passenger_ID));
                                 in.putExtra("DriverID", Driver_ID);

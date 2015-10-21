@@ -270,13 +270,11 @@ public class GetData {
         return json;
     }
 
-    public JSONArray DriverAcceptPassenger(int Request_ID, int isAccepted) throws JSONException {
-
+    public String DriverAcceptPassenger(int Request_ID, int isAccepted) throws JSONException {
         HandleXML obj = new HandleXML(DriverAcceptPassengerUrl + Request_ID + "&IsAccept=" + isAccepted);
         obj.fetchXML();
         while (obj.parsingComplete) ;
-        JSONArray json = new JSONArray(obj.getData());
-        return json;
+        return obj.getData();
     }
 
     public JSONObject GetDriverById(int ID) throws JSONException {
@@ -289,11 +287,12 @@ public class GetData {
     }
 
     public JSONObject GetRouteById(int ID) throws JSONException {
-        JSONObject json = null;
+        JSONObject json;
         HandleXML obj = new HandleXML(getRouteByRouteId + ID);
         obj.fetchXML();
         while (obj.parsingComplete) ;
-        json = jsonArrayToObject(obj.getData().toString());
+        JSONArray jsonArray = new JSONArray(obj.getData());
+        json = jsonArray.getJSONObject(0);
         return json;
     }
 
@@ -331,13 +330,12 @@ public class GetData {
     }
 
     public JSONArray Driver_GetReview(int Driver_ID, int Route_ID) throws JSONException {
-        JSONArray json = null;
+        JSONArray json;
         String Url = Driver_GetReview + "DriverId=" + Driver_ID + "&RouteId=" + Route_ID;
         HandleXML obj = new HandleXML(Url);
         obj.fetchXML();
-
         while (obj.parsingComplete) ;
-        json = new JSONArray(obj.getData().toString());
+        json = new JSONArray(obj.getData());
         return json;
 
     }

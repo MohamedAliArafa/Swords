@@ -10,7 +10,15 @@ import java.util.ArrayList;
  */
 public class BestDriverDataModel extends ArrayList<Parcelable> implements Parcelable {
 
-    public String Name,PhotoURL,Nationality,Language;
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String Name,PhotoURL,Nationality,Language,phoneNumber;
     public int ID,Rating;
 
     public BestDriverDataModel(Parcel in) {

@@ -143,11 +143,15 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
 
         exists = false;
         new back().execute();
+
+
+
     }  //  on create
 
 
     private class back extends AsyncTask{
 
+        JSONObject json;
         private ProgressDialog pDialog;
 
         private void hidePDialog() {
@@ -169,8 +173,7 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
             if (exists) {
                 GetData GD = new GetData();
                 try {
-                    days = "";
-                    JSONObject json = GD.GetRouteById(Route_ID);
+                    json = GD.GetRouteById(Route_ID);
                     FromRegionEnName.setText(json.getString("FromRegionEnName"));
                     ToRegionEnName.setText(json.getString("ToRegionEnName"));
 
@@ -305,6 +308,7 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                assert response1 != null;
                 for (int i = 0; i < response1.length(); i++) {
                     try {
                         JSONObject obj = response1.getJSONObject(i);

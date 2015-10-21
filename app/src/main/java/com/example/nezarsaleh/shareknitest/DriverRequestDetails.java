@@ -148,7 +148,12 @@ public class DriverRequestDetails extends AppCompatActivity {
             if (exists) {
                 GetData j = new GetData();
                 try {
-                    j.DriverAcceptPassenger(RequestId, 0);
+                    String n = j.DriverAcceptPassenger(RequestId, 0);
+                    if (n.equals("1")){
+                        Intent in = new Intent(DriverRequestDetails.this,DriverAlertsForRequest.class);
+                        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(in);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -196,7 +201,12 @@ public class DriverRequestDetails extends AppCompatActivity {
             if (exists) {
                 GetData j = new GetData();
                 try {
-                    j.DriverAcceptPassenger(RequestId, 1);
+                    String n = j.DriverAcceptPassenger(RequestId, 1);
+                    if (n.equals("1")){
+                        Intent in = new Intent(DriverRequestDetails.this,DriverAlertsForRequest.class);
+                        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(in);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

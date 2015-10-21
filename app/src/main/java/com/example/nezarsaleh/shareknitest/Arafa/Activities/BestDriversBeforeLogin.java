@@ -157,6 +157,7 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
                         driver.setPhotoURL(obj.getString("AccountPhoto"));
                         driver.setNationality(obj.getString("NationalityEnName"));
                         driver.setRating(obj.getInt("Rating"));
+//                        driver.setPhoneNumber(obj.getString("Mobile"));
                         arr.add(driver);
                     } catch (JSONException e) {
                         e.printStackTrace();

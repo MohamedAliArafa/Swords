@@ -2,6 +2,7 @@ package com.example.nezarsaleh.shareknitest;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -81,6 +82,28 @@ public class PassengerMyApprovedRides extends AppCompatActivity {
 
 
     private class rideJson extends AsyncTask {
+        ProgressDialog pDialog;
+
+        @Override
+        protected void onPostExecute(Object o) {
+            hidePDialog();
+            super.onPostExecute(o);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            pDialog = new ProgressDialog(PassengerMyApprovedRides.this);
+            pDialog.setMessage("Loading" + "...");
+            pDialog.show();
+            super.onPreExecute();
+        }
+
+        private void hidePDialog() {
+            if (pDialog != null) {
+                pDialog.dismiss();
+                pDialog = null;
+            }
+        }
 
         @Override
         protected Object doInBackground(Object[] params) {
@@ -117,9 +140,6 @@ public class PassengerMyApprovedRides extends AppCompatActivity {
             }
             if (exists) {
                 final GetData GD = new GetData();
-                // Get a RequestQueue
-                RequestQueue queue = VolleySingleton.getInstance(getBaseContext().getApplicationContext()).getRequestQueue();
-                // Request a string response from the provided URL.
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url + Passenger_ID,
                         new Response.Listener<String>() {
                             @Override
@@ -182,9 +202,6 @@ public class PassengerMyApprovedRides extends AppCompatActivity {
                         //Ride.setText("That didn't work! : " + error.toString());
                     }
                 });
-                // Add the request to the RequestQueue.
-                queue.add(stringRequest);
-//      Add a request (in this example, called stringRequest) to your RequestQueue.
                 VolleySingleton.getInstance(PassengerMyApprovedRides.this).addToRequestQueue(stringRequest);
             }
             return null;
