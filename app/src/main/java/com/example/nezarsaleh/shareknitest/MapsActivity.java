@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Parcel;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.IntentCompat;
@@ -16,22 +17,29 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
+import com.example.nezarsaleh.shareknitest.Map.MapDataModel;
 import com.example.nezarsaleh.shareknitest.Map.MapJsonParse;
 import com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
 import java.util.Map;
+import java.util.TreeMap;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback  {
 
     private GoogleMap mMap;
     SupportMapFragment mapFragment;
@@ -72,10 +80,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
                 (new LatLng(25.0014511, 55.3588621), 8.25f));
 
-
-        MapJsonParse mapJsonParse = new MapJsonParse();
-        String urlmap = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetAllMostDesiredRides";
-        mapJsonParse.stringRequest(urlmap, mMap, context);
+//
+//        MapJsonParse mapJsonParse = new MapJsonParse();
+//        String urlmap = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetAllMostDesiredRides";
+//        mapJsonParse.stringRequest(urlmap, mMap, context);
 
 
         mMap.getUiSettings().setMapToolbarEnabled(false);
@@ -83,44 +91,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.getUiSettings().setZoomGesturesEnabled(true);
         mMap.setMyLocationEnabled(true);
 
-        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-
-            View v;
-
-            @Override
-            public View getInfoWindow(Marker marker) {
-
-                v = getLayoutInflater().inflate(R.layout.info_window_approved, null);
-                LatLng latLng = marker.getPosition();
-                String title = marker.getTitle();
-                String snippet = marker.getSnippet();
-
-                Log.d("Reg Ar2", marker.getTitle());
-                Log.d("Reg En2", marker.getSnippet());
-
-                TextView emirateArName = (TextView) v.findViewById(R.id.emirateAr_name_id);
-                TextView emirateEnName = (TextView) v.findViewById(R.id.emirateEn_name_id);
-                TextView emirateLat = (TextView) v.findViewById(R.id.txt_map_lat);
-                TextView emiratelong = (TextView) v.findViewById(R.id.txt_map_long);
-
-                String lat = String.valueOf(latLng.latitude).substring(0, 7);
-                String lon = String.valueOf(latLng.longitude).substring(0, 7);
-                emirateLat.setText(lat);
-                emiratelong.setText(lon);
-                emirateArName.setText(title);
-                emirateEnName.setText(snippet);
-                return v;
-
-            }
-
-
-            @Override
-            public View getInfoContents(Marker marker) {
-
-
-                return v;
-            }
-        });
 
 
     }
@@ -168,13 +138,123 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-    private class backTread extends AsyncTask {
+    private class backTread extends AsyncTask implements GoogleMap.InfoWindowAdapter , GoogleMap.OnInfoWindowClickListener {
+        boolean exists = false;
+        MapDataModel[] data;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(Object o) {
+            super.onPostExecute(o);
+            if (exists){
+
+                try {
+                    JSONArray j = new GetData().GetMapLookUp();
+                    data = new MapDataModel[j.length()];
+
+                    for (int i = 0; i < j.length(); i++) {
+
+                        MapDataModel item = new MapDataModel(Parcel.obtain());
+
+                        JSONObject jsonObject = j.getJSONObject(i);
+
+                        item.setFromRegionArName(jsonObject.getString("FromRegionNameAr"));
+                        item.setFromRegionEnName(jsonObject.getString("FromRegionNameEn"));
+
+
+                        if (jsonObject.getString("FromLng").equals("null") &&  jsonObject.getString("FromLat").equals("null")) {
+                             item.longitude=0.0;
+                            item.latitude=0.0;
+                        }else {
+                            item.setLongitude(jsonObject.getDouble("FromLng"));
+                            item.setLatitude(jsonObject.getDouble("FromLat"));
+                        }
+
+
+                        if (item.latitude != 0.0 && item.longitude != 0.0) {
+                            data[i] = item;
+                            final Marker markerZero = mMap.addMarker(new MarkerOptions().
+                                    title(item.getFromRegionArName()).snippet(item.getFromRegionEnName()).
+                                    position(new LatLng(item.latitude, item.longitude))
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor))
+
+                            );
+
+
+
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
+                                    (new LatLng(data[i].latitude, data[i].longitude), 12.0f));
+
+
+                        }
+
+                    } // for
+
+
+
+                } // try
+                catch (JSONException e) {
+                    e.printStackTrace();
+                }  // cathch
+
+
+                mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+
+                    View v;
+
+                    @Override
+                    public View getInfoWindow(Marker marker) {
+
+                        v = getLayoutInflater().inflate(R.layout.info_window_approved, null);
+                        LatLng latLng = marker.getPosition();
+                        String title = marker.getTitle();
+                        String snippet = marker.getSnippet();
+
+                        Log.d("Reg Ar2", marker.getTitle());
+                        Log.d("Reg En2", marker.getSnippet());
+
+                        TextView emirateArName = (TextView) v.findViewById(R.id.emirateAr_name_id);
+                        TextView emirateEnName = (TextView) v.findViewById(R.id.emirateEn_name_id);
+                        TextView emirateLat = (TextView) v.findViewById(R.id.txt_map_lat);
+                        TextView emiratelong = (TextView) v.findViewById(R.id.txt_map_long);
+
+                        String lat = String.valueOf(latLng.latitude).substring(0, 7);
+                        String lon = String.valueOf(latLng.longitude).substring(0, 7);
+                        emirateLat.setText(lat);
+                        emiratelong.setText(lon);
+                        emirateArName.setText(title);
+                        emirateEnName.setText(snippet);
+                        return v;
+
+                    }
+
+
+                    @Override
+                    public View getInfoContents(Marker marker) {
+
+
+                        return v;
+                    }
+                });
+
+
+
+
+
+            } //  if
+
+
+        }
 
         @Override
         protected Object doInBackground(Object[] params) {
 
 
-            boolean exists = false;
+
             try {
                 SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
                 Socket sock = new Socket();
@@ -206,7 +286,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 });
             }
             if (exists) {
-                return null;
+
+            return  null;
 
 
             }
@@ -214,7 +295,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
 
+
+      // info window adapter
+
+        @Override
+        public View getInfoWindow(Marker marker) {
+            return null;
+
+
+        }
+
+        @Override
+        public View getInfoContents(Marker marker) {
+            return null;
+        }
+
+
+
+
+        // info window click listenre
+        @Override
+        public void onInfoWindowClick(Marker marker) {
+
+        }
     }    // back thread classs
+
+
+
 
 
 }  //  classs

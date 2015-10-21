@@ -97,6 +97,8 @@ public class GetData {
 
     String GetVehiclesUrl               = DOMAIN + "/_mobfiles/CLS_MobVehicle.asmx/GetByDriverId?id=20027";
 
+    String GetMapLookUpUrl              = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetAllMostDesiredRides";
+
 
     public void QuickSearchForm(int myId, char gender, String time
             , int fromEmId, int fromRegId, int toEmId, int toRegId
@@ -316,6 +318,7 @@ public class GetData {
 
     }
 
+
     public String Passenger_Review_Driver(int Driver_ID, int Passenger_ID, int Route_ID, String Remarks) throws JSONException {
 
         String Url = Passenger_Review_Driver + "PassengerId=" + Passenger_ID + "&DriverId="
@@ -420,6 +423,14 @@ public class GetData {
         json = jarray.getJSONObject(0);
         //Log.d("Json : ", json.getString("LastName"));
         return json;
+    }
+
+
+    public JSONArray GetMapLookUp() throws JSONException {
+        HandleXML obj = new HandleXML(GetMapLookUpUrl );
+        obj.fetchXML();
+        while (obj.parsingComplete) ;
+        return new JSONArray(obj.getData());
     }
 
 
