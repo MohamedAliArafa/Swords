@@ -18,8 +18,6 @@ import android.widget.Toast;
 
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
 import com.example.nezarsaleh.shareknitest.Map.MapDataModel;
-import com.example.nezarsaleh.shareknitest.Map.MapJsonParse;
-import com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
