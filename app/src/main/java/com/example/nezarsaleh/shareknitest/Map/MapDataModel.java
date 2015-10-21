@@ -10,6 +10,7 @@ public class MapDataModel implements Parcelable {
     String FromEmirateEnName,ToEmirateEnName,FromRegionEnName,ToRegionEnName;
     String FromEmirateArName,FromRegionArName,ToRegionArName,ToEmirateArName;
 
+    int NoOfRoutes;
 
 
 
@@ -32,6 +33,7 @@ public class MapDataModel implements Parcelable {
         ToEmirateId = in.readInt();
         FromRegionId = in.readInt();
         ToRegionId = in.readInt();
+        NoOfRoutes=in.readInt();
     }
 
     public static final Creator<MapDataModel> CREATOR = new Creator<MapDataModel>() {
@@ -62,6 +64,14 @@ public class MapDataModel implements Parcelable {
         return longitude;
     }
 
+
+    public void setNoOfRoutes(int noOfRoutes) {
+        NoOfRoutes = noOfRoutes;
+    }
+
+    public int getNoOfRoutes() {
+        return NoOfRoutes;
+    }
 
     public String getFromEmirateEnName() {
         return FromEmirateEnName;
@@ -179,5 +189,6 @@ public class MapDataModel implements Parcelable {
         dest.writeInt(ToEmirateId);
         dest.writeInt(FromRegionId);
         dest.writeInt(ToRegionId);
+        dest.writeInt(NoOfRoutes);
     }
 }

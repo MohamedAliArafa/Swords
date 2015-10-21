@@ -2,6 +2,7 @@ package com.example.nezarsaleh.shareknitest.Map;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Parcel;
 import android.util.Log;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -78,7 +79,7 @@ public class MapJsonParse extends Activity {
             for (int i = 0; i < jArray.length(); i++) {
                 try {
 
-                    MapDataModel item = new MapDataModel();
+                    MapDataModel item = new MapDataModel(Parcel.obtain());
 
                     json = jArray.getJSONObject(i);
                     item.setFromRegionArName(json.getString("FromRegionNameAr"));
@@ -92,10 +93,9 @@ public class MapJsonParse extends Activity {
 
                     data[i] = item;
                     final Marker markerZero = map.addMarker(new MarkerOptions().
-                            title(item.getFromRegionArName()).snippet(item.getFromRegionEnName()).
+                            title(String.valueOf(i)).
                             position(new LatLng(data[i].latitude, data[i].longitude))
-
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor)));
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor)));
 
 
                     map.moveCamera(CameraUpdateFactory.newLatLngZoom

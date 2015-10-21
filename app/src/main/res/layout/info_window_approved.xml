@@ -115,7 +115,9 @@
                 android:layout_toEndOf="@+id/txt_ride_word_2"
                 android:layout_toRightOf="@+id/txt_ride_word_2"
                 android:text="16 Rides"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:id="@+id/NoOfRoutes"
+                />
 
 
         </RelativeLayout>

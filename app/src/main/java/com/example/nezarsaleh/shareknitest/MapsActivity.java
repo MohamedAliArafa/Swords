@@ -46,6 +46,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     MapsActivity context;
     private static final String DOMAIN = "http://sharekni.sdgstaff.com";
 
+    int From_Em_Id;
+    int From_Reg_Id;
+    int To_Em_Id;
+    int To_Reg_Id;
+
+    String To_EmirateEnName,From_EmirateEnName,To_RegionEnName,From_RegionEnName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -164,6 +171,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                         item.setFromRegionArName(jsonObject.getString("FromRegionNameAr"));
                         item.setFromRegionEnName(jsonObject.getString("FromRegionNameEn"));
+                        item.setFromEmirateEnName(jsonObject.getString("FromEmirateNameEn"));
+                        item.setFromEmirateId(jsonObject.getInt("FromEmirateId"));
+                        item.setFromRegionId(jsonObject.getInt("FromRegionId"));
+
+
+                        item.setNoOfRoutes(jsonObject.getInt("NoOfRoutes"));
 
 
                         if (jsonObject.getString("FromLng").equals("null") &&  jsonObject.getString("FromLat").equals("null")) {
@@ -178,7 +191,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         if (item.latitude != 0.0 && item.longitude != 0.0) {
                             data[i] = item;
                             final Marker markerZero = mMap.addMarker(new MarkerOptions().
-                                    title(item.getFromRegionArName()).snippet(item.getFromRegionEnName()).
+                                    title(String.valueOf(i)).
                                     position(new LatLng(item.latitude, item.longitude))
                                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor))
 
@@ -191,6 +204,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                         }
+
+
+
+
+
 
                     } // for
 
@@ -211,23 +229,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                         v = getLayoutInflater().inflate(R.layout.info_window_approved, null);
                         LatLng latLng = marker.getPosition();
-                        String title = marker.getTitle();
-                        String snippet = marker.getSnippet();
+                        int  i = Integer.parseInt(marker.getTitle());
 
-                        Log.d("Reg Ar2", marker.getTitle());
-                        Log.d("Reg En2", marker.getSnippet());
-
+                        String snippet = data[i].getFromRegionArName();
+                        String title = data[i].getFromRegionEnName();
+                        int NoOfRoutes = data[i].getNoOfRoutes();
                         TextView emirateArName = (TextView) v.findViewById(R.id.emirateAr_name_id);
                         TextView emirateEnName = (TextView) v.findViewById(R.id.emirateEn_name_id);
                         TextView emirateLat = (TextView) v.findViewById(R.id.txt_map_lat);
                         TextView emiratelong = (TextView) v.findViewById(R.id.txt_map_long);
+                        TextView NoOfRoutes_txt = (TextView) v.findViewById(R.id.NoOfRoutes);
+
 
                         String lat = String.valueOf(latLng.latitude).substring(0, 7);
                         String lon = String.valueOf(latLng.longitude).substring(0, 7);
+                        String NoOfRoutes_str= String.valueOf(NoOfRoutes);
                         emirateLat.setText(lat);
                         emiratelong.setText(lon);
-                        emirateArName.setText(title);
-                        emirateEnName.setText(snippet);
+                        emirateArName.setText(snippet);
+                        emirateEnName.setText(title);
+                        NoOfRoutes_txt.setText(NoOfRoutes_str);
                         return v;
 
                     }
@@ -238,6 +259,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                         return v;
+                    }
+                });
+
+
+
+                mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                    @Override
+                    public void onInfoWindowClick(Marker marker) {
+                        int  i = Integer.parseInt(marker.getTitle());
+
+                        From_Em_Id =  data[i].getFromEmirateId();
+                        From_Reg_Id = data[i].getFromRegionId();
+                        From_EmirateEnName = data[i].getFromEmirateEnName();
+                        From_RegionEnName = data[i].getFromRegionEnName();
+                        Intent intent1 =  new Intent(getBaseContext(), QuickSearchResults.class);
+                        intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        intent1.putExtra("From_Em_Id", From_Em_Id);
+                        intent1.putExtra("To_Em_Id", To_Em_Id);
+                        intent1.putExtra("From_Reg_Id", From_Reg_Id);
+                        intent1.putExtra("To_Reg_Id", To_Reg_Id);
+                        intent1.putExtra("From_EmirateEnName",From_EmirateEnName);
+                        intent1.putExtra("From_RegionEnName",From_RegionEnName);
+                        intent1.putExtra("To_EmirateEnName",To_EmirateEnName);
+                        intent1.putExtra("To_RegionEnName",To_RegionEnName);
+                        startActivity(intent1);
+
+
                     }
                 });
 
