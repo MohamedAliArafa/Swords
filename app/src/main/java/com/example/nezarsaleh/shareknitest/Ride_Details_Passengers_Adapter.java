@@ -26,7 +26,7 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
     public Ride_Details_Passengers_Adapter(Activity activity, List<Ride_Details_Passengers_DataModel> PassengersItems) {
         this.activity = activity;
         this.PassengersItems = PassengersItems;
-
+        inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
         TextView AccountNationalityEn = (TextView) convertView.findViewById(R.id.AccountNationalityEn);
 
 
-        final Ride_Details_Passengers_DataModel m = PassengersItems.get(position);
+         Ride_Details_Passengers_DataModel m = PassengersItems.get(position);
 
         AccountName.setText(m.getAccountName());
         AccountNationalityEn.setText(m.getAccountNationalityEn());

@@ -41,6 +41,8 @@ import com.example.nezarsaleh.shareknitest.DriverGetReviewDataModel;
 import com.example.nezarsaleh.shareknitest.HomePage;
 import com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity;
 import com.example.nezarsaleh.shareknitest.R;
+import com.example.nezarsaleh.shareknitest.Ride_Details_Passengers_Adapter;
+import com.example.nezarsaleh.shareknitest.Ride_Details_Passengers_DataModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -80,9 +82,10 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
     private Toolbar toolbar;
     private GoogleMap mMap;
     private List<DriverGetReviewDataModel> driverGetReviewDataModels_arr = new ArrayList<>();
+    final List<Ride_Details_Passengers_DataModel> Passengers_arr = new ArrayList<>();
     Bundle in;
     String Route_name;
-    Button Route_Delete_Btn,Route_Edit_Btn;
+    Button Route_Delete_Btn, Route_Edit_Btn;
     GetData j = new GetData();
 
     public static void setListViewHeightBasedOnChildren(ListView listView) {
@@ -157,10 +160,6 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
 
         new loadingReviews().execute();
 
-        DriverGetReviewAdapter arrayAdapter = new DriverGetReviewAdapter(con, driverGetReviewDataModels_arr);
-        Driver_get_Review_lv.setAdapter(arrayAdapter);
-        setListViewHeightBasedOnChildren(Driver_get_Review_lv);
-
 
         Route_Delete_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,7 +169,7 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
                     if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
                         Toast.makeText(Route.this, "Cannot Delete This Route", Toast.LENGTH_SHORT).show();
                     } else {
-                        Intent in =  new Intent(Route.this, HomePage.class);
+                        Intent in = new Intent(Route.this, HomePage.class);
                         startActivity(in);
                         Toast.makeText(Route.this, "Route Deleted", Toast.LENGTH_SHORT).show();
                     }
@@ -182,9 +181,6 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
 
             }
         });
-
-
-
 
 
     }  // on create
@@ -213,8 +209,8 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
 
         @Override
         protected void onPostExecute(Object o) {
-            if (exists){
-                if (exception==null){
+            if (exists) {
+                if (exception == null) {
                     try {
                         FromRegionEnName.setText(json.getString("FromRegionEnName"));
                         ToRegionEnName.setText(json.getString("ToRegionEnName"));
@@ -228,9 +224,9 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
                         Log.d("time to", str_EndToTime_);
                         StartFromTime.setText(str_StartFromTime);
                         EndToTime_.setText(str_EndToTime_);
-                        if (json.getString("NationalityEnName").equals("null")){
+                        if (json.getString("NationalityEnName").equals("null")) {
                             NationalityEnName.setText("Not Specified");
-                        }else {
+                        } else {
                             NationalityEnName.setText(json.getString("NationalityEnName"));
                         }
                         PrefLanguageEnName.setText(json.getString("PrefLanguageEnName"));
@@ -276,7 +272,7 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }else {
+                } else {
                     Dialog dialog = new Dialog(Route.this);
                     dialog.setTitle("Some Thing Is Wrong !?");
                     dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -291,12 +287,12 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
                 Route_Edit_Btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent in =  new Intent(Route.this, DriverEditCarPool.class);
+                        Intent in = new Intent(Route.this, DriverEditCarPool.class);
                         Bundle b = new Bundle();
                         in.putExtra("Data", b);
                         in.putExtra("RouteID", Route_ID);
                         try {
-                            in.putExtra("RouteName",json.getString("RouteEnName"));
+                            in.putExtra("RouteName", json.getString("RouteEnName"));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -356,6 +352,8 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
 
     private class loadingReviews extends AsyncTask {
         JSONArray response1 = null;
+        JSONArray response2 = null;
+
         @Override
         protected void onPostExecute(Object o) {
             for (int i = 0; i < response1.length(); i++) {
@@ -369,20 +367,49 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+
+                for (int y = 0; y < response2.length(); y++) {
+
+                    try {
+                        JSONObject obj = response2.getJSONObject(y);
+                        final Ride_Details_Passengers_DataModel item = new Ride_Details_Passengers_DataModel(Parcel.obtain());
+                        Log.d("test account email", obj.getString("AccountName"));
+                        item.setAccountName(obj.getString("AccountName"));
+                        item.setAccountNationalityEn(obj.getString("AccountNationalityEn"));
+                        Passengers_arr.add(item);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
             }
+
+            DriverGetReviewAdapter arrayAdapter = new DriverGetReviewAdapter(con, driverGetReviewDataModels_arr);
+            Driver_get_Review_lv.setAdapter(arrayAdapter);
+            setListViewHeightBasedOnChildren(Driver_get_Review_lv);
+
+            Ride_Details_Passengers_Adapter adapter = new Ride_Details_Passengers_Adapter(con, Passengers_arr);
+            ride_details_passengers.setAdapter(adapter);
+            setListViewHeightBasedOnChildren(ride_details_passengers);
+
         }
 
         @Override
         protected Object doInBackground(Object[] params) {
             try {
                 response1 = new GetData().Driver_GetReview(Driver_ID, Route_ID);
-                new GetData().GetPassengersByRouteIdForm(Route_ID, ride_details_passengers, Route.this);
+                response2 = new GetData().GetPassengers_ByRouteID(Route_ID);
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
             return null;
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

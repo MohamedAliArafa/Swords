@@ -340,6 +340,23 @@ public class GetData {
 
     }
 
+    public JSONArray GetPassengers_ByRouteID(   int Route_ID) throws JSONException {
+        JSONArray json;
+        String Url = GetPassengersByRouteIDUrl + Route_ID;
+        HandleXML obj = new HandleXML(Url);
+        obj.fetchXML();
+        while (obj.parsingComplete) ;
+        json = new JSONArray(obj.getData());
+        return json;
+
+    }
+
+
+
+
+
+
+
     public String Driver_DeleteRoute(int Route_ID) throws JSONException {
         String json;
         String Url = Driver_DeleteRouteUrl + Route_ID;

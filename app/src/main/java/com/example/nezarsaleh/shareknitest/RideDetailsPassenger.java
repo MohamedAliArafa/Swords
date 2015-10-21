@@ -324,9 +324,12 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
 
 
                 }
+
                 DriverGetReviewAdapter arrayAdapter = new DriverGetReviewAdapter(con, driverGetReviewDataModels_arr);
                 Driver_get_Review_lv.setAdapter(arrayAdapter);
                 setListViewHeightBasedOnChildren(Driver_get_Review_lv);
+
+
                 Passenger_Review_Driver_Btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -490,31 +493,8 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                     }
                 });
 
-                JSONArray response1 = null;
-                try {
-                    response1 = new GetData().Driver_GetReview(Driver_ID, Route_ID);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                for (int i = 0; i < response1.length(); i++) {
-                    try {
-                        JSONObject obj = response1.getJSONObject(i);
-                        final DriverGetReviewDataModel review = new DriverGetReviewDataModel(Parcel.obtain());
-
-                        review.setAccountName(obj.getString("AccountName"));
-                        review.setAccountNationalityEn(obj.getString("AccountNationalityEn"));
-                        review.setReview(obj.getString("Review"));
-                        driverGetReviewDataModels_arr.add(review);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
 
 
-                }
-                DriverGetReviewAdapter arrayAdapter = new DriverGetReviewAdapter(con, driverGetReviewDataModels_arr);
-                Driver_get_Review_lv.setAdapter(arrayAdapter);
-                setListViewHeightBasedOnChildren(Driver_get_Review_lv);
                 Passenger_Review_Driver_Btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
