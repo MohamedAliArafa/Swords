@@ -13,11 +13,12 @@ import android.widget.TextView;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestRouteDataModel;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * Created by Nezar Saleh on 10/21/2015.
  */
+
 
 public class RegionsAdapter extends ArrayAdapter<RegionsDataModel> {
 
