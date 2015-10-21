@@ -83,9 +83,10 @@ public class BestRouteDataModelAdapter extends ArrayAdapter<BestRouteDataModel> 
         TextView RouteEnName;
      //   TextView StartFromTime;
       //  TextView EndToTime_;
-       // TextView driver_profile_dayWeek;
-        int FromEmId,ToEmId,FromRegid,ToRegId;
+    // TextView driver_profile_dayWeek;
+    int FromEmId,ToEmId,FromRegid,ToRegId;
 
-    }
+}
+
 
 }

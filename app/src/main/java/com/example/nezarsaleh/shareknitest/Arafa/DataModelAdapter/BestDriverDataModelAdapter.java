@@ -65,7 +65,8 @@ import java.util.List;
 
         if (imageLoader == null) imageLoader = AppController.getInstance().getImageLoader();
 
-            CircularNetworkImageView Photo = (CircularNetworkImageView) convertView.findViewById(R.id.ivProfile);
+        CircularNetworkImageView Photo = (CircularNetworkImageView) convertView.findViewById(R.id.ivProfile);
+
         TextView Name = (TextView) convertView.findViewById(R.id.tvName);
         TextView Nat = (TextView) convertView.findViewById(R.id.tvNat);
         TextView Rat = (TextView) convertView.findViewById(R.id.Best_Drivers_Item_rate);
@@ -80,6 +81,7 @@ import java.util.List;
         Nat.setText(m.getNationality());
         Rat.setText(Integer.toString(m.getRating()));
 
+
         Best_Drivers_Item_Details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +90,7 @@ import java.util.List;
                 activity.startActivity(intent);
             }
         });
+
         return convertView;
     }
 

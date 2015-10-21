@@ -492,6 +492,14 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
 
         if (v == Create_CarPool_pickup_relative || v == Create_CarPool_pickUp) {
+
+
+
+//
+//            Intent intent = new Intent(getBaseContext(),PickUpActivity.class);
+//            startActivity(intent);
+
+
             Create_CarPool_Emirates_List.clear();
             try {
                 JSONArray j = new GetData().GetEmitares();
@@ -585,7 +593,12 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                     Create_CarPool_MainDialog.dismiss();
                 }
             });
+
+
+
         }
+
+
 
         if (v == Create_CarPool_dropOff_relative || v == Create_CarPool_Dropoff) {
             Create_CarPool_Emirates_List.clear();
@@ -802,6 +815,8 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
             createCarPool_Fri_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
             FRI_FLAG = 0;
         }
+
+
 
 
     }  // on click

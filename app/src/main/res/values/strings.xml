@@ -85,6 +85,7 @@
     <string name="Reg_pass">Password</string>
     <string name="Reg_Nat">Nationality</string>
     <string name="Reg_PrefLang">Select Preferred Language</string>
+    <string name="title_activity_pick_up">PickUpActivity</string>
 
 
 </resources>

@@ -31,8 +31,7 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.Base"
-        >
+        android:theme="@style/AppTheme.Base" >
         <activity
             android:name=".Sharekni"
             android:label="@string/title_activity_main"
@@ -61,13 +60,13 @@
                 android:value=".Sharekni" />
         </activity>
         <activity
-        android:name=".DriverEditCarPool"
-        android:label="@string/title_activity_top_drivers"
-        android:parentActivityName=".Sharekni"
-        android:screenOrientation="portrait" >
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".Sharekni" />
+            android:name=".DriverEditCarPool"
+            android:label="@string/title_activity_top_drivers"
+            android:parentActivityName=".Sharekni"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Sharekni" />
         </activity>
         <activity
             android:name=".OnBoardDir.OnboardingActivity"
@@ -330,9 +329,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity" />
         </activity>
-        
-        
-        <service android:name=".MyNotifications"/>
+
+        <service android:name=".MyNotifications" />
+
+        <activity
+            android:name=".PickUpActivity"
+            android:label="@string/title_activity_pick_up"
+            android:theme="@style/AppTheme.Base" >
+        </activity>
     </application>
 
 </manifest>

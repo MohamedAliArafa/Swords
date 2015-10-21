@@ -189,9 +189,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         if (item.latitude != 0.0 && item.longitude != 0.0) {
                             data[i] = item;
                             final Marker markerZero = mMap.addMarker(new MarkerOptions().
-                                    title(String.valueOf(i)).
-                                    position(new LatLng(item.latitude, item.longitude))
-                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor))
+                                            title(String.valueOf(i)).
+                                            position(new LatLng(item.latitude, item.longitude))
+                                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor))
 
                             );
 
