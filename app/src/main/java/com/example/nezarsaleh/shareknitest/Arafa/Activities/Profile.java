@@ -63,7 +63,7 @@ public class Profile extends AppCompatActivity {
     TextView TopName, NationalityEnName;
     ListView lv_driver;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
-    String URL_Photo = "http://www.sharekni-web.sdg.ae/uploads/personalphoto/";
+    String URL_Photo = GetData.DOMAIN+ "/uploads/personalphoto/";
     String days;
     SharedPreferences myPrefs;
     int Passenger_ID;

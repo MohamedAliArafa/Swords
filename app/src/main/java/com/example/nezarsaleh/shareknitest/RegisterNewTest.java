@@ -76,6 +76,9 @@ import java.util.TreeMap;
 
 public class RegisterNewTest extends AppCompatActivity implements View.OnClickListener {
 
+
+    private static final String DOMAIN = "http://sharekni.sdgstaff.com";
+
     static final int DILOG_ID = 0;
     static RegisterNewTest registerNewTestActivity;
     final Calendar cal = Calendar.getInstance();
@@ -416,7 +419,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         URL url;
         HttpURLConnection httpURLConnection = null;
         try {
-            url = new URL("http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobAccount.asmx");
+            url = new URL(DOMAIN+"/_mobfiles/CLS_MobAccount.asmx");
             httpURLConnection = (HttpURLConnection) url.openConnection();
             do {
                 httpURLConnection.setRequestMethod("POST");

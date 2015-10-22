@@ -14,6 +14,7 @@ import com.android.volley.toolbox.ImageLoader;
 import com.example.nezarsaleh.shareknitest.Arafa.Activities.Profile;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.AppController;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.CircularNetworkImageView;
+import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestDriverDataModel;
 import com.example.nezarsaleh.shareknitest.R;
 
@@ -23,11 +24,12 @@ import java.util.List;
     public class BestDriverDataModelAdapter extends BaseAdapter {
 
 
+
     private Activity activity;
     private LayoutInflater inflater;
     private List<BestDriverDataModel> driverItems;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
-    String URL = "http://www.sharekni-web.sdg.ae/uploads/personalphoto/";
+    String URL = GetData.DOMAIN + "/uploads/personalphoto/";
 
     public BestDriverDataModelAdapter(Activity activity, List<BestDriverDataModel> driverItems) {
         this.activity = activity;
@@ -90,5 +92,7 @@ import java.util.List;
         });
         return convertView;
     }
+
+
 
 }

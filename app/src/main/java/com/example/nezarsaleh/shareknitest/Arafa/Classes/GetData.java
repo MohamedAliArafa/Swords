@@ -63,7 +63,7 @@ public class GetData {
 
     final JSONArray[] myJsonArray = new JSONArray[1];
 
-    private static final String DOMAIN = "http://sharekni.sdgstaff.com";
+    public static final String DOMAIN = "http://sharekni.sdgstaff.com";
 
     String data;
     String loginFormUrl                 = DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/CheckLogin?";
