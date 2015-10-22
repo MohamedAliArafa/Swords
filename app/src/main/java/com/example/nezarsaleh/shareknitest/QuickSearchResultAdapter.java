@@ -2,6 +2,8 @@ package com.example.nezarsaleh.shareknitest;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,6 +79,26 @@ public class QuickSearchResultAdapter extends BaseAdapter {
         Nationality_en.setText(item.getNationality_en());
         SDG_RouteDays.setText(item.getSDG_RouteDays());
         Best_Drivers_Item_rate.setText(item.getRating());
+        ImageView Phone_Message = (ImageView) convertView.findViewById(R.id.im1);
+        ImageView Phone_Call = (ImageView) convertView.findViewById(R.id.im5);
+
+        Phone_Call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + item.getAccountMobile()));
+                activity.startActivity(intent);
+            }
+        });
+
+        Phone_Message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + item.getAccountMobile()));
+                intent.putExtra("sms_body", "Hello " + item.getAccountName());
+                activity.startActivity(intent);
+            }
+        });
+
 
 
 

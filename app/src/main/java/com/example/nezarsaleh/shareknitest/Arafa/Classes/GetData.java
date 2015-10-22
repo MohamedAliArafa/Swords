@@ -503,6 +503,7 @@ public class GetData {
 //                    item.setFrom_RegionName_en(json.getString("From_RegionName_en"));
 //                    item.setTo_EmirateName_en(json.getString("To_EmirateName_en"));
 //                    item.setTo_RegionName_en(json.getString("To_RegionName_en"));
+                    item.setAccountMobile(json.getString("AccountMobile"));
                     item.setSDG_Route_Start_FromTime(json.getString("SDG_Route_Start_FromTime"));
                     item.setNationality_en(json.getString("Nationality_en"));
                     item.setRating(json.getString("Rating"));
@@ -621,6 +622,9 @@ public class GetData {
                     item.setDriverName(json.getString("DriverName"));
                     item.setNationality_en(json.getString("NationlityEnName"));
                     item.setSDG_Route_Start_FromTime(json.getString("StartTime"));
+                    item.setDriverMobile(json.getString("StartTime"));
+                    item.setDriverId(json.getInt("AccountId"));
+                    item.setRouteId(json.getInt("RouteId"));
                     days = "";
 
                     if (json.getString("Saturday").equals("true")) {
@@ -659,37 +663,39 @@ public class GetData {
                     lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                            if (ID != null) {
-//                                assert AccountType != null;
-//                                try {
-//
-//                                    if (AccountType.equals("D")) {
-//
-//                                        Intent in = new Intent(context, Route.class);
-//                                        in.putExtra("RouteID", item.getID());
-//                                        in.putExtra("PassengerID", ID);
-//                                        in.putExtra("DriverID", finalJson.getInt("AccountId"));
-//                                        Bundle b = new Bundle();
-//                                        b.putParcelable("Data", item);
-//                                        in.putExtras(b);
-//                                        context.startActivity(in);
-//                                    } else {
-//
-//                                        Intent in = new Intent(context, RideDetailsPassenger.class);
-//                                        in.putExtra("RouteID", item.getID());
-//                                        in.putExtra("PassengerID", ID);
-//                                        in.putExtra("DriverID", finalJson.getInt("AccountId"));
-//
-//                                        Bundle b = new Bundle();
-//                                        b.putParcelable("Data", item);
-//                                        in.putExtras(b);
-//                                        context.startActivity(in);
-//                                    }
-//                                } catch (JSONException e) {
-//                                    e.printStackTrace();
-//                                }
-//
-//                            }
+                            if (ID != null) {
+                                assert AccountType != null;
+                                try {
+
+                                    if (AccountType.equals("D")) {
+
+                                        Intent in = new Intent(context, Route.class);
+                                        in.putExtra("RouteID", finalJson.getInt("RouteId"));
+                                        in.putExtra("PassengerID", ID);
+                                        in.putExtra("DriverID", finalJson.getInt("AccountId"));
+                                        Bundle b = new Bundle();
+                                        b.putParcelable("Data", item);
+                                        in.putExtras(b);
+                                        context.startActivity(in);
+                                    } else {
+
+                                        Intent in = new Intent(context, RideDetailsPassenger.class);
+                                        in.putExtra("RouteID", finalJson.getInt("RouteId"));
+                                        in.putExtra("PassengerID", ID);
+                                        in.putExtra("DriverID", finalJson.getInt("AccountId"));
+
+                                        Bundle b = new Bundle();
+                                        b.putParcelable("Data", item);
+                                        in.putExtras(b);
+                                        context.startActivity(in);
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }else {
+                                Toast.makeText(context, "Please Login First", Toast.LENGTH_SHORT).show();
+                            }
                         }
 
                     });
@@ -816,7 +822,7 @@ public class GetData {
                         response = response.replaceAll("</string>", "");
                         Log.d("TEst url", url);
                         Log.d("Search  Array Output : ", response);
-                        Toast.makeText(context, "Ride created!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Ride Updated!!", Toast.LENGTH_SHORT).show();
                         Intent in = new Intent(context, DriverCreatedRides.class);
                         context.startActivity(in);
                     }

@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -61,6 +62,7 @@ import java.util.List;
 public class Profile extends AppCompatActivity {
 
     TextView TopName, NationalityEnName;
+    ImageView profile_msg,profile_call;
     ListView lv_driver;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     String URL_Photo = GetData.DOMAIN+ "/uploads/personalphoto/";
@@ -92,6 +94,8 @@ public class Profile extends AppCompatActivity {
         lv_driver = (ListView) findViewById(R.id.user_rides);
         TopName = (TextView) findViewById(R.id.TopName);
         NationalityEnName = (TextView) findViewById(R.id.NationalityEnName);
+        profile_msg = (ImageView) findViewById(R.id.profile_msg);
+        profile_call = (ImageView) findViewById(R.id.profile_call);
 
         myPrefs = this.getSharedPreferences("myPrefs", 0);
         Passenger_ID = Integer.parseInt(myPrefs.getString("account_id", "0"));
@@ -107,10 +111,37 @@ public class Profile extends AppCompatActivity {
         new jsoning(lv_driver,pDialog,this).execute();
 
         try {
-            JSONObject json = j.GetDriverById(Driver_ID);
+            final JSONObject json = j.GetDriverById(Driver_ID);
             TopName.setText(json.getString("FirstName") + " " + json.getString("MiddleName"));
             NationalityEnName.setText(json.getString("NationalityEnName"));
             Photo.setImageUrl(URL_Photo + json.getString("PhotoPath"), imageLoader);
+
+            profile_call.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = null;
+                    try {
+                        intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + json.getString("Mobile")));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    startActivity(intent);
+                }
+            });
+
+            profile_msg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = null;
+                    try {
+                        intent = new Intent(Intent.ACTION_CALL, Uri.parse("sms:" + json.getString("Mobile")));
+                        intent.putExtra("sms_body", "Hello " + json.getString("FirstName"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    startActivity(intent);
+                }
+            });
         } catch (JSONException e1) {
             e1.printStackTrace();
         }
@@ -123,6 +154,8 @@ public class Profile extends AppCompatActivity {
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
         textView.setText("Driver Details");
+
+
 //        toolbar.setElevation(10);
         setSupportActionBar(toolbar);
 

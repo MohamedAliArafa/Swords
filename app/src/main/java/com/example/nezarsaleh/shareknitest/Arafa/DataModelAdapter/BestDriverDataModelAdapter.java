@@ -3,11 +3,13 @@ package com.example.nezarsaleh.shareknitest.Arafa.DataModelAdapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
@@ -75,6 +77,8 @@ import java.util.List;
         //RatingBar rating = (RatingBar) convertView.findViewById(R.id.ratingBar);
 
         Button Best_Drivers_Item_Details= (Button) convertView.findViewById(R.id.Best_Drivers_Item_Details);
+        ImageView Phone_Call = (ImageView) convertView.findViewById(R.id.im5);
+        ImageView Phone_Message = (ImageView) convertView.findViewById(R.id.im1);
 
         final BestDriverDataModel m = driverItems.get(position);
         Photo.setImageUrl(URL + m.getPhotoURL(), imageLoader);
@@ -86,10 +90,28 @@ import java.util.List;
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(activity, Profile.class);
-                intent.putExtra("DriverID",m.getID());
+                intent.putExtra("DriverID", m.getID());
                 activity.startActivity(intent);
             }
         });
+
+        Phone_Call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+"0122774744"));
+                activity.startActivity(intent);
+            }
+        });
+
+        Phone_Message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:"+"0122774744"));
+                intent.putExtra( "sms_body", "Hello "+m.getName() );
+                activity.startActivity(intent);
+            }
+        });
+
         return convertView;
     }
 

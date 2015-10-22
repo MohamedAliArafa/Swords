@@ -113,6 +113,7 @@ public class TopDriversAfterLogin extends AppCompatActivity {
                     driver.setName(obj.getString("FirstName"));
                     driver.setPhotoURL(obj.getString("PhotoPath"));
                     driver.setNationality(obj.getString("NationalityEnName"));
+                    driver.setPhoneNumber(obj.getString("Mobile"));
                     //driver.setRating(obj.getInt("Rating"));
                     arr.add(driver);
                 } catch (JSONException e) {
