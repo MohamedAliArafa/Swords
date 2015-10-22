@@ -141,54 +141,6 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
 
         Driver_ID = Integer.parseInt(ID);
 
-        btn_history.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), History.class);
-                startActivity(intent);
-            }
-        });
-
-        btn_edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), EditProfileTest.class);
-                startActivity(intent);
-            }
-        });
-
-        Home_Relative_Notify.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getBaseContext(), DriverAlertsForRequest.class);
-                startActivity(intent);
-
-            }
-        });
-
-
-        Relative_quickSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getBaseContext(), SearchOptions.class);
-                intent.putExtra("PassengerId",ID);
-                startActivity(intent);
-
-            }
-        });
-
-
-        driver_rides_Created.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), DriverCreatedRides.class);
-                intent.putExtra("DriverID", Driver_ID);
-                startActivity(intent);
-            }
-        });
-
         t = new Thread() {
             @Override
             public void run() {
@@ -207,13 +159,6 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
             }
         };
         t.start();
-        Rides_joined_Relative.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), PassengerMyApprovedRides.class);
-                startActivity(intent);
-            }
-        });
 
         new loading().execute();
     }  // on create
@@ -457,6 +402,63 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 hidePDialog();
                 e.printStackTrace();
             }
+
+            btn_history.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getBaseContext(), History.class);
+                    startActivity(intent);
+                }
+            });
+
+            btn_edit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getBaseContext(), EditProfileTest.class);
+                    startActivity(intent);
+                }
+            });
+
+            Home_Relative_Notify.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent = new Intent(getBaseContext(), DriverAlertsForRequest.class);
+                    startActivity(intent);
+
+                }
+            });
+
+
+            Relative_quickSearch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent = new Intent(getBaseContext(), SearchOptions.class);
+                    intent.putExtra("PassengerId",ID);
+                    startActivity(intent);
+
+                }
+            });
+
+
+            driver_rides_Created.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getBaseContext(), DriverCreatedRides.class);
+                    intent.putExtra("DriverID", Driver_ID);
+                    startActivity(intent);
+                }
+            });
+
+            Rides_joined_Relative.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getBaseContext(), PassengerMyApprovedRides.class);
+                    startActivity(intent);
+                }
+            });
+
             hidePDialog();
         }
 

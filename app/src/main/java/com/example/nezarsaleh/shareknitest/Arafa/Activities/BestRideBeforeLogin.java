@@ -167,7 +167,7 @@ public class BestRideBeforeLogin extends AppCompatActivity {
                         item.setFromRegid(json.getInt("FromRegionId"));
                         item.setToEmId(json.getInt("ToEmirateId"));
                         item.setToRegId(json.getInt("ToRegionId"));
-                        item.setRouteName(String.valueOf(new GetData().GetDesiredCount(json.getInt("FromEmirateId"), json.getInt("FromRegionId"), json.getInt("ToEmirateId"), json.getInt("ToRegionId"))));
+                        item.setRouteName(json.getString("RoutesCount"));
 //                    arr.add(item);
                         driver[i] = item;
                     } catch (JSONException e) {

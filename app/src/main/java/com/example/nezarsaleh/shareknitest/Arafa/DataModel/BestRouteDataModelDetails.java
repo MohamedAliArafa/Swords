@@ -12,8 +12,43 @@ import java.util.ArrayList;
 
 public class BestRouteDataModelDetails extends ArrayList<Parcelable> implements Parcelable {
 
-    public String FromEm, FromReg, ToEm, ToReg;
-    public int FromEmId,ToEmId,FromRegid,ToRegId;
+    public String FromEm;
+    public String FromReg;
+    public String ToEm;
+    public String ToReg;
+
+    public String getDriverMobile() {
+        return DriverMobile;
+    }
+
+    public void setDriverMobile(String driverMobile) {
+        DriverMobile = driverMobile;
+    }
+
+    public String DriverMobile;
+    public int FromEmId;
+    public int ToEmId;
+    public int FromRegid;
+    public int ToRegId;
+    public int DriverId;
+
+    public int getDriverId() {
+        return DriverId;
+    }
+
+    public void setDriverId(int driverId) {
+        DriverId = driverId;
+    }
+
+    public int getRouteId() {
+        return RouteId;
+    }
+
+    public void setRouteId(int routeId) {
+        RouteId = routeId;
+    }
+
+    public int RouteId;
     public String RouteEnName,DriverName;
     public  String SDG_Route_Start_FromTime,Nationality_en,SDG_RouteDays;
 

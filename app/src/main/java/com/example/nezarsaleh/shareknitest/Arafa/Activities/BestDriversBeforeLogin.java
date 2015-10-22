@@ -129,7 +129,7 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
                                         startActivity(mainIntent);
                                     }
                                 })
-                                .setNegativeButton("EGo Back", new DialogInterface.OnClickListener() {
+                                .setNegativeButton("Go Back", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intentToBeNewRoot = new Intent(BestDriversBeforeLogin.this, OnboardingActivity.class);
                                         ComponentName cn = intentToBeNewRoot.getComponent();
@@ -157,7 +157,7 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
                         driver.setPhotoURL(obj.getString("AccountPhoto"));
                         driver.setNationality(obj.getString("NationalityEnName"));
                         driver.setRating(obj.getInt("Rating"));
-//                        driver.setPhoneNumber(obj.getString("Mobile"));
+                        driver.setPhoneNumber(obj.getString("AccountMobile"));
                         arr.add(driver);
                     } catch (JSONException e) {
                         e.printStackTrace();
