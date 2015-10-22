@@ -584,6 +584,10 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                 .width(6);  // North of the previous point, but at the same longitude
         // Closes the polyline.
 
+        mMap.getUiSettings().setMapToolbarEnabled(false);
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.getUiSettings().setZoomGesturesEnabled(true);
+        mMap.setMyLocationEnabled(true);
 
 // Get back the mutable Polyline
         Polyline polyline = mMap.addPolyline(rectOptions);
