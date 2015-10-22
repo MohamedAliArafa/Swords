@@ -290,6 +290,27 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+
+        try {
+            JSONArray jsonArray = gd.Get_Passenger_GetAcceptedRequestsFromDriver(Integer.parseInt(ID));
+            for (int i = 0;i< jsonArray.length();i++){
+                JSONObject j = jsonArray.getJSONObject(i);
+                Intent intent = new Intent(this, DriverAlertsForRequest.class);
+                PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+                Notification.Builder builder = new Notification.Builder(this);
+                builder.setContentTitle("Route :" + j.getString("RouteName"));
+                builder.setContentText(j.getString("DriverName") + " Accepted Your Request ");
+                builder.setSmallIcon(R.drawable.sharekni_logo);
+                builder.setContentIntent(pendingIntent);
+                Notification notification = builder.build();
+                NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                manager.notify(y, notification);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

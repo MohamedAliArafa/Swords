@@ -1,10 +1,17 @@
 package com.example.nezarsaleh.shareknitest;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Parcel;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -27,6 +34,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.apache.soap.Utils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,7 +45,7 @@ import java.net.SocketAddress;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback  {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     SupportMapFragment mapFragment;
@@ -49,7 +57,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     int To_Em_Id;
     int To_Reg_Id;
 
-    String To_EmirateEnName,From_EmirateEnName,To_RegionEnName,From_RegionEnName;
+    String To_EmirateEnName, From_EmirateEnName, To_RegionEnName, From_RegionEnName;
+
+
+
+
+
+    Double MyLat =  0.0;
+    Double My_Lng = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,20 +97,60 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
                 (new LatLng(25.0014511, 55.3588621), 8.25f));
 
-//
+
 //        MapJsonParse mapJsonParse = new MapJsonParse();
 //        String urlmap = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetAllMostDesiredRides";
 //        mapJsonParse.stringRequest(urlmap, mMap, context);
-
 
         mMap.getUiSettings().setMapToolbarEnabled(false);
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setZoomGesturesEnabled(true);
         mMap.setMyLocationEnabled(true);
 
+//
+//         GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
+//            @Override
+//            public void onMyLocationChange(Location location) {
+//                LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
+//              Marker  mMarker = mMap.addMarker(new MarkerOptions().position(loc));
+//                if(mMap != null){
+//                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 16.0f));
+//                }
+//            }
+//        };
+//
+//
+//
+//        mMap.setOnMyLocationChangeListener(myLocationChangeListener);
+
+
+//
+//
+//        LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
+//        Criteria criteria = new Criteria();
+//        String provider = service.getBestProvider(criteria, false);
+//        Location location = service.getLastKnownLocation(provider);
+//        LatLng userLocation = new LatLng(location.getLatitude(),location.getLongitude());
+//
+//        Log.d("My Lat Lng", String.valueOf(userLocation.latitude));
+
+
+
+
+//
+//        MyLat =   mMap.getMyLocation().getLatitude();
+//        My_Lng = mMap.getMyLocation().getLongitude();
+//
+//        if (MyLat!=0.0 && My_Lng!=0.0 ) {
+//
+//            Log.d("My Lat", String.valueOf(MyLat));
+//            Log.d("My Lng", String.valueOf(My_Lng));
+//
+//        }
 
 
     }
@@ -143,7 +198,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-    private class backTread extends AsyncTask implements GoogleMap.InfoWindowAdapter , GoogleMap.OnInfoWindowClickListener {
+    private class backTread extends AsyncTask implements GoogleMap.InfoWindowAdapter, GoogleMap.OnInfoWindowClickListener {
         boolean exists = false;
         MapDataModel[] data;
 
@@ -155,7 +210,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         @Override
         protected void onPostExecute(Object o) {
             super.onPostExecute(o);
-            if (exists){
+            if (exists) {
 
                 try {
                     JSONArray j = new GetData().GetMapLookUp();
@@ -177,10 +232,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         item.setNoOfRoutes(jsonObject.getInt("NoOfRoutes"));
 
 
-                        if (jsonObject.getString("FromLng").equals("null") &&  jsonObject.getString("FromLat").equals("null")) {
-                             item.longitude=0.0;
-                            item.latitude=0.0;
-                        }else {
+                        if (jsonObject.getString("FromLng").equals("null") && jsonObject.getString("FromLat").equals("null")) {
+                            item.longitude = 0.0;
+                            item.latitude = 0.0;
+                        } else {
                             item.setLongitude(jsonObject.getDouble("FromLng"));
                             item.setLatitude(jsonObject.getDouble("FromLat"));
                         }
@@ -196,7 +251,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             );
 
 
-
                             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
                                     (new LatLng(data[i].latitude, data[i].longitude), 12.0f));
 
@@ -204,12 +258,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         }
 
 
-
-
-
-
                     } // for
-
 
 
                 } // try
@@ -227,7 +276,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                         v = getLayoutInflater().inflate(R.layout.info_window_approved, null);
                         LatLng latLng = marker.getPosition();
-                        int  i = Integer.parseInt(marker.getTitle());
+                        int i = Integer.parseInt(marker.getTitle());
 
                         String snippet = data[i].getFromRegionArName();
                         String title = data[i].getFromRegionEnName();
@@ -241,7 +290,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                         String lat = String.valueOf(latLng.latitude).substring(0, 7);
                         String lon = String.valueOf(latLng.longitude).substring(0, 7);
-                        String NoOfRoutes_str= String.valueOf(NoOfRoutes);
+                        String NoOfRoutes_str = String.valueOf(NoOfRoutes);
                         emirateLat.setText(lat);
                         emiratelong.setText(lon);
                         emirateArName.setText(snippet);
@@ -261,34 +310,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 });
 
 
-
                 mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
                     @Override
                     public void onInfoWindowClick(Marker marker) {
-                        int  i = Integer.parseInt(marker.getTitle());
+                        int i = Integer.parseInt(marker.getTitle());
 
-                        From_Em_Id =  data[i].getFromEmirateId();
+                        From_Em_Id = data[i].getFromEmirateId();
                         From_Reg_Id = data[i].getFromRegionId();
                         From_EmirateEnName = data[i].getFromEmirateEnName();
                         From_RegionEnName = data[i].getFromRegionEnName();
-                        Intent intent1 =  new Intent(getBaseContext(), QuickSearchResults.class);
-                        intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        Intent intent1 = new Intent(getBaseContext(), QuickSearchResults.class);
+                        intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         intent1.putExtra("From_Em_Id", From_Em_Id);
                         intent1.putExtra("To_Em_Id", To_Em_Id);
                         intent1.putExtra("From_Reg_Id", From_Reg_Id);
                         intent1.putExtra("To_Reg_Id", To_Reg_Id);
-                        intent1.putExtra("From_EmirateEnName",From_EmirateEnName);
-                        intent1.putExtra("From_RegionEnName",From_RegionEnName);
-                        intent1.putExtra("To_EmirateEnName",To_EmirateEnName);
-                        intent1.putExtra("To_RegionEnName",To_RegionEnName);
+                        intent1.putExtra("From_EmirateEnName", From_EmirateEnName);
+                        intent1.putExtra("From_RegionEnName", From_RegionEnName);
+                        intent1.putExtra("To_EmirateEnName", To_EmirateEnName);
+                        intent1.putExtra("To_RegionEnName", To_RegionEnName);
                         startActivity(intent1);
 
 
                     }
                 });
-
-
-
 
 
             } //  if
@@ -298,7 +343,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         @Override
         protected Object doInBackground(Object[] params) {
-
 
 
             try {
@@ -333,7 +377,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
             if (exists) {
 
-            return  null;
+                return null;
 
 
             }
@@ -341,8 +385,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
 
-
-      // info window adapter
+        // info window adapter
 
         @Override
         public View getInfoWindow(Marker marker) {
@@ -357,17 +400,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
 
-
-
         // info window click listenre
         @Override
         public void onInfoWindowClick(Marker marker) {
 
         }
     }    // back thread classs
-
-
-
 
 
 }  //  classs

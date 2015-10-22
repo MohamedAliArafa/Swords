@@ -77,18 +77,21 @@
             android:id="@+id/im1"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_alignLeft="@+id/im3"
-            android:layout_alignStart="@+id/im3"
+            android:layout_alignEnd="@+id/Best_Drivers_Item_Details"
+            android:layout_alignRight="@+id/Best_Drivers_Item_Details"
             android:layout_marginTop="15dp"
-            android:src="@drawable/msg" />
+            android:src="@drawable/msg"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
+            />
 
 
         <ImageView
             android:id="@+id/im5"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_alignLeft="@+id/im4"
-            android:layout_alignStart="@+id/im4"
+            android:layout_alignLeft="@+id/Best_Drivers_Item_Details"
+            android:layout_alignStart="@+id/Best_Drivers_Item_Details"
             android:layout_marginTop="15dp"
             android:src="@drawable/call"
 
@@ -109,27 +112,27 @@
             android:layout_marginTop="5dp"
             />
 
-        <ImageView
-            android:id="@+id/im3"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_alignLeft="@+id/Best_Drivers_Item_Details"
-            android:layout_alignStart="@+id/Best_Drivers_Item_Details"
-            android:layout_below="@+id/Best_Drivers_Item_Details"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/add"
+        <!--<ImageView-->
+            <!--android:id="@+id/im3"-->
+            <!--android:layout_width="25dp"-->
+            <!--android:layout_height="25dp"-->
+            <!--android:layout_alignLeft="@+id/Best_Drivers_Item_Details"-->
+            <!--android:layout_alignStart="@+id/Best_Drivers_Item_Details"-->
+            <!--android:layout_below="@+id/Best_Drivers_Item_Details"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:src="@drawable/add"-->
 
-            />
+            <!--/>-->
 
-        <ImageView
-            android:id="@+id/im4"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_alignEnd="@+id/Best_Drivers_Item_Details"
-            android:layout_alignRight="@+id/Best_Drivers_Item_Details"
-            android:layout_below="@+id/Best_Drivers_Item_Details"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/chat" />
+        <!--<ImageView-->
+            <!--android:id="@+id/im4"-->
+            <!--android:layout_width="25dp"-->
+            <!--android:layout_height="25dp"-->
+            <!--android:layout_alignEnd="@+id/Best_Drivers_Item_Details"-->
+            <!--android:layout_alignRight="@+id/Best_Drivers_Item_Details"-->
+            <!--android:layout_below="@+id/Best_Drivers_Item_Details"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:src="@drawable/chat" />-->
 
 
     </RelativeLayout>

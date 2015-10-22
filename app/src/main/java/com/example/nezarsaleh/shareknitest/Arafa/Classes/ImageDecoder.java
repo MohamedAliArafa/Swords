@@ -19,7 +19,7 @@ import com.android.volley.toolbox.StringRequest;
 public class ImageDecoder {
 
     public Bitmap stringRequest(String url, final ImageView im, final Context context) {
-        String url1 = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobAccount.asmx/GetPhotoPath?s_FileName=";
+        String url1 = GetData.DOMAIN +"/_mobfiles/CLS_MobAccount.asmx/GetPhotoPath?s_FileName=";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url1 + url,
                 new Response.Listener<String>() {
                     @Override

@@ -88,6 +88,7 @@ public class GetData {
     String DriverAlertsForRequestUrl    = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Driver_AlertsForRequest?d_AccountId=";
     String DriverAcceptPassengerUrl     = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Driver_AcceptRequest?RequestId=";
     String Driver_DeleteRouteUrl        = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Route_Delete?RouteId=";
+    String Passenger_Rqs_From_Driver    = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Passenger_GetAcceptedRequestsFromDriver?accountId=";
 
     String Regions_By_Em_Id             = DOMAIN + "/_mobfiles/CLS_MobMasterData.asmx/GetRegionsByEmirateId?id=";
     String Emirates_By_ID               = DOMAIN + "/_mobfiles/CLS_MobMasterData.asmx/GetEmirates";
@@ -269,6 +270,19 @@ public class GetData {
         JSONArray json = new JSONArray(obj.getData());
         return json;
     }
+
+    public JSONArray Get_Passenger_GetAcceptedRequestsFromDriver(int id) throws JSONException {
+
+        HandleXML obj = new HandleXML(Passenger_Rqs_From_Driver + id);
+        obj.fetchXML();
+        while (obj.parsingComplete) ;
+        JSONArray json = new JSONArray(obj.getData());
+        return json;
+    }
+
+
+
+
 
     public String DriverAcceptPassenger(int Request_ID, int isAccepted) throws JSONException {
         HandleXML obj = new HandleXML(DriverAcceptPassengerUrl + Request_ID + "&IsAccept=" + isAccepted);
