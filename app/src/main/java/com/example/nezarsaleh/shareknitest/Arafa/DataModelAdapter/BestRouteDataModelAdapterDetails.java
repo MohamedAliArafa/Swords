@@ -73,7 +73,6 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
          vh = (ViewHolder) v.getTag();
         }
         final BestRouteDataModelDetails bestRouteDataModel = BestrouteArray[position];
-
         vh.DriverName.setText(bestRouteDataModel.getDriverName());
         vh.SDG_Route_Start_FromTime.setText((bestRouteDataModel.getSDG_Route_Start_FromTime()));
         vh.Nationality_en.setText(bestRouteDataModel.getNationality_en());
@@ -99,19 +98,24 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
         vh.Route_Join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GetData j = new GetData();
-                String response = null;
-                try {
-                    response = j.Passenger_SendAlert(bestRouteDataModel.getDriverId(), Passenger_ID, bestRouteDataModel.getRouteId(), "TestCase2");
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                if (Passenger_ID != 0) {
+
+                    GetData j = new GetData();
+                    String response = null;
+                    try {
+                        response = j.Passenger_SendAlert(bestRouteDataModel.getDriverId(), Passenger_ID, bestRouteDataModel.getRouteId(), "TestCase2");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
+                        Toast.makeText(context, "Cannot Join This Route", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(context, "successfully  Joined", Toast.LENGTH_SHORT).show();
+                    }
+                    Log.d("join ride res", String.valueOf(response));
+                }else {
+                    Toast.makeText(context, "Please Login First", Toast.LENGTH_SHORT).show();
                 }
-                if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
-                    Toast.makeText(context, "Cannot Join This Route", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(context, "successfully  Joined", Toast.LENGTH_SHORT).show();
-                }
-                Log.d("join ride res", String.valueOf(response));
             }
         });
 
@@ -119,32 +123,35 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
         vh.Route_Review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final GetData j = new GetData();
-
-                Review_str = "";
-                final Dialog dialog = new Dialog(context);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.review_dialog);
-                Button btn = (Button) dialog.findViewById(R.id.Review_Btn);
-                Edit_Review_txt = (EditText) dialog.findViewById(R.id.Edit_Review_txt);
-                dialog.show();
-                btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Review_str = Edit_Review_txt.getText().toString();
-                        try {
-                            String response = j.Passenger_Review_Driver(bestRouteDataModel.getDriverId(), Passenger_ID,bestRouteDataModel.getRouteId(), URLEncoder.encode(Review_str));
-                            if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
-                                Toast.makeText(context, "Cannot Review", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show();
+                if (Passenger_ID != 0){
+                    final GetData j = new GetData();
+                    Review_str = "";
+                    final Dialog dialog = new Dialog(context);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setContentView(R.layout.review_dialog);
+                    Button btn = (Button) dialog.findViewById(R.id.Review_Btn);
+                    Edit_Review_txt = (EditText) dialog.findViewById(R.id.Edit_Review_txt);
+                    dialog.show();
+                    btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Review_str = Edit_Review_txt.getText().toString();
+                            try {
+                                String response = j.Passenger_Review_Driver(bestRouteDataModel.getDriverId(), Passenger_ID,bestRouteDataModel.getRouteId(), URLEncoder.encode(Review_str));
+                                if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
+                                    Toast.makeText(context, "Cannot Review", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show();
+                                }
+                                dialog.dismiss();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                            dialog.dismiss();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
-                    }
-                });
+                    });
+                }else {
+                    Toast.makeText(context, "Please Login First", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
