@@ -274,6 +274,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
 
 
 
+
         if (id==R.id.Start_Service){
 
             Intent intent = new Intent(this,MyNotifications.class);
