@@ -312,6 +312,8 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         new nat().execute();
 
 
+
+
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -332,9 +334,11 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                         int y = Nationality_ID;
                         RegisterJsonParse registerJsonParse = new RegisterJsonParse();
                         if (usertype.equals("Passenger")) {
-                            registerJsonParse.stringRequest("http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobAccount.asmx/RegisterPassenger?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + user + "&password=" + pass + "&gender=" + gender + "&BirthDate=" + birthdate + "&NationalityId=" + y + "&PreferredLanguageId=" + x + "&photoName=" + uploadedImage, getBaseContext(), country, "P");
+                            registerJsonParse.stringRequest(GetData.DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/RegisterPassenger?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + user + "&password=" + pass + "&gender=" + gender + "&BirthDate=" + birthdate + "&NationalityId=" + y + "&PreferredLanguageId=" + x + "&photoName=" + uploadedImage, getBaseContext(), country, "P");
+                          //  Log.d("pass ","http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobAccount.asmx/RegisterPassenger?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + user + "&password=" + pass + "&gender=" + gender + "&BirthDate=" + birthdate + "&NationalityId=" + y + "&PreferredLanguageId=" + x + "&photoName=" + uploadedImage);
+
                         } else {
-                            registerJsonParse.stringRequest("http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobAccount.asmx/RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + user + "&password=" + pass + "&gender=" + gender + "&BirthDate=" + birthdate + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x, getBaseContext(), country, "D");
+                            registerJsonParse.stringRequest(GetData.DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + user + "&password=" + pass + "&gender=" + gender + "&BirthDate=" + birthdate + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x, getBaseContext(), country, "D");
                         }
                     }
                 } else {
@@ -419,7 +423,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         URL url;
         HttpURLConnection httpURLConnection = null;
         try {
-            url = new URL(DOMAIN+"/_mobfiles/CLS_MobAccount.asmx");
+            url = new URL(GetData.DOMAIN+"/_mobfiles/CLS_MobAccount.asmx");
             httpURLConnection = (HttpURLConnection) url.openConnection();
             do {
                 httpURLConnection.setRequestMethod("POST");
