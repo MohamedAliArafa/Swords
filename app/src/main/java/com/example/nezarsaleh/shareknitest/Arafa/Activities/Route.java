@@ -170,6 +170,9 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
                         Toast.makeText(Route.this, "Cannot Delete This Route", Toast.LENGTH_SHORT).show();
                     } else {
                         Intent in = new Intent(Route.this, HomePage.class);
+                        in.putExtra("RouteID", Route_ID);
+                        in.putExtra("DriverID",Driver_ID);
+                        in.putExtra("RouteName",Route_name);
                         startActivity(in);
                         Toast.makeText(Route.this, "Route Deleted", Toast.LENGTH_SHORT).show();
                     }

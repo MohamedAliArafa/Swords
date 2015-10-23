@@ -358,9 +358,9 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                 From_Reg_Id = j.getInt("FromRegionId");
                 To_Em_Id = j.getInt("ToEmirateId");
                 To_Reg_Id = j.getInt("ToRegionId");
-//                Create_CarPool_txt_year.setText(j.getString("StartFromTime"));
-
-
+//                Create_CarPool_txt_year.setText("Not Changed");
+                Vehicle_Id = j.getInt("VehicelId");
+                createCarPool_Vehicles.setText("Not Changed");
 
             } catch (JSONException e) {
                 e.printStackTrace();

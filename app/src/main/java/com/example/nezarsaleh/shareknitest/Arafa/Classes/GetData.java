@@ -886,6 +886,7 @@ public class GetData {
                         Log.d("Search  Array Output : ", response);
                         Toast.makeText(context, "Ride Updated!!", Toast.LENGTH_SHORT).show();
                         Intent in = new Intent(context, DriverCreatedRides.class);
+                        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         context.startActivity(in);
                     }
                 }, new Response.ErrorListener() {
@@ -1002,6 +1003,7 @@ public class GetData {
                             if (data.equals("\"1\"")){
                                 Toast.makeText(context, "Account has been Changed", Toast.LENGTH_SHORT).show();
                                 Intent in = new Intent(context,HomePage.class);
+                                in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 context.startActivity(in);
                             }else if(data.equals("\"0\"")){
                                 Toast.makeText(context, "please try again", Toast.LENGTH_SHORT).show();

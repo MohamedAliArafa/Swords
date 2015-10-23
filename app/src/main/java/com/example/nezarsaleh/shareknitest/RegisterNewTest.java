@@ -3,6 +3,7 @@ package com.example.nezarsaleh.shareknitest;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -399,82 +400,102 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
     }
 
     private class ImageUpload extends AsyncTask<String,Void,String>{
+        ProgressDialog pDialog;
 
         @Override
         protected void onPreExecute() {
+            pDialog = new ProgressDialog(RegisterNewTest.this);
+            pDialog.setMessage("Loading" + "...");
+            pDialog.show();
             super.onPreExecute();
         }
+
+        @Override
+        protected void onPostExecute(String s) {
+            hidePDialog();
+            super.onPostExecute(s);
+        }
+
+        private void hidePDialog() {
+            if (pDialog != null) {
+                pDialog.dismiss();
+                pDialog = null;
+            }
+        }
+
 
         @Override
         protected String doInBackground(String... params) {
             callSOAPWebService(params[0]);
             return null;
         }
-    }
 
-    private boolean callSOAPWebService(String data) {
-        OutputStream out = null;
-        int respCode;
-        boolean isSuccess = false;
-        URL url;
-        HttpURLConnection httpURLConnection = null;
-        try {
-            url = new URL(DOMAIN+"/_mobfiles/CLS_MobAccount.asmx");
-            httpURLConnection = (HttpURLConnection) url.openConnection();
-            do {
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setRequestProperty("Connection", "keep-alive");
-                httpURLConnection.setRequestProperty("Content-Type", "text/xml");
-                httpURLConnection.setRequestProperty("SendChunked", "True");
-                httpURLConnection.setRequestProperty("UseCookieContainer", "True");
-                HttpURLConnection.setFollowRedirects(false);
-                httpURLConnection.setDoOutput(true);
-                httpURLConnection.setDoInput(true);
-                httpURLConnection.setUseCaches(true);
-                httpURLConnection.setRequestProperty("Content-length", getReqData(data).length + "");
-                httpURLConnection.setReadTimeout(10 * 1000);
-                // httpURLConnection.setConnectTimeout(10 * 1000);
-                httpURLConnection.connect();
-                out = httpURLConnection.getOutputStream();
+        private boolean callSOAPWebService(String data) {
+            OutputStream out = null;
+            int respCode;
+            boolean isSuccess = false;
+            URL url;
+            HttpURLConnection httpURLConnection = null;
+            try {
+                url = new URL(DOMAIN+"/_mobfiles/CLS_MobAccount.asmx");
+                httpURLConnection = (HttpURLConnection) url.openConnection();
+                do {
+                    httpURLConnection.setRequestMethod("POST");
+                    httpURLConnection.setRequestProperty("Connection", "keep-alive");
+                    httpURLConnection.setRequestProperty("Content-Type", "text/xml");
+                    httpURLConnection.setRequestProperty("SendChunked", "True");
+                    httpURLConnection.setRequestProperty("UseCookieContainer", "True");
+                    HttpURLConnection.setFollowRedirects(false);
+                    httpURLConnection.setDoOutput(true);
+                    httpURLConnection.setDoInput(true);
+                    httpURLConnection.setUseCaches(true);
+                    httpURLConnection.setRequestProperty("Content-length", getReqData(data).length + "");
+                    httpURLConnection.setReadTimeout(10 * 1000);
+                    // httpURLConnection.setConnectTimeout(10 * 1000);
+                    httpURLConnection.connect();
+                    out = httpURLConnection.getOutputStream();
+                    if (out != null) {
+                        out.write(getReqData(data));
+                        out.flush();
+                    }
+                    respCode = httpURLConnection.getResponseCode();
+                    Log.e("respCode", ":" + respCode);
+                } while (respCode == -1);
+
+                // If it works fine
+                if (respCode == 200) {
+                    try {
+                        InputStream responce = httpURLConnection.getInputStream();
+                        String str = convertStreamToString(responce);
+                        System.out.println(".....data....." + str);
+                        InputStream is = new ByteArrayInputStream(str.getBytes("UTF-8"));
+                        XmlPullParserFactory xmlFactoryObject = XmlPullParserFactory.newInstance();
+                        XmlPullParser myparser = xmlFactoryObject.newPullParser();
+                        myparser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+                        myparser.setInput(is, null);
+                        parseXMLAndStoreIt(myparser);
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
+                } else {
+                    isSuccess = false;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
                 if (out != null) {
-                    out.write(getReqData(data));
-                    out.flush();
+                    out = null;
                 }
-                respCode = httpURLConnection.getResponseCode();
-                Log.e("respCode", ":" + respCode);
-            } while (respCode == -1);
-
-            // If it works fine
-            if (respCode == 200) {
-                try {
-                    InputStream responce = httpURLConnection.getInputStream();
-                    String str = convertStreamToString(responce);
-                    System.out.println(".....data....." + str);
-                    InputStream is = new ByteArrayInputStream(str.getBytes("UTF-8"));
-                    XmlPullParserFactory xmlFactoryObject = XmlPullParserFactory.newInstance();
-                    XmlPullParser myparser = xmlFactoryObject.newPullParser();
-                    myparser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-                    myparser.setInput(is, null);
-                    parseXMLAndStoreIt(myparser);
-                } catch (Exception e1) {
-                    e1.printStackTrace();
+                if (httpURLConnection != null) {
+                    httpURLConnection.disconnect();
+                    httpURLConnection = null;
                 }
-            } else {
-                isSuccess = false;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (out != null) {
-                out = null;
-            }
-            if (httpURLConnection != null) {
-                httpURLConnection.disconnect();
-                httpURLConnection = null;
-            }
+            return isSuccess;
         }
-        return isSuccess;
     }
+
+
 
     public volatile boolean parsingComplete = true;
     public void parseXMLAndStoreIt(XmlPullParser myParser) {
