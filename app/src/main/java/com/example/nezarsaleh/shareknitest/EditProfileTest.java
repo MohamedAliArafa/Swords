@@ -99,6 +99,8 @@ public class EditProfileTest extends AppCompatActivity {
     TextView txt_beforeCal;
     Dialog list_dialog;
     ListView mListView;
+    Button btn_Edit_Cancel;
+
     List<TreeMap<String, String>> Lang_List = new ArrayList<>();
     List<TreeMap<String, String>> Country_List = new ArrayList<>();
     private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
@@ -187,7 +189,18 @@ public class EditProfileTest extends AppCompatActivity {
         txt_beforeCal = (TextView) findViewById(R.id.txt_beforeCal);
         txt_comma = (TextView) findViewById(R.id.Register_comma_cal);
         txt_dayOfWeek = (TextView) findViewById(R.id.txt_dayOfWeek);
+        btn_Edit_Cancel= (Button) findViewById(R.id.btn_Edit_Cancel);
+
         showDialogOnButtonClick();
+
+
+
+        btn_Edit_Cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         btn_upload_image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -367,7 +380,7 @@ public class EditProfileTest extends AppCompatActivity {
         URL url;
         HttpURLConnection httpURLConnection = null;
         try {
-            url = new URL("http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobAccount.asmx");
+            url = new URL(GetData.DOMAIN+ "/_mobfiles/CLS_MobAccount.asmx");
             httpURLConnection = (HttpURLConnection) url.openConnection();
             do {
                 // httpURLConnection.setHostnameVerifier(DO_NOT_VERIFY);

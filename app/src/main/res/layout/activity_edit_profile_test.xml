@@ -22,7 +22,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:scrollbars="vertical">
+        android:scrollbars="vertical"
+        android:paddingBottom="30dp"
+        >
 
 
         <LinearLayout
@@ -341,12 +343,13 @@
 
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
             >
 
             <Button
@@ -356,9 +359,28 @@
                 android:text="Submit"
                 android:textColor="#FFFFFF"
                 android:layout_marginTop="10dp"
-                android:layout_centerHorizontal="true"
-                android:background="@color/primaryColor"
+                android:layout_marginRight="40dp"
+                android:textAllCaps="false"
+                android:layout_marginEnd="40dp"
+
+                android:background="@drawable/user_register_border_button"
                 />
+
+            <Button
+                android:id="@+id/btn_Edit_Cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="cancel"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/btn_Edit_id"
+                android:layout_toEndOf="@+id/btn_Edit_id"
+                android:textAllCaps="false"
+                android:background="@drawable/user_register_border_button"
+                />
+
+
+
 
         </RelativeLayout>
 

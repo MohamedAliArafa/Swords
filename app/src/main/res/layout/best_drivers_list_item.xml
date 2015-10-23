@@ -75,32 +75,32 @@
         <ImageView
 
             android:id="@+id/im1"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_alignEnd="@+id/Best_Drivers_Item_Details"
-            android:layout_alignRight="@+id/Best_Drivers_Item_Details"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+           android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_marginTop="15dp"
             android:src="@drawable/msg"
-            android:layout_marginRight="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
             />
 
 
         <ImageView
             android:id="@+id/im5"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_alignLeft="@+id/Best_Drivers_Item_Details"
-            android:layout_alignStart="@+id/Best_Drivers_Item_Details"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_marginTop="15dp"
             android:src="@drawable/call"
 
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             />
 
 
         <Button
             android:id="@+id/Best_Drivers_Item_Details"
-            android:layout_width="70dp"
+            android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
@@ -109,7 +109,7 @@
             android:text="Details"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             />
 
         <!--<ImageView-->

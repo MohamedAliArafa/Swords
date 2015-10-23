@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.IntentCompat;
@@ -33,12 +34,16 @@ public class MostRidesDetails extends AppCompatActivity {
     ListView lv;
     int FromEmirateId,ToEmirateId,FromRegionId,ToRegionId;
 
+    SharedPreferences myPrefs;
     BestRouteDataModel data;
 
     TextView txt_FromEm;
     TextView txt_FromReg;
     TextView txt_ToEm;
     TextView txt_ToReg;
+
+
+    String ID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +59,10 @@ public class MostRidesDetails extends AppCompatActivity {
 
         Bundle in = getIntent().getExtras();
         data= (BestRouteDataModel) in.getParcelableArrayList("Data");
+
+        myPrefs = this.getSharedPreferences("myPrefs", 0);
+        ID = myPrefs.getString("account_id", null);
+
 
 
 
@@ -127,7 +136,14 @@ public class MostRidesDetails extends AppCompatActivity {
                 String url = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetMostDesiredRideDetails?AccountID=" + 0 + "&FromEmirateID=" + FromEmirateId + "&FromRegionID=" + FromRegionId + "&ToEmirateID=" + ToEmirateId + "&ToRegionID=" + ToRegionId;
                 Log.wtf("url :", url);
                 GetData j = new GetData();
-                j.bestRouteStringRequestDetails(url, lv, MostRidesDetails.this);
+
+                if (ID== null) {
+                    j.bestRouteStringRequestDetails(url, lv,0, MostRidesDetails.this);
+                }else {
+
+                    j.bestRouteStringRequestDetails(url, lv,Integer.parseInt(ID), MostRidesDetails.this);
+
+                }
             }
             return null;
         }

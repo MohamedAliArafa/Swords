@@ -448,6 +448,8 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         if (v == create) {
+
+
             if (edit_route_name.getText() != null && edit_route_name.getText().toString() != "Ride Name" && From_Em_Id != -1 && To_Em_Id != -1 && From_Reg_Id != -1 && To_Reg_Id != -1 && Single_Periodic_ID != -1 && Vehicle_Id != -1 && id != -1 && Create_CarPool_txt_beforeCal.getText() != "Click to Select" && Create_CarPool_txt_time_selected.getText() != null && Create_CarPool_txt_time_selected.getText().toString() != "Click to Select") {
                 String is_Rounded;
                 String EnName = edit_route_name.getText().toString();
@@ -495,7 +497,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
 
 
-//
+
 //            Intent intent = new Intent(getBaseContext(),PickUpActivity.class);
 //            startActivity(intent);
 
@@ -593,6 +595,8 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                     Create_CarPool_MainDialog.dismiss();
                 }
             });
+
+
 
 
 

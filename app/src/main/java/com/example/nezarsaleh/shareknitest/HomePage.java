@@ -181,13 +181,16 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 PassengerJoinedRidesCount_str += (jsonArray.getString("PassengerJoinedRidesCount"));
                 PassengerJoinedRidesCount_str += ")";
                 PassengerJoinedRidesCount.setText(PassengerJoinedRidesCount_str);
-                DriverMyRidesCount_str="";
-                DriverMyRidesCount_str += "(";
-                DriverMyRidesCount_str += (All_Alerts);
+
                 if (DRIVER_ALERTS_COUNT < All_Alerts){
                     DRIVER_ALERTS_COUNT = All_Alerts;
                     CreateNotification(y++);
                 }
+                DriverMyRidesCount_str="";
+                DriverMyRidesCount_str += "(";
+                DriverMyRidesCount_str += (jsonArray.getString("DriverMyRidesCount"));
+                DriverMyRidesCount_str += ")";
+                DriverMyRidesCount.setText(DriverMyRidesCount_str);
 
 
 //                if (DRIVER_ALERTS_COUNT>0){
@@ -197,9 +200,8 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
 //                }
 
 
-                DriverMyRidesCount_str += ")";
-                DriverMyRidesCount.setText(DriverMyRidesCount_str);
-                DriverMyAlertsCount.setText(jsonArray.getString("DriverMyAlertsCount"));
+                DriverMyAlertsCount.setText( String.valueOf(All_Alerts));
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
