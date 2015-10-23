@@ -41,6 +41,7 @@ import com.example.nezarsaleh.shareknitest.Arafa.DataModelAdapter.BestRouteDataM
 import com.example.nezarsaleh.shareknitest.Arafa.DataModelAdapter.DriverRideDataModelAdapter;
 import com.example.nezarsaleh.shareknitest.DriverCreatedRides;
 import com.example.nezarsaleh.shareknitest.HomePage;
+import com.example.nezarsaleh.shareknitest.LoginApproved;
 import com.example.nezarsaleh.shareknitest.MostRidesDetails;
 import com.example.nezarsaleh.shareknitest.QuickSearchDataModel;
 import com.example.nezarsaleh.shareknitest.QuickSearchResultAdapter;
@@ -726,7 +727,35 @@ public class GetData {
 
                             }else {
 
-                                Toast.makeText(context, "Please Login First", Toast.LENGTH_SHORT).show();
+                                final Dialog dialog = new Dialog(context);
+                                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                dialog.setContentView(R.layout.please_log_in_dialog);
+                                Button btn = (Button) dialog.findViewById(R.id.noroute_id);
+                                TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
+                                Button No_Btn = (Button) dialog.findViewById(R.id.No_Btn);
+                                Text_3.setText("In Order to Proceed you have to login first");
+                                dialog.show();
+
+                                No_Btn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        dialog.dismiss();
+                                    }
+                                });
+
+                                btn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        dialog.dismiss();
+                                        Intent intent = new Intent(context, LoginApproved.class);
+                                        context.startActivity(intent);
+
+                                    }
+                                });
+
+
+
+                                //Toast.makeText(context, "Please Login First", Toast.LENGTH_SHORT).show();
 
                             }
                         }

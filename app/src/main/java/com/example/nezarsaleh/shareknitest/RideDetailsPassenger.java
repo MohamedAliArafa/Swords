@@ -459,6 +459,7 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                     public void onClick(View v) {
                         GetData j = new GetData();
                         if (Passenger_ID == 0) {
+
                             final Dialog dialog = new Dialog(RideDetailsPassenger.this);
                             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                             dialog.setContentView(R.layout.please_log_in_dialog);
@@ -484,6 +485,8 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
 
                                 }
                             });
+
+
                         } else {
                             try {
                                 String response = j.Passenger_SendAlert(Driver_ID, Passenger_ID, Route_ID, "TestCase2");
