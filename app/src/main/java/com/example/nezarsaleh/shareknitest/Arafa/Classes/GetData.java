@@ -641,6 +641,7 @@ public class GetData {
                     item.setDriverMobile(json.getString("StartTime"));
                     item.setDriverId(json.getInt("AccountId"));
                     item.setRouteId(json.getInt("RouteId"));
+                    item.setPhotoURl(json.getString("DriverPhoto"));
                     days = "";
 
                     if (json.getString("Saturday").equals("true")) {

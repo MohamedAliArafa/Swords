@@ -92,7 +92,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
     EditText edit_phone;
     EditText edit_pass;
     EditText edit_user;
-    String usertype = "Both";
+    String usertype = "1";
     ImageView driver_toggle;
     ImageView passenger_toogle;
     ImageView both_toggle;
@@ -332,11 +332,21 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                         int x = Language_ID;
                         int y = Nationality_ID;
                         RegisterJsonParse registerJsonParse = new RegisterJsonParse();
+
                         if (usertype.equals("Passenger")) {
-                            registerJsonParse.stringRequest("http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobAccount.asmx/RegisterPassenger?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + user + "&password=" + pass + "&gender=" + gender + "&BirthDate=" + birthdate + "&NationalityId=" + y + "&PreferredLanguageId=" + x + "&photoName=" + uploadedImage, getBaseContext(), country, "P");
-                        } else {
-                            registerJsonParse.stringRequest("http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobAccount.asmx/RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + user + "&password=" + pass + "&gender=" + gender + "&BirthDate=" + birthdate + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x, getBaseContext(), country, "D");
+                            registerJsonParse.stringRequest(GetData.DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/RegisterPassenger?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + user + "&password=" + pass + "&gender=" + gender + "&BirthDate=" + birthdate + "&NationalityId=" + y + "&PreferredLanguageId=" + x + "&photoName=" + uploadedImage, getBaseContext(), country, "P");
+                        } else if ((usertype.equals("1"))){
+                            Toast.makeText(RegisterNewTest.this, "please Choose a user Type", Toast.LENGTH_SHORT).show();
+
+                        }else if (usertype.equals("Driver")){
+
+                            registerJsonParse.stringRequest(GetData.DOMAIN +  "/_mobfiles/CLS_MobAccount.asmx/RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + user + "&password=" + pass + "&gender=" + gender + "&BirthDate=" + birthdate + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x, getBaseContext(), country, "D");
+                        }else if (usertype.equals("Both") ) {
+
+
+
                         }
+
                     }
                 } else {
                     Toast.makeText(RegisterNewTest.this, R.string.fill_all_error, Toast.LENGTH_SHORT).show();

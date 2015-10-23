@@ -16,6 +16,7 @@ public class BestRouteDataModelDetails extends ArrayList<Parcelable> implements 
     public String FromReg;
     public String ToEm;
     public String ToReg;
+    public  String PhotoURl;
 
     public String getDriverMobile() {
         return DriverMobile;
@@ -53,6 +54,13 @@ public class BestRouteDataModelDetails extends ArrayList<Parcelable> implements 
     public  String SDG_Route_Start_FromTime,Nationality_en,SDG_RouteDays;
 
 
+    public String getPhotoURl() {
+        return PhotoURl;
+    }
+
+    public void setPhotoURl(String photoURl) {
+        PhotoURl = photoURl;
+    }
 
     public int getID() {
         return ID;

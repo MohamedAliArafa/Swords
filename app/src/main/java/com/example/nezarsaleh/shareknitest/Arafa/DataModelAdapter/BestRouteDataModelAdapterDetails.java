@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.toolbox.ImageLoader;
+import com.example.nezarsaleh.shareknitest.Arafa.Classes.AppController;
+import com.example.nezarsaleh.shareknitest.Arafa.Classes.CircularNetworkImageView;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestRouteDataModelDetails;
 import com.example.nezarsaleh.shareknitest.R;
@@ -36,6 +40,10 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
     int Passenger_ID;
     String Review_str;
     EditText Edit_Review_txt;
+
+    ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+    String URL = GetData.DOMAIN + "/uploads/personalphoto/";
+
 
     public BestRouteDataModelAdapterDetails(Context context, int resource, BestRouteDataModelDetails[] objects) {
         super(context, resource, objects);
@@ -58,6 +66,10 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
             v = layoutInflater.inflate(R.layout.quick_search_list_item_2,parent,false);
             vh= new ViewHolder();
 
+            if (imageLoader == null) imageLoader = AppController.getInstance().getImageLoader();
+
+
+
             vh.DriverName = (TextView) v.findViewById(R.id.DriverEnName);
             vh.SDG_Route_Start_FromTime = (TextView) v.findViewById(R.id.SDG_Route_Start_FromTime);
             vh.Nationality_en = (TextView) v.findViewById(R.id.Nationality_en);
@@ -66,7 +78,7 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
             vh.Phone_Call = (ImageView) v.findViewById(R.id.im5);
             vh.Route_Join = (ImageView) v.findViewById(R.id.driver_add_pic);
             vh.Route_Review = (ImageView) v.findViewById(R.id.driver_review);
-
+            vh.Photo = (CircularNetworkImageView) v.findViewById(R.id.search_list_photo);
             v.setTag(vh);
         }else
         {
@@ -77,6 +89,8 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
         vh.SDG_Route_Start_FromTime.setText((bestRouteDataModel.getSDG_Route_Start_FromTime()));
         vh.Nationality_en.setText(bestRouteDataModel.getNationality_en());
         vh.SDG_RouteDays.setText(bestRouteDataModel.getSDG_RouteDays());
+        vh.Photo.setImageUrl(URL + bestRouteDataModel.getPhotoURl() , imageLoader);
+
 
         vh.Phone_Call.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,6 +185,7 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
         TextView SDG_Route_Start_FromTime ;
         TextView Nationality_en;
         TextView SDG_RouteDays ;
+        CircularNetworkImageView Photo;
 
 
     }

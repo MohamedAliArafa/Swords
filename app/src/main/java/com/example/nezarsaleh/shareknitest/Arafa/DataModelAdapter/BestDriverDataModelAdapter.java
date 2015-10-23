@@ -69,7 +69,7 @@ import java.util.List;
 
         if (imageLoader == null) imageLoader = AppController.getInstance().getImageLoader();
 
-            CircularNetworkImageView Photo = (CircularNetworkImageView) convertView.findViewById(R.id.ivProfile);
+        CircularNetworkImageView Photo = (CircularNetworkImageView) convertView.findViewById(R.id.ivProfile);
         TextView Name = (TextView) convertView.findViewById(R.id.tvName);
         TextView Nat = (TextView) convertView.findViewById(R.id.tvNat);
         TextView Rat = (TextView) convertView.findViewById(R.id.Best_Drivers_Item_rate);
@@ -79,6 +79,7 @@ import java.util.List;
         Button Best_Drivers_Item_Details= (Button) convertView.findViewById(R.id.Best_Drivers_Item_Details);
         ImageView Phone_Call = (ImageView) convertView.findViewById(R.id.im5);
         ImageView Phone_Message = (ImageView) convertView.findViewById(R.id.im1);
+
 
         final BestDriverDataModel m = driverItems.get(position);
         Photo.setImageUrl(URL + m.getPhotoURL(), imageLoader);

@@ -12,6 +12,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.VolleySingleton;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestDriverDataModel;
 import com.example.nezarsaleh.shareknitest.HomePage;
@@ -25,7 +26,7 @@ import org.json.JSONObject;
  * Created by nezar on 9/6/2015.
  */
 public class RegisterJsonParse {
-    String url2 = "http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobAccount.asmx/Get?id=";
+    String url2 = GetData.DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/Get?id=";
     final JSONArray[] myJsonArray = new JSONArray[1];
     JSONObject jsonObject = null;
 
@@ -47,7 +48,8 @@ public class RegisterJsonParse {
                         // Display the first 500 characters of the response string.
                         String data = response.substring(40);
                         Log.d("Data:",data);
-                        if (!data.equals("-2")&& !data.equals("-1")){
+
+                        if (!data.equals("-2")   && !data.equals("-1") )  {
                             SharedPreferences myPrefs = context.getSharedPreferences("myPrefs", 0);
                             SharedPreferences.Editor editor = myPrefs.edit();
                             editor.putString("account_id", String.valueOf(data));
@@ -56,9 +58,21 @@ public class RegisterJsonParse {
                             Intent in = new Intent(context, HomePage.class);
                             in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             context.startActivity(in);
-                        }else {
-                            Toast.makeText(context, "Cannot Register , Check Phone Number", Toast.LENGTH_SHORT).show();
+                        }else if ( data.equals("-1") ) {
+                            Toast.makeText(context, "Cannot Register , Please choose another username", Toast.LENGTH_SHORT).show();
+                        }else if (data.equals("-2")){
+
+                            Toast.makeText(context, "Cannot Register , Check your Mobile Number ", Toast.LENGTH_SHORT).show();
+
                         }
+
+
+
+
+
+
+
+
                     }
                 }, new Response.ErrorListener() {
             @Override

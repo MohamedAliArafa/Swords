@@ -197,12 +197,24 @@ public class EditProfileTest extends AppCompatActivity {
         try {
             JSONObject j = new GetData().GetDriverById(MyID);
             edit_fname.setText(j.getString("FirstName"));
+            edit_fname.setTextColor(getResources().getColor(R.color.primaryColor));
+
             edit_lname.setText(j.getString("LastName"));
+            edit_lname.setTextColor(getResources().getColor(R.color.primaryColor));
+
             full_date = j.getString("BirthDate");
-            txt_country.setText("NationalityEnName");
+
+
+            txt_country.setText("Nationality");
+            txt_country.setTextColor(getResources().getColor(R.color.primaryColor));
+
             Nationality_ID = j.getInt("NationalityId");
-            txt_lang.setText("Not Changed");
+
+            txt_lang.setText("PrefferedLanguage");
+            txt_lang.setTextColor(getResources().getColor(R.color.primaryColor));
+
             Language_ID = j.getInt("PrefferedLanguage");
+
             uploadedImage = j.getString("PhotoPath");
             if (j.getString("GenderEn").equals("Male")){
                 femalemale.setVisibility(View.INVISIBLE);
