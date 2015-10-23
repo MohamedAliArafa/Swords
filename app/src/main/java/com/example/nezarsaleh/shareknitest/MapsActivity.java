@@ -230,6 +230,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                         item.setNoOfRoutes(jsonObject.getInt("NoOfRoutes"));
+                        item.setNoOFPassengers(jsonObject.getInt("NoOfPassengers"));
 
 
                         if (jsonObject.getString("FromLng").equals("null") && jsonObject.getString("FromLat").equals("null")) {
@@ -281,21 +282,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         String snippet = data[i].getFromRegionArName();
                         String title = data[i].getFromRegionEnName();
                         int NoOfRoutes = data[i].getNoOfRoutes();
+                        int  NoOfPassengers_Count = data[i].getNoOFPassengers();
                         TextView emirateArName = (TextView) v.findViewById(R.id.emirateAr_name_id);
                         TextView emirateEnName = (TextView) v.findViewById(R.id.emirateEn_name_id);
                         TextView emirateLat = (TextView) v.findViewById(R.id.txt_map_lat);
                         TextView emiratelong = (TextView) v.findViewById(R.id.txt_map_long);
                         TextView NoOfRoutes_txt = (TextView) v.findViewById(R.id.NoOfRoutes);
-
+                        TextView NoOfPassengers = (TextView) v.findViewById(R.id.NoOfPassengers);
 
                         String lat = String.valueOf(latLng.latitude).substring(0, 7);
                         String lon = String.valueOf(latLng.longitude).substring(0, 7);
                         String NoOfRoutes_str = String.valueOf(NoOfRoutes);
+                        String NoOfPassengers_str = String.valueOf(NoOfPassengers_Count);
                         emirateLat.setText(lat);
                         emiratelong.setText(lon);
                         emirateArName.setText(snippet);
                         emirateEnName.setText(title);
                         NoOfRoutes_txt.setText(NoOfRoutes_str);
+                        NoOfPassengers.setText(NoOfPassengers_str);
                         return v;
 
                     }

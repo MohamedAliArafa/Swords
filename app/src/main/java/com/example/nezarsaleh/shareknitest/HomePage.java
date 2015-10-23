@@ -70,6 +70,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
     String name_str,nat_str;
     int DRIVER_ALERTS_COUNT=0;
     int y;
+    int All_Alerts;
     String Firstname,LastName;
 
     @Override
@@ -182,11 +183,13 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 PassengerJoinedRidesCount.setText(PassengerJoinedRidesCount_str);
                 DriverMyRidesCount_str="";
                 DriverMyRidesCount_str += "(";
-                DriverMyRidesCount_str += (jsonArray.getString("DriverMyRidesCount"));
-                if (DRIVER_ALERTS_COUNT < jsonArray.getInt("DriverMyAlertsCount")){
-                    DRIVER_ALERTS_COUNT = jsonArray.getInt("DriverMyAlertsCount");
+                DriverMyRidesCount_str += (All_Alerts);
+                if (DRIVER_ALERTS_COUNT < All_Alerts){
+                    DRIVER_ALERTS_COUNT = All_Alerts;
                     CreateNotification(y++);
                 }
+
+
 //                if (DRIVER_ALERTS_COUNT>0){
 //
 //
@@ -239,19 +242,38 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
 
         try {
             JSONArray jsonArray = gd.Get_Passenger_GetAcceptedRequestsFromDriver(Integer.parseInt(ID));
+
             for (int i = 0;i< jsonArray.length();i++){
                 JSONObject j = jsonArray.getJSONObject(i);
-                Intent intent = new Intent(this, DriverAlertsForRequest.class);
-                PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-                Notification.Builder builder = new Notification.Builder(this);
-                builder.setContentTitle("Route :" + j.getString("RouteName"));
-                builder.setContentText(j.getString("DriverName") + " Accepted Your Request ");
-                builder.setSmallIcon(R.drawable.sharekni_logo);
-                builder.setContentIntent(pendingIntent);
-                Notification notification = builder.build();
-                NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                manager.notify(y, notification);
-            }
+                if (j.getString("DriverAccept").equals("false")){
+
+                    Intent intent = new Intent(this, DriverAlertsForRequest.class);
+                    PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+                    Notification.Builder builder = new Notification.Builder(this);
+                    builder.setContentTitle("Route :" + j.getString("RouteName"));
+                    builder.setContentText(j.getString("DriverName") + " Rejected Your Request ");
+                    builder.setSmallIcon(R.drawable.sharekni_logo);
+                    builder.setContentIntent(pendingIntent);
+                    Notification notification = builder.build();
+                    NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                    manager.notify(y, notification);
+
+                } //  if
+                 else {
+
+                    Intent intent = new Intent(this, DriverAlertsForRequest.class);
+                    PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+                    Notification.Builder builder = new Notification.Builder(this);
+                    builder.setContentTitle("Route :" + j.getString("RouteName"));
+                    builder.setContentText(j.getString("DriverName") + " Accepted Your Request ");
+                    builder.setSmallIcon(R.drawable.sharekni_logo);
+                    builder.setContentIntent(pendingIntent);
+                    Notification notification = builder.build();
+                    NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                    manager.notify(y, notification);
+                } // else
+
+                }
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -275,19 +297,19 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
 
 
 
-        if (id==R.id.Start_Service){
-
-            Intent intent = new Intent(this,MyNotifications.class);
-            intent.putExtra("Flag",2);
-            startService(intent);
-        }
-
-        if (id==R.id.Stop_Service){
-
-            Intent intent = new Intent(this,MyNotifications.class);
-            stopService(intent);
-
-        }
+//        if (id==R.id.Start_Service){
+//
+//            Intent intent = new Intent(this,MyNotifications.class);
+//            intent.putExtra("Flag",2);
+//            startService(intent);
+//        }
+//
+//        if (id==R.id.Stop_Service){
+//
+//            Intent intent = new Intent(this,MyNotifications.class);
+//            stopService(intent);
+//
+//        }
 
         //noinspection SimplifiableIfStatement
 
@@ -355,6 +377,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         @Override
         protected void onPostExecute(Object o) {
             try {
+                All_Alerts = jsonArray.getInt("DriverMyAlertsCount")+jsonArray.getInt("PassengerMyAlertsCount");
                 name_str="";
                 nat_str="";
                 Firstname="";
@@ -386,7 +409,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 DriverMyRidesCount_str += (jsonArray.getString("DriverMyRidesCount"));
                 DriverMyRidesCount_str += ")";
                 DriverMyRidesCount.setText(DriverMyRidesCount_str);
-                DriverMyAlertsCount.setText(jsonArray.getString("DriverMyAlertsCount"));
+                DriverMyAlertsCount.setText( String.valueOf(All_Alerts));
                 assert AccountType != null;
                 if (!AccountType.equals("D")) {
                     btn_create.setBackgroundColor(Color.LTGRAY);

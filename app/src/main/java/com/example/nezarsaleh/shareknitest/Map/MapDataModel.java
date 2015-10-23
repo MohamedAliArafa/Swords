@@ -9,6 +9,15 @@ import android.os.Parcelable;
 public class MapDataModel implements Parcelable {
     String FromEmirateEnName,ToEmirateEnName,FromRegionEnName,ToRegionEnName;
     String FromEmirateArName,FromRegionArName,ToRegionArName,ToEmirateArName;
+    int NoOFPassengers;
+
+    public int getNoOFPassengers() {
+        return NoOFPassengers;
+    }
+
+    public void setNoOFPassengers(int noOFPassengers) {
+        NoOFPassengers = noOFPassengers;
+    }
 
     int NoOfRoutes;
 

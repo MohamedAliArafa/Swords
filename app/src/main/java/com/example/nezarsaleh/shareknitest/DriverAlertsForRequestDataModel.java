@@ -12,8 +12,16 @@ public class DriverAlertsForRequestDataModel extends ArrayList<Parcelable> imple
 
 
 public  int RequestId;
-    public  String PassengerName,RouteName,Remarks,RequestDate,PassengerMobile,AccountPhoto,AccountGender,NationalityEnName;
+    public  String PassengerName,RouteName,Remarks,RequestDate,PassengerMobile,AccountPhoto,AccountGender,NationalityEnName,DriverAccept;
 
+
+    public String getDriverAccept() {
+        return DriverAccept;
+    }
+
+    public void setDriverAccept(String driverAccept) {
+        DriverAccept = driverAccept;
+    }
 
     protected DriverAlertsForRequestDataModel(Parcel in) {
         RequestId = in.readInt();

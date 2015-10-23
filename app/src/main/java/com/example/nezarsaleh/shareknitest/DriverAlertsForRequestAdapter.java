@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.AppController;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.CircularNetworkImageView;
+import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestDriverDataModel;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class DriverAlertsForRequestAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private List<DriverAlertsForRequestDataModel> AlertsItem;
         ImageLoader imageLoader = AppController.getInstance().getImageLoader();
-    String URL = "http://www.sharekni-web.sdg.ae/uploads/personalphoto/";
+    String URL = GetData.DOMAIN + "/uploads/personalphoto/";
 
 
     public DriverAlertsForRequestAdapter(Activity activity, List<DriverAlertsForRequestDataModel> driverItems) {
@@ -69,11 +70,35 @@ public class DriverAlertsForRequestAdapter extends BaseAdapter {
         CircularNetworkImageView Photo = (CircularNetworkImageView) convertView.findViewById(R.id.AccountPhoto);
         TextView PassengerName= (TextView) convertView.findViewById(R.id.PassengerName);
         TextView NationalityEnName= (TextView) convertView.findViewById(R.id.NationalityEnName);
+        TextView txt_Accepted_or_Rejected = (TextView) convertView.findViewById(R.id.txt_Accepted_or_Rejected);
+
 
         final DriverAlertsForRequestDataModel model = AlertsItem.get(position);
         Photo.setImageUrl(URL + model.getAccountPhoto(), imageLoader);
         PassengerName.setText(model.getPassengerName());
         NationalityEnName.setText(model.getNationalityEnName());
+
+
+        if (model.getDriverAccept()!=null) {
+            if (model.getDriverAccept().equals("false")) {
+
+                txt_Accepted_or_Rejected.setText("Has Rejected Your Request");
+
+            } else {
+
+                txt_Accepted_or_Rejected.setText("Has Accepeted Your Request");
+
+            }
+
+
+        } //  IF  * 1
+        else {
+
+            txt_Accepted_or_Rejected.setText("Send you a join Request");
+
+
+
+        }
 
 
         return convertView;

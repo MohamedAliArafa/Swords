@@ -115,21 +115,24 @@ public class DriverAlertsForRequest extends AppCompatActivity {
 //
 //
 
-                    Intent in = new Intent(con, DriverRequestDetails.class);
-                    in.putExtra("PassengerName",arr.get(i).getPassengerName());
-                    in.putExtra("RouteName",arr.get(i).getRouteName());
-                    in.putExtra("NationalityEnName",arr.get(i).getNationalityEnName());
+                    if (arr.get(i).getDriverAccept()==null) {
 
-                    in.putExtra("AccountPhoto",arr.get(i).getAccountPhoto());
-                    in.putExtra("PassengerMobile",arr.get(i).getPassengerMobile());
-                    in.putExtra("Remarks",arr.get(i).getRemarks());
+                        Intent in = new Intent(con, DriverRequestDetails.class);
+                        in.putExtra("PassengerName", arr.get(i).getPassengerName());
+                        in.putExtra("RouteName", arr.get(i).getRouteName());
+                        in.putExtra("NationalityEnName", arr.get(i).getNationalityEnName());
 
-                    in.putExtra("RequestId",arr.get(i).getRequestId());
-                    in.putExtra("RequestDate",arr.get(i).getRequestDate());
+                        in.putExtra("AccountPhoto", arr.get(i).getAccountPhoto());
+                        in.putExtra("PassengerMobile", arr.get(i).getPassengerMobile());
+                        in.putExtra("Remarks", arr.get(i).getRemarks());
 
-                    con.startActivity(in);
+                        in.putExtra("RequestId", arr.get(i).getRequestId());
+                        in.putExtra("RequestDate", arr.get(i).getRequestDate());
+
+                        con.startActivity(in);
 
 
+                    }
 
                 }
             });
@@ -178,6 +181,8 @@ public class DriverAlertsForRequest extends AppCompatActivity {
             }
             if (exists) {
                 JSONArray response = null;
+
+
                 try {
                     response = new GetData().GetDriverAlertsForRequest(Driver_Id);
                 } catch (JSONException e) {
@@ -203,7 +208,46 @@ public class DriverAlertsForRequest extends AppCompatActivity {
                     }
                     //hidePDialog();
                 }
+
+
+
+
+
+
+                try {
+                    response = new GetData().Get_Passenger_GetAcceptedRequestsFromDriver(Driver_Id);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        obj = response.getJSONObject(i);
+                        final DriverAlertsForRequestDataModel Alert = new DriverAlertsForRequestDataModel(Parcel.obtain());
+                        Alert.setPassengerName(obj.getString("DriverName"));
+                        Alert.setNationalityEnName(obj.getString("DriverNationalityEnName"));
+                        Alert.setAccountPhoto(obj.getString("DriverPhoto"));
+                        Alert.setRouteName(obj.getString("RouteName"));
+                        Alert.setPassengerMobile(obj.getString("PassengerMobile"));
+                        Alert.setRemarks(obj.getString("Remarks"));
+                        Alert.setRequestId(obj.getInt("RequestId"));
+                        Alert.setRequestDate(obj.getString("RequestDate"));
+
+
+                        Alert.setDriverAccept(obj.getString("DriverAccept"));
+
+
+                        //driver.setRating(obj.getInt("Rating"));
+                        arr.add(Alert);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    //hidePDialog();
+                }
+
+
+
             }
+
             return null;
         }
     }
