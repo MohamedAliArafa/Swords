@@ -559,7 +559,7 @@ public class GetData {
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Intent in = new Intent(context, Route.class);
+                            Intent in = new Intent(context, Profile.class);
                             in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             in.putExtra("DriverID", searchArray.get(position).getDriverId());
                             in.putExtra("PassengerID", Passenger_ID);

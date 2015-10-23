@@ -262,44 +262,44 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                         .findFragmentById(R.id.map_ride_details);
                 mapFragment.getMapAsync(RideDetailsPassenger.this);
 
-                Join_Ride_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        GetData j = new GetData();
-                        if (Passenger_ID == 0) {
-                            final Dialog dialog = new Dialog(RideDetailsPassenger.this);
-                            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                            dialog.setContentView(R.layout.noroutesdialog);
-                            Button btn = (Button) dialog.findViewById(R.id.noroute_id);
-                            TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
-                            Text_3.setText("PLease Login First");
-                            btn.setText("Log In");
-                            dialog.show();
-
-                            btn.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    dialog.dismiss();
-                                    Intent intent = new Intent(RideDetailsPassenger.this, LoginApproved.class);
-                                    RideDetailsPassenger.this.startActivity(intent);
-
-                                }
-                            });
-                        } else {
-                            try {
-                                String response = j.Passenger_SendAlert(Driver_ID, Passenger_ID, Route_ID, "TestCase2");
-                                if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
-                                    Toast.makeText(RideDetailsPassenger.this, "You Already Joined", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(RideDetailsPassenger.this, "successfully  Joined", Toast.LENGTH_SHORT).show();
-                                }
-                                Log.d("join ride res", String.valueOf(response));
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                });
+//                Join_Ride_btn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        GetData j = new GetData();
+//                        if (Passenger_ID == 0) {
+//                            final Dialog dialog = new Dialog(RideDetailsPassenger.this);
+//                            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//                            dialog.setContentView(R.layout.noroutesdialog);
+//                            Button btn = (Button) dialog.findViewById(R.id.noroute_id);
+//                            TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
+//                            Text_3.setText("PLease Login First");
+//                            btn.setText("Log In");
+//                            dialog.show();
+//
+//                            btn.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    dialog.dismiss();
+//                                    Intent intent = new Intent(RideDetailsPassenger.this, LoginApproved.class);
+//                                    RideDetailsPassenger.this.startActivity(intent);
+//
+//                                }
+//                            });
+//                        } else {
+//                            try {
+//                                String response = j.Passenger_SendAlert(Driver_ID, Passenger_ID, Route_ID, "TestCase2");
+//                                if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
+//                                    Toast.makeText(RideDetailsPassenger.this, "You Already Joined", Toast.LENGTH_SHORT).show();
+//                                } else {
+//                                    Toast.makeText(RideDetailsPassenger.this, "successfully  Joined", Toast.LENGTH_SHORT).show();
+//                                }
+//                                Log.d("join ride res", String.valueOf(response));
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                    }
+//                });
 
                 JSONArray response1 = null;
                 try {
@@ -461,12 +461,19 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                         if (Passenger_ID == 0) {
                             final Dialog dialog = new Dialog(RideDetailsPassenger.this);
                             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                            dialog.setContentView(R.layout.noroutesdialog);
+                            dialog.setContentView(R.layout.please_log_in_dialog);
                             Button btn = (Button) dialog.findViewById(R.id.noroute_id);
                             TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
-                            Text_3.setText("PLease Login First");
-                            btn.setText("Log In");
+                            Button No_Btn = (Button) dialog.findViewById(R.id.No_Btn);
+                            Text_3.setText("In Order to Proceed you have to login first");
                             dialog.show();
+
+                            No_Btn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialog.dismiss();
+                                }
+                            });
 
                             btn.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -498,33 +505,66 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                 Passenger_Review_Driver_Btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        final GetData j = new GetData();
 
-                        Review_str = "";
-                        final Dialog dialog = new Dialog(con);
-                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                        dialog.setContentView(R.layout.review_dialog);
-                        Button btn = (Button) dialog.findViewById(R.id.Review_Btn);
-                        Edit_Review_txt = (EditText) dialog.findViewById(R.id.Edit_Review_txt);
-                        dialog.show();
-                        btn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Review_str = Edit_Review_txt.getText().toString();
-                                try {
-                                    String response = j.Passenger_Review_Driver(Driver_ID, Passenger_ID, Route_ID, URLEncoder.encode(Review_str));
-                                    if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
-                                        Toast.makeText(RideDetailsPassenger.this, "Cannot Review", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Toast.makeText(RideDetailsPassenger.this, "Done", Toast.LENGTH_SHORT).show();
-                                    }
+
+                        if (Passenger_ID == 0) {
+                            final Dialog dialog = new Dialog(RideDetailsPassenger.this);
+                            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(R.layout.please_log_in_dialog);
+                            Button btn = (Button) dialog.findViewById(R.id.noroute_id);
+                            TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
+                            Button No_Btn = (Button) dialog.findViewById(R.id.No_Btn);
+                            Text_3.setText("In Order to Proceed you have to login first");
+                            dialog.show();
+
+                            No_Btn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
                                     dialog.dismiss();
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
                                 }
-                            }
-                        });
-                    }
+                            });
+
+                            btn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialog.dismiss();
+                                    Intent intent = new Intent(RideDetailsPassenger.this, LoginApproved.class);
+                                    RideDetailsPassenger.this.startActivity(intent);
+
+                                }
+                            });
+                        } else {
+
+
+                            final GetData j = new GetData();
+                            Review_str = "";
+                            final Dialog dialog = new Dialog(con);
+                            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(R.layout.review_dialog);
+                            Button btn = (Button) dialog.findViewById(R.id.Review_Btn);
+                            Edit_Review_txt = (EditText) dialog.findViewById(R.id.Edit_Review_txt);
+                            dialog.show();
+                            btn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Review_str = Edit_Review_txt.getText().toString();
+                                    try {
+                                        String response = j.Passenger_Review_Driver(Driver_ID, Passenger_ID, Route_ID, URLEncoder.encode(Review_str));
+                                        if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
+                                            Toast.makeText(RideDetailsPassenger.this, "Cannot Review", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(RideDetailsPassenger.this, "Done", Toast.LENGTH_SHORT).show();
+                                        }
+                                        dialog.dismiss();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+
+
+                        } //else
+                    } // on click view
                 });
                 hidePDialog();
             }
