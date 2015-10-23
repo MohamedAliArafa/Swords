@@ -64,9 +64,11 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
     String Gender_ste, Nat_txt, Smokers_str;
 
 
-    String str_StartFromTime, str_EndToTime_;
+    String str_StartFromTime, str_EndToTime_,str_PrefLanguageEnName;
+
 
     String days;
+    String Str_AgeRange;
 
     final JSONArray[] myJsonArray = new JSONArray[1];
     private Toolbar toolbar;
@@ -199,29 +201,51 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                         NationalityEnName.setText(Nat_txt);
                     }
                     PrefLanguageEnName.setText(json.getString("PrefLanguageEnName"));
-                    AgeRange.setText(json.getString("AgeRange"));
+
+                    Str_AgeRange=json.getString("AgeRange");
+                    if (Str_AgeRange.equals("null")){
+                        Str_AgeRange="Not Specified";
+                        AgeRange.setText(Str_AgeRange);
+
+
+                    }else {
+
+                        AgeRange.setText(Str_AgeRange);
+
+                    }
+
+
+
                     Gender_ste = "";
                     Gender_ste = json.getString("PreferredGender");
                     switch (Gender_ste) {
                         case "M":
                             Gender_ste = "Male";
+                            PreferredGender.setText(Gender_ste);
                             break;
                         case "F":
                             Gender_ste = "Female";
+                            PreferredGender.setText(Gender_ste);
                             break;
+                        case "null":
+                            Gender_ste = "Not Specified";
+                            PreferredGender.setText(Gender_ste);
                         default:
                             Gender_ste = "Not Specified";
+                            PreferredGender.setText(Gender_ste);
                             break;
                     }
-                    PreferredGender.setText(Gender_ste);
+
                     Smokers_str = "";
                     Smokers_str = json.getString("IsSmoking");
                     if (Smokers_str.equals("true")) {
                         Smokers_str = "Yes";
+                        IsSmoking.setText(Smokers_str);
                     } else if (Smokers_str.equals("false")) {
                         Smokers_str = "No";
+                        IsSmoking.setText(Smokers_str);
                     }
-                    IsSmoking.setText(Smokers_str);
+
                     StartLat = json.getDouble("StartLat");
                     StartLng = json.getDouble("StartLng");
                     EndLat = json.getDouble("EndLat");
@@ -372,17 +396,35 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                     FromEmirateEnName.setText(json.getString("FromEmirateEnName"));
                     ToEmirateEnName.setText(json.getString("ToEmirateEnName"));
 
+
                     str_StartFromTime = json.getString("StartFromTime");
+                    if (str_StartFromTime.equals("null")){
+                        str_StartFromTime="Not Specified";
+                        StartFromTime.setText(str_StartFromTime);
+
+                    }else{
+
+                        str_StartFromTime = str_StartFromTime.substring(Math.max(0, str_StartFromTime.length() - 7));
+                        StartFromTime.setText(str_StartFromTime);
+                    }
+
+
+
+
                     str_EndToTime_ = json.getString("EndToTime_");
+                    if (str_EndToTime_.equals("null")){
+                        str_EndToTime_="Not Specified";
+                        EndToTime_.setText(str_EndToTime_);
 
-                    str_StartFromTime = str_StartFromTime.substring(Math.max(0, str_StartFromTime.length() - 7));
-                    Log.d("string", str_StartFromTime);
+                    }else {
+                        str_EndToTime_ = str_EndToTime_.substring(Math.max(0, str_EndToTime_.length() - 7));
+                        Log.d("time to", str_EndToTime_);
+                        EndToTime_.setText(str_EndToTime_);
 
-                    str_EndToTime_ = str_EndToTime_.substring(Math.max(0, str_EndToTime_.length() - 7));
-                    Log.d("time to", str_EndToTime_);
+                    }
 
-                    StartFromTime.setText(str_StartFromTime);
-                    EndToTime_.setText(str_EndToTime_);
+
+
                     Nat_txt = (json.getString("NationalityEnName"));
                     if (Nat_txt.equals("null")) {
                         Nat_txt = "Not Specified";
@@ -390,8 +432,36 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                     } else {
                         NationalityEnName.setText(Nat_txt);
                     }
-                    PrefLanguageEnName.setText(json.getString("PrefLanguageEnName"));
-                    AgeRange.setText(json.getString("AgeRange"));
+
+
+                    str_PrefLanguageEnName=json.getString("PrefLanguageEnName");
+
+                    if (str_PrefLanguageEnName.equals("null")){
+                        str_PrefLanguageEnName="Not Specified";
+                        PrefLanguageEnName.setText(str_PrefLanguageEnName);
+
+
+                    }else {
+
+                        PrefLanguageEnName.setText(str_PrefLanguageEnName);
+                    }
+
+
+
+
+                    Str_AgeRange=json.getString("AgeRange");
+                    if (Str_AgeRange.equals("null")){
+                        Str_AgeRange="Not Specified";
+                        AgeRange.setText(Str_AgeRange);
+
+
+                    }else {
+
+                        AgeRange.setText(Str_AgeRange);
+
+                    }
+
+
                     Gender_ste = "";
                     Gender_ste = json.getString("PreferredGender");
                     switch (Gender_ste) {
