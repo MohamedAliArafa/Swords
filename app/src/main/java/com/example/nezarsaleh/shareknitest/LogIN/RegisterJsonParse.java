@@ -46,6 +46,7 @@ public class RegisterJsonParse {
                         response = response.replaceAll("\"</string>", "");
                         // Display the first 500 characters of the response string.
                         String data = response.substring(40);
+                        Log.d("Data:",data);
                         if (!data.equals("-2")&& !data.equals("-1")){
                             SharedPreferences myPrefs = context.getSharedPreferences("myPrefs", 0);
                             SharedPreferences.Editor editor = myPrefs.edit();

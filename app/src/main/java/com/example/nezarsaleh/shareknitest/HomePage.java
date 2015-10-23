@@ -524,6 +524,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
             }
             if (exists) {
                 try {
+                    Log.d("Driver Id", String.valueOf(Driver_ID));
                     jsonArray = j.GetDriverById(Integer.parseInt(String.valueOf(Driver_ID)));
                 } catch (JSONException e) {
                     hidePDialog();

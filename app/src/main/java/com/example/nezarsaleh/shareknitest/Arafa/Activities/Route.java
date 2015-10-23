@@ -368,6 +368,8 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
                     e.printStackTrace();
                 }
 
+            }
+
 
                 for (int y = 0; y < response2.length(); y++) {
 
@@ -384,8 +386,6 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
                     }
                 }
 
-
-            }
 
             DriverGetReviewAdapter arrayAdapter = new DriverGetReviewAdapter(con, driverGetReviewDataModels_arr);
             Driver_get_Review_lv.setAdapter(arrayAdapter);
