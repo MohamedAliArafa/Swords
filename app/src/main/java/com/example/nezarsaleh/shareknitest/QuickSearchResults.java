@@ -78,27 +78,31 @@ public class QuickSearchResults extends AppCompatActivity {
         From_RegionEnName_txt.setText(From_RegionEnName);
 
 
+        To_EmirateEnName_txt.setText("");
+        To_RegionEnName_txt.setText("");
+        To_EmirateEnName_txt.setText(To_EmirateEnName);
+        To_RegionEnName_txt.setText(To_RegionEnName);
 
-        if (To_EmirateEnName.equals("null")){
-            To_EmirateEnName="Not Specified";
-            To_EmirateEnName_txt.setText(To_EmirateEnName);
-
-        }else {
-
-            To_EmirateEnName_txt.setText(To_EmirateEnName);
-
-        }
-
-        if (To_RegionEnName.equals("null")){
-
-            To_RegionEnName="Not Specified";
-            To_RegionEnName_txt.setText(To_RegionEnName);
-        }else {
-
-            To_RegionEnName_txt.setText(To_RegionEnName);
-        }
-
-
+//        if (To_EmirateEnName.equals("null")){
+//            To_EmirateEnName="Not Specified";
+//            To_EmirateEnName_txt.setText(To_EmirateEnName);
+//
+//        }else {
+//
+//            To_EmirateEnName_txt.setText(To_EmirateEnName);
+//
+//        }
+//
+//        if (To_RegionEnName.equals("null")){
+//
+//            To_RegionEnName="Not Specified";
+//            To_RegionEnName_txt.setText(To_RegionEnName);
+//        }else {
+//
+//            To_RegionEnName_txt.setText(To_RegionEnName);
+//        }
+//
+//
 
 
         new backTread().execute();

@@ -764,7 +764,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
 
                         final SimpleAdapter RegAdapter = new SimpleAdapter(Advanced_Search.this, Advanced_Regions_List
-                                , R.layout.dialog_pick_emirate_lv_row
+                                , R.layout.dialog_pick_regions_lv_row
                                 , new String[]{"ID", "RegionEnName"}
                                 , new int[]{R.id.row_id_search, R.id.row_name_search});
 
@@ -889,7 +889,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
 
                     final SimpleAdapter RegAdapter = new SimpleAdapter(Advanced_Search.this, Advanced_Regions_List
-                            , R.layout.dialog_pick_emirate_lv_row
+                            , R.layout.dialog_pick_regions_lv_row
                             , new String[]{"ID", "RegionEnName"}
                             , new int[]{R.id.row_id_search, R.id.row_name_search});
 

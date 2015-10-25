@@ -341,9 +341,10 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                         }else if (usertype.equals("Driver")){
 
                             registerJsonParse.stringRequest(GetData.DOMAIN +  "/_mobfiles/CLS_MobAccount.asmx/RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + user + "&password=" + pass + "&gender=" + gender + "&BirthDate=" + birthdate + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x, getBaseContext(), country, "D");
+
                         }else if (usertype.equals("Both") ) {
 
-
+                            registerJsonParse.stringRequest(GetData.DOMAIN +  "/_mobfiles/CLS_MobAccount.asmx/RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + user + "&password=" + pass + "&gender=" + gender + "&BirthDate=" + birthdate + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x, getBaseContext(), country, "D");
 
                         }
 

@@ -90,6 +90,7 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
         vh.Nationality_en.setText(bestRouteDataModel.getNationality_en());
         vh.SDG_RouteDays.setText(bestRouteDataModel.getSDG_RouteDays());
         vh.Photo.setImageUrl(URL + bestRouteDataModel.getPhotoURl() , imageLoader);
+        Log.d("Photo path",URL + bestRouteDataModel.getPhotoURl());
 
 
         vh.Phone_Call.setOnClickListener(new View.OnClickListener() {

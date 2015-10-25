@@ -17,6 +17,7 @@ import com.example.nezarsaleh.shareknitest.R;
 import com.example.nezarsaleh.shareknitest.RegisterNewTest;
 import com.example.nezarsaleh.shareknitest.SearchOptions;
 import com.example.nezarsaleh.shareknitest.TakeATour;
+import com.example.nezarsaleh.shareknitest.TestVedio;
 
 /*
  * Created by nezar on 8/11/2015.
@@ -94,8 +95,12 @@ public class OnboardingActivity extends FragmentActivity {
             @Override
             public void onClick(View v) {
 
+//                Intent intent =  new Intent(getBaseContext(), TestVedio.class);
+//                startActivity(intent);
+
                 Intent intent = new Intent(getBaseContext(), TakeATour.class);
                 startActivity(intent);
+
 
 
             }

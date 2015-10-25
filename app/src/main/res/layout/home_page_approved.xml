@@ -117,7 +117,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:gravity="center"
-                    android:text="15"
+                    android:text=""
                     android:textColor="@color/primaryColor"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -134,7 +134,7 @@
                 android:layout_below="@+id/profilepic"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
-                android:text="Mohamed Ali Arafa"
+                android:text=""
                 android:textSize="20sp"
                 android:textStyle="bold"
 
@@ -148,7 +148,7 @@
                 android:layout_below="@+id/tv_name_home"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
-                android:text="United Arab Emirates"
+                android:text=""
                 android:textSize="15sp" />
 
 
@@ -216,7 +216,7 @@
                             android:layout_marginStart="2dp"
                             android:layout_toEndOf="@+id/RidesCreated_txt"
                             android:layout_toRightOf="@+id/RidesCreated_txt"
-                            android:text="1"
+                            android:text=""
                             android:textColor="@color/gray_before_login"
                             android:textStyle="bold"
                             android:textSize="13sp"
@@ -273,7 +273,7 @@
                             android:layout_marginStart="2dp"
                             android:layout_toEndOf="@+id/Rides_joined_txt"
                             android:layout_toRightOf="@+id/Rides_joined_txt"
-                            android:text="1"
+                            android:text=""
                             android:textSize="13sp"
                             android:textColor="@color/gray_before_login"
                             android:textStyle="bold" />
@@ -328,7 +328,7 @@
                             android:layout_marginStart="2dp"
                             android:layout_toEndOf="@+id/Vehicles_txt"
                             android:layout_toRightOf="@+id/Vehicles_txt"
-                            android:text="1"
+                            android:text=""
                             android:textColor="@color/gray_before_login"
                             android:textStyle="bold"
                             android:textSize="13sp"

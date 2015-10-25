@@ -134,7 +134,7 @@ public class Profile extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent intent = null;
                     try {
-                        intent = new Intent(Intent.ACTION_CALL, Uri.parse("sms:" + json.getString("Mobile")));
+                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + json.getString("Mobile")));
                         intent.putExtra("sms_body", "Hello " + json.getString("FirstName"));
                     } catch (JSONException e) {
                         e.printStackTrace();
