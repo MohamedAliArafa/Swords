@@ -203,9 +203,9 @@ public class EditProfileTest extends AppCompatActivity {
             edit_lname.setTextColor(getResources().getColor(R.color.primaryColor));
 
             full_date = j.getString("BirthDate");
-
-
-            txt_country.setText("Nationality");
+            txt_year.setText(full_date);
+            txt_beforeCal.setVisibility(View.INVISIBLE);
+            txt_country.setText(j.getString("NationalityEnName"));
             txt_country.setTextColor(getResources().getColor(R.color.primaryColor));
 
             Nationality_ID = j.getInt("NationalityId");
@@ -749,7 +749,7 @@ public class EditProfileTest extends AppCompatActivity {
                     httpURLConnection.setDoInput(true);
                     httpURLConnection.setUseCaches(true);
                     httpURLConnection.setRequestProperty("Content-length", getReqData(data).length + "");
-                    httpURLConnection.setReadTimeout(10 * 1000);
+                    httpURLConnection.setReadTimeout(100 * 1000);
                     // httpURLConnection.setConnectTimeout(10 * 1000);
                     httpURLConnection.connect();
                     out = httpURLConnection.getOutputStream();

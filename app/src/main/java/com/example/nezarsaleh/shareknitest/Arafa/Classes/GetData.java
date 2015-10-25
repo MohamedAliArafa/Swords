@@ -91,6 +91,8 @@ public class GetData {
     String Driver_DeleteRouteUrl        = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Route_Delete?RouteId=";
     String Passenger_Rqs_From_Driver    = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Passenger_GetAcceptedRequestsFromDriver?accountId=";
 
+    String Driver_RemovePassenger       = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Driver_RemovePassenger?ID=";
+
     String Regions_By_Em_Id             = DOMAIN + "/_mobfiles/CLS_MobMasterData.asmx/GetRegionsByEmirateId?id=";
     String Emirates_By_ID               = DOMAIN + "/_mobfiles/CLS_MobMasterData.asmx/GetEmirates";
     String getNationalitiesUrl          = DOMAIN + "/_mobfiles/CLS_MobMasterData.asmx/GetNationalities?id=0";
