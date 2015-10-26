@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 
 import com.example.nezarsaleh.shareknitest.Arafa.Activities.BestDriversBeforeLogin;
 import com.example.nezarsaleh.shareknitest.Arafa.Activities.Profile;
+import com.example.nezarsaleh.shareknitest.Arafa.Classes.ImageDecoder;
 import com.example.nezarsaleh.shareknitest.DriverAlertsForRequest;
 import com.example.nezarsaleh.shareknitest.HomePage;
 import com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity;
@@ -32,13 +33,14 @@ import com.pkmmte.view.CircularImageView;
 public class NavigationDrawerFragment extends Fragment {
 
 
-    CircularImageView circularImageView;
+  public static   CircularImageView circularImageView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView mrecyclerView;
 
 
 
+    String Navy_Photo_Path;
 
     private ActionBarDrawerToggle mdrawerToggle;
     private DrawerLayout mdrawerLayout;
@@ -79,6 +81,11 @@ public class NavigationDrawerFragment extends Fragment {
         navy_SearchOptions= (RelativeLayout) layout.findViewById(R.id.navy_SearchOptions);
         navy_MyProfile= (RelativeLayout) layout.findViewById(R.id.navy_MyProfile);
         navy_Logout= (RelativeLayout) layout.findViewById(R.id.navy_Logout);
+
+
+
+
+
 
 
         navy_TopRides.setOnClickListener(new View.OnClickListener() {
@@ -146,6 +153,17 @@ public class NavigationDrawerFragment extends Fragment {
         circularImageView.setBorderWidth(5);
         circularImageView.setSelectorStrokeWidth(5);
         circularImageView.addShadow();
+
+//        if (!HomePage.ImagePhotoPath.equals("")) {
+//            Navy_Photo_Path = HomePage.ImagePhotoPath;
+//            ImageDecoder im = new ImageDecoder();
+//            im.stringRequest(Navy_Photo_Path, circularImageView, getContext());
+//            Log.d("test navy", Navy_Photo_Path);
+//
+//        }else {
+//            Log.d("test navy","blank");
+//
+//        }
 
 
 
@@ -297,6 +315,9 @@ public class NavigationDrawerFragment extends Fragment {
         });
 
     } //  set up
+
+
+
 
 
 

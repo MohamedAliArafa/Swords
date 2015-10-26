@@ -461,7 +461,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                     httpURLConnection.setDoInput(true);
                     httpURLConnection.setUseCaches(true);
                     httpURLConnection.setRequestProperty("Content-length", getReqData(data).length + "");
-                    httpURLConnection.setReadTimeout(10 * 1000);
+                    httpURLConnection.setReadTimeout(100 * 1000);
                     // httpURLConnection.setConnectTimeout(10 * 1000);
                     httpURLConnection.connect();
                     out = httpURLConnection.getOutputStream();

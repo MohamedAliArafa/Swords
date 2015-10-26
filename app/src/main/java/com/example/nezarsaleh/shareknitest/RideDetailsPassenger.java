@@ -98,6 +98,7 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
 
     String Review_str;
     EditText Edit_Review_txt;
+    String str_Remarks="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -527,7 +528,7 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                 Join_Ride_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        GetData j = new GetData();
+                        final GetData j = new GetData();
                         if (Passenger_ID == 0) {
 
                             final Dialog dialog = new Dialog(RideDetailsPassenger.this);
@@ -558,17 +559,48 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
 
 
                         } else {
-                            try {
-                                String response = j.Passenger_SendAlert(Driver_ID, Passenger_ID, Route_ID, "TestCase2");
-                                if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
-                                    Toast.makeText(RideDetailsPassenger.this, "Cannot Join This Route", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(RideDetailsPassenger.this, "successfully  Joined", Toast.LENGTH_SHORT).show();
-                                }
-                                Log.d("join ride res", String.valueOf(response));
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
+
+
+                                final Dialog dialog = new Dialog(con);
+                                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                dialog.setContentView(R.layout.review_dialog);
+                                Button btn = (Button) dialog.findViewById(R.id.Review_Btn);
+                                TextView Lang_Dialog_txt_id = (TextView) dialog.findViewById(R.id.Lang_Dialog_txt_id);
+                                TextView Review_text_address = (TextView) dialog.findViewById(R.id.Review_text_address);
+                                Edit_Review_txt = (EditText) dialog.findViewById(R.id.Edit_Review_txt);
+
+                                Lang_Dialog_txt_id.setText("Write Your Remarks");
+                                Review_text_address.setText("Your Remarks");
+                                dialog.show();
+
+
+
+                            btn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        str_Remarks = Edit_Review_txt.getText().toString();
+                                        String response = null;
+                                        try {
+                                            response = j.Passenger_SendAlert(Driver_ID, Passenger_ID, Route_ID, URLEncoder.encode(str_Remarks));
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                        if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
+                                            Toast.makeText(RideDetailsPassenger.this, "Cannot Join This Route", Toast.LENGTH_SHORT).show();
+                                            dialog.dismiss();
+                                        } else {
+                                            Toast.makeText(RideDetailsPassenger.this, "successfully  Joined", Toast.LENGTH_SHORT).show();
+                                            dialog.dismiss();
+                                        }
+
+
+
+
+
+                                    }
+                                });
+
+
                         }
                     }
                 });
@@ -617,6 +649,7 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                             Button btn = (Button) dialog.findViewById(R.id.Review_Btn);
                             Edit_Review_txt = (EditText) dialog.findViewById(R.id.Edit_Review_txt);
                             dialog.show();
+
                             btn.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {

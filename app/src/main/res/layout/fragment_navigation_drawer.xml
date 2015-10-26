@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#DADADA"
     tools:context="com.example.nezar.materialtest.MainNavigationDrawerFragment.NavigationDrawerFragment">
 
@@ -21,7 +22,12 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="90dp"
             android:layout_marginStart="90dp"
-            android:src="@drawable/defaultdriver" />
+            android:src="@drawable/defaultdriver"
+            app:border="true"
+            app:border_color="#EEEEEE"
+            app:border_width="4dp"
+            app:shadow="true"
+            />
 
 
     </LinearLayout>

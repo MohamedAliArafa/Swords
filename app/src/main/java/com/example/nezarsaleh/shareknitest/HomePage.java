@@ -51,6 +51,7 @@ import java.util.Locale;
 public class HomePage extends ActionBarActivity implements View.OnClickListener {
 
 
+    public static String ImagePhotoPath;
     public Thread t;
     String ID;
     String AccountType;
@@ -131,10 +132,10 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         Rides_joined_Relative= (RelativeLayout) findViewById(R.id.Rides_joined_Relative);
         btn_history = (RelativeLayout) findViewById(R.id.home_history);
 
-        circularImageView = (CircularImageView) findViewById(R.id.profilepic);
-        circularImageView.setBorderWidth(5);
-        circularImageView.setSelectorStrokeWidth(5);
-        circularImageView.addShadow();
+            circularImageView = (CircularImageView) findViewById(R.id.profilepic);
+            circularImageView.setBorderWidth(5);
+            circularImageView.setSelectorStrokeWidth(5);
+            circularImageView.addShadow();
 
         myPrefs = this.getSharedPreferences("myPrefs", 0);
         ID = myPrefs.getString("account_id", null);
@@ -424,6 +425,8 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 }
                 ImageDecoder im = new ImageDecoder();
                 im.stringRequest(jsonArray.getString("PhotoPath"), circularImageView, HomePage.this);
+                im.stringRequest(jsonArray.getString("PhotoPath"), NavigationDrawerFragment.circularImageView, HomePage.this);
+                ImagePhotoPath = jsonArray.getString("PhotoPath");
             } catch (JSONException e) {
                 hidePDialog();
                 e.printStackTrace();
