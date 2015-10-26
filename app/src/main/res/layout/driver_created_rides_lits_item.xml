@@ -10,29 +10,35 @@
     android:layout_marginTop="25dp"
     android:paddingBottom="10dp">
 
-    <TextView
-        android:id="@+id/driver_profile_RouteEnName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:text="RouteName"
-        android:textSize="20sp"
-        android:textStyle="bold"
 
-        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/borders"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="10dp"
+
+        >
+
+
 
     <TextView
 
         android:id="@+id/from_txt_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/driver_profile_RouteEnName"
         android:layout_marginEnd="2dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="2dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:text="From "
         android:textSize="16sp"
         android:textStyle="bold" />
@@ -41,10 +47,9 @@
         android:id="@+id/em_from"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/driver_profile_RouteEnName"
         android:layout_marginEnd="2dp"
         android:layout_marginRight="2dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_toEndOf="@id/from_txt_id"
         android:layout_toRightOf="@+id/from_txt_id"
         android:text="@string/city_from_txt"
@@ -73,7 +78,12 @@
         android:layout_toEndOf="@+id/comma4"
         android:layout_toRightOf="@+id/comma4"
         android:text="@string/Distreict_name_txt"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:singleLine="true"
+        android:lines="1"
+        android:maxLines="1"
+
+        />
 
 
     <TextView
@@ -123,7 +133,11 @@
         android:layout_toEndOf="@+id/comma5"
         android:layout_toRightOf="@+id/comma5"
         android:text="@string/district_name_2"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:singleLine="true"
+        android:lines="1"
+        android:maxLines="1"
+        />
 
     <TextView
         android:id="@+id/StartFromTime"
@@ -200,7 +214,7 @@
             android:layout_centerVertical="true"
             android:text="Details"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
+            android:textSize="14sp"
 
             />
 
@@ -226,7 +240,7 @@
             android:layout_centerVertical="true"
             android:text="Permit"
             android:textColor="#FFFFFF"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
 
 
 
@@ -236,15 +250,36 @@
 
 
 
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/newedit"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/driver_profile_RouteEnName"
-        android:layout_marginRight="10dp"
-        android:layout_marginEnd="10dp"
+    <!--<ImageView-->
+        <!--android:layout_width="30dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:src="@drawable/newedit"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_below="@+id/driver_profile_RouteEnName"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--android:layout_marginEnd="10dp"-->
+        <!--/>-->
+
+
+</RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/driver_profile_RouteEnName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:text="RouteName"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:background="@drawable/testborder1"
+        android:gravity="center_horizontal|center"
+        android:paddingEnd="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingStart="20dp"
         />
 
 

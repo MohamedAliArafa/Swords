@@ -109,31 +109,31 @@
         android:src="@drawable/rate" />
 
 
-    <ImageView
-        android:id="@+id/driver_add_pic"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/im5"
-        android:layout_alignStart="@+id/im5"
-        android:layout_alignLeft="@+id/im5"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/add" />
+    <!--<ImageView-->
+        <!--android:id="@+id/driver_add_pic"-->
+        <!--android:layout_width="40dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_below="@+id/im5"-->
+        <!--android:layout_alignStart="@+id/im5"-->
+        <!--android:layout_alignLeft="@+id/im5"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:src="@drawable/add" />-->
 
-    <ImageView
-        android:id="@+id/driver_review"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignStart="@+id/im1"
-        android:layout_alignLeft="@+id/im1"
-        android:layout_below="@+id/im1"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/chat" />
+    <!--<ImageView-->
+        <!--android:id="@+id/driver_review"-->
+        <!--android:layout_width="40dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_alignStart="@+id/im1"-->
+        <!--android:layout_alignLeft="@+id/im1"-->
+        <!--android:layout_below="@+id/im1"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:src="@drawable/chat" />-->
 
 
     <ImageView
 
         android:id="@+id/im1"
-        android:layout_width="40dp"
+        android:layout_width="50dp"
         android:layout_height="40dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
@@ -149,13 +149,13 @@
 
     <ImageView
         android:id="@+id/im5"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_toLeftOf="@+id/im1"
         android:layout_toStartOf="@+id/im1"
         android:layout_alignBottom="@+id/im1"
         android:src="@drawable/call"
-
+        android:paddingTop="10dp"
 
         />
 

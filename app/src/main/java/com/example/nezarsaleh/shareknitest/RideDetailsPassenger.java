@@ -196,7 +196,7 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                     EndToTime_.setText(str_EndToTime_);
                     Nat_txt = (json.getString("NationalityEnName"));
                     if (Nat_txt.equals("null")) {
-                        Nat_txt = "Not Specified";
+                        Nat_txt = "Not Set";
                         NationalityEnName.setText(Nat_txt);
                     } else {
                         NationalityEnName.setText(Nat_txt);
@@ -205,7 +205,7 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
 
                     Str_AgeRange=json.getString("AgeRange");
                     if (Str_AgeRange.equals("null")){
-                        Str_AgeRange="Not Specified";
+                        Str_AgeRange="Not Set";
                         AgeRange.setText(Str_AgeRange);
 
 
@@ -229,10 +229,10 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                             PreferredGender.setText(Gender_ste);
                             break;
                         case "null":
-                            Gender_ste = "Not Specified";
+                            Gender_ste = "Not Set";
                             PreferredGender.setText(Gender_ste);
                         default:
-                            Gender_ste = "Not Specified";
+                            Gender_ste = "Not Set";
                             PreferredGender.setText(Gender_ste);
                             break;
                     }
@@ -400,7 +400,7 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
 
                     str_StartFromTime = json.getString("StartFromTime");
                     if (str_StartFromTime.equals("null")){
-                        str_StartFromTime="Not Specified";
+                        str_StartFromTime="Not Set";
                         StartFromTime.setText(str_StartFromTime);
 
                     }else{
@@ -414,7 +414,7 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
 
                     str_EndToTime_ = json.getString("EndToTime_");
                     if (str_EndToTime_.equals("null")){
-                        str_EndToTime_="Not Specified";
+                        str_EndToTime_="Not Set";
                         EndToTime_.setText(str_EndToTime_);
 
                     }else {
@@ -428,7 +428,7 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
 
                     Nat_txt = (json.getString("NationalityEnName"));
                     if (Nat_txt.equals("null")) {
-                        Nat_txt = "Not Specified";
+                        Nat_txt = "Not Set";
                         NationalityEnName.setText(Nat_txt);
                     } else {
                         NationalityEnName.setText(Nat_txt);
@@ -438,7 +438,7 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                     str_PrefLanguageEnName=json.getString("PrefLanguageEnName");
 
                     if (str_PrefLanguageEnName.equals("null")){
-                        str_PrefLanguageEnName="Not Specified";
+                        str_PrefLanguageEnName="Not Set";
                         PrefLanguageEnName.setText(str_PrefLanguageEnName);
 
 
@@ -452,7 +452,7 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
 
                     Str_AgeRange=json.getString("AgeRange");
                     if (Str_AgeRange.equals("null")){
-                        Str_AgeRange="Not Specified";
+                        Str_AgeRange="Not Set";
                         AgeRange.setText(Str_AgeRange);
 
 
@@ -473,7 +473,7 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                             Gender_ste = "Female";
                             break;
                         default:
-                            Gender_ste = "Not Specified";
+                            Gender_ste = "Not Set";
                             break;
                     }
                     PreferredGender.setText(Gender_ste);
@@ -648,6 +648,7 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                             dialog.setContentView(R.layout.review_dialog);
                             Button btn = (Button) dialog.findViewById(R.id.Review_Btn);
                             Edit_Review_txt = (EditText) dialog.findViewById(R.id.Edit_Review_txt);
+                            Edit_Review_txt.setText("I'd like to join your Ride");
                             dialog.show();
 
                             btn.setOnClickListener(new View.OnClickListener() {
@@ -733,7 +734,6 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
         mMap.getUiSettings().setMapToolbarEnabled(false);
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setZoomGesturesEnabled(true);
-        mMap.setMyLocationEnabled(true);
 
 // Get back the mutable Polyline
         Polyline polyline = mMap.addPolyline(rectOptions);

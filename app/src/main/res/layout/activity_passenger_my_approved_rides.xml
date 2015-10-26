@@ -25,6 +25,7 @@
             android:id="@+id/Passenger_Approved_Rides_Lv"
             android:layout_below="@+id/app_bar"
             android:layout_marginTop="10dp"
+            android:divider="@color/white"
             >
 
 

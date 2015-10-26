@@ -373,10 +373,12 @@
                             android:layout_alignStart="@+id/PrefLanguageEnName"
                             android:layout_toEndOf="@+id/ride_details_Gender_txt"
                             android:layout_toRightOf="@+id/ride_details_Gender_txt"
-                            android:maxLength="5"
+                            android:maxLength="7"
                             android:text="Gender"
                             android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+
+                            />
 
                         <TextView
                             android:layout_width="wrap_content"

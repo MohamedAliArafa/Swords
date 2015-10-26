@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.nezarsaleh.shareknitest.Arafa.Activities.BestDriversBeforeLogin;
 import com.example.nezarsaleh.shareknitest.Arafa.Activities.Profile;
@@ -55,7 +56,7 @@ public class NavigationDrawerFragment extends Fragment {
 
 
     RelativeLayout navy_homePage,navy_TopRides,navy_BestDrivers,navy_SearchOptions,navy_MyProfile,navy_Logout;
-
+  public static   TextView tv_name_home ,nat_home;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -81,6 +82,8 @@ public class NavigationDrawerFragment extends Fragment {
         navy_SearchOptions= (RelativeLayout) layout.findViewById(R.id.navy_SearchOptions);
         navy_MyProfile= (RelativeLayout) layout.findViewById(R.id.navy_MyProfile);
         navy_Logout= (RelativeLayout) layout.findViewById(R.id.navy_Logout);
+        tv_name_home= (TextView) layout.findViewById(R.id.tv_name_home);
+        nat_home= (TextView) layout.findViewById(R.id.nat_home);
 
 
 

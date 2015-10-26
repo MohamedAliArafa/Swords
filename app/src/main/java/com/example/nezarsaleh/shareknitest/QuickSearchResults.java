@@ -39,6 +39,7 @@ public class QuickSearchResults extends AppCompatActivity {
     TextView To_RegionEnName_txt;
     TextView From_RegionEnName_txt;
     SharedPreferences myPrefs;
+    char Gender;
     ListView lvResult;
     private Toolbar toolbar;
     String ID;
@@ -67,7 +68,7 @@ public class QuickSearchResults extends AppCompatActivity {
         From_EmirateEnName = intent.getStringExtra("From_EmirateEnName");
         To_RegionEnName = intent.getStringExtra("To_RegionEnName");
         From_RegionEnName = intent.getStringExtra("From_RegionEnName");
-
+        Gender = intent.getCharExtra("Gender",' ');
 
         From_EmirateEnName_txt = (TextView) findViewById(R.id.quick_search_em_from);
         From_RegionEnName_txt = (TextView) findViewById(R.id.quick_search_reg_from);
@@ -160,10 +161,22 @@ public class QuickSearchResults extends AppCompatActivity {
             if (exists) {
                 if (ID == null) {
                     GetData j = new GetData();
-                    j.QuickSearchForm(0, gender, Time, From_Em_Id
-                            , From_Reg_Id, To_Em_Id, To_Reg_Id, pref_lnag, pref_nat
-                            , Age_Ranged_id, StartDate, saveFind
-                            , lvResult, QuickSearchResults.this);
+                    if (Gender!=' '){
+
+                        j.QuickSearchForm(0, Gender, Time, From_Em_Id
+                                , From_Reg_Id, To_Em_Id, To_Reg_Id, pref_lnag, pref_nat
+                                , Age_Ranged_id, StartDate, saveFind
+                                , lvResult, QuickSearchResults.this);
+
+                    }else {
+
+                        j.QuickSearchForm(0, gender, Time, From_Em_Id
+                                , From_Reg_Id, To_Em_Id, To_Reg_Id, pref_lnag, pref_nat
+                                , Age_Ranged_id, StartDate, saveFind
+                                , lvResult, QuickSearchResults.this);
+
+                    }
+
                 } else {
                     GetData j = new GetData();
                     j.QuickSearchForm(Integer.parseInt(ID), gender, Time, From_Em_Id

@@ -124,6 +124,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
     TextView malefemale_txt, femalemale_txt;
     ImageView malefemale, femalemale;
     String uploadedImage;
+    TextView Terms_And_Cond_txt;
 
 
     private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
@@ -194,7 +195,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
 
         malefemale = (ImageView) findViewById(R.id.malefemale);
         femalemale = (ImageView) findViewById(R.id.femalemale);
-
+        Terms_And_Cond_txt= (TextView) findViewById(R.id.Terms_And_Cond_txt);
 
         txt_lang = (TextView) findViewById(R.id.autocomplete_lang_id);
         txt_country = (AutoCompleteTextView) findViewById(R.id.autocompletecountry_id);
@@ -202,7 +203,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         btn_upload_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final CharSequence[] items = { "Take Photo", "Choose from Library", "Cancel" };
+                final CharSequence[] items = {"Take Photo", "Choose from Library", "Cancel"};
                 android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(RegisterNewTest.this);
                 builder.setTitle("Add Photo!");
                 builder.setItems(items, new DialogInterface.OnClickListener() {
@@ -311,6 +312,16 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
 
         // get nationals
         new nat().execute();
+
+
+
+        Terms_And_Cond_txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent =  new Intent(getBaseContext(),TermsAndCondition.class);
+//                startActivity(intent);
+            }
+        });
 
 
         btn_save.setOnClickListener(new View.OnClickListener() {

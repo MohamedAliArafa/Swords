@@ -1,7 +1,9 @@
 package com.example.nezarsaleh.shareknitest;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -24,6 +26,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -73,6 +77,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
     int y;
     int All_Alerts;
     String Firstname,LastName;
+    Activity c;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +117,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
 
         setContentView(R.layout.home_page_approved);
         initToolbar();
-
+        c=this;
         name = (TextView) findViewById(R.id.tv_name_home);
         nat = (TextView) findViewById(R.id.nat_home);
         Lnag_home = (TextView) findViewById(R.id.lang_Home);
@@ -394,8 +399,10 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 nat_str = (jsonArray.getString("NationalityEnName"));
                 //   name_str=  name_str.substring(0, 1).toUpperCase() + name_str.substring(1);
                 nat_str= nat_str.substring(0, 1).toUpperCase() + nat_str.substring(1);
+                NavigationDrawerFragment.tv_name_home.setText(name_str);
                 name.setText(name_str);
                 nat.setText(nat_str);
+                NavigationDrawerFragment.nat_home.setText(nat_str);
                 //   str.substring(0, 1).toUpperCase() + str.substring(1);
                 VehiclesCount_str="";
                 VehiclesCount_str += "(";
@@ -419,6 +426,29 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                     Home_Relative_Permit.setBackgroundColor(Color.LTGRAY);
                     Home_Realtive_Vehicles.setVisibility(View.INVISIBLE);
                     driver_rides_Created.setVisibility(View.INVISIBLE);
+                }else {
+
+                    Home_Realtive_Vehicles.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            final Dialog dialog = new Dialog(c);
+                            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(R.layout.noroutesdialog);
+                            Button btn = (Button) dialog.findViewById(R.id.noroute_id);
+                            TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
+                            dialog.show();
+                            Text_3.setText("This service is temporary unavailable. Please check again later");
+
+                            btn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialog.dismiss();
+
+                                }
+                            });
+                        }
+                    });
+
                 }
                 if (jsonArray.getString("GenderEn").equals("Female")) {
                     circularImageView.setImageResource(R.drawable.defaultdriverfemale);

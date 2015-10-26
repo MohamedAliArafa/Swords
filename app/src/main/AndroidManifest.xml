@@ -7,7 +7,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-feature android:name="android.hardware.telephony" android:required="false"/>
+
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
 
     <!--
  The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -220,6 +223,9 @@
         <activity
             android:name=".QuickSearchResults"
             android:label="@string/title_activity_quick_search_results" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.nezarsaleh.shareknitest.SearchOptions" />
         </activity>
         <activity
             android:name=".DriverCreateCarPool"
@@ -339,6 +345,15 @@
             android:name=".PickUpActivity"
             android:label="@string/title_activity_pick_up"
             android:theme="@style/AppTheme.Base" >
+        </activity>
+        <activity
+            android:name=".TermsAndCond"
+            android:label="@string/title_activity_terms_and_cond"
+            android:parentActivityName=".RegisterNewTest"
+            android:theme="@style/AppTheme.Base" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.nezarsaleh.shareknitest.RegisterNewTest" />
         </activity>
     </application>
 

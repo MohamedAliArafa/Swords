@@ -1,7 +1,9 @@
 package com.example.nezarsaleh.shareknitest;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
@@ -19,6 +21,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,6 +60,8 @@ public class PassengerMyApprovedRides extends AppCompatActivity {
 
     String days;
     Toolbar toolbar;
+    Activity c;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +75,7 @@ public class PassengerMyApprovedRides extends AppCompatActivity {
         Passenger_ID = Integer.parseInt(ID);
         Log.d("Driverid1", String.valueOf(Passenger_ID));
 
-
+        c=this;
 
         new rideJson().execute();
 
@@ -154,6 +160,31 @@ public class PassengerMyApprovedRides extends AppCompatActivity {
                                     JSONArray jArray = new JSONArray(data);
                                     final BestRouteDataModel[] passenger = new BestRouteDataModel[jArray.length()];
                                     JSONObject json;
+
+
+                                    if (jArray.length()==0){
+                                        Log.d("Error 3 ","Error3");
+
+                                        final Dialog dialog = new Dialog(c);
+                                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                        dialog.setContentView(R.layout.noroutesdialog);
+                                        Button btn = (Button) dialog.findViewById(R.id.noroute_id);
+                                        TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
+                                        dialog.show();
+                                        Text_3.setText("There is no Rides joined");
+
+                                        btn.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                dialog.dismiss();
+                                                c.finish();
+                                            }
+                                        });
+
+                                    }
+
+
+
                                     for (int i = 0; i < jArray.length(); i++) {
                                         try {
                                             BestRouteDataModel item = new BestRouteDataModel(Parcel.obtain());
@@ -221,7 +252,7 @@ public class PassengerMyApprovedRides extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("My Approved Rides");
+        textView.setText("Joined Rides");
 //        toolbar.setElevation(10);
 
         setSupportActionBar(toolbar);

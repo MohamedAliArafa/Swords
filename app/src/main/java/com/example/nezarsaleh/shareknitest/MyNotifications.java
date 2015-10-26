@@ -109,7 +109,7 @@ public class MyNotifications extends Service {
                 Notification.Builder builder = new Notification.Builder(this);
                 builder.setContentTitle("Route :" + j.getString("RouteName"));
                 builder.setContentText(j.getString("DriverName") + " Accepted Your Request ");
-                builder.setSmallIcon(R.drawable.sharekni_logo);
+                builder.setSmallIcon(R.drawable.notificationlogo);
                 builder.setContentIntent(pendingIntent);
                 Notification notification = builder.build();
                 NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);

@@ -43,7 +43,7 @@ public class DriverRequestDetails extends AppCompatActivity {
     String RouteName, NationalityEnName, AccountPhoto, PassengerMobile, Remarks, RequestDate;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     int RequestId;
-    String URL = "http://www.sharekni-web.sdg.ae/uploads/personalphoto/";
+    String URL =GetData.DOMAIN +"/uploads/personalphoto/";
     TextView RouteName_txt, NationalityEnName_txt, AccountPhoto_txt, PassengerMobile_txt, Remarks_txt, RequestDate_txt, PassengerName_txt;
 
     Button Alert_Decline,Alert_Accept;
@@ -225,7 +225,7 @@ public class DriverRequestDetails extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Most Rides");
+        textView.setText("Notification Details");
         //   toolbar.setElevation(10);
 
 

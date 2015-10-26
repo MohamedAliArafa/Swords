@@ -228,7 +228,7 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
                         StartFromTime.setText(str_StartFromTime);
                         EndToTime_.setText(str_EndToTime_);
                         if (json.getString("NationalityEnName").equals("null")) {
-                            NationalityEnName.setText("Not Specified");
+                            NationalityEnName.setText("Not Set");
                         } else {
                             NationalityEnName.setText(json.getString("NationalityEnName"));
                         }
@@ -457,7 +457,6 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
         mMap.getUiSettings().setMapToolbarEnabled(false);
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setZoomGesturesEnabled(true);
-        mMap.setMyLocationEnabled(true);
 
         // Instantiates a new Polyline object and adds points to define a rectangle
         PolylineOptions rectOptions = new PolylineOptions()

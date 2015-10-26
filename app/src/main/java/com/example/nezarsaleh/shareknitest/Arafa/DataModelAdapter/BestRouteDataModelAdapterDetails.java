@@ -76,8 +76,8 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
             vh.SDG_RouteDays = (TextView) v.findViewById(R.id.search_results_days);
             vh.Phone_Message = (ImageView) v.findViewById(R.id.im1);
             vh.Phone_Call = (ImageView) v.findViewById(R.id.im5);
-            vh.Route_Join = (ImageView) v.findViewById(R.id.driver_add_pic);
-            vh.Route_Review = (ImageView) v.findViewById(R.id.driver_review);
+           // vh.Route_Join = (ImageView) v.findViewById(R.id.driver_add_pic);
+           // vh.Route_Review = (ImageView) v.findViewById(R.id.driver_review);
             vh.Photo = (CircularNetworkImageView) v.findViewById(R.id.search_list_photo);
             v.setTag(vh);
         }else
@@ -110,6 +110,7 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
             }
         });
 
+        /*
         vh.Route_Join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,7 +135,9 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
             }
         });
 
+*/
 
+        /*
         vh.Route_Review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -170,6 +173,8 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
             }
         });
 
+
+        */
 
         return v;
     }

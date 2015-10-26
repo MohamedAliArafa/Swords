@@ -48,7 +48,7 @@ import java.util.TreeMap;
 
 public class Advanced_Search extends AppCompatActivity implements View.OnClickListener {
 
-
+    char i = 'M';
     static final int DILOG_ID = 0;
     static final int TIME_DIALOG_ID = 999;
     int Single_Periodic_ID;
@@ -220,6 +220,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                 FemaleMaleTxt2.setTextColor(Color.RED);
                 Periodic_SingleRide.setVisibility(View.VISIBLE);
                 singleRide_Periodic.setVisibility(View.INVISIBLE);
+
             }
         });
 
@@ -231,6 +232,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                 FemaleMaleTxt2.setTextColor(Color.GRAY);
                 Periodic_SingleRide.setVisibility(View.INVISIBLE);
                 singleRide_Periodic.setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -242,6 +244,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                 Advanced_femalemale2.setVisibility(View.VISIBLE);
                 maleFemaleTxt.setTextColor(Color.GRAY);
                 FemaleMaleTxt.setTextColor(Color.RED);
+                i = 'F';
 
             }
         });
@@ -254,6 +257,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                 Advanced_malefemale1.setVisibility(View.VISIBLE);
                 maleFemaleTxt.setTextColor(Color.RED);
                 FemaleMaleTxt.setTextColor(Color.GRAY);
+                i = 'M';
 
             }
         });
@@ -265,7 +269,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                 FemaleMaleTxt.setTextColor(Color.RED);
                 Advanced_malefemale1.setVisibility(View.INVISIBLE);
                 Advanced_femalemale2.setVisibility(View.VISIBLE);
-
+                i = 'F';
 
             }
         });
@@ -278,6 +282,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                 FemaleMaleTxt.setTextColor(Color.GRAY);
                 Advanced_malefemale1.setVisibility(View.VISIBLE);
                 Advanced_femalemale2.setVisibility(View.INVISIBLE);
+                i = 'M';
             }
         });
 
@@ -303,6 +308,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                 intent1.putExtra("From_RegionEnName", From_RegionEnName);
                 intent1.putExtra("To_EmirateEnName", To_EmirateEnName);
                 intent1.putExtra("To_RegionEnName", To_RegionEnName);
+                intent1.putExtra("Gender",i);
                 startActivity(intent1);
             }
         });

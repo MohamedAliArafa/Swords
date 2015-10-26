@@ -1,9 +1,12 @@
 package com.example.nezarsaleh.shareknitest;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,7 +22,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +35,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.nezarsaleh.shareknitest.Arafa.Activities.Route;
+import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.VolleySingleton;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestRouteDataModel;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModelAdapter.ProfileRideAdapter;
@@ -44,8 +50,8 @@ import java.net.SocketAddress;
 
 public class DriverCreatedRides extends AppCompatActivity {
 
-    private static final String DOMAIN = "http://sharekni.sdgstaff.com";
-    String url = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetDriverDetailsByAccountId?AccountId=";
+
+    String url = GetData.DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetDriverDetailsByAccountId?AccountId=";
 
     String days;
 
@@ -56,6 +62,7 @@ public class DriverCreatedRides extends AppCompatActivity {
 
     SharedPreferences myPrefs;
 
+    Activity c;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +78,7 @@ public class DriverCreatedRides extends AppCompatActivity {
 
         new rideJson().execute();
 
+        c=this;
     }
 
 
@@ -147,6 +155,28 @@ public class DriverCreatedRides extends AppCompatActivity {
                                     JSONArray jArray = new JSONArray(data);
                                     final BestRouteDataModel[] driver = new BestRouteDataModel[jArray.length()];
                                     JSONObject json;
+                                    if (jArray.length()==0){
+                                        Log.d("Error 3 ","Error3");
+
+                                        final Dialog dialog = new Dialog(c);
+                                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                        dialog.setContentView(R.layout.noroutesdialog);
+                                        Button btn = (Button) dialog.findViewById(R.id.noroute_id);
+                                        TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
+                                        dialog.show();
+                                        Text_3.setText("There is no Rides Created yet");
+
+                                        btn.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                dialog.dismiss();
+                                                c.finish();
+                                            }
+                                        });
+
+                                    }
+
+
                                     for (int i = 0; i < jArray.length(); i++) {
                                         try {
                                             BestRouteDataModel item = new BestRouteDataModel(Parcel.obtain());
@@ -212,10 +242,12 @@ public class DriverCreatedRides extends AppCompatActivity {
                                             });
                                         } catch (JSONException e) {
                                             e.printStackTrace();
+                                           Log.d("Error 1 ",e.toString());
                                         }
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
+                                    Log.d("Error 2 ", e.toString());
                                 }
 
                             }

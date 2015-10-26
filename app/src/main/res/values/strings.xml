@@ -17,7 +17,7 @@
         <item>Tab 3</item>
     </string-array>
 
-
+<string name="terms_intro">This Agreement is made between Roads and Transport Authority (RTA) and the user of its website, be it signed up or otherwise. Once agreed to the terms of use, the user may browse the website and use it according to these terms and condition. This Introduction is an integral part of this Agreement. The Terms are:</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -86,6 +86,7 @@
     <string name="Reg_Nat">Nationality</string>
     <string name="Reg_PrefLang">Select Preferred Language</string>
     <string name="title_activity_pick_up">PickUpActivity</string>
+    <string name="title_activity_terms_and_cond">TermsAndCond</string>
 
 
 </resources>
