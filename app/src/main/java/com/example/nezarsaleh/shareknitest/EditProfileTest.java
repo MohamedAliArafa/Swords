@@ -210,7 +210,7 @@ public class EditProfileTest extends AppCompatActivity {
 
             Nationality_ID = j.getInt("NationalityId");
 
-            txt_lang.setText("PrefferedLanguage");
+            txt_lang.setText(j.getString("PrefferedLanguageEnName"));
             txt_lang.setTextColor(getResources().getColor(R.color.primaryColor));
 
             Language_ID = j.getInt("PrefferedLanguage");
