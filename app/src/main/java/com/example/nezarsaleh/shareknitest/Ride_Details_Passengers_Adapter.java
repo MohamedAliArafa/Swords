@@ -7,9 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
+
+import org.json.JSONException;
 
 import java.util.List;
 
@@ -57,13 +62,25 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
 
         TextView AccountName = (TextView) convertView.findViewById(R.id.AccountName);
         TextView AccountNationalityEn = (TextView) convertView.findViewById(R.id.AccountNationalityEn);
+        Button Driver_Remove_passenger = (Button) convertView.findViewById(R.id.Driver_Remove_Passenger);
 
-
-         Ride_Details_Passengers_DataModel m = PassengersItems.get(position);
+        final Ride_Details_Passengers_DataModel m = PassengersItems.get(position);
 
         AccountName.setText(m.getAccountName());
         AccountNationalityEn.setText(m.getAccountNationalityEn());
 
+        Driver_Remove_passenger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GetData gd = new GetData();
+                try {
+                    String response = gd.Driver_Remove_Passenger(m.getPassengerId());
+                    Toast.makeText(activity, response, Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         return convertView;
 

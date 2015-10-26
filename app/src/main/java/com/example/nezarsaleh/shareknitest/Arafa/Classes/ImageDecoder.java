@@ -19,12 +19,12 @@ import com.android.volley.toolbox.StringRequest;
 public class ImageDecoder {
 
     public Bitmap stringRequest(String url, final ImageView im, final Context context) {
-        String url1 = GetData.DOMAIN +"/_mobfiles/CLS_MobAccount.asmx/GetPhotoPath?s_FileName=";
+        String url1 = GetData.DOMAIN +"GetPhotoPath?s_FileName=";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url1 + url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        response = response.replaceAll("<base64Binary xmlns=\"http://MobAccount.org/\">", "");
+                        response = response.replaceAll("<base64Binary xmlns=\"http://Sharekni-MobAndroid-Data.org/\">", "");
                         response = response.replaceAll("</base64Binary>", "");
                         // Display the first 500 characters of the response string.
                         try {

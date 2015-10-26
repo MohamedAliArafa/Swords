@@ -13,6 +13,16 @@ public class Ride_Details_Passengers_DataModel extends ArrayList<Parcelable> imp
 
     String AccountName,AccountNationalityEn;
 
+    public int getPassengerId() {
+        return PassengerId;
+    }
+
+    public void setPassengerId(int passengerId) {
+        PassengerId = passengerId;
+    }
+
+    int PassengerId;
+
 
 
 

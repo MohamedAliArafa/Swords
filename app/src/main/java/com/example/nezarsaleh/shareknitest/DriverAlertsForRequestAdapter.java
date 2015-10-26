@@ -25,7 +25,7 @@ public class DriverAlertsForRequestAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private List<DriverAlertsForRequestDataModel> AlertsItem;
         ImageLoader imageLoader = AppController.getInstance().getImageLoader();
-    String URL = GetData.DOMAIN + "/uploads/personalphoto/";
+    String URL = GetData.PhotoURL;
 
 
     public DriverAlertsForRequestAdapter(Activity activity, List<DriverAlertsForRequestDataModel> driverItems) {

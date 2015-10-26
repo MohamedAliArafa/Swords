@@ -64,45 +64,86 @@ public class GetData {
 
     final JSONArray[] myJsonArray = new JSONArray[1];
 
-    public static final String DOMAIN = "http://sharekni.sdgstaff.com";
+//    public static final String DOMAIN = "http://sharekni.sdgstaff.com";
+    public static final String DOMAIN = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx/";
+    public static final String NonOpDomain = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx";
+    public static final String PhotoURL = "http://sharekni-web.sdg.ae/uploads/personalphoto/";
+
+//    String data;
+//    String loginFormUrl                 = DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/CheckLogin?";
+//    String getDriverById                = DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/Get?id=";
+//    String ChangePasswordUrl            = DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/ChangePassword?";
+//    String Driver_GetReview             = DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/Driver_GetReviewList?";
+//    String EditProfileUrl               = DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/EditProfile?";
+//    String ForgetPasswordUrl            = DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/ForgetPassword?";
+//    String getImage                     = DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/GetPhotoPath?s_FileName=";
+//
+//    String getBestDriverUrl             = DOMAIN + "/_mobfiles/CLS_MobDriver.asmx/GetBestDrivers";
+//    String DriverEditCarPoolUrl         = DOMAIN + "/_mobfiles/CLS_MobDriver.asmx/Driver_EditCarpool?";
+//    String DriverCreateCarPoolUrl       = DOMAIN + "/_mobfiles/CLS_MobDriver.asmx/Driver_CreateCarpool?";
+//    String QuickSearchUrl               = DOMAIN + "/_mobfiles/CLS_MobDriver.asmx/Passenger_FindRide?";
+//
+//    String getBestRouteUrl              = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetMostDesiredRides";
+//    String getDriverRideUrl             = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetDriverDetailsByAccountId?AccountId=";
+//    String getRouteByRouteId            = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetRouteByRouteId?RouteId=";
+//    String Passenger_SendAlert          = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Passenger_SendAlert?";
+//    String GetPassengersByRouteIDUrl    = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetPassengersByRouteId?id=";
+//    String Passenger_Review_Driver      = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Passenger_ReviewDriver?";
+//    String Driver_Remove_Passenger      = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetPassengersByRouteId?";
+//    String Driver_RemoveReview          = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Driver_RemoveReview?";
+//    String DriverAlertsForRequestUrl    = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Driver_AlertsForRequest?d_AccountId=";
+//    String DriverAcceptPassengerUrl     = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Driver_AcceptRequest?RequestId=";
+//    String Driver_DeleteRouteUrl        = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Route_Delete?RouteId=";
+//    String Passenger_Rqs_From_Driver    = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Passenger_GetAcceptedRequestsFromDriver?accountId=";
+//
+//    String Driver_RemovePassenger       = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Driver_RemovePassenger?ID=";
+//
+//    String Regions_By_Em_Id             = DOMAIN + "/_mobfiles/CLS_MobMasterData.asmx/GetRegionsByEmirateId?id=";
+//    String Emirates_By_ID               = DOMAIN + "/_mobfiles/CLS_MobMasterData.asmx/GetEmirates";
+//    String getNationalitiesUrl          = DOMAIN + "/_mobfiles/CLS_MobMasterData.asmx/GetNationalities?id=0";
+//    String getPrefLanguageUrl           = DOMAIN + "/_mobfiles/CLS_MobMasterData.asmx/GetPrefferedLanguages";
+//    String GetAgeRanges                 = DOMAIN + "/_mobfiles/CLS_MobMasterData.asmx/GetAgeRanges";
+//
+//    String GetVehiclesUrl               = DOMAIN + "/_mobfiles/CLS_MobVehicle.asmx/GetByDriverId?id=20027";
+//
+//    String GetMapLookUpUrl              = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetFromOnlyMostDesiredRides";
+
 
     String data;
-    String loginFormUrl                 = DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/CheckLogin?";
-    String getDriverById                = DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/Get?id=";
-    String ChangePasswordUrl            = DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/ChangePassword?";
-    String Driver_GetReview             = DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/Driver_GetReviewList?";
-    String EditProfileUrl               = DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/EditProfile?";
-    String ForgetPasswordUrl            = DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/ForgetPassword?";
-    String getImage                     = DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/GetPhotoPath?s_FileName=";
+    String loginFormUrl                 = DOMAIN + "CheckLogin?";
+    String getDriverById                = DOMAIN + "Get?id=";
+    String ChangePasswordUrl            = DOMAIN + "ChangePassword?";
+    String Driver_GetReview             = DOMAIN + "Driver_GetReviewList?";
+    String EditProfileUrl               = DOMAIN + "EditProfile?";
+    String ForgetPasswordUrl            = DOMAIN + "ForgetPassword?";
+    String getImage                     = DOMAIN + "GetPhotoPath?s_FileName=";
 
-    String getBestDriverUrl             = DOMAIN + "/_mobfiles/CLS_MobDriver.asmx/GetBestDrivers";
-    String DriverEditCarPoolUrl         = DOMAIN + "/_mobfiles/CLS_MobDriver.asmx/Driver_EditCarpool?";
-    String DriverCreateCarPoolUrl       = DOMAIN + "/_mobfiles/CLS_MobDriver.asmx/Driver_CreateCarpool?";
-    String QuickSearchUrl               = DOMAIN + "/_mobfiles/CLS_MobDriver.asmx/Passenger_FindRide?";
+    String getBestDriverUrl             = DOMAIN + "GetBestDrivers";
+    String DriverEditCarPoolUrl         = DOMAIN + "Driver_EditCarpool?";
+    String DriverCreateCarPoolUrl       = DOMAIN + "Driver_CreateCarpool?";
+    String QuickSearchUrl               = DOMAIN + "Passenger_FindRide?";
 
-    String getBestRouteUrl              = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetMostDesiredRides";
-    String getDriverRideUrl             = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetDriverDetailsByAccountId?AccountId=";
-    String getRouteByRouteId            = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetRouteByRouteId?RouteId=";
-    String Passenger_SendAlert          = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Passenger_SendAlert?";
-    String GetPassengersByRouteIDUrl    = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetPassengersByRouteId?id=";
-    String Passenger_Review_Driver      = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Passenger_ReviewDriver?";
-    String Driver_RemoveReview          = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Driver_RemoveReview?";
-    String DriverAlertsForRequestUrl    = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Driver_AlertsForRequest?d_AccountId=";
-    String DriverAcceptPassengerUrl     = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Driver_AcceptRequest?RequestId=";
-    String Driver_DeleteRouteUrl        = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Route_Delete?RouteId=";
-    String Passenger_Rqs_From_Driver    = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Passenger_GetAcceptedRequestsFromDriver?accountId=";
+    String getBestRouteUrl              = DOMAIN + "GetMostDesiredRides";
+    String getDriverRideUrl             = DOMAIN + "GetDriverDetailsByAccountId?AccountId=";
+    String getRouteByRouteId            = DOMAIN + "GetRouteByRouteId?RouteId=";
+    String Passenger_SendAlert          = DOMAIN + "Passenger_SendAlert?";
+    String GetPassengersByRouteIDUrl    = DOMAIN + "GetPassengersByRouteId?id=";
+    String Passenger_Review_Driver      = DOMAIN + "Passenger_ReviewDriver?";
+    String Driver_RemoveReview          = DOMAIN + "Driver_RemoveReview?";
+    String DriverAlertsForRequestUrl    = DOMAIN + "Driver_AlertsForRequest?d_AccountId=";
+    String DriverAcceptPassengerUrl     = DOMAIN + "Driver_AcceptRequest?RequestId=";
+    String Driver_DeleteRouteUrl        = DOMAIN + "Route_Delete?RouteId=";
+    String Passenger_Rqs_From_Driver    = DOMAIN + "Passenger_GetAcceptedRequestsFromDriver?accountId=";
+    String Driver_RemovePassenger       = DOMAIN + "Driver_RemovePassenger?ID=";
+    String Regions_By_Em_Id             = DOMAIN + "GetRegionsByEmirateId?id=";
+    String Emirates_By_ID               = DOMAIN + "GetEmirates";
+    String getNationalitiesUrl          = DOMAIN + "GetNationalities?id=0";
+    String getPrefLanguageUrl           = DOMAIN + "GetPrefferedLanguages";
+    String GetAgeRanges                 = DOMAIN + "GetAgeRanges";
 
-    String Driver_RemovePassenger       = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Driver_RemovePassenger?ID=";
+    String GetVehiclesUrl               = DOMAIN + "GetByDriverId?id=20027";
 
-    String Regions_By_Em_Id             = DOMAIN + "/_mobfiles/CLS_MobMasterData.asmx/GetRegionsByEmirateId?id=";
-    String Emirates_By_ID               = DOMAIN + "/_mobfiles/CLS_MobMasterData.asmx/GetEmirates";
-    String getNationalitiesUrl          = DOMAIN + "/_mobfiles/CLS_MobMasterData.asmx/GetNationalities?id=0";
-    String getPrefLanguageUrl           = DOMAIN + "/_mobfiles/CLS_MobMasterData.asmx/GetPrefferedLanguages";
-    String GetAgeRanges                 = DOMAIN + "/_mobfiles/CLS_MobMasterData.asmx/GetAgeRanges";
-
-    String GetVehiclesUrl               = DOMAIN + "/_mobfiles/CLS_MobVehicle.asmx/GetByDriverId?id=20027";
-
-    String GetMapLookUpUrl              = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetFromOnlyMostDesiredRides";
+    String GetMapLookUpUrl              = DOMAIN + "GetFromOnlyMostDesiredRides";
 
 
     public void QuickSearchForm(int myId, char gender, String time
@@ -258,7 +299,7 @@ public class GetData {
     }
 
     public int GetDesiredCount(int FromEmId, int FromRegId, int ToEmId, int ToRegId) throws JSONException {
-        String url = DOMAIN +  "/_mobfiles/CLS_MobRoute.asmx/GetMostDesiredRideDetails?AccountID=" + 0 + "&FromEmirateID=" + FromEmId + "&FromRegionID=" + FromRegId + "&ToEmirateID=" + ToEmId + "&ToRegionID=" + ToRegId;
+        String url = DOMAIN +  "GetMostDesiredRideDetails?AccountID=" + 0 + "&FromEmirateID=" + FromEmId + "&FromRegionID=" + FromRegId + "&ToEmirateID=" + ToEmId + "&ToRegionID=" + ToRegId;
         HandleXML obj = new HandleXML(url);
         obj.fetchXML();
         while (obj.parsingComplete) ;
@@ -337,9 +378,17 @@ public class GetData {
 
 
     public String Passenger_Review_Driver(int Driver_ID, int Passenger_ID, int Route_ID, String Remarks) throws JSONException {
-
         String Url = Passenger_Review_Driver + "PassengerId=" + Passenger_ID + "&DriverId="
                 + Driver_ID + "&RouteId=" + Route_ID + "&&ReviewText=" + Remarks;
+        HandleXML obj = new HandleXML(Url);
+        obj.fetchXML();
+        while (obj.parsingComplete) ;
+        return obj.getData();
+
+    }
+
+    public String Driver_Remove_Passenger(int Passenger_ID) throws JSONException {
+        String Url = Driver_RemovePassenger + "id=" + Passenger_ID;
         HandleXML obj = new HandleXML(Url);
         obj.fetchXML();
         while (obj.parsingComplete) ;
@@ -606,7 +655,7 @@ public class GetData {
                     @Override
                     public void onResponse(String response) {
                         response = response.replaceAll("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
-                        response = response.replaceAll("<string xmlns=\"http://tempuri.org/\">", "");
+                        response = response.replaceAll("<string xmlns=\"http://Sharekni-MobAndroid-Data.org/\">", "");
                         response = response.replaceAll("</string>", "");
                         // Display the first 500 characters of the response string.
                         String data = response.substring(40);
@@ -794,7 +843,7 @@ public class GetData {
                     @Override
                     public void onResponse(String response) {
                         response = response.replaceAll("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
-                        response = response.replaceAll("<string xmlns=\"http://tempuri.org/\">", "");
+                        response = response.replaceAll("<string xmlns=\"http://Sharekni-MobAndroid-Data.org/\">", "");
                         response = response.replaceAll("</string>", "");
                         // Display the first 500 characters of the response string.
                         String data = response.substring(40);
@@ -852,7 +901,7 @@ public class GetData {
                     @Override
                     public void onResponse(String response) {
                         response = response.replaceAll("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
-                        response = response.replaceAll("<string xmlns=\"http://tempuri.org/\">", "");
+                        response = response.replaceAll("<string xmlns=\"http://Sharekni-MobAndroid-Data.org/\">", "");
                         response = response.replaceAll("</string>", "");
                         // Display the first 500 characters of the response string.
                         String data = response.substring(40);
@@ -893,7 +942,7 @@ public class GetData {
                     @Override
                     public void onResponse(String response) {
                         response = response.replaceAll("<?xml version=1.0 encoding=utf-8?>", "");
-                        response = response.replaceAll("<string xmlns=\"http://tempuri.org/\">", "");
+                        response = response.replaceAll("<string xmlns=\"http://Sharekni-MobAndroid-Data.org/\">", "");
                         response = response.replaceAll("</string>", "");
                         response = response.replaceAll("\"", "");
                         response = response.substring(36);
@@ -936,7 +985,7 @@ public class GetData {
                     @Override
                     public void onResponse(String response) {
                         response = response.replaceAll("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
-                        response = response.replaceAll("<string xmlns=\"http://tempuri.org/\">", "");
+                        response = response.replaceAll("<string xmlns=\"http://Sharekni-MobAndroid-Data.org/\">", "");
                         response = response.replaceAll("</string>", "");
                         // Display the first 500 characters of the response string.
                         try {
@@ -976,7 +1025,7 @@ public class GetData {
                     @Override
                     public void onResponse(String response) {
                         response = response.replaceAll("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
-                        response = response.replaceAll("<string xmlns=\"http://tempuri.org/\">", "");
+                        response = response.replaceAll("<string xmlns=\"http://Sharekni-MobAndroid-Data.org/\">", "");
                         response = response.replaceAll("</string>", "");
                         // Display the first 500 characters of the response string.
                         try {
@@ -1023,7 +1072,7 @@ public class GetData {
                     @Override
                     public void onResponse(String response) {
                         response = response.replaceAll("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
-                        response = response.replaceAll("<string xmlns=\"http://MobAccount.org/\">", "");
+                        response = response.replaceAll("<string xmlns=\"http://Sharekni-MobAndroid-Data.org/\">", "");
                         response = response.replaceAll("</string>", "");
                         try {
                             String data = response.substring(40);

@@ -43,7 +43,7 @@ public class DriverRequestDetails extends AppCompatActivity {
     String RouteName, NationalityEnName, AccountPhoto, PassengerMobile, Remarks, RequestDate;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     int RequestId;
-    String URL =GetData.DOMAIN +"/uploads/personalphoto/";
+    String URL =GetData.PhotoURL;
     TextView RouteName_txt, NationalityEnName_txt, AccountPhoto_txt, PassengerMobile_txt, Remarks_txt, RequestDate_txt, PassengerName_txt;
 
     Button Alert_Decline,Alert_Accept;

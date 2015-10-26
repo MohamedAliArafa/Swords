@@ -46,12 +46,7 @@ import java.net.SocketAddress;
 
 public class PassengerMyApprovedRides extends AppCompatActivity {
 
-
-    private static final String DOMAIN = "http://sharekni.sdgstaff.com";
-
-    String url =  DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Passenger_MyApprovedRides?AccountId=";
-
-
+    String url =  GetData.DOMAIN + "Passenger_MyApprovedRides?AccountId=";
     ListView Passenger_Approved_Rides_Lv;
     SharedPreferences myPrefs;
     int Passenger_ID;
@@ -151,7 +146,7 @@ public class PassengerMyApprovedRides extends AppCompatActivity {
                             @Override
                             public void onResponse(String response) {
                                 response = response.replaceAll("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
-                                response = response.replaceAll("<string xmlns=\"http://tempuri.org/\">", "");
+                                response = response.replaceAll("<string xmlns=\"http://Sharekni-MobAndroid-Data.org/\">", "");
                                 response = response.replaceAll("</string>", "");
                                 // Display the first 500 characters of the response string.
                                 String data = response.substring(40);

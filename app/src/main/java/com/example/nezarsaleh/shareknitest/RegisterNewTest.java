@@ -77,9 +77,6 @@ import java.util.TreeMap;
 
 public class RegisterNewTest extends AppCompatActivity implements View.OnClickListener {
 
-
-    private static final String DOMAIN = "http://sharekni.sdgstaff.com";
-
     static final int DILOG_ID = 0;
     static RegisterNewTest registerNewTestActivity;
     final Calendar cal = Calendar.getInstance();
@@ -346,8 +343,8 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
 
                         switch (usertype) {
                             case "Passenger":
-                                registerJsonParse.stringRequest(GetData.DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/RegisterPassenger?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + user + "&password=" + pass + "&gender=" + gender + "&BirthDate=" + birthdate + "&NationalityId=" + y + "&PreferredLanguageId=" + x + "&photoName=" + uploadedImage, getBaseContext(), country, "P");
-                                Log.d("Registration :",GetData.DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/RegisterPassenger?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + user + "&password=" + pass + "&gender=" + gender + "&BirthDate=" + birthdate + "&NationalityId=" + y + "&PreferredLanguageId=" + x + "&photoName=" + uploadedImage);
+                                registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterPassenger?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + user + "&password=" + pass + "&gender=" + gender + "&BirthDate=" + birthdate + "&NationalityId=" + y + "&PreferredLanguageId=" + x + "&photoName=" + uploadedImage, getBaseContext(), country, "P");
+                                Log.d("Registration :",GetData.DOMAIN + "RegisterPassenger?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + user + "&password=" + pass + "&gender=" + gender + "&BirthDate=" + birthdate + "&NationalityId=" + y + "&PreferredLanguageId=" + x + "&photoName=" + uploadedImage);
                                 break;
                             case "1":
                                 Toast.makeText(RegisterNewTest.this, "please Choose a user Type", Toast.LENGTH_SHORT).show();
@@ -355,12 +352,12 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                                 break;
                             case "Driver":
 
-                                registerJsonParse.stringRequest(GetData.DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + user + "&password=" + pass + "&gender=" + gender + "&BirthDate=" + birthdate + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x, getBaseContext(), country, "D");
+                                registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + user + "&password=" + pass + "&gender=" + gender + "&BirthDate=" + birthdate + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x, getBaseContext(), country, "D");
 
                                 break;
                             case "Both":
 
-                                registerJsonParse.stringRequest(GetData.DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + user + "&password=" + pass + "&gender=" + gender + "&BirthDate=" + birthdate + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x, getBaseContext(), country, "D");
+                                registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + user + "&password=" + pass + "&gender=" + gender + "&BirthDate=" + birthdate + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x, getBaseContext(), country, "D");
 
                                 break;
                         }
@@ -465,7 +462,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
             URL url;
             HttpURLConnection httpURLConnection = null;
             try {
-                url = new URL(DOMAIN+"/_mobfiles/CLS_MobAccount.asmx");
+                url = new URL(GetData.NonOpDomain);
                 httpURLConnection = (HttpURLConnection) url.openConnection();
                 do {
                     httpURLConnection.setRequestMethod("POST");
@@ -572,7 +569,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         StringBuilder requestData = new StringBuilder();
 
         requestData.append(createSoapHeader());
-        requestData.append("<soap:Body>" + "<UploadImage" + " xmlns=\"http://MobAccount.org/\">" + "<ImageContent>").append(data).append("</ImageContent>\n").append("<imageExtenstion>jpg</imageExtenstion>").append("</UploadImage> </soap:Body> </soap:Envelope>");
+        requestData.append("<soap:Body>" + "<UploadImage" + " xmlns=\"http://Sharekni-MobAndroid-Data.org/\">" + "<ImageContent>").append(data).append("</ImageContent>\n").append("<imageExtenstion>jpg</imageExtenstion>").append("</UploadImage> </soap:Body> </soap:Envelope>");
         Log.d("reqData: ",requestData.toString());
         return requestData.toString().trim().getBytes();
     }

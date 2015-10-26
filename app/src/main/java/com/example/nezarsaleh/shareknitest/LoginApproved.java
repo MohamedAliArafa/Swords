@@ -30,6 +30,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.VolleySingleton;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestDriverDataModel;
 import com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity;
@@ -47,13 +48,11 @@ import java.util.Locale;
 public class LoginApproved extends AppCompatActivity {
     //http://sharekni.sdgstaff.com/
 
-    private static final String DOMAIN = "http://sharekni.sdgstaff.com";
-
     EditText username, password;
     Button loginBtn;
     String user, pass;
     TextView txt_forgetpass, txt_noaccountsignup;
-    String url =  DOMAIN +"/_mobfiles/CLS_MobAccount.asmx/CheckLogin?";
+    String url = GetData.DOMAIN +"CheckLogin?";
     static LoginApproved loginActivity;
     private Toolbar toolbar;
     protected static ProgressDialog pDialog;
@@ -200,7 +199,7 @@ public class LoginApproved extends AppCompatActivity {
                             @Override
                             public void onResponse(String response) {
                                 response = response.replaceAll("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
-                                response = response.replaceAll("<string xmlns=\"http://MobAccount.org/\">", "");
+                                response = response.replaceAll("<string xmlns=\"http://Sharekni-MobAndroid-Data.org/\">", "");
                                 response = response.replaceAll("</string>", "");
                                 // Display the first 500 characters of the response string.
                                 try {

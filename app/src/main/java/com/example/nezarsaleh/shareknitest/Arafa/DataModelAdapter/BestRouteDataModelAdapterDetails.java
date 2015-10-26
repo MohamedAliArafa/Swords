@@ -42,7 +42,7 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
     EditText Edit_Review_txt;
 
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
-    String URL = GetData.DOMAIN + "/uploads/personalphoto/";
+    String URL = GetData.PhotoURL;
 
 
     public BestRouteDataModelAdapterDetails(Context context, int resource, BestRouteDataModelDetails[] objects) {

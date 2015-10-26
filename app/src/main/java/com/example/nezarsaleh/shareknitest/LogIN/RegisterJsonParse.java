@@ -26,7 +26,7 @@ import org.json.JSONObject;
  * Created by nezar on 9/6/2015.
  */
 public class RegisterJsonParse {
-    String url2 = GetData.DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/Get?id=";
+    String url2 = GetData.DOMAIN + "Get?id=";
     final JSONArray[] myJsonArray = new JSONArray[1];
     JSONObject jsonObject = null;
 
@@ -43,7 +43,7 @@ public class RegisterJsonParse {
                     @Override
                     public void onResponse(String response) {
                         //response = response.replaceAll("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
-                        response = response.replaceAll("<string xmlns=\"http://MobAccount.org/\">\"", "");
+                        response = response.replaceAll("<string xmlns=\"http://Sharekni-MobAndroid-Data.org/\">\"", "");
                         response = response.replaceAll("\"</string>", "");
                         // Display the first 500 characters of the response string.
                         String data = response.substring(40);
@@ -95,7 +95,7 @@ public class RegisterJsonParse {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        response = response.replaceAll("<string xmlns=\"http://MobAccount.org/\">", "");
+                        response = response.replaceAll("<string xmlns=\"http://Sharekni-MobAndroid-Data.org/\">", "");
                         response = response.replaceAll("</string>", "");
                         String data = response.substring(40);
                         try {

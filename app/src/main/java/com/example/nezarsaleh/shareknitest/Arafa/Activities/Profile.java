@@ -65,7 +65,7 @@ public class Profile extends AppCompatActivity {
     ImageView profile_msg,profile_call;
     ListView lv_driver;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
-    String URL_Photo = GetData.DOMAIN+ "/uploads/personalphoto/";
+    String URL_Photo = GetData.PhotoURL;
     String days;
     SharedPreferences myPrefs;
     int Passenger_ID;

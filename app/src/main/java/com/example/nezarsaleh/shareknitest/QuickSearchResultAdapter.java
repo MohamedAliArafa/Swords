@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.android.volley.toolbox.ImageLoader;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.AppController;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.CircularNetworkImageView;
+import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class QuickSearchResultAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private List<QuickSearchDataModel> searchItems;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
-    String URL = DOMAIN + "/uploads/personalphoto/";
+    String URL = GetData.PhotoURL;
 
 
     public QuickSearchResultAdapter(Activity activity, List<QuickSearchDataModel> searchItems) {

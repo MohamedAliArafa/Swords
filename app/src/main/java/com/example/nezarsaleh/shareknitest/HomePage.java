@@ -15,6 +15,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -463,6 +464,8 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 if (jsonArray.getString("GenderEn").equals("Female")) {
                     circularImageView.setImageResource(R.drawable.defaultdriverfemale);
                 }
+
+//                circularImageView.setImageURI(Uri.parse(GetData.PhotoURL));
                 ImageDecoder im = new ImageDecoder();
                 im.stringRequest(jsonArray.getString("PhotoPath"), circularImageView, HomePage.this);
                 im.stringRequest(jsonArray.getString("PhotoPath"), NavigationDrawerFragment.circularImageView, HomePage.this);

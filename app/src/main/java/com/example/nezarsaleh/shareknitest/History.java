@@ -29,6 +29,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.nezarsaleh.shareknitest.Arafa.Activities.Route;
+import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.VolleySingleton;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestRouteDataModel;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModelAdapter.ProfileRideAdapter;
@@ -44,11 +45,10 @@ import java.net.SocketAddress;
 public class History extends AppCompatActivity {
 
 
-    private static final String DOMAIN = "http://sharekni.sdgstaff.com";
     Toolbar toolbar;
     int Driver_ID;
     String days;
-    String url =  DOMAIN +  "/_mobfiles/CLS_MobRoute.asmx/Passenger_GetSavedSearch?AccountId=";
+    String url = GetData.DOMAIN +  "Passenger_GetSavedSearch?AccountId=";
 
     ListView user_ride_created;
     int ID;
@@ -115,7 +115,7 @@ public class History extends AppCompatActivity {
                             @Override
                             public void onResponse(String response) {
                                 response = response.replaceAll("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
-                                response = response.replaceAll("<string xmlns=\"http://tempuri.org/\">", "");
+                                response = response.replaceAll("<string xmlns=\"http://Sharekni-MobAndroid-Data.org/\">", "");
                                 response = response.replaceAll("</string>", "");
                                 // Display the first 500 characters of the response string.
                                 String data = response.substring(40);

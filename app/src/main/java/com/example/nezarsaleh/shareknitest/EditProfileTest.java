@@ -138,7 +138,7 @@ public class EditProfileTest extends AppCompatActivity {
     public static byte[] getReqData(String data) {
         StringBuilder requestData = new StringBuilder();
         requestData.append(createSoapHeader());
-        requestData.append("<soap:Body>" + "<UploadImage" + " xmlns=\"http://MobAccount.org/\">" + "<ImageContent>").append(data).append("</ImageContent>\n").append("<imageExtenstion>jpg</imageExtenstion>").append("</UploadImage> </soap:Body> </soap:Envelope>");
+        requestData.append("<soap:Body>" + "<UploadImage" + " xmlns=\"http://Sharekni-MobAndroid-Data.org/\">" + "<ImageContent>").append(data).append("</ImageContent>\n").append("<imageExtenstion>jpg</imageExtenstion>").append("</UploadImage> </soap:Body> </soap:Envelope>");
         Log.d("reqData: ",requestData.toString());
         return requestData.toString().trim().getBytes();
     }
@@ -740,7 +740,7 @@ public class EditProfileTest extends AppCompatActivity {
             URL url;
             HttpURLConnection httpURLConnection = null;
             try {
-                url = new URL(GetData.DOMAIN+"/_mobfiles/CLS_MobAccount.asmx");
+                url = new URL(GetData.NonOpDomain);
                 httpURLConnection = (HttpURLConnection) url.openConnection();
                 do {
                     httpURLConnection.setRequestMethod("POST");

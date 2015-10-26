@@ -31,7 +31,7 @@ import java.util.List;
     private LayoutInflater inflater;
     private List<BestDriverDataModel> driverItems;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
-    String URL = GetData.DOMAIN + "/uploads/personalphoto/";
+    String URL = GetData.PhotoURL;
 
     public BestDriverDataModelAdapter(Activity activity, List<BestDriverDataModel> driverItems) {
         this.activity = activity;

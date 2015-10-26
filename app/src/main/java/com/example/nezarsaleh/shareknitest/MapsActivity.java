@@ -50,8 +50,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     SupportMapFragment mapFragment;
     MapsActivity context;
-    private static final String DOMAIN = "http://sharekni.sdgstaff.com";
-
     int From_Em_Id;
     int From_Reg_Id;
     int To_Em_Id;

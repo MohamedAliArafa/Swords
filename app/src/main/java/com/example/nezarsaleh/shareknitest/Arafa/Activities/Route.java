@@ -382,7 +382,8 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
                     try {
                         JSONObject obj = response2.getJSONObject(y);
                         final Ride_Details_Passengers_DataModel item = new Ride_Details_Passengers_DataModel(Parcel.obtain());
-                        Log.d("test account email", obj.getString("AccountName"));
+                        Log.d("Passenger Name", obj.getString("AccountName"));
+                        item.setPassengerId(obj.getInt("ID"));
                         item.setAccountName(obj.getString("AccountName"));
                         item.setAccountNationalityEn(obj.getString("AccountNationalityEn"));
                         Passengers_arr.add(item);
