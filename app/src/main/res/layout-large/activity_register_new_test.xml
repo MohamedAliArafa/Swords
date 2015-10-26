@@ -508,7 +508,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/textView25"
+                    android:id="@+id/Terms_And_Cond_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textView26"
@@ -522,7 +522,7 @@
                     android:id="@+id/btn_register_id"
                     android:layout_width="160dp"
                     android:layout_height="60dp"
-                    android:layout_below="@+id/textView25"
+                    android:layout_below="@+id/Terms_And_Cond_txt"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
                     android:text="Save"

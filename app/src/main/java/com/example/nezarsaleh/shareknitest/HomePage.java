@@ -115,6 +115,8 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
 
         }
 
+
+
         setContentView(R.layout.home_page_approved);
         initToolbar();
         c=this;
@@ -168,7 +170,13 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         t.start();
 
         new loading().execute();
+
+
+
     }  // on create
+
+
+
 
     private class refresh extends AsyncTask{
 

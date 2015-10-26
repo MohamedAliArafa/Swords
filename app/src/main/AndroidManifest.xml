@@ -60,7 +60,8 @@
             android:name=".TopDriversDir.TopDrivers"
             android:label="@string/title_activity_top_drivers"
             android:parentActivityName=".Sharekni"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Sharekni" />
@@ -313,7 +314,9 @@
         <activity
             android:name=".TestVedio"
             android:label="@string/title_activity_test_vedio"
-            android:theme="@style/AppTheme.Base" >
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            >
         </activity>
         <activity
             android:name=".PassengerMyApprovedRides"

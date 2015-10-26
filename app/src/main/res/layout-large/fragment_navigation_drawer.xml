@@ -2,15 +2,15 @@
 
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#DADADA"
     tools:context="com.example.nezar.materialtest.MainNavigationDrawerFragment.NavigationDrawerFragment">
-
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/container_drawer_image"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:background="@color/primaryColor">
 
 
@@ -18,13 +18,49 @@
             android:id="@+id/navy"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_gravity="center_vertical"
+            android:layout_marginTop="30dp"
             android:layout_marginLeft="90dp"
             android:layout_marginStart="90dp"
-            android:src="@drawable/defaultdriver" />
+            android:src="@drawable/defaultdriver"
+            app:border="true"
+            app:border_color="#EEEEEE"
+            app:border_width="4dp"
+            app:shadow="true"
+            />
+
+        <TextView
+            android:id="@+id/tv_name_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/navy"
+            android:layout_marginLeft="90dp"
+            android:layout_marginStart="90dp"
+            android:layout_marginTop="10dp"
+            android:text=""
+            android:layout_centerHorizontal="true"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            />
 
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/nat_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_name_home"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:text=""
+            android:textSize="19sp"
+            android:textColor="@color/white"
+            android:layout_marginBottom="20dp"
+            />
+
+
+
+
+    </RelativeLayout>
 
 
 

@@ -33,8 +33,11 @@ public class OnboardingActivity extends FragmentActivity {
         onboardingActivity=this;
 
         SharedPreferences myPrefs = this.getSharedPreferences("myPrefs", MODE_PRIVATE);
-        String ID = myPrefs.getString("account_id",null);
+        String ID = myPrefs.getString("account_id", null);
 
+
+        Intent intent =  new Intent(this,TestVedio.class);
+        startActivity(intent);
 
 
 
@@ -95,7 +98,7 @@ public class OnboardingActivity extends FragmentActivity {
             @Override
             public void onClick(View v) {
 
-//                Intent intent =  new Intent(getBaseContext(), TestVedio.class);
+//               Intent intent =  new Intent(getBaseContext(), TestVedio.class);
 //                startActivity(intent);
 
                 Intent intent = new Intent(getBaseContext(), TakeATour.class);
