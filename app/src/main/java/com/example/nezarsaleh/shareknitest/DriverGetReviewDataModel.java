@@ -13,6 +13,27 @@ public class DriverGetReviewDataModel extends ArrayList<Parcelable> implements  
 
     public String Review,AccountName,AccountNationalityEn;
     public int AccountID;
+    public int DriverID;
+
+    public int getReviewID() {
+        return ReviewID;
+    }
+
+    public void setReviewID(int reviewID) {
+        ReviewID = reviewID;
+    }
+
+    public int ReviewID;
+
+    public int getDriverID() {
+        return DriverID;
+    }
+
+    public void setDriverID(int driverID) {
+        DriverID = driverID;
+    }
+
+
 
 
     public DriverGetReviewDataModel(Parcel in) {

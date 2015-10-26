@@ -338,7 +338,8 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                     try {
                         JSONObject obj = response1.getJSONObject(i);
                         final DriverGetReviewDataModel review = new DriverGetReviewDataModel(Parcel.obtain());
-
+                        review.setDriverID(Driver_ID);
+                        review.setAccountID(obj.getInt("AccountId"));
                         review.setAccountName(obj.getString("AccountName"));
                         review.setAccountNationalityEn(obj.getString("AccountNationalityEn"));
                         review.setReview(obj.getString("Review"));
@@ -377,6 +378,7 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                                         Toast.makeText(RideDetailsPassenger.this, "Cannot Review", Toast.LENGTH_SHORT).show();
                                     } else {
                                         Toast.makeText(RideDetailsPassenger.this, "Done", Toast.LENGTH_SHORT).show();
+                                        con.recreate();
                                     }
                                     dialog.dismiss();
                                 } catch (JSONException e) {

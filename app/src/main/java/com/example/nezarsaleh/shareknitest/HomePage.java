@@ -155,7 +155,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
             public void run() {
                 try {
                     while (!isInterrupted()) {
-                        Thread.sleep(10000);
+                        Thread.sleep(5000);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -187,12 +187,13 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
             VehiclesCount_str="";
             VehiclesCount_str += "(";
             try {
-                VehiclesCount_str += (jsonArray.getString("VehiclesCount"));
+                All_Alerts = jsonArray.getInt("DriverMyAlertsCount")+jsonArray.getInt("PassengerMyAlertsCount");
+                VehiclesCount_str += jsonArray.getString("VehiclesCount");
                 VehiclesCount_str += ")";
                 VehiclesCount.setText(VehiclesCount_str);
                 PassengerJoinedRidesCount_str="";
                 PassengerJoinedRidesCount_str += "(";
-                PassengerJoinedRidesCount_str += (jsonArray.getString("PassengerJoinedRidesCount"));
+                PassengerJoinedRidesCount_str += jsonArray.getString("PassengerJoinedRidesCount");
                 PassengerJoinedRidesCount_str += ")";
                 PassengerJoinedRidesCount.setText(PassengerJoinedRidesCount_str);
 
@@ -202,10 +203,11 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 }
                 DriverMyRidesCount_str="";
                 DriverMyRidesCount_str += "(";
-                DriverMyRidesCount_str += (jsonArray.getString("DriverMyRidesCount"));
+                DriverMyRidesCount_str += jsonArray.getString("DriverMyRidesCount");
                 DriverMyRidesCount_str += ")";
                 DriverMyRidesCount.setText(DriverMyRidesCount_str);
-
+                DriverMyRidesCount.setText(DriverMyRidesCount_str);
+                DriverMyAlertsCount.setText( String.valueOf(All_Alerts));
 
 //                if (DRIVER_ALERTS_COUNT>0){
 //

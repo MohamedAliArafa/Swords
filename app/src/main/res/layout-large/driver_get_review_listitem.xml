@@ -68,5 +68,14 @@
 
         />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/Driver_Get_Review_im"
+        android:text="Delete"
+        android:id="@+id/Driver_Delete_Review"
+        />
+
 
 </RelativeLayout>

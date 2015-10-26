@@ -86,6 +86,7 @@ public class GetData {
     String Passenger_SendAlert          = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Passenger_SendAlert?";
     String GetPassengersByRouteIDUrl    = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/GetPassengersByRouteId?id=";
     String Passenger_Review_Driver      = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Passenger_ReviewDriver?";
+    String Driver_RemoveReview          = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Driver_RemoveReview?";
     String DriverAlertsForRequestUrl    = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Driver_AlertsForRequest?d_AccountId=";
     String DriverAcceptPassengerUrl     = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Driver_AcceptRequest?RequestId=";
     String Driver_DeleteRouteUrl        = DOMAIN + "/_mobfiles/CLS_MobRoute.asmx/Route_Delete?RouteId=";
@@ -339,6 +340,15 @@ public class GetData {
 
         String Url = Passenger_Review_Driver + "PassengerId=" + Passenger_ID + "&DriverId="
                 + Driver_ID + "&RouteId=" + Route_ID + "&&ReviewText=" + Remarks;
+        HandleXML obj = new HandleXML(Url);
+        obj.fetchXML();
+        while (obj.parsingComplete) ;
+        return obj.getData();
+
+    }
+
+    public String Driver_Delete_Review(int ReviewId) throws JSONException {
+        String Url = Driver_RemoveReview + "ReviewId=" + ReviewId;
         HandleXML obj = new HandleXML(Url);
         obj.fetchXML();
         while (obj.parsingComplete) ;

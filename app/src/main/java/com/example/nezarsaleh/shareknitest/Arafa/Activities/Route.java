@@ -363,6 +363,9 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
                 try {
                     JSONObject obj = response1.getJSONObject(i);
                     final DriverGetReviewDataModel review = new DriverGetReviewDataModel(Parcel.obtain());
+                    review.setDriverID(Driver_ID);
+                    review.setReviewID(obj.getInt("ReviewId"));
+                    review.setAccountID(obj.getInt("AccountId"));
                     review.setAccountName(obj.getString("AccountName"));
                     review.setAccountNationalityEn(obj.getString("AccountNationalityEn"));
                     review.setReview(obj.getString("Review"));
