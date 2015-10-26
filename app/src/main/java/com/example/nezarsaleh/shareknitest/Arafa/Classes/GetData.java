@@ -882,15 +882,31 @@ public class GetData {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        response = response.replaceAll("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
+                        response = response.replaceAll("<?xml version=1.0 encoding=utf-8?>", "");
                         response = response.replaceAll("<string xmlns=\"http://tempuri.org/\">", "");
                         response = response.replaceAll("</string>", "");
+                        response = response.replaceAll("\"", "");
+                        response = response.substring(36);
                         Log.d("TEst url", url);
                         Log.d("Search  Array Output : ", response);
-                        Toast.makeText(context, "Ride Updated!!", Toast.LENGTH_SHORT).show();
-                        Intent in = new Intent(context, DriverCreatedRides.class);
-                        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        context.startActivity(in);
+                        switch (response) {
+                            case "-1":
+                                Toast.makeText(context, "Route Name Exists!!", Toast.LENGTH_SHORT).show();
+                                break;
+                            case "-2":
+                                Toast.makeText(context, "You Have Reached Max Rides Allowable!!", Toast.LENGTH_SHORT).show();
+                                Intent in = new Intent(context, HomePage.class);
+                                in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                context.startActivity(in);
+                                break;
+                            default:
+                                Toast.makeText(context, "Ride Created!!", Toast.LENGTH_SHORT).show();
+                                Intent in2 = new Intent(context, DriverCreatedRides.class);
+                                in2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                context.startActivity(in2);
+                                break;
+                        }
+
                     }
                 }, new Response.ErrorListener() {
             @Override
