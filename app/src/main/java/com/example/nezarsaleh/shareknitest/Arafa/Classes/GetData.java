@@ -1066,7 +1066,7 @@ public class GetData {
         VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
     }
 
-    private void EditProfileFormStringRequest(String url, final Context context) {
+    private void EditProfileFormStringRequest(final String url, final Context context) {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -1074,6 +1074,7 @@ public class GetData {
                         response = response.replaceAll("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
                         response = response.replaceAll("<string xmlns=\"http://Sharekni-MobAndroid-Data.org/\">", "");
                         response = response.replaceAll("</string>", "");
+                        Log.d("Edit Profile",url);
                         try {
                             String data = response.substring(40);
                             Log.d("First Array Json : ", data);
