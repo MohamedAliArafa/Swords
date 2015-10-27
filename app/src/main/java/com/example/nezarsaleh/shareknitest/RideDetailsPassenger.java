@@ -575,8 +575,6 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                                 Review_text_address.setText("Your remarks");
                                 dialog.show();
 
-
-
                             btn.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
@@ -587,18 +585,21 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                                         } catch (JSONException e) {
                                             e.printStackTrace();
                                         }
-                                        if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
-                                            Toast.makeText(RideDetailsPassenger.this, "Cannot Join This Route", Toast.LENGTH_SHORT).show();
-                                            dialog.dismiss();
-                                        } else {
-                                            Toast.makeText(RideDetailsPassenger.this, "successfully  Joined", Toast.LENGTH_SHORT).show();
-                                            dialog.dismiss();
+                                        assert response != null;
+                                        switch (response) {
+                                            case "\"-1\"":
+                                                Toast.makeText(RideDetailsPassenger.this, "You already sent request", Toast.LENGTH_SHORT).show();
+                                                dialog.dismiss();
+                                                break;
+                                            case "\"0\"":
+                                                Toast.makeText(RideDetailsPassenger.this, "Network Error", Toast.LENGTH_SHORT).show();
+                                                dialog.dismiss();
+                                                break;
+                                            default:
+                                                Toast.makeText(RideDetailsPassenger.this, "Request had been sent Successfully , Wait for driver Approval.", Toast.LENGTH_LONG).show();
+                                                dialog.dismiss();
+                                                break;
                                         }
-
-
-
-
-
                                     }
                                 });
 
