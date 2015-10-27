@@ -155,7 +155,7 @@ public class BestRideBeforeLogin extends AppCompatActivity {
                 assert response != null;
                 driver = new BestRouteDataModel[response.length()];
 
-                for (int i = 0; i < response.length(); i++) {
+                for (int i = 0; i < 11; i++) {
                     try {
                         JSONObject json = response.getJSONObject(i);
                         final BestRouteDataModel item = new BestRouteDataModel(Parcel.obtain());
@@ -167,7 +167,7 @@ public class BestRideBeforeLogin extends AppCompatActivity {
                         item.setFromRegid(json.getInt("FromRegionId"));
                         item.setToEmId(json.getInt("ToEmirateId"));
                         item.setToRegId(json.getInt("ToRegionId"));
-                        item.setRouteName(json.getString("RoutesCount"));
+                        item.setRouteName(json.getString("NoOfRoutes"));
 //                    arr.add(item);
                         driver[i] = item;
                     } catch (JSONException e) {

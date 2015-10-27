@@ -123,7 +123,7 @@ public class GetData {
     String DriverCreateCarPoolUrl       = DOMAIN + "Driver_CreateCarpool?";
     String QuickSearchUrl               = DOMAIN + "Passenger_FindRide?";
 
-    String getBestRouteUrl              = DOMAIN + "GetMostDesiredRides";
+    String getBestRouteUrl              = DOMAIN + "GetAllMostDesiredRides";
     String getDriverRideUrl             = DOMAIN + "GetDriverDetailsByAccountId?AccountId=";
     String getRouteByRouteId            = DOMAIN + "GetRouteByRouteId?RouteId=";
     String Passenger_SendAlert          = DOMAIN + "Passenger_SendAlert?";

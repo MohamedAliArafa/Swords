@@ -58,6 +58,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
 
     public static String ImagePhotoPath;
     public Thread t;
+    static HomePage HomaPageActivity;
     String ID;
     String AccountType;
     CircularImageView circularImageView;
@@ -80,10 +81,16 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
     String Firstname,LastName;
     Activity c;
 
+
+    public static HomePage getInstance() {
+        return HomaPageActivity;
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
+        HomaPageActivity = this;
         super.onCreate(savedInstanceState);
         try {
             if (LoginApproved.getInstance() != null) {

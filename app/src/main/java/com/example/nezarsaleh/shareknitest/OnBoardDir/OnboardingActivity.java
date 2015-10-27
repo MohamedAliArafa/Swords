@@ -35,23 +35,28 @@ public class OnboardingActivity extends FragmentActivity {
         SharedPreferences myPrefs = this.getSharedPreferences("myPrefs", MODE_PRIVATE);
         String ID = myPrefs.getString("account_id", null);
 
-
-        Intent intent =  new Intent(this,TestVedio.class);
-        startActivity(intent);
-
-
-
-
         if (ID != null){
             Log.d("ID = :", ID);
             Intent in = new Intent(this, HomePage.class);
             startActivity(in);
         }
+//        else {
+//            try {
+//                if (HomePage.getInstance() == null) {
+//                    Intent intent =  new Intent(this,TestVedio.class);
+//                    startActivity(intent);
+//                }else {
+//                    HomePage.getInstance().finish();
+//                }
+//            } catch (NullPointerException e) {
+//                e.printStackTrace();
+//            }
+//        }
 
-       setContentView(R.layout.activity_log_in_form_concept_one);
+        setContentView(R.layout.activity_log_in_form_concept_one);
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
-          //  indicator = (SmartTabLayout)findViewById(R.id.indicator);
-      //  indicator.setVisibility(View.INVISIBLE);
+        //  indicator = (SmartTabLayout)findViewById(R.id.indicator);
+        //  indicator.setVisibility(View.INVISIBLE);
 
         ImageView btn_register = (ImageView) findViewById(R.id.fr_register);
         ImageView btn_search = (ImageView) findViewById(R.id.fr_search);
@@ -115,19 +120,18 @@ public class OnboardingActivity extends FragmentActivity {
             @Override
             public Fragment getItem(int position) {
 
-                switch (position) {
-                    case 0 : return new OnboardingFragment1();
-                    case 1 : return new OnboardingFragment2();
-                    default: return null;
-                }
+                return new OnboardingFragment2();
 
-
+//                switch (position) {
+//                    case 0 : return new OnboardingFragment1();
+//                    case 1 : return new OnboardingFragment2();
+//                    default: return null;
+//                }
             }
 
             @Override
             public int getCount() {
-
-            return 2;
+            return 1;
             }
         };
 

@@ -111,7 +111,7 @@ public class TopRidesAfterLogin extends AppCompatActivity {
             }
             driver = new BestRouteDataModel[response.length()];
 
-            for (int i = 0; i < response.length(); i++) {
+            for (int i = 0; i < 11; i++) {
                 try {
                     JSONObject json = response.getJSONObject(i);
                     final BestRouteDataModel item = new BestRouteDataModel(Parcel.obtain());
