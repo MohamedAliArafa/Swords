@@ -21,6 +21,7 @@ import android.provider.MediaStore;
 import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
@@ -96,18 +97,18 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
     ImageView both_toggle_active;
     ImageView passenger_toggle_active;
     ImageView driver_toggle_active;
-//    ImageView male_female;
+    //    ImageView male_female;
 //    ImageView female_male;
     Button btn_save;
     Button btn_upload_image;
     TextView txt_year;
-//    TextView txt_month;
+    //    TextView txt_month;
 //    TextView txt_day;
     TextView txt_dayOfWeek;
     TextView txt_comma;
     TextView txt_beforeCal;
     TextView txt_appbar;
-//    ScrollView scroll;
+    //    ScrollView scroll;
     String full_date;
     TextView txt_lang;
     AutoCompleteTextView txt_country;
@@ -122,6 +123,10 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
     ImageView malefemale, femalemale;
     String uploadedImage;
     TextView Terms_And_Cond_txt;
+
+
+    RelativeLayout txt_terms;
+    TextView Terms_And_Cond_txt_2;
 
 
     private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
@@ -159,7 +164,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         registerNewTestActivity = this;
         mContext = this;
-        cal.add(Calendar.YEAR,-18);
+        cal.add(Calendar.YEAR, -18);
 
         year_x = cal.get(Calendar.YEAR);
         month_x = cal.get(Calendar.MONTH);
@@ -194,10 +199,23 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
 
         malefemale = (ImageView) findViewById(R.id.malefemale);
         femalemale = (ImageView) findViewById(R.id.femalemale);
-        Terms_And_Cond_txt= (TextView) findViewById(R.id.Terms_And_Cond_txt);
+        Terms_And_Cond_txt = (TextView) findViewById(R.id.Terms_And_Cond_txt);
 
         txt_lang = (TextView) findViewById(R.id.autocomplete_lang_id);
         txt_country = (AutoCompleteTextView) findViewById(R.id.autocompletecountry_id);
+        Terms_And_Cond_txt_2 = (TextView) findViewById(R.id.Terms_And_Cond_txt_2);
+        Terms_And_Cond_txt_2.setText(Html.fromHtml("<u><font color=#e72433>Terms and Conditions.</font></u>"));
+        txt_terms = (RelativeLayout) findViewById(R.id.terms_relative);
+
+        txt_terms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), TermsAndCond.class);
+                startActivity(intent);
+
+
+            }
+        });
 
         btn_upload_image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -314,22 +332,14 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
 
 
 
-        Terms_And_Cond_txt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent intent =  new Intent(getBaseContext(),TermsAndCondition.class);
-//                startActivity(intent);
-            }
-        });
-
 
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (edit_fname.getText() != null && edit_fname.getText().toString() != "First Name" && edit_lname.getText() != null && edit_lname.getText().toString() != "Last Name" && edit_phone.getText() != null && edit_phone.getText().toString() != "Mobile Number" && edit_pass.getText() != null && edit_pass.getText().toString() != "Password" && edit_user.getText() != null && edit_user.getText().toString() != "User Name (Your Email)" && txt_country.getText() != null && txt_country.getText().toString() != "Nationality" && txt_lang.getText() != null && txt_lang.getText().toString() != "Preferred Language" && full_date != null) {
-                    if (uploadedImage == null){
+                    if (uploadedImage == null) {
                         Toast.makeText(RegisterNewTest.this, "Select Profile Image!!", Toast.LENGTH_SHORT).show();
-                    }else{
+                    } else {
                         String Fname = edit_fname.getText().toString();
                         String Lname = edit_lname.getText().toString();
                         String phone = edit_phone.getText().toString();
@@ -346,7 +356,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                         switch (usertype) {
                             case "Passenger":
                                 registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterPassenger?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + user + "&password=" + pass + "&gender=" + gender + "&BirthDate=" + birthdate + "&NationalityId=" + y + "&PreferredLanguageId=" + x + "&photoName=" + uploadedImage, getBaseContext(), country, "P");
-                                Log.d("Registration :",GetData.DOMAIN + "RegisterPassenger?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + user + "&password=" + pass + "&gender=" + gender + "&BirthDate=" + birthdate + "&NationalityId=" + y + "&PreferredLanguageId=" + x + "&photoName=" + uploadedImage);
+                                Log.d("Registration :", GetData.DOMAIN + "RegisterPassenger?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + user + "&password=" + pass + "&gender=" + gender + "&BirthDate=" + birthdate + "&NationalityId=" + y + "&PreferredLanguageId=" + x + "&photoName=" + uploadedImage);
                                 break;
                             case "1":
                                 Toast.makeText(RegisterNewTest.this, "please Choose a user Type", Toast.LENGTH_SHORT).show();
@@ -426,7 +436,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
 
     }
 
-    private class ImageUpload extends AsyncTask<String,Void,String>{
+    private class ImageUpload extends AsyncTask<String, Void, String> {
         ProgressDialog pDialog;
 
         @Override
@@ -523,17 +533,17 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
     }
 
 
-
     public volatile boolean parsingComplete = true;
+
     public void parseXMLAndStoreIt(XmlPullParser myParser) {
         int event;
-        String text=null;
+        String text = null;
         try {
             event = myParser.getEventType();
             while (event != XmlPullParser.END_DOCUMENT) {
-                String name=myParser.getName();
+                String name = myParser.getName();
 
-                switch (event){
+                switch (event) {
                     case XmlPullParser.START_TAG:
                         break;
 
@@ -541,7 +551,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                         text = myParser.getText();
                         break;
                     case XmlPullParser.END_TAG:
-                        if(name.equals("UploadImageResult")){
+                        if (name.equals("UploadImageResult")) {
                             uploadedImage = text;
                             uploadedImage = uploadedImage.replace("\"", "");
                         }
@@ -550,8 +560,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                 event = myParser.next();
             }
             parsingComplete = false;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -572,7 +581,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
 
         requestData.append(createSoapHeader());
         requestData.append("<soap:Body>" + "<UploadImage" + " xmlns=\"http://Sharekni-MobAndroid-Data.org/\">" + "<ImageContent>").append(data).append("</ImageContent>\n").append("<imageExtenstion>jpg</imageExtenstion>").append("</UploadImage> </soap:Body> </soap:Envelope>");
-        Log.d("reqData: ",requestData.toString());
+        Log.d("reqData: ", requestData.toString());
         return requestData.toString().trim().getBytes();
     }
 

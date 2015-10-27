@@ -1,11 +1,11 @@
-<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:orientation="vertical">-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <!--<include-->
-        <!--android:id="@+id/app_bar2"-->
-        <!--layout="@layout/app_bar" />-->
+    <include
+        android:id="@+id/app_bar2"
+        layout="@layout/app_bar" />
 
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -487,28 +487,43 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/terms_relative"
+                    android:layout_centerHorizontal="true"
                     >
 
 
                 <TextView
-                    android:id="@+id/Terms_And_Cond_txt"
+                    android:id="@+id/txt_terms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
-                    android:text="I Accept The RTA's"
-                    android:textColor="@color/primaryColor"
-                    android:textSize="13sp" />
+                    android:text="I Accept The RTA's "
+
+                    android:textSize="13sp"
+
+                    />
 
 
                 <TextView
+                    android:id="@+id/Terms_And_Cond_txt_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/Terms_And_Cond_txt"
-                    android:layout_toEndOf="@+id/Terms_And_Cond_txt"
-                    android:text="Terms and Conditions"
-
+                    android:layout_toRightOf="@+id/txt_terms"
+                    android:layout_toEndOf="@+id/txt_terms"
+                    android:layout_marginTop="10dp"
+                    android:textSize="13sp"
+                    android:textColor="@color/primaryColor"
                     />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/Terms_And_Cond_txt_2"
+                        android:text="Privacy Policy"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="13sp"
+                        />
 
                     </RelativeLayout>
 
@@ -536,4 +551,4 @@
     </ScrollView>
 
 
-<!--</LinearLayout>-->
+</LinearLayout>

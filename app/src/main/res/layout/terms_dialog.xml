@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingBottom="20dp"
+    >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:id="@+id/terms_dialog_im"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TERMS AND CONDITIONS"
+        android:layout_alignBottom="@+id/terms_dialog_im"
+        android:layout_toRightOf="@+id/terms_dialog_im"
+        android:layout_toEndOf="@+id/terms_dialog_im"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/terms_dialog_im"
+        android:layout_alignLeft="@+id/terms_dialog_im"
+        android:layout_below="@+id/terms_dialog_im"
+        android:layout_marginTop="30dp"
+        android:text="You must agree on the rules"
+        android:id="@+id/terms_statement"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/terms_statement"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="40dp"
+        android:layout_marginEnd="40dp"
+        android:textColor="@color/primaryColor"
+        android:layout_marginTop="30dp"
+        android:text="OK"
+        android:id="@+id/terms_btn_ok"
+        android:textSize="16sp"
+        android:layout_marginBottom="20dp"
+        />
+
+
+
+</RelativeLayout>
