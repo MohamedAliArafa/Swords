@@ -88,9 +88,6 @@ public class NavigationDrawerFragment extends Fragment {
 
 
 
-
-
-
         navy_TopRides.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

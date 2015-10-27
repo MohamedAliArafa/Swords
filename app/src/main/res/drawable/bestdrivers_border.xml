@@ -5,7 +5,7 @@
 
         />
 
-
+<solid android:color="@android:color/transparent" />
 
 <stroke android:color="@color/accentColor"
     android:width="2dp"

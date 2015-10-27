@@ -73,7 +73,11 @@
             android:layout_toEndOf="@+id/comma4"
             android:layout_toRightOf="@+id/comma4"
             android:text="@string/Distreict_name_txt"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:maxLines="1"
+            android:lines="1"
+            android:singleLine="true"
+            />
 
 
         <TextView
@@ -123,7 +127,11 @@
             android:layout_toEndOf="@+id/comma5"
             android:layout_toRightOf="@+id/comma5"
             android:text="@string/district_name_2"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:maxLines="1"
+            android:lines="1"
+            android:singleLine="true"
+            />
 
         <TextView
             android:id="@+id/StartFromTime"

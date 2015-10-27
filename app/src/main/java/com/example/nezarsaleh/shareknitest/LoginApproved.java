@@ -61,6 +61,7 @@ public class LoginApproved extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
 
+
         super.onCreate(savedInstanceState);
         loginActivity = this;
         setContentView(R.layout.login_design_approved);
@@ -268,9 +269,7 @@ public class LoginApproved extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }
