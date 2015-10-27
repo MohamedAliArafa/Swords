@@ -75,7 +75,7 @@ public class LoginApproved extends AppCompatActivity {
         loginBtn = (Button) findViewById(R.id.btn_login);
         txt_forgetpass = (TextView) findViewById(R.id.login_forgertpass);
         txt_noaccountsignup = (TextView) findViewById(R.id.login_NoAccountsignup);
-        username.setHint("Your Email(i.e Mohamed@gmail.com)");
+        username.setHint("example@gmail.com");
         password.setHint("Password");
 
         username.setOnClickListener(new View.OnClickListener() {
