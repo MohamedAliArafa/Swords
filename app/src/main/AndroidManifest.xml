@@ -232,6 +232,7 @@
             android:name=".DriverCreateCarPool"
             android:label="@string/title_activity_driver_create_car_pool" >
         </activity>
+
         <activity
             android:name=".QSearch"
             android:label="@string/title_activity_qsearch" >
@@ -239,6 +240,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.SearchOptions" />
         </activity>
+
         <activity
             android:name=".Advanced_Search"
             android:label="@string/title_activity_advanced__search"
