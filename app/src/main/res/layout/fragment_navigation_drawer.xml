@@ -83,46 +83,46 @@
 
             >
 
-            <RelativeLayout
-                android:id="@+id/navy_homePage"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/navy_list_item_relative_height">
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/navy_homePage"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/navy_list_item_relative_height">-->
 
 
-                <ImageView
-                    android:id="@+id/menuicon1"
-                    android:layout_width="@dimen/navy_image_width_height"
-                    android:layout_height="@dimen/navy_image_width_height"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginStart="20dp"
-                    android:src="@drawable/menuhomeicon"
-                    android:contentDescription="@string/navy_List_image_content_Desc"
-                    />
+                <!--<ImageView-->
+                    <!--android:id="@+id/menuicon1"-->
+                    <!--android:layout_width="@dimen/navy_image_width_height"-->
+                    <!--android:layout_height="@dimen/navy_image_width_height"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginLeft="20dp"-->
+                    <!--android:layout_marginStart="20dp"-->
+                    <!--android:src="@drawable/menuhomeicon"-->
+                    <!--android:contentDescription="@string/navy_List_image_content_Desc"-->
+                    <!--/>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_toEndOf="@+id/menuicon1"
-                    android:layout_toRightOf="@+id/menuicon1"
-                    android:text="@string/navy_Home_Page_txt"
-                    android:textColor="@color/primaryColor"
-                    android:textSize="18sp"
-                    />
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="#FFFFFF"
-
-                    />
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginLeft="20dp"-->
+                    <!--android:layout_marginStart="20dp"-->
+                    <!--android:layout_toEndOf="@+id/menuicon1"-->
+                    <!--android:layout_toRightOf="@+id/menuicon1"-->
+                    <!--android:text="@string/navy_Home_Page_txt"-->
+                    <!--android:textColor="@color/primaryColor"-->
+                    <!--android:textSize="18sp"-->
+                    <!--/>-->
 
 
-            </RelativeLayout>
+                <!--<View-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="2dp"-->
+                    <!--android:background="#FFFFFF"-->
+
+                    <!--/>-->
+
+
+            <!--</RelativeLayout>-->
 
 
             <View

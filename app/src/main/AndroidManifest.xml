@@ -235,6 +235,9 @@
         <activity
             android:name=".QSearch"
             android:label="@string/title_activity_qsearch" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.nezarsaleh.shareknitest.SearchOptions" />
         </activity>
         <activity
             android:name=".Advanced_Search"

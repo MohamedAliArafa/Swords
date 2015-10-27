@@ -387,7 +387,7 @@
                         android:layout_below="@+id/im12"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="5dp"
-                        android:text="Find Ride"
+                        android:text="Search"
                         android:textColor="#FFFFFF"
                         android:textSize="16sp" />
 

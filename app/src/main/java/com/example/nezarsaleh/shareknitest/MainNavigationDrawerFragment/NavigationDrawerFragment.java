@@ -76,7 +76,7 @@ public class NavigationDrawerFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
-        navy_homePage= (RelativeLayout) layout.findViewById(R.id.navy_homePage);
+//        navy_homePage= (RelativeLayout) layout.findViewById(R.id.navy_homePage);
         navy_TopRides= (RelativeLayout) layout.findViewById(R.id.navy_TopRides);
         navy_BestDrivers= (RelativeLayout) layout.findViewById(R.id.navy_BestDrivers);
         navy_SearchOptions= (RelativeLayout) layout.findViewById(R.id.navy_SearchOptions);
