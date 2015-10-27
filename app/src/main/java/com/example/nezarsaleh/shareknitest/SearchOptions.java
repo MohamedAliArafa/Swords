@@ -93,7 +93,7 @@ public class SearchOptions extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Search Options");
+        textView.setText("Search");
       //  toolbar.setElevation(10);
 
         setSupportActionBar(toolbar);
