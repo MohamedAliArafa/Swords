@@ -134,7 +134,8 @@ public class GetData {
     String DriverAcceptPassengerUrl     = DOMAIN + "Driver_AcceptRequest?RequestId=";
     String Driver_DeleteRouteUrl        = DOMAIN + "Route_Delete?RouteId=";
     String Passenger_Rqs_From_Driver    = DOMAIN + "Passenger_GetAcceptedRequestsFromDriver?accountId=";
-    String Driver_RemovePassenger       = DOMAIN + "Driver_RemovePassenger?ID=";
+    String Driver_RemovePassenger       = DOMAIN + "Driver_RemovePassenger?";
+    String Passenger_LeaveRideUrl       = DOMAIN + "Passenger_RemovePassenger?RoutePassengerId=";
     String Regions_By_Em_Id             = DOMAIN + "GetRegionsByEmirateId?id=";
     String Emirates_By_ID               = DOMAIN + "GetEmirates";
     String getNationalitiesUrl          = DOMAIN + "GetNationalities?id=0";
@@ -388,13 +389,28 @@ public class GetData {
     }
 
     public String Driver_Remove_Passenger(int Passenger_ID) throws JSONException {
-        String Url = Driver_RemovePassenger + "id=" + Passenger_ID;
+        String Url = Driver_RemovePassenger + "RoutePassengerId=" + Passenger_ID;
         HandleXML obj = new HandleXML(Url);
         obj.fetchXML();
         while (obj.parsingComplete) ;
         return obj.getData();
 
     }
+
+
+
+    public String Passenger_LeaveRide(int Passenger_ID) throws JSONException {
+        String Url = Passenger_LeaveRideUrl + Passenger_ID;
+        HandleXML obj = new HandleXML(Url);
+        obj.fetchXML();
+        while (obj.parsingComplete) ;
+        return obj.getData();
+
+    }
+
+
+
+
 
     public String Driver_Delete_Review(int ReviewId) throws JSONException {
         String Url = Driver_RemoveReview + "ReviewId=" + ReviewId;

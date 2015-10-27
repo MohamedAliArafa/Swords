@@ -14,7 +14,7 @@ public class BestRouteDataModel extends ArrayList<Parcelable> implements Parcela
 
     public String FromEm, FromReg, ToEm, ToReg,RouteName,StartFromTime,EndToTime_,driver_profile_dayWeek;
     public int FromEmId,ToEmId,FromRegid,ToRegId,Driver_ID;
-
+    public int RoutePassengerId;
 
     public int getID() {
         return ID;
@@ -40,6 +40,7 @@ public class BestRouteDataModel extends ArrayList<Parcelable> implements Parcela
         EndToTime_=in.readString();
         driver_profile_dayWeek=in.readString();
         Driver_ID=in.readInt();
+        RoutePassengerId = in.readInt();
     }
 
     public BestRouteDataModel() {
@@ -139,6 +140,14 @@ public class BestRouteDataModel extends ArrayList<Parcelable> implements Parcela
         ToReg = toReg;
     }
 
+    public int getRoutePassengerId() {
+        return RoutePassengerId;
+    }
+
+    public void setRoutePassengerId(int routePassengerId) {
+        RoutePassengerId = routePassengerId;
+    }
+
 
     public String getFromEm() {
         return FromEm;
@@ -184,5 +193,6 @@ public class BestRouteDataModel extends ArrayList<Parcelable> implements Parcela
         parcel.writeString(EndToTime_);
         parcel.writeString(driver_profile_dayWeek);
         parcel.writeInt(Driver_ID);
+        parcel.writeInt(RoutePassengerId);
     }
 }

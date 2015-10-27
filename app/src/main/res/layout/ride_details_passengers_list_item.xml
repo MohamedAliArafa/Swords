@@ -60,20 +60,28 @@
             android:layout_height="35dp"
             android:src="@drawable/call"
             android:layout_alignBottom="@+id/AccountName"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
+           android:layout_toLeftOf="@+id/Driver_Remove_Passenger"
+            android:layout_toStartOf="@+id/Driver_Remove_Passenger"
             android:layout_marginRight="8dp"
             android:layout_marginEnd="8dp"
             android:paddingTop="5dp"
             android:id="@+id/passenger_lits_item_call"
             />
 
-    <Button
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Driver_Remove_Passenger"
-        android:layout_alignParentBottom="true"
-        android:text="Remove"/>
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_cast_light"
+        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp"
+        android:paddingTop="5dp"
+        android:layout_alignBottom="@+id/AccountName"
+        />
+
+
 
     <ImageView
         android:layout_width="35dp"

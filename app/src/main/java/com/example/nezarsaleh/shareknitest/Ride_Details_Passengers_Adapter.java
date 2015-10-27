@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,7 +63,7 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
 
         TextView AccountName = (TextView) convertView.findViewById(R.id.AccountName);
         TextView AccountNationalityEn = (TextView) convertView.findViewById(R.id.AccountNationalityEn);
-        Button Driver_Remove_passenger = (Button) convertView.findViewById(R.id.Driver_Remove_Passenger);
+        ImageView Driver_Remove_passenger = (ImageView) convertView.findViewById(R.id.Driver_Remove_Passenger);
 
         final Ride_Details_Passengers_DataModel m = PassengersItems.get(position);
 

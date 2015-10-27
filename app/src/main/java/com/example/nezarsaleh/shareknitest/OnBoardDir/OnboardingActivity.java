@@ -36,8 +36,8 @@ public class OnboardingActivity extends FragmentActivity {
         String ID = myPrefs.getString("account_id", null);
 
 
-//        Intent intent =  new Intent(this,TestVedio.class);
-//        startActivity(intent);
+        Intent intent =  new Intent(this,TestVedio.class);
+        startActivity(intent);
 
 
 

@@ -1,5 +1,6 @@
 package com.example.nezarsaleh.shareknitest;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -8,9 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nezarsaleh.shareknitest.Arafa.Activities.Profile;
+import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestRouteDataModel;
+
+import org.json.JSONException;
 
 /**
  * Created by Nezar Saleh on 10/13/2015.
@@ -18,23 +23,25 @@ import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestRouteDataModel;
 public class PassngerApprovedRidesAdapter extends ArrayAdapter<BestRouteDataModel> {
 
     int resourse;
-    Context context;
+    Activity activity;
     BestRouteDataModel[] BestrouteArray;
     LayoutInflater layoutInflater;
 
 
-    public PassngerApprovedRidesAdapter(Context context, int resource, BestRouteDataModel[] objects) {
-        super(context, resource, objects);
-        this.context=context;
+    public PassngerApprovedRidesAdapter(Activity activity, int resource, BestRouteDataModel[] objects) {
+        super(activity, resource, objects);
+        this.activity=activity;
         this.resourse=resource;
         this.BestrouteArray =objects;
-        layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        layoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
 
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
+
+        final BestRouteDataModel bestRouteDataModel = BestrouteArray[position];
         View v = convertView;
         final ViewHolder vh;
         if (v==null)
@@ -50,7 +57,7 @@ public class PassngerApprovedRidesAdapter extends ArrayAdapter<BestRouteDataMode
             vh.EndToTime_= (TextView) v.findViewById(R.id.EndToTime_);
             // vh.driver_profile_dayWeek= (TextView) v.findViewById(R.id.driver_profile_dayWeek);
 
-            vh.Relative_Reviews= (RelativeLayout) v.findViewById(R.id.Relative_Reviews);
+            vh.Relative_Leave= (RelativeLayout) v.findViewById(R.id.Relative_Leave);
             vh.Relative_Details= (RelativeLayout) v.findViewById(R.id.Relative_Details);
             vh.Relative_Driver = (RelativeLayout) v.findViewById(R.id.Relative_Driver);
 
@@ -59,9 +66,25 @@ public class PassngerApprovedRidesAdapter extends ArrayAdapter<BestRouteDataMode
             vh.Relative_Driver.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, Profile.class);
+                    Intent intent = new Intent(activity, Profile.class);
                     intent.putExtra("DriverID", vh.Driver_Id);
-                    context.startActivity(intent);
+                    activity.startActivity(intent);
+                }
+            });
+
+
+
+            vh.Relative_Leave.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    GetData gd = new GetData();
+                    try {
+                        String response = gd.Passenger_LeaveRide(bestRouteDataModel.getRoutePassengerId());
+                        Toast.makeText(activity, response, Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
 
@@ -71,7 +94,7 @@ public class PassngerApprovedRidesAdapter extends ArrayAdapter<BestRouteDataMode
         {
             vh = (ViewHolder) v.getTag();
         }
-        BestRouteDataModel bestRouteDataModel = BestrouteArray[position];
+
         vh.FromEm.setText(bestRouteDataModel.getFromEm());
         vh.ToEm.setText(bestRouteDataModel.getToEm());
         vh.FromReg.setText(bestRouteDataModel.getFromReg());
@@ -113,7 +136,7 @@ public class PassngerApprovedRidesAdapter extends ArrayAdapter<BestRouteDataMode
         // TextView driver_profile_dayWeek;
         int FromEmId,ToEmId,FromRegid,ToRegId;
 
-        RelativeLayout Relative_Reviews,Relative_Details,Relative_Driver;
+        RelativeLayout Relative_Leave,Relative_Details,Relative_Driver;
         int Driver_Id;
 
 

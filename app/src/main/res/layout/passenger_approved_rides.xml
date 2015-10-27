@@ -208,7 +208,7 @@
 
 
         <RelativeLayout
-            android:id="@+id/Relative_Reviews"
+            android:id="@+id/Relative_Leave"
             android:layout_width="80dp"
             android:layout_height="30dp"
             android:layout_alignBottom="@+id/Relative_Details"
@@ -224,7 +224,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="Reviews"
+                android:text="Leave"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp" />
 

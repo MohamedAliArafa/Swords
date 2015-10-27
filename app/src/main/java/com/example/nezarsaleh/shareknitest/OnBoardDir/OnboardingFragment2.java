@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.example.nezarsaleh.shareknitest.Arafa.Activities.BestDriversBeforeLogin;
 import com.example.nezarsaleh.shareknitest.Arafa.Activities.BestRideBeforeLogin;
@@ -22,8 +23,8 @@ import com.example.nezarsaleh.shareknitest.R;
 
 public class OnboardingFragment2 extends Fragment {
 
-    ImageView im_best_rides;
-    ImageView im_best_drivers;
+    RelativeLayout im_best_rides;
+    RelativeLayout im_best_drivers;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -40,8 +41,8 @@ public class OnboardingFragment2 extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        im_best_drivers= (ImageView) view.findViewById(R.id.im_best_drivers);
-        im_best_rides = (ImageView) view.findViewById(R.id.im_best_rides);
+        im_best_drivers= (RelativeLayout) view.findViewById(R.id.im_best_drivers);
+        im_best_rides = (RelativeLayout) view.findViewById(R.id.im_best_rides);
 
         im_best_rides.setOnClickListener(new View.OnClickListener() {
             @Override

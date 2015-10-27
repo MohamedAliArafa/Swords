@@ -24,7 +24,7 @@ import java.util.List;
  */
 public class QuickSearchResultAdapter extends BaseAdapter {
 
-    private static final String DOMAIN = "http://sharekni.sdgstaff.com";
+
     private Activity activity;
     private LayoutInflater inflater;
     private List<QuickSearchDataModel> searchItems;

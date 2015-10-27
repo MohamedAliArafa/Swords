@@ -188,7 +188,7 @@ public class PassengerMyApprovedRides extends AppCompatActivity {
                                             int Route_ID = (json.getInt("RouteID"));
                                             int Driver_Account = (json.getInt("Account"));
                                             String Route_Name = (json.getString("Name_en"));
-
+                                            item.setRoutePassengerId(json.getInt("RoutePassengerId"));
                                             Log.d("Route id", String.valueOf(Route_ID));
                                             Log.d("Driver_account", String.valueOf(Driver_Account));
                                             Log.d("Route Name", Route_Name);
@@ -204,6 +204,7 @@ public class PassengerMyApprovedRides extends AppCompatActivity {
                                             item.setRouteName(jsonObject.getString("RouteEnName"));
                                             item.setStartFromTime(jsonObject.getString("StartFromTime"));
                                             item.setEndToTime_(jsonObject.getString("EndToTime_"));
+
                                             item.setDriver_ID(Driver_Account);
 
                                             passenger[i] = item;
