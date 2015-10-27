@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -20,12 +21,9 @@ import java.io.File;
 
 public class TestVedio extends Activity {
 
-    private String filename;
-    private static final int INSERT_ID = Menu.FIRST;
 
-    DisplayMetrics dm;
 
-    RelativeLayout Relative_Splash;
+    ImageView Splash_background;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +38,8 @@ public class TestVedio extends Activity {
 //    }
 
           setContentView(R.layout.vediotest);
+
+
 //        System.gc();
 //        Intent i = getIntent();
 //        Bundle extras = i.getExtras();
@@ -73,21 +73,28 @@ public class TestVedio extends Activity {
 
 
 
-        Relative_Splash = (RelativeLayout) findViewById(R.id.Relative_Splash);
+
+        Splash_background = (ImageView) findViewById(R.id.Splash_background);
 
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
 
-                Relative_Splash.setBackgroundResource(R.drawable.splashtwo);
+                Splash_background.setImageResource(R.drawable.splashtwo);
 
                 // Do something after 5s = 5000ms
 
             }
+
+
+
         }, 5000);
 
-        final Handler handler2 = new Handler();
+
+
+
+
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -97,7 +104,7 @@ public class TestVedio extends Activity {
                 // Do something after 5s = 5000ms
 
             }
-        }, 5000);
+        }, 8000);
 
 
 

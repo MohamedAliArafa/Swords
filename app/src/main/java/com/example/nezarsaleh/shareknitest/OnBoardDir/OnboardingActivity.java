@@ -32,14 +32,23 @@ public class OnboardingActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         onboardingActivity=this;
 
+//        Intent intent =  new Intent(this,TestVedio.class);
+//        startActivity(intent);
+
+
         SharedPreferences myPrefs = this.getSharedPreferences("myPrefs", MODE_PRIVATE);
         String ID = myPrefs.getString("account_id", null);
+
+
 
         if (ID != null){
             Log.d("ID = :", ID);
             Intent in = new Intent(this, HomePage.class);
             startActivity(in);
         }
+
+
+
 //        else {
 //            try {
 //                if (HomePage.getInstance() == null) {
@@ -53,6 +62,10 @@ public class OnboardingActivity extends FragmentActivity {
 //            }
 //        }
 
+
+
+
+
         setContentView(R.layout.activity_log_in_form_concept_one);
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
         //  indicator = (SmartTabLayout)findViewById(R.id.indicator);
@@ -62,6 +75,7 @@ public class OnboardingActivity extends FragmentActivity {
         ImageView btn_search = (ImageView) findViewById(R.id.fr_search);
         ImageView btn_top_rides = (ImageView) findViewById(R.id.fr_top_rides_id);
         ImageView btn_log_in = (ImageView) findViewById(R.id.fr_login);
+
 
 
 

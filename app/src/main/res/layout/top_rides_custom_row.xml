@@ -41,13 +41,27 @@
         android:id="@+id/em_from"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="2dp"
-        android:layout_marginRight="2dp"
-        android:layout_marginTop="10dp"
-        android:layout_toEndOf="@id/from_txt_id"
-        android:layout_toRightOf="@+id/from_txt_id"
+        android:layout_alignLeft="@+id/from_txt_id"
+        android:layout_alignStart="@+id/from_txt_id"
+        android:layout_below="@+id/from_txt_id"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
         android:text="@string/city_from_txt"
         android:textSize="16sp"
+        android:textStyle="bold"
+
+        />
+
+    <TextView
+        android:id="@+id/TopRides_comma_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/em_from"
+        android:layout_toEndOf="@+id/em_from"
+        android:layout_toRightOf="@+id/em_from"
+        android:text=":"
+        android:textSize="15sp"
         android:textStyle="bold" />
 
 
@@ -55,9 +69,11 @@
         android:id="@+id/reg_from"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/from_txt_id"
-        android:layout_alignStart="@+id/from_txt_id"
-        android:layout_below="@+id/em_from"
+        android:layout_alignBottom="@+id/em_from"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@+id/TopRides_comma_1"
+        android:layout_toRightOf="@+id/TopRides_comma_1"
         android:text="@string/Distreict_name_txt"
         android:textSize="15sp" />
 
@@ -74,6 +90,7 @@
         android:textSize="16sp"
         android:textStyle="bold"
 
+
         />
 
 
@@ -81,13 +98,29 @@
         android:id="@+id/em_to"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/to_txt_id"
+        android:layout_alignLeft="@+id/to_txt_id"
+        android:layout_alignStart="@+id/to_txt_id"
+        android:layout_below="@+id/to_txt_id"
         android:layout_marginLeft="2dp"
         android:layout_marginStart="2dp"
-        android:layout_toEndOf="@id/to_txt_id"
-        android:layout_toRightOf="@id/to_txt_id"
         android:text="@string/city_to_txt"
         android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginRight="5dp"
+        android:layout_marginEnd="5dp"
+
+        />
+
+
+    <TextView
+        android:id="@+id/TopRides_comma_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/em_to"
+        android:layout_toEndOf="@+id/em_to"
+        android:layout_toRightOf="@+id/em_to"
+        android:text=":"
+        android:textSize="15sp"
         android:textStyle="bold"
 
         />
@@ -97,11 +130,14 @@
         android:id="@+id/reg_to"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/to_txt_id"
-        android:layout_alignStart="@+id/to_txt_id"
-        android:layout_below="@+id/to_txt_id"
+        android:layout_alignBottom="@+id/em_to"
+        android:layout_toEndOf="@+id/TopRides_comma_2"
+        android:layout_toRightOf="@+id/TopRides_comma_2"
         android:text="@string/district_name_2"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        />
 
 
     <RelativeLayout
@@ -110,7 +146,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:background="@drawable/toprideforma">
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/redcirccualr_mostrides">
 
         <TextView
             android:id="@+id/drivers_text"

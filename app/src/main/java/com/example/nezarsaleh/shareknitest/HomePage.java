@@ -91,6 +91,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
 
         HomaPageActivity = this;
+
         super.onCreate(savedInstanceState);
         try {
             if (LoginApproved.getInstance() != null) {

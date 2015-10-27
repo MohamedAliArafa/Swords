@@ -40,13 +40,14 @@
 
         <RelativeLayout
             android:id="@+id/im_best_drivers"
-            android:layout_width="170dp"
+            android:layout_width="180dp"
             android:layout_height="45dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="45dp"
             android:background="@drawable/bestdrivers_border"
-
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
             >
 
 
@@ -99,14 +100,15 @@
 
         <RelativeLayout
             android:id="@+id/im_best_rides"
-            android:layout_width="170dp"
+            android:layout_width="180dp"
             android:layout_height="45dp"
             android:layout_above="@+id/im_best_drivers"
             android:layout_alignLeft="@+id/im_best_drivers"
             android:layout_alignStart="@+id/im_best_drivers"
             android:layout_marginBottom="10dp"
             android:background="@drawable/bestdrivers_border"
-
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
 
             >
 
