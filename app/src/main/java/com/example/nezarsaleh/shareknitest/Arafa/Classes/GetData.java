@@ -811,7 +811,7 @@ public class GetData {
                                 Button btn = (Button) dialog.findViewById(R.id.noroute_id);
                                 TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
                                 Button No_Btn = (Button) dialog.findViewById(R.id.No_Btn);
-                                Text_3.setText("In Order to Proceed you have to login first");
+                                Text_3.setText("In order to proceed you have to login first");
                                 dialog.show();
 
                                 No_Btn.setOnClickListener(new View.OnClickListener() {
