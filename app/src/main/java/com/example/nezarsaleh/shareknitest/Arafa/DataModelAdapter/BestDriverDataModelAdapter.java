@@ -76,7 +76,7 @@ import java.util.List;
 
         //RatingBar rating = (RatingBar) convertView.findViewById(R.id.ratingBar);
 
-        Button Best_Drivers_Item_Details= (Button) convertView.findViewById(R.id.Best_Drivers_Item_Details);
+      //  Button Best_Drivers_Item_Details= (Button) convertView.findViewById(R.id.Best_Drivers_Item_Details);
         ImageView Phone_Call = (ImageView) convertView.findViewById(R.id.im5);
         ImageView Phone_Message = (ImageView) convertView.findViewById(R.id.im1);
 
@@ -87,14 +87,15 @@ import java.util.List;
         Nat.setText(m.getNationality());
         Rat.setText(Integer.toString(m.getRating()));
 
-        Best_Drivers_Item_Details.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(activity, Profile.class);
-                intent.putExtra("DriverID", m.getID());
-                activity.startActivity(intent);
-            }
-        });
+//        Best_Drivers_Item_Details.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(activity, Profile.class);
+//                intent.putExtra("DriverID", m.getID());
+//                activity.startActivity(intent);
+//            }
+//        });
+
 
         Phone_Call.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,6 +113,10 @@ import java.util.List;
                 activity.startActivity(intent);
             }
         });
+
+
+
+
 
         return convertView;
     }

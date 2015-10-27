@@ -539,7 +539,7 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                             Button btn = (Button) dialog.findViewById(R.id.noroute_id);
                             TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
                             Button No_Btn = (Button) dialog.findViewById(R.id.No_Btn);
-                            Text_3.setText("In Order to Proceed you have to login first");
+                            Text_3.setText("In order to proceed you have to login first");
                             dialog.show();
 
                             No_Btn.setOnClickListener(new View.OnClickListener() {
@@ -571,8 +571,8 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                                 TextView Review_text_address = (TextView) dialog.findViewById(R.id.Review_text_address);
                                 Edit_Review_txt = (EditText) dialog.findViewById(R.id.Edit_Review_txt);
 
-                                Lang_Dialog_txt_id.setText("Write Your Remarks");
-                                Review_text_address.setText("Your Remarks");
+                                Lang_Dialog_txt_id.setText("Write Your remarks");
+                                Review_text_address.setText("Your remarks");
                                 dialog.show();
 
 
@@ -621,7 +621,7 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                             Button btn = (Button) dialog.findViewById(R.id.noroute_id);
                             TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
                             Button No_Btn = (Button) dialog.findViewById(R.id.No_Btn);
-                            Text_3.setText("In Order to Proceed you have to login first");
+                            Text_3.setText("In order to proceed you have to login first");
                             dialog.show();
 
                             No_Btn.setOnClickListener(new View.OnClickListener() {
