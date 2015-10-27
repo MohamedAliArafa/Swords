@@ -159,11 +159,11 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         registerNewTestActivity = this;
         mContext = this;
+        cal.add(Calendar.YEAR,-18);
 
         year_x = cal.get(Calendar.YEAR);
         month_x = cal.get(Calendar.MONTH);
         day_x = cal.get(Calendar.DAY_OF_MONTH);
-
 
         setContentView(R.layout.activity_register_new_test);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
@@ -710,8 +710,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         if (id == DILOG_ID) {
             DatePickerDialog dp = new DatePickerDialog(this, dPickerListener, year_x, month_x, day_x);
             DatePicker d = dp.getDatePicker();
-//            long years = new Long(568025136000);
-            d.setMaxDate(cal.get(Calendar.MILLISECOND));
+            d.setMaxDate(cal.getTimeInMillis());
             return dp;
         }
         return null;

@@ -84,7 +84,7 @@
     <string name="Reg_Email">User Name (Your Email)</string>
     <string name="Reg_pass">Password</string>
     <string name="Reg_Nat">Nationality</string>
-    <string name="Reg_PrefLang">Select Preferred Language</string>
+    <string name="Reg_PrefLang">Preferred Language</string>
     <string name="title_activity_pick_up">PickUpActivity</string>
     <string name="title_activity_terms_and_cond">TermsAndCond</string>
 

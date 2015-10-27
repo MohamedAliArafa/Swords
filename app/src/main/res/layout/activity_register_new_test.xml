@@ -166,7 +166,15 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/user_register_border">
+                android:background="@drawable/user_register_border"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="+971 - "/>
 
                 <EditText
                     android:id="@+id/edit_reg_phone"
@@ -378,7 +386,7 @@
                     android:layout_toEndOf="@+id/imageView4"
                     android:layout_toRightOf="@+id/imageView4"
                     android:padding="3dp"
-                    android:text="Click to select\nDate of Birth"
+                    android:text="Date of Birth"
                     android:textColor="@color/primaryColor"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -519,5 +527,3 @@
 
 
 </LinearLayout>
-
-
