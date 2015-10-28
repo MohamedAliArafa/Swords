@@ -195,58 +195,58 @@
         android:textSize="16sp" />
 
 
-    <RelativeLayout
-        android:id="@+id/Relative_22"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
-        android:layout_below="@+id/StartFromTime"
-        android:layout_marginLeft="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/borders_quicksearch_btn"
-        android:layout_marginBottom="10dp"
-        >
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/Relative_22"-->
+        <!--android:layout_width="80dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_below="@+id/StartFromTime"-->
+        <!--android:layout_marginLeft="50dp"-->
+        <!--android:layout_marginStart="50dp"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:background="@drawable/borders_quicksearch_btn"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!-->-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="Details"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:text="Details"-->
+            <!--android:textColor="#FFFFFF"-->
+            <!--android:textSize="14sp"-->
 
-            />
+            <!--/>-->
 
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/Relative_23"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
-        android:layout_alignBottom="@+id/Relative_22"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/borders_quicksearch_btn">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="Permit"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp" />
+    <!--</RelativeLayout>-->
 
 
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/Relative_23"-->
+        <!--android:layout_width="80dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_alignBottom="@+id/Relative_22"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_marginEnd="50dp"-->
+        <!--android:layout_marginRight="50dp"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:background="@drawable/borders_quicksearch_btn">-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:text="Permit"-->
+            <!--android:textColor="#FFFFFF"-->
+            <!--android:textSize="14sp" />-->
 
 
 
-    </RelativeLayout>
+
+
+    <!--</RelativeLayout>-->
 
 
 
