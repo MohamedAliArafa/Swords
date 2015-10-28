@@ -27,49 +27,10 @@ public class TestVedio extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-//    public void onVideoSelected(String uri, String mimeType) {
-//        Uri video=Uri.fromFile(new File(uri));
-//        Intent i=new Intent(Intent.ACTION_VIEW);
-//
-//        i.setDataAndType(video, mimeType);
-//        startActivity(i);
-//    }
-
-          setContentView(R.layout.vediotest);
-
-
-//        System.gc();
-//        Intent i = getIntent();
-//        Bundle extras = i.getExtras();
-//
-//        filename = "android.resource://" + getPackageName() + "/" + R.raw.introfinal;
-//        VideoView vv = (VideoView) findViewById(R.id.surfaceViewFrame);
-//        dm = new DisplayMetrics();
-//        this.getWindowManager().getDefaultDisplay().getMetrics(dm);
-//        int height = dm.heightPixels;
-//        int width = dm.widthPixels;
-//        vv.setMinimumWidth(width);
-//        vv.setMinimumHeight(height);
+        setContentView(R.layout.vediotest);
 
 
 
-        //setContentView(vv);
-        //vv.setVideoPath(filename);
-//        vv.setMediaController(new MediaController(this));
-//        vv.requestFocus();
-      //  vv.start();
-
-
-
-       // vv.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-           // @Override
-          //  public void onCompletion(MediaPlayer mp) {
-
-              //  finish();
-          //  }
-       // });
 
 
 
@@ -107,36 +68,10 @@ public class TestVedio extends Activity {
         }, 8000);
 
 
+    } //  on create
 
 
-    }
-
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        super.onCreateOptionsMenu(menu);
-//        menu.add(0, INSERT_ID, 0, "FullScreen");
-//
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onMenuItemSelected(int featureId, MenuItem item) {
-//        switch(item.getItemId()) {
-//            case INSERT_ID:
-//                createNote();
-//        }
-//        return true;
-//    }
-//
-//    private void createNote() {
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//    }
-//
-
-    }
+    } //  class
 
 
 
