@@ -759,8 +759,8 @@ public class GetData {
                     lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                            if (ID != null) {
-                                assert AccountType != null;
+//                            if (ID != null) {
+//                                assert AccountType != null;
 
                                     Intent in = new Intent(context, Profile.class);
                                     in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -804,40 +804,40 @@ public class GetData {
 //                                    }
 
 
-
-                            }else {
-
-                                final Dialog dialog = new Dialog(context);
-                                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                                dialog.setContentView(R.layout.please_log_in_dialog);
-                                Button btn = (Button) dialog.findViewById(R.id.noroute_id);
-                                TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
-                                Button No_Btn = (Button) dialog.findViewById(R.id.No_Btn);
-                                Text_3.setText("In order to proceed you have to login first");
-                                dialog.show();
-
-                                No_Btn.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        dialog.dismiss();
-                                    }
-                                });
-
-                                btn.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        dialog.dismiss();
-                                        Intent intent = new Intent(context, LoginApproved.class);
-                                        context.startActivity(intent);
-
-                                    }
-                                });
-
-
-
-                                //Toast.makeText(context, "Please Login First", Toast.LENGTH_SHORT).show();
-
-                            }
+//
+//                            }else {
+//
+//                                final Dialog dialog = new Dialog(context);
+//                                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//                                dialog.setContentView(R.layout.please_log_in_dialog);
+//                                Button btn = (Button) dialog.findViewById(R.id.noroute_id);
+//                                TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
+//                                Button No_Btn = (Button) dialog.findViewById(R.id.No_Btn);
+//                                Text_3.setText("In order to proceed you have to login first");
+//                                dialog.show();
+//
+//                                No_Btn.setOnClickListener(new View.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(View v) {
+//                                        dialog.dismiss();
+//                                    }
+//                                });
+//
+//                                btn.setOnClickListener(new View.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(View v) {
+//                                        dialog.dismiss();
+//                                        Intent intent = new Intent(context, LoginApproved.class);
+//                                        context.startActivity(intent);
+//
+//                                    }
+//                                });
+//
+//
+//
+//                                //Toast.makeText(context, "Please Login First", Toast.LENGTH_SHORT).show();
+//
+//                            }
                         }
 
                     });

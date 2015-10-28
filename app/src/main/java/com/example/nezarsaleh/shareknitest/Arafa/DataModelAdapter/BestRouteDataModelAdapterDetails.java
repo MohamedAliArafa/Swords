@@ -85,7 +85,15 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
          vh = (ViewHolder) v.getTag();
         }
         final BestRouteDataModelDetails bestRouteDataModel = BestrouteArray[position];
-        vh.DriverName.setText(bestRouteDataModel.getDriverName());
+        StringBuffer res = new StringBuffer();
+        String[] strArr = bestRouteDataModel.getDriverName().split(" ");
+        for (String str : strArr) {
+            char[] stringArray = str.trim().toCharArray();
+            stringArray[0] = Character.toUpperCase(stringArray[0]);
+            str = new String(stringArray);
+            res.append(str).append(" ");
+        }
+        vh.DriverName.setText(res);
         vh.SDG_Route_Start_FromTime.setText((bestRouteDataModel.getSDG_Route_Start_FromTime()));
         vh.Nationality_en.setText(bestRouteDataModel.getNationality_en());
         vh.SDG_RouteDays.setText(bestRouteDataModel.getSDG_RouteDays());

@@ -61,7 +61,15 @@ public class RouteDataModelAdapter extends ArrayAdapter<RouteDataModel> {
             vh = (ViewHolder) v.getTag();
         }
         RouteDataModel routeDataModel = routeArray[position];
-        vh.RouteNameEn.setText(routeDataModel.getEnName());
+        StringBuffer res = new StringBuffer();
+        String[] strArr = routeDataModel.getEnName().split(" ");
+        for (String str : strArr) {
+            char[] stringArray = str.trim().toCharArray();
+            stringArray[0] = Character.toUpperCase(stringArray[0]);
+            str = new String(stringArray);
+            res.append(str).append(" ");
+        }
+        vh.RouteNameEn.setText(res);
         vh.FromRegionEnName.setText(routeDataModel.getFromRegionEn());
         vh.ToRegionEnName.setText(routeDataModel.getToRegionEn());
         //vh.StartFromTime.setText(routeDataModel.getStartFromTime());

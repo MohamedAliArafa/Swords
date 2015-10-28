@@ -66,8 +66,15 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
         ImageView Driver_Remove_passenger = (ImageView) convertView.findViewById(R.id.Driver_Remove_Passenger);
 
         final Ride_Details_Passengers_DataModel m = PassengersItems.get(position);
-
-        AccountName.setText(m.getAccountName());
+        StringBuffer res = new StringBuffer();
+        String[] strArr = m.getAccountName().split(" ");
+        for (String str : strArr) {
+            char[] stringArray = str.trim().toCharArray();
+            stringArray[0] = Character.toUpperCase(stringArray[0]);
+            str = new String(stringArray);
+            res.append(str).append(" ");
+        }
+        AccountName.setText(res);
         AccountNationalityEn.setText(m.getAccountNationalityEn());
 
         Driver_Remove_passenger.setOnClickListener(new View.OnClickListener() {

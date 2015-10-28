@@ -103,7 +103,15 @@ public class PassngerApprovedRidesAdapter extends ArrayAdapter<BestRouteDataMode
         vh.FromRegid=bestRouteDataModel.getFromRegid();
         vh.ToEmId=bestRouteDataModel.getToEmId();
         vh.ToRegId=bestRouteDataModel.getToRegId();
-        vh.RouteEnName.setText(bestRouteDataModel.getRouteName());
+        StringBuffer res = new StringBuffer();
+        String[] strArr = bestRouteDataModel.getRouteName().split(" ");
+        for (String str : strArr) {
+            char[] stringArray = str.trim().toCharArray();
+            stringArray[0] = Character.toUpperCase(stringArray[0]);
+            str = new String(stringArray);
+            res.append(str).append(" ");
+        }
+        vh.RouteEnName.setText(res);
         vh.StartFromTime.setText(bestRouteDataModel.getStartFromTime());
         vh.EndToTime_.setText(bestRouteDataModel.getEndToTime_());
         vh.Driver_Id = bestRouteDataModel.getDriver_ID();

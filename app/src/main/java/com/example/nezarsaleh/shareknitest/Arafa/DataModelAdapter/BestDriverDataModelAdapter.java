@@ -83,7 +83,17 @@ import java.util.List;
 
         final BestDriverDataModel m = driverItems.get(position);
         Photo.setImageUrl(URL + m.getPhotoURL(), imageLoader);
-        Name.setText(m.getName());
+        StringBuffer res = new StringBuffer();
+
+        String[] strArr = m.getName().split(" ");
+        for (String str : strArr) {
+            char[] stringArray = str.trim().toCharArray();
+            stringArray[0] = Character.toUpperCase(stringArray[0]);
+            str = new String(stringArray);
+
+            res.append(str).append(" ");
+        }
+        Name.setText(res);
         Nat.setText(m.getNationality());
         Rat.setText(Integer.toString(m.getRating()));
 
