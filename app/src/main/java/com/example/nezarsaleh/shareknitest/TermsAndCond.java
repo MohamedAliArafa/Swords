@@ -24,8 +24,6 @@ public class TermsAndCond extends AppCompatActivity {
     Toolbar toolbar;
     WebView webview;
     Button agreeBtn;
-    boolean isAgreed = false, isRules = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,12 +33,12 @@ public class TermsAndCond extends AppCompatActivity {
         initToolbar();
 
         webview.loadUrl("file:///android_asset/terms_en.html");
-        isRules = true;
+
 
         agreeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isAgreed = true;
+
                 TermsAndCond.this.finish();
             }
         });
@@ -49,29 +47,7 @@ public class TermsAndCond extends AppCompatActivity {
     }
 
 
-    @Override
-    public void onBackPressed() {
-        if (isRules) {
 
-            final Dialog dialog = new Dialog(TermsAndCond.this);
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            dialog.setContentView(R.layout.terms_dialog);
-            TextView terms_btn_ok = (TextView) dialog.findViewById(R.id.terms_btn_ok);
-            dialog.show();
-
-            terms_btn_ok.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog.dismiss();
-                }
-            });
-
-
-        } else {
-            super.onBackPressed();
-        }
-
-    }
 
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)

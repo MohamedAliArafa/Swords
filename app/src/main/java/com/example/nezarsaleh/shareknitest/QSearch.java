@@ -33,6 +33,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 
+import com.example.nezarsaleh.shareknitest.Arafa.Activities.BestRideBeforeLogin;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
 
 import org.json.JSONArray;
@@ -105,6 +106,8 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
     Button quickSearch_pickUp;
     Button quickSearch_Dropoff;
+
+    RelativeLayout MostRides_Relative,MapLookUp_Relative,Advanced_Search_Relative_2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,6 +136,49 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         btn_search_page = (Button) findViewById(R.id.btn_search_page);
         quickSearch_pickUp  = (Button) findViewById(R.id.quickSearch_pickUp);
         quickSearch_Dropoff= (Button) findViewById(R.id.quickSearch_Dropoff);
+
+
+        MostRides_Relative= (RelativeLayout) findViewById(R.id.MostRides_Relative);
+        MapLookUp_Relative= (RelativeLayout) findViewById(R.id.MapLookUp_Relative);
+        Advanced_Search_Relative_2= (RelativeLayout) findViewById(R.id.Advanced_Search_Relative_2);
+
+
+
+        MostRides_Relative.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 =  new Intent(getBaseContext(), BestRideBeforeLogin.class);
+                startActivity(intent1);
+            }
+        });
+
+
+
+        MapLookUp_Relative.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), MapsActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        Advanced_Search_Relative_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(),Advanced_Search.class);
+                startActivity(intent);
+
+            }
+        });
+
+
+
+
+
+
+
+
         quickSearch_pickUp.setOnClickListener(this);
         pickup_relative.setOnClickListener(this);
         quickSearch_Dropoff.setOnClickListener(this);

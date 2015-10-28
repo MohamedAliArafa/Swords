@@ -13,6 +13,7 @@ import android.widget.ImageView;
 
 import com.example.nezarsaleh.shareknitest.HomePage;
 import com.example.nezarsaleh.shareknitest.LoginApproved;
+import com.example.nezarsaleh.shareknitest.QSearch;
 import com.example.nezarsaleh.shareknitest.R;
 import com.example.nezarsaleh.shareknitest.RegisterNewTest;
 import com.example.nezarsaleh.shareknitest.SearchOptions;
@@ -104,7 +105,7 @@ public class OnboardingActivity extends FragmentActivity {
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), SearchOptions.class);
+                Intent intent = new Intent(getBaseContext(), QSearch.class);
                 startActivity(intent);
             }
         });

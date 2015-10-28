@@ -51,6 +51,7 @@ public class SearchOptions extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent1 =  new Intent(getBaseContext(), BestRideBeforeLogin.class);
                 startActivity(intent1);
+
             }
         });
 

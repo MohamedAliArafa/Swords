@@ -514,7 +514,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 @Override
                 public void onClick(View v) {
 
-                    Intent intent = new Intent(getBaseContext(), SearchOptions.class);
+                    Intent intent = new Intent(getBaseContext(), QSearch.class);
                     intent.putExtra("PassengerId",ID);
                     startActivity(intent);
 
