@@ -573,6 +573,7 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
 
                                 Lang_Dialog_txt_id.setText("Write Your remarks");
                                 Review_text_address.setText("Your remarks");
+                            Edit_Review_txt.setText("I'd like to join your Ride");
                                 dialog.show();
 
                             btn.setOnClickListener(new View.OnClickListener() {
@@ -651,7 +652,6 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                             dialog.setContentView(R.layout.review_dialog);
                             Button btn = (Button) dialog.findViewById(R.id.Review_Btn);
                             Edit_Review_txt = (EditText) dialog.findViewById(R.id.Edit_Review_txt);
-                            Edit_Review_txt.setText("I'd like to join your Ride");
                             dialog.show();
 
                             btn.setOnClickListener(new View.OnClickListener() {
