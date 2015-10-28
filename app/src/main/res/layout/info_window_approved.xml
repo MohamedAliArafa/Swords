@@ -95,6 +95,92 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            >
+
+            <TextView
+                android:id="@+id/N0_Of_Drivers"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/circular_number"
+                android:gravity="center"
+                android:text="71"
+                android:textColor="@color/primaryColor"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="25dp"
+                android:layout_alignBottom="@+id/N0_Of_Drivers"
+                android:layout_toEndOf="@+id/N0_Of_Drivers"
+                android:layout_toRightOf="@+id/N0_Of_Drivers"
+                android:src="@drawable/jeep"
+                />
+
+
+            <!--<TextView-->
+            <!--android:id="@+id/txt_2"-->
+            <!--android:layout_width="22dp"-->
+            <!--android:layout_height="22dp"-->
+            <!--android:layout_marginLeft="50dp"-->
+            <!--android:layout_marginStart="50dp"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:layout_toEndOf="@+id/txt_1"-->
+            <!--android:layout_toRightOf="@+id/txt_1"-->
+            <!--android:background="@drawable/circular_number"-->
+            <!--android:gravity="center"-->
+            <!--android:text="5"-->
+            <!--android:textColor="@color/primaryColor"-->
+            <!--android:textSize="13sp"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--<ImageView-->
+            <!--android:layout_width="25dp"-->
+            <!--android:layout_height="25dp"-->
+            <!--android:layout_alignBottom="@+id/txt_2"-->
+            <!--android:layout_toEndOf="@+id/txt_2"-->
+            <!--android:layout_toRightOf="@+id/txt_2"-->
+            <!--android:src="@drawable/hatshpack" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/txt_3"-->
+            <!--android:layout_width="22dp"-->
+            <!--android:layout_height="22dp"-->
+            <!--android:layout_marginLeft="40dp"-->
+            <!--android:layout_marginStart="40dp"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:layout_toEndOf="@+id/txt_2"-->
+            <!--android:layout_toRightOf="@+id/txt_2"-->
+            <!--android:background="@drawable/circular_number"-->
+            <!--android:gravity="center"-->
+            <!--android:text="7"-->
+            <!--android:textColor="@color/primaryColor"-->
+            <!--android:textSize="13sp"-->
+            <!--android:textStyle="bold" />-->
+
+            <!--<ImageView-->
+            <!--android:layout_width="25dp"-->
+            <!--android:layout_height="25dp"-->
+            <!--android:layout_alignBottom="@+id/txt_3"-->
+            <!--android:layout_toEndOf="@+id/txt_3"-->
+            <!--android:layout_toRightOf="@+id/txt_3"-->
+            <!--android:src="@drawable/sidan" />-->
+
+
+        </RelativeLayout>
+
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginTop="5dp"
             android:layout_weight="1">
 
@@ -102,7 +188,7 @@
                 android:id="@+id/txt_ride_word_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rides:"
+                android:text="Drivers:"
                 android:textColor="@color/primaryColor"
                 android:textSize="14sp" />
 
@@ -122,88 +208,6 @@
 
         </RelativeLayout>
 
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-
-            >
-
-            <TextView
-                android:id="@+id/N0_Of_Drivers"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginLeft="1dp"
-                android:layout_marginStart="1dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/circular_number"
-                android:gravity="center"
-                android:text="7"
-                android:textColor="@color/primaryColor"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                />
-
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_alignBottom="@+id/N0_Of_Drivers"
-                android:layout_toEndOf="@+id/N0_Of_Drivers"
-                android:layout_toRightOf="@+id/N0_Of_Drivers"
-                android:src="@drawable/jeep"
-                />
-
-            <!--<TextView-->
-                <!--android:id="@+id/txt_2"-->
-                <!--android:layout_width="22dp"-->
-                <!--android:layout_height="22dp"-->
-                <!--android:layout_marginLeft="50dp"-->
-                <!--android:layout_marginStart="50dp"-->
-                <!--android:layout_marginTop="5dp"-->
-                <!--android:layout_toEndOf="@+id/txt_1"-->
-                <!--android:layout_toRightOf="@+id/txt_1"-->
-                <!--android:background="@drawable/circular_number"-->
-                <!--android:gravity="center"-->
-                <!--android:text="5"-->
-                <!--android:textColor="@color/primaryColor"-->
-                <!--android:textSize="13sp"-->
-                <!--android:textStyle="bold" />-->
-
-            <!--<ImageView-->
-                <!--android:layout_width="25dp"-->
-                <!--android:layout_height="25dp"-->
-                <!--android:layout_alignBottom="@+id/txt_2"-->
-                <!--android:layout_toEndOf="@+id/txt_2"-->
-                <!--android:layout_toRightOf="@+id/txt_2"-->
-                <!--android:src="@drawable/hatshpack" />-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/txt_3"-->
-                <!--android:layout_width="22dp"-->
-                <!--android:layout_height="22dp"-->
-                <!--android:layout_marginLeft="40dp"-->
-                <!--android:layout_marginStart="40dp"-->
-                <!--android:layout_marginTop="5dp"-->
-                <!--android:layout_toEndOf="@+id/txt_2"-->
-                <!--android:layout_toRightOf="@+id/txt_2"-->
-                <!--android:background="@drawable/circular_number"-->
-                <!--android:gravity="center"-->
-                <!--android:text="7"-->
-                <!--android:textColor="@color/primaryColor"-->
-                <!--android:textSize="13sp"-->
-                <!--android:textStyle="bold" />-->
-
-            <!--<ImageView-->
-                <!--android:layout_width="25dp"-->
-                <!--android:layout_height="25dp"-->
-                <!--android:layout_alignBottom="@+id/txt_3"-->
-                <!--android:layout_toEndOf="@+id/txt_3"-->
-                <!--android:layout_toRightOf="@+id/txt_3"-->
-                <!--android:src="@drawable/sidan" />-->
-
-
-        </RelativeLayout>
 
 
         <RelativeLayout
