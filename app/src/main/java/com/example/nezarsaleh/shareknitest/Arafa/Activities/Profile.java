@@ -250,6 +250,7 @@ public class Profile extends AppCompatActivity {
                                         Intent intentToBeNewRoot = new Intent(Profile.this, Profile.class);
                                         ComponentName cn = intentToBeNewRoot.getComponent();
                                         Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        mainIntent.putExtra("DriverID",Driver_ID);
                                         startActivity(mainIntent);
                                     }
                                 })

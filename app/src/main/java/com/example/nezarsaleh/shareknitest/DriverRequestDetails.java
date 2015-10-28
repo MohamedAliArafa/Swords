@@ -133,6 +133,14 @@ public class DriverRequestDetails extends AppCompatActivity {
                                         Intent intentToBeNewRoot = new Intent(DriverRequestDetails.this, DriverRequestDetails.class);
                                         ComponentName cn = intentToBeNewRoot.getComponent();
                                         Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        mainIntent.putExtra("PassengerName",PassengerName);
+                                        mainIntent.putExtra("RouteName",RouteName);
+                                        mainIntent.putExtra("NationalityEnName",NationalityEnName);
+                                        mainIntent.putExtra("AccountPhoto",AccountPhoto);
+                                        mainIntent.putExtra("PassengerMobile",PassengerMobile);
+                                        mainIntent.putExtra("Remarks",Remarks);
+                                        mainIntent.putExtra("RequestDate",RequestDate);
+                                        mainIntent.putExtra("RequestId", RequestId);
                                         startActivity(mainIntent);
                                     }
                                 })
@@ -186,6 +194,14 @@ public class DriverRequestDetails extends AppCompatActivity {
                                         Intent intentToBeNewRoot = new Intent(DriverRequestDetails.this, DriverRequestDetails.class);
                                         ComponentName cn = intentToBeNewRoot.getComponent();
                                         Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        mainIntent.putExtra("PassengerName",PassengerName);
+                                        mainIntent.putExtra("RouteName",RouteName);
+                                        mainIntent.putExtra("NationalityEnName",NationalityEnName);
+                                        mainIntent.putExtra("AccountPhoto",AccountPhoto);
+                                        mainIntent.putExtra("PassengerMobile",PassengerMobile);
+                                        mainIntent.putExtra("Remarks",Remarks);
+                                        mainIntent.putExtra("RequestDate",RequestDate);
+                                        mainIntent.putExtra("RequestId", RequestId);
                                         startActivity(mainIntent);
                                     }
                                 })

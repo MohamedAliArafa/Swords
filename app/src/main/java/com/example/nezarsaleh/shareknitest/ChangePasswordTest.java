@@ -42,7 +42,6 @@ public class ChangePasswordTest extends AppCompatActivity {
         btn_change = (Button) findViewById(R.id.btn_Changepass_submit);
         txt_change= (TextView) findViewById(R.id.txt_change);
 
-        Intent intent=getIntent();
         SharedPreferences myPrefs = this.getSharedPreferences("myPrefs", MODE_WORLD_READABLE);
         MyID =  myPrefs.getString("account_id", null);
         Log.d("Test inside change pass",MyID);

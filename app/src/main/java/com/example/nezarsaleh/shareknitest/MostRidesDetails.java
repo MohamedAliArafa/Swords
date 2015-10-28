@@ -121,6 +121,7 @@ public class MostRidesDetails extends AppCompatActivity {
                                         Intent intentToBeNewRoot = new Intent(MostRidesDetails.this, MostRidesDetails.class);
                                         ComponentName cn = intentToBeNewRoot.getComponent();
                                         Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        mainIntent.putParcelableArrayListExtra("Data",data);
                                         startActivity(mainIntent);
                                     }
                                 })

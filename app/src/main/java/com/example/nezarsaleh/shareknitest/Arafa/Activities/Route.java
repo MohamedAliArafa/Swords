@@ -328,6 +328,9 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
                                         Intent intentToBeNewRoot = new Intent(Route.this, Route.class);
                                         ComponentName cn = intentToBeNewRoot.getComponent();
                                         Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        mainIntent.putExtra("DriverID",Driver_ID);
+                                        mainIntent.putExtra("RouteID",Route_ID);
+                                        mainIntent.putExtra("RouteName",Route_name);
                                         startActivity(mainIntent);
                                     }
                                 })

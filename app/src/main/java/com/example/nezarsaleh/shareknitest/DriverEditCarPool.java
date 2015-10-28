@@ -599,6 +599,8 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                                         Intent intentToBeNewRoot = new Intent(DriverEditCarPool.this, DriverEditCarPool.class);
                                         ComponentName cn = intentToBeNewRoot.getComponent();
                                         Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        mainIntent.putExtra("RouteID", RouteId);
+                                        mainIntent.putExtra("RoutName", Route_Name);
                                         startActivity(mainIntent);
                                     }
                                 })

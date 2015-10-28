@@ -9,6 +9,7 @@ import android.app.TimePickerDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -96,6 +97,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
     TextView txt_time_selected;
     TextView  before_Time;
+    SharedPreferences myPrefs;
 
     Button btn_search_page;
     int MyId;
@@ -116,9 +118,8 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         showDialogOnButtonClick();
         showTimeDialogOnButtonClick();
         initToolbar();
-        Intent intent = getIntent();
-
-        MyId = intent.getIntExtra("ID", 0);
+        myPrefs = this.getSharedPreferences("myPrefs", 0);
+        MyId = Integer.parseInt(myPrefs.getString("account_id", "0"));
 
 
         txt_year = (TextView) findViewById(R.id.search_txt_yaer);

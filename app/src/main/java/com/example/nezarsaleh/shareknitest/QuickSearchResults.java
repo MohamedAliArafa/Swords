@@ -146,6 +146,16 @@ public class QuickSearchResults extends AppCompatActivity {
                                         Intent intentToBeNewRoot = new Intent(QuickSearchResults.this, QuickSearchResults.class);
                                         ComponentName cn = intentToBeNewRoot.getComponent();
                                         Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        mainIntent.putExtra("From_Em_Id", From_Em_Id);
+                                        mainIntent.putExtra("From_Reg_Id", From_Reg_Id);
+                                        mainIntent.putExtra("To_Em_Id", To_Em_Id);
+                                        mainIntent.putExtra("To_Reg_Id", To_Reg_Id);
+
+                                        mainIntent.putExtra("To_EmirateEnName",To_EmirateEnName);
+                                        mainIntent.putExtra("From_EmirateEnName",From_EmirateEnName);
+                                        mainIntent.putExtra("To_RegionEnName",To_RegionEnName);
+                                        mainIntent.putExtra("From_RegionEnName",From_RegionEnName);
+                                        mainIntent.putExtra("Gender",Gender);
                                         startActivity(mainIntent);
                                     }
                                 })

@@ -700,6 +700,8 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                                         Intent intentToBeNewRoot = new Intent(RideDetailsPassenger.this, RideDetailsPassenger.class);
                                         ComponentName cn = intentToBeNewRoot.getComponent();
                                         Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        mainIntent.putExtra("RouteID", Route_ID);
+                                        mainIntent.putExtra("DriverID", Driver_ID);
                                         startActivity(mainIntent);
                                     }
                                 })
