@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +45,7 @@ public class QuickSearchResults extends AppCompatActivity {
     private Toolbar toolbar;
     String ID;
 
+    TextView to_txt_id,comma5;
     String Str_To_EmirateEnName_txt,Str_To_RegionEnName_txt;
 
     @Override
@@ -68,13 +70,14 @@ public class QuickSearchResults extends AppCompatActivity {
         From_EmirateEnName = intent.getStringExtra("From_EmirateEnName");
         To_RegionEnName = intent.getStringExtra("To_RegionEnName");
         From_RegionEnName = intent.getStringExtra("From_RegionEnName");
-        Gender = intent.getCharExtra("Gender",' ');
+        Gender = intent.getCharExtra("Gender", ' ');
 
         From_EmirateEnName_txt = (TextView) findViewById(R.id.quick_search_em_from);
         From_RegionEnName_txt = (TextView) findViewById(R.id.quick_search_reg_from);
         To_EmirateEnName_txt = (TextView) findViewById(R.id.quick_search_em_to);
         To_RegionEnName_txt = (TextView) findViewById(R.id.quick_search_reg_to);
-
+        to_txt_id = (TextView) findViewById(R.id.to_txt_id);
+        comma5 = (TextView) findViewById(R.id.comma5);
         From_EmirateEnName_txt.setText(From_EmirateEnName);
         From_RegionEnName_txt.setText(From_RegionEnName);
 
@@ -83,6 +86,12 @@ public class QuickSearchResults extends AppCompatActivity {
         To_RegionEnName_txt.setText("");
         To_EmirateEnName_txt.setText(To_EmirateEnName);
         To_RegionEnName_txt.setText(To_RegionEnName);
+
+        if (To_EmirateEnName_txt.getText().toString().equals("")){
+
+            comma5.setVisibility(View.INVISIBLE);
+            to_txt_id.setVisibility(View.INVISIBLE);
+        }
 
 //        if (To_EmirateEnName.equals("null")){
 //            To_EmirateEnName="Not Specified";

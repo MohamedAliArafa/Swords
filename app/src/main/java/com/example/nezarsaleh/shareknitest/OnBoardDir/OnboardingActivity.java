@@ -32,8 +32,8 @@ public class OnboardingActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         onboardingActivity=this;
 
-//        Intent intent =  new Intent(this,TestVedio.class);
-//        startActivity(intent);
+        Intent intent =  new Intent(this,TestVedio.class);
+        startActivity(intent);
 
 
         SharedPreferences myPrefs = this.getSharedPreferences("myPrefs", MODE_PRIVATE);
