@@ -55,6 +55,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     int To_Em_Id;
     int To_Reg_Id;
 
+    TextView N0_Of_Drivers;
+
     String To_EmirateEnName, From_EmirateEnName, To_RegionEnName, From_RegionEnName;
 
 
@@ -287,6 +289,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         TextView emiratelong = (TextView) v.findViewById(R.id.txt_map_long);
                         TextView NoOfRoutes_txt = (TextView) v.findViewById(R.id.NoOfRoutes);
                         TextView NoOfPassengers = (TextView) v.findViewById(R.id.NoOfPassengers);
+                        TextView N0_Of_Drivers = (TextView) v.findViewById(R.id.N0_Of_Drivers);
 
                         String lat = String.valueOf(latLng.latitude).substring(0, 7);
                         String lon = String.valueOf(latLng.longitude).substring(0, 7);
@@ -297,6 +300,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         emirateArName.setText(snippet);
                         emirateEnName.setText(title);
                         NoOfRoutes_txt.setText(NoOfRoutes_str);
+                        N0_Of_Drivers.setText(NoOfRoutes_str);
                         NoOfPassengers.setText(NoOfPassengers_str);
                         return v;
 

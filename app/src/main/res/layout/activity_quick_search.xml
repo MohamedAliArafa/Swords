@@ -242,7 +242,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/time_relative"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/user_register_border_button"
         android:text="Search"
         android:textAllCaps="false"
@@ -253,7 +253,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:background="@drawable/user_register_border_button"
         android:layout_below="@+id/btn_search_page"
         android:layout_marginLeft="20dp"
@@ -262,19 +262,23 @@
         android:layout_marginEnd="20dp"
         android:layout_marginTop="20dp"
         android:id="@+id/MostRides_Relative"
+        android:gravity="center_horizontal"
         >
+
+
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Most Rides"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/splash_top_rides_im_2"
             android:layout_toEndOf="@+id/splash_top_rides_im_2"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
             />
 
         <ImageView
@@ -282,8 +286,8 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:src="@drawable/splashmostrides"
 
             />
@@ -295,7 +299,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:background="@drawable/user_register_border_button"
         android:layout_below="@+id/MostRides_Relative"
         android:layout_marginLeft="20dp"
@@ -304,6 +308,8 @@
         android:layout_marginEnd="20dp"
         android:layout_marginTop="20dp"
         android:id="@+id/MapLookUp_Relative"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
         >
 
         <TextView
@@ -311,12 +317,12 @@
             android:layout_height="wrap_content"
             android:text="Map lookup"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/splash_top_rides_im_3"
             android:layout_toEndOf="@+id/splash_top_rides_im_3"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
             />
 
         <ImageView
@@ -324,8 +330,8 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:src="@drawable/searchoptionmaplookup"
 
             />
@@ -341,7 +347,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:background="@drawable/user_register_border_button"
         android:layout_below="@+id/MapLookUp_Relative"
         android:layout_marginLeft="20dp"
@@ -350,6 +356,9 @@
         android:layout_marginEnd="20dp"
         android:layout_marginTop="20dp"
         android:id="@+id/Advanced_Search_Relative_2"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="5dp"
+        android:gravity="center_horizontal"
         >
 
         <TextView
@@ -357,12 +366,13 @@
             android:layout_height="wrap_content"
             android:text="Advanced Search"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/splash_top_rides_im_4"
             android:layout_toEndOf="@+id/splash_top_rides_im_4"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:gravity="center_horizontal"
             />
 
         <ImageView
@@ -370,8 +380,8 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:src="@drawable/searchoptionadvanced"
 
             />
