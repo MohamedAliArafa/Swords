@@ -179,11 +179,11 @@
         <activity
             android:name=".MostRidesDetails"
             android:label="@string/title_activity_most_rides_details"
-            android:parentActivityName=".TopRidesAfterLogin"
+            android:parentActivityName=".HomePage"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.nezarsaleh.shareknitest.TopRidesAfterLogin" />
+                android:value="com.example.nezarsaleh.shareknitest.HomePage" />
         </activity>
         <activity
             android:name=".ForgetPassword"
@@ -268,7 +268,7 @@
             android:label="@string/title_activity_maps" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.nezarsaleh.shareknitest.SearchOptions" />
+                android:value="com.example.nezarsaleh.shareknitest.HomePage" />
         </activity>
         <activity
             android:name=".DriverAlertsForRequest"
