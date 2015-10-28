@@ -1,131 +1,65 @@
 package com.example.nezarsaleh.shareknitest;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
+import android.os.Handler;
+import android.widget.ImageView;
 
-import com.example.nezarsaleh.shareknitest.Arafa.Activities.BestDriversBeforeLogin;
-import com.example.nezarsaleh.shareknitest.Arafa.Activities.BestRideBeforeLogin;
-import com.example.nezarsaleh.shareknitest.MainNavigationDrawerFragment.NavigationDrawerFragment;
 import com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity;
 
+public class Sharekni extends Activity {
+    static Sharekni TestVedio;
 
-public class Sharekni extends ActionBarActivity {
-    private Toolbar toolbar;
-    Button TopRIDebutton;
-    Button TopDRiversBtn;
-    Button MapLookUp;
-    Button btnHomePage;
-    Button LogINBtn;
+    public static Sharekni getInstance(){
+        return  TestVedio ;
+    }
 
+    ImageView Splash_background;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.vediotest);
+        TestVedio = this;
+        Splash_background = (ImageView) findViewById(R.id.Splash_background);
 
-               SharedPreferences preferences =
-                getSharedPreferences("my_onboard_preferences", MODE_PRIVATE);
-
-        
-
-        if(!preferences.getBoolean("onboarding_complete",false)){
-
-            Intent onboarding = new Intent(this, OnboardingActivity.class);
-            startActivity(onboarding);
-
-            finish();
-            return;
-        }
-
-
-        setContentView(R.layout.activity_main);
-
-        toolbar = (Toolbar) findViewById(R.id.app_bar);
-        TopRIDebutton = (Button) findViewById(R.id.TopRideBtn);
-        TopDRiversBtn = (Button) findViewById(R.id.TopDriversBtn);
-        MapLookUp = (Button) findViewById(R.id.MapLOOkUP);
-        LogINBtn = (Button) findViewById(R.id.LogInForm);
-        btnHomePage = (Button) findViewById(R.id.homepagetest);
-
-
-        btnHomePage.setOnClickListener(new View.OnClickListener() {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), HomePage.class);
-                startActivity(intent);
+            public void run() {
 
+                Splash_background.setImageResource(R.drawable.splashtwo);
+
+                // Do something after 5s = 5000ms
 
             }
-        });
 
-        LogINBtn.setOnClickListener(new View.OnClickListener() {
+
+
+        }, 5000);
+
+
+
+
+
+        handler.postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LoginApproved.class);
-                startActivity(intent);
-            }
-        });
-
-
-        MapLookUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
-//                startActivity(intent);
+            public void run() {
+                Intent in = new Intent(Sharekni.this, OnboardingActivity.class);
+                startActivity(in);
+//                finish();
+                // Do something after 5s = 5000ms
 
             }
-        });
-        TopDRiversBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent2 = new Intent(getApplicationContext(), BestDriversBeforeLogin.class);
-                startActivity(intent2);
-            }
-        });
-        TopRIDebutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), BestRideBeforeLogin.class);
-                startActivity(intent);
-            }
-        });
+        }, 8000);
+
+
+    } //  on create
+
+
+    } //  class
 
 
 
-        setSupportActionBar(toolbar);
 
 
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-
-        NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)
-                getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawwer);
-
-        drawerFragment.setUp(R.id.fragment_navigation_drawwer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
-
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        return super.onOptionsItemSelected(item);
-    }
-}

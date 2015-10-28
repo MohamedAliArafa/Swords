@@ -39,14 +39,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Base" >
         <activity
-            android:name=".Sharekni"
+            android:name=".SharekniOld"
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity
             android:name=".HomePage"
@@ -54,35 +54,35 @@
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Sharekni" />
+                android:value=".SharekniOld" />
         </activity>
         <activity
             android:name=".TopDriversDir.TopDrivers"
             android:label="@string/title_activity_top_drivers"
-            android:parentActivityName=".Sharekni"
+            android:parentActivityName=".SharekniOld"
             android:screenOrientation="portrait"
             >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Sharekni" />
+                android:value=".SharekniOld" />
         </activity>
         <activity
             android:name=".DriverEditCarPool"
             android:label="@string/title_activity_top_drivers"
-            android:parentActivityName=".Sharekni"
+            android:parentActivityName=".SharekniOld"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Sharekni" />
+                android:value=".SharekniOld" />
         </activity>
         <activity
             android:name=".OnBoardDir.OnboardingActivity"
             android:label="@string/title_activity_On_Boarding"
-            android:parentActivityName=".Sharekni"
+            android:parentActivityName=".SharekniOld"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Sharekni" />
+                android:value=".SharekniOld" />
         </activity>
         <activity
             android:name=".ViewProfileActivity"
@@ -90,47 +90,47 @@
         <activity
             android:name=".Arafa.Activities.ImageUp"
             android:label="@string/title_activity_home_page_test"
-            android:parentActivityName=".Sharekni"
+            android:parentActivityName=".SharekniOld"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Sharekni" />
+                android:value=".SharekniOld" />
         </activity>
         <activity
             android:name=".Arafa.Activities.BestDriversBeforeLogin"
             android:label="@string/title_activity_home_page_test"
-            android:parentActivityName=".Sharekni"
+            android:parentActivityName=".SharekniOld"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Sharekni" />
+                android:value=".SharekniOld" />
         </activity>
         <activity
             android:name=".Arafa.Activities.BestRideBeforeLogin"
             android:label="@string/title_activity_home_page_test"
-            android:parentActivityName=".Sharekni"
+            android:parentActivityName=".SharekniOld"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Sharekni" />
+                android:value=".SharekniOld" />
         </activity>
         <activity
             android:name=".Arafa.Activities.Profile"
             android:label="@string/title_activity_home_page_test"
-            android:parentActivityName=".Sharekni"
+            android:parentActivityName=".SharekniOld"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Sharekni" />
+                android:value=".SharekniOld" />
         </activity>
         <activity
             android:name=".Arafa.Activities.Route"
             android:label="@string/title_activity_home_page_test"
-            android:parentActivityName=".Sharekni"
+            android:parentActivityName=".SharekniOld"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Sharekni" />
+                android:value=".SharekniOld" />
         </activity>
         <activity
             android:name=".LoginApproved"
@@ -141,11 +141,11 @@
         <activity
             android:name=".SearchOptions"
             android:label="@string/title_activity_search_options"
-            android:parentActivityName=".Sharekni"
+            android:parentActivityName=".SharekniOld"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Sharekni" />
+                android:value=".SharekniOld" />
         </activity>
         <activity
             android:name=".RegisterNewTest"
@@ -317,10 +317,14 @@
             android:theme="@style/AppTheme.Base" >
         </activity>
         <activity
-            android:name=".TestVedio"
+            android:name=".Sharekni"
             android:label="@string/title_activity_test_vedio"
             android:theme="@style/AppTheme.Base"
             >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".PassengerMyApprovedRides"

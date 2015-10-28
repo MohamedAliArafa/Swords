@@ -28,7 +28,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/app_bar"
-            android:text="Top Rides"
+            android:text="Most Rides"
             android:textSize="24sp"
             android:id="@+id/TopRideBtn"
             android:layout_margin="10dp"

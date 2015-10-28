@@ -34,7 +34,7 @@
     <string name="txt_arabic">عربي</string>
     <string name="fragment_one_login_txt">LOGIN</string>
     <string name="txt_best_drivers">Best Drivers</string>
-    <string name="txt_top_rides">Top Rides</string>
+    <string name="txt_top_rides">Most Rides</string>
     <string name="txt_about_us">About Us</string>
     <string name="title_activity_home_page_test">HomePageTest</string>
     <string name="title_activity_login_approved">LoginApproved</string>
@@ -62,7 +62,7 @@
     <string name="title_activity_driver_created_rides">DriverCreatedRides</string>
     <string name="title_activity_driver_joined_rides">DriverJoinedRides</string>
     <string name="title_activity_splash">SplashActivity</string>
-    <string name="title_activity_test_vedio">TestVedio</string>
+    <string name="title_activity_test_vedio">Sharekni</string>
     <string name="title_activity_passenger_my_approved_rides">PassengerMyApprovedRides</string>
     <string name="title_activity_history">History</string>
     <string name="title_activity_take_atour">TakeATour</string>

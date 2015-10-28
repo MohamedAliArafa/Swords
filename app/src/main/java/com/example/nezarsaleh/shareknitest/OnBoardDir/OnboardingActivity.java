@@ -16,9 +16,8 @@ import com.example.nezarsaleh.shareknitest.LoginApproved;
 import com.example.nezarsaleh.shareknitest.QSearch;
 import com.example.nezarsaleh.shareknitest.R;
 import com.example.nezarsaleh.shareknitest.RegisterNewTest;
-import com.example.nezarsaleh.shareknitest.SearchOptions;
 import com.example.nezarsaleh.shareknitest.TakeATour;
-import com.example.nezarsaleh.shareknitest.TestVedio;
+import com.example.nezarsaleh.shareknitest.Sharekni;
 
 /*
  * Created by nezar on 8/11/2015.
@@ -33,9 +32,15 @@ public class OnboardingActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         onboardingActivity=this;
 
-        Intent intent =  new Intent(this,TestVedio.class);
-        startActivity(intent);
-
+//        Intent intent =  new Intent(this,TestVedio.class);
+//        startActivity(intent);
+        try {
+            if (Sharekni.getInstance() != null) {
+                Sharekni.getInstance().finish();
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
 
         SharedPreferences myPrefs = this.getSharedPreferences("myPrefs", MODE_PRIVATE);
         String ID = myPrefs.getString("account_id", null);

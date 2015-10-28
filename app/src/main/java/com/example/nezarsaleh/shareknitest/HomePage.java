@@ -481,6 +481,8 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
             } catch (JSONException e) {
                 hidePDialog();
                 e.printStackTrace();
+            }catch (NullPointerException e){
+                e.printStackTrace();
             }
 
             btn_history.setOnClickListener(new View.OnClickListener() {

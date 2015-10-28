@@ -83,6 +83,7 @@ public class EditProfileTest extends AppCompatActivity {
     Button btn_upload_image;
     EditText edit_fname;
     EditText edit_lname;
+    EditText edit_reg_mob;
     TextView malefemale_txt, femalemale_txt;
     int Language_ID;
     int year_x, month_x, day_x;
@@ -191,17 +192,23 @@ public class EditProfileTest extends AppCompatActivity {
         txt_comma = (TextView) findViewById(R.id.Register_comma_cal);
         txt_dayOfWeek = (TextView) findViewById(R.id.txt_dayOfWeek);
         btn_Edit_Cancel= (Button) findViewById(R.id.btn_Edit_Cancel);
+        edit_reg_mob = (EditText) findViewById(R.id.edit_reg_mob);
+
 
         showDialogOnButtonClick();
 
         try {
             JSONObject j = new GetData().GetDriverById(MyID);
-            edit_fname.setText(j.getString("FirstName"));
+            String Firstname=(j.getString("FirstName"));
+            Firstname=  Firstname.substring(0, 1).toUpperCase() + Firstname.substring(1);
+            edit_fname.setText(Firstname);
             edit_fname.setTextColor(getResources().getColor(R.color.primaryColor));
-
-            edit_lname.setText(j.getString("LastName"));
+            String LastName =(j.getString("LastName"));
+            LastName=  LastName.substring(0, 1).toUpperCase() + LastName.substring(1);
+            edit_lname.setText(LastName);
             edit_lname.setTextColor(getResources().getColor(R.color.primaryColor));
-
+            edit_reg_mob.setText(j.getString("Mobile").substring(4));
+            edit_reg_mob.setTextColor(getResources().getColor(R.color.primaryColor));
             full_date = j.getString("BirthDate");
             txt_year.setText(full_date);
             txt_beforeCal.setVisibility(View.INVISIBLE);
@@ -314,21 +321,22 @@ public class EditProfileTest extends AppCompatActivity {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (edit_fname.getText() != null && edit_fname.getText().toString() != "First Name" && edit_lname.getText() != null && edit_lname.getText().toString() != "Last Name"  && txt_country.getText() != null && txt_country.getText().toString() != "Nationality" && txt_lang.getText() != null && txt_lang.getText().toString() != "Preferred Language" && full_date != null) {
+                if (edit_fname.getText() != null && edit_fname.getText().toString() != "First Name" && edit_lname.getText() != null && edit_lname.getText().toString() != "Last Name" && edit_reg_mob.getText() != null && edit_reg_mob.getText().toString() != "Mobile Number" && txt_country.getText() != null && txt_country.getText().toString() != "Nationality" && txt_lang.getText() != null && txt_lang.getText().toString() != "Preferred Language" && full_date != null) {
                     if (uploadedImage == null) {
                         Toast.makeText(EditProfileTest.this, "Select Profile Image!!", Toast.LENGTH_SHORT).show();
                     } else {
                         String Fname = edit_fname.getText().toString();
                         String Lname = edit_lname.getText().toString();
-                        String country = txt_country.getText().toString();
-                        String lang = txt_lang.getText().toString();
+                        String mobile = edit_reg_mob.getText().toString();
+//                        String country = txt_country.getText().toString();
+//                        String lang = txt_lang.getText().toString();
                         char gender = i;
                         String birthdate = full_date;
                         //String photoname = "testing.jpg";
                         String x = String.valueOf(Language_ID);
                         String y = String.valueOf(Nationality_ID);
                         GetData gd = new GetData();
-                        gd.EditProfileForm(MyID,Fname,Lname, String.valueOf(gender),birthdate,y,x,uploadedImage,EditProfileTest.this);
+                        gd.EditProfileForm(MyID,Fname,Lname,mobile,String.valueOf(gender),birthdate,y,x,uploadedImage,EditProfileTest.this);
                     }
                 } else {
                     Toast.makeText(EditProfileTest.this, "Fill Al Required fields", Toast.LENGTH_SHORT).show();

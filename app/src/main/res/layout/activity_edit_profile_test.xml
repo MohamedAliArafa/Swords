@@ -99,6 +99,40 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/user_register_border"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" + 971 - "/>
+            <EditText
+                android:id="@+id/edit_reg_mob"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/borders_edit_txt_user_register"
+                android:cursorVisible="false"
+                android:hint="Mobile Number"
+                android:lines="1"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:maxLines="1"
+                android:scrollHorizontally="true"
+                android:textSize="15sp"
+                android:singleLine="true"
+                android:textColorHint="@color/primaryColor" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/user_register_border"
 
 
             >

@@ -258,6 +258,7 @@ public class GetData {
 
     public void EditProfileForm(int id, String firstName
             , String lastName
+            ,String mobile
             , String gender
             , String BirthDate
             , String NationalityId
@@ -269,6 +270,7 @@ public class GetData {
                 + "id=" + id
                 + "&firstName=" + URLEncoder.encode(firstName)
                 + "&lastName=" + URLEncoder.encode(lastName)
+                + "&Mobile=" + mobile
                 + "&gender=" + gender
                 + "&BirthDate=" + BirthDate
                 + "&NationalityId=" + NationalityId
