@@ -8,10 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 
-import com.example.nezarsaleh.shareknitest.Arafa.Activities.BestDriversBeforeLogin;
-import com.example.nezarsaleh.shareknitest.Arafa.Activities.BestRideBeforeLogin;
 import com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity;
 
 /**

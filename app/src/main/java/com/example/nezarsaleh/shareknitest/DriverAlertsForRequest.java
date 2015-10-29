@@ -13,9 +13,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
-import android.os.Parcelable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -26,11 +23,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.nezarsaleh.shareknitest.Arafa.Activities.Profile;
-import com.example.nezarsaleh.shareknitest.Arafa.Activities.Route;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
-import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestDriverDataModel;
-import com.example.nezarsaleh.shareknitest.Arafa.DataModelAdapter.BestDriverDataModelAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;

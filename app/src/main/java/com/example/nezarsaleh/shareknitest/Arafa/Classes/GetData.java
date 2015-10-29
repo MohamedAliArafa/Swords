@@ -2,24 +2,19 @@ package com.example.nezarsaleh.shareknitest.Arafa.Classes;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Bundle;
 import android.os.Parcel;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,27 +24,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.nezarsaleh.shareknitest.Arafa.Activities.Profile;
-import com.example.nezarsaleh.shareknitest.Arafa.Activities.Route;
-import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestDriverDataModel;
-import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestRouteDataModel;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestRouteDataModelDetails;
-import com.example.nezarsaleh.shareknitest.Arafa.DataModel.DriverRideDataModel;
-import com.example.nezarsaleh.shareknitest.Arafa.DataModel.RouteDataModel;
-import com.example.nezarsaleh.shareknitest.Arafa.DataModelAdapter.BestDriverDataModelAdapter;
-import com.example.nezarsaleh.shareknitest.Arafa.DataModelAdapter.BestRouteDataModelAdapter;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModelAdapter.BestRouteDataModelAdapterDetails;
-import com.example.nezarsaleh.shareknitest.Arafa.DataModelAdapter.DriverRideDataModelAdapter;
 import com.example.nezarsaleh.shareknitest.DriverCreatedRides;
 import com.example.nezarsaleh.shareknitest.HomePage;
-import com.example.nezarsaleh.shareknitest.LoginApproved;
-import com.example.nezarsaleh.shareknitest.MostRidesDetails;
 import com.example.nezarsaleh.shareknitest.QuickSearchDataModel;
 import com.example.nezarsaleh.shareknitest.QuickSearchResultAdapter;
 import com.example.nezarsaleh.shareknitest.R;
-import com.example.nezarsaleh.shareknitest.RideDetailsPassenger;
 import com.example.nezarsaleh.shareknitest.Ride_Details_Passengers_Adapter;
 import com.example.nezarsaleh.shareknitest.Ride_Details_Passengers_DataModel;
-import com.example.nezarsaleh.shareknitest.SearchOptions;
 
 
 import org.json.JSONArray;
@@ -65,9 +48,12 @@ public class GetData {
     final JSONArray[] myJsonArray = new JSONArray[1];
 
 //    public static final String DOMAIN = "http://sharekni.sdgstaff.com";
-    public static final String DOMAIN = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx/";
+//http://sharekni.sdgstaff.com/_mobfiles/CLS_MobAndroid.asmx
+    //http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx/
+    public static final String DOMAIN = "http://sharekni.sdgstaff.com/_mobfiles/CLS_MobAndroid.asmx/";
     public static final String NonOpDomain = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx";
-    public static final String PhotoURL = "http://sharekni-web.sdg.ae/uploads/personalphoto/";
+    public static final String PhotoURL = "http://sharekni.sdgstaff.com/uploads/personalphoto/";
+
 
 //    String data;
 //    String loginFormUrl                 = DOMAIN + "/_mobfiles/CLS_MobAccount.asmx/CheckLogin?";

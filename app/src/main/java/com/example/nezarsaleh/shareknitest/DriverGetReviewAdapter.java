@@ -2,26 +2,21 @@ package com.example.nezarsaleh.shareknitest;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.nezarsaleh.shareknitest.Arafa.Activities.Route;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
-import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestRouteDataModel;
 
 import org.json.JSONException;
 
 import java.util.List;
-import java.util.prefs.Preferences;
 
 /**
  * Created by Nezar Saleh on 10/8/2015.

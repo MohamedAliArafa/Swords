@@ -1,22 +1,17 @@
 package com.example.nezarsaleh.shareknitest.Arafa.DataModelAdapter;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.AppController;
@@ -24,10 +19,6 @@ import com.example.nezarsaleh.shareknitest.Arafa.Classes.CircularNetworkImageVie
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestRouteDataModelDetails;
 import com.example.nezarsaleh.shareknitest.R;
-
-import org.json.JSONException;
-
-import java.net.URLEncoder;
 
 
 public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteDataModelDetails> {

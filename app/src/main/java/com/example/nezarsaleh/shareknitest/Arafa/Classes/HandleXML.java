@@ -1,12 +1,9 @@
+
 package com.example.nezarsaleh.shareknitest.Arafa.Classes;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.util.Log;
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
-
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -14,6 +11,7 @@ import java.net.URL;
 /**
  * Created by Fantom on 11/09/2015.
  */
+
 public class HandleXML {
     private String data = "string";
     private String urlString = null;
@@ -58,6 +56,7 @@ public class HandleXML {
         }
         catch (Exception e) {
             e.printStackTrace();
+
         }
     }
 

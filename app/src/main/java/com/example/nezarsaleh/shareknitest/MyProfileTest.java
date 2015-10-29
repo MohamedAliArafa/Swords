@@ -35,7 +35,6 @@ import com.example.nezarsaleh.shareknitest.Arafa.Classes.ImageDecoder;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.VolleySingleton;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestRouteDataModel;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModelAdapter.BestRouteDataModelAdapter;
-import com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity;
 import com.pkmmte.view.CircularImageView;
 
 import org.json.JSONArray;

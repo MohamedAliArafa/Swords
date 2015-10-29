@@ -7,28 +7,21 @@
         <!--android:orderInCategory="100"-->
         <!--android:title="Join Ride"-->
         <!--app:showAsAction="never" />-->
-    <item
-        android:id="@+id/Review_Driver"
-        android:orderInCategory="100"
-        android:title="Review Driver"
-        app:showAsAction="never" />
+    <!--<item-->
+        <!--android:id="@+id/Review_Driver"-->
+        <!--android:orderInCategory="100"-->
+        <!--android:title="Review Driver"-->
+        <!--app:showAsAction="never" />-->
 
 
 
-    <item
-        android:id="@+id/Get_Reviews"
-        android:orderInCategory="100"
-        android:title="Get_Reviews"
-        app:showAsAction="never"
+    <!--<item-->
+        <!--android:id="@+id/Get_Reviews"-->
+        <!--android:orderInCategory="100"-->
+        <!--android:title="Get_Reviews"-->
+        <!--app:showAsAction="never"-->
 
-        />
-
-
-
-
-
-
-
+        <!--/>-->
 
 
 </menu>

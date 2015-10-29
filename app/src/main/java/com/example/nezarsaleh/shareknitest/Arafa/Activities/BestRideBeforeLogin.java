@@ -28,7 +28,6 @@ import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestRouteDataModel;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModelAdapter.BestRouteDataModelAdapter;
 import com.example.nezarsaleh.shareknitest.MostRidesDetails;
-import com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity;
 import com.example.nezarsaleh.shareknitest.R;
 
 import org.json.JSONArray;

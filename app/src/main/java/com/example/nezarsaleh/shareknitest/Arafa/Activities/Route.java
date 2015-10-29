@@ -13,7 +13,6 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Message;
 import android.os.Parcel;
 import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -32,14 +31,10 @@ import android.widget.Toast;
 
 
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
-import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestDriverDataModel;
-import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestRouteDataModel;
-import com.example.nezarsaleh.shareknitest.Arafa.DataModelAdapter.BestRouteDataModelAdapter;
 import com.example.nezarsaleh.shareknitest.DriverEditCarPool;
 import com.example.nezarsaleh.shareknitest.DriverGetReviewAdapter;
 import com.example.nezarsaleh.shareknitest.DriverGetReviewDataModel;
 import com.example.nezarsaleh.shareknitest.HomePage;
-import com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity;
 import com.example.nezarsaleh.shareknitest.R;
 import com.example.nezarsaleh.shareknitest.Ride_Details_Passengers_Adapter;
 import com.example.nezarsaleh.shareknitest.Ride_Details_Passengers_DataModel;
@@ -58,11 +53,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Serializable;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 

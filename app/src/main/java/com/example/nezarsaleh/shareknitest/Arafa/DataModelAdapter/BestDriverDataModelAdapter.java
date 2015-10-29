@@ -8,12 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
-import com.example.nezarsaleh.shareknitest.Arafa.Activities.Profile;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.AppController;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.CircularNetworkImageView;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;

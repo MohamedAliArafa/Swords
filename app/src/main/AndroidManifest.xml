@@ -32,7 +32,7 @@
         android:required="true" />
 
     <application
-        android:name=".Arafa.Classes.AppController"
+        android:name="com.example.nezarsaleh.shareknitest.Arafa.Classes.AppController"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -40,7 +40,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Base" >
         <activity
-            android:name=".SharekniOld"
+            android:name="com.example.nezarsaleh.shareknitest.SharekniOld"
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait" >
             <!--<intent-filter>-->
@@ -50,192 +50,192 @@
             <!--</intent-filter>-->
         </activity>
         <activity
-            android:name=".HomePage"
+            android:name="com.example.nezarsaleh.shareknitest.HomePage"
             android:label="@string/title_activity_sub_navigate"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SharekniOld" />
+                android:value="com.example.nezarsaleh.shareknitest.SharekniOld" />
         </activity>
         <activity
-            android:name=".TopDriversDir.TopDrivers"
+            android:name="com.example.nezarsaleh.shareknitest.TopDriversDir.TopDrivers"
             android:label="@string/title_activity_top_drivers"
-            android:parentActivityName=".SharekniOld"
+            android:parentActivityName="com.example.nezarsaleh.shareknitest.SharekniOld"
             android:screenOrientation="portrait"
             >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SharekniOld" />
+                android:value="com.example.nezarsaleh.shareknitest.SharekniOld" />
         </activity>
         <activity
-            android:name=".DriverEditCarPool"
+            android:name="com.example.nezarsaleh.shareknitest.DriverEditCarPool"
             android:label="@string/title_activity_top_drivers"
-            android:parentActivityName=".SharekniOld"
+            android:parentActivityName="com.example.nezarsaleh.shareknitest.SharekniOld"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SharekniOld" />
+                android:value="com.example.nezarsaleh.shareknitest.SharekniOld" />
         </activity>
         <activity
-            android:name=".OnBoardDir.OnboardingActivity"
+            android:name="com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity"
             android:label="@string/title_activity_On_Boarding"
-            android:parentActivityName=".SharekniOld"
+            android:parentActivityName="com.example.nezarsaleh.shareknitest.SharekniOld"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SharekniOld" />
+                android:value="com.example.nezarsaleh.shareknitest.SharekniOld" />
         </activity>
         <activity
-            android:name=".ViewProfileActivity"
+            android:name="com.example.nezarsaleh.shareknitest.ViewProfileActivity"
             android:label="@string/title_activity_view_profile" />
         <activity
-            android:name=".Arafa.Activities.ImageUp"
+            android:name="com.example.nezarsaleh.shareknitest.Arafa.Activities.ImageUp"
             android:label="@string/title_activity_home_page_test"
-            android:parentActivityName=".SharekniOld"
+            android:parentActivityName="com.example.nezarsaleh.shareknitest.SharekniOld"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SharekniOld" />
+                android:value="com.example.nezarsaleh.shareknitest.SharekniOld" />
         </activity>
         <activity
-            android:name=".Arafa.Activities.BestDriversBeforeLogin"
+            android:name="com.example.nezarsaleh.shareknitest.Arafa.Activities.BestDriversBeforeLogin"
             android:label="@string/title_activity_home_page_test"
-            android:parentActivityName=".SharekniOld"
+            android:parentActivityName="com.example.nezarsaleh.shareknitest.SharekniOld"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SharekniOld" />
+                android:value="com.example.nezarsaleh.shareknitest.SharekniOld" />
         </activity>
         <activity
-            android:name=".Arafa.Activities.BestRideBeforeLogin"
+            android:name="com.example.nezarsaleh.shareknitest.Arafa.Activities.BestRideBeforeLogin"
             android:label="@string/title_activity_home_page_test"
-            android:parentActivityName=".SharekniOld"
+            android:parentActivityName="com.example.nezarsaleh.shareknitest.SharekniOld"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SharekniOld" />
+                android:value="com.example.nezarsaleh.shareknitest.SharekniOld" />
         </activity>
         <activity
-            android:name=".Arafa.Activities.Profile"
+            android:name="com.example.nezarsaleh.shareknitest.Arafa.Activities.Profile"
             android:label="@string/title_activity_home_page_test"
-            android:parentActivityName=".SharekniOld"
+            android:parentActivityName="com.example.nezarsaleh.shareknitest.SharekniOld"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SharekniOld" />
+                android:value="com.example.nezarsaleh.shareknitest.SharekniOld" />
         </activity>
         <activity
-            android:name=".Arafa.Activities.Route"
+            android:name="com.example.nezarsaleh.shareknitest.Arafa.Activities.Route"
             android:label="@string/title_activity_home_page_test"
-            android:parentActivityName=".SharekniOld"
+            android:parentActivityName="com.example.nezarsaleh.shareknitest.SharekniOld"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SharekniOld" />
+                android:value="com.example.nezarsaleh.shareknitest.SharekniOld" />
         </activity>
         <activity
-            android:name=".LoginApproved"
+            android:name="com.example.nezarsaleh.shareknitest.LoginApproved"
             android:label="@string/title_activity_login_approved"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
-            android:name=".SearchOptions"
+            android:name="com.example.nezarsaleh.shareknitest.SearchOptions"
             android:label="@string/title_activity_search_options"
-            android:parentActivityName=".SharekniOld"
+            android:parentActivityName="com.example.nezarsaleh.shareknitest.SharekniOld"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SharekniOld" />
+                android:value="com.example.nezarsaleh.shareknitest.SharekniOld" />
         </activity>
         <activity
-            android:name=".RegisterNewTest"
+            android:name="com.example.nezarsaleh.shareknitest.RegisterNewTest"
             android:label="@string/title_activity_register_new_test"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
-            android:name=".DriverProfileTest"
+            android:name="com.example.nezarsaleh.shareknitest.DriverProfileTest"
             android:label="@string/title_activity_my_profile_tet"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".TopRidesAfterLogin"
+            android:name="com.example.nezarsaleh.shareknitest.TopRidesAfterLogin"
             android:label="@string/title_activity_top_rides_after_login"
-            android:parentActivityName=".HomePage"
+            android:parentActivityName="com.example.nezarsaleh.shareknitest.HomePage"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
         </activity>
         <activity
-            android:name=".TopDriversAfterLogin"
+            android:name="com.example.nezarsaleh.shareknitest.TopDriversAfterLogin"
             android:label="@string/title_activity_top_drivers_after_login"
-            android:parentActivityName=".HomePage"
+            android:parentActivityName="com.example.nezarsaleh.shareknitest.HomePage"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
         </activity>
         <activity
-            android:name=".MostRidesDetails"
+            android:name="com.example.nezarsaleh.shareknitest.MostRidesDetails"
             android:label="@string/title_activity_most_rides_details"
-            android:parentActivityName=".HomePage"
+            android:parentActivityName="com.example.nezarsaleh.shareknitest.HomePage"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
         </activity>
         <activity
-            android:name=".ForgetPassword"
+            android:name="com.example.nezarsaleh.shareknitest.ForgetPassword"
             android:label="@string/title_activity_forget_password"
-            android:parentActivityName=".LoginApproved"
+            android:parentActivityName="com.example.nezarsaleh.shareknitest.LoginApproved"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.LoginApproved" />
         </activity>
         <activity
-            android:name=".ChangePasswordTest"
+            android:name="com.example.nezarsaleh.shareknitest.ChangePasswordTest"
             android:label="@string/title_activity_change_password_test"
-            android:parentActivityName=".HomePage"
+            android:parentActivityName="com.example.nezarsaleh.shareknitest.HomePage"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
         </activity>
         <activity
-            android:name=".MyProfileTest"
+            android:name="com.example.nezarsaleh.shareknitest.MyProfileTest"
             android:label="@string/title_activity_my_profile_test"
-            android:parentActivityName=".HomePage"
+            android:parentActivityName="com.example.nezarsaleh.shareknitest.HomePage"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
         </activity>
         <activity
-            android:name=".EditProfileTest"
+            android:name="com.example.nezarsaleh.shareknitest.EditProfileTest"
             android:label="@string/title_activity_edit_profile_test"
-            android:parentActivityName=".HomePage"
+            android:parentActivityName="com.example.nezarsaleh.shareknitest.HomePage"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
         </activity>
         <activity
-            android:name=".QuickSearchResults"
+            android:name="com.example.nezarsaleh.shareknitest.QuickSearchResults"
             android:label="@string/title_activity_quick_search_results" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
         </activity>
         <activity
-            android:name=".DriverCreateCarPool"
+            android:name="com.example.nezarsaleh.shareknitest.DriverCreateCarPool"
             android:label="@string/title_activity_driver_create_car_pool" >
         </activity>
 
         <activity
-            android:name=".QSearch"
+            android:name="com.example.nezarsaleh.shareknitest.QSearch"
             android:label="@string/title_activity_qsearch" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -243,9 +243,9 @@
         </activity>
 
         <activity
-            android:name=".Advanced_Search"
+            android:name="com.example.nezarsaleh.shareknitest.Advanced_Search"
             android:label="@string/title_activity_advanced__search"
-            android:parentActivityName=".SearchOptions"
+            android:parentActivityName="com.example.nezarsaleh.shareknitest.SearchOptions"
             android:theme="@style/AppTheme.Base" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -265,23 +265,23 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name="com.example.nezarsaleh.shareknitest.MapsActivity"
             android:label="@string/title_activity_maps" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
         </activity>
         <activity
-            android:name=".DriverAlertsForRequest"
+            android:name="com.example.nezarsaleh.shareknitest.DriverAlertsForRequest"
             android:label="@string/title_activity_driver_alerts_for_request"
-            android:parentActivityName=".HomePage"
+            android:parentActivityName="com.example.nezarsaleh.shareknitest.HomePage"
             android:theme="@style/AppTheme.Base" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
         </activity>
         <activity
-            android:name=".RideDetailsPassenger"
+            android:name="com.example.nezarsaleh.shareknitest.RideDetailsPassenger"
             android:label="@string/title_activity_ride_details_passenger"
             android:theme="@style/AppTheme.Base" >
             <meta-data
@@ -289,39 +289,39 @@
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
         </activity>
         <activity
-            android:name=".DriverRequestDetails"
+            android:name="com.example.nezarsaleh.shareknitest.DriverRequestDetails"
             android:label="@string/title_activity_driver_request_details"
-            android:parentActivityName=".DriverAlertsForRequest"
+            android:parentActivityName="com.example.nezarsaleh.shareknitest.DriverAlertsForRequest"
             android:theme="@style/AppTheme.Base" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.DriverAlertsForRequest" />
         </activity>
         <activity
-            android:name=".DriverCreatedRides"
+            android:name="com.example.nezarsaleh.shareknitest.DriverCreatedRides"
             android:label="@string/title_activity_driver_created_rides"
-            android:parentActivityName=".HomePage"
+            android:parentActivityName="com.example.nezarsaleh.shareknitest.HomePage"
             app:theme="@style/AppTheme.Base" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
         </activity>
         <activity
-            android:name=".DriverJoinedRides"
+            android:name="com.example.nezarsaleh.shareknitest.DriverJoinedRides"
             android:label="@string/title_activity_driver_joined_rides"
-            android:parentActivityName=".HomePage"
+            android:parentActivityName="com.example.nezarsaleh.shareknitest.HomePage"
             android:theme="@style/AppTheme.Base" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
         </activity>
         <activity
-            android:name=".SplashActivity"
+            android:name="com.example.nezarsaleh.shareknitest.SplashActivity"
             android:label="@string/title_activity_splash"
             android:theme="@style/AppTheme.Base" >
         </activity>
         <activity
-            android:name=".Sharekni"
+            android:name="com.example.nezarsaleh.shareknitest.Sharekni"
             android:label="@string/title_activity_test_vedio"
             app:theme="@style/AppTheme.Base"
             >
@@ -331,16 +331,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PassengerMyApprovedRides"
+            android:name="com.example.nezarsaleh.shareknitest.PassengerMyApprovedRides"
             android:label="@string/title_activity_passenger_my_approved_rides"
-            android:parentActivityName=".HomePage"
+            android:parentActivityName="com.example.nezarsaleh.shareknitest.HomePage"
             android:theme="@style/AppTheme.Base" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
         </activity>
         <activity
-            android:name=".History"
+            android:name="com.example.nezarsaleh.shareknitest.History"
             android:label="@string/title_activity_history"
             android:theme="@style/AppTheme.Base" >
             <meta-data
@@ -348,26 +348,26 @@
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
         </activity>
         <activity
-            android:name=".TakeATour"
+            android:name="com.example.nezarsaleh.shareknitest.TakeATour"
             android:label="@string/title_activity_take_atour"
-            android:parentActivityName=".OnBoardDir.OnboardingActivity"
+            android:parentActivityName="com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity"
             android:theme="@style/AppTheme.Base" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity" />
         </activity>
 
-        <service android:name=".MyNotifications" />
+        <service android:name="com.example.nezarsaleh.shareknitest.MyNotifications" />
 
         <activity
-            android:name=".PickUpActivity"
+            android:name="com.example.nezarsaleh.shareknitest.PickUpActivity"
             android:label="@string/title_activity_pick_up"
             android:theme="@style/AppTheme.Base" >
         </activity>
         <activity
-            android:name=".TermsAndCond"
+            android:name="com.example.nezarsaleh.shareknitest.TermsAndCond"
             android:label="@string/title_activity_terms_and_cond"
-            android:parentActivityName=".RegisterNewTest"
+            android:parentActivityName="com.example.nezarsaleh.shareknitest.RegisterNewTest"
             android:theme="@style/AppTheme.Base" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

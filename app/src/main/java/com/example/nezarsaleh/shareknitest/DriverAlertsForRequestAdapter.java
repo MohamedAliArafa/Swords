@@ -12,7 +12,6 @@ import com.android.volley.toolbox.ImageLoader;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.AppController;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.CircularNetworkImageView;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
-import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestDriverDataModel;
 
 import java.util.List;
 

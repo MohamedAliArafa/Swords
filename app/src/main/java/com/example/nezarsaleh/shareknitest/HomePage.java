@@ -12,10 +12,7 @@ import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -34,11 +31,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.nezarsaleh.shareknitest.Arafa.Activities.BestDriversBeforeLogin;
-import com.example.nezarsaleh.shareknitest.Arafa.Activities.Profile;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.ImageDecoder;
-import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestDriverDataModel;
 import com.example.nezarsaleh.shareknitest.MainNavigationDrawerFragment.NavigationDrawerFragment;
 import com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity;
 import com.pkmmte.view.CircularImageView;
@@ -50,7 +44,6 @@ import org.json.JSONObject;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
-import java.util.Locale;
 
 
 public class HomePage extends ActionBarActivity implements View.OnClickListener {

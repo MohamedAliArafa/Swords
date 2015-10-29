@@ -1,7 +1,6 @@
 package com.example.nezarsaleh.shareknitest;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
@@ -10,8 +9,6 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -27,7 +24,6 @@ import com.example.nezarsaleh.shareknitest.Arafa.Classes.CircularNetworkImageVie
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.net.InetSocketAddress;
 import java.net.Socket;

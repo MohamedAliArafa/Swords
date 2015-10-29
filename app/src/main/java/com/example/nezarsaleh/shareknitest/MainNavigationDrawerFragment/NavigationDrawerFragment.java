@@ -1,14 +1,12 @@
 package com.example.nezarsaleh.shareknitest.MainNavigationDrawerFragment;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -19,14 +17,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.nezarsaleh.shareknitest.Arafa.Activities.BestDriversBeforeLogin;
-import com.example.nezarsaleh.shareknitest.Arafa.Activities.Profile;
-import com.example.nezarsaleh.shareknitest.Arafa.Classes.ImageDecoder;
 import com.example.nezarsaleh.shareknitest.DriverAlertsForRequest;
-import com.example.nezarsaleh.shareknitest.HomePage;
 import com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity;
 import com.example.nezarsaleh.shareknitest.R;
 import com.example.nezarsaleh.shareknitest.SearchOptions;
-import com.example.nezarsaleh.shareknitest.TopDriversDir.DataListModel;
 import com.example.nezarsaleh.shareknitest.TopRidesAfterLogin;
 import com.pkmmte.view.CircularImageView;
 
