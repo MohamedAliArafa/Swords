@@ -83,8 +83,7 @@
             android:layout_marginTop="10dp"
             android:text="To "
             android:textSize="18sp"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/quick_search_em_to"

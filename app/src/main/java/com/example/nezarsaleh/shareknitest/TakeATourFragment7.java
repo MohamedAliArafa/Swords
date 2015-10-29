@@ -81,7 +81,7 @@ public class TakeATourFragment7 extends Fragment {
         fr7_btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), SearchOptions.class);
+                Intent intent = new Intent(getContext(), QSearch.class);
                 startActivity(intent);
             }
         });

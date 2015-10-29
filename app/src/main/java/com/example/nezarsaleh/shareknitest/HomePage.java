@@ -454,7 +454,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 DriverMyAlertsCount.setText( String.valueOf(All_Alerts));
                 assert AccountType != null;
                 if (!AccountType.equals("D")) {
-                    btn_create.setBackgroundColor(Color.LTGRAY);
+                   // btn_create.setBackgroundColor(Color.LTGRAY);
 //                    Home_Relative_Permit.setBackgroundColor(Color.LTGRAY);
                         Rides_joined_txt_1.setText("Rides Joined");
                         Rides_joined_image_1.setImageResource(R.drawable.joinedusertype);
@@ -464,6 +464,14 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
 
                         Rides_joined_Relative.setVisibility(View.INVISIBLE);
 
+
+                    btn_create.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getBaseContext(), PassengerMyApprovedRides.class);
+                            startActivity(intent);
+                        }
+                    });
 
                     Home_Relative_Permit.setOnClickListener(new View.OnClickListener() {
                         @Override

@@ -78,7 +78,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:background="@drawable/bordersbuttom"
-            android:text="Search Option"
+            android:text="Search"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
 
