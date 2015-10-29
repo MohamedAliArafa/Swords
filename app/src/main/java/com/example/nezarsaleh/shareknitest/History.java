@@ -54,6 +54,10 @@ public class History extends AppCompatActivity {
     int ID;
     SharedPreferences myPrefs;
     String AccountType;
+
+    String FromEmirateEnName_str,ToEmirateEnName_str,ToRegionEnName_str;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,13 +134,32 @@ public class History extends AppCompatActivity {
                                             days = "";
                                             json = jArray.getJSONObject(i);
                                             item.setID(json.getInt("RouteId"));
+
+
+
                                             item.setFromEm(json.getString("FromEmirateEnName"));
                                             item.setFromReg(json.getString("FromRegionEnName"));
-                                            item.setToEm(json.getString("ToEmirateEnName"));
-                                            item.setToReg(json.getString("ToRegionEnName"));
-                                            item.setRouteName(json.getString("FromEmirateEnName") + ":" + json.getString("ToEmirateEnName"));
-                                            item.setStartFromTime("00:00");
-                                            item.setEndToTime_("00:00");
+
+                                            ToEmirateEnName_str=json.getString("ToEmirateEnName");
+                                            if (ToEmirateEnName_str.equals("null")){
+                                                item.setToEm("Not set");
+                                                item.setToReg("Not set");
+                                                item.setRouteName(json.getString("FromEmirateEnName"));
+
+
+                                            }else{
+                                                item.setRouteName(json.getString("FromEmirateEnName") + " : " + json.getString("ToEmirateEnName"));
+                                                item.setToEm(json.getString("ToEmirateEnName"));
+                                                item.setToReg(json.getString("ToRegionEnName"));
+
+
+                                            }
+
+
+
+
+
+
                                             item.setFromEmId(json.getInt("FromEmirateId"));
                                             item.setToEmId(json.getInt("ToEmirateId"));
                                             item.setFromRegid(json.getInt("FromRegionId"));
@@ -179,7 +202,7 @@ public class History extends AppCompatActivity {
                                             Log.d("TomEmlv", json.getString("ToEmirateEnName"));
                                             Log.d("ToReglv", json.getString("ToRegionEnName"));
 
-                                            ProfileRideAdapter arrayAdapter = new ProfileRideAdapter(History.this, R.layout.driver_created_rides_lits_item, driver);
+                                            ProfileRideAdapter arrayAdapter = new ProfileRideAdapter(History.this, R.layout.saved_search_list_item, driver);
                                             user_ride_created.setAdapter(arrayAdapter);
                                             user_ride_created.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                                 @Override
@@ -229,7 +252,7 @@ public class History extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("History");
+        textView.setText("Saved Search");
 //        toolbar.setElevation(10);
 
         setSupportActionBar(toolbar);

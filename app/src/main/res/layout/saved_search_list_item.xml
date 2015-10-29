@@ -8,21 +8,26 @@
     android:layout_marginRight="10dp"
     android:layout_marginStart="10dp"
     android:layout_marginTop="25dp"
-    android:background="#FFFFFF"
-    android:paddingBottom="5dp">
+    android:paddingBottom="10dp">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="10dp"
         android:background="@drawable/borders"
+        android:layout_marginTop="10dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:paddingTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="10dp"
 
         >
+
+
 
         <TextView
 
@@ -33,23 +38,23 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="2dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:text="From "
             android:textSize="16sp"
-            android:textStyle="bold"
+            android:textStyle="bold" />
 
-            />
+
 
         <TextView
             android:id="@+id/em_from"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/from_txt_id"
-            android:layout_alignStart="@+id/from_txt_id"
-            android:layout_below="@+id/from_txt_id"
             android:layout_marginEnd="2dp"
             android:layout_marginRight="2dp"
             android:layout_marginTop="5dp"
+            android:layout_below="@+id/from_txt_id"
+            android:layout_alignLeft="@+id/from_txt_id"
+            android:layout_alignStart="@+id/from_txt_id"
             android:text="@string/city_from_txt"
             android:textSize="16sp" />
 
@@ -75,10 +80,11 @@
             android:layout_alignBottom="@+id/em_from"
             android:layout_toEndOf="@+id/comma4"
             android:layout_toRightOf="@+id/comma4"
-            android:maxLines="1"
-            android:singleLine="true"
             android:text="@string/Distreict_name_txt"
             android:textSize="15sp"
+            android:singleLine="true"
+            android:lines="1"
+            android:maxLines="1"
 
             />
 
@@ -106,10 +112,10 @@
             android:layout_below="@+id/to_txt_id"
             android:layout_alignLeft="@+id/to_txt_id"
             android:layout_alignStart="@+id/to_txt_id"
-            android:layout_marginTop="5dp"
             android:text="@string/city_to_txt"
+            android:layout_marginTop="5dp"
             android:textSize="16sp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="15dp"
             />
 
         <TextView
@@ -132,18 +138,21 @@
             android:layout_alignBottom="@+id/em_to"
             android:layout_toEndOf="@+id/comma5"
             android:layout_toRightOf="@+id/comma5"
-            android:maxLines="1"
-            android:singleLine="true"
             android:text="@string/district_name_2"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:singleLine="true"
+            android:lines="1"
+            android:maxLines="1"
+
+            />
 
         <!--<TextView-->
             <!--android:id="@+id/StartFromTime"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignLeft="@+id/em_to"-->
-            <!--android:layout_alignStart="@+id/em_to"-->
-            <!--android:layout_below="@+id/em_to"-->
+            <!--android:layout_alignLeft="@+id/to_txt_id"-->
+            <!--android:layout_alignStart="@+id/to_txt_id"-->
+            <!--android:layout_below="@+id/to_txt_id"-->
             <!--android:layout_marginTop="10dp"-->
             <!--android:lines="1"-->
             <!--android:maxLength="8"-->
@@ -193,6 +202,73 @@
             <!--android:textSize="16sp" />-->
 
 
+        <!--<RelativeLayout-->
+        <!--android:id="@+id/Relative_22"-->
+        <!--android:layout_width="80dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_below="@+id/StartFromTime"-->
+        <!--android:layout_marginLeft="50dp"-->
+        <!--android:layout_marginStart="50dp"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:background="@drawable/borders_quicksearch_btn"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!-->-->
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:text="Details"-->
+        <!--android:textColor="#FFFFFF"-->
+        <!--android:textSize="14sp"-->
+
+        <!--/>-->
+
+        <!--</RelativeLayout>-->
+
+
+        <!--<RelativeLayout-->
+        <!--android:id="@+id/Relative_23"-->
+        <!--android:layout_width="80dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_alignBottom="@+id/Relative_22"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_marginEnd="50dp"-->
+        <!--android:layout_marginRight="50dp"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:background="@drawable/borders_quicksearch_btn">-->
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:text="Permit"-->
+        <!--android:textColor="#FFFFFF"-->
+        <!--android:textSize="14sp" />-->
+
+
+
+
+
+        <!--</RelativeLayout>-->
+
+
+
+        <!--<ImageView-->
+        <!--android:layout_width="30dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:src="@drawable/newedit"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_below="@+id/driver_profile_RouteEnName"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--android:layout_marginEnd="10dp"-->
+        <!--/>-->
+
+
     </RelativeLayout>
 
 
@@ -201,12 +277,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/testborder1"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:layout_marginBottom="10dp"
         android:text="RouteName"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:background="@drawable/testborder1"
+        android:gravity="center_horizontal|center"
+        android:paddingEnd="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingStart="20dp"
+        />
 
 
 </RelativeLayout>

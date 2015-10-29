@@ -65,7 +65,10 @@ public class ProfileRideAdapter extends ArrayAdapter<BestRouteDataModel> {
         vh.FromRegid=bestRouteDataModel.getFromRegid();
         vh.ToEmId=bestRouteDataModel.getToEmId();
         vh.ToRegId=bestRouteDataModel.getToRegId();
+
+
         StringBuffer res = new StringBuffer();
+
         String[] strArr = bestRouteDataModel.getRouteName().split(" ");
         for (String str : strArr) {
             char[] stringArray = str.trim().toCharArray();

@@ -76,7 +76,26 @@ public class QuickSearchResultAdapter extends BaseAdapter {
         final QuickSearchDataModel item = searchItems.get(position);
         Photo.setImageUrl(URL + item.getAccountPhoto(), imageLoader);
         SDG_Route_Start_FromTime.setText(item.getSDG_Route_Start_FromTime());
-        DriverEnName.setText(item.getAccountName());
+
+
+        StringBuffer res = new StringBuffer();
+
+        String[] strArr =item.getAccountName().split(" ");
+
+        for (String str : strArr) {
+            char[] stringArray = str.trim().toCharArray();
+            stringArray[0] = Character.toUpperCase(stringArray[0]);
+            str = new String(stringArray);
+
+            res.append(str).append(" ");
+        }
+
+        DriverEnName.setText(res);
+
+
+
+//        DriverEnName.setText(item.getAccountName());
+
         Nationality_en.setText(item.getNationality_en());
         SDG_RouteDays.setText(item.getSDG_RouteDays());
         Best_Drivers_Item_rate.setText(item.getRating());

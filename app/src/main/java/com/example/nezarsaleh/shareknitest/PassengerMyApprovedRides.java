@@ -248,7 +248,7 @@ public class PassengerMyApprovedRides extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Joined Rides");
+        textView.setText("Ride Joined");
 //        toolbar.setElevation(10);
 
         setSupportActionBar(toolbar);

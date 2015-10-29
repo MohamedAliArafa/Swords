@@ -360,7 +360,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                 To_Reg_Id = j.getInt("ToRegionId");
 //                Create_CarPool_txt_year.setText("Not Changed");
                 Vehicle_Id = j.getInt("VehicelId");
-                createCarPool_Vehicles.setText("Not Changed");
+                createCarPool_Vehicles.setText("Select Vehicle");
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -648,10 +648,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -735,7 +732,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Create Ride");
+        textView.setText("Edit Ride");
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

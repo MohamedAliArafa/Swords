@@ -57,7 +57,7 @@ public class TermsAndCond extends AppCompatActivity {
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
 
-        textView.setText("TERMS AND CONDITIONS");
+        textView.setText("Terms and Conditions");
         //  toolbar.setElevation(10);
 
         setSupportActionBar(toolbar);

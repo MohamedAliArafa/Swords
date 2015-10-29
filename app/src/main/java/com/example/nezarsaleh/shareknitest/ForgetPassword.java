@@ -1,12 +1,16 @@
 package com.example.nezarsaleh.shareknitest;
 
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,8 +34,8 @@ public class ForgetPassword extends AppCompatActivity {
     EditText edit_mail;
     Button btn_submit;
     TextView txt_submit;
-    String url="http://www.sharekni-web.sdg.ae/_mobfiles/CLS_MobAccount.asmx/ForgetPassword?";
-
+    String url=GetData.DOMAIN + "/ForgetPassword?";
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +44,7 @@ public class ForgetPassword extends AppCompatActivity {
         edit_mail = (EditText) findViewById(R.id.edit_Forgetpass_email);
         btn_submit = (Button) findViewById(R.id.btn_Forgetpass_submit);
         txt_submit = (TextView) findViewById(R.id.txt_submit);
-
+        initToolbar();
 
 
         btn_submit.setOnClickListener(new View.OnClickListener() {
@@ -111,10 +115,28 @@ public class ForgetPassword extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void initToolbar() {
+        toolbar = (Toolbar) findViewById(R.id.app_bar);
+        toolbar.setTitle("");
+        toolbar.setTitleTextColor(Color.WHITE);
+        TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
+        textView.setText("Forget Password");
+//        toolbar.setElevation(10);
+
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+
+
 }

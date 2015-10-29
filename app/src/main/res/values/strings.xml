@@ -80,7 +80,7 @@
     <string name="Reg_FirstN">First Name</string>
     <string name="Reg_LastN">Last Name</string>
     <string name="REg_Mobile">Mobile Number</string>
-    <string name="Reg_Email">User Name (Your Email)</string>
+    <string name="Reg_Email">Username (Your Email)</string>
     <string name="Reg_pass">Password</string>
     <string name="Reg_Nat">Nationality</string>
     <string name="Reg_PrefLang">Preferred Language</string>

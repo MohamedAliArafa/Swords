@@ -28,8 +28,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/primaryColor"
-        android:text="AGREE"
+        android:text="Agree"
         android:textStyle="bold"
         android:textColor="@android:color/white"
-        android:textSize="22sp" />
+        android:textSize="22sp"
+        android:textAllCaps="false"
+        />
 </RelativeLayout>

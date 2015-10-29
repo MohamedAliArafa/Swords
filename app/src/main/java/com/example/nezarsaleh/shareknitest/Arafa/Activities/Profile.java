@@ -73,6 +73,7 @@ public class Profile extends AppCompatActivity {
     String AccountType;
     String ID;
     private Toolbar toolbar;
+    String FirstName,SecondName,ThirdName,Full_Name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +113,55 @@ public class Profile extends AppCompatActivity {
 
         try {
             final JSONObject json = j.GetDriverById(Driver_ID);
-            TopName.setText(json.getString("FirstName") + " " + json.getString("MiddleName"));
+
+           // TopName.setText(json.getString("FirstName") + " " + json.getString("MiddleName"));
+
+            Full_Name="";
+            FirstName= json.getString("FirstName");
+            if (FirstName.equals("")){
+                Full_Name+="";
+            }else{
+                FirstName = FirstName.substring(0, 1).toUpperCase() + FirstName.substring(1);
+                Log.d("First Name",FirstName);
+                Full_Name+=FirstName;
+
+            }
+
+
+            SecondName = json.getString("MiddleName");
+            if (SecondName.equals("")){
+                Full_Name+=" ";
+            }else{
+
+                Log.d("Second name 1",SecondName);
+                SecondName =  SecondName.substring(0, 1).toUpperCase() + SecondName.substring(1);
+                Log.d("Second name 2",SecondName);
+                Full_Name+=" ";
+                Full_Name+=SecondName;
+            }
+
+            ThirdName = json.getString("LastName");
+            if (ThirdName.equals("")){
+
+                Full_Name+=" ";
+            }else {
+
+                Log.d("Second name 1",ThirdName);
+                ThirdName =  ThirdName.substring(0, 1).toUpperCase() + ThirdName.substring(1);
+                Log.d("Second name 2",ThirdName);
+                Full_Name+=" ";
+                Full_Name+=ThirdName;
+            }
+
+
+
+
+
+
+
+
+            TopName.setText(Full_Name);
+
             NationalityEnName.setText(json.getString("NationalityEnName"));
             Photo.setImageUrl(URL_Photo + json.getString("PhotoPath"), imageLoader);
 
@@ -187,6 +236,7 @@ public class Profile extends AppCompatActivity {
                 lv.setAdapter(arrayAdapter);
                 lv.requestLayout();
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
@@ -282,8 +332,6 @@ public class Profile extends AppCompatActivity {
                         item.setToEm(json.getString("ToEmirateEnName"));
                         item.setToReg(json.getString("ToRegionEnName"));
                         item.setRouteName(json.getString("RouteEnName"));
-                        item.setStartFromTime(json.getString("StartFromTime"));
-                        item.setEndToTime_(json.getString("EndToTime_"));
                         if (json.getString("Saturday").equals("true")) {
                             days += "Sat , ";
                         }

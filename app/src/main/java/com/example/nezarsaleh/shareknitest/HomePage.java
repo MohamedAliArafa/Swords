@@ -65,7 +65,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
     TextView name, nat, Lnag_home;
     SharedPreferences myPrefs;
     RelativeLayout btn_create,btn_history;
-    ImageView btn_edit;
+
     int Driver_ID;
     RelativeLayout Relative_quickSearch;
     TextView VehiclesCount, PassengerJoinedRidesCount, DriverMyRidesCount, DriverMyAlertsCount;
@@ -149,7 +149,6 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         Relative_quickSearch = (RelativeLayout) findViewById(R.id.Relative_quickSearch);
         Home_Relative_Notify = (RelativeLayout) findViewById(R.id.Home_Relative_Notify);
         driver_rides_Created = (RelativeLayout) findViewById(R.id.driver_rides_Created);
-        btn_edit = (ImageView) findViewById(R.id.Edit_Profile_Im);
         Rides_joined_Relative= (RelativeLayout) findViewById(R.id.Rides_joined_Relative);
         btn_history = (RelativeLayout) findViewById(R.id.home_history);
         Rides_joined_txt_1 = (TextView) findViewById(R.id.txt_55);
@@ -468,8 +467,10 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                     btn_create.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(getBaseContext(), PassengerMyApprovedRides.class);
+
+                            Intent intent =  new Intent(getBaseContext(),PassengerMyApprovedRides.class);
                             startActivity(intent);
+
                         }
                     });
 
@@ -532,13 +533,26 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 }
             });
 
-            btn_edit.setOnClickListener(new View.OnClickListener() {
+
+
+            name.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getBaseContext(), EditProfileTest.class);
                     startActivity(intent);
                 }
             });
+
+            circularImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getBaseContext(), EditProfileTest.class);
+                    startActivity(intent);
+                }
+            });
+
+
+
 
             Home_Relative_Notify.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.nezarsaleh.shareknitest" >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    package="com.example.nezarsaleh.shareknitest">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -283,6 +284,9 @@
             android:name=".RideDetailsPassenger"
             android:label="@string/title_activity_ride_details_passenger"
             android:theme="@style/AppTheme.Base" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.nezarsaleh.shareknitest.HomePage" />
         </activity>
         <activity
             android:name=".DriverRequestDetails"
@@ -297,7 +301,7 @@
             android:name=".DriverCreatedRides"
             android:label="@string/title_activity_driver_created_rides"
             android:parentActivityName=".HomePage"
-            android:theme="@style/AppTheme.Base" >
+            app:theme="@style/AppTheme.Base" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
@@ -319,7 +323,7 @@
         <activity
             android:name=".Sharekni"
             android:label="@string/title_activity_test_vedio"
-            android:theme="@style/AppTheme.Base"
+            app:theme="@style/AppTheme.Base"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -339,6 +343,9 @@
             android:name=".History"
             android:label="@string/title_activity_history"
             android:theme="@style/AppTheme.Base" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.nezarsaleh.shareknitest.HomePage" />
         </activity>
         <activity
             android:name=".TakeATour"
