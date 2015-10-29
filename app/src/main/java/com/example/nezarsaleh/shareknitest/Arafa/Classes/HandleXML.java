@@ -18,6 +18,7 @@ public class HandleXML {
     private XmlPullParserFactory xmlFactoryObject;
     public volatile boolean parsingComplete = true;
 
+
     public HandleXML(String url){
         this.urlString = url;
     }
