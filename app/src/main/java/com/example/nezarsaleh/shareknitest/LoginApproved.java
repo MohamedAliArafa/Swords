@@ -151,11 +151,6 @@ public class LoginApproved extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(Object o) {
-            super.onPostExecute(o);
-        }
-
-        @Override
         protected Object doInBackground(Object[] params) {
             boolean exists = false;
             try {
@@ -228,7 +223,7 @@ public class LoginApproved extends AppCompatActivity {
                                         e.printStackTrace();
                                     }
                                 } catch (StringIndexOutOfBoundsException e) {
-                                    Toast.makeText(getBaseContext(), "Wrong Username Or Passsword", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getBaseContext(), "Wrong Username Or Password", Toast.LENGTH_SHORT).show();
                                     LoginApproved.pDialog.dismiss();
                                     e.printStackTrace();
                                 } catch (JSONException e) {

@@ -253,27 +253,27 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                     Log.d("S Lat", String.valueOf(StartLat));
 
                     if (json.getString("Saturday").equals("true")) {
-                        days += "Sat , ";
+                        days += "Sat";
                     }
                     if (json.getString("Sunday").equals("true")) {
-                        days += "Sun , ";
+                        days += ", Sun";
                     }
                     if (json.getString("Monday").equals("true")) {
-                        days += "Mon , ";
+                        days += ", Mon";
                     }
                     if (json.getString("Tuesday").equals("true")) {
-                        days += "Tue , ";
+                        days += ", Tue";
                     }
                     if (json.getString("Wednesday").equals("true")) {
-                        days += "Wed , ";
+                        days += ", Wed";
                     }
                     if (json.getString("Thursday").equals("true")) {
-                        days += "Thu , ";
+                        days += ", Thu";
                     }
                     if (json.getString("Friday").equals("true")) {
-                        days += "Fri ";
+                        days += ", Fri";
                     }
-                    ride_details_day_of_week.setText(days);
+                    ride_details_day_of_week.setText(days.substring(1));
                     days = "";
 
 

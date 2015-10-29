@@ -40,6 +40,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
@@ -69,7 +74,8 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
     SimpleAdapter EmAdapter;
     Button btn_submit_pickUp;
     String txt_PickUp;
-
+    JSONArray Regions = null;
+    JSONArray Emirates = null;
 
     ImageView sweep_icon;
 
@@ -174,8 +180,28 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
 
 
-
-
+        String ret;
+        try {
+            InputStream inputStream = openFileInput("Emirates.txt");
+            if (inputStream != null) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString;
+                StringBuilder stringBuilder = new StringBuilder();
+                while ((receiveString = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(receiveString);
+                }
+                inputStream.close();
+                ret = stringBuilder.toString();
+                Emirates = new JSONArray(ret);
+            }
+        } catch (FileNotFoundException e) {
+            Log.e("login activity", "File not found: " + e.toString());
+        } catch (IOException e) {
+            Log.e("login activity", "Can not read file: " + e.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
 
@@ -198,6 +224,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
                 intent1.putExtra("From_RegionEnName",From_RegionEnName);
                 intent1.putExtra("To_EmirateEnName",To_EmirateEnName);
                 intent1.putExtra("To_RegionEnName",To_RegionEnName);
+                Log.d("Test",From_EmirateEnName+From_RegionEnName+To_EmirateEnName+To_RegionEnName);
                 startActivity(intent1);
             }
         });
@@ -254,6 +281,30 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
                         txt_Drop_Off += txt_em_name.getText().toString();
                         txt_Drop_Off += ", ";
+//                        if (To_Em_Id == 2) {
+                            String ret;
+                            try {
+                                InputStream inputStream = openFileInput("Regions"+To_Em_Id+".txt");
+                                if (inputStream != null) {
+                                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                                    String receiveString;
+                                    StringBuilder stringBuilder = new StringBuilder();
+                                    while ((receiveString = bufferedReader.readLine()) != null) {
+                                        stringBuilder.append(receiveString);
+                                    }
+                                    inputStream.close();
+                                    ret = stringBuilder.toString();
+                                    Regions = new JSONArray(ret);
+                                }
+                            } catch (FileNotFoundException e) {
+                                Log.e("login activity", "File not found: " + e.toString());
+                            } catch (IOException e) {
+                                Log.e("login activity", "Can not read file: " + e.toString());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+//                        }
                         Log.d("id of lang", "" + To_Em_Id);
                     }
 
@@ -266,17 +317,22 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
                     @Override
                     public void onClick(View v) {
                         GetData getData = new GetData();
+                        JSONArray jsonArray;
                         try {
-                            JSONArray jsonArray = getData.GetRegionsByEmiratesID(To_Em_Id);
-
+                            if (Regions == null) {
+                                jsonArray = getData.GetRegionsByEmiratesID(From_Em_Id);
+                            } else {
+                                jsonArray = Regions;
+                            }
+                            Regions_List.clear();
                             for (int i = 0; i < jsonArray.length(); i++) {
-
                                 TreeMap<String, String> valuePairs = new TreeMap<>();
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 valuePairs.put("ID", jsonObject.getString("ID"));
                                 valuePairs.put("RegionEnName", jsonObject.getString("RegionEnName"));
                                 Regions_List2.add(valuePairs);
                             }
+                            Regions = null;
                             Log.d("test Regions search ", Regions_List2.toString());
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -358,9 +414,13 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
             if (exists) {
                 Emirates_List.clear();
                 try {
-                    JSONArray j = new GetData().GetEmitares();
+                    JSONArray j;
+                    if (Emirates == null) {
+                        j = new GetData().GetEmitares();
+                    } else {
+                        j = Emirates;
+                    }
                     for (int i = 0; i < j.length(); i++) {
-
                         TreeMap<String, String> valuePairs = new TreeMap<>();
                         JSONObject jsonObject = j.getJSONObject(i);
                         valuePairs.put("EmirateId", jsonObject.getString("EmirateId"));
@@ -423,6 +483,30 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
                     txt_PickUp += txt_em_name.getText().toString();
                     txt_PickUp += ", ";
+//                    if (From_Em_Id == 2) {
+                        String ret;
+                        try {
+                            InputStream inputStream = openFileInput("Regions"+From_Em_Id+".txt");
+                            if (inputStream != null) {
+                                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                                String receiveString;
+                                StringBuilder stringBuilder = new StringBuilder();
+                                while ((receiveString = bufferedReader.readLine()) != null) {
+                                    stringBuilder.append(receiveString);
+                                }
+                                inputStream.close();
+                                ret = stringBuilder.toString();
+                                Regions = new JSONArray(ret);
+                            }
+                        } catch (FileNotFoundException e) {
+                            Log.e("login activity", "File not found: " + e.toString());
+                        } catch (IOException e) {
+                            Log.e("login activity", "Can not read file: " + e.toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+//                    }
                     Log.d("id of lang", "" + From_Em_Id);
                 }
 
@@ -436,16 +520,22 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
                 @Override
                 public void onClick(View v) {
                     GetData getData = new GetData();
+                    JSONArray jsonArray;
                     try {
-                        JSONArray jsonArray = getData.GetRegionsByEmiratesID(From_Em_Id);
+                        if (Regions == null) {
+                            jsonArray = getData.GetRegionsByEmiratesID(From_Em_Id);
+                        } else {
+                            jsonArray = Regions;
+                        }
+                        Regions_List.clear();
                         for (int i = 0; i < jsonArray.length(); i++) {
-
                             TreeMap<String, String> valuePairs = new TreeMap<>();
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
                             valuePairs.put("ID", jsonObject.getString("ID"));
                             valuePairs.put("RegionEnName", jsonObject.getString("RegionEnName"));
                             Regions_List.add(valuePairs);
                         }
+                        Regions = null;
                         Log.d("test Regions search ", Regions_List.toString());
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -530,7 +620,12 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
             if (exists) {
                 Emirates_List.clear();
                 try {
-                    JSONArray j = new GetData().GetEmitares();
+                    JSONArray j;
+                    if (Emirates == null) {
+                        j = new GetData().GetEmitares();
+                    } else {
+                        j = Emirates;
+                    }
                     for (int i = 0; i < j.length(); i++) {
                         TreeMap<String, String> valuePairs = new TreeMap<>();
                         JSONObject jsonObject = j.getJSONObject(i);

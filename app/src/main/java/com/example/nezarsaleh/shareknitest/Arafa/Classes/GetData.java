@@ -50,9 +50,9 @@ public class GetData {
 //    public static final String DOMAIN = "http://sharekni.sdgstaff.com";
 //http://sharekni.sdgstaff.com/_mobfiles/CLS_MobAndroid.asmx
     //http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx/
-    public static final String DOMAIN = "http://sharekni.sdgstaff.com/_mobfiles/CLS_MobAndroid.asmx/";
+    public static final String DOMAIN = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx/";
     public static final String NonOpDomain = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx";
-    public static final String PhotoURL = "http://sharekni.sdgstaff.com/uploads/personalphoto/";
+    public static final String PhotoURL = "http://sharekni-web.sdg.ae/uploads/personalphoto/";
 
 
 //    String data;
@@ -268,6 +268,29 @@ public class GetData {
     public JSONArray GetAllDrivers() throws JSONException {
         int ID = 0;
         HandleXML obj = new HandleXML(getDriverById + ID);
+        obj.fetchXML();
+        while (obj.parsingComplete) ;
+        return new JSONArray(obj.getData());
+    }
+
+    public JSONArray Search(int myId, char gender, String time
+            , int fromEmId, int fromRegId, int toEmId, int toRegId
+            , int pref_lnag, int pref_nat, int age_Ranged_id
+            , String startDate, int saveFind) throws JSONException {
+        HandleXML obj = new HandleXML(QuickSearchUrl
+                + "AccountID=" + myId
+                + "&PreferredGender=" + gender
+                + "&Time="
+                + "&FromEmirateID=" + fromEmId
+                + "&FromRegionID=" + fromRegId
+                + "&ToEmirateID=" + toEmId
+                + "&ToRegionID=" + toRegId
+                + "&PrefferedLanguageId=" + pref_lnag
+                + "&PrefferedNationlaities="
+                + "&AgeRangeId=" + age_Ranged_id
+                + "&StartDate="
+                + "&SaveFind=" + saveFind
+                + "&IsPeriodic=");
         obj.fetchXML();
         while (obj.parsingComplete) ;
         return new JSONArray(obj.getData());
