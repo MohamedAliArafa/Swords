@@ -80,6 +80,11 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
     int All_Alerts;
     String Firstname,LastName;
     Activity c;
+    TextView Rides_joined_txt_1;
+    ImageView Rides_joined_image_1;
+
+    TextView Saved_Search_txt_2;
+    ImageView Saved_Search_image_2;
 
 
     public static HomePage getInstance() {
@@ -147,6 +152,10 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         btn_edit = (ImageView) findViewById(R.id.Edit_Profile_Im);
         Rides_joined_Relative= (RelativeLayout) findViewById(R.id.Rides_joined_Relative);
         btn_history = (RelativeLayout) findViewById(R.id.home_history);
+        Rides_joined_txt_1 = (TextView) findViewById(R.id.txt_55);
+        Rides_joined_image_1 = (ImageView) findViewById(R.id.im10);
+        Saved_Search_image_2 = (ImageView) findViewById(R.id.im13);
+        Saved_Search_txt_2 = (TextView) findViewById(R.id.txt_56);
 
             circularImageView = (CircularImageView) findViewById(R.id.profilepic);
             circularImageView.setBorderWidth(5);
@@ -369,6 +378,10 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 Intent intent = new Intent(getBaseContext(), DriverCreateCarPool.class);
                 intent.putExtra("ID", Driver_ID);
                 startActivity(intent);
+            }else {
+
+                Intent intent = new Intent(getBaseContext(), PassengerMyApprovedRides.class);
+                startActivity(intent);
             }
         }
     }
@@ -442,7 +455,26 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 assert AccountType != null;
                 if (!AccountType.equals("D")) {
                     btn_create.setBackgroundColor(Color.LTGRAY);
-                    Home_Relative_Permit.setBackgroundColor(Color.LTGRAY);
+//                    Home_Relative_Permit.setBackgroundColor(Color.LTGRAY);
+                        Rides_joined_txt_1.setText("Rides Joined");
+                        Rides_joined_image_1.setImageResource(R.drawable.joinedusertype);
+
+                        Saved_Search_txt_2.setText("Saved Search");
+                        Saved_Search_image_2.setImageResource(R.drawable.homesavedsearchbtn);
+
+                        Rides_joined_Relative.setVisibility(View.INVISIBLE);
+
+
+                    Home_Relative_Permit.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getBaseContext(), History.class);
+                            startActivity(intent);
+
+                        }
+                    });
+
+
                     Home_Realtive_Vehicles.setVisibility(View.INVISIBLE);
                     driver_rides_Created.setVisibility(View.INVISIBLE);
                 }else {
@@ -488,8 +520,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
             btn_history.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(getBaseContext(), History.class);
-                    startActivity(intent);
+
                 }
             });
 

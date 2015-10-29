@@ -262,7 +262,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginTop="20dp"
         android:id="@+id/MostRides_Relative"
-        android:gravity="center_horizontal"
+
         >
 
 
@@ -273,7 +273,7 @@
             android:layout_height="wrap_content"
             android:text="Most Rides"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="19sp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/splash_top_rides_im_2"
             android:layout_toEndOf="@+id/splash_top_rides_im_2"
@@ -286,8 +286,8 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:layout_marginStart="5dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginStart="50dp"
             android:src="@drawable/splashmostrides"
 
             />
@@ -309,7 +309,7 @@
         android:layout_marginTop="20dp"
         android:id="@+id/MapLookUp_Relative"
         android:layout_centerHorizontal="true"
-        android:gravity="center_horizontal"
+
         >
 
         <TextView
@@ -317,7 +317,7 @@
             android:layout_height="wrap_content"
             android:text="Map lookup"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="19sp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/splash_top_rides_im_3"
             android:layout_toEndOf="@+id/splash_top_rides_im_3"
@@ -330,8 +330,8 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:layout_marginStart="5dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginStart="50dp"
             android:src="@drawable/searchoptionmaplookup"
 
             />
@@ -358,7 +358,6 @@
         android:id="@+id/Advanced_Search_Relative_2"
         android:layout_centerHorizontal="true"
         android:paddingBottom="5dp"
-        android:gravity="center_horizontal"
         >
 
         <TextView
@@ -366,7 +365,7 @@
             android:layout_height="wrap_content"
             android:text="Advanced Search"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="19sp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/splash_top_rides_im_4"
             android:layout_toEndOf="@+id/splash_top_rides_im_4"
@@ -380,10 +379,9 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:layout_marginStart="5dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginStart="50dp"
             android:src="@drawable/searchoptionadvanced"
-
             />
 
     </RelativeLayout>
