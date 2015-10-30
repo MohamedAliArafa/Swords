@@ -10,19 +10,31 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.provider.ContactsContract;
 import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.nezarsaleh.shareknitest.Arafa.Activities.Profile;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 
 public class QuickSearchResults extends AppCompatActivity {
@@ -53,7 +65,7 @@ public class QuickSearchResults extends AppCompatActivity {
         lvResult = (ListView) findViewById(R.id.lv_searchResult);
 
         myPrefs = this.getSharedPreferences("myPrefs", 0);
-        ID = myPrefs.getString("account_id", null);
+        ID = myPrefs.getString("account_id", "0");
 //        Bundle in = getIntent().getExtras();
 //        Log.d("Intent Id :", String.valueOf(in.getInt("DriverID")));
 
@@ -79,14 +91,12 @@ public class QuickSearchResults extends AppCompatActivity {
         From_EmirateEnName_txt.setText(From_EmirateEnName);
         From_RegionEnName_txt.setText(From_RegionEnName);
 
-
         To_EmirateEnName_txt.setText("");
         To_RegionEnName_txt.setText("");
         To_EmirateEnName_txt.setText(To_EmirateEnName);
         To_RegionEnName_txt.setText(To_RegionEnName);
 
         if (To_EmirateEnName_txt.getText().toString().equals("")){
-
             comma5.setVisibility(View.INVISIBLE);
             to_txt_id.setVisibility(View.INVISIBLE);
         }
@@ -94,31 +104,102 @@ public class QuickSearchResults extends AppCompatActivity {
 //        if (To_EmirateEnName.equals("null")){
 //            To_EmirateEnName="Not Specified";
 //            To_EmirateEnName_txt.setText(To_EmirateEnName);
-//
 //        }else {
-//
 //            To_EmirateEnName_txt.setText(To_EmirateEnName);
-//
 //        }
-//
 //        if (To_RegionEnName.equals("null")){
-//
 //            To_RegionEnName="Not Specified";
 //            To_RegionEnName_txt.setText(To_RegionEnName);
 //        }else {
-//
 //            To_RegionEnName_txt.setText(To_RegionEnName);
 //        }
-//
-//
-
 
         new backTread().execute();
-
     }
 
 
     private class backTread extends AsyncTask {
+
+        JSONArray jArray;
+
+        @Override
+        protected void onPostExecute(Object o) {
+            String days = "";
+            final List<QuickSearchDataModel> searchArray = new ArrayList<>();
+            QuickSearchResultAdapter adapter;
+            adapter = new QuickSearchResultAdapter(QuickSearchResults.this, searchArray);
+            lvResult.setAdapter(adapter);
+            try {
+                JSONObject json;
+                for (int i = 0; i < jArray.length(); i++) {
+                    try {
+                        final QuickSearchDataModel item = new QuickSearchDataModel(Parcel.obtain());
+                        json = jArray.getJSONObject(i);
+                        Log.d("test account email", json.getString("AccountName"));
+                        item.setAccountName(json.getString("AccountName"));
+                        item.setDriverId(json.getInt("DriverId"));
+                        item.setAccountPhoto(json.getString("AccountPhoto"));
+                        item.setDriverEnName(json.getString("DriverEnName"));
+//                    item.setFrom_EmirateName_en(json.getString("From_EmirateName_en"));
+//                    item.setFrom_RegionName_en(json.getString("From_RegionName_en"));
+//                    item.setTo_EmirateName_en(json.getString("To_EmirateName_en"));
+//                    item.setTo_RegionName_en(json.getString("To_RegionName_en"));
+                        item.setAccountMobile(json.getString("AccountMobile"));
+                        item.setSDG_Route_Start_FromTime(json.getString("SDG_Route_Start_FromTime"));
+                        item.setNationality_en(json.getString("Nationality_en"));
+                        item.setRating(json.getString("Rating"));
+
+                        days = "";
+
+                        if (json.getString("Saturday").equals("true")) {
+                            days += "Sat";
+                        }
+                        if (json.getString("SDG_RouteDays_Sunday").equals("true")) {
+                            days += ", Sun";
+                        }
+                        if (json.getString("SDG_RouteDays_Monday").equals("true")) {
+                            days += ", Mon";
+                        }
+                        if (json.getString("SDG_RouteDays_Tuesday").equals("true")) {
+                            days += ", Tue";
+                        }
+                        if (json.getString("SDG_RouteDays_Wednesday").equals("true")) {
+                            days += ", Wed";
+                        }
+                        if (json.getString("SDG_RouteDays_Thursday").equals("true")) {
+                            days += ", Thu";
+                        }
+                        if (json.getString("SDG_RouteDays_Friday").equals("true")) {
+                            days += ", Fri";
+                        }
+                        if (!days.equals("")){
+                            item.setSDG_RouteDays(days.substring(1));
+                        }
+                        days = "";
+                        searchArray.add(item);
+                        lvResult.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                Intent in = new Intent(QuickSearchResults.this, Profile.class);
+                                in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                in.putExtra("DriverID", searchArray.get(position).getDriverId());
+                                in.putExtra("PassengerID", ID);
+                                in.putExtra("RouteID", searchArray.get(position).getSDG_Route_ID());
+                                Log.d("Array Id :", String.valueOf(searchArray.get(position).getDriverId()));
+                                QuickSearchResults.this.startActivity(in);
+                                Log.d("Array id : ", searchArray.get(position).getAccountName());
+                                Log.d("on click id : ", String.valueOf(searchArray.get(position).getDriverId()));
+                            }
+                        });
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+        }
 
         @Override
         protected Object doInBackground(Object[] params) {
@@ -176,30 +257,35 @@ public class QuickSearchResults extends AppCompatActivity {
                 });
             }
             if (exists) {
-                if (ID == null) {
+                if (ID.equals("0")) {
                     GetData j = new GetData();
                     if (Gender!=' '){
-
-                        j.QuickSearchForm(0, Gender, Time, From_Em_Id
-                                , From_Reg_Id, To_Em_Id, To_Reg_Id, pref_lnag, pref_nat
-                                , Age_Ranged_id, StartDate, saveFind
-                                , lvResult, QuickSearchResults.this);
-
+                        try {
+                            jArray = j.Search(0, Gender, Time, From_Em_Id
+                                    , From_Reg_Id, To_Em_Id, To_Reg_Id, pref_lnag, pref_nat
+                                    , Age_Ranged_id, StartDate, saveFind);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }else {
 
-                        j.QuickSearchForm(0, gender, Time, From_Em_Id
-                                , From_Reg_Id, To_Em_Id, To_Reg_Id, pref_lnag, pref_nat
-                                , Age_Ranged_id, StartDate, saveFind
-                                , lvResult, QuickSearchResults.this);
-
+                        try {
+                            jArray = j.Search(0, gender, Time, From_Em_Id
+                                    , From_Reg_Id, To_Em_Id, To_Reg_Id, pref_lnag, pref_nat
+                                    , Age_Ranged_id, StartDate, saveFind);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
-
                 } else {
                     GetData j = new GetData();
-                    j.QuickSearchForm(Integer.parseInt(ID), gender, Time, From_Em_Id
-                            , From_Reg_Id, To_Em_Id, To_Reg_Id, pref_lnag, pref_nat
-                            , Age_Ranged_id, StartDate, saveFind
-                            , lvResult, QuickSearchResults.this);
+                    try {
+                        jArray = j.Search(Integer.parseInt(ID), gender, Time, From_Em_Id
+                                , From_Reg_Id, To_Em_Id, To_Reg_Id, pref_lnag, pref_nat
+                                , Age_Ranged_id, StartDate, saveFind);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
             return null;

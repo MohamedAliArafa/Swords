@@ -14,6 +14,7 @@ import java.net.URL;
 
 public class HandleXML {
     private String data = "string";
+    private Boolean error = false;
     private String urlString = null;
     private XmlPullParserFactory xmlFactoryObject;
     public volatile boolean parsingComplete = true;
@@ -83,10 +84,19 @@ public class HandleXML {
                     stream.close();
                 }
                 catch (Exception e) {
+                    error = true;
                     e.printStackTrace();
                 }
             }
         });
         thread.start();
+    }
+
+    public Boolean getError() {
+        return error;
+    }
+
+    public void setError(Boolean error) {
+        this.error = error;
     }
 }

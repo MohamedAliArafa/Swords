@@ -38,6 +38,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
@@ -69,6 +74,8 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
     RelativeLayout Advanced_calendar_relative;
     RelativeLayout Advanced_time_relative;
     SimpleAdapter Advanced_EmAdapter;
+    JSONArray Emirates = null;
+    JSONArray Regions = null;
     Button Advanced_btn_submit_pickUp;
     String Advanced_txt_PickUp;
     String Advanced_txt_Drop_Off;
@@ -286,6 +293,30 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
             }
         });
 
+
+        String ret;
+        try {
+            InputStream inputStream = openFileInput("Emirates.txt");
+            if (inputStream != null) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString;
+                StringBuilder stringBuilder = new StringBuilder();
+                while ((receiveString = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(receiveString);
+                }
+                inputStream.close();
+                ret = stringBuilder.toString();
+                Emirates = new JSONArray(ret);
+            }
+        } catch (FileNotFoundException e) {
+            Log.e("login activity", "File not found: " + e.toString());
+        } catch (IOException e) {
+            Log.e("login activity", "Can not read file: " + e.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         //  code to get nationals and set the adapter to the autotext complete
         new nat().execute();
 
@@ -361,7 +392,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
         protected void onPostExecute(Object o) {
             if (exists) {
 
-                Log.d("test pref lang  2 :", Advanced_Country_List.toString());
+                Log.d("Nat", Advanced_Country_List.toString());
                 SimpleAdapter adapterCountry = new SimpleAdapter(Advanced_Search.this, Advanced_Country_List
                         , R.layout.autocomplete_row
                         , new String[]{"ID", "NationalityEnName"}
@@ -689,9 +720,12 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
         if (v == Advanced_pickup_relative || v == quickSearch_pickUp) {
             Advanced_Emirates_List.clear();
             try {
-                JSONArray j = new GetData().GetEmitares();
-                for (int i = 0; i < j.length(); i++) {
-
+                JSONArray j;
+                if (Emirates == null) {
+                    j = new GetData().GetEmitares();
+                } else {
+                    j = Emirates;
+                }                for (int i = 0; i < j.length(); i++) {
                     TreeMap<String, String> valuePairs = new TreeMap<>();
                     JSONObject jsonObject = j.getJSONObject(i);
                     valuePairs.put("EmirateId", jsonObject.getString("EmirateId"));
@@ -734,6 +768,30 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
                         Advanced_txt_PickUp += txt_em_name.getText().toString();
                         Advanced_txt_PickUp += ", ";
+
+                        String ret;
+                        try {
+                            InputStream inputStream = openFileInput("Regions"+From_Em_Id+".txt");
+                            if (inputStream != null) {
+                                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                                String receiveString;
+                                StringBuilder stringBuilder = new StringBuilder();
+                                while ((receiveString = bufferedReader.readLine()) != null) {
+                                    stringBuilder.append(receiveString);
+                                }
+                                inputStream.close();
+                                ret = stringBuilder.toString();
+                                Regions = new JSONArray(ret);
+                            }
+                        } catch (FileNotFoundException e) {
+                            Log.e("login activity", "File not found: " + e.toString());
+                        } catch (IOException e) {
+                            Log.e("login activity", "Can not read file: " + e.toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
                         Log.d("id of lang", "" + From_Em_Id);
 
                     }
@@ -750,9 +808,14 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                     @Override
                     public void onClick(View v) {
                         GetData getData = new GetData();
+                        JSONArray jsonArray;
                         try {
-                            JSONArray jsonArray = getData.GetRegionsByEmiratesID(From_Em_Id);
-
+                            if (Regions == null) {
+                                jsonArray = getData.GetRegionsByEmiratesID(From_Em_Id);
+                            } else {
+                                jsonArray = Regions;
+                            }
+                            Advanced_Regions_List.clear();
                             for (int i = 0; i < jsonArray.length(); i++) {
 
                                 TreeMap<String, String> valuePairs = new TreeMap<>();
@@ -859,6 +922,30 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
                     Advanced_txt_Drop_Off += txt_em_name.getText().toString();
                     Advanced_txt_Drop_Off += ", ";
+
+                    String ret;
+                    try {
+                        InputStream inputStream = openFileInput("Regions"+To_Em_Id+".txt");
+                        if (inputStream != null) {
+                            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                            String receiveString;
+                            StringBuilder stringBuilder = new StringBuilder();
+                            while ((receiveString = bufferedReader.readLine()) != null) {
+                                stringBuilder.append(receiveString);
+                            }
+                            inputStream.close();
+                            ret = stringBuilder.toString();
+                            Regions = new JSONArray(ret);
+                        }
+                    } catch (FileNotFoundException e) {
+                        Log.e("login activity", "File not found: " + e.toString());
+                    } catch (IOException e) {
+                        Log.e("login activity", "Can not read file: " + e.toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
                     Log.d("id of lang", "" + To_Em_Id);
                 }
 
@@ -875,9 +962,14 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
 
                     GetData getData = new GetData();
+                    JSONArray jsonArray;
                     try {
-                        JSONArray jsonArray = getData.GetRegionsByEmiratesID(To_Em_Id);
-
+                        if (Regions == null) {
+                            jsonArray = getData.GetRegionsByEmiratesID(From_Em_Id);
+                        } else {
+                            jsonArray = Regions;
+                        }
+                        Advanced_Regions_List.clear();
                         for (int i = 0; i < jsonArray.length(); i++) {
 
                             TreeMap<String, String> valuePairs = new TreeMap<>();
