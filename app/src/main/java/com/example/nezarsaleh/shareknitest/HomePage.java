@@ -320,17 +320,15 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
+        int id = item.getItemId();
 
 
 
 
-//        if (id==R.id.Start_Service){
-//
-//            Intent intent = new Intent(this,MyNotifications.class);
-//            intent.putExtra("Flag",2);
-//            startService(intent);
-//        }
+        if (id==R.id.Stop_Service){
+
+            Toast.makeText(HomePage.this, "Hello", Toast.LENGTH_SHORT).show();
+        }
 //
 //        if (id==R.id.Stop_Service){
 //
