@@ -161,6 +161,15 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        try {
+            if (TakeATour.getInstance() != null) {
+                TakeATour.getInstance().finish();
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         registerNewTestActivity = this;
         mContext = this;

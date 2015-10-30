@@ -118,6 +118,14 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        try {
+            if (TakeATour.getInstance() != null) {
+                TakeATour.getInstance().finish();
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
         final Calendar cal = Calendar.getInstance();
         year_x = cal.get(Calendar.YEAR);
         month_x = cal.get(Calendar.MONTH);

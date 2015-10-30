@@ -9,13 +9,18 @@ import android.support.v4.view.ViewPager;
 public class TakeATour extends FragmentActivity {
 
     private ViewPager pager;
+    static TakeATour takeATour;
+
+    public static TakeATour getInstance(){
+        return  takeATour ;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_take_atour);
         pager = (ViewPager) findViewById(R.id.pager);
-
+        takeATour = this;
         FragmentStatePagerAdapter adapter = new FragmentStatePagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {

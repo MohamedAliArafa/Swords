@@ -63,6 +63,14 @@ public class LoginApproved extends AppCompatActivity {
         loginActivity = this;
         setContentView(R.layout.login_design_approved);
        initToolbar();
+
+        try {
+            if (TakeATour.getInstance() != null) {
+                TakeATour.getInstance().finish();
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
 //
 //        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
 //        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
