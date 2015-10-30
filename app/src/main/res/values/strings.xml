@@ -88,4 +88,19 @@
     <string name="title_activity_terms_and_cond">TermsAndCond</string>
 
 
+    <string name="title_activity_register_vehicle">RegisterVehicle</string>
+    <string name="Register_Vehicle_Driving_License_No">Please enter the driving license No.</string>
+    <string name="Select_Emirate_txt">Select Emirate</string>
+    <string name="Ok_txt">Ok</string>
+    <string name="Register_Vehicle_Trraffic_Number_Border_Title_">Register with traffic number</string>
+    <string name="Pick_Emirate_arrow_content_Desc">pick emirate arrow image</string>
+    <string name="Btn_Submit_txt">Submit</string>
+    <string name="title_activity_register__vehicle__verify">Register_Vehicle_Verify</string>
+    <string name="register_vehicle_verify_border_title">Verification</string>
+    <string name="btn_verify_txt">Verify</string>
+    <string name="verify_Unified_ID">Unified ID</string>
+    <string name="verify_passport_number_txt">Please enter the passport number</string>
+    <string name="mobile_number_const">+971 -</string>
+
+
 </resources>

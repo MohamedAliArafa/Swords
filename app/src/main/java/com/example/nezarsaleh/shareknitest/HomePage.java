@@ -328,6 +328,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         if (id==R.id.Stop_Service){
 
             Toast.makeText(HomePage.this, "Hello", Toast.LENGTH_SHORT).show();
+
         }
 //
 //        if (id==R.id.Stop_Service){
@@ -479,24 +480,31 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                     driver_rides_Created.setVisibility(View.INVISIBLE);
                 }else {
 
+
                     Home_Realtive_Vehicles.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            final Dialog dialog = new Dialog(c);
-                            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                            dialog.setContentView(R.layout.noroutesdialog);
-                            Button btn = (Button) dialog.findViewById(R.id.noroute_id);
-                            TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
-                            dialog.show();
-                            Text_3.setText("This service is temporary unavailable. Please check again later");
 
-                            btn.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    dialog.dismiss();
+                            Intent intent = new Intent(getBaseContext(),RegisterVehicle.class);
+                            startActivity(intent);
 
-                                }
-                            });
+//                            final Dialog dialog = new Dialog(c);
+//                            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//                            dialog.setContentView(R.layout.noroutesdialog);
+//                            Button btn = (Button) dialog.findViewById(R.id.noroute_id);
+//                            TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
+//                            dialog.show();
+//                            Text_3.setText("This service is temporary unavailable. Please check again later");
+//
+//                            btn.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    dialog.dismiss();
+//
+//                                }
+//                            });
+//
+
                         }
                     });
 
