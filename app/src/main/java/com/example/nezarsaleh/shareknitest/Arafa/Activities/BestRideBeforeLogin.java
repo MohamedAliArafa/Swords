@@ -56,8 +56,8 @@ public class BestRideBeforeLogin extends AppCompatActivity {
 
         pDialog = new ProgressDialog(this);
         pDialog.setMessage("Loading" + "...");
-        pDialog.setCancelable(false);
-        pDialog.setCanceledOnTouchOutside(false);
+//        pDialog.setCancelable(false);
+//        pDialog.setCanceledOnTouchOutside(false);
         pDialog.show();
 
         new jsoning(lv,pDialog, this).execute();

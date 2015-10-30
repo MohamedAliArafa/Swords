@@ -152,8 +152,8 @@ public class LoginApproved extends AppCompatActivity {
         protected void onPreExecute() {
             pDialog = new ProgressDialog(LoginApproved.this);
             pDialog.setMessage("Loading" + "...");
-            pDialog.setCancelable(false);
-            pDialog.setCanceledOnTouchOutside(false);
+//            pDialog.setCancelable(false);
+//            pDialog.setCanceledOnTouchOutside(false);
             LoginApproved.pDialog.show();
             super.onPreExecute();
         }

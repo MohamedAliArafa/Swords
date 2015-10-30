@@ -10,22 +10,33 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.nezarsaleh.shareknitest.Arafa.Activities.Profile;
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
 import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestRouteDataModel;
+import com.example.nezarsaleh.shareknitest.Arafa.DataModel.BestRouteDataModelDetails;
+import com.example.nezarsaleh.shareknitest.Arafa.DataModelAdapter.BestRouteDataModelAdapterDetails;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.util.ArrayList;
 
 
 public class MostRidesDetails extends AppCompatActivity {
@@ -98,6 +109,85 @@ public class MostRidesDetails extends AppCompatActivity {
     }
 
     private class back extends AsyncTask{
+        JSONArray jsonArray;
+
+        @Override
+        protected void onPostExecute(Object o) {
+            String days = "";
+            final BestRouteDataModelDetails[] driver = new BestRouteDataModelDetails[jsonArray.length()];
+            final ArrayList<BestRouteDataModelDetails> ar = new ArrayList<>();
+            try {
+                JSONObject json;
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    try {
+                        final BestRouteDataModelDetails item = new BestRouteDataModelDetails(Parcel.obtain());
+                        json = jsonArray.getJSONObject(i);
+                        item.setFromEmId(json.getInt("FromEmirateId"));
+                        item.setFromRegid(json.getInt("FromRegionId"));
+                        item.setToEmId(json.getInt("ToEmirateId"));
+                        item.setToRegId(json.getInt("ToRegionId"));
+                        item.setDriverName(json.getString("DriverName"));
+                        item.setNationality_en(json.getString("NationlityEnName"));
+                        item.setSDG_Route_Start_FromTime(json.getString("StartTime"));
+                        item.setDriverMobile(json.getString("StartTime"));
+                        item.setDriverId(json.getInt("AccountId"));
+                        item.setRouteId(json.getInt("RouteId"));
+                        item.setPhotoURl(json.getString("DriverPhoto"));
+                        days = "";
+
+                        if (json.getString("Saturday").equals("true")) {
+                            days += ", Sat";
+                        }
+                        if (json.getString("Sunday").equals("true")) {
+                            days += ", Sun";
+
+                        }
+                        if (json.getString("Monday").equals("true")) {
+                            days += ", Mon";
+
+                        }
+                        if (json.getString("Tuesday").equals("true")) {
+                            days += ", Tue";
+                        }
+                        if (json.getString("Wendenday").equals("true")) {
+                            days += ", Wed";
+                        }
+                        if (json.getString("Thrursday").equals("true")) {
+                            days += ", Thu";
+
+                        }
+                        if (json.getString("Friday").equals("true")) {
+                            days += ", Fri ";
+                        }
+                        if (!days.equals("")){
+                            item.setSDG_RouteDays(days.substring(1));
+                        }
+                        days = "";
+
+                        driver[i] = item;
+                        BestRouteDataModelAdapterDetails arrayAdapter = new BestRouteDataModelAdapterDetails(MostRidesDetails.this, R.layout.quick_search_list_item_2, driver);
+                        lv.setAdapter(arrayAdapter);
+                        ar.add(i, driver[i]);
+                        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                Intent in = new Intent(MostRidesDetails.this, Profile.class);
+                                in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                in.putExtra("DriverID", driver[i].getDriverId());
+                                in.putExtra("PassengerID", ID);
+                                in.putExtra("RouteID", driver[i].getRouteId());
+                                MostRidesDetails.this.startActivity(in);
+                            }
+
+                        });
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+        }
 
         @Override
         protected Object doInBackground(Object[] params) {
@@ -134,15 +224,22 @@ public class MostRidesDetails extends AppCompatActivity {
                 });
             }
             if (exists) {
-                String url = GetData.DOMAIN + "GetMostDesiredRideDetails?AccountID=" + 0 + "&FromEmirateID=" + FromEmirateId + "&FromRegionID=" + FromRegionId + "&ToEmirateID=" + ToEmirateId + "&ToRegionID=" + ToRegionId;
-                Log.wtf("url :", url);
                 GetData j = new GetData();
 
                 if (ID== null) {
-                    j.bestRouteStringRequestDetails(url, lv,0, MostRidesDetails.this);
+                    String url = GetData.DOMAIN + "GetMostDesiredRideDetails?AccountID=" + 0 + "&FromEmirateID=" + FromEmirateId + "&FromRegionID=" + FromRegionId + "&ToEmirateID=" + ToEmirateId + "&ToRegionID=" + ToRegionId;
+                    try {
+                        jsonArray = j.MostRidesDetails(url);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }else {
-
-                    j.bestRouteStringRequestDetails(url, lv,Integer.parseInt(ID), MostRidesDetails.this);
+                    String url = GetData.DOMAIN + "GetMostDesiredRideDetails?AccountID=" + ID + "&FromEmirateID=" + FromEmirateId + "&FromRegionID=" + FromRegionId + "&ToEmirateID=" + ToEmirateId + "&ToRegionID=" + ToRegionId;
+                    try {
+                        jsonArray = j.MostRidesDetails(url);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
                 }
             }

@@ -273,6 +273,13 @@ public class GetData {
         return new JSONArray(obj.getData());
     }
 
+    public JSONArray MostRidesDetails(String url) throws JSONException {
+        HandleXML obj = new HandleXML(url);
+        obj.fetchXML();
+        while (obj.parsingComplete) ;
+        return new JSONArray(obj.getData());
+    }
+
     public JSONArray Search(int myId, char gender, String time
             , int fromEmId, int fromRegId, int toEmId, int toRegId
             , int pref_lnag, int pref_nat, int age_Ranged_id
