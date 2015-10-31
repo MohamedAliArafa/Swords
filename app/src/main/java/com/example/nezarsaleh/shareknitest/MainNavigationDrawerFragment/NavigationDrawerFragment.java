@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.example.nezarsaleh.shareknitest.Arafa.Activities.BestDriversBeforeLogin;
 import com.example.nezarsaleh.shareknitest.DriverAlertsForRequest;
 import com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity;
+import com.example.nezarsaleh.shareknitest.QSearch;
 import com.example.nezarsaleh.shareknitest.R;
 import com.example.nezarsaleh.shareknitest.SearchOptions;
 import com.example.nezarsaleh.shareknitest.TopRidesAfterLogin;
@@ -104,8 +105,7 @@ public class NavigationDrawerFragment extends Fragment {
         navy_SearchOptions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), SearchOptions.class);
-
+                Intent intent = new Intent(getContext(), QSearch.class);
                 startActivity(intent);
             }
         });

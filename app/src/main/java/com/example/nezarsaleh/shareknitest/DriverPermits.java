@@ -12,10 +12,10 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.Parcel;
 import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -44,10 +44,10 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
 
-public class DriverCreatedRides extends AppCompatActivity {
+public class DriverPermits extends AppCompatActivity {
 
 
-    String url = GetData.DOMAIN + "GetDriverDetailsByAccountId?AccountId=";
+    String url = GetData.DOMAIN + "GetPermitByDriverId?id=";
 
     String days;
 
@@ -59,10 +59,11 @@ public class DriverCreatedRides extends AppCompatActivity {
     SharedPreferences myPrefs;
 
     Activity c;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_driver_created_rides);
+        setContentView(R.layout.activity_driver_permits);
         user_ride_created = (ListView) findViewById(R.id.user_ride_created);
         initToolbar();
         myPrefs = this.getSharedPreferences("myPrefs", 0);
@@ -75,7 +76,12 @@ public class DriverCreatedRides extends AppCompatActivity {
         new rideJson().execute();
 
         c=this;
+
     }
+
+
+
+
 
 
     private class rideJson extends AsyncTask {
@@ -91,7 +97,7 @@ public class DriverCreatedRides extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            pDialog = new ProgressDialog(DriverCreatedRides.this);
+            pDialog = new ProgressDialog(DriverPermits.this);
             pDialog.setMessage("Loading" + "...");
             pDialog.show();
             super.onPreExecute();
@@ -116,12 +122,12 @@ public class DriverCreatedRides extends AppCompatActivity {
                 e.printStackTrace();
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        new AlertDialog.Builder(DriverCreatedRides.this)
+                        new AlertDialog.Builder(DriverPermits.this)
                                 .setTitle("Connection Problem!")
                                 .setMessage("Make sure you have internet connection")
                                 .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent intentToBeNewRoot = new Intent(DriverCreatedRides.this, DriverCreatedRides.class);
+                                        Intent intentToBeNewRoot = new Intent(DriverPermits.this, DriverCreatedRides.class);
                                         ComponentName cn = intentToBeNewRoot.getComponent();
                                         Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
                                         startActivity(mainIntent);
@@ -132,7 +138,7 @@ public class DriverCreatedRides extends AppCompatActivity {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(DriverCreatedRides.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DriverPermits.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -160,7 +166,7 @@ public class DriverCreatedRides extends AppCompatActivity {
                                         Button btn = (Button) dialog.findViewById(R.id.noroute_id);
                                         TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
                                         dialog.show();
-                                        Text_3.setText("There is no Rides Created yet");
+                                        Text_3.setText("There is no permits yet");
 
                                         btn.setOnClickListener(new View.OnClickListener() {
                                             @Override
@@ -178,67 +184,35 @@ public class DriverCreatedRides extends AppCompatActivity {
                                             BestRouteDataModel item = new BestRouteDataModel(Parcel.obtain());
                                             days = "";
                                             json = jArray.getJSONObject(i);
-                                            item.setID(json.getInt("ID"));
-                                            item.setFromEm(json.getString("FromEmirateEnName"));
-                                            item.setFromReg(json.getString("FromRegionEnName"));
-                                            item.setToEm(json.getString("ToEmirateEnName"));
-                                            item.setToReg(json.getString("ToRegionEnName"));
+                                            item.setFromEm(json.getString("MaxPassengers"));
+                                            item.setToEm(json.getString("IssueDate"));
+                                            item.setToReg(json.getString("ExpireDate"));
                                             item.setRouteName(json.getString("RouteEnName"));
-                                            item.setStartFromTime(json.getString("StartFromTime"));
-                                            item.setEndToTime_(json.getString("EndToTime_"));
-
-                                            if (json.getString("Saturday").equals("true")) {
-                                                days += "Sat , ";
-                                            }
-                                            if (json.getString("Sunday").equals("true")) {
-                                                days += "Sun , ";
-
-                                            }
-                                            if (json.getString("Monday").equals("true")) {
-                                                days += "Mon , ";
-
-                                            }
-                                            if (json.getString("Tuesday").equals("true")) {
-                                                days += "Tue , ";
-                                            }
-                                            if (json.getString("Wednesday").equals("true")) {
-                                                days += "Wed , ";
-                                            }
-                                            if (json.getString("Thursday").equals("true")) {
-                                                days += "Thu , ";
-
-                                            }
-                                            if (json.getString("Friday").equals("true")) {
-                                                days += "Fri ";
-                                            }
-
-
-                                            item.setDriver_profile_dayWeek(days);
-                                            days = "";
-
+                                            item.setDriver_ID(json.getInt("ID"));
                                             driver[i] = item;
-                                            Log.d("ID", String.valueOf(json.getInt("ID")));
-                                            Log.d("FromEmlv", json.getString("FromEmirateEnName"));
-                                            Log.d("FromReglv", json.getString("FromRegionEnName"));
-                                            Log.d("TomEmlv", json.getString("ToEmirateEnName"));
-                                            Log.d("ToReglv", json.getString("ToRegionEnName"));
 
-                                            ProfileRideAdapter arrayAdapter = new ProfileRideAdapter(DriverCreatedRides.this, R.layout.driver_created_rides_lits_item, driver);
+                                            Log.d("FromEmlv", json.getString("MaxPassengers"));
+                                          //  Log.d("FromReglv", json.getString("FromRegionEnName"));
+                                            Log.d("TomEmlv", json.getString("IssueDate"));
+                                            Log.d("ToReglv", json.getString("ExpireDate"));
+
+                                            driver_permits_Adapter arrayAdapter = new driver_permits_Adapter(DriverPermits.this, R.layout.driver_permits_list_item, driver);
                                             user_ride_created.setAdapter(arrayAdapter);
+
                                             user_ride_created.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                                 @Override
-                                                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                                    Intent in = new Intent(DriverCreatedRides.this, Route.class);
-                                                    in.putExtra("RouteID", driver[i].getID());
-                                                    in.putExtra("DriverID", Driver_ID);
-                                                    DriverCreatedRides.this.startActivity(in);
-
-
+                                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                                    Intent intent =  new Intent(DriverPermits.this,ViewPermit.class);
+                                                    intent.putExtra("ID",driver[position].Driver_ID);
+                                                    startActivity(intent);
                                                 }
                                             });
+
+
+
                                         } catch (JSONException e) {
                                             e.printStackTrace();
-                                           Log.d("Error 1 ",e.toString());
+                                            Log.d("Error 1 ",e.toString());
                                         }
                                     }
                                 } catch (JSONException e) {
@@ -252,7 +226,7 @@ public class DriverCreatedRides extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                     }
                 });
-                VolleySingleton.getInstance(DriverCreatedRides.this).addToRequestQueue(stringRequest);
+                VolleySingleton.getInstance(DriverPermits.this).addToRequestQueue(stringRequest);
             }
             return null;
         }
@@ -264,7 +238,7 @@ public class DriverCreatedRides extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Ride Created");
+        textView.setText("Permits");
 //        toolbar.setElevation(10);
 
         setSupportActionBar(toolbar);
@@ -272,6 +246,10 @@ public class DriverCreatedRides extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
+
+
+
 
 
 }

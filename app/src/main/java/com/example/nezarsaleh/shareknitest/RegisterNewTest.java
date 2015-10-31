@@ -374,7 +374,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                             case "Driver":
 
                                 registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + user + "&password=" + pass + "&gender=" + gender + "&BirthDate=" + birthdate + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x, getBaseContext(), country, "D");
-
+                                Log.d("Reg Driver",GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + user + "&password=" + pass + "&gender=" + gender + "&BirthDate=" + birthdate + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x);
                                 break;
                             case "Both":
 

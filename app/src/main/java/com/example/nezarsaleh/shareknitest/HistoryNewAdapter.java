@@ -53,8 +53,8 @@ public class HistoryNewAdapter  extends ArrayAdapter<BestRouteDataModel> {
             vh.FromReg= (TextView) v.findViewById(R.id.reg_from);
             vh.ToReg = (TextView) v.findViewById(R.id.reg_to);
             vh.RouteEnName= (TextView) v.findViewById(R.id.driver_profile_RouteEnName);
-            vh.StartFromTime= (TextView) v.findViewById(R.id.StartFromTime);
-            vh.EndToTime_= (TextView) v.findViewById(R.id.EndToTime_);
+          //  vh.StartFromTime= (TextView) v.findViewById(R.id.StartFromTime);
+        //    vh.EndToTime_= (TextView) v.findViewById(R.id.EndToTime_);
             // vh.driver_profile_dayWeek= (TextView) v.findViewById(R.id.driver_profile_dayWeek);
 
           //  vh.Relative_Leave= (RelativeLayout) v.findViewById(R.id.Relative_Leave);
@@ -112,8 +112,8 @@ public class HistoryNewAdapter  extends ArrayAdapter<BestRouteDataModel> {
             res.append(str).append(" ");
         }
         vh.RouteEnName.setText(res);
-        vh.StartFromTime.setText(bestRouteDataModel.getStartFromTime());
-        vh.EndToTime_.setText(bestRouteDataModel.getEndToTime_());
+//        vh.StartFromTime.setText(bestRouteDataModel.getStartFromTime());
+//        vh.EndToTime_.setText(bestRouteDataModel.getEndToTime_());
         vh.Driver_Id = bestRouteDataModel.getDriver_ID();
 
 
@@ -139,8 +139,8 @@ public class HistoryNewAdapter  extends ArrayAdapter<BestRouteDataModel> {
         TextView FromReg;
         TextView ToReg;
         TextView RouteEnName;
-        TextView StartFromTime;
-        TextView EndToTime_;
+//        TextView StartFromTime;
+//        TextView EndToTime_;
         // TextView driver_profile_dayWeek;
         int FromEmId,ToEmId,FromRegid,ToRegId;
 

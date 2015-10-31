@@ -34,7 +34,7 @@ public class PermitJsonParse {
                             String data = response.substring(40);
                             Log.d("Data:", data);
 
-                            if (data.equals("1")){
+                            if (data.equals("\"1\"")){
                                 Toast.makeText(context, "Permit Granted", Toast.LENGTH_LONG).show();
 
                             }else if(data.equals("-1")){

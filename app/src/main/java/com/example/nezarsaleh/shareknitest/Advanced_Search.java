@@ -965,7 +965,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                     JSONArray jsonArray;
                     try {
                         if (Regions == null) {
-                            jsonArray = getData.GetRegionsByEmiratesID(From_Em_Id);
+                            jsonArray = getData.GetRegionsByEmiratesID(To_Em_Id);
                         } else {
                             jsonArray = Regions;
                         }

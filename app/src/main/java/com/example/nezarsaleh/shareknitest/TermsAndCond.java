@@ -23,7 +23,6 @@ public class TermsAndCond extends AppCompatActivity {
         webview = (WebView) findViewById(R.id.webview);
         agreeBtn = (Button) findViewById(R.id.agreeBtn);
         initToolbar();
-
         webview.loadUrl("file:///android_asset/terms_en.html");
 
 

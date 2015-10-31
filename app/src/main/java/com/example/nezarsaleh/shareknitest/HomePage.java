@@ -484,6 +484,17 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 }else {
 
 
+
+                    Home_Relative_Permit.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getBaseContext(), DriverPermits.class);
+                            startActivity(intent);
+
+                        }
+                    });
+
+
                     Home_Realtive_Vehicles.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {

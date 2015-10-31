@@ -26,6 +26,7 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +49,8 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
 
+
+
 public class HistoryNew extends AppCompatActivity {
 
     String url = GetData.DOMAIN + "GetDriverDetailsByAccountId?AccountId=";
@@ -64,8 +67,12 @@ public class HistoryNew extends AppCompatActivity {
 
     SharedPreferences myPrefs;
 
+    String AccountType;
     Activity c;
 
+
+    RelativeLayout history_created_rides_realtive;
+        TextView driver_profile_RouteEnName;
 
 
 
@@ -95,8 +102,11 @@ public class HistoryNew extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_new);
+
         user_ride_created = (ListView) findViewById(R.id.user_ride_created);
         Passenger_Approved_Rides_Lv= (ListView) findViewById(R.id.Passenger_Approved_Rides_Lv);
+        history_created_rides_realtive = (RelativeLayout) findViewById(R.id.history_created_rides_realtive);
+        driver_profile_RouteEnName= (TextView) findViewById(R.id.driver_profile_RouteEnName);
 
         initToolbar();
         myPrefs = this.getSharedPreferences("myPrefs", 0);
@@ -104,7 +114,9 @@ public class HistoryNew extends AppCompatActivity {
 //        Bundle in = getIntent().getExtras();
 //        Log.d("Intent Id :", String.valueOf(in.getInt("DriverID")));
         Driver_ID = Integer.parseInt(ID);
+        AccountType = myPrefs.getString("account_type", null);
         Log.d("Driver Id", String.valueOf(Driver_ID));
+        Log.d("Type",AccountType);
 
 
 
@@ -112,8 +124,20 @@ public class HistoryNew extends AppCompatActivity {
 
         c=this;
 
-        new rideJson().execute();
-        new rideJson2().execute();
+        if (AccountType.equals("D")) {
+
+
+            new rideJson().execute();
+            new rideJson2().execute();
+
+        }else if (AccountType.equals("P")){
+            user_ride_created.setVisibility(View.INVISIBLE);
+            driver_profile_RouteEnName.setVisibility(View.INVISIBLE);
+            history_created_rides_realtive.setVisibility(View.INVISIBLE);
+            new rideJson2().execute();
+
+            }
+
 
 
     }
@@ -213,21 +237,21 @@ public class HistoryNew extends AppCompatActivity {
                                     if (jArray.length()==0){
                                         Log.d("Error 3 ","Error3");
 
-                                        final Dialog dialog = new Dialog(c);
-                                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                                        dialog.setContentView(R.layout.noroutesdialog);
-                                        Button btn = (Button) dialog.findViewById(R.id.noroute_id);
-                                        TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
-                                        dialog.show();
-                                        Text_3.setText("There is no Rides Created yet");
-
-                                        btn.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                dialog.dismiss();
-                                                c.finish();
-                                            }
-                                        });
+//                                        final Dialog dialog = new Dialog(c);
+//                                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//                                        dialog.setContentView(R.layout.noroutesdialog);
+//                                        Button btn = (Button) dialog.findViewById(R.id.noroute_id);
+//                                        TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
+//                                        dialog.show();
+//                                        Text_3.setText("There is no Rides Created yet");
+//
+//                                        btn.setOnClickListener(new View.OnClickListener() {
+//                                            @Override
+//                                            public void onClick(View v) {
+//                                                dialog.dismiss();
+//                                                c.finish();
+//                                            }
+//                                        });
 
                                     }
 
@@ -243,8 +267,8 @@ public class HistoryNew extends AppCompatActivity {
                                             item.setToEm(json.getString("ToEmirateEnName"));
                                             item.setToReg(json.getString("ToRegionEnName"));
                                             item.setRouteName(json.getString("RouteEnName"));
-                                            item.setStartFromTime(json.getString("StartFromTime"));
-                                            item.setEndToTime_(json.getString("EndToTime_"));
+//                                            item.setStartFromTime(json.getString("StartFromTime"));
+//                                            item.setEndToTime_(json.getString("EndToTime_"));
 
                                             if (json.getString("Saturday").equals("true")) {
                                                 days += "Sat , ";
@@ -453,8 +477,8 @@ public class HistoryNew extends AppCompatActivity {
                                             item.setToEm(jsonObject.getString("ToEmirateEnName"));
                                             item.setToReg(jsonObject.getString("ToRegionEnName"));
                                             item.setRouteName(jsonObject.getString("RouteEnName"));
-                                            item.setStartFromTime(jsonObject.getString("StartFromTime"));
-                                            item.setEndToTime_(jsonObject.getString("EndToTime_"));
+                                  //          item.setStartFromTime(jsonObject.getString("StartFromTime"));
+                                    //        item.setEndToTime_(jsonObject.getString("EndToTime_"));
 
                                             item.setDriver_ID(Driver_Account);
 

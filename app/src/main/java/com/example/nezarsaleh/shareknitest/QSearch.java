@@ -152,9 +152,9 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         quickSearch_Dropoff= (Button) findViewById(R.id.quickSearch_Dropoff);
 
 
-        MostRides_Relative= (RelativeLayout) findViewById(R.id.MostRides_Relative);
-        MapLookUp_Relative= (RelativeLayout) findViewById(R.id.MapLookUp_Relative);
-        Advanced_Search_Relative_2= (RelativeLayout) findViewById(R.id.Advanced_Search_Relative_2);
+        MostRides_Relative= (RelativeLayout) findViewById(R.id.search_top_rides_im);
+        MapLookUp_Relative= (RelativeLayout) findViewById(R.id.map_look_up);
+        Advanced_Search_Relative_2= (RelativeLayout) findViewById(R.id.advanced_search);
 
 
 
@@ -328,7 +328,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
                         JSONArray jsonArray;
                         try {
                             if (Regions == null) {
-                                jsonArray = getData.GetRegionsByEmiratesID(From_Em_Id);
+                                jsonArray = getData.GetRegionsByEmiratesID(To_Em_Id);
                             } else {
                                 jsonArray = Regions;
                             }
