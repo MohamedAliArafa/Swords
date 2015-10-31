@@ -184,7 +184,7 @@ public class DriverPermits extends AppCompatActivity {
                                             BestRouteDataModel item = new BestRouteDataModel(Parcel.obtain());
                                             days = "";
                                             json = jArray.getJSONObject(i);
-                                            item.setFromEm(json.getString("MaxPassengers"));
+                                            item.setFromEm(json.getString("CurrentPassengers"));
                                             item.setToEm(json.getString("IssueDate"));
                                             item.setToReg(json.getString("ExpireDate"));
                                             item.setRouteName(json.getString("RouteEnName"));
