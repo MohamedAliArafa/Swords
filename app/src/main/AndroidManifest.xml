@@ -372,12 +372,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.RegisterNewTest" />
         </activity>
-        <activity android:name=".RegisterVehicle"
-            android:theme="@style/AppTheme.Base"
-            >
+        <activity
+            android:name=".RegisterVehicle"
+            android:theme="@style/AppTheme.Base" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
+        </activity>
+        <activity android:name=".HistoryNew" >
         </activity>
     </application>
 

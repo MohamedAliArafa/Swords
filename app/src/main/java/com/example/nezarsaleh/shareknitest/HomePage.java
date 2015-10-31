@@ -80,6 +80,9 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
     ImageView Saved_Search_image_2;
 
 
+
+
+
     public static HomePage getInstance() {
         return HomaPageActivity;
     }
@@ -324,12 +327,12 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
 
 
 
-
-        if (id==R.id.Stop_Service){
-
-            Toast.makeText(HomePage.this, "Hello", Toast.LENGTH_SHORT).show();
-
-        }
+//
+//        if (id==R.id.Stop_Service){
+//
+//            Toast.makeText(HomePage.this, "Hello", Toast.LENGTH_SHORT).show();
+//
+//        }
 //
 //        if (id==R.id.Stop_Service){
 //
@@ -528,6 +531,8 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
             btn_history.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent intent =  new Intent(getBaseContext(),HistoryNew.class);
+                    startActivity(intent);
 
                 }
             });
