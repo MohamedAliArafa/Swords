@@ -121,83 +121,88 @@ public class QuickSearchResults extends AppCompatActivity {
     private class backTread extends AsyncTask {
 
         JSONArray jArray;
+        Boolean error = false;
 
         @Override
         protected void onPostExecute(Object o) {
-            String days = "";
-            final List<QuickSearchDataModel> searchArray = new ArrayList<>();
-            QuickSearchResultAdapter adapter;
-            adapter = new QuickSearchResultAdapter(QuickSearchResults.this, searchArray);
-            lvResult.setAdapter(adapter);
-            try {
-                JSONObject json;
-                for (int i = 0; i < jArray.length(); i++) {
-                    try {
-                        final QuickSearchDataModel item = new QuickSearchDataModel(Parcel.obtain());
-                        json = jArray.getJSONObject(i);
-                        Log.d("test account email", json.getString("AccountName"));
-                        item.setAccountName(json.getString("AccountName"));
-                        item.setDriverId(json.getInt("DriverId"));
-                        item.setAccountPhoto(json.getString("AccountPhoto"));
-                        item.setDriverEnName(json.getString("DriverEnName"));
+            if (error){
+                Toast.makeText(QuickSearchResults.this, "No Available Results", Toast.LENGTH_SHORT).show();
+            }else {
+                String days = "";
+                final List<QuickSearchDataModel> searchArray = new ArrayList<>();
+                QuickSearchResultAdapter adapter;
+                adapter = new QuickSearchResultAdapter(QuickSearchResults.this, searchArray);
+                lvResult.setAdapter(adapter);
+                try {
+                    JSONObject json;
+                    for (int i = 0; i < jArray.length(); i++) {
+                        try {
+                            final QuickSearchDataModel item = new QuickSearchDataModel(Parcel.obtain());
+                            json = jArray.getJSONObject(i);
+                            Log.d("test account email", json.getString("AccountName"));
+                            item.setAccountName(json.getString("AccountName"));
+                            item.setDriverId(json.getInt("DriverId"));
+                            item.setAccountPhoto(json.getString("AccountPhoto"));
+                            item.setDriverEnName(json.getString("DriverEnName"));
 //                    item.setFrom_EmirateName_en(json.getString("From_EmirateName_en"));
 //                    item.setFrom_RegionName_en(json.getString("From_RegionName_en"));
 //                    item.setTo_EmirateName_en(json.getString("To_EmirateName_en"));
 //                    item.setTo_RegionName_en(json.getString("To_RegionName_en"));
-                        item.setAccountMobile(json.getString("AccountMobile"));
-                        item.setSDG_Route_Start_FromTime(json.getString("SDG_Route_Start_FromTime"));
-                        item.setNationality_en(json.getString("Nationality_en"));
-                        item.setRating(json.getString("Rating"));
+                            item.setAccountMobile(json.getString("AccountMobile"));
+                            item.setSDG_Route_Start_FromTime(json.getString("SDG_Route_Start_FromTime"));
+                            item.setNationality_en(json.getString("Nationality_en"));
+                            item.setRating(json.getString("Rating"));
 
-                        days = "";
+                            days = "";
 
-                        if (json.getString("Saturday").equals("true")) {
-                            days += "Sat";
-                        }
-                        if (json.getString("SDG_RouteDays_Sunday").equals("true")) {
-                            days += ", Sun";
-                        }
-                        if (json.getString("SDG_RouteDays_Monday").equals("true")) {
-                            days += ", Mon";
-                        }
-                        if (json.getString("SDG_RouteDays_Tuesday").equals("true")) {
-                            days += ", Tue";
-                        }
-                        if (json.getString("SDG_RouteDays_Wednesday").equals("true")) {
-                            days += ", Wed";
-                        }
-                        if (json.getString("SDG_RouteDays_Thursday").equals("true")) {
-                            days += ", Thu";
-                        }
-                        if (json.getString("SDG_RouteDays_Friday").equals("true")) {
-                            days += ", Fri";
-                        }
-                        if (!days.equals("")){
-                            item.setSDG_RouteDays(days.substring(1));
-                        }
-                        days = "";
-                        searchArray.add(item);
-                        lvResult.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                Intent in = new Intent(QuickSearchResults.this, Profile.class);
-                                in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                in.putExtra("DriverID", searchArray.get(position).getDriverId());
-                                in.putExtra("PassengerID", ID);
-                                in.putExtra("RouteID", searchArray.get(position).getSDG_Route_ID());
-                                Log.d("Array Id :", String.valueOf(searchArray.get(position).getDriverId()));
-                                QuickSearchResults.this.startActivity(in);
-                                Log.d("Array id : ", searchArray.get(position).getAccountName());
-                                Log.d("on click id : ", String.valueOf(searchArray.get(position).getDriverId()));
+                            if (json.getString("Saturday").equals("true")) {
+                                days += ", Sat";
                             }
-                        });
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                            if (json.getString("SDG_RouteDays_Sunday").equals("true")) {
+                                days += ", Sun";
+                            }
+                            if (json.getString("SDG_RouteDays_Monday").equals("true")) {
+                                days += ", Mon";
+                            }
+                            if (json.getString("SDG_RouteDays_Tuesday").equals("true")) {
+                                days += ", Tue";
+                            }
+                            if (json.getString("SDG_RouteDays_Wednesday").equals("true")) {
+                                days += ", Wed";
+                            }
+                            if (json.getString("SDG_RouteDays_Thursday").equals("true")) {
+                                days += ", Thu";
+                            }
+                            if (json.getString("SDG_RouteDays_Friday").equals("true")) {
+                                days += ", Fri";
+                            }
+                            if (!days.equals("")) {
+                                item.setSDG_RouteDays(days.substring(1));
+                            }
+                            days = "";
+                            searchArray.add(item);
+                            lvResult.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    Intent in = new Intent(QuickSearchResults.this, Profile.class);
+                                    in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                    in.putExtra("DriverID", searchArray.get(position).getDriverId());
+                                    in.putExtra("PassengerID", ID);
+                                    in.putExtra("RouteID", searchArray.get(position).getSDG_Route_ID());
+                                    Log.d("Array Id :", String.valueOf(searchArray.get(position).getDriverId()));
+                                    QuickSearchResults.this.startActivity(in);
+                                    Log.d("Array id : ", searchArray.get(position).getAccountName());
+                                    Log.d("on click id : ", String.valueOf(searchArray.get(position).getDriverId()));
+                                }
+                            });
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
 
-            } catch (NullPointerException e) {
-                e.printStackTrace();
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
@@ -284,7 +289,7 @@ public class QuickSearchResults extends AppCompatActivity {
                                 , From_Reg_Id, To_Em_Id, To_Reg_Id, pref_lnag, pref_nat
                                 , Age_Ranged_id, StartDate, saveFind);
                     } catch (JSONException e) {
-                        Toast.makeText(QuickSearchResults.this, "No Available Results", Toast.LENGTH_SHORT).show();
+                        error = true;
                         e.printStackTrace();
                     }
                 }
