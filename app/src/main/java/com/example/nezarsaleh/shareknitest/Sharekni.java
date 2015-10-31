@@ -63,26 +63,36 @@ public class Sharekni extends Activity {
         JSONArray Emirates;
         GetData j = new GetData();
         FileOutputStream fileOutputStream = null;
+        File file = null;
         @Override
         protected Object doInBackground(Object[] params) {
+                file = getFilesDir();
             try {
                 InputStream emirates = openFileInput("Emirates.txt");
-                if (emirates != null){
+            } catch (FileNotFoundException e) {
+                try {
                     Emirates = j.GetEmitares();
                     fileOutputStream = openFileOutput("Emirates.txt", Sharekni.MODE_PRIVATE);
                     fileOutputStream.write(Emirates.toString().getBytes());
+                } catch (JSONException | IOException e1) {
+                    e1.printStackTrace();
                 }
-                for (int i = 0;i <= 7;i++){
-                    InputStream inputStream = openFileInput("Regions"+i+".txt");
-                    if (inputStream != null) {
-                        jsonArray = j.GetRegionsByEmiratesID(i);
-                        fileOutputStream = openFileOutput("Regions"+i+".txt", Sharekni.MODE_PRIVATE);
-                        fileOutputStream.write(jsonArray.toString().getBytes());
-                    }
-                }
-            } catch (JSONException | IOException e) {
                 e.printStackTrace();
             }
+                for (int i = 0;i <= 7;i++){
+                    try {
+                        InputStream inputStream = openFileInput("Regions"+i+".txt");
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                        try {
+                            jsonArray = j.GetRegionsByEmiratesID(i);
+                            fileOutputStream = openFileOutput("Regions" + i + ".txt", Sharekni.MODE_PRIVATE);
+                            fileOutputStream.write(jsonArray.toString().getBytes());
+                        } catch (JSONException | IOException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                }
             return null;
         }
     }
