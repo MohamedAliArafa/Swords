@@ -284,6 +284,7 @@ public class QuickSearchResults extends AppCompatActivity {
                                 , From_Reg_Id, To_Em_Id, To_Reg_Id, pref_lnag, pref_nat
                                 , Age_Ranged_id, StartDate, saveFind);
                     } catch (JSONException e) {
+                        Toast.makeText(QuickSearchResults.this, "No Available Results", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
                 }

@@ -334,6 +334,8 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                     }
                     if (!days.equals("")){
                         ride_details_day_of_week.setText(days.substring(1));
+                    }else {
+                        ride_details_day_of_week.setText(days);
                     }
                     days = "";
 
