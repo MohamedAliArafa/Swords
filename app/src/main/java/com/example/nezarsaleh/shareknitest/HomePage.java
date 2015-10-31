@@ -411,6 +411,24 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         @Override
         protected void onPostExecute(Object o) {
             try {
+                if (AccountType.equals("D")){
+                    VehiclesCount_str="";
+                    VehiclesCount_str += "(";
+                    VehiclesCount_str += (jsonArray.getString("VehiclesCount"));
+                    VehiclesCount_str += ")";
+                    VehiclesCount.setText(VehiclesCount_str);
+                    PassengerJoinedRidesCount_str="";
+                    PassengerJoinedRidesCount_str += "(";
+                    PassengerJoinedRidesCount_str += (jsonArray.getString("DriverMyRidesCount"));
+                    PassengerJoinedRidesCount_str += ")";
+                    PassengerJoinedRidesCount.setText(PassengerJoinedRidesCount_str);
+                    DriverMyRidesCount_str="";
+                    DriverMyRidesCount_str += "(";
+                    DriverMyRidesCount_str += (jsonArray.getString("DriverMyRidesCount"));
+                    DriverMyRidesCount_str += ")";
+                    DriverMyRidesCount.setText(DriverMyRidesCount_str);
+                    DriverMyAlertsCount.setText( String.valueOf(All_Alerts));
+                }
                 All_Alerts = jsonArray.getInt("DriverMyAlertsCount")+jsonArray.getInt("PassengerMyAlertsCount");
                 name_str="";
                 nat_str="";
