@@ -35,9 +35,11 @@ import com.example.nezarsaleh.shareknitest.DriverEditCarPool;
 import com.example.nezarsaleh.shareknitest.DriverGetReviewAdapter;
 import com.example.nezarsaleh.shareknitest.DriverGetReviewDataModel;
 import com.example.nezarsaleh.shareknitest.HomePage;
+import com.example.nezarsaleh.shareknitest.PermitJsonParse;
 import com.example.nezarsaleh.shareknitest.R;
 import com.example.nezarsaleh.shareknitest.Ride_Details_Passengers_Adapter;
 import com.example.nezarsaleh.shareknitest.Ride_Details_Passengers_DataModel;
+import com.example.nezarsaleh.shareknitest.Route_Get_Accepted_Requests_DataModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -68,6 +70,7 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
     int Route_ID;
     int Passenger_ID;
     int Driver_ID;
+    String Passengers_Ids="";
     ListView ride_details_passengers;
     double StartLat, StartLng, EndLat, EndLng;
     Activity con;
@@ -76,9 +79,13 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private List<DriverGetReviewDataModel> driverGetReviewDataModels_arr = new ArrayList<>();
     final List<Ride_Details_Passengers_DataModel> Passengers_arr = new ArrayList<>();
+    final List<Route_Get_Accepted_Requests_DataModel> Accepted_Requests = new ArrayList<>();
     Bundle in;
     String Route_name;
     Button Route_Delete_Btn, Route_Edit_Btn;
+    Button Route_permit_Btn;
+
+    int Vehicle_Id_Permit;
     GetData j = new GetData();
 
     public static void setListViewHeightBasedOnChildren(ListView listView) {
@@ -132,6 +139,8 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
 
         Route_Delete_Btn = (Button) findViewById(R.id.Route_Delete_Btn);
         Route_Edit_Btn = (Button) findViewById(R.id.Route_Edit_Btn);
+        Route_permit_Btn= (Button) findViewById(R.id.Route_permit_Btn);
+
 
         myPrefs = this.getSharedPreferences("myPrefs", 0);
         in = getIntent().getExtras();
@@ -242,29 +251,37 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
                         EndLat = json.getDouble("EndLat");
                         EndLng = json.getDouble("EndLng");
                         Log.d("S Lat", String.valueOf(StartLat));
+
                         if (json.getString("Saturday").equals("true")) {
-                            days += "Sat , ";
+                            days += ", Sat";
                         }
                         if (json.getString("Sunday").equals("true")) {
-                            days += "Sun , ";
+                            days += ", Sun";
                         }
                         if (json.getString("Monday").equals("true")) {
-                            days += "Mon , ";
+                            days += ", Mon";
                         }
                         if (json.getString("Tuesday").equals("true")) {
-                            days += "Tue , ";
+                            days += ", Tue";
                         }
                         if (json.getString("Wednesday").equals("true")) {
-                            days += "Wed , ";
+                            days += ", Wed";
                         }
                         if (json.getString("Thursday").equals("true")) {
-                            days += "Thu , ";
+                            days += ", Thu";
                         }
                         if (json.getString("Friday").equals("true")) {
-                            days += "Fri ";
+                            days += ", Fri";
                         }
-                        ride_details_day_of_week.setText(days);
+                        if (!days.equals("")){
+                            ride_details_day_of_week.setText(days.substring(1));
+                        }
                         days = "";
+
+
+
+
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -340,6 +357,12 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
                 try {
                     days = "";
                     json = GD.GetRouteById(Route_ID);
+
+
+
+
+
+
                 } catch (Exception e) {
                     exception = e;
                     e.printStackTrace();
@@ -353,8 +376,11 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
         JSONArray response1 = null;
         JSONArray response2 = null;
 
+        JSONArray response3 = null;
+
         @Override
         protected void onPostExecute(Object o) {
+
             for (int i = 0; i < response1.length(); i++) {
                 try {
                     JSONObject obj = response1.getJSONObject(i);
@@ -390,13 +416,72 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
                 }
 
 
+
+
+            for (int x1 = 0; x1 < response3.length(); x1++) {
+
+                try {
+                    JSONObject obj = response3.getJSONObject(x1);
+                    final Route_Get_Accepted_Requests_DataModel item3 = new Route_Get_Accepted_Requests_DataModel(Parcel.obtain());
+                    item3.setRoutePassengerId(obj.getInt("RoutePassengerId"));
+                    Passengers_Ids+=",";
+                    Passengers_Ids+=obj.getString("RoutePassengerId");
+
+                    item3.setVehicleId(obj.getInt("VehicleId"));
+                    Vehicle_Id_Permit = obj.getInt("VehicleId");
+                    item3.setAccountId(Driver_ID);
+                    item3.setRouteId(Route_ID);
+                    Accepted_Requests.add(item3);
+
+
+
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (!Passengers_Ids.equals("")) {
+
+            }
+
+            Log.d("Vehicle Id", String.valueOf(Vehicle_Id_Permit));
+
+
+
             DriverGetReviewAdapter arrayAdapter = new DriverGetReviewAdapter(con, driverGetReviewDataModels_arr);
             Driver_get_Review_lv.setAdapter(arrayAdapter);
             setListViewHeightBasedOnChildren(Driver_get_Review_lv);
 
+
+
             Ride_Details_Passengers_Adapter adapter = new Ride_Details_Passengers_Adapter(con, Passengers_arr);
             ride_details_passengers.setAdapter(adapter);
             setListViewHeightBasedOnChildren(ride_details_passengers);
+
+
+
+
+
+            if (response3.length()>0 && !Passengers_Ids.equals("")) {
+                Route_permit_Btn.setVisibility(View.VISIBLE);
+                final PermitJsonParse permitJsonParse = new PermitJsonParse();
+
+                Passengers_Ids  =  Passengers_Ids.substring(1);
+                Log.d("pass ids array", Passengers_Ids);
+                Route_permit_Btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        permitJsonParse.stringRequest(GetData.DOMAIN + "Permit_Insert?AccountId="+Driver_ID+"&RouteId="+Route_ID+"&VehicleId="+Vehicle_Id_Permit+"&_passengerIDs="+Passengers_Ids,Route.this);
+                    }
+                });
+
+            }
+
+
+
 
         }
 
@@ -405,6 +490,8 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
             try {
                 response1 = new GetData().Driver_GetReview(Driver_ID, Route_ID);
                 response2 = new GetData().GetPassengers_ByRouteID(Route_ID);
+                response3 =  new GetData().GetAcceptedRequests_ByRouteID(Route_ID);
+
 
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -34,6 +34,7 @@ public class RegisterJsonParse {
     String Lang = null;
     String datatest = null;
 
+
     public void stringRequest(String url, final Context context, String nat, final String lang) {
         this.Nat = nat;
         this.Lang = lang;
@@ -59,10 +60,10 @@ public class RegisterJsonParse {
                             in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             context.startActivity(in);
                         }else if ( data.equals("-1") ) {
-                            Toast.makeText(context, "Cannot Register , Please choose another username", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Cannot Register , Please choose another username", Toast.LENGTH_LONG).show();
                         }else if (data.equals("-2")){
 
-                            Toast.makeText(context, "Cannot Register , Check your Mobile Number ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Cannot Register , Check your Mobile Number ", Toast.LENGTH_LONG).show();
 
                         }
 

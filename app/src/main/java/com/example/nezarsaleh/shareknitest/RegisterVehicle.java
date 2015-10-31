@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,8 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -46,7 +49,12 @@ public class RegisterVehicle extends AppCompatActivity {
 
     EditText File_num_edit;
     String File_NO_Str="";
+    Bundle in;
+    SharedPreferences myPrefs;
 
+    int Driver_ID;
+
+    Driver_RegisterVehicleWithETService_JsonParse license_check = new  Driver_RegisterVehicleWithETService_JsonParse();
 
 
     @Override
@@ -55,6 +63,15 @@ public class RegisterVehicle extends AppCompatActivity {
         setContentView(R.layout.activity_register_vehicle);
 
         initToolbar();
+
+
+        myPrefs = this.getSharedPreferences("myPrefs", 0);
+        String ID = myPrefs.getString("account_id",null);
+//        Bundle in = getIntent().getExtras();
+//        Log.d("Intent Id :", String.valueOf(in.getInt("DriverID")));
+        Driver_ID = Integer.parseInt(ID);
+        Log.d("Driver Id", String.valueOf(Driver_ID));
+
 
         mContext = this;
         cal.add(Calendar.YEAR, -18);
@@ -71,8 +88,6 @@ public class RegisterVehicle extends AppCompatActivity {
         btn_register_vehicle_1 = (Button) findViewById(R.id.btn_register_vehicle_1);
         File_num_edit = (EditText) findViewById(R.id.File_num_edit);
 
-        File_NO_Str = File_num_edit.getText().toString();
-
 
 
 
@@ -84,6 +99,17 @@ public class RegisterVehicle extends AppCompatActivity {
             public void onClick(View v) {
 
 
+                if (!full_date.equals("") && File_num_edit.getText().toString() !="Please enter the driving license No." ) {
+                    File_NO_Str = File_num_edit.getText().toString();
+
+                    license_check.stringRequest(GetData.DOMAIN+"Driver_RegisterVehicleWithETService?AccountId="+Driver_ID+"&TrafficFileNo="+File_NO_Str+"&BirthDate="+full_date,RegisterVehicle.this);
+
+
+                }
+
+
+
+                /*
                 if (full_date.equals("")){
                     Toast.makeText(RegisterVehicle.this, "Enter your date of birth please", Toast.LENGTH_SHORT).show();
 
@@ -99,6 +125,8 @@ public class RegisterVehicle extends AppCompatActivity {
                     Toast.makeText(RegisterVehicle.this, "Date"+full_date, Toast.LENGTH_SHORT).show();
 
                 }
+
+                */
 
 
 

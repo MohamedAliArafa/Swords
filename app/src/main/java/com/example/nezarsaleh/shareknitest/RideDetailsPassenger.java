@@ -310,6 +310,7 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
                     EndLat = json.getDouble("EndLat");
                     EndLng = json.getDouble("EndLng");
                     Log.d("S Lat", String.valueOf(StartLat));
+
                     if (json.getString("Saturday").equals("true")) {
                         days += ", Sat";
                     }

@@ -50,9 +50,9 @@ public class GetData {
 //    public static final String DOMAIN = "http://sharekni.sdgstaff.com";
 //http://sharekni.sdgstaff.com/_mobfiles/CLS_MobAndroid.asmx
     //http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx/
-    public static final String DOMAIN = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx/";
-    public static final String NonOpDomain = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx";
-    public static final String PhotoURL = "http://sharekni-web.sdg.ae/uploads/personalphoto/";
+    public static final String DOMAIN = "http://sharekni.sdgstaff.com/_mobfiles/CLS_MobAndroid.asmx/";
+    public static final String NonOpDomain = "http://sharekni.sdgstaff.com/_mobfiles/CLS_MobAndroid.asmx";
+    public static final String PhotoURL = "http://sharekni.sdgstaff.com/uploads/personalphoto/";
 
 
 //    String data;
@@ -114,6 +114,7 @@ public class GetData {
     String getRouteByRouteId            = DOMAIN + "GetRouteByRouteId?RouteId=";
     String Passenger_SendAlert          = DOMAIN + "Passenger_SendAlert?";
     String GetPassengersByRouteIDUrl    = DOMAIN + "GetPassengersByRouteId?id=";
+    String GetAcceptedRequestsURL       = DOMAIN + "Route_GetAcceptedRequests?RouteId=";
     String Passenger_Review_Driver      = DOMAIN + "Passenger_ReviewDriver?";
     String Driver_RemoveReview          = DOMAIN + "Driver_RemoveReview?";
     String DriverAlertsForRequestUrl    = DOMAIN + "Driver_AlertsForRequest?d_AccountId=";
@@ -453,6 +454,18 @@ public class GetData {
     public JSONArray GetPassengers_ByRouteID(   int Route_ID) throws JSONException {
         JSONArray json;
         String Url = GetPassengersByRouteIDUrl + Route_ID;
+        HandleXML obj = new HandleXML(Url);
+        obj.fetchXML();
+        while (obj.parsingComplete) ;
+        json = new JSONArray(obj.getData());
+        return json;
+
+    }
+
+
+    public JSONArray GetAcceptedRequests_ByRouteID(   int Route_ID) throws JSONException {
+        JSONArray json;
+        String Url = GetAcceptedRequestsURL + Route_ID;
         HandleXML obj = new HandleXML(Url);
         obj.fetchXML();
         while (obj.parsingComplete) ;

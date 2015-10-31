@@ -274,6 +274,24 @@
                     android:textAllCaps="false" />
 
 
+
+                <Button
+                    android:id="@+id/Route_permit_Btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/Route_Edit_Btn"
+                    android:layout_toStartOf="@+id/Route_Edit_Btn"
+                    android:layout_below="@+id/ride_details_Ride_Days_txt"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/driver_details_btn"
+                    android:textAllCaps="false"
+                    android:text="Permit"
+                    android:visibility="invisible"
+                    />
+
+
             </RelativeLayout>
 
             <RelativeLayout
