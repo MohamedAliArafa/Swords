@@ -77,6 +77,7 @@ public class MostRidesDetails extends AppCompatActivity {
 
 
 
+
         assert data != null;
         Log.d("Emirate name from",data.getFromEm());
         Log.d("Emirate name to",data.getToEm());
