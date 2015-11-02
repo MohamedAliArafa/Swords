@@ -104,11 +104,8 @@
         <activity
             android:name=".Arafa.Activities.BestDriversBeforeLogin"
             android:label="@string/title_activity_home_page_test"
-            android:parentActivityName=".SharekniOld"
             android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.nezarsaleh.shareknitest.SharekniOld" />
+
         </activity>
         <activity
             android:name=".Arafa.Activities.BestRideBeforeLogin"
@@ -126,11 +123,9 @@
         <activity
             android:name=".Arafa.Activities.Route"
             android:label="@string/title_activity_home_page_test"
-            android:parentActivityName=".SharekniOld"
+
             android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.nezarsaleh.shareknitest.SharekniOld" />
+
         </activity>
         <activity
             android:name=".LoginApproved"
@@ -282,9 +277,7 @@
             android:label="@string/title_activity_ride_details_passenger"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.nezarsaleh.shareknitest.HomePage" />
+
         </activity>
         <activity
             android:name=".DriverRequestDetails"

@@ -530,6 +530,12 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
 //                    e.printStackTrace();
 //                }
 //        }
+        if (id==android.R.id.home){
+            onBackPressed();
+            return true;
+        }
+
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -581,6 +587,15 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+
     }
 
 }
