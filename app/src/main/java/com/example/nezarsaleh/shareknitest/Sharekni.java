@@ -61,6 +61,8 @@ public class Sharekni extends Activity {
     private class backThread extends AsyncTask{
         JSONArray jsonArray;
         JSONArray Emirates;
+        JSONArray Countries;
+        JSONArray Nationalises;
         GetData j = new GetData();
         FileOutputStream fileOutputStream = null;
         File file = null;
@@ -78,7 +80,34 @@ public class Sharekni extends Activity {
                     e1.printStackTrace();
                 }
                 e.printStackTrace();
+                }
+            try {
+                InputStream Countries = openFileInput("Countries.txt");
+            } catch (FileNotFoundException e) {
+                try {
+                    Countries = j.GetNationalities();
+                    fileOutputStream = openFileOutput("Countries.txt", Sharekni.MODE_PRIVATE);
+                    fileOutputStream.write(Countries.toString().getBytes());
+                } catch (JSONException | IOException e1) {
+                    e1.printStackTrace();
+                }
+                e.printStackTrace();
             }
+
+            try {
+                InputStream Nationalises = openFileInput("Nationalises.txt");
+            } catch (FileNotFoundException e) {
+                try {
+                    Nationalises = j.GetNationalities();
+                    fileOutputStream = openFileOutput("Nationalises.txt", Sharekni.MODE_PRIVATE);
+                    fileOutputStream.write(Nationalises.toString().getBytes());
+                } catch (JSONException | IOException e1) {
+                    e1.printStackTrace();
+                }
+                e.printStackTrace();
+            }
+
+
                 for (int i = 0;i <= 7;i++){
                     try {
                         InputStream inputStream = openFileInput("Regions"+i+".txt");

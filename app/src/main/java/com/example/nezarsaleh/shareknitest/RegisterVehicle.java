@@ -170,7 +170,12 @@ public class RegisterVehicle extends AppCompatActivity {
         });
     }
 
-
+    protected void onPrepareDialog (int id, Dialog dialog)
+    {
+        DatePickerDialog datePickerDialog = (DatePickerDialog) dialog;
+        // Get the current date
+        datePickerDialog.updateDate(year_x, month_x, day_x);
+    }
 
     @Override
     protected Dialog onCreateDialog(int id) {

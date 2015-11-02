@@ -127,6 +127,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
     String uploadedImage;
     TextView Terms_And_Cond_txt;
 
+    DatePicker d;
 
     RelativeLayout txt_terms;
     TextView Terms_And_Cond_txt_2;
@@ -760,14 +761,19 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
     }
 
 
-
+    protected void onPrepareDialog (int id, Dialog dialog)
+    {
+        DatePickerDialog datePickerDialog = (DatePickerDialog) dialog;
+        // Get the current date
+        datePickerDialog.updateDate(year_x,month_x,day_x);
+    }
 
     @Override
     protected Dialog onCreateDialog(int id) {
         if (id == DILOG_ID) {
-            DatePickerDialog dp = new DatePickerDialog(this, dPickerListener, year_x, month_x, day_x);
-            DatePicker d = dp.getDatePicker();
-            d.updateDate(1979, 10, 3);
+            DatePickerDialog dp = new DatePickerDialog(this, dPickerListener, year_x,month_x,day_x);
+            d = dp.getDatePicker();
+            d.updateDate(year_x,month_x,day_x);
             d.setMaxDate(cal.getTimeInMillis());
             return dp;
         }
