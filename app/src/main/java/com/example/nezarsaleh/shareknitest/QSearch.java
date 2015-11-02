@@ -161,7 +161,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onClick(View v) {
 
-                Intent intent =  new Intent(getBaseContext(),Destination_Activity.class);
+                Intent intent =  new Intent(getBaseContext(),PickUpActivity.class);
                 startActivity(intent);
 
             }

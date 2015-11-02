@@ -93,8 +93,6 @@ public class PickUpActivity extends AppCompatActivity {
         Emirates_txt = (TextView) findViewById(R.id.Emirates_spinner);
         Create_CarPool_txt_regions = (AutoCompleteTextView) findViewById(R.id.mainDialog_Regions_auto);
 
-        btn_choose_lat = (Button) findViewById(R.id.btn_choose_lat);
-        btn_pickup_Submit = (Button) findViewById(R.id.btn_pickup_Submit);
 
 
         Create_CarPool_Emirates_List.clear();
@@ -171,23 +169,13 @@ public class PickUpActivity extends AppCompatActivity {
 
 
 
-        btn_pickup_Submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Toast.makeText(PickUpActivity.this, "Hello", Toast.LENGTH_SHORT).show();
-
-                //  Log.d(getClass().getSimpleName(), "End Lng" + String.valueOf(markerZero.getPosition().longitude));
-
-            }
-        });
 
 
     } // oncreate
 
 
 
-    private class backTread extends AsyncTask implements OnMapReadyCallback {
+    private class backTread extends AsyncTask  {
         boolean exists = false;
 
         @Override
@@ -211,6 +199,10 @@ public class PickUpActivity extends AppCompatActivity {
                         From_Reg_Id = arr.get(position).getID();
                         From_RegionEnName = arr.get(position).getRegionEnName();
 
+
+
+                        Log.d("Em Name : ", From_EmirateEnName);
+                        Log.d("Reg Name",From_RegionEnName);
                     }
                 });
 
@@ -267,23 +259,7 @@ public class PickUpActivity extends AppCompatActivity {
                         final RegionsDataModel regions = new RegionsDataModel(Parcel.obtain());
                         regions.setID(jsonObject.getInt("ID"));
                         regions.setRegionEnName(jsonObject.getString("RegionEnName"));
-
-
-                        if (jsonObject.getString("RegionLatitude").equals("null") && jsonObject.getString("RegionLongitude").equals("null")) {
-                            regions.RegionLatitude = 0.0;
-                            regions.RegionLongitude = 0.0;
-                        } else {
-                            regions.setRegionLatitude(jsonObject.getDouble("RegionLatitude"));
-                            regions.setRegionLongitude(jsonObject.getDouble("RegionLongitude"));
-                        }
-
-
-                        if (regions.RegionLatitude != 0.0 && regions.RegionLongitude != 0.0) {
-
-                            arr.add(regions);
-
-                        }
-
+                        arr.add(regions);
 
                     }
 
@@ -298,10 +274,10 @@ public class PickUpActivity extends AppCompatActivity {
         }
 
 
-        @Override
-        public void onMapReady(GoogleMap googleMap) {
 
-        }
+
+
+
     }    // back thread classs
 
 
