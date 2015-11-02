@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -67,6 +68,7 @@ import java.net.SocketAddress;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.TreeMap;
@@ -194,6 +196,11 @@ public class EditProfileTest extends AppCompatActivity {
         btn_Edit_Cancel= (Button) findViewById(R.id.btn_Edit_Cancel);
         edit_reg_mob = (EditText) findViewById(R.id.edit_reg_mob);
 
+        cal.add(Calendar.YEAR, -18);
+
+        year_x = cal.get(Calendar.YEAR);
+        month_x = cal.get(Calendar.MONTH);
+        day_x = cal.get(Calendar.DAY_OF_MONTH);
 
         showDialogOnButtonClick();
 
@@ -402,10 +409,24 @@ public class EditProfileTest extends AppCompatActivity {
         new nat().execute();
     }
 
+    Calendar cal = Calendar.getInstance();
+    DatePicker d;
+
+    protected void onPrepareDialog (int id, Dialog dialog)
+    {
+        DatePickerDialog datePickerDialog = (DatePickerDialog) dialog;
+        // Get the current date
+        datePickerDialog.updateDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+    }
+
     @Override
     protected Dialog onCreateDialog(int id) {
         if (id == DILOG_ID) {
-            return new DatePickerDialog(this, dPickerListener, year_x, month_x, day_x);
+            DatePickerDialog dp = new DatePickerDialog(this, dPickerListener, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+            d = dp.getDatePicker();
+            d.updateDate(year_x,month_x,day_x);
+            d.setMaxDate(cal.getTimeInMillis());
+            return dp;
         }
         return null;
     }
