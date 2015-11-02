@@ -12,6 +12,8 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -197,8 +199,6 @@ public class BestRideBeforeLogin extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-
     }
 
 
@@ -214,6 +214,19 @@ public class BestRideBeforeLogin extends AppCompatActivity {
             return true;
         }
 
+        if (id==android.R.id.home){
+            onBackPressed();
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+
     }
 }

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    package="com.example.nezarsaleh.shareknitest">
+    package="com.example.nezarsaleh.shareknitest" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL"/>
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
 
     <uses-feature
         android:name="android.hardware.telephony"
@@ -40,11 +40,11 @@
         android:largeHeap="true"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.Base">
+        android:theme="@style/AppTheme.Base" >
         <activity
             android:name=".SharekniOld"
             android:label="@string/title_activity_main"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -56,7 +56,7 @@
         <activity
             android:name=".HomePage"
             android:label="@string/title_activity_sub_navigate"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.SharekniOld" />
@@ -65,7 +65,7 @@
             android:name=".TopDriversDir.TopDrivers"
             android:label="@string/title_activity_top_drivers"
             android:parentActivityName=".SharekniOld"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.SharekniOld" />
@@ -74,7 +74,7 @@
             android:name=".DriverEditCarPool"
             android:label="@string/title_activity_top_drivers"
             android:parentActivityName=".SharekniOld"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.SharekniOld" />
@@ -83,7 +83,7 @@
             android:name=".OnBoardDir.OnboardingActivity"
             android:label="@string/title_activity_On_Boarding"
             android:parentActivityName=".SharekniOld"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.SharekniOld" />
@@ -96,7 +96,7 @@
             android:name=".Arafa.Activities.ImageUp"
             android:label="@string/title_activity_home_page_test"
             android:parentActivityName=".SharekniOld"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.SharekniOld" />
@@ -105,7 +105,7 @@
             android:name=".Arafa.Activities.BestDriversBeforeLogin"
             android:label="@string/title_activity_home_page_test"
             android:parentActivityName=".SharekniOld"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.SharekniOld" />
@@ -113,26 +113,21 @@
         <activity
             android:name=".Arafa.Activities.BestRideBeforeLogin"
             android:label="@string/title_activity_home_page_test"
-            android:parentActivityName=".SharekniOld"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.nezarsaleh.shareknitest.SharekniOld" />
+            android:screenOrientation="portrait"
+            >
+
         </activity>
         <activity
             android:name=".Arafa.Activities.Profile"
             android:label="@string/title_activity_home_page_test"
-            android:parentActivityName=".SharekniOld"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.nezarsaleh.shareknitest.SharekniOld" />
+            android:screenOrientation="portrait" >
+
         </activity>
         <activity
             android:name=".Arafa.Activities.Route"
             android:label="@string/title_activity_home_page_test"
             android:parentActivityName=".SharekniOld"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.SharekniOld" />
@@ -141,12 +136,12 @@
             android:name=".LoginApproved"
             android:label="@string/title_activity_login_approved"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".SearchOptions"
             android:label="@string/title_activity_search_options"
             android:parentActivityName=".SharekniOld"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.SharekniOld" />
@@ -155,24 +150,21 @@
             android:name=".RegisterNewTest"
             android:label="@string/title_activity_register_new_test"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".DriverProfileTest"
             android:label="@string/title_activity_my_profile_tet"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".TopRidesAfterLogin"
             android:label="@string/title_activity_top_rides_after_login"
-            android:screenOrientation="portrait"
-
-            >
-
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".TopDriversAfterLogin"
             android:label="@string/title_activity_top_drivers_after_login"
             android:parentActivityName=".HomePage"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
@@ -180,17 +172,15 @@
         <activity
             android:name=".MostRidesDetails"
             android:label="@string/title_activity_most_rides_details"
-            android:parentActivityName=".HomePage"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.nezarsaleh.shareknitest.HomePage" />
+            android:screenOrientation="portrait" >
+
+
         </activity>
         <activity
             android:name=".ForgetPassword"
             android:label="@string/title_activity_forget_password"
             android:parentActivityName=".LoginApproved"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.LoginApproved" />
@@ -199,7 +189,7 @@
             android:name=".ChangePasswordTest"
             android:label="@string/title_activity_change_password_test"
             android:parentActivityName=".HomePage"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
@@ -208,7 +198,7 @@
             android:name=".MyProfileTest"
             android:label="@string/title_activity_my_profile_test"
             android:parentActivityName=".HomePage"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
@@ -217,7 +207,7 @@
             android:name=".EditProfileTest"
             android:label="@string/title_activity_edit_profile_test"
             android:parentActivityName=".HomePage"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
@@ -225,7 +215,7 @@
         <activity
             android:name=".QuickSearchResults"
             android:label="@string/title_activity_quick_search_results"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
@@ -233,17 +223,15 @@
         <activity
             android:name=".DriverCreateCarPool"
             android:label="@string/title_activity_driver_create_car_pool"
-            android:screenOrientation="portrait"
-            >
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.SearchOptions" />
-
         </activity>
         <activity
             android:name=".QSearch"
             android:label="@string/title_activity_qsearch"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.SearchOptions" />
@@ -253,7 +241,7 @@
             android:label="@string/title_activity_advanced__search"
             android:parentActivityName=".SearchOptions"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base">
+            android:theme="@style/AppTheme.Base" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.SearchOptions" />
@@ -274,7 +262,7 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
@@ -284,7 +272,7 @@
             android:label="@string/title_activity_driver_alerts_for_request"
             android:parentActivityName=".HomePage"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base">
+            android:theme="@style/AppTheme.Base" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
@@ -293,7 +281,7 @@
             android:name=".RideDetailsPassenger"
             android:label="@string/title_activity_ride_details_passenger"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base">
+            android:theme="@style/AppTheme.Base" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
@@ -303,7 +291,7 @@
             android:label="@string/title_activity_driver_request_details"
             android:parentActivityName=".DriverAlertsForRequest"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base">
+            android:theme="@style/AppTheme.Base" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.DriverAlertsForRequest" />
@@ -313,7 +301,7 @@
             android:label="@string/title_activity_driver_created_rides"
             android:parentActivityName=".HomePage"
             android:screenOrientation="portrait"
-            app:theme="@style/AppTheme.Base">
+            app:theme="@style/AppTheme.Base" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
@@ -323,7 +311,7 @@
             android:label="@string/title_activity_driver_joined_rides"
             android:parentActivityName=".HomePage"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base">
+            android:theme="@style/AppTheme.Base" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
@@ -332,12 +320,12 @@
             android:name=".SplashActivity"
             android:label="@string/title_activity_splash"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base"></activity>
+            android:theme="@style/AppTheme.Base" />
         <activity
             android:name=".Sharekni"
             android:label="@string/title_activity_test_vedio"
             android:screenOrientation="portrait"
-            app:theme="@style/AppTheme.Base">
+            app:theme="@style/AppTheme.Base" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -349,7 +337,7 @@
             android:label="@string/title_activity_passenger_my_approved_rides"
             android:parentActivityName=".HomePage"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base">
+            android:theme="@style/AppTheme.Base" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
@@ -358,7 +346,7 @@
             android:name=".History"
             android:label="@string/title_activity_history"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base">
+            android:theme="@style/AppTheme.Base" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
@@ -368,7 +356,7 @@
             android:label="@string/title_activity_take_atour"
             android:parentActivityName=".OnBoardDir.OnboardingActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base">
+            android:theme="@style/AppTheme.Base" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity" />
@@ -380,13 +368,13 @@
             android:name=".PickUpActivity"
             android:label="@string/title_activity_pick_up"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base"></activity>
+            android:theme="@style/AppTheme.Base" />
         <activity
             android:name=".TermsAndCond"
             android:label="@string/title_activity_terms_and_cond"
             android:parentActivityName=".RegisterNewTest"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base">
+            android:theme="@style/AppTheme.Base" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.RegisterNewTest" />
@@ -394,32 +382,30 @@
         <activity
             android:name=".RegisterVehicle"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base">
+            android:theme="@style/AppTheme.Base" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
         </activity>
         <activity
             android:name=".HistoryNew"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
         </activity>
         <activity
             android:name=".DriverPermits"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nezarsaleh.shareknitest.HomePage" />
         </activity>
-
-
         <activity
             android:name=".ViewPermit"
-            android:screenOrientation="landscape"
-            >
-
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity android:name=".Privacy_Policy" >
         </activity>
     </application>
 

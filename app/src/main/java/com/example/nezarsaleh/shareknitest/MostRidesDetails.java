@@ -260,7 +260,10 @@ public class MostRidesDetails extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        if (id==android.R.id.home){
+            onBackPressed();
+            return true;
+        }
         //noinspection SimplifiableIfStatement
 
 
@@ -284,4 +287,12 @@ public class MostRidesDetails extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+
+    }
 }

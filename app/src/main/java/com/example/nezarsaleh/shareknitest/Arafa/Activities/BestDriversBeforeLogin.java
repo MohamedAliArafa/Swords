@@ -111,7 +111,7 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
             try {
                 SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
                 Socket sock = new Socket();
-                int timeoutMs = 2000;   // 2 seconds
+                int timeoutMs = 20000;   // 2 seconds
                 sock.connect(sockaddr, timeoutMs);
                 exists = true;
             } catch (final Exception e) {

@@ -127,6 +127,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
 
     RelativeLayout txt_terms;
     TextView Terms_And_Cond_txt_2;
+    TextView Privacy_and_poolicy;
 
 
     private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
@@ -152,7 +153,13 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
             txt_dayOfWeek.setText(dayOfWeek);
             Log.d("Calendar test", full_date);
         }
+
     };
+
+
+
+
+
 
     public static RegisterNewTest getInstance() {
         return registerNewTestActivity;
@@ -212,9 +219,14 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
 
         txt_lang = (TextView) findViewById(R.id.autocomplete_lang_id);
         txt_country = (AutoCompleteTextView) findViewById(R.id.autocompletecountry_id);
+
         Terms_And_Cond_txt_2 = (TextView) findViewById(R.id.Terms_And_Cond_txt_2);
         Terms_And_Cond_txt_2.setText(Html.fromHtml("<u><font color=#e72433>Terms and Conditions.</font></u>"));
         txt_terms = (RelativeLayout) findViewById(R.id.terms_relative);
+        Privacy_and_poolicy= (TextView) findViewById(R.id.Privacy_and_poolicy);
+        Privacy_and_poolicy.setText(Html.fromHtml("<u><font color=#e72433>Privacy Policy.</font></u>"));
+
+
 
         txt_terms.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -225,6 +237,16 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
 
             }
         });
+
+
+        Privacy_and_poolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), Privacy_Policy.class);
+                startActivity(intent);
+            }
+        });
+
 
         btn_upload_image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -723,11 +745,15 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
 //        }
     }
 
+
+
+
     @Override
     protected Dialog onCreateDialog(int id) {
         if (id == DILOG_ID) {
             DatePickerDialog dp = new DatePickerDialog(this, dPickerListener, year_x, month_x, day_x);
             DatePicker d = dp.getDatePicker();
+            d.updateDate(1979, 10, 3);
             d.setMaxDate(cal.getTimeInMillis());
             return dp;
         }

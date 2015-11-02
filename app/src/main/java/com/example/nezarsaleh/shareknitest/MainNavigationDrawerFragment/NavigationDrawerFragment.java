@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.nezarsaleh.shareknitest.Arafa.Activities.BestDriversBeforeLogin;
+import com.example.nezarsaleh.shareknitest.Arafa.Activities.BestRideBeforeLogin;
 import com.example.nezarsaleh.shareknitest.DriverAlertsForRequest;
 import com.example.nezarsaleh.shareknitest.OnBoardDir.OnboardingActivity;
 import com.example.nezarsaleh.shareknitest.QSearch;
@@ -86,7 +87,7 @@ public class NavigationDrawerFragment extends Fragment {
         navy_TopRides.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), TopRidesAfterLogin.class);
+                Intent intent = new Intent(getContext(), BestRideBeforeLogin.class);
                 startActivity(intent);
             }
         });

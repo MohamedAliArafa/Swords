@@ -151,7 +151,6 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         quickSearch_pickUp  = (Button) findViewById(R.id.quickSearch_pickUp);
         quickSearch_Dropoff= (Button) findViewById(R.id.quickSearch_Dropoff);
 
-
         MostRides_Relative= (RelativeLayout) findViewById(R.id.search_top_rides_im);
         MapLookUp_Relative= (RelativeLayout) findViewById(R.id.map_look_up);
         Advanced_Search_Relative_2= (RelativeLayout) findViewById(R.id.advanced_search);
@@ -187,7 +186,6 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         });
 
 
-
         String ret;
         try {
             InputStream inputStream = openFileInput("Emirates.txt");
@@ -210,8 +208,6 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
 
         quickSearch_pickUp.setOnClickListener(this);
         pickup_relative.setOnClickListener(this);
