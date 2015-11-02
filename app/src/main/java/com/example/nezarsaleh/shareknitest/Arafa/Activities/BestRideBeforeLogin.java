@@ -192,6 +192,12 @@ public class BestRideBeforeLogin extends AppCompatActivity {
         textView.setText("Most Rides");
         //   toolbar.setElevation(10);
 
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
 
     }
 

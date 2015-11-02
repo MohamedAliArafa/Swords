@@ -91,6 +91,7 @@ public class LoginApproved extends AppCompatActivity {
 
             }
         });
+
         password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

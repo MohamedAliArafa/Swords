@@ -155,7 +155,6 @@ public class TopRidesAfterLogin extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.app_bar);
@@ -164,9 +163,7 @@ public class TopRidesAfterLogin extends AppCompatActivity {
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
         textView.setText("Most Rides");
 //        toolbar.setElevation(10);
-
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
