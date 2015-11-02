@@ -382,58 +382,16 @@
     <!--</RelativeLayout>-->
 
         <LinearLayout
-            android:layout_marginTop="30dp"
-            android:layout_below="@+id/btn_search_page"
+
+
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="110dp"
             android:background="@color/primaryColor"
             android:layout_alignParentBottom="true"
             android:orientation="vertical"
+
             >
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-
-                >
-
-
-
-                <RelativeLayout
-                    android:id="@+id/advanced_search"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@color/primaryColor">
-
-
-                    <ImageView
-                        android:id="@+id/im11"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="20dp"
-                        android:src="@drawable/searchoptionadvanced" />
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/im11"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="5dp"
-                        android:text="Advanced Search"
-                        android:textColor="#FFFFFF"
-                        android:textSize="16sp" />
-
-
-                </RelativeLayout>
-
-
-
-
-            </LinearLayout>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
@@ -441,7 +399,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1"
                 android:orientation="horizontal"
                 >
@@ -509,6 +467,44 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="5dp"
                         android:text="Most Rides"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp" />
+
+
+                </RelativeLayout>
+
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="#FFFFFF" />
+
+
+                <RelativeLayout
+                    android:id="@+id/advanced_search"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@color/primaryColor">
+
+
+                    <ImageView
+                        android:id="@+id/im11"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="20dp"
+                        android:src="@drawable/searchoptionadvanced" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/im11"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:text="Advanced Search"
                         android:textColor="#FFFFFF"
                         android:textSize="16sp" />
 
