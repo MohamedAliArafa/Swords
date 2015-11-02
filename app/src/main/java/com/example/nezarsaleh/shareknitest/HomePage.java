@@ -411,24 +411,6 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         @Override
         protected void onPostExecute(Object o) {
             try {
-                if (AccountType.equals("D")){
-                    VehiclesCount_str="";
-                    VehiclesCount_str += "(";
-                    VehiclesCount_str += (jsonArray.getString("VehiclesCount"));
-                    VehiclesCount_str += ")";
-                    VehiclesCount.setText(VehiclesCount_str);
-                    PassengerJoinedRidesCount_str="";
-                    PassengerJoinedRidesCount_str += "(";
-                    PassengerJoinedRidesCount_str += (jsonArray.getString("DriverMyRidesCount"));
-                    PassengerJoinedRidesCount_str += ")";
-                    PassengerJoinedRidesCount.setText(PassengerJoinedRidesCount_str);
-                    DriverMyRidesCount_str="";
-                    DriverMyRidesCount_str += "(";
-                    DriverMyRidesCount_str += (jsonArray.getString("DriverMyRidesCount"));
-                    DriverMyRidesCount_str += ")";
-                    DriverMyRidesCount.setText(DriverMyRidesCount_str);
-                    DriverMyAlertsCount.setText( String.valueOf(All_Alerts));
-                }
                 All_Alerts = jsonArray.getInt("DriverMyAlertsCount")+jsonArray.getInt("PassengerMyAlertsCount");
                 name_str="";
                 nat_str="";
@@ -466,15 +448,15 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 DriverMyAlertsCount.setText( String.valueOf(All_Alerts));
                 assert AccountType != null;
                 if (!AccountType.equals("D")) {
-                   // btn_create.setBackgroundColor(Color.LTGRAY);
+                    // btn_create.setBackgroundColor(Color.LTGRAY);
 //                    Home_Relative_Permit.setBackgroundColor(Color.LTGRAY);
-                        Rides_joined_txt_1.setText("Rides Joined");
-                        Rides_joined_image_1.setImageResource(R.drawable.joinedusertype);
+                    Rides_joined_txt_1.setText("Rides Joined");
+                    Rides_joined_image_1.setImageResource(R.drawable.joinedusertype);
 
-                        Saved_Search_txt_2.setText("Saved Search");
-                        Saved_Search_image_2.setImageResource(R.drawable.homesavedsearchbtn);
+                    Saved_Search_txt_2.setText("Saved Search");
+                    Saved_Search_image_2.setImageResource(R.drawable.homesavedsearchbtn);
 
-                        Rides_joined_Relative.setVisibility(View.INVISIBLE);
+                    Rides_joined_Relative.setVisibility(View.INVISIBLE);
 
 
                     btn_create.setOnClickListener(new View.OnClickListener() {
