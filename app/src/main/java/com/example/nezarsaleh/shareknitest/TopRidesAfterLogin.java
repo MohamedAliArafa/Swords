@@ -41,10 +41,8 @@ public class TopRidesAfterLogin extends AppCompatActivity {
         setContentView(R.layout.activity_top_rides_after_login);
         lv = (ListView) findViewById(R.id.lv_top_rides2);
         initToolbar();
-
 //        GetData j = new GetData();
 //        j.GetBestRoutes(lv, this);
-
         ProgressDialog pDialog = new ProgressDialog(this);
         pDialog.setMessage("Loading" + "...");
         pDialog.show();
@@ -167,7 +165,5 @@ public class TopRidesAfterLogin extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-
-
 
 }
