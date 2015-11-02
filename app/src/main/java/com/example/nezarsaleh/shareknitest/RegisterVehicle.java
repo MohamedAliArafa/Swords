@@ -177,6 +177,8 @@ public class RegisterVehicle extends AppCompatActivity {
         datePickerDialog.updateDate(year_x, month_x, day_x);
     }
 
+
+
     @Override
     protected Dialog onCreateDialog(int id) {
         if (id == DILOG_ID) {

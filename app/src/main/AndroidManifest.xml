@@ -105,27 +105,21 @@
             android:name=".Arafa.Activities.BestDriversBeforeLogin"
             android:label="@string/title_activity_home_page_test"
             android:screenOrientation="portrait" >
-
         </activity>
         <activity
             android:name=".Arafa.Activities.BestRideBeforeLogin"
             android:label="@string/title_activity_home_page_test"
-            android:screenOrientation="portrait"
-            >
-
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".Arafa.Activities.Profile"
             android:label="@string/title_activity_home_page_test"
             android:screenOrientation="portrait" >
-
         </activity>
         <activity
             android:name=".Arafa.Activities.Route"
             android:label="@string/title_activity_home_page_test"
-
             android:screenOrientation="portrait" >
-
         </activity>
         <activity
             android:name=".LoginApproved"
@@ -168,8 +162,6 @@
             android:name=".MostRidesDetails"
             android:label="@string/title_activity_most_rides_details"
             android:screenOrientation="portrait" >
-
-
         </activity>
         <activity
             android:name=".ForgetPassword"
@@ -277,7 +269,6 @@
             android:label="@string/title_activity_ride_details_passenger"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" >
-
         </activity>
         <activity
             android:name=".DriverRequestDetails"
@@ -399,6 +390,8 @@
             android:screenOrientation="landscape" >
         </activity>
         <activity android:name=".Privacy_Policy" >
+        </activity>
+        <activity android:name=".Destination_Activity" >
         </activity>
     </application>
 

@@ -1,16 +1,20 @@
 package com.example.nezarsaleh.shareknitest;
 
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -43,7 +47,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
-public class PickUpActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerDragListener {
+public class PickUpActivity extends AppCompatActivity {
 
     int From_Em_Id = -1;
     int From_Reg_Id = -1;
@@ -55,7 +59,7 @@ public class PickUpActivity extends AppCompatActivity implements OnMapReadyCallb
     List<TreeMap<String, String>> Create_CarPool_Regions_List = new ArrayList<>();
 
     private ArrayList<RegionsDataModel> arr = new ArrayList<>();
-
+    Toolbar toolbar;
     Button btn_pickup_Submit;
     Button btn_choose_lat;
     SimpleAdapter Create_CarPool_EmAdapter;
@@ -65,23 +69,23 @@ public class PickUpActivity extends AppCompatActivity implements OnMapReadyCallb
 
     AutoCompleteTextView Create_CarPool_txt_regions;
 
-    private GoogleMap mMap;
-    SupportMapFragment mapFragment;
-
-    Double RegionLatitude, RegionLongitude;
-
-    Marker markerZero;
-    LatLng position2;
+//    private GoogleMap mMap;
+//    SupportMapFragment mapFragment;
+//
+//    Double RegionLatitude, RegionLongitude;
+//
+//    Marker markerZero;
+//    LatLng position2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pick_up);
-        mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map_pick_up);
-
-        mapFragment.getMapAsync(this);
-
+//        mapFragment = (SupportMapFragment) getSupportFragmentManager()
+//                .findFragmentById(R.id.map_pick_up);
+//
+//        mapFragment.getMapAsync(this);
+        initToolbar();
 
         mContext = this;
 
@@ -164,24 +168,7 @@ public class PickUpActivity extends AppCompatActivity implements OnMapReadyCallb
         });
 
 
-        btn_choose_lat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
-                        (new LatLng(RegionLatitude, RegionLongitude), 14.25f));
-
-
-                markerZero = mMap.addMarker(new MarkerOptions().
-                                title("Pick Up").
-                                position(new LatLng(RegionLatitude, RegionLongitude))
-                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor)).draggable(true)
-
-                );
-
-
-            }
-        });
 
 
         btn_pickup_Submit.setOnClickListener(new View.OnClickListener() {
@@ -198,73 +185,6 @@ public class PickUpActivity extends AppCompatActivity implements OnMapReadyCallb
 
     } // oncreate
 
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-
-        mMap = googleMap;
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
-                (new LatLng(25.0014511, 55.3588621), 8.25f));
-
-
-        mMap.getUiSettings().setMapToolbarEnabled(false);
-        mMap.getUiSettings().setZoomControlsEnabled(true);
-        mMap.getUiSettings().setZoomGesturesEnabled(true);
-        mMap.setMyLocationEnabled(true);
-
-
-        mMap.setOnMarkerDragListener(this);
-
-
-    }
-
-    @Override
-    public void onMarkerDragStart(Marker marker) {
-
-        LatLng position = marker.getPosition();
-
-        Log.d(getClass().getSimpleName(), String.format("Drag from %f:%f",
-                position.latitude,
-                position.longitude));
-    }
-
-    @Override
-    public void onMarkerDrag(Marker marker) {
-        LatLng position = marker.getPosition();
-
-        Log.d(getClass().getSimpleName(),
-                String.format("Dragging to %f:%f", position.latitude,
-                        position.longitude));
-
-    }
-
-    @Override
-    public void onMarkerDragEnd(Marker marker) {
-         position2 = marker.getPosition();
-
-        Log.d(getClass().getSimpleName(), String.format("Dragged to %f:%f",
-                position2.latitude,
-                position2.longitude));
-
-        markerZero.setPosition(position2);
-
-
-//        btn_pickup_Submit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Log.d(getClass().getSimpleName(), String.format("End Cordinates %f:%f",
-//                        position2.latitude,
-//                        position2.longitude));
-//
-//                Toast.makeText(PickUpActivity.this, "Hello", Toast.LENGTH_SHORT).show();
-//
-//              //  Log.d(getClass().getSimpleName(), "End Lng" + String.valueOf(markerZero.getPosition().longitude));
-//
-//            }
-//        });
-
-    }
 
 
     private class backTread extends AsyncTask implements OnMapReadyCallback {
@@ -290,10 +210,7 @@ public class PickUpActivity extends AppCompatActivity implements OnMapReadyCallb
                         Create_CarPool_txt_regions.setText(arr.get(position).getRegionEnName());
                         From_Reg_Id = arr.get(position).getID();
                         From_RegionEnName = arr.get(position).getRegionEnName();
-                        RegionLatitude = arr.get(position).getRegionLatitude();
-                        RegionLongitude = arr.get(position).getRegionLongitude();
-                        Log.d("Reg Lat", String.valueOf(RegionLatitude));
-                        Log.d("Reg Lng", String.valueOf(RegionLongitude));
+
                     }
                 });
 
@@ -386,6 +303,23 @@ public class PickUpActivity extends AppCompatActivity implements OnMapReadyCallb
 
         }
     }    // back thread classs
+
+
+
+
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void initToolbar() {
+        toolbar = (Toolbar) findViewById(R.id.app_bar);
+        toolbar.setTitle("");
+        toolbar.setTitleTextColor(Color.WHITE);
+        TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
+        textView.setText("Destination");
+//        toolbar.setElevation(10);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
 
 
 }  //  Class

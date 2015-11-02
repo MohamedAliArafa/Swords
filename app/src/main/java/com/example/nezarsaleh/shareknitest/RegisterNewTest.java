@@ -771,7 +771,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
     @Override
     protected Dialog onCreateDialog(int id) {
         if (id == DILOG_ID) {
-            DatePickerDialog dp = new DatePickerDialog(this, dPickerListener, year_x,month_x,day_x);
+            DatePickerDialog dp = new DatePickerDialog(this, dPickerListener, cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),cal.get(Calendar.DAY_OF_MONTH));
             d = dp.getDatePicker();
             d.updateDate(year_x,month_x,day_x);
             d.setMaxDate(cal.getTimeInMillis());

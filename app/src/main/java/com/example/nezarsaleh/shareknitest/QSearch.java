@@ -112,7 +112,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
     Button quickSearch_pickUp;
     Button quickSearch_Dropoff;
-
+    Button quick_Destination;
     RelativeLayout MostRides_Relative,MapLookUp_Relative,Advanced_Search_Relative_2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,7 +154,18 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         MostRides_Relative= (RelativeLayout) findViewById(R.id.search_top_rides_im);
         MapLookUp_Relative= (RelativeLayout) findViewById(R.id.map_look_up);
         Advanced_Search_Relative_2= (RelativeLayout) findViewById(R.id.advanced_search);
+        quick_Destination = (Button) findViewById(R.id.quick_Destination);
 
+
+        quick_Destination.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent =  new Intent(getBaseContext(),Destination_Activity.class);
+                startActivity(intent);
+
+            }
+        });
 
 
         MostRides_Relative.setOnClickListener(new View.OnClickListener() {
@@ -458,6 +469,8 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
                 pDialog.dismiss();
                 pDialog = null;
             }
+
+
             EmAdapter = new SimpleAdapter(QSearch.this, Emirates_List
                     , R.layout.dialog_pick_emirate_lv_row
                     , new String[]{"EmirateId", "EmirateEnName"}
@@ -476,6 +489,8 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
             spinner = (Spinner) MainDialog.findViewById(R.id.Emirates_spinner);
             spinner.setAdapter(EmAdapter);
             MainDialog.show();
+
+
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

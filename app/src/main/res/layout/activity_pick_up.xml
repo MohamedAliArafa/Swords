@@ -5,15 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="@color/white"
     tools:context="com.example.nezarsaleh.shareknitest.PickUpActivity">
 
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar"
+        />
+
+
 <ScrollView
+    android:layout_below="@+id/app_bar"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    >
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/borders"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="15dp"
+            >
 
     <RelativeLayout
         android:id="@+id/Emirates_Reltive_1"
@@ -23,7 +49,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/borders_quicksearch"
         android:padding="3dp"
 
@@ -73,7 +99,9 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/borders_quicksearch"
-        android:padding="3dp">
+        android:padding="3dp"
+        android:layout_marginBottom="30dp"
+        >
 
         <AutoCompleteTextView
             android:id="@+id/mainDialog_Regions_auto"
@@ -110,53 +138,37 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
-
-            android:src="@drawable/sweep"
+            android:src="@drawable/clear"
 
             />
 
 
     </RelativeLayout>
 
-<Button
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/Relative_regions_1"
-    android:layout_marginTop="20dp"
-    android:id="@+id/btn_choose_lat"
-    android:text="Ok"
-    android:layout_centerHorizontal="true"
-    android:background="@drawable/user_register_border_button"
-    android:textColor="@color/white"
-
-    />
 
 
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/map_pick_up"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        tools:context="com.example.nezarsaleh.shareknitest.MapsActivity"
-        android:layout_below="@+id/btn_choose_lat"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        />
-
-        <Button
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/Dest_pick_up_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:textColor="@color/white"
-            android:id="@+id/btn_pickup_Submit"
-            android:layout_below="@+id/map_pick_up"
-            android:background="@drawable/user_register_border_button"
-            android:text="Submit"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/testborder1"
+            android:gravity="center_horizontal|center"
+            android:paddingEnd="20dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingStart="20dp"
+            android:text="Pick up"
+            android:textSize="20sp"
+            android:textStyle="bold"
             android:layout_marginTop="10dp"
-
             />
+
+
+
 
 
     </RelativeLayout>
