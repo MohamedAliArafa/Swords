@@ -92,12 +92,19 @@ public class LoginApproved extends AppCompatActivity {
             }
         });
 
-        password.setOnClickListener(new View.OnClickListener() {
+//        password.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                password.setHint("");
+//            }
+//        });
+        password.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View v) {
+            public void onFocusChange(View v, boolean hasFocus) {
                 password.setHint("");
             }
         });
+
 
 //        pDialog = new ProgressDialog(LoginApproved.this);
 //        pDialog.setMessage("Loading" + "...");
@@ -270,10 +277,24 @@ public class LoginApproved extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        if (id==android.R.id.home){
+            onBackPressed();
+            return true;
+        }
 
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+
+    }
+
+
 
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)

@@ -1,5 +1,6 @@
 package com.example.nezarsaleh.shareknitest;
 
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -15,6 +16,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -99,6 +101,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
     ImageView driver_toggle_active;
     //    ImageView male_female;
 //    ImageView female_male;
+    private Toolbar toolbar;
     Button btn_save;
     Button btn_upload_image;
     TextView txt_year;
@@ -225,7 +228,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         txt_terms = (RelativeLayout) findViewById(R.id.terms_relative);
         Privacy_and_poolicy= (TextView) findViewById(R.id.Privacy_and_poolicy);
         Privacy_and_poolicy.setText(Html.fromHtml("<u><font color=#e72433>Privacy Policy.</font></u>"));
-
+        initToolbar();
 
 
         txt_terms.setOnClickListener(new View.OnClickListener() {
@@ -351,9 +354,6 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         driver_toggle_active.setOnClickListener(this);
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar2);
-        txt_appbar = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        txt_appbar.setText(R.string.Reg_appBar_name);
 
         // get Languages
         new lang().execute();
@@ -707,8 +707,22 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        return id == R.id.action_settings || super.onOptionsItemSelected(item);
+
+        if (id==android.R.id.home){
+            onBackPressed();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -933,5 +947,20 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
             return null;
         }
     }
+
+
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void initToolbar() {
+        toolbar = (Toolbar) findViewById(R.id.app_bar);
+        toolbar.setTitle("");
+        toolbar.setTitleTextColor(Color.WHITE);
+        TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
+        textView.setText("Registration");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
 }
 

@@ -49,8 +49,8 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:cursorVisible="true"
                         android:background="@drawable/borders_edit_txt_user_register"
+                        android:cursorVisible="true"
                         android:hint="Ride Name"
                         android:lines="1"
                         android:maxLines="1"
@@ -148,7 +148,7 @@
 
                 <RelativeLayout
                     android:id="@+id/createCarPool_calendar_relative"
-                    android:layout_width="wrap_content"
+                    android:layout_width="140dp"
                     android:layout_height="60dp"
                     android:layout_below="@+id/create_single_periodic_relative"
                     android:layout_marginBottom="10dp"
@@ -157,63 +157,75 @@
                     android:layout_marginRight="5dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="15dp"
-                    android:background="@drawable/user_register_border_quicksearch">
+                    android:background="@drawable/user_register_border_quicksearch"
+                    android:gravity="center"
 
-                    <TextView
-                        android:id="@+id/createCarPool_textview50"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_marginEnd="5dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginStart="5dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_toEndOf="@+id/imageview_search"
-                        android:layout_toRightOf="@+id/imageview_search"
-                        android:text="Start Date"
-                        android:textColor="@color/primaryColor"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
+                        android:gravity="center_horizontal|center_vertical">
+
+                        <TextView
+                            android:id="@+id/createCarPool_textview50"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_toEndOf="@+id/imageview_search"
+                            android:layout_toRightOf="@+id/imageview_search"
+                            android:text="Start Date"
+                            android:textColor="@color/primaryColor"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:lines="1"
+                            android:maxLines="1"
+                            android:singleLine="true"
+
+                            />
 
 
-                        />
+                        <ImageView
+                            android:id="@+id/imageview_search"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/calicon" />
 
 
-                    <ImageView
-                        android:id="@+id/imageview_search"
-                        android:layout_width="45dp"
-                        android:layout_height="50dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="20dp"
-                        android:src="@drawable/calicon" />
+                        <TextView
+                            android:id="@+id/createCarPool_search_txt_yaer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_toEndOf="@+id/imageview_search"
+                            android:layout_toRightOf="@+id/imageview_search"
+                            android:textColor="@color/primaryColor"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
 
-
-                    <TextView
-                        android:id="@+id/createCarPool_search_txt_yaer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_toEndOf="@+id/imageview_search"
-                        android:layout_toRightOf="@+id/imageview_search"
-                        android:textColor="@color/primaryColor"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
+                            android:lines="1"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            />
+                    </RelativeLayout>
 
                 </RelativeLayout>
 
 
                 <RelativeLayout
                     android:id="@+id/createCarPool_time_relative"
-                    android:layout_width="wrap_content"
+                    android:layout_width="140dp"
                     android:layout_height="60dp"
                     android:layout_alignEnd="@+id/create_single_periodic_relative"
                     android:layout_alignRight="@+id/create_single_periodic_relative"
@@ -222,16 +234,25 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="15dp"
-                    android:background="@drawable/user_register_border_quicksearch">
+                    android:background="@drawable/user_register_border_quicksearch"
+                    android:gravity="center"
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginStart="5dp"
+                        android:gravity="center_horizontal|center_vertical">
 
                     <TextView
                         android:id="@+id/createCarPool_textview51"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="5dp"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
                         android:layout_marginStart="5dp"
                         android:layout_toEndOf="@+id/imageview_search_time"
                         android:layout_toRightOf="@+id/imageview_search_time"
@@ -239,21 +260,19 @@
                         android:textColor="@color/primaryColor"
                         android:textSize="12sp"
                         android:textStyle="bold"
-
+                        android:lines="1"
+                        android:maxLines="1"
+                        android:singleLine="true"
                         />
 
 
                     <ImageView
                         android:id="@+id/imageview_search_time"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="20dp"
                         android:src="@drawable/timeicon"
 
                         />
@@ -270,9 +289,13 @@
                         android:layout_toRightOf="@+id/imageview_search_time"
                         android:textColor="@color/primaryColor"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:lines="1"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        />
 
-
+</RelativeLayout>
                 </RelativeLayout>
 
 

@@ -107,7 +107,7 @@
 
     <RelativeLayout
         android:id="@+id/advanced_search_calendar_relative"
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="60dp"
         android:layout_below="@+id/advanced_search_dropOff_relative"
         android:layout_marginBottom="10dp"
@@ -116,40 +116,48 @@
         android:layout_marginRight="5dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
-        android:background="@drawable/user_register_border_quicksearch">
+        android:background="@drawable/user_register_border_quicksearch"
+        android:gravity="center"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:gravity="center_horizontal|center_vertical"
+            >
+
 
         <TextView
             android:id="@+id/Advanced_textview50"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="5dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
             android:layout_toEndOf="@+id/imageview_search"
             android:layout_toRightOf="@+id/imageview_search"
             android:text="Start Date"
             android:textColor="@color/primaryColor"
             android:textSize="12sp"
             android:textStyle="bold"
-
+            android:lines="1"
+            android:maxLines="1"
+            android:singleLine="true"
 
             />
 
 
         <ImageView
             android:id="@+id/imageview_search"
-            android:layout_width="45dp"
-            android:layout_height="50dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
             android:src="@drawable/calicon" />
 
 
@@ -164,15 +172,19 @@
             android:layout_toRightOf="@+id/imageview_search"
             android:textColor="@color/primaryColor"
             android:textSize="16sp"
-            android:textStyle="bold" />
-
+            android:textStyle="bold"
+            android:lines="1"
+            android:maxLines="1"
+            android:singleLine="true"
+            />
+</RelativeLayout>
 
     </RelativeLayout>
 
 
     <RelativeLayout
         android:id="@+id/advanced_search_time_relative"
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="60dp"
         android:layout_alignEnd="@+id/advanced_search_dropOff_relative"
         android:layout_alignRight="@+id/advanced_search_dropOff_relative"
@@ -181,16 +193,29 @@
         android:layout_marginLeft="20dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="15dp"
-        android:background="@drawable/user_register_border_quicksearch">
+        android:background="@drawable/user_register_border_quicksearch"
+        android:gravity="center"
+
+        >
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:gravity="center_horizontal|center_vertical"
+            >
+
 
         <TextView
             android:id="@+id/Advanced_textview51"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="5dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@+id/imageview_search_time"
             android:layout_toRightOf="@+id/imageview_search_time"
@@ -198,21 +223,20 @@
             android:textColor="@color/primaryColor"
             android:textSize="12sp"
             android:textStyle="bold"
+            android:lines="1"
+            android:maxLines="1"
+            android:singleLine="true"
 
             />
 
 
         <ImageView
             android:id="@+id/imageview_search_time"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
             android:src="@drawable/timeicon"
 
             />
@@ -229,8 +253,13 @@
             android:layout_toRightOf="@+id/imageview_search_time"
             android:textColor="@color/primaryColor"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:lines="1"
+            android:maxLines="1"
+            android:singleLine="true"
+            />
 
+            </RelativeLayout>
 
     </RelativeLayout>
 
