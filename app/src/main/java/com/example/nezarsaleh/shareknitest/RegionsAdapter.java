@@ -54,7 +54,7 @@ public class RegionsAdapter extends ArrayAdapter<RegionsDataModel> {
             if (v == null) {
                 v = inflater.inflate(resourse, parent, false);
                 vh = new ViewHolder();
-                vh.RegionEnName = (TextView) v.findViewById(R.id.RegionEnName);
+                vh.RegionEnName = (TextView) v.findViewById(R.id.row_name_search);
                 v.setTag(vh);
             } else {
                 vh = (ViewHolder) v.getTag();

@@ -126,6 +126,31 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
             e.printStackTrace();
         }
 
+        try {
+            if (PickUpActivity.getInstance() != null) {
+                Intent intent = getIntent();
+                intent.getIntExtra("From_Em_Id:2", 0);
+                intent.getIntExtra("From_Reg_Id:2", 0);
+                intent.getIntExtra("To_Em_Id:2", 0);
+                intent.getIntExtra("To_Reg_Id:2", 0);
+
+                intent.getStringExtra("From_EmirateEnName");
+                intent.getStringExtra("From_RegionEnName");
+                intent.getStringExtra("To_EmirateEnName");
+                intent.getStringExtra("To_RegionEnName");
+
+                Log.d("From_Em_Id", String.valueOf(intent.getIntExtra("From_Em_Id", 0)));
+                Log.d("From_Reg_Id", String.valueOf(intent.getIntExtra("From_Reg_Id", 0)));
+                Log.d("To_Em_Id", String.valueOf(intent.getIntExtra("To_Em_Id", 0)));
+                Log.d("To_Reg_Id", String.valueOf(intent.getIntExtra("To_Reg_Id", 0)));
+
+
+                PickUpActivity.getInstance().finish();
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
         final Calendar cal = Calendar.getInstance();
         year_x = cal.get(Calendar.YEAR);
         month_x = cal.get(Calendar.MONTH);

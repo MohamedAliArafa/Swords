@@ -39,6 +39,8 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:paddingTop="15dp"
+            android:id="@+id/Dest_Relative_1"
+            android:paddingBottom="20dp"
             >
 
     <RelativeLayout
@@ -97,7 +99,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/borders_quicksearch"
         android:padding="3dp"
         android:layout_marginBottom="30dp"
@@ -165,9 +167,172 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginTop="10dp"
+
             />
 
 
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/borders"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="15dp"
+            android:layout_below="@+id/Dest_Relative_1"
+            android:paddingBottom="20dp"
+            android:id="@+id/Dest_Relative_2"
+            >
+
+            <RelativeLayout
+                android:id="@+id/Emirates_Reltive_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/borders_quicksearch"
+                android:padding="3dp"
+
+                >
+
+
+                <TextView
+                    android:id="@+id/Emirates_spinner_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_toLeftOf="@+id/selectarrow_im_2"
+                    android:layout_toStartOf="@+id/selectarrow_im_2"
+                    android:gravity="center"
+                    android:text="Select Emirate"
+                    android:textColor="@color/primaryColor"
+                    android:textColorHint="@color/primaryColor"
+
+
+                    />
+
+                <ImageView
+                    android:id="@+id/selectarrow_im_2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/selectarrow"
+
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/Relative_regions_2"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/Emirates_Reltive_2"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/borders_quicksearch"
+                android:padding="3dp"
+                android:layout_marginBottom="30dp"
+                >
+
+                <AutoCompleteTextView
+                    android:id="@+id/mainDialog_Regions_auto_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_toLeftOf="@+id/sweep_icon_2"
+                    android:layout_toStartOf="@+id/sweep_icon_2"
+                    android:background="@drawable/autocomplete_regions_border"
+                    android:cursorVisible="false"
+                    android:hint="Enter Region"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingStart="10dp"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:textAllCaps="false"
+                    android:textColor="@color/primaryColor"
+                    android:textColorHint="@color/primaryColor"
+                    android:textSize="15sp"
+
+
+                    />
+
+
+                <ImageView
+                    android:id="@+id/sweep_icon_2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/clear"
+
+                    />
+
+
+            </RelativeLayout>
+
+
+
+
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/Dest_pick_up_address_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/testborder1"
+            android:gravity="center_horizontal|center"
+            android:paddingEnd="20dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingStart="20dp"
+            android:text="Drop off"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/Dest_Relative_1"
+            />
+
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Dest_Relative_2"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/dis_submit"
+            android:text="Submit"
+            android:background="@drawable/user_register_border_button"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:layout_marginBottom="20dp"
+            />
 
 
 
