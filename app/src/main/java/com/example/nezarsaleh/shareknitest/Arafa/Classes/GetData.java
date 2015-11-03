@@ -284,7 +284,7 @@ public class GetData {
     public JSONArray Search(int myId, char gender, String time
             , int fromEmId, int fromRegId, int toEmId, int toRegId
             , int pref_lnag, int pref_nat, int age_Ranged_id
-            , String startDate, int saveFind) throws JSONException {
+            , String startDate, int saveFind, final Activity activity) throws JSONException {
         HandleXML obj = new HandleXML(QuickSearchUrl
                 + "AccountID=" + myId
                 + "&PreferredGender=" + gender
@@ -301,6 +301,7 @@ public class GetData {
                 + "&IsPeriodic=");
         obj.fetchXML();
         while (obj.parsingComplete) ;
+        Log.d("Test big",obj.getData());
         return new JSONArray(obj.getData());
     }
 
@@ -904,21 +905,21 @@ public class GetData {
                             e.printStackTrace();
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(context, "No Routes Available ", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "No Routes Available ", Toast.LENGTH_SHORT).show();
 
-                            final Dialog dialog = new Dialog(context);
-                            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                            dialog.setContentView(R.layout.noroutesdialog);
-                            Button btn = (Button) dialog.findViewById(R.id.noroute_id);
-                            dialog.show();
+                                final Dialog dialog = new Dialog(context);
+                                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                dialog.setContentView(R.layout.noroutesdialog);
+                                Button btn = (Button) dialog.findViewById(R.id.noroute_id);
+                                dialog.show();
 
-                            btn.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    dialog.dismiss();
-                                    context.finish();
-                                }
-                            });
+                                btn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        dialog.dismiss();
+                                        context.finish();
+                                    }
+                                });
 
 
                             Log.d("Error Json : ", e.toString());

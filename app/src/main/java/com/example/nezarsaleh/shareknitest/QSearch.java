@@ -18,6 +18,8 @@ import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -61,7 +63,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
     int To_Em_Id;
     int To_Reg_Id;
 
-    String To_EmirateEnName,From_EmirateEnName,To_RegionEnName,From_RegionEnName;
+    String To_EmirateEnName, From_EmirateEnName, To_RegionEnName, From_RegionEnName;
 
     List<TreeMap<String, String>> Emirates_List = new ArrayList<>();
     List<TreeMap<String, String>> Regions_List = new ArrayList<>();
@@ -73,7 +75,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
     RelativeLayout pickup_relative;
     SimpleAdapter EmAdapter;
     Button btn_submit_pickUp;
-    String txt_PickUp;
+    String txt_PickUp = "Start Point";
     JSONArray Regions = null;
     JSONArray Emirates = null;
 
@@ -84,7 +86,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
     TextView txt_Select_Dest;
 
-    String txt_Drop_Off;
+    String txt_Drop_Off = "End Point";
 
     RelativeLayout calendar_relative;
     static final int DILOG_ID = 0;
@@ -94,7 +96,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
     TextView txt_year;
     TextView txt_beforeCal;
     String full_date;
-
+    int i = 0;
     private int hour;
     private int minute;
 
@@ -103,7 +105,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
     RelativeLayout time_relative;
 
     TextView txt_time_selected;
-    TextView  before_Time;
+    TextView before_Time;
     SharedPreferences myPrefs;
 
     Button btn_search_page;
@@ -113,11 +115,21 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
     Button quickSearch_pickUp;
     Button quickSearch_Dropoff;
     Button quick_Destination;
-    RelativeLayout MostRides_Relative,MapLookUp_Relative,Advanced_Search_Relative_2;
+    RelativeLayout MostRides_Relative, MapLookUp_Relative, Advanced_Search_Relative_2;
+
+    String From_EmirateEnName_str, From_RegionEnName_str, To_EmirateEnName_str, To_RegionEnName_str;
+    int From_Em_Id_2, From_Reg_Id_2, To_Em_Id_2, To_Reg_Id_2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
+
+        i = 0;
+
+        txt_PickUp = "Start Point";
         try {
             if (TakeATour.getInstance() != null) {
                 TakeATour.getInstance().finish();
@@ -129,20 +141,80 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         try {
             if (PickUpActivity.getInstance() != null) {
                 Intent intent = getIntent();
-                intent.getIntExtra("From_Em_Id:2", 0);
-                intent.getIntExtra("From_Reg_Id:2", 0);
-                intent.getIntExtra("To_Em_Id:2", 0);
-                intent.getIntExtra("To_Reg_Id:2", 0);
+                From_Em_Id_2 = intent.getIntExtra("From_Em_Id", 0);
+                From_Reg_Id_2 = intent.getIntExtra("From_Reg_Id", 0);
+                To_Em_Id_2 = intent.getIntExtra("To_Em_Id", 0);
+                To_Reg_Id_2 = intent.getIntExtra("To_Reg_Id", 0);
 
-                intent.getStringExtra("From_EmirateEnName");
-                intent.getStringExtra("From_RegionEnName");
-                intent.getStringExtra("To_EmirateEnName");
-                intent.getStringExtra("To_RegionEnName");
+                txt_PickUp = "";
+                From_EmirateEnName_str = intent.getStringExtra("From_EmirateEnName");
+                From_RegionEnName_str = intent.getStringExtra("From_RegionEnName");
+                To_EmirateEnName_str = intent.getStringExtra("To_EmirateEnName");
+                To_RegionEnName_str = intent.getStringExtra("To_RegionEnName");
+                i = 1;
 
-                Log.d("From_Em_Id", String.valueOf(intent.getIntExtra("From_Em_Id", 0)));
-                Log.d("From_Reg_Id", String.valueOf(intent.getIntExtra("From_Reg_Id", 0)));
-                Log.d("To_Em_Id", String.valueOf(intent.getIntExtra("To_Em_Id", 0)));
-                Log.d("To_Reg_Id", String.valueOf(intent.getIntExtra("To_Reg_Id", 0)));
+                try {
+
+                    if (From_EmirateEnName_str.equals("null") || From_EmirateEnName_str.equals("")) {
+                        From_EmirateEnName_str = "";
+                        From_EmirateEnName_str = "Not set";
+                        txt_PickUp = "";
+                        txt_PickUp += From_EmirateEnName_str;
+                    } else {
+                        txt_PickUp = "";
+                        txt_PickUp += From_EmirateEnName_str;
+                    }
+
+
+                    if (From_RegionEnName_str.equals("null") || From_RegionEnName_str.equals("Not Set")) {
+                        From_RegionEnName_str = "";
+                        From_RegionEnName_str = "Not set";
+                        txt_PickUp += ",";
+                        txt_PickUp += From_RegionEnName_str;
+
+                    } else {
+                        txt_PickUp += ",";
+                        txt_PickUp += From_RegionEnName_str;
+                    }
+
+
+                } catch (NullPointerException e) {
+
+                    txt_PickUp = "Start Point";
+                }
+
+
+                try {
+                    if (To_EmirateEnName_str.equals("null") || To_EmirateEnName_str.equals("")) {
+                        To_EmirateEnName_str = "";
+                        To_EmirateEnName_str = "Not set";
+                        txt_Drop_Off = "";
+                        txt_Drop_Off += To_EmirateEnName_str;
+                    } else {
+                        txt_Drop_Off = "";
+                        txt_Drop_Off += To_EmirateEnName_str;
+                    }
+
+                    if (To_RegionEnName_str.equals("null") || To_RegionEnName_str.equals("Not Set")) {
+                        To_RegionEnName_str = "";
+                        To_RegionEnName_str = "Not set";
+                        txt_Drop_Off += ",";
+                        txt_Drop_Off += To_RegionEnName_str;
+
+                    } else {
+                        txt_Drop_Off += ",";
+                        txt_Drop_Off += To_RegionEnName_str;
+                    }
+
+                } catch (NullPointerException e) {
+
+                    txt_Drop_Off = "End Point";
+                }
+
+                Log.d("From_Em_Id_2", String.valueOf(intent.getIntExtra("From_Em_Id", 0)));
+                Log.d("From_Reg_Id_2", String.valueOf(intent.getIntExtra("From_Reg_Id", 0)));
+                Log.d("To_Em_Id_2", String.valueOf(intent.getIntExtra("To_Em_Id", 0)));
+                Log.d("To_Reg_Id_2", String.valueOf(intent.getIntExtra("To_Reg_Id", 0)));
 
 
                 PickUpActivity.getInstance().finish();
@@ -150,6 +222,13 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
+
+
+
+
+
+
+
 
         final Calendar cal = Calendar.getInstance();
         year_x = cal.get(Calendar.YEAR);
@@ -168,27 +247,46 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         txt_beforeCal = (TextView) findViewById(R.id.textview50);
         pickup_relative = (RelativeLayout) findViewById(R.id.pickup_relative);
         txt_Selecet_Start_Point = (TextView) findViewById(R.id.txt_Selecet_Start_Point);
-        dropOff_relative= (RelativeLayout) findViewById(R.id.dropOff_relative);
-        txt_Select_Dest= (TextView) findViewById(R.id.txt_Select_Dest);
-        txt_time_selected= (TextView) findViewById(R.id.txt_time_selected);
-        before_Time= (TextView) findViewById(R.id.textview51);
+        dropOff_relative = (RelativeLayout) findViewById(R.id.dropOff_relative);
+        txt_Select_Dest = (TextView) findViewById(R.id.txt_Select_Dest);
+        txt_time_selected = (TextView) findViewById(R.id.txt_time_selected);
+        before_Time = (TextView) findViewById(R.id.textview51);
         btn_search_page = (Button) findViewById(R.id.btn_search_page);
-        quickSearch_pickUp  = (Button) findViewById(R.id.quickSearch_pickUp);
-        quickSearch_Dropoff= (Button) findViewById(R.id.quickSearch_Dropoff);
+        quickSearch_pickUp = (Button) findViewById(R.id.quickSearch_pickUp);
+        quickSearch_Dropoff = (Button) findViewById(R.id.quickSearch_Dropoff);
 
-        MostRides_Relative= (RelativeLayout) findViewById(R.id.search_top_rides_im);
-        MapLookUp_Relative= (RelativeLayout) findViewById(R.id.map_look_up);
-        Advanced_Search_Relative_2= (RelativeLayout) findViewById(R.id.advanced_search);
+        MostRides_Relative = (RelativeLayout) findViewById(R.id.search_top_rides_im);
+        MapLookUp_Relative = (RelativeLayout) findViewById(R.id.map_look_up);
+        Advanced_Search_Relative_2 = (RelativeLayout) findViewById(R.id.advanced_search);
         quick_Destination = (Button) findViewById(R.id.quick_Destination);
+
+
+        if (i==0) {
+            txt_Selecet_Start_Point.setText("Start Point");
+            Log.d("pick 1", txt_PickUp);
+
+        } else if (i==1){
+            txt_Selecet_Start_Point.setText(txt_PickUp);
+
+        }
+
+
+        if (i==0) {
+            txt_Select_Dest.setText("End Point");
+            Log.d("drop off 1 ", txt_Drop_Off);
+        } else if (i==1){
+            txt_Select_Dest.setText(txt_Drop_Off);
+        }
 
 
         quick_Destination.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent =  new Intent(getBaseContext(),PickUpActivity.class);
+                Intent intent = new Intent(getBaseContext(), PickUpActivity.class);
+                intent.putExtra("FALG_SEARCH",1);
                 startActivity(intent);
-
+                finish();
             }
         });
 
@@ -196,11 +294,10 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         MostRides_Relative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 =  new Intent(getBaseContext(), BestRideBeforeLogin.class);
+                Intent intent1 = new Intent(getBaseContext(), BestRideBeforeLogin.class);
                 startActivity(intent1);
             }
         });
-
 
 
         MapLookUp_Relative.setOnClickListener(new View.OnClickListener() {
@@ -215,7 +312,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         Advanced_Search_Relative_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(),Advanced_Search.class);
+                Intent intent = new Intent(getBaseContext(), Advanced_Search.class);
                 startActivity(intent);
 
             }
@@ -245,31 +342,36 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
             e.printStackTrace();
         }
 
-        quickSearch_pickUp.setOnClickListener(this);
-        pickup_relative.setOnClickListener(this);
-        quickSearch_Dropoff.setOnClickListener(this);
-        dropOff_relative.setOnClickListener(this);
+        //quickSearch_pickUp.setOnClickListener(this);
+        //pickup_relative.setOnClickListener(this);
+        //quickSearch_Dropoff.setOnClickListener(this);
+        // dropOff_relative.setOnClickListener(this);
 
         btn_search_page.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View v) {
                 Intent intent1 = new Intent(getBaseContext(), QuickSearchResults.class);
-                intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent1.putExtra("From_Em_Id", From_Em_Id);
-                intent1.putExtra("To_Em_Id", To_Em_Id);
-                intent1.putExtra("From_Reg_Id", From_Reg_Id);
-                intent1.putExtra("To_Reg_Id", To_Reg_Id);
-                intent1.putExtra("From_EmirateEnName",From_EmirateEnName);
-                intent1.putExtra("From_RegionEnName",From_RegionEnName);
-                intent1.putExtra("To_EmirateEnName",To_EmirateEnName);
-                intent1.putExtra("To_RegionEnName",To_RegionEnName);
-                Log.d("Test",From_EmirateEnName+From_RegionEnName+To_EmirateEnName+To_RegionEnName);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent1.putExtra("From_Em_Id", From_Em_Id_2);
+                intent1.putExtra("To_Em_Id", To_Em_Id_2);
+                intent1.putExtra("From_Reg_Id", From_Reg_Id_2);
+                intent1.putExtra("To_Reg_Id", To_Reg_Id_2);
+                intent1.putExtra("From_EmirateEnName", From_EmirateEnName_str);
+                intent1.putExtra("From_RegionEnName", From_RegionEnName_str);
+                intent1.putExtra("To_EmirateEnName", To_EmirateEnName_str);
+                intent1.putExtra("To_RegionEnName", To_RegionEnName_str);
+                Log.d("Test", From_EmirateEnName + From_RegionEnName + To_EmirateEnName + To_RegionEnName);
                 startActivity(intent1);
+
+                i=1;
             }
         });
     }  // on create
 
+
+
+    /*
     private class getTo extends AsyncTask {
         ProgressDialog pDialog;
         boolean exists = false;
@@ -476,6 +578,10 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
+    */
+
+
+    /*
     private class getFrom extends AsyncTask {
         ProgressDialog pDialog;
         boolean exists = false;
@@ -686,14 +792,23 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
+    */
+
     Calendar cal = Calendar.getInstance();
     DatePicker d;
 
-    protected void onPrepareDialog (int id, Dialog dialog)
-    {
-        DatePickerDialog datePickerDialog = (DatePickerDialog) dialog;
-        // Get the current date
-        datePickerDialog.updateDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+    protected void onPrepareDialog(int id, Dialog dialog) {
+        if (id==DILOG_ID) {
+            DatePickerDialog datePickerDialog = (DatePickerDialog) dialog;
+            // Get the current date
+            datePickerDialog.updateDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+        }else if (id==TIME_DIALOG_ID){
+
+            TimePickerDialog timePickerDialog = (TimePickerDialog) dialog;
+            timePickerDialog.updateTime(cal.get(Calendar.HOUR_OF_DAY),cal.get(Calendar.MINUTE) );
+
+        }
+
     }
 
     @Override
@@ -701,9 +816,10 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         if (id == DILOG_ID) {
             DatePickerDialog dp = new DatePickerDialog(this, dPickerListener, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
             d = dp.getDatePicker();
-            d.updateDate(year_x,month_x,day_x);
+            d.updateDate(year_x, month_x, day_x);
             d.setMaxDate(cal.getTimeInMillis());
-            return dp;        }
+            return dp;
+        }
         if (id == TIME_DIALOG_ID) {
             return new TimePickerDialog(this,
                     timePickerListener, hour, minute, false);
@@ -782,19 +898,47 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
     }
 
 
-
     @Override
     public void onClick(View v) {
 
-        if (v == pickup_relative || v == quickSearch_pickUp) {
-            new getFrom().execute();
-        }
-        if (v == dropOff_relative || v == quickSearch_Dropoff) {
-            new getTo().execute();
-        }
+//        if (v == pickup_relative || v == quickSearch_pickUp) {
+//            new getFrom().execute();
+//        }
+//        if (v == dropOff_relative || v == quickSearch_Dropoff) {
+//            new getTo().execute();
+//        }
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_driver_create_car_pool, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        if (id == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+
+    }
 
 
 }

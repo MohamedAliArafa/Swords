@@ -16,6 +16,8 @@ import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -54,10 +56,11 @@ import java.util.TreeMap;
 
 public class PickUpActivity extends AppCompatActivity {
 
-    int From_Em_Id = -1;
-    int From_Reg_Id = -1;
-    int  To_Em_Id = -1;
-    int To_Reg_Id = -1;
+    int From_Em_Id =-1;
+    int From_Reg_Id =-1;
+    int  To_Em_Id ;
+    int To_Reg_Id ;
+    int FLAG_ID;
 
     TextView Emirates_txt,Emirates_txt_2;
 
@@ -77,8 +80,6 @@ public class PickUpActivity extends AppCompatActivity {
 
 
     Toolbar toolbar;
-    Button btn_pickup_Submit;
-    Button btn_choose_lat;
     SimpleAdapter Create_CarPool_EmAdapter;
     Context mContext;
     Dialog Emirates_Dialog;
@@ -96,6 +97,13 @@ public class PickUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pick_up);
+        pickUpActivity=this;
+
+        Intent intent =  getIntent();
+        FLAG_ID = intent.getIntExtra("FALG_SEARCH",0);
+        Log.d("Flag id", String.valueOf(FLAG_ID));
+
+
         initToolbar();
         mContext = this;
 
@@ -107,27 +115,95 @@ public class PickUpActivity extends AppCompatActivity {
         Create_CarPool_txt_regions_2= (AutoCompleteTextView) findViewById(R.id.mainDialog_Regions_auto_2);
 
 
+
+
+
+
+
+
         dis_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(PickUpActivity.this,QSearch.class);
-                if (From_Em_Id != -1&& From_Reg_Id != -1){
-                    in.putExtra("From_Em_Id",From_Em_Id);
-                    in.putExtra("From_EmirateEnName",From_EmirateEnName);
-                    in.putExtra("From_RegionEnName",From_RegionEnName);
-                    in.putExtra("From_Reg_Id",From_Reg_Id);
-                    in.putExtra("To_Em_Id",To_Em_Id);
-                    in.putExtra("To_EmirateEnName",To_EmirateEnName);
-                    in.putExtra("To_RegionEnName",To_RegionEnName);
-                    in.putExtra("To_Reg_Id",To_Reg_Id);
 
-                    Log.d("From_Em_Id:1", String.valueOf(From_Em_Id));
-                    Log.d("From_Reg_Id:1", String.valueOf(From_Reg_Id));
-                    Log.d("To_Em_Id:1", String.valueOf(To_Em_Id));
-                    Log.d("To_Reg_Id:1", String.valueOf(To_Reg_Id));
-                    startActivity(in);
-                }
-            }
+               if (FLAG_ID == 1) {
+
+                    Intent in = new Intent(PickUpActivity.this, QSearch.class);
+                    if (From_Em_Id != -1 && From_Reg_Id != -1) {
+                        in.putExtra("From_Em_Id", From_Em_Id);
+                        in.putExtra("From_EmirateEnName", From_EmirateEnName);
+                        in.putExtra("From_RegionEnName", From_RegionEnName);
+                        in.putExtra("From_Reg_Id", From_Reg_Id);
+                        in.putExtra("To_Em_Id", To_Em_Id);
+                        in.putExtra("To_EmirateEnName", To_EmirateEnName);
+                        in.putExtra("To_RegionEnName", To_RegionEnName);
+                        in.putExtra("To_Reg_Id", To_Reg_Id);
+
+                        Log.d("From_Em_Id_1", String.valueOf(From_Em_Id));
+                        Log.d("From_Reg_Id_1", String.valueOf(From_Reg_Id));
+                        Log.d("To_Em_Id_1", String.valueOf(To_Em_Id));
+                        Log.d("To_Reg_Id_1", String.valueOf(To_Reg_Id));
+                        startActivity(in);
+
+                        finish();
+                    }
+                }  // flag id
+                else if (FLAG_ID==2) {
+
+                   Intent in = new Intent(PickUpActivity.this, Advanced_Search.class);
+                   if (From_Em_Id != -1 && From_Reg_Id != -1) {
+                       in.putExtra("From_Em_Id", From_Em_Id);
+                       in.putExtra("From_EmirateEnName", From_EmirateEnName);
+                       in.putExtra("From_RegionEnName", From_RegionEnName);
+                       in.putExtra("From_Reg_Id", From_Reg_Id);
+                       in.putExtra("To_Em_Id", To_Em_Id);
+                       in.putExtra("To_EmirateEnName", To_EmirateEnName);
+                       in.putExtra("To_RegionEnName", To_RegionEnName);
+                       in.putExtra("To_Reg_Id", To_Reg_Id);
+
+                       Log.d("From_Em_Id_1", String.valueOf(From_Em_Id));
+                       Log.d("From_Reg_Id_1", String.valueOf(From_Reg_Id));
+                       Log.d("To_Em_Id_1", String.valueOf(To_Em_Id));
+                       Log.d("To_Reg_Id_1", String.valueOf(To_Reg_Id));
+                       startActivity(in);
+
+                       finish();
+
+
+                   }
+               } //  else if 2
+
+               else if (FLAG_ID==3) {
+
+                   Intent in = new Intent(PickUpActivity.this, DriverCreateCarPool.class);
+                   if (From_Em_Id != -1 && From_Reg_Id != -1) {
+                       in.putExtra("From_Em_Id", From_Em_Id);
+                       in.putExtra("From_EmirateEnName", From_EmirateEnName);
+                       in.putExtra("From_RegionEnName", From_RegionEnName);
+                       in.putExtra("From_Reg_Id", From_Reg_Id);
+                       in.putExtra("To_Em_Id", To_Em_Id);
+                       in.putExtra("To_EmirateEnName", To_EmirateEnName);
+                       in.putExtra("To_RegionEnName", To_RegionEnName);
+                       in.putExtra("To_Reg_Id", To_Reg_Id);
+
+                       Log.d("From_Em_Id_1", String.valueOf(From_Em_Id));
+                       Log.d("From_Reg_Id_1", String.valueOf(From_Reg_Id));
+                       Log.d("To_Em_Id_1", String.valueOf(To_Em_Id));
+                       Log.d("To_Reg_Id_1", String.valueOf(To_Reg_Id));
+                       startActivity(in);
+
+                       finish();
+
+
+                   }
+               } //  else if 2
+
+
+
+
+
+
+
+            }// on click
         });
 
         Create_CarPool_Emirates_List.clear();
@@ -466,14 +542,40 @@ public class PickUpActivity extends AppCompatActivity {
 
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_driver_create_car_pool, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        if (id==android.R.id.home){
+            onBackPressed();
+            return true;
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
 
 
 
 
 
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
 
-
+    }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void initToolbar() {

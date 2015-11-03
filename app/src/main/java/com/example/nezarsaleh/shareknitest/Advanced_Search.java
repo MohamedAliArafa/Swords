@@ -17,6 +17,8 @@ import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -77,8 +79,8 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
     JSONArray Emirates = null;
     JSONArray Regions = null;
     Button Advanced_btn_submit_pickUp;
-    String Advanced_txt_PickUp;
-    String Advanced_txt_Drop_Off;
+    String Advanced_txt_PickUp="Start Point";
+    String Advanced_txt_Drop_Off="End Point";
     String To_EmirateEnName, From_EmirateEnName, To_RegionEnName, From_RegionEnName;
     String Advanced_full_date;
     AutoCompleteTextView advanced_search_Nat;
@@ -106,7 +108,12 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
     Button quickSearch_pickUp;
     Button quickSearch_Dropoff;
     Button Advanced_btn_search_page;
+    Button dvanced_Destination;
     boolean exists = false;
+
+    int i2 = 0;
+    String From_EmirateEnName_str, From_RegionEnName_str, To_EmirateEnName_str, To_RegionEnName_str;
+    int From_Em_Id_2, From_Reg_Id_2, To_Em_Id_2, To_Reg_Id_2;
 
     private Toolbar toolbar;
     private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
@@ -153,6 +160,94 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+        i2 = 0;
+        try {
+            if (PickUpActivity.getInstance() != null) {
+                Intent intent = getIntent();
+                From_Em_Id_2 = intent.getIntExtra("From_Em_Id", 0);
+                From_Reg_Id_2 = intent.getIntExtra("From_Reg_Id", 0);
+                To_Em_Id_2 = intent.getIntExtra("To_Em_Id", 0);
+                To_Reg_Id_2 = intent.getIntExtra("To_Reg_Id", 0);
+
+                Advanced_txt_PickUp = "";
+                From_EmirateEnName_str = intent.getStringExtra("From_EmirateEnName");
+                From_RegionEnName_str = intent.getStringExtra("From_RegionEnName");
+                To_EmirateEnName_str = intent.getStringExtra("To_EmirateEnName");
+                To_RegionEnName_str = intent.getStringExtra("To_RegionEnName");
+                i2 = 1;
+
+                try {
+
+                    if (From_EmirateEnName_str.equals("null") || From_EmirateEnName_str.equals("")) {
+                        From_EmirateEnName_str = "";
+                        From_EmirateEnName_str = "Not set";
+                        Advanced_txt_PickUp = "";
+                        Advanced_txt_PickUp += From_EmirateEnName_str;
+                    } else {
+                        Advanced_txt_PickUp = "";
+                        Advanced_txt_PickUp += From_EmirateEnName_str;
+                    }
+
+
+                    if (From_RegionEnName_str.equals("null") || From_RegionEnName_str.equals("Not Set")) {
+                        From_RegionEnName_str = "";
+                        From_RegionEnName_str = "Not set";
+                        Advanced_txt_PickUp += ",";
+                        Advanced_txt_PickUp += From_RegionEnName_str;
+
+                    } else {
+                        Advanced_txt_PickUp += ",";
+                        Advanced_txt_PickUp += From_RegionEnName_str;
+                    }
+
+
+                } catch (NullPointerException e) {
+
+                    Advanced_txt_PickUp = "Start Point";
+                }
+
+
+                try {
+                    if (To_EmirateEnName_str.equals("null") || To_EmirateEnName_str.equals("")) {
+                        To_EmirateEnName_str = "";
+                        To_EmirateEnName_str = "Not set";
+                        Advanced_txt_Drop_Off = "";
+                        Advanced_txt_Drop_Off += To_EmirateEnName_str;
+                    } else {
+                        Advanced_txt_Drop_Off = "";
+                        Advanced_txt_Drop_Off += To_EmirateEnName_str;
+                    }
+
+                    if (To_RegionEnName_str.equals("null") || To_RegionEnName_str.equals("Not Set")) {
+                        To_RegionEnName_str = "";
+                        To_RegionEnName_str = "Not set";
+                        Advanced_txt_Drop_Off += ",";
+                        Advanced_txt_Drop_Off += To_RegionEnName_str;
+
+                    } else {
+                        Advanced_txt_Drop_Off += ",";
+                        Advanced_txt_Drop_Off += To_RegionEnName_str;
+                    }
+
+                } catch (NullPointerException e) {
+
+                    Advanced_txt_Drop_Off = "End Point";
+                }
+
+                Log.d("From_Em_Id_2", String.valueOf(intent.getIntExtra("From_Em_Id", 0)));
+                Log.d("From_Reg_Id_2", String.valueOf(intent.getIntExtra("From_Reg_Id", 0)));
+                Log.d("To_Em_Id_2", String.valueOf(intent.getIntExtra("To_Em_Id", 0)));
+                Log.d("To_Reg_Id_2", String.valueOf(intent.getIntExtra("To_Reg_Id", 0)));
+
+
+                PickUpActivity.getInstance().finish();
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
+
         final Calendar cal = Calendar.getInstance();
         year_x = cal.get(Calendar.YEAR);
         month_x = cal.get(Calendar.MONTH);
@@ -189,12 +284,41 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
         advanced_search_Age_Range_txt = (TextView) findViewById(R.id.advanced_search_Age_Range_txt);
         quickSearch_pickUp = (Button) findViewById(R.id.quickSearch_pickUp);
         quickSearch_Dropoff = (Button) findViewById(R.id.advanced_search__Dropoff);
+        dvanced_Destination = (Button) findViewById(R.id.dvanced_Destination);
 
-        quickSearch_pickUp.setOnClickListener(this);
-        Advanced_pickup_relative.setOnClickListener(this);
-        quickSearch_Dropoff.setOnClickListener(this);
-        Advanced_dropOff_relative.setOnClickListener(this);
+       // quickSearch_pickUp.setOnClickListener(this);
+        //Advanced_pickup_relative.setOnClickListener(this);
+      //  quickSearch_Dropoff.setOnClickListener(this);
+      //  Advanced_dropOff_relative.setOnClickListener(this);
 
+
+        if (i2 == 0) {
+            Advanced_txt_Selecet_Start_Point.setText("Start Point");
+            Log.d("pick 1", Advanced_txt_PickUp);
+
+        } else if (i2 == 1) {
+            Advanced_txt_Selecet_Start_Point.setText(Advanced_txt_PickUp);
+
+        }
+
+
+        if (i2 == 0) {
+            Advanced_txt_Select_Dest.setText("End Point");
+            Log.d("drop off 1 ", Advanced_txt_Drop_Off);
+        } else if (i2 == 1) {
+            Advanced_txt_Select_Dest.setText(Advanced_txt_Drop_Off);
+        }
+
+
+        dvanced_Destination.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), PickUpActivity.class);
+                intent.putExtra("FALG_SEARCH", 2);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         //done4
         singleRide_Periodic.setOnClickListener(new View.OnClickListener() {
@@ -331,23 +455,25 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
             public void onClick(View v) {
                 Intent intent1 = new Intent(getBaseContext(), QuickSearchResults.class);
-                intent1.putExtra("From_Em_Id", From_Em_Id);
-                intent1.putExtra("To_Em_Id", To_Em_Id);
-                intent1.putExtra("From_Reg_Id", From_Reg_Id);
-                intent1.putExtra("To_Reg_Id", To_Reg_Id);
-                intent1.putExtra("From_EmirateEnName", From_EmirateEnName);
-                intent1.putExtra("From_RegionEnName", From_RegionEnName);
-                intent1.putExtra("To_EmirateEnName", To_EmirateEnName);
-                intent1.putExtra("To_RegionEnName", To_RegionEnName);
-                intent1.putExtra("Gender",i);
+                intent1.putExtra("From_Em_Id", From_Em_Id_2);
+                intent1.putExtra("To_Em_Id", To_Em_Id_2);
+                intent1.putExtra("From_Reg_Id", From_Reg_Id_2);
+                intent1.putExtra("To_Reg_Id", To_Reg_Id_2);
+                intent1.putExtra("From_EmirateEnName", From_EmirateEnName_str);
+                intent1.putExtra("From_RegionEnName", From_RegionEnName_str);
+                intent1.putExtra("To_EmirateEnName", To_EmirateEnName_str);
+                intent1.putExtra("To_RegionEnName", To_RegionEnName_str);
+                intent1.putExtra("Gender", i);
                 startActivity(intent1);
+
+                i2 = 1;
             }
         });
 
-    new networkCheck().execute();
+        new networkCheck().execute();
     }   //  on create
 
-    private class networkCheck extends AsyncTask{
+    private class networkCheck extends AsyncTask {
 
         @Override
         protected Object doInBackground(Object[] params) {
@@ -385,7 +511,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    private class nat extends AsyncTask{
+    private class nat extends AsyncTask {
         boolean exists = false;
 
         @Override
@@ -464,7 +590,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    private class lan extends AsyncTask{
+    private class lan extends AsyncTask {
         boolean exists = false;
 
         @Override
@@ -556,7 +682,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    private class age extends AsyncTask{
+    private class age extends AsyncTask {
         boolean exists = false;
 
         @Override
@@ -664,11 +790,18 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
     Calendar cal = Calendar.getInstance();
     DatePicker d;
 
-    protected void onPrepareDialog (int id, Dialog dialog)
-    {
-        DatePickerDialog datePickerDialog = (DatePickerDialog) dialog;
-        // Get the current date
-        datePickerDialog.updateDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+    protected void onPrepareDialog(int id, Dialog dialog) {
+        if (id==DILOG_ID) {
+            DatePickerDialog datePickerDialog = (DatePickerDialog) dialog;
+            // Get the current date
+            datePickerDialog.updateDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+        }else if (id==TIME_DIALOG_ID){
+
+            TimePickerDialog timePickerDialog = (TimePickerDialog) dialog;
+            timePickerDialog.updateTime(cal.get(Calendar.HOUR_OF_DAY),cal.get(Calendar.MINUTE) );
+
+        }
+
     }
 
     @Override
@@ -676,9 +809,10 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
         if (id == DILOG_ID) {
             DatePickerDialog dp = new DatePickerDialog(this, dPickerListener, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
             d = dp.getDatePicker();
-            d.updateDate(year_x,month_x,day_x);
+            d.updateDate(year_x, month_x, day_x);
             d.setMaxDate(cal.getTimeInMillis());
-            return dp;        }
+            return dp;
+        }
         if (id == TIME_DIALOG_ID) {
             return new TimePickerDialog(this,
                     timePickerListener, hour, minute, false);
@@ -725,6 +859,8 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
+
+        /*
         if (v == Advanced_pickup_relative || v == quickSearch_pickUp) {
             Advanced_Emirates_List.clear();
             try {
@@ -733,7 +869,8 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                     j = new GetData().GetEmitares();
                 } else {
                     j = Emirates;
-                }                for (int i = 0; i < j.length(); i++) {
+                }
+                for (int i = 0; i < j.length(); i++) {
                     TreeMap<String, String> valuePairs = new TreeMap<>();
                     JSONObject jsonObject = j.getJSONObject(i);
                     valuePairs.put("EmirateId", jsonObject.getString("EmirateId"));
@@ -746,136 +883,136 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
             }
 
-                Advanced_EmAdapter = new SimpleAdapter(Advanced_Search.this, Advanced_Emirates_List
-                        , R.layout.dialog_pick_emirate_lv_row
-                        , new String[]{"EmirateId", "EmirateEnName"}
-                        , new int[]{R.id.row_id_search, R.id.row_name_search});
+            Advanced_EmAdapter = new SimpleAdapter(Advanced_Search.this, Advanced_Emirates_List
+                    , R.layout.dialog_pick_emirate_lv_row
+                    , new String[]{"EmirateId", "EmirateEnName"}
+                    , new int[]{R.id.row_id_search, R.id.row_name_search});
 
-                Advanced_MainDialog = new Dialog(Advanced_Search.this);
-                Advanced_MainDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                Advanced_MainDialog.setContentView(R.layout.main_search_dialog);
-                TextView Address = (TextView) Advanced_MainDialog.findViewById(R.id.Lang_Dialog_txt_id);
-                Address.setText("Pick Up");
-                Advanced_btn_submit_pickUp = (Button) Advanced_MainDialog.findViewById(R.id.btn_submit_puckup);
+            Advanced_MainDialog = new Dialog(Advanced_Search.this);
+            Advanced_MainDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            Advanced_MainDialog.setContentView(R.layout.main_search_dialog);
+            TextView Address = (TextView) Advanced_MainDialog.findViewById(R.id.Lang_Dialog_txt_id);
+            Address.setText("Pick Up");
+            Advanced_btn_submit_pickUp = (Button) Advanced_MainDialog.findViewById(R.id.btn_submit_puckup);
 //                MainDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
-                Advanced_txt_regions = (AutoCompleteTextView) Advanced_MainDialog.findViewById(R.id.mainDialog_Regions_auto);
-                Advanced_spinner = (Spinner) Advanced_MainDialog.findViewById(R.id.Emirates_spinner);
-                Advanced_spinner.setAdapter(Advanced_EmAdapter);
+            Advanced_txt_regions = (AutoCompleteTextView) Advanced_MainDialog.findViewById(R.id.mainDialog_Regions_auto);
+            Advanced_spinner = (Spinner) Advanced_MainDialog.findViewById(R.id.Emirates_spinner);
+            Advanced_spinner.setAdapter(Advanced_EmAdapter);
 
-                Advanced_MainDialog.show();
+            Advanced_MainDialog.show();
 
 
-                Advanced_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        Advanced_txt_PickUp = "";
-                        TextView txt_em_name = (TextView) view.findViewById(R.id.row_name_search);
-                        TextView txt_em_id = (TextView) view.findViewById(R.id.row_id_search);
-                        From_Em_Id = Integer.parseInt(txt_em_id.getText().toString());
-                        From_EmirateEnName = txt_em_name.getText().toString();
+            Advanced_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    Advanced_txt_PickUp = "";
+                    TextView txt_em_name = (TextView) view.findViewById(R.id.row_name_search);
+                    TextView txt_em_id = (TextView) view.findViewById(R.id.row_id_search);
+                    From_Em_Id = Integer.parseInt(txt_em_id.getText().toString());
+                    From_EmirateEnName = txt_em_name.getText().toString();
 
-                        Advanced_txt_PickUp += txt_em_name.getText().toString();
-                        Advanced_txt_PickUp += ", ";
+                    Advanced_txt_PickUp += txt_em_name.getText().toString();
+                    Advanced_txt_PickUp += ", ";
 
-                        String ret;
-                        try {
-                            InputStream inputStream = openFileInput("Regions"+From_Em_Id+".txt");
-                            if (inputStream != null) {
-                                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                                String receiveString;
-                                StringBuilder stringBuilder = new StringBuilder();
-                                while ((receiveString = bufferedReader.readLine()) != null) {
-                                    stringBuilder.append(receiveString);
-                                }
-                                inputStream.close();
-                                ret = stringBuilder.toString();
-                                Regions = new JSONArray(ret);
+                    String ret;
+                    try {
+                        InputStream inputStream = openFileInput("Regions" + From_Em_Id + ".txt");
+                        if (inputStream != null) {
+                            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                            String receiveString;
+                            StringBuilder stringBuilder = new StringBuilder();
+                            while ((receiveString = bufferedReader.readLine()) != null) {
+                                stringBuilder.append(receiveString);
                             }
-                        } catch (FileNotFoundException e) {
-                            Log.e("login activity", "File not found: " + e.toString());
-                        } catch (IOException e) {
-                            Log.e("login activity", "Can not read file: " + e.toString());
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                            inputStream.close();
+                            ret = stringBuilder.toString();
+                            Regions = new JSONArray(ret);
                         }
-
-                        Log.d("id of lang", "" + From_Em_Id);
-
+                    } catch (FileNotFoundException e) {
+                        Log.e("login activity", "File not found: " + e.toString());
+                    } catch (IOException e) {
+                        Log.e("login activity", "Can not read file: " + e.toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
 
+                    Log.d("id of lang", "" + From_Em_Id);
 
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
+                }
 
 
-                Advanced_txt_regions.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        GetData getData = new GetData();
-                        JSONArray jsonArray;
-                        try {
-                            if (Regions == null) {
-                                jsonArray = getData.GetRegionsByEmiratesID(From_Em_Id);
-                            } else {
-                                jsonArray = Regions;
-                            }
-                            Advanced_Regions_List.clear();
-                            for (int i = 0; i < jsonArray.length(); i++) {
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
 
-                                TreeMap<String, String> valuePairs = new TreeMap<>();
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                valuePairs.put("ID", jsonObject.getString("ID"));
-                                valuePairs.put("RegionEnName", jsonObject.getString("RegionEnName"));
-                                Advanced_Regions_List.add(valuePairs);
-                            }
-                            Log.d("test Regions search ", Advanced_Regions_List.toString());
+                }
+            });
 
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+            Advanced_txt_regions.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    GetData getData = new GetData();
+                    JSONArray jsonArray;
+                    try {
+                        if (Regions == null) {
+                            jsonArray = getData.GetRegionsByEmiratesID(From_Em_Id);
+                        } else {
+                            jsonArray = Regions;
                         }
+                        Advanced_Regions_List.clear();
+                        for (int i = 0; i < jsonArray.length(); i++) {
+
+                            TreeMap<String, String> valuePairs = new TreeMap<>();
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            valuePairs.put("ID", jsonObject.getString("ID"));
+                            valuePairs.put("RegionEnName", jsonObject.getString("RegionEnName"));
+                            Advanced_Regions_List.add(valuePairs);
+                        }
+                        Log.d("test Regions search ", Advanced_Regions_List.toString());
 
 
-                        final SimpleAdapter RegAdapter = new SimpleAdapter(Advanced_Search.this, Advanced_Regions_List
-                                , R.layout.dialog_pick_regions_lv_row
-                                , new String[]{"ID", "RegionEnName"}
-                                , new int[]{R.id.row_id_search, R.id.row_name_search});
-
-                        Advanced_txt_regions.setAdapter(RegAdapter);
-
-
-                        Advanced_txt_regions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                TextView txt_reg_name = (TextView) view.findViewById(R.id.row_name_search);
-                                TextView txt_reg_id = (TextView) view.findViewById(R.id.row_id_search);
-                                From_Reg_Id = Integer.parseInt(txt_reg_id.getText().toString());
-                                From_RegionEnName = txt_reg_name.getText().toString();
-                                Advanced_txt_regions.setText(txt_reg_name.getText().toString());
-                                Advanced_txt_PickUp += txt_reg_name.getText().toString();
-                            }
-                        });
-
-
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                });
 
 
-                Advanced_btn_submit_pickUp.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Advanced_txt_Selecet_Start_Point.setText(Advanced_txt_PickUp);
-                        Advanced_MainDialog.dismiss();
-                    }
-                });
+                    final SimpleAdapter RegAdapter = new SimpleAdapter(Advanced_Search.this, Advanced_Regions_List
+                            , R.layout.dialog_pick_regions_lv_row
+                            , new String[]{"ID", "RegionEnName"}
+                            , new int[]{R.id.row_id_search, R.id.row_name_search});
 
+                    Advanced_txt_regions.setAdapter(RegAdapter);
+
+
+                    Advanced_txt_regions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            TextView txt_reg_name = (TextView) view.findViewById(R.id.row_name_search);
+                            TextView txt_reg_id = (TextView) view.findViewById(R.id.row_id_search);
+                            From_Reg_Id = Integer.parseInt(txt_reg_id.getText().toString());
+                            From_RegionEnName = txt_reg_name.getText().toString();
+                            Advanced_txt_regions.setText(txt_reg_name.getText().toString());
+                            Advanced_txt_PickUp += txt_reg_name.getText().toString();
+                        }
+                    });
+
+
+                }
+            });
+
+
+            Advanced_btn_submit_pickUp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Advanced_txt_Selecet_Start_Point.setText(Advanced_txt_PickUp);
+                    Advanced_MainDialog.dismiss();
+                }
+            });
 
 
         }
+
 
 
         if (v == Advanced_dropOff_relative || v == quickSearch_Dropoff) {
@@ -933,7 +1070,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
                     String ret;
                     try {
-                        InputStream inputStream = openFileInput("Regions"+To_Em_Id+".txt");
+                        InputStream inputStream = openFileInput("Regions" + To_Em_Id + ".txt");
                         if (inputStream != null) {
                             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
@@ -1031,7 +1168,41 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
         }
 
 
+        */
+
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_driver_create_car_pool, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        if (id == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+
+    }
+
 }    //class
 
 

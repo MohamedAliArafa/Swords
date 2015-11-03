@@ -104,8 +104,8 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     Button Create_CarPool_pickUp;
     Button Create_CarPool_Dropoff;
     Button create;
-    String Create_CarPool_txt_PickUp;
-    String Create_CarPool_txt_Drop_Off;
+    String Create_CarPool_txt_PickUp="Start Point";
+    String Create_CarPool_txt_Drop_Off="End Point";
     String Create_CarPool_full_date;
     EditText edit_route_name;
     TextView Create_CarPool_txt_Selecet_Start_Point;
@@ -130,6 +130,10 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     private Toolbar toolbar;
     private int hour;
     private int minute;
+    Button createCarPool_Destination;
+    String From_EmirateEnName_str, From_RegionEnName_str, To_EmirateEnName_str, To_RegionEnName_str;
+    int From_Em_Id_2, From_Reg_Id_2, To_Em_Id_2, To_Reg_Id_2;
+    int i2 = 0;
     private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -169,6 +173,111 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
+        i2 = 0;
+        try {
+            if (PickUpActivity.getInstance() != null) {
+                Intent intent = getIntent();
+                From_Em_Id_2 = intent.getIntExtra("From_Em_Id", 0);
+                From_Reg_Id_2 = intent.getIntExtra("From_Reg_Id", 0);
+                To_Em_Id_2 = intent.getIntExtra("To_Em_Id", 0);
+                To_Reg_Id_2 = intent.getIntExtra("To_Reg_Id", 0);
+
+                Create_CarPool_txt_PickUp = "";
+                From_EmirateEnName_str = intent.getStringExtra("From_EmirateEnName");
+                From_RegionEnName_str = intent.getStringExtra("From_RegionEnName");
+                To_EmirateEnName_str = intent.getStringExtra("To_EmirateEnName");
+                To_RegionEnName_str = intent.getStringExtra("To_RegionEnName");
+                i2 = 1;
+
+                try {
+
+                    if (From_EmirateEnName_str.equals("null") || From_EmirateEnName_str.equals("")) {
+                        From_EmirateEnName_str = "";
+                        From_EmirateEnName_str = "Not set";
+                        Create_CarPool_txt_PickUp = "";
+                        Create_CarPool_txt_PickUp += From_EmirateEnName_str;
+                    } else {
+                        Create_CarPool_txt_PickUp = "";
+                        Create_CarPool_txt_PickUp += From_EmirateEnName_str;
+                    }
+
+
+                    if (From_RegionEnName_str.equals("null") || From_RegionEnName_str.equals("Not Set")) {
+                        From_RegionEnName_str = "";
+                        From_RegionEnName_str = "Not set";
+                        Create_CarPool_txt_PickUp += ",";
+                        Create_CarPool_txt_PickUp += From_RegionEnName_str;
+
+                    } else {
+                        Create_CarPool_txt_PickUp += ",";
+                        Create_CarPool_txt_PickUp += From_RegionEnName_str;
+                    }
+
+
+                } catch (NullPointerException e) {
+
+                    Create_CarPool_txt_PickUp = "Start Point";
+                }
+
+
+                try {
+                    if (To_EmirateEnName_str.equals("null") || To_EmirateEnName_str.equals("")) {
+                        To_EmirateEnName_str = "";
+                        To_EmirateEnName_str = "Not set";
+                        Create_CarPool_txt_Drop_Off = "";
+                        Create_CarPool_txt_Drop_Off += To_EmirateEnName_str;
+                    } else {
+                        Create_CarPool_txt_Drop_Off = "";
+                        Create_CarPool_txt_Drop_Off += To_EmirateEnName_str;
+                    }
+
+                    if (To_RegionEnName_str.equals("null") || To_RegionEnName_str.equals("Not Set")) {
+                        To_RegionEnName_str = "";
+                        To_RegionEnName_str = "Not set";
+                        Create_CarPool_txt_Drop_Off += ",";
+                        Create_CarPool_txt_Drop_Off += To_RegionEnName_str;
+
+                    } else {
+                        Create_CarPool_txt_Drop_Off += ",";
+                        Create_CarPool_txt_Drop_Off += To_RegionEnName_str;
+                    }
+
+                } catch (NullPointerException e) {
+
+                    Create_CarPool_txt_Drop_Off = "End Point";
+                }
+
+                Log.d("From_Em_Id_2", String.valueOf(intent.getIntExtra("From_Em_Id", 0)));
+                Log.d("From_Reg_Id_2", String.valueOf(intent.getIntExtra("From_Reg_Id", 0)));
+                Log.d("To_Em_Id_2", String.valueOf(intent.getIntExtra("To_Em_Id", 0)));
+                Log.d("To_Reg_Id_2", String.valueOf(intent.getIntExtra("To_Reg_Id", 0)));
+
+
+                PickUpActivity.getInstance().finish();
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         final Calendar cal = Calendar.getInstance();
         year_x = cal.get(Calendar.YEAR);
         month_x = cal.get(Calendar.MONTH);
@@ -241,11 +350,46 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
 
         createCarPool_Vehicles = (TextView) findViewById(R.id.createCarPool_Vehicles);
-        Create_CarPool_pickUp.setOnClickListener(this);
+     //   Create_CarPool_pickUp.setOnClickListener(this);
         create.setOnClickListener(this);
-        Create_CarPool_pickup_relative.setOnClickListener(this);
-        Create_CarPool_Dropoff.setOnClickListener(this);
-        Create_CarPool_dropOff_relative.setOnClickListener(this);
+        //Create_CarPool_pickup_relative.setOnClickListener(this);
+      //  Create_CarPool_Dropoff.setOnClickListener(this);
+      //  Create_CarPool_dropOff_relative.setOnClickListener(this);
+
+        if (i2 == 0) {
+            Create_CarPool_txt_Selecet_Start_Point.setText("Start Point");
+            Log.d("pick 1", Create_CarPool_txt_PickUp);
+
+        } else if (i2 == 1) {
+            Create_CarPool_txt_Selecet_Start_Point.setText(Create_CarPool_txt_PickUp);
+
+        }
+
+
+        if (i2 == 0) {
+            Create_CarPool_txt_Select_Dest.setText("End Point");
+            Log.d("drop off 1 ", Create_CarPool_txt_Drop_Off);
+        } else if (i2 == 1) {
+            Create_CarPool_txt_Select_Dest.setText(Create_CarPool_txt_Drop_Off);
+        }
+
+
+
+        createCarPool_Destination= (Button) findViewById(R.id.createCarPool_Destination);
+        createCarPool_Destination.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), PickUpActivity.class);
+                intent.putExtra("FALG_SEARCH", 3);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+
+
+
 
         singleRide_Periodic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -391,10 +535,11 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id==android.R.id.home){
+            onBackPressed();
             return true;
         }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -404,10 +549,22 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
     protected void onPrepareDialog (int id, Dialog dialog)
     {
-        DatePickerDialog datePickerDialog = (DatePickerDialog) dialog;
-        // Get the current date
-        datePickerDialog.updateDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+        if (id==DILOG_ID) {
+            DatePickerDialog datePickerDialog = (DatePickerDialog) dialog;
+            // Get the current date
+            datePickerDialog.updateDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+        }else if (id==TIME_DIALOG_ID){
+
+            TimePickerDialog timePickerDialog = (TimePickerDialog) dialog;
+            timePickerDialog.updateTime(cal.get(Calendar.HOUR_OF_DAY),cal.get(Calendar.MINUTE) );
+
+        }
+
+
+
     }
+
+
 
     @Override
     protected Dialog onCreateDialog(int id) {
@@ -464,13 +621,13 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         if (v == create) {
 
 
-            if (edit_route_name.getText() != null && edit_route_name.getText().toString() != "Ride Name" && From_Em_Id != -1 && To_Em_Id != -1 && From_Reg_Id != -1 && To_Reg_Id != -1 && Single_Periodic_ID != -1 && Vehicle_Id != -1 && id != -1 && Create_CarPool_txt_beforeCal.getText() != "Click to Select" && Create_CarPool_txt_time_selected.getText() != null && Create_CarPool_txt_time_selected.getText().toString() != "Click to Select") {
+            if (edit_route_name.getText() != null && edit_route_name.getText().toString() != "Ride Name" && From_Em_Id_2 != -1 && To_Em_Id_2 != -1 && From_Reg_Id_2 != -1 && To_Reg_Id_2 != -1 && Single_Periodic_ID != -1 && Vehicle_Id != -1 && id != -1 && Create_CarPool_txt_beforeCal.getText() != "Click to Select" && Create_CarPool_txt_time_selected.getText() != null && Create_CarPool_txt_time_selected.getText().toString() != "Click to Select") {
                 String is_Rounded;
                 String EnName = edit_route_name.getText().toString();
-                int FromEmId = From_Em_Id;   // dubai
-                int ToEmId = To_Em_Id;   // 3agman
-                int FromRegId = From_Reg_Id;//
-                int ToRegId = To_Reg_Id;   // 3agman mueseum
+                int FromEmId = From_Em_Id_2;   // dubai
+                int ToEmId = To_Em_Id_2;   // 3agman
+                int FromRegId = From_Reg_Id_2;//
+                int ToRegId = To_Reg_Id_2;   // 3agman mueseum
                 if (Single_Periodic_ID == 1) {
                     is_Rounded = "true";
                 } else {
@@ -500,12 +657,13 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                         , is_Rounded, Time, Saturday, Sunday, Monday, Tuesday, Wednesday, Thursday, Friday
                         , gender, Vehicle_ID, No_OF_Seats, Start_Lat, Start_Lng, End_Lat, End_Lng
                         , pref_lnag, pref_nat, Age_Ranged_id, StartDate, this);
+                i2 = 1;
 
             } else {
-                Toast.makeText(DriverCreateCarPool.this, "Make Sure Your Fill All Required Filds", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DriverCreateCarPool.this, "Make Sure You Fill All Required Filds", Toast.LENGTH_SHORT).show();
             }
         }
-
+/*
 
         if (v == Create_CarPool_pickup_relative || v == Create_CarPool_pickUp) {
 
@@ -715,6 +873,10 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                 }
             });
         }   // drop oof relative
+
+
+
+        */
 
         if (v == seat1_off && id == 1) {
             seat1_on.setVisibility(View.VISIBLE);
@@ -1191,6 +1353,12 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
             }
             return null;
         }
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+
     }
 
 

@@ -203,35 +203,26 @@
             android:name=".QuickSearchResults"
             android:label="@string/title_activity_quick_search_results"
             android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.nezarsaleh.shareknitest.HomePage" />
+
         </activity>
         <activity
             android:name=".DriverCreateCarPool"
             android:label="@string/title_activity_driver_create_car_pool"
             android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.nezarsaleh.shareknitest.SearchOptions" />
+
         </activity>
         <activity
             android:name=".QSearch"
             android:label="@string/title_activity_qsearch"
             android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.nezarsaleh.shareknitest.SearchOptions" />
+
         </activity>
         <activity
             android:name=".Advanced_Search"
             android:label="@string/title_activity_advanced__search"
-            android:parentActivityName=".SearchOptions"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.nezarsaleh.shareknitest.SearchOptions" />
+
         </activity>
 
         <!--

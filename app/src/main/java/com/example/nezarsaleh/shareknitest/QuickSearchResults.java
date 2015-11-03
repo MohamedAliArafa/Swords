@@ -1,7 +1,9 @@
 package com.example.nezarsaleh.shareknitest;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,8 +18,12 @@ import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,7 +50,7 @@ public class QuickSearchResults extends AppCompatActivity {
     int To_Em_Id;
     int To_Reg_Id;
     String To_EmirateEnName, From_EmirateEnName, To_RegionEnName, From_RegionEnName;
-
+    String check;
     TextView To_EmirateEnName_txt;
     TextView From_EmirateEnName_txt;
     TextView To_RegionEnName_txt;
@@ -55,8 +61,9 @@ public class QuickSearchResults extends AppCompatActivity {
     private Toolbar toolbar;
     String ID;
 
-    TextView to_txt_id,comma5;
-    String Str_To_EmirateEnName_txt,Str_To_RegionEnName_txt;
+    TextView to_txt_id, comma5;
+    String Str_To_EmirateEnName_txt, Str_To_RegionEnName_txt;
+    Activity acivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +78,9 @@ public class QuickSearchResults extends AppCompatActivity {
 
         initToolbar();
         Intent intent = getIntent();
+
+        acivity=this;
+
         From_Em_Id = intent.getIntExtra("From_Em_Id", 0);
         From_Reg_Id = intent.getIntExtra("From_Reg_Id", 0);
         To_Em_Id = intent.getIntExtra("To_Em_Id", 0);
@@ -96,7 +106,7 @@ public class QuickSearchResults extends AppCompatActivity {
         To_EmirateEnName_txt.setText(To_EmirateEnName);
         To_RegionEnName_txt.setText(To_RegionEnName);
 
-        if (To_EmirateEnName_txt.getText().toString().equals("")){
+        if (To_EmirateEnName_txt.getText().toString().equals("")) {
             comma5.setVisibility(View.INVISIBLE);
             to_txt_id.setVisibility(View.INVISIBLE);
         }
@@ -125,9 +135,40 @@ public class QuickSearchResults extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Object o) {
-            if (error){
+
+
+
+            try {
+
+                if (jArray.length()==0) {
+                    Toast.makeText(getBaseContext(), "Error", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+
+            }catch (NullPointerException e){
+
+                Toast.makeText(acivity, "No Routes Available ", Toast.LENGTH_SHORT).show();
+
+                final Dialog dialog = new Dialog(acivity);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.noroutesdialog);
+                Button btn = (Button) dialog.findViewById(R.id.noroute_id);
+                dialog.show();
+
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        acivity.finish();
+                    }
+                });
+            }
+
+
+            if (error) {
                 Toast.makeText(QuickSearchResults.this, "No Available Results", Toast.LENGTH_SHORT).show();
-            }else {
+
+            } else {
                 String days = "";
                 final List<QuickSearchDataModel> searchArray = new ArrayList<>();
                 QuickSearchResultAdapter adapter;
@@ -244,11 +285,11 @@ public class QuickSearchResults extends AppCompatActivity {
                                         mainIntent.putExtra("To_Em_Id", To_Em_Id);
                                         mainIntent.putExtra("To_Reg_Id", To_Reg_Id);
 
-                                        mainIntent.putExtra("To_EmirateEnName",To_EmirateEnName);
-                                        mainIntent.putExtra("From_EmirateEnName",From_EmirateEnName);
-                                        mainIntent.putExtra("To_RegionEnName",To_RegionEnName);
-                                        mainIntent.putExtra("From_RegionEnName",From_RegionEnName);
-                                        mainIntent.putExtra("Gender",Gender);
+                                        mainIntent.putExtra("To_EmirateEnName", To_EmirateEnName);
+                                        mainIntent.putExtra("From_EmirateEnName", From_EmirateEnName);
+                                        mainIntent.putExtra("To_RegionEnName", To_RegionEnName);
+                                        mainIntent.putExtra("From_RegionEnName", From_RegionEnName);
+                                        mainIntent.putExtra("Gender", Gender);
                                         startActivity(mainIntent);
                                     }
                                 })
@@ -264,20 +305,20 @@ public class QuickSearchResults extends AppCompatActivity {
             if (exists) {
                 if (ID.equals("0")) {
                     GetData j = new GetData();
-                    if (Gender!=' '){
+                    if (Gender != ' ') {
                         try {
                             jArray = j.Search(0, Gender, Time, From_Em_Id
                                     , From_Reg_Id, To_Em_Id, To_Reg_Id, pref_lnag, pref_nat
-                                    , Age_Ranged_id, StartDate, saveFind);
+                                    , Age_Ranged_id, StartDate, saveFind,acivity);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                    }else {
+                    } else {
 
                         try {
                             jArray = j.Search(0, gender, Time, From_Em_Id
                                     , From_Reg_Id, To_Em_Id, To_Reg_Id, pref_lnag, pref_nat
-                                    , Age_Ranged_id, StartDate, saveFind);
+                                    , Age_Ranged_id, StartDate, saveFind,acivity);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -287,7 +328,7 @@ public class QuickSearchResults extends AppCompatActivity {
                     try {
                         jArray = j.Search(Integer.parseInt(ID), gender, Time, From_Em_Id
                                 , From_Reg_Id, To_Em_Id, To_Reg_Id, pref_lnag, pref_nat
-                                , Age_Ranged_id, StartDate, saveFind);
+                                , Age_Ranged_id, StartDate, saveFind,acivity);
                     } catch (JSONException e) {
                         error = true;
                         e.printStackTrace();
@@ -301,29 +342,28 @@ public class QuickSearchResults extends AppCompatActivity {
 
 //done
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_quick_search_results, menu);
-//        return true;
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_quick_search_results, menu);
+        return true;
+    }
 
 
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
 
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -339,6 +379,14 @@ public class QuickSearchResults extends AppCompatActivity {
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+
     }
 
 

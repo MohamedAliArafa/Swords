@@ -659,9 +659,17 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
 
     protected void onPrepareDialog (int id, Dialog dialog)
     {
-        DatePickerDialog datePickerDialog = (DatePickerDialog) dialog;
-        // Get the current date
-        datePickerDialog.updateDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+        if (id==DILOG_ID) {
+            DatePickerDialog datePickerDialog = (DatePickerDialog) dialog;
+            // Get the current date
+            datePickerDialog.updateDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+        }else if (id==TIME_DIALOG_ID){
+
+            TimePickerDialog timePickerDialog = (TimePickerDialog) dialog;
+            timePickerDialog.updateTime(cal.get(Calendar.HOUR_OF_DAY),cal.get(Calendar.MINUTE) );
+
+        }
+
     }
 
     @Override
