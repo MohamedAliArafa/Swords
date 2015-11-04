@@ -61,7 +61,7 @@ import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Route extends AppCompatActivity implements OnMapReadyCallback {
+public class Route extends AppCompatActivity {
 
     TextView FromRegionEnName, ToRegionEnName, FromEmirateEnName, ToEmirateEnName, StartFromTime, EndToTime_, AgeRange, PreferredGender, IsSmoking, ride_details_day_of_week, NationalityEnName, PrefLanguageEnName;
     String str_StartFromTime, str_EndToTime_, Smokers_str;
@@ -84,6 +84,7 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
     String Route_name;
     Button Route_Delete_Btn, Route_Edit_Btn;
     Button Route_permit_Btn;
+    String Gender_ste;
 
     int Vehicle_Id_Permit;
     GetData j = new GetData();
@@ -154,8 +155,7 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
 
         new loadingBasicInfo().execute();
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map_ride_details);
-        mapFragment.getMapAsync(this);
+
 
 //        GetData j = new GetData();
 //        j.GetPassengersByRouteIdForm(Route_ID, ride_details_passengers, this);
@@ -190,7 +190,7 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
 
     }  // on create
 
-    private class loadingBasicInfo extends AsyncTask {
+    private class loadingBasicInfo extends AsyncTask  implements OnMapReadyCallback {
         JSONObject json;
         Exception exception;
         boolean exists = false;
@@ -214,6 +214,8 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
 
         @Override
         protected void onPostExecute(Object o) {
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map_ride_details);
+            mapFragment.getMapAsync(this);
             if (exists) {
                 if (exception == null) {
                     try {
@@ -236,7 +238,23 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
                         }
                         PrefLanguageEnName.setText(json.getString("PrefLanguageEnName"));
                         AgeRange.setText(json.getString("AgeRange"));
-                        PreferredGender.setText(json.getString("PreferredGender"));
+
+
+                        Gender_ste = "";
+                        Gender_ste = json.getString("PreferredGender");
+                        switch (Gender_ste) {
+                            case "M":
+                                Gender_ste = "Male";
+                                break;
+                            case "F":
+                                Gender_ste = "Female";
+                                break;
+                            default:
+                                Gender_ste = "Not Set";
+                                break;
+                        }
+                        PreferredGender.setText(Gender_ste);
+
                         Smokers_str = "";
                         //Done
                         Smokers_str = json.getString("IsSmoking");
@@ -369,6 +387,40 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
                 }
             }
             return null;
+        }
+
+        @Override
+        public void onMapReady(GoogleMap googleMap) {
+
+            mMap = googleMap;
+
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
+                    (new LatLng(StartLat, EndLng), 8.1f));
+            mMap.getUiSettings().setMapToolbarEnabled(false);
+            mMap.getUiSettings().setZoomControlsEnabled(true);
+            mMap.getUiSettings().setZoomGesturesEnabled(true);
+
+            // Instantiates a new Polyline object and adds points to define a rectangle
+            PolylineOptions rectOptions = new PolylineOptions()
+                    .add(new LatLng(StartLat, StartLng))
+                    .add(new LatLng(EndLat, EndLng))
+                    .color(R.color.primaryColor)
+                    .width(6);  // North of the previous point, but at the same longitude
+            // Closes the polyline.
+
+
+// Get back the mutable Polyline
+            Polyline polyline = mMap.addPolyline(rectOptions);
+
+            final Marker markerZero = mMap.addMarker(new MarkerOptions().
+                    position(new LatLng(StartLat, StartLng))
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor)));
+
+            final Marker markerZero2 = mMap.addMarker(new MarkerOptions().
+                    position(new LatLng(EndLat, EndLng))
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor)));
+
+
         }
     }
 
@@ -540,39 +592,7 @@ public class Route extends AppCompatActivity implements OnMapReadyCallback {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
 
-        mMap = googleMap;
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
-                (new LatLng(StartLat, EndLng), 8.1f));
-        mMap.getUiSettings().setMapToolbarEnabled(false);
-        mMap.getUiSettings().setZoomControlsEnabled(true);
-        mMap.getUiSettings().setZoomGesturesEnabled(true);
-
-        // Instantiates a new Polyline object and adds points to define a rectangle
-        PolylineOptions rectOptions = new PolylineOptions()
-                .add(new LatLng(StartLat, StartLng))
-                .add(new LatLng(EndLat, EndLng))
-                .color(R.color.primaryColor)
-                .width(6);  // North of the previous point, but at the same longitude
-        // Closes the polyline.
-
-
-// Get back the mutable Polyline
-        Polyline polyline = mMap.addPolyline(rectOptions);
-
-        final Marker markerZero = mMap.addMarker(new MarkerOptions().
-                position(new LatLng(StartLat, StartLng))
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor)));
-
-        final Marker markerZero2 = mMap.addMarker(new MarkerOptions().
-                position(new LatLng(EndLat, EndLng))
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor)));
-
-
-    }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void initToolbar() {
