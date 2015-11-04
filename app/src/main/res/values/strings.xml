@@ -112,6 +112,31 @@
     <string name="reg_terms">Terms and Conditions.</string>
     <string name="reg_policy">Privacy Policy.</string>
     <string name="loading">Loading</string>
+    <string name="login_email_hint">example@gmail.com</string>
+    <string name="login_pass_hint">Password</string>
+    <string name="login_check_user_pass">Check ur Username and Password</string>
+    <string name="login_wrong_user_pass">Wrong Username Or Password</string>
+    <string name="login_network_error">Network Error !</string>
+    <string name="nat_name">NationalityEnName</string>
+    <string name="lang_name">LanguageEnName</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="choose_from_library">Choose from Library</string>
+    <string name="cancel">Cancel</string>
+    <string name="add_photo">Add Photo!</string>
+    <string name="select_file">Select File</string>
+    <string name="unknown_country">unknown Country ( Choose From The List )</string>
+    <string name="unknown_language">unknown Language ( Choose From The List )</string>
+    <string name="short_pass">Password must be more than 4 Character</string>
+    <string name="short_mobile">So Short For Mobile Number</string>
+    <string name="select_image_first_error">Select Profile Image!!</string>
+    <string name="select_type_first_error">please Choose a user Type</string>
+    <string name="connection_problem">Connection Problem!</string>
+    <string name="con_problem_message">Make sure you have internet connection</string>
+    <string name="retry">Retry</string>
+    <string name="exit">Exit!</string>
+    <string name="goBack">Go Back</string>
+    <string name="reg_now">Register Now |</string>
+    <string name="forget_pass">Forget Password?</string>
 
 
 </resources>

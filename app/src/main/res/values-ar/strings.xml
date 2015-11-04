@@ -4,7 +4,7 @@
     <string name="title_activity_main">Sharekni2</string>
 
     <string name="hello_world">مرحبا!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">الإعدادات</string>
     <string name="next">التالى</string>
     <string name="title_activity_sub_navigate">HelloAppbar</string>
     <string name="drawer_open">فتح</string>
@@ -25,23 +25,23 @@
     <string name="title_activity_On_Boarding">OnBoarding</string>
     <string name="title_activity_view_profile">ViewProfileActivity</string>
     <string name="txt_yo_yo">yo yo</string>
-    <string name="from_text_top_ride">From :</string>
-    <string name="to_text_top_ride">To   :</string>
+    <string name="from_text_top_ride">من :</string>
+    <string name="to_text_top_ride">إلى   :</string>
     <string name="city_from_txt">City Name</string>
     <string name="city_to_txt">City Name2</string>
     <string name="Distreict_name_txt">District Name</string>
     <string name="district_name_2">District Name 2</string>
     <string name="txt_arabic">عربي</string>
     <string name="fragment_one_login_txt">تسجيل الدخول</string>
-    <string name="txt_best_drivers">Best Drivers</string>
-    <string name="txt_top_rides">Most Rides</string>
+    <string name="txt_best_drivers">أفضل السائقين</string>
+    <string name="txt_top_rides">أكثر الرحلات</string>
     <string name="txt_about_us">About Us</string>
     <string name="title_activity_home_page_test">HomePageTest</string>
     <string name="title_activity_login_approved">LoginApproved</string>
     <string name="title_activity_search_options">SearchOptions</string>
-    <string name="title_activity_register_approved">Register</string>
+    <string name="title_activity_register_approved">التسجيل</string>
     <string name="title_activity_route_teset">RouteTesetActiv</string>
-    <string name="title_activity_register_new_test">User Registration</string>
+    <string name="title_activity_register_new_test">تسجيل مستخدم جديد</string>
     <string name="title_activity_my_profile_tet">MyProfileTet</string>
     <string name="title_activity_top_rides_after_login">TopRidesAfterLogin</string>
     <string name="title_activity_top_drivers_after_login">TopDriversAfterLogin</string>
@@ -67,7 +67,7 @@
     <string name="title_activity_history">History</string>
     <string name="title_activity_take_atour">TakeATour</string>
 
-    <string name="navy_Home_Page_txt">Home Page</string>
+    <string name="navy_Home_Page_txt">الصفحة الرئيسية</string>
     <string name="navy_Most_Rides_str">أكثر الرحلات</string>
     <string name="navy_Best_Drivers_str">أفضل السائقين</string>
     <string name="navy_Search_Options_str">بحث</string>
@@ -85,12 +85,12 @@
     <string name="Reg_Nat">الجنسية</string>
     <string name="Reg_PrefLang">اللغة المفضلة</string>
     <string name="title_activity_pick_up">PickUpActivity</string>
-    <string name="title_activity_terms_and_cond">TermsAndCond</string>
+    <string name="title_activity_terms_and_cond">الشروط و الأحكام</string>
 
 
     <string name="title_activity_register_vehicle">RegisterVehicle</string>
     <string name="Register_Vehicle_Driving_License_No">Traffic File No.</string>
-    <string name="Select_Emirate_txt">Select Emirate</string>
+    <string name="Select_Emirate_txt">إختر الإمارة</string>
     <string name="Ok_txt">Ok</string>
     <string name="Register_Vehicle_Trraffic_Number_Border_Title_">Register Vehicles</string>
     <string name="Pick_Emirate_arrow_content_Desc">pick emirate arrow image</string>
@@ -111,7 +111,32 @@
     <string name="reg_save">تسجيل</string>
     <string name="reg_terms">الشروط و الأحكام.</string>
     <string name="reg_policy">سياسة الخصوصية.</string>
-    <string name="loading">Loading</string>
+    <string name="loading">جاري التحميل</string>
+    <string name="login_email_hint">البريد الإلكترونى</string>
+    <string name="login_pass_hint">كلمة المرور</string>
+    <string name="login_check_user_pass">تأكد من إسم المستخدم و كلمة المرور</string>
+    <string name="login_wrong_user_pass">خطأ في إسم المستخدم او كلمة المرور</string>
+    <string name="login_network_error">خطأ فى الشبكة!</string>
+    <string name="nat_name">NationalityArName</string>
+    <string name="lang_name">LanguageArName</string>
+    <string name="take_photo">إلتقط صورة</string>
+    <string name="choose_from_library">إختر من المكتبة</string>
+    <string name="cancel">إلغاء</string>
+    <string name="add_photo">إضافة صورة!</string>
+    <string name="unknown_country">بلد غير معروف (فضلا إختر من القائمة)</string>
+    <string name="unknown_language">لغة غير معروفه (فضلا إختر من القائمة)</string>
+    <string name="short_pass">كلمة المرور يجب ان تكون اكثر من 4 احرف</string>
+    <string name="short_mobile">رقم الهاتف قصير</string>
+    <string name="select_image_first_error">إحتر صورة شخصية اولا</string>
+    <string name="select_type_first_error">أختر نوع الحساب اولا</string>
+    <string name="connection_problem">خطأ بالإتصال!</string>
+    <string name="con_problem_message">تأكد من وجود إتصال بالإنترنت</string>
+    <string name="retry">اعد المحاولة</string>
+    <string name="select_file">إختر ملف</string>
+    <string name="goBack">عودة للخلف</string>
+    <string name="reg_now">سجل الأن |</string>
+    <string name="forget_pass">نسيت كلمة المرور؟</string>
+    <string name="exit">خروج!</string>
 
 
 </resources>

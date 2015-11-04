@@ -81,8 +81,8 @@ public class LoginApproved extends AppCompatActivity {
         loginBtn = (Button) findViewById(R.id.btn_login);
         txt_forgetpass = (TextView) findViewById(R.id.login_forgertpass);
         txt_noaccountsignup = (TextView) findViewById(R.id.login_NoAccountsignup);
-        username.setHint("example@gmail.com");
-        password.setHint("Password");
+        username.setHint(R.string.Reg_Email);
+        password.setHint(R.string.login_pass_hint);
 
         username.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,7 +134,7 @@ public class LoginApproved extends AppCompatActivity {
                 pass = password.getText().toString();
 
                 if (user == null || pass.length() <= 4) {
-                    Toast.makeText(getBaseContext(), "Check ur Username and Password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), R.string.login_check_user_pass, Toast.LENGTH_SHORT).show();
                 } else {
                     new loginProcces().execute();
                 }
@@ -159,7 +159,7 @@ public class LoginApproved extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             pDialog = new ProgressDialog(LoginApproved.this);
-            pDialog.setMessage("Loading" + "...");
+            pDialog.setMessage(getString(R.string.loading) + "...");
 //            pDialog.setCancelable(false);
 //            pDialog.setCanceledOnTouchOutside(false);
             LoginApproved.pDialog.show();
@@ -180,9 +180,9 @@ public class LoginApproved extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     public void run() {
                         new AlertDialog.Builder(LoginApproved.this)
-                                .setTitle("Connection Problem!")
-                                .setMessage("Make sure you have internet connection")
-                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                .setTitle(R.string.connection_problem)
+                                .setMessage(R.string.con_problem_message)
+                                .setPositiveButton(R.string.retry, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intentToBeNewRoot = new Intent(LoginApproved.this, LoginApproved.class);
                                         ComponentName cn = intentToBeNewRoot.getComponent();
@@ -190,7 +190,7 @@ public class LoginApproved extends AppCompatActivity {
                                         startActivity(mainIntent);
                                     }
                                 })
-                                .setNegativeButton("Go Back", new DialogInterface.OnClickListener() {
+                                .setNegativeButton(R.string.goBack, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intentToBeNewRoot = new Intent(LoginApproved.this, OnboardingActivity.class);
                                         ComponentName cn = intentToBeNewRoot.getComponent();
@@ -198,7 +198,7 @@ public class LoginApproved extends AppCompatActivity {
                                         startActivity(mainIntent);
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(LoginApproved.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginApproved.this,R.string.connection_problem, Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -229,7 +229,7 @@ public class LoginApproved extends AppCompatActivity {
                                         item.setID(json.getInt("ID"));
                                         item.setName(json.getString("FirstName"));
                                         item.setPhotoURL(json.getString("PhotoPath"));
-                                        item.setNationality(json.getString("NationalityEnName"));
+                                        item.setNationality(json.getString(getString(R.string.nat_name)));
                                         item.setRating(json.getInt("PrefferedLanguage"));
                                         Intent in = new Intent(getBaseContext(), HomePage.class);
                                         in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -239,12 +239,12 @@ public class LoginApproved extends AppCompatActivity {
                                         e.printStackTrace();
                                     }
                                 } catch (StringIndexOutOfBoundsException e) {
-                                    Toast.makeText(getBaseContext(), "Wrong Username Or Password", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getBaseContext(), R.string.login_wrong_user_pass, Toast.LENGTH_SHORT).show();
                                     LoginApproved.pDialog.dismiss();
                                     e.printStackTrace();
                                 } catch (JSONException e) {
                                     e.printStackTrace();
-                                    Toast.makeText(getBaseContext(), "Wrong Username Or Passsword", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getBaseContext(), R.string.login_wrong_user_pass, Toast.LENGTH_SHORT).show();
                                     LoginApproved.pDialog.dismiss();
 
 
@@ -258,7 +258,7 @@ public class LoginApproved extends AppCompatActivity {
                             LoginApproved.pDialog.dismiss();
                             LoginApproved.pDialog = null;
                         }
-                        Toast.makeText(getBaseContext(), "Network Error !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), R.string.login_network_error, Toast.LENGTH_SHORT).show();
                         Log.d("Error Json : ", error.toString());
                     }
                 });
@@ -303,7 +303,7 @@ public class LoginApproved extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Login");
+        textView.setText(R.string.btn_login_text);
 //        toolbar.setElevation(10);
 
         setSupportActionBar(toolbar);

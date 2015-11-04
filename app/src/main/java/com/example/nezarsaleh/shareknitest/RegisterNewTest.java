@@ -141,7 +141,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
             month_x = monthOfYear + 1;
             day_x = dayOfMonth;
             txt_beforeCal.setVisibility(View.INVISIBLE);
-            SimpleDateFormat simpledateformat = new SimpleDateFormat("EEEE", Locale.ENGLISH);
+            SimpleDateFormat simpledateformat = new SimpleDateFormat("EEEE");
             Calendar cal = Calendar.getInstance();
             cal.set(Calendar.YEAR, year_x);
             cal.set(Calendar.MONTH, month_x);
@@ -255,20 +255,20 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         btn_upload_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final CharSequence[] items = {"Take Photo", "Choose from Library", "Cancel"};
+                final CharSequence[] items = {getString(R.string.take_photo), getString(R.string.choose_from_library), getString(R.string.cancel)};
                 android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(RegisterNewTest.this);
-                builder.setTitle("Add Photo!");
+                builder.setTitle(getString(R.string.add_photo));
                 builder.setItems(items, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int item) {
-                        if (items[item].equals("Take Photo")) {
+                        if (items[item].equals(getString(R.string.take_photo))) {
                             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                             startActivityForResult(intent, 0);
-                        } else if (items[item].equals("Choose from Library")) {
+                        } else if (items[item].equals(getString(R.string.choose_from_library))) {
                             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                             intent.setType("image/*");
-                            startActivityForResult(Intent.createChooser(intent, "Select File"), 1337);
-                        } else if (items[item].equals("Cancel")) {
+                            startActivityForResult(Intent.createChooser(intent, getString(R.string.select_file)), 1337);
+                        } else if (items[item].equals(getString(R.string.cancel))) {
                             dialog.dismiss();
                         }
                     }
@@ -291,7 +291,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                         }
                     }
                     if (!result) {
-                        Toast.makeText(RegisterNewTest.this, "unknown Country ( Choose From The List )", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterNewTest.this, R.string.unknown_country, Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -313,11 +313,11 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                             }
                         }
                         if (!result) {
-                            Toast.makeText(RegisterNewTest.this, "unknown Language ( Choose From The List )", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterNewTest.this, R.string.unknown_language, Toast.LENGTH_SHORT).show();
                         }
                     }
                 } catch (NullPointerException e) {
-                    Toast.makeText(RegisterNewTest.this, "unknown Language ( Choose From The List )", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterNewTest.this, R.string.unknown_language, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -327,7 +327,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                 if (!hasFocus) {
                     if (edit_pass != null) {
                         if (edit_pass.length() <= 4) {
-                            Toast.makeText(RegisterNewTest.this, "Password must be more than 4 Character", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterNewTest.this, R.string.short_pass, Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -339,7 +339,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                 if (!hasFocus) {
                     if (edit_phone != null) {
                         if (edit_phone.length() == 7) {
-                            Toast.makeText(RegisterNewTest.this, "So Short For Mobile Number", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterNewTest.this, R.string.short_mobile, Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -370,7 +370,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
             public void onClick(View v) {
                 if (edit_fname.getText() != null && edit_fname.getText().toString() != "First Name" && edit_lname.getText() != null && edit_lname.getText().toString() != "Last Name" && edit_phone.getText() != null && edit_phone.getText().toString() != "Mobile Number" && edit_pass.getText() != null && edit_pass.getText().toString() != "Password" && edit_user.getText() != null && edit_user.getText().toString() != "User Name (Your Email)" && txt_country.getText() != null && txt_country.getText().toString() != "Nationality" && txt_lang.getText() != null && txt_lang.getText().toString() != "Preferred Language" && full_date != null) {
                     if (uploadedImage == null) {
-                        Toast.makeText(RegisterNewTest.this, "Select Profile Image!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterNewTest.this, R.string.select_image_first_error, Toast.LENGTH_SHORT).show();
                     } else {
                         String Fname = edit_fname.getText().toString();
                         String Lname = edit_lname.getText().toString();
@@ -391,7 +391,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                                 Log.d("Registration :", GetData.DOMAIN + "RegisterPassenger?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + user + "&password=" + pass + "&gender=" + gender + "&BirthDate=" + birthdate + "&NationalityId=" + y + "&PreferredLanguageId=" + x + "&photoName=" + uploadedImage);
                                 break;
                             case "1":
-                                Toast.makeText(RegisterNewTest.this, "please Choose a user Type", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterNewTest.this, R.string.select_type_first_error, Toast.LENGTH_SHORT).show();
 
                                 break;
                             case "Driver":
@@ -840,9 +840,9 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                 runOnUiThread(new Runnable() {
                     public void run() {
                         new AlertDialog.Builder(RegisterNewTest.this)
-                                .setTitle("Connection Problem!")
-                                .setMessage("Make sure you have internet connection")
-                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                .setTitle(R.string.connection_problem)
+                                .setMessage(R.string.con_problem_message)
+                                .setPositiveButton(R.string.retry, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intentToBeNewRoot = new Intent(RegisterNewTest.this, RegisterNewTest.class);
                                         ComponentName cn = intentToBeNewRoot.getComponent();
@@ -850,7 +850,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                                         startActivity(mainIntent);
                                     }
                                 })
-                                .setNegativeButton("Go Back", new DialogInterface.OnClickListener() {
+                                .setNegativeButton(R.string.goBack, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intentToBeNewRoot = new Intent(RegisterNewTest.this, OnboardingActivity.class);
                                         ComponentName cn = intentToBeNewRoot.getComponent();
@@ -858,7 +858,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                                         startActivity(mainIntent);
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(RegisterNewTest.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterNewTest.this, R.string.connection_problem, Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -869,7 +869,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                         TreeMap<String, String> valuePairs = new TreeMap<>();
                         JSONObject jsonObject = j.getJSONObject(i);
                         valuePairs.put("LanguageId", jsonObject.getString("LanguageId"));
-                        valuePairs.put("LanguageEnName", jsonObject.getString("LanguageEnName"));
+                        valuePairs.put("LanguageEnName", jsonObject.getString(getString(R.string.lang_name)));
                         Lang_List.add(valuePairs);
                     }
                     Log.d("Language :", Lang_List.toString());
@@ -917,9 +917,9 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                 runOnUiThread(new Runnable() {
                     public void run() {
                         new AlertDialog.Builder(RegisterNewTest.this)
-                                .setTitle("Connection Problem!")
-                                .setMessage("Make sure you have internet connection")
-                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                .setTitle(R.string.connection_problem)
+                                .setMessage(R.string.con_problem_message)
+                                .setPositiveButton(R.string.retry, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intentToBeNewRoot = new Intent(RegisterNewTest.this, RegisterNewTest.class);
                                         ComponentName cn = intentToBeNewRoot.getComponent();
@@ -927,12 +927,12 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                                         startActivity(mainIntent);
                                     }
                                 })
-                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                .setNegativeButton(R.string.exit, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(RegisterNewTest.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterNewTest.this, R.string.connection_problem, Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -943,7 +943,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                         TreeMap<String, String> valuePairs = new TreeMap<>();
                         JSONObject jsonObject = j.getJSONObject(i);
                         valuePairs.put("ID", jsonObject.getString("ID"));
-                        valuePairs.put("NationalityEnName", jsonObject.getString("NationalityEnName"));
+                        valuePairs.put("NationalityEnName", jsonObject.getString(getString(R.string.nat_name)));
                         Country_List.add(valuePairs);
                     }
                     Log.d("Nat :", Country_List.toString());
@@ -964,7 +964,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Registration");
+        textView.setText(R.string.Reg_appBar_name);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
