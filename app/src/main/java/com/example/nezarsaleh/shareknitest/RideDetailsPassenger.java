@@ -266,7 +266,7 @@ public class RideDetailsPassenger extends AppCompatActivity   {
                         Log.d("time to", str_EndToTime_);
                         EndToTime_.setText(str_EndToTime_);
                     }
-                    Nat_txt = (json.getString(getString(R.string.nat_name)));
+                    Nat_txt = (json.getString(getString(R.string.nat_name2)));
                     if (Nat_txt.equals("null")) {
                         Nat_txt = getString(R.string.not_set);
                         NationalityEnName.setText(Nat_txt);
