@@ -99,7 +99,7 @@
     <string name="register_vehicle_verify_border_title">تأكيد</string>
     <string name="btn_verify_txt">تأكيد</string>
     <string name="verify_Unified_ID">Unified ID</string>
-    <string name="verify_passport_number_txt">Please enter the passport number</string>
+    <string name="verify_passport_number_txt">من فضلك ادخل رقم جواز السفر</string>
     <string name="mobile_number_const">+ 971 -</string>
     <string name="onboard_most_rides">أكثر الرحلات</string>
     <string name="onboard_best_drivers">افضل السائقين</string>
@@ -117,7 +117,7 @@
     <string name="login_check_user_pass">تأكد من إسم المستخدم و كلمة المرور</string>
     <string name="login_wrong_user_pass">خطأ في إسم المستخدم او كلمة المرور</string>
     <string name="login_network_error">خطأ فى الشبكة!</string>
-    <string name="nat_name">NationalityArName</string>
+    <string name="nat_name">NationlityArName</string>
     <string name="lang_name">LanguageArName</string>
     <string name="take_photo">إلتقط صورة</string>
     <string name="choose_from_library">إختر من المكتبة</string>
@@ -164,7 +164,7 @@
     <string name="choose_age">إختر الفئة العمرية</string>
     <string name="from_reg_name_en">FromRegionNameAr</string>
     <string name="from_em_name_en">FromEmirateNameAr</string>
-    <string name="to_em_name_en">ToEmirateArName</string>
+    <string name="to_em_name_en">ToEmirateNameAr</string>
     <string name="drivers">السائقين</string>
     <string name="email_valid_form">من فضلك ادخل بريد إلكترونى صحيح</string>
     <string name="ride_details">تفاصيل الرحلة</string>

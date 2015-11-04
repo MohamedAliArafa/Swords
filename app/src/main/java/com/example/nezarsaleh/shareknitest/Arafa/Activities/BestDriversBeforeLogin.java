@@ -157,7 +157,7 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
                         driver.setID(obj.getInt("AccountId"));
                         driver.setName(obj.getString("AccountName"));
                         driver.setPhotoURL(obj.getString("AccountPhoto"));
-                        driver.setNationality(obj.getString(getString(R.string.nat_name)));
+                        driver.setNationality(obj.getString(getString(R.string.nat_name2)));
                         driver.setRating(obj.getInt("Rating"));
                         driver.setPhoneNumber(obj.getString("AccountMobile"));
                         arr.add(driver);

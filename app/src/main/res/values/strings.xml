@@ -117,7 +117,8 @@
     <string name="login_check_user_pass">Check ur Username and Password</string>
     <string name="login_wrong_user_pass">Wrong Username Or Password</string>
     <string name="login_network_error">Network Error !</string>
-    <string name="nat_name">NationalityEnName</string>
+    <string name="nat_name">NationlityEnName</string>
+    <string name="nat_name2">NationalityEnName</string>
     <string name="lang_name">LanguageEnName</string>
     <string name="take_photo">Take Photo</string>
     <string name="choose_from_library">Choose from Library</string>
