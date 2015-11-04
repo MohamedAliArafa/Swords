@@ -534,6 +534,7 @@ public class GetData {
     }
 
     public JSONArray GetVehiclesForCreateCarPool(int id) throws JSONException {
+
         JSONArray json;
         HandleXML obj = new HandleXML(GetVehiclesUrl+id);
         obj.fetchXML();
