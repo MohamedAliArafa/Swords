@@ -317,10 +317,10 @@ public class Profile extends AppCompatActivity {
                         BestRouteDataModel item = new BestRouteDataModel(Parcel.obtain());
                         days = "";
                         item.setID(json.getInt("ID"));
-                        item.setFromEm(json.getString("FromEmirateEnName"));
-                        item.setFromReg(json.getString("FromRegionEnName"));
-                        item.setToEm(json.getString("ToEmirateEnName"));
-                        item.setToReg(json.getString("ToRegionEnName"));
+                        item.setFromEm(json.getString(getString(R.string.from_em_en_name)));
+                        item.setFromReg(json.getString(getString(R.string.from_reg_en_name)));
+                        item.setToEm(json.getString(getString(R.string.to_em_en_name)));
+                        item.setToReg(json.getString(getString(R.string.to_reg_en_name)));
                         item.setRouteName(json.getString(getString(R.string.route_name)));
                         if (json.getString("Saturday").equals("true")) {
                             days += getString(R.string.sat);
@@ -351,10 +351,10 @@ public class Profile extends AppCompatActivity {
                         days = "";
                         driver[i] = item;
                         Log.d("ID", String.valueOf(json.getInt("ID")));
-                        Log.d("FromEmlv", json.getString(getString(R.string.from_em_name)));
-                        Log.d("FromReglv", json.getString(getString(R.string.from_reg_name)));
-                        Log.d("TomEmlv", json.getString(getString(R.string.to_em_name)));
-                        Log.d("ToReglv", json.getString(getString(R.string.to_reg_name)));
+//                        Log.d("FromEmlv", json.getString(getString(R.string.from_em_name)));
+//                        Log.d("FromReglv", json.getString(getString(R.string.from_reg_name)));
+//                        Log.d("TomEmlv", json.getString(getString(R.string.to_em_name)));
+//                        Log.d("ToReglv", json.getString(getString(R.string.to_reg_name)));
 
                     } catch (JSONException e) {
                         e.printStackTrace();

@@ -155,10 +155,10 @@
     <string name="enter_region">Enter Region</string>
     <string name="em_name">EmirateEnName</string>
     <string name="reg_name">RegionEnName</string>
-    <string name="from_em_name">FromEmirateNameEn</string>
-    <string name="from_reg_name">FromRegionNameEn</string>
-    <string name="to_em_name">ToEmirateNameEn</string>
-    <string name="to_reg_name">ToRegionNameEn</string>
+    <string name="from_em_name_en">FromEmirateNameEn</string>
+    <string name="from_reg_name_en">FromRegionNameEn</string>
+    <string name="to_em_name_en">ToEmirateNameEn</string>
+    <string name="to_reg_name_en">ToRegionNameEn</string>
     <string name="single">Single</string>
     <string name="periodic">Periodic</string>
     <string name="optional">(Optional)</string>
@@ -201,6 +201,11 @@
     <string name="already_sent_request">You already sent request</string>
     <string name="req_sent_succ">Request had been sent Successfully , Wait for driver Approval.</string>
     <string name="acc_nat_name">AccountNationalityEn</string>
+    <string name="from_reg_en_name">FromRegionEnName</string>
+    <string name="to_reg_en_name">ToRegionEnName</string>
+    <string name="from_em_en_name">FromEmirateEnName</string>
+    <string name="to_em_en_name">ToEmirateEnName</string>
+    <string name="fto_reg_en_name">ToRegionEnName</string>
 
 
 </resources>

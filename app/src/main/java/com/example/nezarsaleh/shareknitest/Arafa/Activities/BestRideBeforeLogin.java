@@ -160,10 +160,10 @@ public class BestRideBeforeLogin extends AppCompatActivity {
                     try {
                         JSONObject json = response.getJSONObject(i);
                         final BestRouteDataModel item = new BestRouteDataModel(Parcel.obtain());
-                        item.setFromEm(json.getString(getString(R.string.from_em_name)));
-                        item.setFromReg(json.getString(getString(R.string.from_reg_name)));
-                        item.setToEm(json.getString(getString(R.string.to_em_name)));
-                        item.setToReg(json.getString(getString(R.string.to_reg_name)));
+                        item.setFromEm(json.getString(getString(R.string.from_em_name_en)));
+                        item.setFromReg(json.getString(getString(R.string.from_reg_name_en)));
+                        item.setToEm(json.getString(getString(R.string.to_em_name_en)));
+                        item.setToReg(json.getString(getString(R.string.to_reg_name_en)));
                         item.setFromEmId(json.getInt("FromEmirateId"));
                         item.setFromRegid(json.getInt("FromRegionId"));
                         item.setToEmId(json.getInt("ToEmirateId"));

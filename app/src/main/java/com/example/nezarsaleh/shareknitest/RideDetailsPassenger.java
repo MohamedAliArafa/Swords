@@ -245,10 +245,10 @@ public class RideDetailsPassenger extends AppCompatActivity   {
             if (exists) {
                 try {
                     days = "";
-                    FromRegionEnName.setText(json.getString(getString(R.string.from_reg_name)));
-                    ToRegionEnName.setText(json.getString(getString(R.string.to_reg_name)));
-                    FromEmirateEnName.setText(json.getString(getString(R.string.from_em_name)));
-                    ToEmirateEnName.setText(json.getString(getString(R.string.to_em_name)));
+                    FromRegionEnName.setText(json.getString(getString(R.string.from_reg_en_name)));
+                    ToRegionEnName.setText(json.getString(getString(R.string.fto_reg_en_name)));
+                    FromEmirateEnName.setText(json.getString(getString(R.string.from_em_en_name)));
+                    ToEmirateEnName.setText(json.getString(getString(R.string.to_em_en_name)));
                     str_StartFromTime = json.getString("StartFromTime");
                     if (str_StartFromTime.equals("null")){
                         str_StartFromTime=getString(R.string.not_set);

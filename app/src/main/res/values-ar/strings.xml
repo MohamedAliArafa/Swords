@@ -155,16 +155,16 @@
     <string name="enter_region">إدخل إسم المقاطعة</string>
     <string name="em_name">EmirateArName</string>
     <string name="reg_name">RegionArName</string>
-    <string name="to_reg_name">ToRegionNameAr</string>
+    <string name="to_reg_name_en">ToRegionNameAr</string>
     <string name="single">مرة واحدة</string>
     <string name="periodic">متكرره</string>
     <string name="optional">(إختياري)</string>
     <string name="pref_nat">الجنسية المفضلة</string>
     <string name="choose_lang">إختر اللغة المفضلة</string>
     <string name="choose_age">إختر الفئة العمرية</string>
-    <string name="from_reg_name">FromRegionNameAr</string>
-    <string name="from_em_name">FromEmirateNameAr</string>
-    <string name="to_em_name">ToEmirateNameAr</string>
+    <string name="from_reg_name_en">FromRegionNameAr</string>
+    <string name="from_em_name_en">FromEmirateNameAr</string>
+    <string name="to_em_name_en">ToEmirateArName</string>
     <string name="drivers">السائقين</string>
     <string name="email_valid_form">من فضلك ادخل بريد إلكترونى صحيح</string>
     <string name="ride_details">تفاصيل الرحلة</string>
@@ -176,7 +176,7 @@
     <string name="wed">, الأربعاء</string>
     <string name="thu">, الخميس</string>
     <string name="fri">", الجمعة "</string>
-    <string name="driver_details">Driver Details</string>
+    <string name="driver_details">تفاصيل السائق</string>
     <string name="route_name">RouteArName</string>
     <string name="time">الوقت</string>
     <string name="ride_days">ايام الرحلة</string>
@@ -201,6 +201,11 @@
     <string name="already_sent_request">لقد أرسلت طلب بالفعل</string>
     <string name="req_sent_succ">تم إرسال الطلب بنجاح و انتظر موافقة السائق</string>
     <string name="acc_nat_name">AccountNationalityAr</string>
+    <string name="from_reg_en_name">FromRegionArName</string>
+    <string name="from_em_en_name">FromEmirateArName</string>
+    <string name="to_em_en_name">ToEmirateEnName</string>
+    <string name="fto_reg_en_name">ToRegionArName</string>
+    <string name="to_reg_en_name">ToRegionArName</string>
 
 
 </resources>
