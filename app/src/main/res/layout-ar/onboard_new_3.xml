@@ -130,7 +130,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_toEndOf="@+id/splash_top_rides_im"
                 android:layout_toRightOf="@+id/splash_top_rides_im"
-                android:text="Most zz"
+                android:text="Most Rides"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
