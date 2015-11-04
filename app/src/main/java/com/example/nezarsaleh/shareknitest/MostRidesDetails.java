@@ -128,7 +128,7 @@ public class MostRidesDetails extends AppCompatActivity {
                         item.setToEmId(json.getInt("ToEmirateId"));
                         item.setToRegId(json.getInt("ToRegionId"));
                         item.setDriverName(json.getString("DriverName"));
-                        item.setNationality_en(json.getString("NationlityEnName"));
+                        item.setNationality_en(json.getString(getString(R.string.nat_name)));
                         item.setSDG_Route_Start_FromTime(json.getString("StartTime"));
                         item.setDriverMobile(json.getString("StartTime"));
                         item.setDriverId(json.getInt("AccountId"));
@@ -137,28 +137,28 @@ public class MostRidesDetails extends AppCompatActivity {
                         days = "";
 
                         if (json.getString("Saturday").equals("true")) {
-                            days += ", Sat";
+                            days += getString(R.string.sat);
                         }
                         if (json.getString("Sunday").equals("true")) {
-                            days += ", Sun";
+                            days += getString(R.string.sun);
 
                         }
                         if (json.getString("Monday").equals("true")) {
-                            days += ", Mon";
+                            days += getString(R.string.mon);
 
                         }
                         if (json.getString("Tuesday").equals("true")) {
-                            days += ", Tue";
+                            days += getString(R.string.tue);
                         }
                         if (json.getString("Wendenday").equals("true")) {
-                            days += ", Wed";
+                            days += getString(R.string.wed);
                         }
                         if (json.getString("Thrursday").equals("true")) {
-                            days += ", Thu";
+                            days += getString(R.string.thu);
 
                         }
                         if (json.getString("Friday").equals("true")) {
-                            days += ", Fri ";
+                            days += getString(R.string.fri);
                         }
                         if (!days.equals("")){
                             item.setSDG_RouteDays(days.substring(1));
@@ -204,9 +204,9 @@ public class MostRidesDetails extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     public void run() {
                         new AlertDialog.Builder(MostRidesDetails.this)
-                                .setTitle("Connection Problem!")
-                                .setMessage("Make sure you have internet connection")
-                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                .setTitle(getString(R.string.connection_problem))
+                                .setMessage(getString(R.string.con_problem_message))
+                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intentToBeNewRoot = new Intent(MostRidesDetails.this, MostRidesDetails.class);
                                         ComponentName cn = intentToBeNewRoot.getComponent();
@@ -215,12 +215,12 @@ public class MostRidesDetails extends AppCompatActivity {
                                         startActivity(mainIntent);
                                     }
                                 })
-                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getString(R.string.exit), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(MostRidesDetails.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MostRidesDetails.this,getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -279,7 +279,7 @@ public class MostRidesDetails extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Ride Details");
+        textView.setText(R.string.ride_details);
 //        toolbar.setElevation(10);
 
         setSupportActionBar(toolbar);

@@ -44,7 +44,7 @@ public class TopRidesAfterLogin extends AppCompatActivity {
 //        GetData j = new GetData();
 //        j.GetBestRoutes(lv, this);
         ProgressDialog pDialog = new ProgressDialog(this);
-        pDialog.setMessage("Loading" + "...");
+        pDialog.setMessage(getString(R.string.loading) + "...");
         pDialog.show();
 
         new jsoning(lv,pDialog, this).execute();
@@ -111,10 +111,10 @@ public class TopRidesAfterLogin extends AppCompatActivity {
                 try {
                     JSONObject json = response.getJSONObject(i);
                     final BestRouteDataModel item = new BestRouteDataModel(Parcel.obtain());
-                    item.setFromEm(json.getString("FromEmirateNameEn"));
-                    item.setFromReg(json.getString("FromRegionNameEn"));
-                    item.setToEm(json.getString("ToEmirateNameEn"));
-                    item.setToReg(json.getString("ToRegionNameEn"));
+                    item.setFromEm(json.getString(getString(R.string.from_em_name)));
+                    item.setFromReg(json.getString(getString(R.string.from_reg_name)));
+                    item.setToEm(json.getString(getString(R.string.to_em_name)));
+                    item.setToReg(json.getString(getString(R.string.to_reg_name)));
                     item.setFromEmId(json.getInt("FromEmirateId"));
                     item.setFromRegid(json.getInt("FromRegionId"));
                     item.setToEmId(json.getInt("ToEmirateId"));
@@ -159,7 +159,7 @@ public class TopRidesAfterLogin extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Most Rides");
+        textView.setText(getString(R.string.most_rides));
 //        toolbar.setElevation(10);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);

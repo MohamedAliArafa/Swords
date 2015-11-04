@@ -96,7 +96,7 @@ public class Profile extends AppCompatActivity {
         Bundle in = getIntent().getExtras();
         Driver_ID = in.getInt("DriverID");
         ProgressDialog pDialog = new ProgressDialog(this);
-        pDialog.setMessage("Loading" + "...");
+        pDialog.setMessage(getString(R.string.loading) + "...");
         pDialog.show();
 
         new jsoning(lv_driver,pDialog,this).execute();
@@ -152,7 +152,7 @@ public class Profile extends AppCompatActivity {
 
             TopName.setText(Full_Name);
 
-            NationalityEnName.setText(json.getString("NationalityEnName"));
+            NationalityEnName.setText(json.getString(getString(R.string.nat_name)));
             Photo.setImageUrl(URL_Photo + json.getString("PhotoPath"), imageLoader);
 
             profile_call.setOnClickListener(new View.OnClickListener() {
@@ -174,7 +174,7 @@ public class Profile extends AppCompatActivity {
                     Intent intent = null;
                     try {
                         intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + json.getString("Mobile")));
-                        intent.putExtra("sms_body", "Hello " + json.getString("FirstName"));
+                        intent.putExtra("sms_body", getString(R.string.hello_world) + json.getString("FirstName"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -192,7 +192,7 @@ public class Profile extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Driver Details");
+        textView.setText(R.string.driver_details);
 
 
 //        toolbar.setElevation(10);
@@ -283,9 +283,9 @@ public class Profile extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     public void run() {
                         new AlertDialog.Builder(Profile.this)
-                                .setTitle("Connection Problem!")
-                                .setMessage("Make sure you have internet connection")
-                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                .setTitle(getString(R.string.connection_problem))
+                                .setMessage(getString(R.string.con_problem_message))
+                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intentToBeNewRoot = new Intent(Profile.this, Profile.class);
                                         ComponentName cn = intentToBeNewRoot.getComponent();
@@ -294,12 +294,12 @@ public class Profile extends AppCompatActivity {
                                         startActivity(mainIntent);
                                     }
                                 })
-                                .setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getString(R.string.exit), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(Profile.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Profile.this,getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -317,33 +317,33 @@ public class Profile extends AppCompatActivity {
                         BestRouteDataModel item = new BestRouteDataModel(Parcel.obtain());
                         days = "";
                         item.setID(json.getInt("ID"));
-                        item.setFromEm(json.getString("FromEmirateEnName"));
-                        item.setFromReg(json.getString("FromRegionEnName"));
-                        item.setToEm(json.getString("ToEmirateEnName"));
-                        item.setToReg(json.getString("ToRegionEnName"));
-                        item.setRouteName(json.getString("RouteEnName"));
+                        item.setFromEm(json.getString(getString(R.string.from_em_name)));
+                        item.setFromReg(json.getString(getString(R.string.from_reg_name)));
+                        item.setToEm(json.getString(getString(R.string.to_em_name)));
+                        item.setToReg(json.getString(getString(R.string.to_reg_name)));
+                        item.setRouteName(json.getString(getString(R.string.route_name)));
                         if (json.getString("Saturday").equals("true")) {
-                            days += "Sat , ";
+                            days += getString(R.string.sat);
                         }
                         if (json.getString("Sunday").equals("true")) {
-                            days += "Sun , ";
+                            days += getString(R.string.sun);
                         }
                         if (json.getString("Monday").equals("true")) {
-                            days += "Mon , ";
+                            days += getString(R.string.mon);
 
                         }
                         if (json.getString("Tuesday").equals("true")) {
-                            days += "Tue , ";
+                            days += getString(R.string.tue);
                         }
                         if (json.getString("Wednesday").equals("true")) {
-                            days += "Wed , ";
+                            days += getString(R.string.wed);
                         }
                         if (json.getString("Thursday").equals("true")) {
-                            days += "Thu , ";
+                            days += getString(R.string.thu);
 
                         }
                         if (json.getString("Friday").equals("true")) {
-                            days += "Fri ";
+                            days += getString(R.string.fri);
                         }
 
 
@@ -351,10 +351,10 @@ public class Profile extends AppCompatActivity {
                         days = "";
                         driver[i] = item;
                         Log.d("ID", String.valueOf(json.getInt("ID")));
-                        Log.d("FromEmlv", json.getString("FromEmirateEnName"));
-                        Log.d("FromReglv", json.getString("FromRegionEnName"));
-                        Log.d("TomEmlv", json.getString("ToEmirateEnName"));
-                        Log.d("ToReglv", json.getString("ToRegionEnName"));
+                        Log.d("FromEmlv", json.getString(getString(R.string.from_em_name)));
+                        Log.d("FromReglv", json.getString(getString(R.string.from_reg_name)));
+                        Log.d("TomEmlv", json.getString(getString(R.string.to_em_name)));
+                        Log.d("ToReglv", json.getString(getString(R.string.to_reg_name)));
 
                     } catch (JSONException e) {
                         e.printStackTrace();

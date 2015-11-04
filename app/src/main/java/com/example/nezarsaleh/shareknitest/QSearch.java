@@ -75,7 +75,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
     RelativeLayout pickup_relative;
     SimpleAdapter EmAdapter;
     Button btn_submit_pickUp;
-    String txt_PickUp = "Start Point";
+    String txt_PickUp;
     JSONArray Regions = null;
     JSONArray Emirates = null;
 
@@ -86,7 +86,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
     TextView txt_Select_Dest;
 
-    String txt_Drop_Off = "End Point";
+    String txt_Drop_Off;
 
     RelativeLayout calendar_relative;
     static final int DILOG_ID = 0;
@@ -129,7 +129,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
         i = 0;
 
-        txt_PickUp = "Start Point";
+        txt_PickUp = getString(R.string.start_point);
         try {
             if (TakeATour.getInstance() != null) {
                 TakeATour.getInstance().finish();
@@ -157,7 +157,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
                     if (From_EmirateEnName_str.equals("null") || From_EmirateEnName_str.equals("")) {
                         From_EmirateEnName_str = "";
-                        From_EmirateEnName_str = "Not set";
+                        From_EmirateEnName_str = getString(R.string.not_set);
                         txt_PickUp = "";
                         txt_PickUp += From_EmirateEnName_str;
                     } else {
@@ -166,9 +166,9 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
                     }
 
 
-                    if (From_RegionEnName_str.equals("null") || From_RegionEnName_str.equals("Not Set")) {
+                    if (From_RegionEnName_str.equals("null") || From_RegionEnName_str.equals(getString(R.string.not_set))) {
                         From_RegionEnName_str = "";
-                        From_RegionEnName_str = "Not set";
+                        From_RegionEnName_str = getString(R.string.not_set);
                         txt_PickUp += ",";
                         txt_PickUp += From_RegionEnName_str;
 
@@ -180,14 +180,14 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
                 } catch (NullPointerException e) {
 
-                    txt_PickUp = "Start Point";
+                    txt_PickUp = getString(R.string.start_point);
                 }
 
 
                 try {
                     if (To_EmirateEnName_str.equals("null") || To_EmirateEnName_str.equals("")) {
                         To_EmirateEnName_str = "";
-                        To_EmirateEnName_str = "Not set";
+                        To_EmirateEnName_str = getString(R.string.not_set);
                         txt_Drop_Off = "";
                         txt_Drop_Off += To_EmirateEnName_str;
                     } else {
@@ -195,9 +195,9 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
                         txt_Drop_Off += To_EmirateEnName_str;
                     }
 
-                    if (To_RegionEnName_str.equals("null") || To_RegionEnName_str.equals("Not Set")) {
+                    if (To_RegionEnName_str.equals("null") || To_RegionEnName_str.equals(getString(R.string.not_set))) {
                         To_RegionEnName_str = "";
-                        To_RegionEnName_str = "Not set";
+                        To_RegionEnName_str = getString(R.string.not_set);
                         txt_Drop_Off += ",";
                         txt_Drop_Off += To_RegionEnName_str;
 
@@ -208,7 +208,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
                 } catch (NullPointerException e) {
 
-                    txt_Drop_Off = "End Point";
+                    txt_Drop_Off = getString(R.string.end_point);
                 }
 
                 Log.d("From_Em_Id_2", String.valueOf(intent.getIntExtra("From_Em_Id", 0)));
@@ -262,7 +262,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
 
         if (i==0) {
-            txt_Selecet_Start_Point.setText("Start Point");
+            txt_Selecet_Start_Point.setText(getString(R.string.start_point));
             Log.d("pick 1", txt_PickUp);
 
         } else if (i==1){
@@ -272,8 +272,8 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
 
         if (i==0) {
-            txt_Select_Dest.setText("End Point");
-            Log.d("drop off 1 ", txt_Drop_Off);
+            txt_Select_Dest.setText(getString(R.string.end_point));
+//            Log.d("drop off 1 ", txt_Drop_Off);
         } else if (i==1){
             txt_Select_Dest.setText(txt_Drop_Off);
         }
@@ -890,7 +890,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Quick Search");
+        textView.setText(R.string.quick_search);
 //        toolbar.setElevation(10);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);

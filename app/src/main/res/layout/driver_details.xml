@@ -44,7 +44,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mohamed Arafa"
+                    android:text="@string/not_set"
                     android:textStyle="bold"
                     android:textSize="21sp"
                     android:layout_marginTop="50dp"
@@ -58,7 +58,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Egypt"
+                    android:text="@string/not_set"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:layout_below="@+id/TopName"

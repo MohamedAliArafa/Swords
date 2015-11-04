@@ -242,7 +242,7 @@ public class PickUpActivity extends AppCompatActivity {
                 TreeMap<String, String> valuePairs = new TreeMap<>();
                 JSONObject jsonObject = j.getJSONObject(i);
                 valuePairs.put("EmirateId", jsonObject.getString("EmirateId"));
-                valuePairs.put("EmirateEnName", jsonObject.getString("EmirateEnName"));
+                valuePairs.put("EmirateEnName", jsonObject.getString(getString(R.string.em_name)));
                 Create_CarPool_Emirates_List.add(valuePairs);
                 Log.d("test Emirates ", Create_CarPool_Emirates_List.toString());
 
@@ -390,9 +390,6 @@ public class PickUpActivity extends AppCompatActivity {
                         Create_CarPool_txt_regions.setText(arr.get(position).getRegionEnName());
                         From_Reg_Id = arr.get(position).getID();
                         From_RegionEnName = arr.get(position).getRegionEnName();
-
-
-
                         Log.d("Em Name : ", From_EmirateEnName);
                         Log.d("Reg Name",From_RegionEnName);
                         Log.d("Reg id ", String.valueOf(From_Reg_Id));
@@ -431,7 +428,7 @@ public class PickUpActivity extends AppCompatActivity {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         final RegionsDataModel regions = new RegionsDataModel(Parcel.obtain());
                         regions.setID(jsonObject.getInt("ID"));
-                        regions.setRegionEnName(jsonObject.getString("RegionEnName"));
+                        regions.setRegionEnName(jsonObject.getString(getString(R.string.reg_name)));
                         arr.add(regions);
                     }
                 }
@@ -519,7 +516,7 @@ public class PickUpActivity extends AppCompatActivity {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         final RegionsDataModel regions = new RegionsDataModel(Parcel.obtain());
                         regions.setID(jsonObject.getInt("ID"));
-                        regions.setRegionEnName(jsonObject.getString("RegionEnName"));
+                        regions.setRegionEnName(jsonObject.getString(getString(R.string.reg_name)));
                         arr_2.add(regions);
                     }
                 }

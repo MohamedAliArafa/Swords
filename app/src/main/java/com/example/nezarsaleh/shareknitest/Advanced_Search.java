@@ -181,7 +181,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
                     if (From_EmirateEnName_str.equals("null") || From_EmirateEnName_str.equals("")) {
                         From_EmirateEnName_str = "";
-                        From_EmirateEnName_str = "Not set";
+                        From_EmirateEnName_str = getString(R.string.not_set);
                         Advanced_txt_PickUp = "";
                         Advanced_txt_PickUp += From_EmirateEnName_str;
                     } else {
@@ -190,9 +190,9 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                     }
 
 
-                    if (From_RegionEnName_str.equals("null") || From_RegionEnName_str.equals("Not Set")) {
+                    if (From_RegionEnName_str.equals("null") || From_RegionEnName_str.equals(getString(R.string.not_set))) {
                         From_RegionEnName_str = "";
-                        From_RegionEnName_str = "Not set";
+                        From_RegionEnName_str = getString(R.string.not_set);
                         Advanced_txt_PickUp += ",";
                         Advanced_txt_PickUp += From_RegionEnName_str;
 
@@ -204,14 +204,14 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
                 } catch (NullPointerException e) {
 
-                    Advanced_txt_PickUp = "Start Point";
+                    Advanced_txt_PickUp = getString(R.string.start_point);
                 }
 
 
                 try {
                     if (To_EmirateEnName_str.equals("null") || To_EmirateEnName_str.equals("")) {
                         To_EmirateEnName_str = "";
-                        To_EmirateEnName_str = "Not set";
+                        To_EmirateEnName_str = getString(R.string.not_set);
                         Advanced_txt_Drop_Off = "";
                         Advanced_txt_Drop_Off += To_EmirateEnName_str;
                     } else {
@@ -219,9 +219,9 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                         Advanced_txt_Drop_Off += To_EmirateEnName_str;
                     }
 
-                    if (To_RegionEnName_str.equals("null") || To_RegionEnName_str.equals("Not Set")) {
+                    if (To_RegionEnName_str.equals("null") || To_RegionEnName_str.equals(getString(R.string.not_set))) {
                         To_RegionEnName_str = "";
-                        To_RegionEnName_str = "Not set";
+                        To_RegionEnName_str = getString(R.string.not_set);
                         Advanced_txt_Drop_Off += ",";
                         Advanced_txt_Drop_Off += To_RegionEnName_str;
 
@@ -232,7 +232,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
                 } catch (NullPointerException e) {
 
-                    Advanced_txt_Drop_Off = "End Point";
+                    Advanced_txt_Drop_Off = getString(R.string.end_point);
                 }
 
                 Log.d("From_Em_Id_2", String.valueOf(intent.getIntExtra("From_Em_Id", 0)));
@@ -293,7 +293,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
 
         if (i2 == 0) {
-            Advanced_txt_Selecet_Start_Point.setText("Start Point");
+            Advanced_txt_Selecet_Start_Point.setText(getString(R.string.start_point));
             Log.d("pick 1", Advanced_txt_PickUp);
 
         } else if (i2 == 1) {
@@ -303,7 +303,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
 
         if (i2 == 0) {
-            Advanced_txt_Select_Dest.setText("End Point");
+            Advanced_txt_Select_Dest.setText(getString(R.string.end_point));
             Log.d("drop off 1 ", Advanced_txt_Drop_Off);
         } else if (i2 == 1) {
             Advanced_txt_Select_Dest.setText(Advanced_txt_Drop_Off);
@@ -488,9 +488,9 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                 runOnUiThread(new Runnable() {
                     public void run() {
                         new AlertDialog.Builder(Advanced_Search.this)
-                                .setTitle("Connection Problem!")
-                                .setMessage("Make sure you have internet connection")
-                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                .setTitle(getString(R.string.connection_problem))
+                                .setMessage(getString(R.string.con_problem_message))
+                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intentToBeNewRoot = new Intent(Advanced_Search.this, Advanced_Search.class);
                                         ComponentName cn = intentToBeNewRoot.getComponent();
@@ -498,12 +498,12 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                                         startActivity(mainIntent);
                                     }
                                 })
-                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getString(R.string.exit), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(Advanced_Search.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Advanced_Search.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -551,9 +551,9 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                 runOnUiThread(new Runnable() {
                     public void run() {
                         new AlertDialog.Builder(Advanced_Search.this)
-                                .setTitle("Connection Problem!")
-                                .setMessage("Make sure you have internet connection")
-                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                .setTitle(getString(R.string.connection_problem))
+                                .setMessage(getString(R.string.con_problem_message))
+                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intentToBeNewRoot = new Intent(Advanced_Search.this, Advanced_Search.class);
                                         ComponentName cn = intentToBeNewRoot.getComponent();
@@ -561,12 +561,12 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                                         startActivity(mainIntent);
                                     }
                                 })
-                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getString(R.string.exit), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(Advanced_Search.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Advanced_Search.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -577,7 +577,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                         TreeMap<String, String> valuePairs = new TreeMap<>();
                         JSONObject jsonObject = j.getJSONObject(i);
                         valuePairs.put("ID", jsonObject.getString("ID"));
-                        valuePairs.put("NationalityEnName", jsonObject.getString("NationalityEnName"));
+                        valuePairs.put("NationalityEnName", jsonObject.getString(getString(R.string.nat_name)));
                         Advanced_Country_List.add(valuePairs);
                     }
                     //Toast.makeText(RegisterNewTest.this, "test pref lang" + Lang_List.toString(), Toast.LENGTH_LONG).show();
@@ -639,9 +639,9 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                 runOnUiThread(new Runnable() {
                     public void run() {
                         new AlertDialog.Builder(Advanced_Search.this)
-                                .setTitle("Connection Problem!")
-                                .setMessage("Make sure you have internet connection")
-                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                .setTitle(getString(R.string.connection_problem))
+                                .setMessage(getString(R.string.con_problem_message))
+                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intentToBeNewRoot = new Intent(Advanced_Search.this, Advanced_Search.class);
                                         ComponentName cn = intentToBeNewRoot.getComponent();
@@ -649,12 +649,12 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                                         startActivity(mainIntent);
                                     }
                                 })
-                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getString(R.string.exit), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(Advanced_Search.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Advanced_Search.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -666,7 +666,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                         TreeMap<String, String> valuePairs = new TreeMap<>();
                         JSONObject jsonObject = j.getJSONObject(i);
                         valuePairs.put("LanguageId", jsonObject.getString("LanguageId"));
-                        valuePairs.put("LanguageEnName", jsonObject.getString("LanguageEnName"));
+                        valuePairs.put("LanguageEnName", jsonObject.getString(getString(R.string.lang_name)));
                         Advanced_Lang_List.add(valuePairs);
 
 
@@ -743,9 +743,9 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                 runOnUiThread(new Runnable() {
                     public void run() {
                         new AlertDialog.Builder(Advanced_Search.this)
-                                .setTitle("Connection Problem!")
-                                .setMessage("Make sure you have internet connection")
-                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                .setTitle(getString(R.string.connection_problem))
+                                .setMessage(getString(R.string.con_problem_message))
+                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intentToBeNewRoot = new Intent(Advanced_Search.this, Advanced_Search.class);
                                         ComponentName cn = intentToBeNewRoot.getComponent();
@@ -753,12 +753,12 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                                         startActivity(mainIntent);
                                     }
                                 })
-                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getString(R.string.exit), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(Advanced_Search.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Advanced_Search.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -847,7 +847,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Advanced Search");
+        textView.setText(getString(R.string.advanced_search));
 //        toolbar.setElevation(10);
 
         setSupportActionBar(toolbar);

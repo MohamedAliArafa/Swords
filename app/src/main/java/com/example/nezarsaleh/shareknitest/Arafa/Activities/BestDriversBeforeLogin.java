@@ -58,7 +58,7 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
        // getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         ProgressDialog pDialog = new ProgressDialog(this);
-        pDialog.setMessage("Loading" + "...");
+        pDialog.setMessage(getString(R.string.loading) + "...");
         pDialog.show();
 
         new jsoning(lv, pDialog, this).execute();
@@ -121,9 +121,9 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     public void run() {
                         new AlertDialog.Builder(BestDriversBeforeLogin.this)
-                                .setTitle("Connection Problem!")
-                                .setMessage("Make sure you have internet connection")
-                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                .setTitle(getString(R.string.connection_problem))
+                                .setMessage(getString(R.string.con_problem_message))
+                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intentToBeNewRoot = new Intent(BestDriversBeforeLogin.this, BestDriversBeforeLogin.class);
                                         ComponentName cn = intentToBeNewRoot.getComponent();
@@ -131,7 +131,7 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
                                         startActivity(mainIntent);
                                     }
                                 })
-                                .setNegativeButton("Go Back", new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intentToBeNewRoot = new Intent(BestDriversBeforeLogin.this, OnboardingActivity.class);
                                         ComponentName cn = intentToBeNewRoot.getComponent();
@@ -139,7 +139,7 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
                                         startActivity(mainIntent);
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(BestDriversBeforeLogin.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BestDriversBeforeLogin.this,getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -157,7 +157,7 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
                         driver.setID(obj.getInt("AccountId"));
                         driver.setName(obj.getString("AccountName"));
                         driver.setPhotoURL(obj.getString("AccountPhoto"));
-                        driver.setNationality(obj.getString("NationalityEnName"));
+                        driver.setNationality(obj.getString(getString(R.string.nat_name)));
                         driver.setRating(obj.getInt("Rating"));
                         driver.setPhoneNumber(obj.getString("AccountMobile"));
                         arr.add(driver);
@@ -202,7 +202,7 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Best Drivers");
+        textView.setText(getString(R.string.onboard_best_drivers));
 //        toolbar.setElevation(10);
 
         setSupportActionBar(toolbar);

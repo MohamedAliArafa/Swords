@@ -57,7 +57,7 @@ public class BestRideBeforeLogin extends AppCompatActivity {
 //        j.GetBestRoutes(lv, this);
 
         pDialog = new ProgressDialog(this);
-        pDialog.setMessage("Loading" + "...");
+        pDialog.setMessage(getString(R.string.loading) + "...");
 //        pDialog.setCancelable(false);
 //        pDialog.setCanceledOnTouchOutside(false);
         pDialog.show();
@@ -127,9 +127,9 @@ public class BestRideBeforeLogin extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     public void run() {
                         new AlertDialog.Builder(BestRideBeforeLogin.this)
-                                .setTitle("Connection Problem!")
-                                .setMessage("Make sure you have internet connection")
-                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                .setTitle(getString(R.string.connection_problem))
+                                .setMessage(getString(R.string.con_problem_message))
+                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intentToBeNewRoot = new Intent(BestRideBeforeLogin.this, BestRideBeforeLogin.class);
                                         ComponentName cn = intentToBeNewRoot.getComponent();
@@ -137,12 +137,12 @@ public class BestRideBeforeLogin extends AppCompatActivity {
                                         startActivity(mainIntent);
                                     }
                                 })
-                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getString(R.string.exit), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(BestRideBeforeLogin.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BestRideBeforeLogin.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -160,10 +160,10 @@ public class BestRideBeforeLogin extends AppCompatActivity {
                     try {
                         JSONObject json = response.getJSONObject(i);
                         final BestRouteDataModel item = new BestRouteDataModel(Parcel.obtain());
-                        item.setFromEm(json.getString("FromEmirateNameEn"));
-                        item.setFromReg(json.getString("FromRegionNameEn"));
-                        item.setToEm(json.getString("ToEmirateNameEn"));
-                        item.setToReg(json.getString("ToRegionNameEn"));
+                        item.setFromEm(json.getString(getString(R.string.from_em_name)));
+                        item.setFromReg(json.getString(getString(R.string.from_reg_name)));
+                        item.setToEm(json.getString(getString(R.string.to_em_name)));
+                        item.setToReg(json.getString(getString(R.string.to_reg_name)));
                         item.setFromEmId(json.getInt("FromEmirateId"));
                         item.setFromRegid(json.getInt("FromRegionId"));
                         item.setToEmId(json.getInt("ToEmirateId"));

@@ -3,7 +3,7 @@
 
     <string name="title_activity_main">Sharekni2</string>
 
-    <string name="hello_world">مرحبا!</string>
+    <string name="hello_world">مرحبا</string>
     <string name="action_settings">الإعدادات</string>
     <string name="next">التالى</string>
     <string name="title_activity_sub_navigate">HelloAppbar</string>
@@ -89,12 +89,12 @@
 
 
     <string name="title_activity_register_vehicle">RegisterVehicle</string>
-    <string name="Register_Vehicle_Driving_License_No">Traffic File No.</string>
+    <string name="Register_Vehicle_Driving_License_No">رقم ملف المرور</string>
     <string name="Select_Emirate_txt">إختر الإمارة</string>
     <string name="Ok_txt">Ok</string>
-    <string name="Register_Vehicle_Trraffic_Number_Border_Title_">Register Vehicles</string>
+    <string name="Register_Vehicle_Trraffic_Number_Border_Title_">تسجيل المركبات</string>
     <string name="Pick_Emirate_arrow_content_Desc">pick emirate arrow image</string>
-    <string name="Btn_Submit_txt">Submit</string>
+    <string name="Btn_Submit_txt">تأكيد</string>
     <string name="title_activity_register__vehicle__verify">Register_Vehicle_Verify</string>
     <string name="register_vehicle_verify_border_title">تأكيد</string>
     <string name="btn_verify_txt">تأكيد</string>
@@ -137,6 +137,70 @@
     <string name="reg_now">سجل الأن |</string>
     <string name="forget_pass">نسيت كلمة المرور؟</string>
     <string name="exit">خروج!</string>
+    <string name="start_point">نقطة الإنطلاق</string>
+    <string name="quick_search">البحث السريع</string>
+    <string name="not_set">غير محدد</string>
+    <string name="end_point">نقطة الوصول</string>
+    <string name="languages">اللغات</string>
+    <string name="destination">الوجهه</string>
+    <string name="pickup">الإنطلاق</string>
+    <string name="dropoff">الوصول</string>
+    <string name="start_date">تاريخ البدء</string>
+    <string name="start_time">وقت البدء</string>
+    <string name="search">البحث</string>
+    <string name="map_lookup">الخريطة</string>
+    <string name="most_rides">أكثر الرحلات</string>
+    <string name="advanced_search">البحث المتقدم</string>
+    <string name="select_emirate">إدخل إسم الإمارة</string>
+    <string name="enter_region">إدخل إسم المقاطعة</string>
+    <string name="em_name">EmirateArName</string>
+    <string name="reg_name">RegionArName</string>
+    <string name="to_reg_name">ToRegionNameAr</string>
+    <string name="single">مرة واحدة</string>
+    <string name="periodic">متكرره</string>
+    <string name="optional">(إختياري)</string>
+    <string name="pref_nat">الجنسية المفضلة</string>
+    <string name="choose_lang">إختر اللغة المفضلة</string>
+    <string name="choose_age">إختر الفئة العمرية</string>
+    <string name="from_reg_name">FromRegionNameAr</string>
+    <string name="from_em_name">FromEmirateNameAr</string>
+    <string name="to_em_name">ToEmirateNameAr</string>
+    <string name="drivers">السائقين</string>
+    <string name="email_valid_form">من فضلك ادخل بريد إلكترونى صحيح</string>
+    <string name="ride_details">تفاصيل الرحلة</string>
+    <string name="starting_time">توقيت البدء</string>
+    <string name="sat">, السبت</string>
+    <string name="sun">, الأحد</string>
+    <string name="mon">, اللإثنين</string>
+    <string name="tue">, الثلاثاء</string>
+    <string name="wed">, الأربعاء</string>
+    <string name="thu">, الخميس</string>
+    <string name="fri">", الجمعة "</string>
+    <string name="driver_details">Driver Details</string>
+    <string name="route_name">RouteArName</string>
+    <string name="time">الوقت</string>
+    <string name="ride_days">ايام الرحلة</string>
+    <string name="review">تعليق</string>
+    <string name="pref">التفضيلات</string>
+    <string name="language">اللغة</string>
+    <string name="age_range">الفئة العمرية</string>
+    <string name="gender">الجنس</string>
+    <string name="smokers">مدخنين</string>
+    <string name="nationality">الجنسية</string>
+    <string name="reviews">التعليقات</string>
+    <string name="join_ride">الإنضمام للرحلة</string>
+    <string name="login_first">من أجل الإستمرار يجب عليك تسجيل الدخول</string>
+    <string name="cannot_review">فشل فى الارسال</string>
+    <string name="done">تم</string>
+    <string name="pref_lang">PrefLanguageArName</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
+    <string name="write_remark">أكتب تعليقاتك</string>
+    <string name="your_remarks">تعليقاتك</string>
+    <string name="i_like_join_ride">يشرفنى ان انضم الى رحلتك</string>
+    <string name="already_sent_request">لقد أرسلت طلب بالفعل</string>
+    <string name="req_sent_succ">تم إرسال الطلب بنجاح و انتظر موافقة السائق</string>
+    <string name="acc_nat_name">AccountNationalityAr</string>
 
 
 </resources>

@@ -1,6 +1,6 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/scrollView1"
@@ -55,7 +55,7 @@
                         android:layout_alignParentTop="true"
                         android:layout_marginTop="20dp"
                         android:gravity="center"
-                        android:text="From"
+                        android:text="@string/from_text_top_ride"
                         android:textColor="#FFFFFF"
                         android:textSize="18sp"
                         android:textStyle="bold"
@@ -113,7 +113,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/FromEmirateEnName"
                         android:layout_marginTop="10dp"
-                        android:text="To"
+                        android:text="@string/to_text_top_ride"
                         android:textColor="#FFFFFF"
                         android:textSize="18sp"
                         android:textStyle="bold"
@@ -204,7 +204,7 @@
                         android:layout_marginTop="10dp"
                         android:lines="1"
                         android:maxLines="1"
-                        android:text="Time "
+                        android:text="@string/time"
                         android:textColor="#FFFFFF"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -232,7 +232,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/ride_details_time_id"
                         android:layout_marginBottom="10dp"
-                        android:text="Ride Days"
+                        android:text="@string/ride_days"
                         android:textColor="#FFFFFF"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -264,7 +264,7 @@
                         android:layout_below="@+id/ride_details_Ride_Days_txt"
                         android:layout_marginBottom="10dp"
                         android:background="@drawable/driver_details_btn"
-                        android:text="Review"
+                        android:text="@string/review"
                         android:textAllCaps="false" />
 
                     <!--<Button-->
@@ -310,7 +310,7 @@
                             android:layout_marginEnd="15dp"
                             android:layout_marginRight="15dp"
                             android:layout_marginTop="20dp"
-                            android:text="Language"
+                            android:text="@string/language"
                             android:textSize="14sp" />
 
                         <TextView
@@ -338,7 +338,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_toEndOf="@+id/PrefLanguageEnName"
                             android:layout_toRightOf="@+id/PrefLanguageEnName"
-                            android:text="Age Range"
+                            android:text="@string/age_range"
                             android:textSize="14sp" />
 
 
@@ -364,7 +364,7 @@
                             android:layout_alignStart="@+id/ride_details_lang_txt"
                             android:layout_below="@+id/ride_details_lang_txt"
                             android:layout_marginTop="20dp"
-                            android:text="Gender"
+                            android:text="@string/gender"
                             android:textSize="14sp" />
 
                         <TextView
@@ -389,7 +389,7 @@
                             android:layout_alignBottom="@+id/ride_details_Gender_txt"
                             android:layout_alignLeft="@+id/ride_details_age_range_txt"
                             android:layout_alignStart="@+id/ride_details_age_range_txt"
-                            android:text="Smokers"
+                            android:text="@string/smokers"
                             android:textSize="14sp" />
 
                         <TextView
@@ -415,7 +415,7 @@
                             android:layout_below="@+id/ride_details_Gender_txt"
                             android:layout_marginBottom="20dp"
                             android:layout_marginTop="20dp"
-                            android:text="Nationality"
+                            android:text="@string/nationality"
                             android:textSize="14sp" />
 
                         <TextView
@@ -444,7 +444,7 @@
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
                         android:paddingStart="20dp"
-                        android:text="Preferences"
+                        android:text="@string/pref"
                         android:textColor="@color/primaryColor"
                         android:textSize="17sp" />
 
@@ -484,7 +484,7 @@
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
                         android:paddingStart="20dp"
-                        android:text="Reviews"
+                        android:text="@string/reviews"
                         android:textColor="@color/primaryColor"
                         android:textSize="17sp" />
 
@@ -498,7 +498,7 @@
                         android:layout_marginBottom="10dp"
                         android:layout_marginTop="20dp"
                         android:background="@drawable/user_register_border_button"
-                        android:text="Join Ride"
+                        android:text="@string/join_ride"
                         android:textAllCaps="false"
                         android:textColor="#FFFFFF" />
 
@@ -515,4 +515,4 @@
     </ScrollView>
 
 
-</RelativeLayout>
+<!--</RelativeLayout>-->
