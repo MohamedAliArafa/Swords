@@ -152,7 +152,7 @@ public class Profile extends AppCompatActivity {
 
             TopName.setText(Full_Name);
 
-            NationalityEnName.setText(json.getString(getString(R.string.nat_name)));
+            NationalityEnName.setText(json.getString(getString(R.string.nat_name2)));
             Photo.setImageUrl(URL_Photo + json.getString("PhotoPath"), imageLoader);
 
             profile_call.setOnClickListener(new View.OnClickListener() {
