@@ -59,10 +59,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_marginStart="5dp"
-                android:src="@drawable/splashbestdrivers"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="false"
-                />
+                android:src="@drawable/splashbestdrivers" />
 
             <TextView
 
@@ -71,9 +68,9 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_marginStart="5dp"
-                android:layout_toStartOf="@+id/splash_best_drivers_im"
-                android:layout_toLeftOf="@+id/splash_best_drivers_im"
-                android:text="افضل السائقين"
+                android:layout_toEndOf="@+id/splash_best_drivers_im"
+                android:layout_toRightOf="@+id/splash_best_drivers_im"
+                android:text="Best Drivers"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -122,12 +119,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_marginStart="5dp"
-                android:src="@drawable/splashmostrides"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="false"
-
-                />
-
+                android:src="@drawable/splashmostrides" />
 
             <TextView
 
@@ -136,9 +128,9 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_marginStart="5dp"
-                android:layout_toStartOf="@+id/splash_top_rides_im"
-                android:layout_toLeftOf="@+id/splash_top_rides_im"
-                android:text="افضل الرحلات"
+                android:layout_toEndOf="@+id/splash_top_rides_im"
+                android:layout_toRightOf="@+id/splash_top_rides_im"
+                android:text="Most zz"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
