@@ -118,6 +118,7 @@
     <string name="login_wrong_user_pass">خطأ في إسم المستخدم او كلمة المرور</string>
     <string name="login_network_error">خطأ فى الشبكة!</string>
     <string name="nat_name">NationlityArName</string>
+    <string name="nat_name2">NationalityArName</string>
     <string name="lang_name">LanguageArName</string>
     <string name="take_photo">إلتقط صورة</string>
     <string name="choose_from_library">إختر من المكتبة</string>
