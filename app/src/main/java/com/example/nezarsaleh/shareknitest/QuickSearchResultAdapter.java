@@ -70,7 +70,7 @@ public class QuickSearchResultAdapter extends BaseAdapter {
         TextView DriverEnName = (TextView) convertView.findViewById(R.id.DriverEnName);
         TextView Nationality_en = (TextView) convertView.findViewById(R.id.Nationality_en);
         TextView SDG_RouteDays = (TextView) convertView.findViewById(R.id.search_results_days);
-        TextView Best_Drivers_Item_rate= (TextView) convertView.findViewById(R.id.Best_Drivers_Item_rate);
+        TextView Best_Drivers_Item_rate = (TextView) convertView.findViewById(R.id.Best_Drivers_Item_rate);
 
         final QuickSearchDataModel item = searchItems.get(position);
         Photo.setImageUrl(URL + item.getAccountPhoto(), imageLoader);
@@ -79,18 +79,23 @@ public class QuickSearchResultAdapter extends BaseAdapter {
 
         StringBuffer res = new StringBuffer();
 
-        String[] strArr =item.getAccountName().split(" ");
+        String[] strArr = item.getAccountName().split(" ");
 
         for (String str : strArr) {
             char[] stringArray = str.trim().toCharArray();
-            stringArray[0] = Character.toUpperCase(stringArray[0]);
-            str = new String(stringArray);
+            if (stringArray.length != 0) {
 
-            res.append(str).append(" ");
+
+                stringArray[0] = Character.toUpperCase(stringArray[0]);
+                str = new String(stringArray);
+
+                res.append(str).append(" ");
+
+            }
+
         }
 
         DriverEnName.setText(res);
-
 
 
 //        DriverEnName.setText(item.getAccountName());
@@ -117,8 +122,6 @@ public class QuickSearchResultAdapter extends BaseAdapter {
                 activity.startActivity(intent);
             }
         });
-
-
 
 
         return convertView;

@@ -317,10 +317,10 @@ public class Profile extends AppCompatActivity {
                         BestRouteDataModel item = new BestRouteDataModel(Parcel.obtain());
                         days = "";
                         item.setID(json.getInt("ID"));
-                        item.setFromEm(json.getString(getString(R.string.from_em_name)));
-                        item.setFromReg(json.getString(getString(R.string.from_reg_name)));
-                        item.setToEm(json.getString(getString(R.string.to_em_name)));
-                        item.setToReg(json.getString(getString(R.string.to_reg_name)));
+                        item.setFromEm(json.getString("FromEmirateEnName"));
+                        item.setFromReg(json.getString("FromRegionEnName"));
+                        item.setToEm(json.getString("ToEmirateEnName"));
+                        item.setToReg(json.getString("ToRegionEnName"));
                         item.setRouteName(json.getString(getString(R.string.route_name)));
                         if (json.getString("Saturday").equals("true")) {
                             days += getString(R.string.sat);
