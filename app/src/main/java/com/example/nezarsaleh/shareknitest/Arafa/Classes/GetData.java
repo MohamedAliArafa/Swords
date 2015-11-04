@@ -50,9 +50,23 @@ public class GetData {
 //    public static final String DOMAIN = "http://sharekni.sdgstaff.com";
 //http://sharekni.sdgstaff.com/_mobfiles/CLS_MobAndroid.asmx
     //http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx/
-    public static final String DOMAIN = "http://sharekni.sdgstaff.com/_mobfiles/CLS_MobAndroid.asmx/";
-    public static final String NonOpDomain = "http://sharekni.sdgstaff.com/_mobfiles/CLS_MobAndroid.asmx";
-    public static final String PhotoURL = "http://sharekni.sdgstaff.com/uploads/personalphoto/";
+
+
+
+    // sharekni sdg staff
+  //  public static final String DOMAIN = "http://sharekni.sdgstaff.com/_mobfiles/CLS_MobAndroid.asmx/";
+   // public static final String NonOpDomain = "http://sharekni.sdgstaff.com/_mobfiles/CLS_MobAndroid.asmx";
+   // public static final String PhotoURL = "http://sharekni.sdgstaff.com/uploads/personalphoto/";
+
+
+
+    public static final String DOMAIN = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx/";
+    public static final String NonOpDomain = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx";
+    public static final String PhotoURL = "http://213.42.51.219/uploads/personalphoto/";
+
+
+
+
 
 
 //    String data;
@@ -129,7 +143,7 @@ public class GetData {
     String getPrefLanguageUrl           = DOMAIN + "GetPrefferedLanguages";
     String GetAgeRanges                 = DOMAIN + "GetAgeRanges";
 
-    String GetVehiclesUrl               = DOMAIN + "GetByDriverId?id=20027";
+    String GetVehiclesUrl               = DOMAIN + "GetByDriverId?id=";
 
     String GetMapLookUpUrl              = DOMAIN + "GetFromOnlyMostDesiredRides";
 
@@ -519,9 +533,9 @@ public class GetData {
         return json;
     }
 
-    public JSONArray GetVehiclesForCreateCarPool() throws JSONException {
+    public JSONArray GetVehiclesForCreateCarPool(int id) throws JSONException {
         JSONArray json;
-        HandleXML obj = new HandleXML(GetVehiclesUrl);
+        HandleXML obj = new HandleXML(GetVehiclesUrl+id);
         obj.fetchXML();
         while (obj.parsingComplete) ;
         json = new JSONArray(obj.getData().toString());

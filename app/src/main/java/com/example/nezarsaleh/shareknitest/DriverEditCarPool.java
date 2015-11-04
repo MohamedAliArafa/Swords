@@ -87,6 +87,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
     static final int TIME_DIALOG_ID = 999;
     private int hour;
     private int minute;
+    int MyId = -1;
 
     Dialog Create_CarPool_MainDialog;
     Dialog Languages_Dilaog;
@@ -152,6 +153,9 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
         initToolbar();
 
         myPrefs = this.getSharedPreferences("myPrefs", 0);
+        String ID = myPrefs.getString("account_id", null);
+        MyId = Integer.parseInt(ID);
+
         Intent in = getIntent();
         RouteId = in.getIntExtra("RouteID", -1);
         Route_Name = in.getStringExtra("RoutName");
@@ -466,7 +470,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
         @Override
         protected Object doInBackground(Object[] params) {
             try {
-                JSONArray j = new GetData().GetVehiclesForCreateCarPool();
+                JSONArray j = new GetData().GetVehiclesForCreateCarPool(MyId);
                 for (int i = 0; i < j.length(); i++) {
                     TreeMap<String, String> valuePairs = new TreeMap<>();
                     JSONObject jsonObject = j.getJSONObject(i);

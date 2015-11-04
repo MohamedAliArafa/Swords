@@ -87,10 +87,13 @@ import java.util.List;
 
         for (String str : strArr) {
             char[] stringArray = str.trim().toCharArray();
-            stringArray[0] = Character.toUpperCase(stringArray[0]);
-            str = new String(stringArray);
+            if (stringArray.length != 0){
+                stringArray[0] = Character.toUpperCase(stringArray[0]);
+                str = new String(stringArray);
 
-            res.append(str).append(" ");
+                res.append(str).append(" ");
+            }
+
         }
         Name.setText(res);
 

@@ -1,8 +1,6 @@
 package com.example.nezarsaleh.shareknitest;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -19,6 +17,7 @@ public class Driver_RegisterVehicleWithETService_JsonParse {
 
 
     public void stringRequest(final String url, final Context context) {
+        Log.d("Register Vehicle URl",url);
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,

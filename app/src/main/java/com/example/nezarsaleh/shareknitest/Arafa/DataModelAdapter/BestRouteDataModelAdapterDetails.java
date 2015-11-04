@@ -80,9 +80,11 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
         String[] strArr = bestRouteDataModel.getDriverName().split(" ");
         for (String str : strArr) {
             char[] stringArray = str.trim().toCharArray();
-            stringArray[0] = Character.toUpperCase(stringArray[0]);
-            str = new String(stringArray);
-            res.append(str).append(" ");
+            if (stringArray.length != 0){
+                stringArray[0] = Character.toUpperCase(stringArray[0]);
+                str = new String(stringArray);
+                res.append(str).append(" ");
+            }
         }
         vh.DriverName.setText(res);
         vh.SDG_Route_Start_FromTime.setText((bestRouteDataModel.getSDG_Route_Start_FromTime()));

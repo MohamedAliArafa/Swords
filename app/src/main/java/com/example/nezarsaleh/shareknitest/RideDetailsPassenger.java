@@ -55,7 +55,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class RideDetailsPassenger extends AppCompatActivity implements OnMapReadyCallback {
+public class RideDetailsPassenger extends AppCompatActivity   {
 
 
     TextView
@@ -130,9 +130,7 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
         Driver_get_Review_lv = (ListView) findViewById(R.id.Driver_get_Review_lv);
         Passenger_Review_Driver_Btn = (Button) findViewById(R.id.Passenger_Review_Driver_Btn);
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map_ride_details);
-        mapFragment.getMapAsync(RideDetailsPassenger.this);
+
 
         // setListViewHeightBasedOnChildren(Driver_get_Review_lv);
         //setSupportActionBar(toolbar);
@@ -156,7 +154,8 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
     }  //  on create
 
 
-    private class back extends AsyncTask{
+    private class back extends AsyncTask implements OnMapReadyCallback{
+
 
         JSONObject json;
         private ProgressDialog pDialog;
@@ -179,6 +178,11 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
 
         @Override
         protected void onPostExecute(Object o) {
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.map_ride_details);
+            mapFragment.getMapAsync(this);
+
+
                 DriverGetReviewAdapter arrayAdapter = new DriverGetReviewAdapter(con, driverGetReviewDataModels_arr);
                 Driver_get_Review_lv.setAdapter(arrayAdapter);
                 setListViewHeightBasedOnChildren(Driver_get_Review_lv);
@@ -538,43 +542,50 @@ public class RideDetailsPassenger extends AppCompatActivity implements OnMapRead
             }
             return null;
         }
-    }
+
+        @Override
+        public void onMapReady(GoogleMap googleMap) {
 
 
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
+            mMap = googleMap;
 
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
+                    (new LatLng(StartLat, EndLng), 8.1f));
 
-        mMap = googleMap;
+            // Instantiates a new Polyline object and adds points to define a rectangle
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
-                (new LatLng(StartLat, EndLng), 8.1f));
+            Log.d("Start lat 1 ", String.valueOf(StartLat));
+            Log.d("End lat 1 ", String.valueOf(EndLat));
+            Log.d("Start lng 1 ", String.valueOf(StartLng));
+            Log.d("End lng 1 ", String.valueOf(EndLng));
 
-        // Instantiates a new Polyline object and adds points to define a rectangle
-        PolylineOptions rectOptions = new PolylineOptions()
-                .add(new LatLng(StartLat, StartLng))
-                .add(new LatLng(EndLat, EndLng))
-                .color(R.color.primaryColor)
-                .width(6);  // North of the previous point, but at the same longitude
-        // Closes the polyline.
+            PolylineOptions rectOptions = new PolylineOptions()
+                    .add(new LatLng(StartLat, StartLng))
+                    .add(new LatLng(EndLat, EndLng))
+                    .color(R.color.primaryColor)
+                    .width(6);  // North of the previous point, but at the same longitude
+            // Closes the polyline.
 
-        mMap.getUiSettings().setMapToolbarEnabled(false);
-        mMap.getUiSettings().setZoomControlsEnabled(true);
-        mMap.getUiSettings().setZoomGesturesEnabled(true);
+            mMap.getUiSettings().setMapToolbarEnabled(false);
+            mMap.getUiSettings().setZoomControlsEnabled(true);
+            mMap.getUiSettings().setZoomGesturesEnabled(true);
 
 // Get back the mutable Polyline
-        Polyline polyline = mMap.addPolyline(rectOptions);
+            Polyline polyline = mMap.addPolyline(rectOptions);
 
-        final Marker markerZero = mMap.addMarker(new MarkerOptions().
-                position(new LatLng(StartLat, StartLng))
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor)));
+            final Marker markerZero = mMap.addMarker(new MarkerOptions().
+                    position(new LatLng(StartLat, StartLng))
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor)));
 
-        final Marker markerZero2 = mMap.addMarker(new MarkerOptions().
-                position(new LatLng(EndLat, EndLng))
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor)));
+            final Marker markerZero2 = mMap.addMarker(new MarkerOptions().
+                    position(new LatLng(EndLat, EndLng))
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor)));
 
 
+        }
     }
+
+
 
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)

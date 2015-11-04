@@ -7,8 +7,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -17,7 +17,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.nezarsaleh.shareknitest.Arafa.Classes.GetData;
 
@@ -99,11 +98,11 @@ public class RegisterVehicle extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                if (!full_date.equals("") && File_num_edit.getText().toString() !="Please enter the driving license No." ) {
+                if (!full_date.equals("") && !File_num_edit.getText().toString().equals("Please enter the driving license No.") ) {
                     File_NO_Str = File_num_edit.getText().toString();
 
                     license_check.stringRequest(GetData.DOMAIN+"Driver_RegisterVehicleWithETService?AccountId="+Driver_ID+"&TrafficFileNo="+File_NO_Str+"&BirthDate="+full_date,RegisterVehicle.this);
-
+                    Log.d("reg vehicle",GetData.DOMAIN+"Driver_RegisterVehicleWithETService?AccountId="+Driver_ID+"&TrafficFileNo="+File_NO_Str+"&BirthDate="+full_date);
 
                 }
 
