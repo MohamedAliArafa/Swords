@@ -225,10 +225,10 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         txt_country = (AutoCompleteTextView) findViewById(R.id.autocompletecountry_id);
 
         Terms_And_Cond_txt_2 = (TextView) findViewById(R.id.Terms_And_Cond_txt_2);
-        Terms_And_Cond_txt_2.setText(Html.fromHtml("<u><font color=#e72433>Terms and Conditions.</font></u>"));
+        Terms_And_Cond_txt_2.setText(Html.fromHtml("<u><font color=#e72433>"+getString(R.string.reg_terms)+"</font></u>"));
         txt_terms = (RelativeLayout) findViewById(R.id.terms_relative);
         Privacy_and_poolicy= (TextView) findViewById(R.id.Privacy_and_poolicy);
-        Privacy_and_poolicy.setText(Html.fromHtml("<u><font color=#e72433>Privacy Policy.</font></u>"));
+        Privacy_and_poolicy.setText(Html.fromHtml("<u><font color=#e72433>"+getString(R.string.reg_policy)+"</font></u>"));
         initToolbar();
 
 
@@ -474,7 +474,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         @Override
         protected void onPreExecute() {
             pDialog = new ProgressDialog(RegisterNewTest.this);
-            pDialog.setMessage("Loading" + "...");
+            pDialog.setMessage(getString(R.string.loading) + "...");
             pDialog.show();
             super.onPreExecute();
         }

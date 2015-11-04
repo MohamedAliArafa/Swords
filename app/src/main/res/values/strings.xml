@@ -101,6 +101,17 @@
     <string name="verify_Unified_ID">Unified ID</string>
     <string name="verify_passport_number_txt">Please enter the passport number</string>
     <string name="mobile_number_const">+971 -</string>
+    <string name="onboard_most_rides">Most Rides</string>
+    <string name="onboard_best_drivers">Best Drivers</string>
+    <string name="reg_DateOfBirth">Date of Birth</string>
+    <string name="reg_gender_male">Male</string>
+    <string name="reg_gender_female">Female</string>
+    <string name="reg_upload_photo">Upload your Photo</string>
+    <string name="reg_accept_rta">I Accept The RTA\'s</string>
+    <string name="reg_save">Save</string>
+    <string name="reg_terms">Terms and Conditions.</string>
+    <string name="reg_policy">Privacy Policy.</string>
+    <string name="loading">Loading</string>
 
 
 </resources>

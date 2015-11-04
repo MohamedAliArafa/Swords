@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="onboard_most_rides">Most Rides</string>
+    <string name="onboard_best_drivers">Best Drivers</string>
+    <string name="reg_gender_female">Female</string>
+    <string name="reg_upload_photo">Upload your Photo</string>
+    <string name="reg_accept_rta">I Accept The RTA\'s</string>
+    <string name="reg_terms">Terms and Conditions.</string>
+    <string name="reg_policy">Privacy Policy.</string>
+    <string name="loading">Loading</string>
+</resources>

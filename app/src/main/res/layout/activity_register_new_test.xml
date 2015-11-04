@@ -383,7 +383,7 @@
                     android:layout_toEndOf="@+id/imageView4"
                     android:layout_toRightOf="@+id/imageView4"
                     android:padding="3dp"
-                    android:text="Date of Birth"
+                    android:text="@string/reg_DateOfBirth"
                     android:textColor="@color/primaryColor"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -410,7 +410,7 @@
                     android:layout_marginRight="30dp"
                     android:layout_toLeftOf="@+id/malefemale"
                     android:layout_toStartOf="@+id/malefemale"
-                    android:text="Male"
+                    android:text="@string/reg_gender_male"
                     android:textColor="@color/primaryColor"
                     android:textSize="16sp" />
 
@@ -423,7 +423,7 @@
                     android:layout_marginStart="30dp"
                     android:layout_toEndOf="@+id/malefemale"
                     android:layout_toRightOf="@+id/malefemale"
-                    android:text="Female"
+                    android:text="@string/reg_gender_female"
                     android:textColor="@color/gray_before_login"
                     android:textSize="16sp" />
 
@@ -459,7 +459,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/user_register_border_button"
-                android:text="Upload your Photo"
+                android:text="@string/reg_upload_photo"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF" />
 
@@ -485,7 +485,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="I Accept The RTA's "
+                        android:text="@string/reg_accept_rta"
 
                         android:textSize="13sp"
 
@@ -524,7 +524,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/user_register_border_button"
-                    android:text="Save"
+                    android:text="@string/reg_save"
                     android:textAllCaps="false"
                     android:textColor="#FFFFFF" />
 
