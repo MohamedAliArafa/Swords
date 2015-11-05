@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@drawable/registerbackgroundtest"
-    tools:context="com.example.nezarsaleh.shareknitest.DriverCreatedRides">
+    tools:context="rta.ae.sharekni.DriverCreatedRides">
 
 
     <include

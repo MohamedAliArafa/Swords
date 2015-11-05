@@ -27,7 +27,7 @@
                 >
 
 
-                <com.example.nezarsaleh.shareknitest.Arafa.Classes.CircularNetworkImageView
+                <rta.ae.sharekni.Arafa.Classes.CircularNetworkImageView
                     android:id="@+id/profilephoto"
                     android:layout_width="100dp"
                     android:layout_height="100dp"

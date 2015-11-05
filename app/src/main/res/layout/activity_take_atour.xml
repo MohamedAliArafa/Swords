@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:fitsSystemWindows="true"
-    tools:context="com.example.nezarsaleh.shareknitest.TakeATour">
+    tools:context="rta.ae.sharekni.TakeATour">
 
     <android.support.v4.view.ViewPager
 

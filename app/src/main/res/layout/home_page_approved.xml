@@ -542,7 +542,7 @@
 
     <fragment
         android:id="@+id/fragment_navigation_drawwer"
-        android:name="com.example.nezarsaleh.shareknitest.MainNavigationDrawerFragment.NavigationDrawerFragment"
+        android:name="rta.ae.sharekni.MainNavigationDrawerFragment.NavigationDrawerFragment"
         android:layout_width="@dimen/navi_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
