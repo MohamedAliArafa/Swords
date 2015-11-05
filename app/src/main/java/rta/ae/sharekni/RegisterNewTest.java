@@ -127,7 +127,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
 
     TextView malefemale_txt, femalemale_txt;
     ImageView malefemale, femalemale;
-    String uploadedImage;
+    String uploadedImage = "NoImage.jpg";
     TextView Terms_And_Cond_txt;
 
     DatePicker d;

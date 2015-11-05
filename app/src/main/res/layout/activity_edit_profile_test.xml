@@ -280,7 +280,7 @@
                         android:layout_toEndOf="@+id/imageView4"
                         android:layout_toRightOf="@+id/imageView4"
                         android:padding="3dp"
-                        android:text="Click to select\nDate of Birth"
+                        android:text="Date of Birth"
                         android:textColor="@color/primaryColor"
                         android:textSize="15sp"
                         android:textStyle="bold" />
