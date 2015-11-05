@@ -23,8 +23,6 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import rta.ae.sharekni.Arafa.Classes.GetData;
-
 import com.example.nezarsaleh.shareknitest.R;
 
 import org.json.JSONArray;
@@ -40,15 +38,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
+import rta.ae.sharekni.Arafa.Classes.GetData;
+
 public class PickUpActivity extends AppCompatActivity {
 
-    int From_Em_Id =-1;
-    int From_Reg_Id =-1;
-    int  To_Em_Id ;
-    int To_Reg_Id ;
+    int From_Em_Id = -1;
+    int From_Reg_Id = -1;
+    int To_Em_Id;
+    int To_Reg_Id;
     int FLAG_ID;
 
-    TextView Emirates_txt,Emirates_txt_2;
+    TextView Emirates_txt, Emirates_txt_2;
 
     Button dis_submit;
 
@@ -58,7 +58,6 @@ public class PickUpActivity extends AppCompatActivity {
     String To_EmirateEnName, From_EmirateEnName, To_RegionEnName, From_RegionEnName;
 
     List<TreeMap<String, String>> Create_CarPool_Emirates_List = new ArrayList<>();
-
 
 
     private ArrayList<RegionsDataModel> arr = new ArrayList<>();
@@ -73,7 +72,7 @@ public class PickUpActivity extends AppCompatActivity {
 
     static PickUpActivity pickUpActivity;
 
-    AutoCompleteTextView Create_CarPool_txt_regions,Create_CarPool_txt_regions_2;
+    AutoCompleteTextView Create_CarPool_txt_regions, Create_CarPool_txt_regions_2;
 
     public static PickUpActivity getInstance() {
         return pickUpActivity;
@@ -83,10 +82,10 @@ public class PickUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pick_up);
-        pickUpActivity=this;
+        pickUpActivity = this;
 
-        Intent intent =  getIntent();
-        FLAG_ID = intent.getIntExtra("FALG_SEARCH",0);
+        Intent intent = getIntent();
+        FLAG_ID = intent.getIntExtra("FALG_SEARCH", 0);
         Log.d("Flag id", String.valueOf(FLAG_ID));
 
 
@@ -98,20 +97,14 @@ public class PickUpActivity extends AppCompatActivity {
         Create_CarPool_txt_regions = (AutoCompleteTextView) findViewById(R.id.mainDialog_Regions_auto);
 
         Emirates_txt_2 = (TextView) findViewById(R.id.Emirates_spinner_2);
-        Create_CarPool_txt_regions_2= (AutoCompleteTextView) findViewById(R.id.mainDialog_Regions_auto_2);
-
-
-
-
-
-
+        Create_CarPool_txt_regions_2 = (AutoCompleteTextView) findViewById(R.id.mainDialog_Regions_auto_2);
 
 
         dis_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-               if (FLAG_ID == 1) {
+                if (FLAG_ID == 1) {
 
                     Intent in = new Intent(PickUpActivity.this, QSearch.class);
                     if (From_Em_Id != -1 && From_Reg_Id != -1) {
@@ -133,60 +126,55 @@ public class PickUpActivity extends AppCompatActivity {
                         finish();
                     }
                 }  // flag id
-                else if (FLAG_ID==2) {
+                else if (FLAG_ID == 2) {
 
-                   Intent in = new Intent(PickUpActivity.this, Advanced_Search.class);
-                   if (From_Em_Id != -1 && From_Reg_Id != -1) {
-                       in.putExtra("From_Em_Id", From_Em_Id);
-                       in.putExtra("From_EmirateEnName", From_EmirateEnName);
-                       in.putExtra("From_RegionEnName", From_RegionEnName);
-                       in.putExtra("From_Reg_Id", From_Reg_Id);
-                       in.putExtra("To_Em_Id", To_Em_Id);
-                       in.putExtra("To_EmirateEnName", To_EmirateEnName);
-                       in.putExtra("To_RegionEnName", To_RegionEnName);
-                       in.putExtra("To_Reg_Id", To_Reg_Id);
+                    Intent in = new Intent(PickUpActivity.this, Advanced_Search.class);
+                    if (From_Em_Id != -1 && From_Reg_Id != -1) {
+                        in.putExtra("From_Em_Id", From_Em_Id);
+                        in.putExtra("From_EmirateEnName", From_EmirateEnName);
+                        in.putExtra("From_RegionEnName", From_RegionEnName);
+                        in.putExtra("From_Reg_Id", From_Reg_Id);
+                        in.putExtra("To_Em_Id", To_Em_Id);
+                        in.putExtra("To_EmirateEnName", To_EmirateEnName);
+                        in.putExtra("To_RegionEnName", To_RegionEnName);
+                        in.putExtra("To_Reg_Id", To_Reg_Id);
 
-                       Log.d("From_Em_Id_1", String.valueOf(From_Em_Id));
-                       Log.d("From_Reg_Id_1", String.valueOf(From_Reg_Id));
-                       Log.d("To_Em_Id_1", String.valueOf(To_Em_Id));
-                       Log.d("To_Reg_Id_1", String.valueOf(To_Reg_Id));
-                       startActivity(in);
+                        Log.d("From_Em_Id_1", String.valueOf(From_Em_Id));
+                        Log.d("From_Reg_Id_1", String.valueOf(From_Reg_Id));
+                        Log.d("To_Em_Id_1", String.valueOf(To_Em_Id));
+                        Log.d("To_Reg_Id_1", String.valueOf(To_Reg_Id));
+                        startActivity(in);
 
-                       finish();
-
-
-                   }
-               } //  else if 2
-
-               else if (FLAG_ID==3) {
-
-                   Intent in = new Intent(PickUpActivity.this, DriverCreateCarPool.class);
-                   if (From_Em_Id != -1 && From_Reg_Id != -1) {
-                       in.putExtra("From_Em_Id", From_Em_Id);
-                       in.putExtra("From_EmirateEnName", From_EmirateEnName);
-                       in.putExtra("From_RegionEnName", From_RegionEnName);
-                       in.putExtra("From_Reg_Id", From_Reg_Id);
-                       in.putExtra("To_Em_Id", To_Em_Id);
-                       in.putExtra("To_EmirateEnName", To_EmirateEnName);
-                       in.putExtra("To_RegionEnName", To_RegionEnName);
-                       in.putExtra("To_Reg_Id", To_Reg_Id);
-
-                       Log.d("From_Em_Id_1", String.valueOf(From_Em_Id));
-                       Log.d("From_Reg_Id_1", String.valueOf(From_Reg_Id));
-                       Log.d("To_Em_Id_1", String.valueOf(To_Em_Id));
-                       Log.d("To_Reg_Id_1", String.valueOf(To_Reg_Id));
-                       startActivity(in);
-
-                       finish();
+                        finish();
 
 
-                   }
-               } //  else if 2
+                    }
+                } //  else if 2
+
+                else if (FLAG_ID == 3) {
+
+                    Intent in = new Intent(PickUpActivity.this, DriverCreateCarPool.class);
+                    if (From_Em_Id != -1 && From_Reg_Id != -1) {
+                        in.putExtra("From_Em_Id", From_Em_Id);
+                        in.putExtra("From_EmirateEnName", From_EmirateEnName);
+                        in.putExtra("From_RegionEnName", From_RegionEnName);
+                        in.putExtra("From_Reg_Id", From_Reg_Id);
+                        in.putExtra("To_Em_Id", To_Em_Id);
+                        in.putExtra("To_EmirateEnName", To_EmirateEnName);
+                        in.putExtra("To_RegionEnName", To_RegionEnName);
+                        in.putExtra("To_Reg_Id", To_Reg_Id);
+
+                        Log.d("From_Em_Id_1", String.valueOf(From_Em_Id));
+                        Log.d("From_Reg_Id_1", String.valueOf(From_Reg_Id));
+                        Log.d("To_Em_Id_1", String.valueOf(To_Em_Id));
+                        Log.d("To_Reg_Id_1", String.valueOf(To_Reg_Id));
+                        startActivity(in);
+
+                        finish();
 
 
-
-
-
+                    }
+                } //  else if 2
 
 
             }// on click
@@ -310,7 +298,6 @@ public class PickUpActivity extends AppCompatActivity {
         });
 
 
-
         Create_CarPool_txt_regions_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -322,11 +309,6 @@ public class PickUpActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
 
 
         Create_CarPool_txt_regions.setOnClickListener(new View.OnClickListener() {
@@ -342,20 +324,10 @@ public class PickUpActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
-
-
-
-
-
     } // oncreate
 
 
-
-    private class backTread extends AsyncTask  {
+    private class backTread extends AsyncTask {
 
         @Override
         protected void onPreExecute() {
@@ -365,22 +337,22 @@ public class PickUpActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Object o) {
 
-                RegionsAdapter regionsAdapter = new RegionsAdapter(getBaseContext(), R.layout.dialog_pick_regions_lv_row, arr);
+            RegionsAdapter regionsAdapter = new RegionsAdapter(getBaseContext(), R.layout.dialog_pick_regions_lv_row, arr);
 
 
-                Create_CarPool_txt_regions.setAdapter(regionsAdapter);
-                Create_CarPool_txt_regions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Create_CarPool_txt_regions.setAdapter(regionsAdapter);
+            Create_CarPool_txt_regions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                        Create_CarPool_txt_regions.setText(arr.get(position).getRegionEnName());
-                        From_Reg_Id = arr.get(position).getID();
-                        From_RegionEnName = arr.get(position).getRegionEnName();
-                        Log.d("Em Name : ", From_EmirateEnName);
-                        Log.d("Reg Name",From_RegionEnName);
-                        Log.d("Reg id ", String.valueOf(From_Reg_Id));
-                    }
-                });
+                    Create_CarPool_txt_regions.setText(arr.get(position).getRegionEnName());
+                    From_Reg_Id = arr.get(position).getID();
+                    From_RegionEnName = arr.get(position).getRegionEnName();
+                    Log.d("Em Name : ", From_EmirateEnName);
+                    Log.d("Reg Name", From_RegionEnName);
+                    Log.d("Reg id ", String.valueOf(From_Reg_Id));
+                }
+            });
 
 
             //  if
@@ -393,7 +365,7 @@ public class PickUpActivity extends AppCompatActivity {
 
             String ret;
             try {
-                InputStream inputStream = openFileInput("Regions"+From_Em_Id+".txt");
+                InputStream inputStream = openFileInput("Regions" + From_Em_Id + ".txt");
                 if (inputStream != null) {
                     InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                     BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
@@ -429,18 +401,10 @@ public class PickUpActivity extends AppCompatActivity {
         }
 
 
-
-
-
     }    // back thread classs
 
 
-
-
-
-
-
-    private class backTread2 extends AsyncTask  {
+    private class backTread2 extends AsyncTask {
 
         @Override
         protected void onPreExecute() {
@@ -450,25 +414,25 @@ public class PickUpActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Object o) {
 
-                RegionsAdapter regionsAdapter = new RegionsAdapter(getBaseContext(), R.layout.dialog_pick_regions_lv_row, arr_2);
+            RegionsAdapter regionsAdapter = new RegionsAdapter(getBaseContext(), R.layout.dialog_pick_regions_lv_row, arr_2);
 
 
-                Create_CarPool_txt_regions_2.setAdapter(regionsAdapter);
-                Create_CarPool_txt_regions_2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Create_CarPool_txt_regions_2.setAdapter(regionsAdapter);
+            Create_CarPool_txt_regions_2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                        Create_CarPool_txt_regions_2.setText(arr_2.get(position).getRegionEnName());
-                        To_Reg_Id = arr_2.get(position).getID();
-                        To_RegionEnName = arr_2.get(position).getRegionEnName();
+                    Create_CarPool_txt_regions_2.setText(arr_2.get(position).getRegionEnName());
+                    To_Reg_Id = arr_2.get(position).getID();
+                    To_RegionEnName = arr_2.get(position).getRegionEnName();
 
 
-                        Log.d("Em Name : ", To_EmirateEnName);
-                        Log.d("Reg Name", To_RegionEnName);
-                        Log.d("Reg id ", String.valueOf(To_Reg_Id));
+                    Log.d("Em Name : ", To_EmirateEnName);
+                    Log.d("Reg Name", To_RegionEnName);
+                    Log.d("Reg id ", String.valueOf(To_Reg_Id));
 
-                    }
-                });
+                }
+            });
 
 
             //  if
@@ -481,7 +445,7 @@ public class PickUpActivity extends AppCompatActivity {
 
             String ret;
             try {
-                InputStream inputStream = openFileInput("Regions"+To_Em_Id+".txt");
+                InputStream inputStream = openFileInput("Regions" + To_Em_Id + ".txt");
                 if (inputStream != null) {
                     InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                     BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
@@ -517,12 +481,7 @@ public class PickUpActivity extends AppCompatActivity {
         }
 
 
-
-
-
-
     }    // back thread classs
-
 
 
     @Override
@@ -539,7 +498,7 @@ public class PickUpActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id==android.R.id.home){
+        if (id == android.R.id.home) {
             onBackPressed();
             return true;
         }
@@ -547,10 +506,6 @@ public class PickUpActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
-
-
 
 
     @Override
@@ -566,7 +521,7 @@ public class PickUpActivity extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Destination");
+        textView.setText("Set Direction``````````````````````````````````````````````````````````````````````````````````````````````````");
 //        toolbar.setElevation(10);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);

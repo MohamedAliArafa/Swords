@@ -28,7 +28,7 @@
                 <Button
                     android:id="@+id/quick_Destination"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="60dp"
                     android:background="@drawable/borders_quicksearch_btn"
                     android:text="@string/destination"
                     android:textColor="#FFFFFF"
@@ -45,7 +45,7 @@
                 <RelativeLayout
                     android:id="@+id/pickup_relative"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="40dp"
                     android:layout_below="@+id/quick_Destination"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
@@ -86,7 +86,7 @@
                 <RelativeLayout
                     android:id="@+id/dropOff_relative"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="40dp"
                     android:layout_below="@+id/pickup_relative"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
