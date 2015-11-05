@@ -952,7 +952,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                         TreeMap<String, String> valuePairs = new TreeMap<>();
                         JSONObject jsonObject = j.getJSONObject(i);
                         valuePairs.put("ID", jsonObject.getString("ID"));
-                        valuePairs.put("NationalityEnName", jsonObject.getString(getString(R.string.nat_name)));
+                        valuePairs.put("NationalityEnName", jsonObject.getString(getString(R.string.nat_name2)));
                         Country_List.add(valuePairs);
                     }
                     Log.d("Nat :", Country_List.toString());

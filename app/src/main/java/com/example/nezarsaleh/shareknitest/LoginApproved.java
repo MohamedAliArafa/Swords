@@ -170,7 +170,7 @@ public class LoginApproved extends AppCompatActivity {
         protected Object doInBackground(Object[] params) {
             boolean exists = false;
             try {
-                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                SocketAddress sockaddr = new InetSocketAddress("www.godsogle.com", 80);
                 Socket sock = new Socket();
                 int timeoutMs = 2000;   // 2 seconds
                 sock.connect(sockaddr, timeoutMs);
@@ -184,18 +184,21 @@ public class LoginApproved extends AppCompatActivity {
                                 .setMessage(R.string.con_problem_message)
                                 .setPositiveButton(R.string.retry, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent intentToBeNewRoot = new Intent(LoginApproved.this, LoginApproved.class);
-                                        ComponentName cn = intentToBeNewRoot.getComponent();
-                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
-                                        startActivity(mainIntent);
+                                        finish();
+                                        startActivity(getIntent());
+//                                        Intent intentToBeNewRoot = new Intent(LoginApproved.this, LoginApproved.class);
+//                                        ComponentName cn = intentToBeNewRoot.getComponent();
+//                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+//                                        startActivity(mainIntent);
                                     }
                                 })
                                 .setNegativeButton(R.string.goBack, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent intentToBeNewRoot = new Intent(LoginApproved.this, OnboardingActivity.class);
-                                        ComponentName cn = intentToBeNewRoot.getComponent();
-                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
-                                        startActivity(mainIntent);
+                                        LoginApproved.this.finish();
+//                                        Intent intentToBeNewRoot = new Intent(LoginApproved.this, OnboardingActivity.class);
+//                                        ComponentName cn = intentToBeNewRoot.getComponent();
+//                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+//                                        startActivity(mainIntent);
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
                         Toast.makeText(LoginApproved.this,R.string.connection_problem, Toast.LENGTH_SHORT).show();

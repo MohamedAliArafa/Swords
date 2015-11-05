@@ -113,7 +113,7 @@ import java.util.List;
         Phone_Call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+"0122774744"));
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+m.getPhoneNumber()));
                 activity.startActivity(intent);
             }
         });
@@ -121,7 +121,7 @@ import java.util.List;
         Phone_Message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:"+"0122774744"));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:"+m.getPhoneNumber()));
                 intent.putExtra( "sms_body", "Hello "+m.getName() );
                 activity.startActivity(intent);
             }

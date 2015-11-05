@@ -130,7 +130,7 @@ public class MostRidesDetails extends AppCompatActivity {
                         item.setDriverName(json.getString("DriverName"));
                         item.setNationality_en(json.getString(getString(R.string.nat_name)));
                         item.setSDG_Route_Start_FromTime(json.getString("StartTime"));
-                        item.setDriverMobile(json.getString("StartTime"));
+                        item.setDriverMobile(json.getString("DriverMobile"));
                         item.setDriverId(json.getInt("AccountId"));
                         item.setRouteId(json.getInt("RouteId"));
                         item.setPhotoURl(json.getString("DriverPhoto"));
