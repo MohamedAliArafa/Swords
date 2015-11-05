@@ -230,7 +230,7 @@ public class LoginApproved extends AppCompatActivity {
                                         item.setID(json.getInt("ID"));
                                         item.setName(json.getString("FirstName"));
                                         item.setPhotoURL(json.getString("PhotoPath"));
-                                        item.setNationality(json.getString(getString(R.string.nat_name)));
+                                        item.setNationality(json.getString(getString(R.string.nat_name2)));
                                         item.setRating(json.getInt("PrefferedLanguage"));
                                         Intent in = new Intent(getBaseContext(), HomePage.class);
                                         in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

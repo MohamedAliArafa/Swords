@@ -248,6 +248,18 @@ public class EditProfileTest extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        edit_reg_mob.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    if (edit_reg_mob != null) {
+                        if (edit_reg_mob.length() == 7) {
+                            Toast.makeText(EditProfileTest.this, R.string.short_mobile, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+
+            }
+        });
 
         btn_Edit_Cancel.setOnClickListener(new View.OnClickListener() {
             @Override
