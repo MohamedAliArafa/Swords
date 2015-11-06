@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Sharekni2</string>
+    <string name="app_name">Sharekni</string>
 
-    <string name="title_activity_main">Sharekni2</string>
+    <string name="title_activity_main">Sharekni</string>
 
     <string name="hello_world">Hello </string>
     <string name="action_settings">Settings</string>
@@ -62,7 +62,7 @@
     <string name="title_activity_driver_created_rides">DriverCreatedRides</string>
     <string name="title_activity_driver_joined_rides">DriverJoinedRides</string>
     <string name="title_activity_splash">SplashActivity</string>
-    <string name="title_activity_test_vedio">Sharekni2</string>
+    <string name="title_activity_test_vedio">Sharekni</string>
     <string name="title_activity_passenger_my_approved_rides">PassengerMyApprovedRides</string>
     <string name="title_activity_history">History</string>
     <string name="title_activity_take_atour">TakeATour</string>

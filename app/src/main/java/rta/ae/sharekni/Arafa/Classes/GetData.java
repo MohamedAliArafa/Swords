@@ -23,17 +23,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import rta.ae.sharekni.Arafa.Activities.Profile;
-import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModelDetails;
-import rta.ae.sharekni.Arafa.DataModelAdapter.BestRouteDataModelAdapterDetails;
-import rta.ae.sharekni.DriverCreatedRides;
-import rta.ae.sharekni.HomePage;
-import rta.ae.sharekni.QuickSearchDataModel;
-import rta.ae.sharekni.QuickSearchResultAdapter;
 import com.example.nezarsaleh.shareknitest.R;
-import rta.ae.sharekni.Ride_Details_Passengers_Adapter;
-import rta.ae.sharekni.Ride_Details_Passengers_DataModel;
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +32,16 @@ import org.json.JSONObject;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+
+import rta.ae.sharekni.Arafa.Activities.Profile;
+import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModelDetails;
+import rta.ae.sharekni.Arafa.DataModelAdapter.BestRouteDataModelAdapterDetails;
+import rta.ae.sharekni.DriverCreatedRides;
+import rta.ae.sharekni.HomePage;
+import rta.ae.sharekni.QuickSearchDataModel;
+import rta.ae.sharekni.QuickSearchResultAdapter;
+import rta.ae.sharekni.Ride_Details_Passengers_Adapter;
+import rta.ae.sharekni.Ride_Details_Passengers_DataModel;
 
 public class GetData {
 
@@ -133,6 +133,7 @@ public class GetData {
     String Driver_RemoveReview          = DOMAIN + "Driver_RemoveReview?";
     String DriverAlertsForRequestUrl    = DOMAIN + "Driver_AlertsForRequest?d_AccountId=";
     String DriverAcceptPassengerUrl     = DOMAIN + "Driver_AcceptRequest?RequestId=";
+    String DriverRegisterVehicleUrl     = DOMAIN + "Driver_RegisterVehicleWithETService?";
     String Driver_DeleteRouteUrl        = DOMAIN + "Route_Delete?RouteId=";
     String Passenger_Rqs_From_Driver    = DOMAIN + "Passenger_GetAcceptedRequestsFromDriver?accountId=";
     String Driver_RemovePassenger       = DOMAIN + "Driver_RemovePassenger?";
@@ -361,7 +362,12 @@ public class GetData {
     }
 
 
-
+    public String RegisterVehicle(int Driver_ID, int FileNo,String Birth_Date) throws JSONException {
+        HandleXML obj = new HandleXML(DriverRegisterVehicleUrl+ "AccountId=" + Driver_ID + "&TrafficFileNo=" + FileNo+"&BirthDate="+Birth_Date);
+        obj.fetchXML();
+        while ((obj.parsingComplete &&!obj.error)) ;
+        return obj.getData();
+    }
 
 
     public String DriverAcceptPassenger(int Request_ID, int isAccepted) throws JSONException {

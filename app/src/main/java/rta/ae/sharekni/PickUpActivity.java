@@ -521,7 +521,7 @@ public class PickUpActivity extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Set Direction``````````````````````````````````````````````````````````````````````````````````````````````````");
+        textView.setText("Set Direction");
 //        toolbar.setElevation(10);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);

@@ -17,15 +17,18 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import rta.ae.sharekni.Arafa.Classes.GetData;
+import android.widget.Toast;
 
 import com.example.nezarsaleh.shareknitest.R;
+
+import org.json.JSONException;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
+import rta.ae.sharekni.Arafa.Classes.GetData;
 
 public class RegisterVehicle extends AppCompatActivity {
 
@@ -99,12 +102,36 @@ public class RegisterVehicle extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
+                GetData j = new GetData();
                 if (!full_date.equals("") && !File_num_edit.getText().toString().equals("Please enter the driving license No.") ) {
                     File_NO_Str = File_num_edit.getText().toString();
+                    int FileNo = Integer.parseInt(File_NO_Str);
 
-                    license_check.stringRequest(GetData.DOMAIN+"Driver_RegisterVehicleWithETService?AccountId="+Driver_ID+"&TrafficFileNo="+File_NO_Str+"&BirthDate="+full_date,RegisterVehicle.this);
-                    Log.d("reg vehicle",GetData.DOMAIN+"Driver_RegisterVehicleWithETService?AccountId="+Driver_ID+"&TrafficFileNo="+File_NO_Str+"&BirthDate="+full_date);
+                //    license_check.stringRequest(GetData.DOMAIN+"Driver_RegisterVehicleWithETService?AccountId="+Driver_ID+"&TrafficFileNo="+FileNo+"&BirthDate="+full_date,RegisterVehicle.this);
+                 //   Log.d("reg vehicle", GetData.DOMAIN + "Driver_RegisterVehicleWithETService?AccountId=" + Driver_ID + "&TrafficFileNo=" + FileNo + "&BirthDate=" + full_date);
+
+                    try {
+                      String data =  j.RegisterVehicle(Driver_ID, FileNo, full_date);
+                        if (data.equals("\"1\"")){
+                            Toast.makeText(getBaseContext(), "Verified", Toast.LENGTH_LONG).show();
+
+                        }else if(data.equals("\"-3\"")){
+                            Toast.makeText(getBaseContext(), "Date birth invalid", Toast.LENGTH_LONG).show();
+                            Log.d("inside -3",data);
+                        }else if (data.equals("\"-4\"")){
+                            Toast.makeText(getBaseContext(), "license verified, but no cars found ", Toast.LENGTH_LONG).show();
+
+                        }else if (data.equals("\"-5\"") || data.equals("\"-6\"") ){
+                            Toast.makeText(getBaseContext(), "Invalid data, please check agaian", Toast.LENGTH_LONG).show();
+
+                        }else if (data.equals("\"0\"")){
+                            //  Toast.makeText(context, "license verified, but no cars found ", Toast.LENGTH_LONG).show();
+                            Log.d("license no json",data+" Error in Connection with the DataBase Server");
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
 
                 }
 
