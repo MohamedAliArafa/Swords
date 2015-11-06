@@ -850,22 +850,17 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                 runOnUiThread(new Runnable() {
                     public void run() {
                         new AlertDialog.Builder(RegisterNewTest.this)
-                                .setTitle(R.string.connection_problem)
-                                .setMessage(R.string.con_problem_message)
-                                .setPositiveButton(R.string.retry, new DialogInterface.OnClickListener() {
+                                .setTitle(getString(R.string.connection_problem))
+                                .setMessage(getString(R.string.con_problem_message))
+                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent intentToBeNewRoot = new Intent(RegisterNewTest.this, RegisterNewTest.class);
-                                        ComponentName cn = intentToBeNewRoot.getComponent();
-                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
-                                        startActivity(mainIntent);
+                                        finish();
+                                        startActivity(getIntent());
                                     }
                                 })
-                                .setNegativeButton(R.string.goBack, new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent intentToBeNewRoot = new Intent(RegisterNewTest.this, OnboardingActivity.class);
-                                        ComponentName cn = intentToBeNewRoot.getComponent();
-                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
-                                        startActivity(mainIntent);
+                                        finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
                         Toast.makeText(RegisterNewTest.this, R.string.connection_problem, Toast.LENGTH_SHORT).show();
@@ -927,17 +922,15 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                 runOnUiThread(new Runnable() {
                     public void run() {
                         new AlertDialog.Builder(RegisterNewTest.this)
-                                .setTitle(R.string.connection_problem)
-                                .setMessage(R.string.con_problem_message)
-                                .setPositiveButton(R.string.retry, new DialogInterface.OnClickListener() {
+                                .setTitle(getString(R.string.connection_problem))
+                                .setMessage(getString(R.string.con_problem_message))
+                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent intentToBeNewRoot = new Intent(RegisterNewTest.this, RegisterNewTest.class);
-                                        ComponentName cn = intentToBeNewRoot.getComponent();
-                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
-                                        startActivity(mainIntent);
+                                        finish();
+                                        startActivity(getIntent());
                                     }
                                 })
-                                .setNegativeButton(R.string.exit, new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                     }

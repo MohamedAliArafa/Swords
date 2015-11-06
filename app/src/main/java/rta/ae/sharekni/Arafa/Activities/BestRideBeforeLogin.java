@@ -129,13 +129,11 @@ public class BestRideBeforeLogin extends AppCompatActivity {
                                 .setMessage(getString(R.string.con_problem_message))
                                 .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent intentToBeNewRoot = new Intent(BestRideBeforeLogin.this, BestRideBeforeLogin.class);
-                                        ComponentName cn = intentToBeNewRoot.getComponent();
-                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
-                                        startActivity(mainIntent);
+                                        finish();
+                                        startActivity(getIntent());
                                     }
                                 })
-                                .setNegativeButton(getString(R.string.exit), new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                     }
@@ -148,31 +146,27 @@ public class BestRideBeforeLogin extends AppCompatActivity {
                 JSONArray response = null;
                 try {
                     response = new GetData().MostDesiredRoutes();
+                    assert response != null;
+                    driver = new BestRouteDataModel[response.length()];
+                    for (int i = 0; i < response.length(); i++) {
+                            JSONObject json = response.getJSONObject(i);
+                            final BestRouteDataModel item = new BestRouteDataModel(Parcel.obtain());
+                            item.setFromEm(json.getString(getString(R.string.from_em_name_en)));
+                            item.setFromReg(json.getString(getString(R.string.from_reg_name_en)));
+                            item.setToEm(json.getString(getString(R.string.to_em_name_en)));
+                            item.setToReg(json.getString(getString(R.string.to_reg_name_en)));
+                            item.setFromEmId(json.getInt("FromEmirateId"));
+                            item.setFromRegid(json.getInt("FromRegionId"));
+                            item.setToEmId(json.getInt("ToEmirateId"));
+                            item.setToRegId(json.getInt("ToRegionId"));
+                            item.setRouteName(json.getString("RoutesCount"));
+//                    arr.add(item);
+                            driver[i] = item;
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                assert response != null;
-                driver = new BestRouteDataModel[response.length()];
 
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        JSONObject json = response.getJSONObject(i);
-                        final BestRouteDataModel item = new BestRouteDataModel(Parcel.obtain());
-                        item.setFromEm(json.getString(getString(R.string.from_em_name_en)));
-                        item.setFromReg(json.getString(getString(R.string.from_reg_name_en)));
-                        item.setToEm(json.getString(getString(R.string.to_em_name_en)));
-                        item.setToReg(json.getString(getString(R.string.to_reg_name_en)));
-                        item.setFromEmId(json.getInt("FromEmirateId"));
-                        item.setFromRegid(json.getInt("FromRegionId"));
-                        item.setToEmId(json.getInt("ToEmirateId"));
-                        item.setToRegId(json.getInt("ToRegionId"));
-                        item.setRouteName(json.getString("RoutesCount"));
-//                    arr.add(item);
-                        driver[i] = item;
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
             }
             return null;
         }

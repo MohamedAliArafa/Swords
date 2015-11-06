@@ -1041,17 +1041,15 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                 runOnUiThread(new Runnable() {
                     public void run() {
                         new AlertDialog.Builder(DriverCreateCarPool.this)
-                                .setTitle("Connection Problem!")
-                                .setMessage("Make sure you have internet connection")
-                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                .setTitle(getString(R.string.connection_problem))
+                                .setMessage(getString(R.string.con_problem_message))
+                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent intentToBeNewRoot = new Intent(DriverCreateCarPool.this, DriverCreateCarPool.class);
-                                        ComponentName cn = intentToBeNewRoot.getComponent();
-                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
-                                        startActivity(mainIntent);
+                                        finish();
+                                        startActivity(getIntent());
                                     }
                                 })
-                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                     }
@@ -1135,17 +1133,15 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                 runOnUiThread(new Runnable() {
                     public void run() {
                         new AlertDialog.Builder(DriverCreateCarPool.this)
-                                .setTitle("Connection Problem!")
-                                .setMessage("Make sure you have internet connection")
-                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                .setTitle(getString(R.string.connection_problem))
+                                .setMessage(getString(R.string.con_problem_message))
+                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent intentToBeNewRoot = new Intent(DriverCreateCarPool.this, DriverCreateCarPool.class);
-                                        ComponentName cn = intentToBeNewRoot.getComponent();
-                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
-                                        startActivity(mainIntent);
+                                        finish();
+                                        startActivity(getIntent());
                                     }
                                 })
-                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                     }
@@ -1223,17 +1219,15 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                 runOnUiThread(new Runnable() {
                     public void run() {
                         new AlertDialog.Builder(DriverCreateCarPool.this)
-                                .setTitle("Connection Problem!")
-                                .setMessage("Make sure you have internet connection")
-                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                .setTitle(getString(R.string.connection_problem))
+                                .setMessage(getString(R.string.con_problem_message))
+                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent intentToBeNewRoot = new Intent(DriverCreateCarPool.this, DriverCreateCarPool.class);
-                                        ComponentName cn = intentToBeNewRoot.getComponent();
-                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
-                                        startActivity(mainIntent);
+                                        finish();
+                                        startActivity(getIntent());
                                     }
                                 })
-                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                     }
@@ -1317,17 +1311,15 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                 runOnUiThread(new Runnable() {
                     public void run() {
                         new AlertDialog.Builder(DriverCreateCarPool.this)
-                                .setTitle("Connection Problem!")
-                                .setMessage("Make sure you have internet connection")
-                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                .setTitle(getString(R.string.connection_problem))
+                                .setMessage(getString(R.string.con_problem_message))
+                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent intentToBeNewRoot = new Intent(DriverCreateCarPool.this, DriverCreateCarPool.class);
-                                        ComponentName cn = intentToBeNewRoot.getComponent();
-                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
-                                        startActivity(mainIntent);
+                                        finish();
+                                        startActivity(getIntent());
                                     }
                                 })
-                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                     }

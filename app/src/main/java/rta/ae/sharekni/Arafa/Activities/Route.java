@@ -350,25 +350,25 @@ public class Route extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     public void run() {
                         new AlertDialog.Builder(Route.this)
-                                .setTitle("Connection Problem!")
-                                .setMessage("Make sure you have internet connection")
-                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                .setTitle(getString(R.string.connection_problem))
+                                .setMessage(getString(R.string.con_problem_message))
+                                .setPositiveButton(getString(R.string.con_problem_message), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent intentToBeNewRoot = new Intent(Route.this, Route.class);
-                                        ComponentName cn = intentToBeNewRoot.getComponent();
-                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+//                                        Intent intentToBeNewRoot = new Intent(Route.this, Route.class);
+//                                        ComponentName cn = intentToBeNewRoot.getComponent();
+                                        Intent mainIntent = getIntent();
                                         mainIntent.putExtra("DriverID",Driver_ID);
                                         mainIntent.putExtra("RouteID",Route_ID);
                                         mainIntent.putExtra("RouteName",Route_name);
                                         startActivity(mainIntent);
                                     }
                                 })
-                                .setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(Route.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Route.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }

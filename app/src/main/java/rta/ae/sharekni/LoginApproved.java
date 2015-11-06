@@ -168,7 +168,7 @@ public class LoginApproved extends AppCompatActivity {
         protected Object doInBackground(Object[] params) {
             boolean exists = false;
             try {
-                SocketAddress sockaddr = new InetSocketAddress("www.godsogle.com", 80);
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
                 Socket sock = new Socket();
                 int timeoutMs = 2000;   // 2 seconds
                 sock.connect(sockaddr, timeoutMs);
@@ -192,7 +192,7 @@ public class LoginApproved extends AppCompatActivity {
                                 })
                                 .setNegativeButton(R.string.goBack, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        LoginApproved.this.finish();
+                                        finish();
 //                                        Intent intentToBeNewRoot = new Intent(LoginApproved.this, OnboardingActivity.class);
 //                                        ComponentName cn = intentToBeNewRoot.getComponent();
 //                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);

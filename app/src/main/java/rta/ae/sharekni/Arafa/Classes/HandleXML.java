@@ -14,10 +14,11 @@ import java.net.URL;
 
 public class HandleXML {
     private String data = "string";
-    private Boolean error = false;
+    public volatile boolean error = false;
     private String urlString = null;
     private XmlPullParserFactory xmlFactoryObject;
     public volatile boolean parsingComplete = true;
+    Thread thread;
 
 
     public HandleXML(String url){
@@ -25,6 +26,7 @@ public class HandleXML {
     }
 
     public String getData(){
+        Log.d("Data",data);
         return data;
     }
 
@@ -62,16 +64,19 @@ public class HandleXML {
         }
     }
 
+    private void intrupt(){
+        thread.interrupt();
+    }
     public void fetchXML(){
-        Thread thread = new Thread(new Runnable(){
+        thread = new Thread(new Runnable(){
             @Override
             public void run() {
                 try {
                     URL url = new URL(urlString);
                     HttpURLConnection conn = (HttpURLConnection)url.openConnection();
-                    Log.d("Url  :",url.toString());
-                    conn.setReadTimeout(0 /* milliseconds */);
-                    conn.setConnectTimeout(0 /* milliseconds */);
+                    Log.d("Url  :", url.toString());
+                    conn.setReadTimeout(2000 /* milliseconds */);
+                    conn.setConnectTimeout(2000 /* milliseconds */);
                     conn.setRequestMethod("GET");
                     conn.setDoInput(true);
                     conn.connect();
@@ -85,6 +90,7 @@ public class HandleXML {
                 }
                 catch (Exception e) {
                     error = true;
+                    intrupt();
                     e.printStackTrace();
                 }
             }

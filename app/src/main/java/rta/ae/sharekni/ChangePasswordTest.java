@@ -65,21 +65,19 @@ public class ChangePasswordTest extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         public void run() {
                             new AlertDialog.Builder(ChangePasswordTest.this)
-                                    .setTitle("Connection Problem!")
-                                    .setMessage("Make sure you have internet connection")
-                                    .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            Intent intentToBeNewRoot = new Intent(ChangePasswordTest.this, ChangePasswordTest.class);
-                                            ComponentName cn = intentToBeNewRoot.getComponent();
-                                            Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
-                                            startActivity(mainIntent);
-                                        }
-                                    })
-                                    .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                    .setTitle(getString(R.string.connection_problem))
+                                    .setMessage(getString(R.string.con_problem_message))
+                                    .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int which) {
                                             finish();
+                                            startActivity(getIntent());
                                         }
-                                    }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                                    })
+                                    .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            finish();
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
                             Toast.makeText(ChangePasswordTest.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
                         }
                     });

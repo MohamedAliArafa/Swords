@@ -128,9 +128,8 @@ public class DriverRequestDetails extends AppCompatActivity {
                                 .setMessage("Make sure you have internet connection")
                                 .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent intentToBeNewRoot = new Intent(DriverRequestDetails.this, DriverRequestDetails.class);
-                                        ComponentName cn = intentToBeNewRoot.getComponent();
-                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        finish();
+                                        Intent mainIntent = getIntent();
                                         mainIntent.putExtra("PassengerName",PassengerName);
                                         mainIntent.putExtra("RouteName",RouteName);
                                         mainIntent.putExtra("NationalityEnName",NationalityEnName);
@@ -142,7 +141,7 @@ public class DriverRequestDetails extends AppCompatActivity {
                                         startActivity(mainIntent);
                                     }
                                 })
-                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                     }
@@ -189,9 +188,8 @@ public class DriverRequestDetails extends AppCompatActivity {
                                 .setMessage("Make sure you have internet connection")
                                 .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent intentToBeNewRoot = new Intent(DriverRequestDetails.this, DriverRequestDetails.class);
-                                        ComponentName cn = intentToBeNewRoot.getComponent();
-                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+                                        finish();
+                                        Intent mainIntent = getIntent();
                                         mainIntent.putExtra("PassengerName",PassengerName);
                                         mainIntent.putExtra("RouteName",RouteName);
                                         mainIntent.putExtra("NationalityEnName",NationalityEnName);
@@ -203,7 +201,7 @@ public class DriverRequestDetails extends AppCompatActivity {
                                         startActivity(mainIntent);
                                     }
                                 })
-                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                     }

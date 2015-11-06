@@ -126,18 +126,13 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
                                 .setMessage(getString(R.string.con_problem_message))
                                 .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent intentToBeNewRoot = new Intent(BestDriversBeforeLogin.this, BestDriversBeforeLogin.class);
-                                        ComponentName cn = intentToBeNewRoot.getComponent();
-                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
-                                        startActivity(mainIntent);
+                                        finish();
+                                        startActivity(getIntent());
                                     }
                                 })
                                 .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent intentToBeNewRoot = new Intent(BestDriversBeforeLogin.this, OnboardingActivity.class);
-                                        ComponentName cn = intentToBeNewRoot.getComponent();
-                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
-                                        startActivity(mainIntent);
+                                        finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
                         Toast.makeText(BestDriversBeforeLogin.this,getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();

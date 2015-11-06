@@ -273,13 +273,13 @@ public class QuickSearchResults extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     public void run() {
                         new AlertDialog.Builder(QuickSearchResults.this)
-                                .setTitle("Connection Problem!")
-                                .setMessage("Make sure you have internet connection")
-                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                .setTitle(getString(R.string.connection_problem))
+                                .setMessage(getString(R.string.con_problem_message))
+                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent intentToBeNewRoot = new Intent(QuickSearchResults.this, QuickSearchResults.class);
-                                        ComponentName cn = intentToBeNewRoot.getComponent();
-                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+//                                        Intent intentToBeNewRoot = new Intent(QuickSearchResults.this, QuickSearchResults.class);
+//                                        ComponentName cn = intentToBeNewRoot.getComponent();
+                                        Intent mainIntent = getIntent();
                                         mainIntent.putExtra("From_Em_Id", From_Em_Id);
                                         mainIntent.putExtra("From_Reg_Id", From_Reg_Id);
                                         mainIntent.putExtra("To_Em_Id", To_Em_Id);
@@ -293,12 +293,12 @@ public class QuickSearchResults extends AppCompatActivity {
                                         startActivity(mainIntent);
                                     }
                                 })
-                                .setNegativeButton("Exit!", new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(QuickSearchResults.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(QuickSearchResults.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }

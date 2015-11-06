@@ -1,6 +1,7 @@
 package rta.ae.sharekni;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -190,7 +191,6 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                         Advanced_txt_PickUp = "";
                         Advanced_txt_PickUp += From_EmirateEnName_str;
                     }
-
 
                     if (From_RegionEnName_str.equals("null") || From_RegionEnName_str.equals(getString(R.string.not_set))) {
                         From_RegionEnName_str = "";
@@ -494,13 +494,11 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                                 .setMessage(getString(R.string.con_problem_message))
                                 .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent intentToBeNewRoot = new Intent(Advanced_Search.this, Advanced_Search.class);
-                                        ComponentName cn = intentToBeNewRoot.getComponent();
-                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
-                                        startActivity(mainIntent);
+                                        finish();
+                                        startActivity(getIntent());
                                     }
                                 })
-                                .setNegativeButton(getString(R.string.exit), new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                     }
@@ -557,13 +555,11 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                                 .setMessage(getString(R.string.con_problem_message))
                                 .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent intentToBeNewRoot = new Intent(Advanced_Search.this, Advanced_Search.class);
-                                        ComponentName cn = intentToBeNewRoot.getComponent();
-                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
-                                        startActivity(mainIntent);
+                                        finish();
+                                        startActivity(getIntent());
                                     }
                                 })
-                                .setNegativeButton(getString(R.string.exit), new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                     }
@@ -579,7 +575,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                         TreeMap<String, String> valuePairs = new TreeMap<>();
                         JSONObject jsonObject = j.getJSONObject(i);
                         valuePairs.put("ID", jsonObject.getString("ID"));
-                        valuePairs.put("NationalityEnName", jsonObject.getString(getString(R.string.nat_name)));
+                        valuePairs.put("NationalityEnName", jsonObject.getString(getString(R.string.nat_name2)));
                         Advanced_Country_List.add(valuePairs);
                     }
                     //Toast.makeText(RegisterNewTest.this, "test pref lang" + Lang_List.toString(), Toast.LENGTH_LONG).show();
@@ -645,13 +641,11 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                                 .setMessage(getString(R.string.con_problem_message))
                                 .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent intentToBeNewRoot = new Intent(Advanced_Search.this, Advanced_Search.class);
-                                        ComponentName cn = intentToBeNewRoot.getComponent();
-                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
-                                        startActivity(mainIntent);
+                                        finish();
+                                        startActivity(getIntent());
                                     }
                                 })
-                                .setNegativeButton(getString(R.string.exit), new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                     }
@@ -749,13 +743,11 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                                 .setMessage(getString(R.string.con_problem_message))
                                 .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent intentToBeNewRoot = new Intent(Advanced_Search.this, Advanced_Search.class);
-                                        ComponentName cn = intentToBeNewRoot.getComponent();
-                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
-                                        startActivity(mainIntent);
+                                        finish();
+                                        startActivity(getIntent());
                                     }
                                 })
-                                .setNegativeButton(getString(R.string.exit), new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                     }
@@ -1202,7 +1194,6 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
     public void onBackPressed() {
         super.onBackPressed();
         finish();
-
     }
 
 }    //class

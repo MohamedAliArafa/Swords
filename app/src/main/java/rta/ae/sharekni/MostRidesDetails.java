@@ -113,6 +113,7 @@ public class MostRidesDetails extends AppCompatActivity {
 
     private class back extends AsyncTask{
         JSONArray jsonArray;
+        boolean exists = false;
 
         @Override
         protected void onPostExecute(Object o) {
@@ -194,7 +195,6 @@ public class MostRidesDetails extends AppCompatActivity {
 
         @Override
         protected Object doInBackground(Object[] params) {
-            boolean exists = false;
             try {
                 SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
                 Socket sock = new Socket();
@@ -210,14 +210,11 @@ public class MostRidesDetails extends AppCompatActivity {
                                 .setMessage(getString(R.string.con_problem_message))
                                 .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent intentToBeNewRoot = new Intent(MostRidesDetails.this, MostRidesDetails.class);
-                                        ComponentName cn = intentToBeNewRoot.getComponent();
-                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
-                                        mainIntent.putParcelableArrayListExtra("Data",data);
-                                        startActivity(mainIntent);
+                                        finish();
+                                        startActivity(getIntent());
                                     }
                                 })
-                                .setNegativeButton(getString(R.string.exit), new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                     }

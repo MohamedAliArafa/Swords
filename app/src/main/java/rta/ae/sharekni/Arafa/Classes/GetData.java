@@ -284,14 +284,14 @@ public class GetData {
         int ID = 0;
         HandleXML obj = new HandleXML(getDriverById + ID);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while ((obj.parsingComplete &&!obj.error)) ;
         return new JSONArray(obj.getData());
     }
 
     public JSONArray MostRidesDetails(String url) throws JSONException {
         HandleXML obj = new HandleXML(url);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while (obj.parsingComplete &&!obj.error) ;
         return new JSONArray(obj.getData());
     }
 
@@ -314,7 +314,7 @@ public class GetData {
                 + "&SaveFind=" + saveFind
                 + "&IsPeriodic=");
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while ((obj.parsingComplete &&!obj.error)) ;
         Log.d("Test big",obj.getData());
         return new JSONArray(obj.getData());
     }
@@ -322,14 +322,14 @@ public class GetData {
     public JSONArray GetBestDrivers() throws JSONException {
         HandleXML obj = new HandleXML(getBestDriverUrl);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while ((obj.parsingComplete &&!obj.error)) ;
         return new JSONArray(obj.getData());
     }
 
     public JSONArray GetDriverRides(int ID) throws JSONException {
         HandleXML obj = new HandleXML(getDriverRideUrl + ID);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while ((obj.parsingComplete &&!obj.error)) ;
         return new JSONArray(obj.getData());
     }
 
@@ -337,7 +337,7 @@ public class GetData {
         String url = DOMAIN +  "GetMostDesiredRideDetails?AccountID=" + 0 + "&FromEmirateID=" + FromEmId + "&FromRegionID=" + FromRegId + "&ToEmirateID=" + ToEmId + "&ToRegionID=" + ToRegId;
         HandleXML obj = new HandleXML(url);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while ((obj.parsingComplete &&!obj.error)) ;
         JSONArray json = new JSONArray(obj.getData());
         return json.length();
     }
@@ -346,7 +346,7 @@ public class GetData {
 
         HandleXML obj = new HandleXML(DriverAlertsForRequestUrl + id);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while ((obj.parsingComplete &&!obj.error)) ;
         JSONArray json = new JSONArray(obj.getData());
         return json;
     }
@@ -355,7 +355,7 @@ public class GetData {
 
         HandleXML obj = new HandleXML(Passenger_Rqs_From_Driver + id);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while ((obj.parsingComplete &&!obj.error)) ;
         JSONArray json = new JSONArray(obj.getData());
         return json;
     }
@@ -367,7 +367,7 @@ public class GetData {
     public String DriverAcceptPassenger(int Request_ID, int isAccepted) throws JSONException {
         HandleXML obj = new HandleXML(DriverAcceptPassengerUrl + Request_ID + "&IsAccept=" + isAccepted);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while ((obj.parsingComplete &&!obj.error)) ;
         return obj.getData();
     }
 
@@ -375,7 +375,7 @@ public class GetData {
         JSONObject json;
         HandleXML obj = new HandleXML(getDriverById + ID);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while ((obj.parsingComplete &&!obj.error)) ;
         json = jsonArrayToObject(obj.getData().toString());
         return json;
     }
@@ -384,7 +384,7 @@ public class GetData {
         JSONObject json;
         HandleXML obj = new HandleXML(getRouteByRouteId + ID);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while ((obj.parsingComplete &&!obj.error)) ;
         JSONArray jsonArray = new JSONArray(obj.getData());
         json = jsonArray.getJSONObject(0);
         return json;
@@ -394,7 +394,7 @@ public class GetData {
         JSONArray json;
         HandleXML obj = new HandleXML(getBestRouteUrl);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while ((obj.parsingComplete && !obj.error)) ;
         json = new JSONArray(obj.getData().toString());
         return json;
     }
@@ -405,7 +405,7 @@ public class GetData {
                 + Passenger_ID + "&DriverID=" + Driver_ID + "&s_Remarks=" + Remarks;
         HandleXML obj = new HandleXML(Url);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while ((obj.parsingComplete &&!obj.error)) ;
         json = obj.getData().toString();
         return json;
 
@@ -417,7 +417,7 @@ public class GetData {
                 + Driver_ID + "&RouteId=" + Route_ID + "&&ReviewText=" + Remarks;
         HandleXML obj = new HandleXML(Url);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while ((obj.parsingComplete &&!obj.error)) ;
         return obj.getData();
 
     }
@@ -426,7 +426,7 @@ public class GetData {
         String Url = Driver_RemovePassenger + "RoutePassengerId=" + Passenger_ID;
         HandleXML obj = new HandleXML(Url);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while ((obj.parsingComplete &&!obj.error)) ;
         return obj.getData();
 
     }
@@ -437,7 +437,7 @@ public class GetData {
         String Url = Passenger_LeaveRideUrl + Passenger_ID;
         HandleXML obj = new HandleXML(Url);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while ((obj.parsingComplete &&!obj.error)) ;
         return obj.getData();
 
     }
@@ -450,7 +450,7 @@ public class GetData {
         String Url = Driver_RemoveReview + "ReviewId=" + ReviewId;
         HandleXML obj = new HandleXML(Url);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while ((obj.parsingComplete &&!obj.error)) ;
         return obj.getData();
 
     }
@@ -460,7 +460,7 @@ public class GetData {
         String Url = Driver_GetReview + "DriverId=" + Driver_ID + "&RouteId=" + Route_ID;
         HandleXML obj = new HandleXML(Url);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while ((obj.parsingComplete &&!obj.error)) ;
         json = new JSONArray(obj.getData());
         return json;
 
@@ -471,7 +471,7 @@ public class GetData {
         String Url = GetPassengersByRouteIDUrl + Route_ID;
         HandleXML obj = new HandleXML(Url);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while ((obj.parsingComplete &&!obj.error)) ;
         json = new JSONArray(obj.getData());
         return json;
 
@@ -483,7 +483,7 @@ public class GetData {
         String Url = GetAcceptedRequestsURL + Route_ID;
         HandleXML obj = new HandleXML(Url);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while ((obj.parsingComplete &&!obj.error)) ;
         json = new JSONArray(obj.getData());
         return json;
 
@@ -500,7 +500,7 @@ public class GetData {
         String Url = Driver_DeleteRouteUrl + Route_ID;
         HandleXML obj = new HandleXML(Url);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while ((obj.parsingComplete &&!obj.error)) ;
         json = obj.getData().toString();
         return json;
 
@@ -510,7 +510,7 @@ public class GetData {
         JSONArray json;
         HandleXML obj = new HandleXML(Emirates_By_ID);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while ((obj.parsingComplete &&!obj.error)) ;
         json = new JSONArray(obj.getData().toString());
         return json;
     }
@@ -519,7 +519,7 @@ public class GetData {
         JSONArray json = null;
         HandleXML obj = new HandleXML(Regions_By_Em_Id + id);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while ((obj.parsingComplete &&!obj.error)) ;
         json = new JSONArray(obj.getData().toString());
         return json;
     }
@@ -528,7 +528,7 @@ public class GetData {
         JSONArray json = null;
         HandleXML obj = new HandleXML(getPrefLanguageUrl);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while ((obj.parsingComplete &&!obj.error) &&!obj.error) ;
         json = new JSONArray(obj.getData().toString());
         return json;
     }
@@ -538,7 +538,7 @@ public class GetData {
         JSONArray json;
         HandleXML obj = new HandleXML(GetVehiclesUrl+id);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while (((obj.parsingComplete &&!obj.error) &&!obj.error)) ;
         json = new JSONArray(obj.getData().toString());
         return json;
     }
@@ -547,7 +547,7 @@ public class GetData {
         JSONArray json = null;
         HandleXML obj = new HandleXML(GetAgeRanges);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while ((obj.parsingComplete &&!obj.error)) ;
         json = new JSONArray(obj.getData().toString());
         return json;
     }
@@ -556,7 +556,7 @@ public class GetData {
         JSONArray json = null;
         HandleXML obj = new HandleXML(getNationalitiesUrl);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while ((obj.parsingComplete &&!obj.error) &&!obj.error) ;
         json = new JSONArray(obj.getData().toString());
         return json;
     }
@@ -564,7 +564,7 @@ public class GetData {
     public Bitmap GetImage(String photoUrl) {
         HandleXML obj = new HandleXML(getImage + photoUrl);
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while (((obj.parsingComplete &&!obj.error) &&!obj.error)) ;
         Log.d("obj : ", obj.getData());
         byte[] decodedByte = Base64.decode(obj.getData(), Base64.DEFAULT);
         Bitmap decoded = BitmapFactory.decodeByteArray(decodedByte, 0, decodedByte.length);
@@ -583,7 +583,7 @@ public class GetData {
     public JSONArray GetMapLookUp() throws JSONException {
         HandleXML obj = new HandleXML(GetMapLookUpUrl );
         obj.fetchXML();
-        while (obj.parsingComplete) ;
+        while ((obj.parsingComplete &&!obj.error)) ;
         return new JSONArray(obj.getData());
     }
 

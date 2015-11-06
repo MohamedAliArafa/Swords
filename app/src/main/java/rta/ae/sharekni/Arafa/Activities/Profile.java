@@ -287,14 +287,13 @@ public class Profile extends AppCompatActivity {
                                 .setMessage(getString(R.string.con_problem_message))
                                 .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent intentToBeNewRoot = new Intent(Profile.this, Profile.class);
-                                        ComponentName cn = intentToBeNewRoot.getComponent();
-                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
-                                        mainIntent.putExtra("DriverID",Driver_ID);
-                                        startActivity(mainIntent);
+                                        finish();
+                                        Intent in = getIntent();
+                                        in.putExtra("DriverID",Driver_ID);
+                                        startActivity(getIntent());
                                     }
                                 })
-                                .setNegativeButton(getString(R.string.exit), new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                     }
