@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 import rta.ae.sharekni.Arafa.Classes.GetData;
 
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 
 import java.net.InetSocketAddress;
 import java.net.Socket;

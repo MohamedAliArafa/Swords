@@ -16,7 +16,7 @@ import rta.ae.sharekni.Arafa.Activities.BestRideBeforeLogin;
 import rta.ae.sharekni.MainNavigationDrawerFragment.NavigationDrawerFragment;
 import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
 
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 
 
 public class SharekniOld extends ActionBarActivity {

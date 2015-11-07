@@ -33,7 +33,7 @@ import rta.ae.sharekni.Arafa.Classes.ImageDecoder;
 import rta.ae.sharekni.MainNavigationDrawerFragment.NavigationDrawerFragment;
 import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
 
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 import com.pkmmte.view.CircularImageView;
 
 import org.json.JSONArray;

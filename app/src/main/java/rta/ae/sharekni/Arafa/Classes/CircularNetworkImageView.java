@@ -13,7 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
 import com.android.volley.toolbox.NetworkImageView;
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 
 public class CircularNetworkImageView extends NetworkImageView {
     private int borderWidth;

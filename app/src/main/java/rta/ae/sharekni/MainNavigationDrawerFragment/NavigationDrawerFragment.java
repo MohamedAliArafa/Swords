@@ -21,7 +21,7 @@ import rta.ae.sharekni.Arafa.Activities.BestRideBeforeLogin;
 import rta.ae.sharekni.DriverAlertsForRequest;
 import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
 import rta.ae.sharekni.QSearch;
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 import com.pkmmte.view.CircularImageView;
 
 

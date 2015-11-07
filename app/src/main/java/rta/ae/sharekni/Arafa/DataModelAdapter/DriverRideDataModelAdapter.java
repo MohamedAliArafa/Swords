@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import rta.ae.sharekni.Arafa.DataModel.DriverRideDataModel;
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 
 
 public class DriverRideDataModelAdapter extends ArrayAdapter<DriverRideDataModel> {

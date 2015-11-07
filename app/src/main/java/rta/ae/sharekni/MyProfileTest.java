@@ -36,7 +36,7 @@ import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
 import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
 import rta.ae.sharekni.Arafa.DataModelAdapter.BestRouteDataModelAdapter;
 
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 import com.pkmmte.view.CircularImageView;
 
 import org.json.JSONArray;

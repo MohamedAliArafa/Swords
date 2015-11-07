@@ -36,7 +36,7 @@ import rta.ae.sharekni.DriverGetReviewAdapter;
 import rta.ae.sharekni.DriverGetReviewDataModel;
 import rta.ae.sharekni.HomePage;
 import rta.ae.sharekni.PermitJsonParse;
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 import rta.ae.sharekni.Ride_Details_Passengers_Adapter;
 import rta.ae.sharekni.Ride_Details_Passengers_DataModel;
 import rta.ae.sharekni.Route_Get_Accepted_Requests_DataModel;

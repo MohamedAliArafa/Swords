@@ -19,7 +19,7 @@ import rta.ae.sharekni.Arafa.Classes.CircularNetworkImageView;
 import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModelDetails;
 
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 
 
 public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteDataModelDetails> {

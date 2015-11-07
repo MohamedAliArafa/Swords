@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 
 public class TakeATour extends FragmentActivity {
 

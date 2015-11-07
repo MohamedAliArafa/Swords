@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 
 
 public class OnboardingFragment1 extends Fragment {

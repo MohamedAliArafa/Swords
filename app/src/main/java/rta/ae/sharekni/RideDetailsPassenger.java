@@ -33,7 +33,7 @@ import android.widget.Toast;
 
 import rta.ae.sharekni.Arafa.Classes.GetData;
 
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;

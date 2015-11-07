@@ -1,12 +1,9 @@
 package rta.ae.sharekni;
 
 import android.app.AlertDialog;
-import android.content.ComponentName;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -17,13 +14,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import rta.ae.sharekni.Arafa.Classes.GetData;
-
-import com.example.nezarsaleh.shareknitest.R;
-
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+
+import rta.ae.sharekni.Arafa.Classes.GetData;
 
 
 public class ChangePasswordTest extends AppCompatActivity {

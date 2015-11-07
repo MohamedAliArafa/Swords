@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import rta.ae.sharekni.HomePage;
 import rta.ae.sharekni.LoginApproved;
 import rta.ae.sharekni.QSearch;
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 import rta.ae.sharekni.RegisterNewTest;
 import rta.ae.sharekni.TakeATour;
 import rta.ae.sharekni.Sharekni;

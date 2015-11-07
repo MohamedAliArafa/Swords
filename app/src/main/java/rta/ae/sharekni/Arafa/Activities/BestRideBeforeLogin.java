@@ -28,7 +28,7 @@ import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
 import rta.ae.sharekni.Arafa.DataModelAdapter.BestRouteDataModelAdapter;
 import rta.ae.sharekni.MostRidesDetails;
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

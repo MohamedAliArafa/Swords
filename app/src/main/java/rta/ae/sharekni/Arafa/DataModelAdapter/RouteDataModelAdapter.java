@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import rta.ae.sharekni.Arafa.DataModel.RouteDataModel;
 
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 
 
 public class RouteDataModelAdapter extends ArrayAdapter<RouteDataModel> {

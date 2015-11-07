@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
 
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 
 /**
  * Created by Nezar Saleh on 10/31/2015.

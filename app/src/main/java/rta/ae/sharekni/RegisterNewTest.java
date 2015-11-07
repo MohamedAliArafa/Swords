@@ -47,7 +47,7 @@ import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.LogIN.RegisterJsonParse;
 import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
 
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

@@ -12,7 +12,7 @@ import android.widget.RelativeLayout;
 import rta.ae.sharekni.Arafa.Activities.BestDriversBeforeLogin;
 import rta.ae.sharekni.Arafa.Activities.BestRideBeforeLogin;
 
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 
 
 /**

@@ -11,7 +11,7 @@ import android.widget.Button;
 
 import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
 
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 
 /**
  * Created by Nezar Saleh on 10/17/2015.

@@ -8,7 +8,7 @@ import android.widget.VideoView;
 
 import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
 
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 
 
 public class SplashActivity extends AppCompatActivity {

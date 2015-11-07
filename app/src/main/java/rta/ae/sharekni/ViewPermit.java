@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.webkit.WebView;
 
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 
 public class ViewPermit extends AppCompatActivity {
 

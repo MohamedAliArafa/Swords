@@ -36,7 +36,7 @@ import rta.ae.sharekni.Arafa.DataModel.BestDriverDataModel;
 import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
 import rta.ae.sharekni.Arafa.DataModelAdapter.ProfileRideAdapter;
 import rta.ae.sharekni.LoginApproved;
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 import rta.ae.sharekni.RideDetailsPassenger;
 
 import org.json.JSONArray;

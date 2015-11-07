@@ -30,7 +30,7 @@ import android.widget.Toast;
 import rta.ae.sharekni.Arafa.Activities.Profile;
 import rta.ae.sharekni.Arafa.Classes.GetData;
 
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

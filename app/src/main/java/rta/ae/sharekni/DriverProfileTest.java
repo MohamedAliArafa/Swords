@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 import com.pkmmte.view.CircularImageView;
 
 public class DriverProfileTest extends AppCompatActivity {

@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import rta.ae.sharekni.Arafa.Activities.BestRideBeforeLogin;
 
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 
 public class SearchOptions extends AppCompatActivity {
 

@@ -29,7 +29,7 @@ import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
 import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModelDetails;
 import rta.ae.sharekni.Arafa.DataModelAdapter.BestRouteDataModelAdapterDetails;
 
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

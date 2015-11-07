@@ -9,7 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.nezarsaleh.shareknitest.R;
+import rta.ae.sharekni.R;
 
 public class DriverJoinedRides extends AppCompatActivity {
     Toolbar toolbar;
