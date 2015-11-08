@@ -26,7 +26,7 @@
             android:layout_marginRight="2dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:text="From "
+            android:text="@string/from_text_top_ride"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -81,7 +81,7 @@
             android:layout_alignStart="@+id/from_txt_id"
             android:layout_below="@+id/quick_search_reg_from"
             android:layout_marginTop="10dp"
-            android:text="To "
+            android:text="@string/to_text_top_ride"
             android:textSize="18sp"
             android:textStyle="bold" />
 

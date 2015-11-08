@@ -188,7 +188,7 @@
                 android:id="@+id/txt_ride_word_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Drivers:"
+                android:text="@string/driver_count"
                 android:textColor="@color/primaryColor"
                 android:textSize="14sp" />
 
@@ -220,7 +220,7 @@
                 android:id="@+id/txt_ride_word_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Passengers:"
+                android:text="@string/passengers"
                 android:textColor="@color/primaryColor"
                 android:textSize="14sp" />
 
@@ -250,7 +250,7 @@
                 android:id="@+id/txt_ride_word"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Coming Ride:"
+                android:text="@string/comming_ride"
                 android:textColor="@color/primaryColor"
                 android:textSize="14sp" />
 
@@ -262,7 +262,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_toEndOf="@+id/txt_ride_word"
                 android:layout_toRightOf="@+id/txt_ride_word"
-                android:text="After 6:15 Minutes"
+                android:text="@string/after_min"
                 android:textSize="14sp" />
 
 

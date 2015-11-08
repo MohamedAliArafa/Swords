@@ -176,9 +176,9 @@
     <string name="tue">, الثلاثاء</string>
     <string name="wed">, الأربعاء</string>
     <string name="thu">, الخميس</string>
-    <string name="fri">", الجمعة "</string>
+    <string name="fri">, الجمعة</string>
     <string name="driver_details">بيانات السائق</string>
-    <string name="route_name">RouteArName</string>
+    <string name="route_name">RouteEnName</string>
     <string name="time">الوقت</string>
     <string name="ride_days">ايام الرحلة</string>
     <string name="review">التعليق</string>
@@ -258,6 +258,23 @@
     <string name="first_name">الإسم الأول</string>
     <string name="select_profile_image">إختر صورة شخصية!!</string>
     <string name="edit_profile">تعديل الصفحة الشخصية</string>
+    <string name="after_min">فى خلال 6:15 دقيقة</string>
+    <string name="check_user_pass">تأكد من إسم المستخدم و كلمة المرور</string>
+    <string name="comming_ride">الرحلة القادمة :</string>
+    <string name="created_rides">الرحلات المنشأه</string>
+    <string name="driver_count">سائقين:</string>
+    <string name="enter_your_email">إدخل بريدك الإلكترونى</string>
+    <string name="enter_your_no">إدخل رقم هاتفك المحمول</string>
+    <string name="forget_password">نسيت كلمة المرور</string>
+    <string name="joined_rides">الرحلات المشتركة</string>
+    <string name="nat_en">Nationality_ar</string>
+    <string name="no_routes_available">لا يوجد طرق متوفرة</string>
+    <string name="passenger_name">إسم الراكب</string>
+    <string name="passengers">الركاب</string>
+    <string name="route_name2">RouteName</string>
+    <string name="search_results">نتائج البحث</string>
+    <string name="write_your_review">أكتب تعليق</string>
+    <string name="your_review">تعليقك</string>
 
 
 </resources>

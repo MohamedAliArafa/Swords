@@ -258,6 +258,23 @@
     <string name="first_name">First Name</string>
     <string name="pref_lang2">PrefferedLanguageEnName</string>
     <string name="edit_profile">Edit Profile</string>
+    <string name="write_your_review">Write Your Review</string>
+    <string name="your_review">Your Review</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="check_user_pass">Check ur Username and Password</string>
+    <string name="enter_your_no">Enter your number</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="search_results">Search Results</string>
+    <string name="no_routes_available">No Routes Available</string>
+    <string name="nat_en">Nationality_en</string>
+    <string name="comming_ride">Coming Ride :</string>
+    <string name="passengers">Passengers:</string>
+    <string name="driver_count">Drivers:</string>
+    <string name="after_min">After 6:15 Minutes</string>
+    <string name="created_rides">Created Rides</string>
+    <string name="joined_rides">Joined Rides</string>
+    <string name="passenger_name">Passenger Name</string>
+    <string name="route_name2">RouteName</string>
 
 
 </resources>

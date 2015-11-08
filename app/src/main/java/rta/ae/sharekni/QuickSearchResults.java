@@ -147,7 +147,7 @@ public class QuickSearchResults extends AppCompatActivity {
 
             }catch (NullPointerException e){
 
-                Toast.makeText(acivity, "No Routes Available ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(acivity, R.string.no_routes_available, Toast.LENGTH_SHORT).show();
 
                 final Dialog dialog = new Dialog(acivity);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -166,7 +166,7 @@ public class QuickSearchResults extends AppCompatActivity {
 
 
             if (error) {
-                Toast.makeText(QuickSearchResults.this, "No Available Results", Toast.LENGTH_SHORT).show();
+                Toast.makeText(QuickSearchResults.this, R.string.no_routes_available, Toast.LENGTH_SHORT).show();
 
             } else {
                 String days = "";
@@ -191,31 +191,31 @@ public class QuickSearchResults extends AppCompatActivity {
 //                    item.setTo_RegionName_en(json.getString("To_RegionName_en"));
                             item.setAccountMobile(json.getString("AccountMobile"));
                             item.setSDG_Route_Start_FromTime(json.getString("SDG_Route_Start_FromTime"));
-                            item.setNationality_en(json.getString("Nationality_en"));
+                            item.setNationality_en(json.getString(getString(R.string.nat_en)));
                             item.setRating(json.getString("Rating"));
 
                             days = "";
 
                             if (json.getString("Saturday").equals("true")) {
-                                days += ", Sat";
+                                days += getString(R.string.sat);
                             }
                             if (json.getString("SDG_RouteDays_Sunday").equals("true")) {
-                                days += ", Sun";
+                                days += getString(R.string.sun);
                             }
                             if (json.getString("SDG_RouteDays_Monday").equals("true")) {
-                                days += ", Mon";
+                                days += getString(R.string.mon);
                             }
                             if (json.getString("SDG_RouteDays_Tuesday").equals("true")) {
-                                days += ", Tue";
+                                days += getString(R.string.tue);
                             }
                             if (json.getString("SDG_RouteDays_Wednesday").equals("true")) {
-                                days += ", Wed";
+                                days += getString(R.string.wed);
                             }
                             if (json.getString("SDG_RouteDays_Thursday").equals("true")) {
-                                days += ", Thu";
+                                days += getString(R.string.thu);
                             }
                             if (json.getString("SDG_RouteDays_Friday").equals("true")) {
-                                days += ", Fri";
+                                days += getString(R.string.fri);
                             }
                             if (!days.equals("")) {
                                 item.setSDG_RouteDays(days.substring(1));
@@ -298,7 +298,7 @@ public class QuickSearchResults extends AppCompatActivity {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(QuickSearchResults.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(QuickSearchResults.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -372,7 +372,7 @@ public class QuickSearchResults extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Search Results");
+        textView.setText(R.string.search_results);
 //        toolbar.setElevation(10);
 
         setSupportActionBar(toolbar);

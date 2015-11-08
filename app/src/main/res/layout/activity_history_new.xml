@@ -71,7 +71,7 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:paddingStart="20dp"
-                android:text="Created Rides"
+                android:text="@string/created_rides"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -121,7 +121,7 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:paddingStart="20dp"
-                android:text="Joined Rides"
+                android:text="@string/joined_rides"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 

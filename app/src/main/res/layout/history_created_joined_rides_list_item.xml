@@ -33,7 +33,7 @@
             android:layout_marginRight="2dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
-            android:text="From "
+            android:text="@string/from_text_top_ride"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -89,7 +89,7 @@
             android:layout_alignStart="@+id/from_txt_id"
             android:layout_below="@+id/reg_from"
             android:layout_marginTop="10dp"
-            android:text="To "
+            android:text="@string/to_text_top_ride"
             android:textSize="16sp"
             android:textStyle="bold"
 
@@ -269,7 +269,7 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingStart="20dp"
-        android:text="RouteName"
+        android:text="@string/route_name2"
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_marginTop="10dp"

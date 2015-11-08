@@ -56,7 +56,7 @@ public class ForgetPassword extends AppCompatActivity {
                 Email =edit_mail.getText().toString();
 
                 if (edit_mail == null||mobileNumber.length()<= 9) {
-                    Toast.makeText(getBaseContext(), "Check ur Username and Password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), R.string.check_user_pass, Toast.LENGTH_SHORT).show();
                 }else {
                     boolean exists = false;
                     try {
@@ -83,7 +83,7 @@ public class ForgetPassword extends AppCompatActivity {
                                                 finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                                Toast.makeText(ForgetPassword.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ForgetPassword.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -128,7 +128,7 @@ public class ForgetPassword extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Forget Password");
+        textView.setText(R.string.forget_password);
 //        toolbar.setElevation(10);
 
         setSupportActionBar(toolbar);

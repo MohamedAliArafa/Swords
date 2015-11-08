@@ -46,7 +46,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="20dp"
                     android:gravity="center"
-                    android:text="From"
+                    android:text="@string/from_text_top_ride"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -105,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/FromEmirateEnName"
                     android:layout_marginTop="10dp"
-                    android:text="To"
+                    android:text="@string/to_text_top_ride"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -327,7 +327,7 @@
                         android:layout_marginEnd="15dp"
                         android:layout_marginRight="15dp"
                         android:layout_marginTop="20dp"
-                        android:text="Language"
+                        android:text="@string/language"
                         android:textSize="16sp" />
 
                     <TextView
@@ -355,7 +355,7 @@
                         android:layout_marginRight="10dp"
                         android:layout_toEndOf="@+id/PrefLanguageEnName"
                         android:layout_toRightOf="@+id/PrefLanguageEnName"
-                        android:text="Age Range"
+                        android:text="@string/age_range"
                         android:textSize="16sp" />
 
 
@@ -381,7 +381,7 @@
                         android:layout_alignStart="@+id/ride_details_lang_txt"
                         android:layout_below="@+id/ride_details_lang_txt"
                         android:layout_marginTop="20dp"
-                        android:text="Gender"
+                        android:text="@string/gender"
                         android:textSize="16sp" />
 
                     <TextView
@@ -404,7 +404,7 @@
                         android:layout_alignBottom="@+id/ride_details_Gender_txt"
                         android:layout_alignLeft="@+id/ride_details_age_range_txt"
                         android:layout_alignStart="@+id/ride_details_age_range_txt"
-                        android:text="Smokers"
+                        android:text="@string/smokers"
                         android:textSize="16sp" />
 
 
@@ -432,7 +432,7 @@
                         android:layout_below="@+id/ride_details_Gender_txt"
                         android:layout_marginBottom="20dp"
                         android:layout_marginTop="20dp"
-                        android:text="Nationality"
+                        android:text="@string/nationality"
                         android:textSize="16sp" />
 
 
@@ -455,7 +455,7 @@
                         android:layout_below="@+id/ride_details_Nat_txt"
                         android:layout_marginBottom="20dp"
                         android:layout_marginTop="20dp"
-                        android:text="Passenger Name"
+                        android:text="@string/passenger_name"
                         android:textColor="@color/primaryColor"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -473,7 +473,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_toEndOf="@+id/ride_details_pref_txt"
                         android:layout_toRightOf="@+id/ride_details_pref_txt"
-                        android:text="Nationality"
+                        android:text="@string/nationality"
                         android:textColor="@color/primaryColor"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -519,7 +519,7 @@
                             android:layout_marginLeft="20dp"
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="20dp"
-                            android:text="Reviews"
+                            android:text="@string/reviews"
                             android:textColor="@color/primaryColor"
                             android:textSize="16sp"
                             android:textStyle="bold" />
