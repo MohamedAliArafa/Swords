@@ -223,7 +223,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/ride_details_time_id"
                     android:layout_marginBottom="10dp"
-                    android:text="Ride Days"
+                    android:text="@string/ride_days"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:textStyle="bold" />
