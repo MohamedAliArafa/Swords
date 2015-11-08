@@ -52,12 +52,10 @@ public class GetData {
     //http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx/
 
 
-
     // sharekni sdg staff
-  //  public static final String DOMAIN = "http://sharekni.sdgstaff.com/_mobfiles/CLS_MobAndroid.asmx/";
-   // public static final String NonOpDomain = "http://sharekni.sdgstaff.com/_mobfiles/CLS_MobAndroid.asmx";
-   // public static final String PhotoURL = "http://sharekni.sdgstaff.com/uploads/personalphoto/";
-
+    //  public static final String DOMAIN = "http://sharekni.sdgstaff.com/_mobfiles/CLS_MobAndroid.asmx/";
+    // public static final String NonOpDomain = "http://sharekni.sdgstaff.com/_mobfiles/CLS_MobAndroid.asmx";
+    // public static final String PhotoURL = "http://sharekni.sdgstaff.com/uploads/personalphoto/";
 
 
 //    public static final String DOMAIN = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx/";
@@ -66,12 +64,9 @@ public class GetData {
 //
 
 
-        public static final String DOMAIN = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx/";
+    public static final String DOMAIN = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx/";
     public static final String NonOpDomain = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx";
-   public static final String PhotoURL = "https://www.sharekni.ae/uploads/personalphoto/";
-
-
-
+    public static final String PhotoURL = "https://www.sharekni.ae/uploads/personalphoto/";
 
 
 //    String data;
@@ -115,43 +110,43 @@ public class GetData {
 
 
     String data;
-    String loginFormUrl                 = DOMAIN + "CheckLogin?";
-    String getDriverById                = DOMAIN + "Get?id=";
-    String ChangePasswordUrl            = DOMAIN + "ChangePassword?";
-    String Driver_GetReview             = DOMAIN + "Driver_GetReviewList?";
-    String EditProfileUrl               = DOMAIN + "EditProfile?";
-    String ForgetPasswordUrl            = DOMAIN + "ForgetPassword?";
-    String getImage                     = DOMAIN + "GetPhotoPath?s_FileName=";
+    String loginFormUrl = DOMAIN + "CheckLogin?";
+    String getDriverById = DOMAIN + "Get?id=";
+    String ChangePasswordUrl = DOMAIN + "ChangePassword?";
+    String Driver_GetReview = DOMAIN + "Driver_GetReviewList?";
+    String EditProfileUrl = DOMAIN + "EditProfile?";
+    String ForgetPasswordUrl = DOMAIN + "ForgetPassword?";
+    String getImage = DOMAIN + "GetPhotoPath?s_FileName=";
 
-    String getBestDriverUrl             = DOMAIN + "GetBestDrivers";
-    String DriverEditCarPoolUrl         = DOMAIN + "Driver_EditCarpool?";
-    String DriverCreateCarPoolUrl       = DOMAIN + "Driver_CreateCarpool?";
-    String QuickSearchUrl               = DOMAIN + "Passenger_FindRide?";
+    String getBestDriverUrl = DOMAIN + "GetBestDrivers";
+    String DriverEditCarPoolUrl = DOMAIN + "Driver_EditCarpool?";
+    String DriverCreateCarPoolUrl = DOMAIN + "Driver_CreateCarpool?";
+    String QuickSearchUrl = DOMAIN + "Passenger_FindRide?";
 
-    String getBestRouteUrl              = DOMAIN + "GetMostDesiredRides";
-    String getDriverRideUrl             = DOMAIN + "GetDriverDetailsByAccountId?AccountId=";
-    String getRouteByRouteId            = DOMAIN + "GetRouteByRouteId?RouteId=";
-    String Passenger_SendAlert          = DOMAIN + "Passenger_SendAlert?";
-    String GetPassengersByRouteIDUrl    = DOMAIN + "GetPassengersByRouteId?id=";
-    String GetAcceptedRequestsURL       = DOMAIN + "Route_GetAcceptedRequests?RouteId=";
-    String Passenger_Review_Driver      = DOMAIN + "Passenger_ReviewDriver?";
-    String Driver_RemoveReview          = DOMAIN + "Driver_RemoveReview?";
-    String DriverAlertsForRequestUrl    = DOMAIN + "Driver_AlertsForRequest?d_AccountId=";
-    String DriverAcceptPassengerUrl     = DOMAIN + "Driver_AcceptRequest?RequestId=";
-    String DriverRegisterVehicleUrl     = DOMAIN + "Driver_RegisterVehicleWithETService?";
-    String Driver_DeleteRouteUrl        = DOMAIN + "Route_Delete?RouteId=";
-    String Passenger_Rqs_From_Driver    = DOMAIN + "Passenger_GetAcceptedRequestsFromDriver?accountId=";
-    String Driver_RemovePassenger       = DOMAIN + "Driver_RemovePassenger?";
-    String Passenger_LeaveRideUrl       = DOMAIN + "Passenger_RemovePassenger?RoutePassengerId=";
-    String Regions_By_Em_Id             = DOMAIN + "GetRegionsByEmirateId?id=";
-    String Emirates_By_ID               = DOMAIN + "GetEmirates";
-    String getNationalitiesUrl          = DOMAIN + "GetNationalities?id=0";
-    String getPrefLanguageUrl           = DOMAIN + "GetPrefferedLanguages";
-    String GetAgeRanges                 = DOMAIN + "GetAgeRanges";
+    String getBestRouteUrl = DOMAIN + "GetMostDesiredRides";
+    String getDriverRideUrl = DOMAIN + "GetDriverDetailsByAccountId?AccountId=";
+    String getRouteByRouteId = DOMAIN + "GetRouteByRouteId?RouteId=";
+    String Passenger_SendAlert = DOMAIN + "Passenger_SendAlert?";
+    String GetPassengersByRouteIDUrl = DOMAIN + "GetPassengersByRouteId?id=";
+    String GetAcceptedRequestsURL = DOMAIN + "Route_GetAcceptedRequests?RouteId=";
+    String Passenger_Review_Driver = DOMAIN + "Passenger_ReviewDriver?";
+    String Driver_RemoveReview = DOMAIN + "Driver_RemoveReview?";
+    String DriverAlertsForRequestUrl = DOMAIN + "Driver_AlertsForRequest?d_AccountId=";
+    String DriverAcceptPassengerUrl = DOMAIN + "Driver_AcceptRequest?RequestId=";
+    String DriverRegisterVehicleUrl = DOMAIN + "Driver_RegisterVehicleWithETService?";
+    String Driver_DeleteRouteUrl = DOMAIN + "Route_Delete?RouteId=";
+    String Passenger_Rqs_From_Driver = DOMAIN + "Passenger_GetAcceptedRequestsFromDriver?accountId=";
+    String Driver_RemovePassenger = DOMAIN + "Driver_RemovePassenger?";
+    String Passenger_LeaveRideUrl = DOMAIN + "Passenger_RemovePassenger?RoutePassengerId=";
+    String Regions_By_Em_Id = DOMAIN + "GetRegionsByEmirateId?id=";
+    String Emirates_By_ID = DOMAIN + "GetEmirates";
+    String getNationalitiesUrl = DOMAIN + "GetNationalities?id=0";
+    String getPrefLanguageUrl = DOMAIN + "GetPrefferedLanguages";
+    String GetAgeRanges = DOMAIN + "GetAgeRanges";
 
-    String GetVehiclesUrl               = DOMAIN + "GetByDriverId?id=";
+    String GetVehiclesUrl = DOMAIN + "GetByDriverId?id=";
 
-    String GetMapLookUpUrl              = DOMAIN + "GetFromOnlyMostDesiredRides";
+    String GetMapLookUpUrl = DOMAIN + "GetFromOnlyMostDesiredRides";
 
 
     public void QuickSearchForm(int myId, char gender, String time
@@ -265,7 +260,7 @@ public class GetData {
 
     public void EditProfileForm(int id, String firstName
             , String lastName
-            ,String mobile
+            , String mobile
             , String gender
             , String BirthDate
             , String NationalityId
@@ -290,14 +285,14 @@ public class GetData {
         int ID = 0;
         HandleXML obj = new HandleXML(getDriverById + ID);
         obj.fetchXML();
-        while ((obj.parsingComplete &&!obj.error)) ;
+        while ((obj.parsingComplete && !obj.error)) ;
         return new JSONArray(obj.getData());
     }
 
     public JSONArray MostRidesDetails(String url) throws JSONException {
         HandleXML obj = new HandleXML(url);
         obj.fetchXML();
-        while (obj.parsingComplete &&!obj.error) ;
+        while (obj.parsingComplete && !obj.error) ;
         return new JSONArray(obj.getData());
     }
 
@@ -320,30 +315,30 @@ public class GetData {
                 + "&SaveFind=" + saveFind
                 + "&IsPeriodic=");
         obj.fetchXML();
-        while ((obj.parsingComplete &&!obj.error)) ;
-        Log.d("Test big",obj.getData());
+        while ((obj.parsingComplete && !obj.error)) ;
+        Log.d("Test big", obj.getData());
         return new JSONArray(obj.getData());
     }
 
     public JSONArray GetBestDrivers() throws JSONException {
         HandleXML obj = new HandleXML(getBestDriverUrl);
         obj.fetchXML();
-        while ((obj.parsingComplete &&!obj.error)) ;
+        while ((obj.parsingComplete && !obj.error)) ;
         return new JSONArray(obj.getData());
     }
 
     public JSONArray GetDriverRides(int ID) throws JSONException {
         HandleXML obj = new HandleXML(getDriverRideUrl + ID);
         obj.fetchXML();
-        while ((obj.parsingComplete &&!obj.error)) ;
+        while ((obj.parsingComplete && !obj.error)) ;
         return new JSONArray(obj.getData());
     }
 
     public int GetDesiredCount(int FromEmId, int FromRegId, int ToEmId, int ToRegId) throws JSONException {
-        String url = DOMAIN +  "GetMostDesiredRideDetails?AccountID=" + 0 + "&FromEmirateID=" + FromEmId + "&FromRegionID=" + FromRegId + "&ToEmirateID=" + ToEmId + "&ToRegionID=" + ToRegId;
+        String url = DOMAIN + "GetMostDesiredRideDetails?AccountID=" + 0 + "&FromEmirateID=" + FromEmId + "&FromRegionID=" + FromRegId + "&ToEmirateID=" + ToEmId + "&ToRegionID=" + ToRegId;
         HandleXML obj = new HandleXML(url);
         obj.fetchXML();
-        while ((obj.parsingComplete &&!obj.error)) ;
+        while ((obj.parsingComplete && !obj.error)) ;
         JSONArray json = new JSONArray(obj.getData());
         return json.length();
     }
@@ -352,7 +347,7 @@ public class GetData {
 
         HandleXML obj = new HandleXML(DriverAlertsForRequestUrl + id);
         obj.fetchXML();
-        while ((obj.parsingComplete &&!obj.error)) ;
+        while ((obj.parsingComplete && !obj.error)) ;
         JSONArray json = new JSONArray(obj.getData());
         return json;
     }
@@ -361,16 +356,16 @@ public class GetData {
 
         HandleXML obj = new HandleXML(Passenger_Rqs_From_Driver + id);
         obj.fetchXML();
-        while ((obj.parsingComplete &&!obj.error)) ;
+        while ((obj.parsingComplete && !obj.error)) ;
         JSONArray json = new JSONArray(obj.getData());
         return json;
     }
 
 
-    public String RegisterVehicle(int Driver_ID, int FileNo,String Birth_Date) throws JSONException {
-        HandleXML obj = new HandleXML(DriverRegisterVehicleUrl+ "AccountId=" + Driver_ID + "&TrafficFileNo=" + FileNo+"&BirthDate="+Birth_Date);
+    public String RegisterVehicle(int Driver_ID, int FileNo, String Birth_Date) throws JSONException {
+        HandleXML obj = new HandleXML(DriverRegisterVehicleUrl + "AccountId=" + Driver_ID + "&TrafficFileNo=" + FileNo + "&BirthDate=" + Birth_Date);
         obj.fetchXML();
-        while ((obj.parsingComplete &&!obj.error)) ;
+        while ((obj.parsingComplete && !obj.error)) ;
         return obj.getData();
     }
 
@@ -378,7 +373,7 @@ public class GetData {
     public String DriverAcceptPassenger(int Request_ID, int isAccepted) throws JSONException {
         HandleXML obj = new HandleXML(DriverAcceptPassengerUrl + Request_ID + "&IsAccept=" + isAccepted);
         obj.fetchXML();
-        while ((obj.parsingComplete &&!obj.error)) ;
+        while ((obj.parsingComplete && !obj.error)) ;
         return obj.getData();
     }
 
@@ -386,7 +381,7 @@ public class GetData {
         JSONObject json;
         HandleXML obj = new HandleXML(getDriverById + ID);
         obj.fetchXML();
-        while ((obj.parsingComplete &&!obj.error)) ;
+        while ((obj.parsingComplete && !obj.error)) ;
         json = jsonArrayToObject(obj.getData().toString());
         return json;
     }
@@ -395,14 +390,14 @@ public class GetData {
         JSONObject json;
         HandleXML obj = new HandleXML(getRouteByRouteId + ID);
         obj.fetchXML();
-        while ((obj.parsingComplete &&!obj.error)) ;
+        while ((obj.parsingComplete && !obj.error)) ;
         JSONArray jsonArray = new JSONArray(obj.getData());
         json = jsonArray.getJSONObject(0);
         return json;
     }
 
     public JSONArray MostDesiredRoutes() throws JSONException {
-        Log.d("most rides",getBestRouteUrl);
+        Log.d("most rides", getBestRouteUrl);
         JSONArray json;
         HandleXML obj = new HandleXML(getBestRouteUrl);
         obj.fetchXML();
@@ -417,7 +412,7 @@ public class GetData {
                 + Passenger_ID + "&DriverID=" + Driver_ID + "&s_Remarks=" + Remarks;
         HandleXML obj = new HandleXML(Url);
         obj.fetchXML();
-        while ((obj.parsingComplete &&!obj.error)) ;
+        while ((obj.parsingComplete && !obj.error)) ;
         json = obj.getData().toString();
         return json;
 
@@ -429,7 +424,7 @@ public class GetData {
                 + Driver_ID + "&RouteId=" + Route_ID + "&&ReviewText=" + Remarks;
         HandleXML obj = new HandleXML(Url);
         obj.fetchXML();
-        while ((obj.parsingComplete &&!obj.error)) ;
+        while ((obj.parsingComplete && !obj.error)) ;
         return obj.getData();
 
     }
@@ -438,31 +433,27 @@ public class GetData {
         String Url = Driver_RemovePassenger + "RoutePassengerId=" + Passenger_ID;
         HandleXML obj = new HandleXML(Url);
         obj.fetchXML();
-        while ((obj.parsingComplete &&!obj.error)) ;
+        while ((obj.parsingComplete && !obj.error)) ;
         return obj.getData();
 
     }
-
 
 
     public String Passenger_LeaveRide(int Passenger_ID) throws JSONException {
         String Url = Passenger_LeaveRideUrl + Passenger_ID;
         HandleXML obj = new HandleXML(Url);
         obj.fetchXML();
-        while ((obj.parsingComplete &&!obj.error)) ;
+        while ((obj.parsingComplete && !obj.error)) ;
         return obj.getData();
 
     }
-
-
-
 
 
     public String Driver_Delete_Review(int ReviewId) throws JSONException {
         String Url = Driver_RemoveReview + "ReviewId=" + ReviewId;
         HandleXML obj = new HandleXML(Url);
         obj.fetchXML();
-        while ((obj.parsingComplete &&!obj.error)) ;
+        while ((obj.parsingComplete && !obj.error)) ;
         return obj.getData();
 
     }
@@ -472,39 +463,34 @@ public class GetData {
         String Url = Driver_GetReview + "DriverId=" + Driver_ID + "&RouteId=" + Route_ID;
         HandleXML obj = new HandleXML(Url);
         obj.fetchXML();
-        while ((obj.parsingComplete &&!obj.error)) ;
+        while ((obj.parsingComplete && !obj.error)) ;
         json = new JSONArray(obj.getData());
         return json;
 
     }
 
-    public JSONArray GetPassengers_ByRouteID(   int Route_ID) throws JSONException {
+    public JSONArray GetPassengers_ByRouteID(int Route_ID) throws JSONException {
         JSONArray json;
         String Url = GetPassengersByRouteIDUrl + Route_ID;
         HandleXML obj = new HandleXML(Url);
         obj.fetchXML();
-        while ((obj.parsingComplete &&!obj.error)) ;
+        while ((obj.parsingComplete && !obj.error)) ;
         json = new JSONArray(obj.getData());
         return json;
 
     }
 
 
-    public JSONArray GetAcceptedRequests_ByRouteID(   int Route_ID) throws JSONException {
+    public JSONArray GetAcceptedRequests_ByRouteID(int Route_ID) throws JSONException {
         JSONArray json;
         String Url = GetAcceptedRequestsURL + Route_ID;
         HandleXML obj = new HandleXML(Url);
         obj.fetchXML();
-        while ((obj.parsingComplete &&!obj.error)) ;
+        while ((obj.parsingComplete && !obj.error)) ;
         json = new JSONArray(obj.getData());
         return json;
 
     }
-
-
-
-
-
 
 
     public String Driver_DeleteRoute(int Route_ID) throws JSONException {
@@ -512,7 +498,7 @@ public class GetData {
         String Url = Driver_DeleteRouteUrl + Route_ID;
         HandleXML obj = new HandleXML(Url);
         obj.fetchXML();
-        while ((obj.parsingComplete &&!obj.error)) ;
+        while ((obj.parsingComplete && !obj.error)) ;
         json = obj.getData().toString();
         return json;
 
@@ -522,7 +508,7 @@ public class GetData {
         JSONArray json;
         HandleXML obj = new HandleXML(Emirates_By_ID);
         obj.fetchXML();
-        while ((obj.parsingComplete &&!obj.error)) ;
+        while ((obj.parsingComplete && !obj.error)) ;
         json = new JSONArray(obj.getData().toString());
         return json;
     }
@@ -531,7 +517,7 @@ public class GetData {
         JSONArray json = null;
         HandleXML obj = new HandleXML(Regions_By_Em_Id + id);
         obj.fetchXML();
-        while ((obj.parsingComplete &&!obj.error)) ;
+        while ((obj.parsingComplete && !obj.error)) ;
         json = new JSONArray(obj.getData().toString());
         return json;
     }
@@ -540,7 +526,7 @@ public class GetData {
         JSONArray json = null;
         HandleXML obj = new HandleXML(getPrefLanguageUrl);
         obj.fetchXML();
-        while ((obj.parsingComplete &&!obj.error) &&!obj.error) ;
+        while ((obj.parsingComplete && !obj.error) && !obj.error) ;
         json = new JSONArray(obj.getData().toString());
         return json;
     }
@@ -548,9 +534,9 @@ public class GetData {
     public JSONArray GetVehiclesForCreateCarPool(int id) throws JSONException {
 
         JSONArray json;
-        HandleXML obj = new HandleXML(GetVehiclesUrl+id);
+        HandleXML obj = new HandleXML(GetVehiclesUrl + id);
         obj.fetchXML();
-        while (((obj.parsingComplete &&!obj.error) &&!obj.error)) ;
+        while (((obj.parsingComplete && !obj.error) && !obj.error)) ;
         json = new JSONArray(obj.getData().toString());
         return json;
     }
@@ -559,7 +545,7 @@ public class GetData {
         JSONArray json = null;
         HandleXML obj = new HandleXML(GetAgeRanges);
         obj.fetchXML();
-        while ((obj.parsingComplete &&!obj.error)) ;
+        while ((obj.parsingComplete && !obj.error)) ;
         json = new JSONArray(obj.getData().toString());
         return json;
     }
@@ -568,7 +554,7 @@ public class GetData {
         JSONArray json = null;
         HandleXML obj = new HandleXML(getNationalitiesUrl);
         obj.fetchXML();
-        while ((obj.parsingComplete &&!obj.error) &&!obj.error) ;
+        while ((obj.parsingComplete && !obj.error) && !obj.error) ;
         json = new JSONArray(obj.getData().toString());
         return json;
     }
@@ -576,7 +562,7 @@ public class GetData {
     public Bitmap GetImage(String photoUrl) {
         HandleXML obj = new HandleXML(getImage + photoUrl);
         obj.fetchXML();
-        while (((obj.parsingComplete &&!obj.error) &&!obj.error)) ;
+        while (((obj.parsingComplete && !obj.error) && !obj.error)) ;
         Log.d("obj : ", obj.getData());
         byte[] decodedByte = Base64.decode(obj.getData(), Base64.DEFAULT);
         Bitmap decoded = BitmapFactory.decodeByteArray(decodedByte, 0, decodedByte.length);
@@ -593,9 +579,9 @@ public class GetData {
 
 
     public JSONArray GetMapLookUp() throws JSONException {
-        HandleXML obj = new HandleXML(GetMapLookUpUrl );
+        HandleXML obj = new HandleXML(GetMapLookUpUrl);
         obj.fetchXML();
-        while ((obj.parsingComplete &&!obj.error)) ;
+        while ((obj.parsingComplete && !obj.error)) ;
         return new JSONArray(obj.getData());
     }
 
@@ -697,7 +683,7 @@ public class GetData {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             Intent in = new Intent(context, Profile.class);
-                            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             in.putExtra("DriverID", searchArray.get(position).getDriverId());
                             in.putExtra("PassengerID", Passenger_ID);
                             in.putExtra("RouteID", searchArray.get(position).getSDG_Route_ID());
@@ -721,7 +707,7 @@ public class GetData {
         }
     }
 
-    public void bestRouteStringRequestDetails(String url, final ListView lv, final int Passenger_ID ,final Context context) {
+    public void bestRouteStringRequestDetails(String url, final ListView lv, final int Passenger_ID, final Context context) {
         // Get a RequestQueue
         RequestQueue queue = VolleySingleton.getInstance(context.getApplicationContext()).getRequestQueue();
         // Request a string response from the provided URL.
@@ -740,7 +726,7 @@ public class GetData {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        bestRouteJsonParseMostDetails(myJsonArray[0], lv,Passenger_ID ,context);
+                        bestRouteJsonParseMostDetails(myJsonArray[0], lv, Passenger_ID, context);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -754,7 +740,7 @@ public class GetData {
         VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
     }
 
-    private void bestRouteJsonParseMostDetails(JSONArray jArray, ListView lv, final int Passenger_ID , final Context context) {
+    private void bestRouteJsonParseMostDetails(JSONArray jArray, ListView lv, final int Passenger_ID, final Context context) {
         String days = "";
         final BestRouteDataModelDetails[] driver = new BestRouteDataModelDetails[jArray.length()];
         final ArrayList<BestRouteDataModelDetails> ar = new ArrayList<>();
@@ -819,20 +805,15 @@ public class GetData {
 //                            if (ID != null) {
 //                                assert AccountType != null;
 
-                                    Intent in = new Intent(context, Profile.class);
-                                    in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                    in.putExtra("DriverID", driver[i].getDriverId());
-                                    in.putExtra("PassengerID", Passenger_ID);
-                                    in.putExtra("RouteID", driver[i].getRouteId());
-                                  //  Log.d("Array Id :", String.valueOf(searchArray.get(position).getDriverId()));
-                                    context.startActivity(in);
-                                 //   Log.d("Array id : ", searchArray.get(position).getAccountName());
-                                  //  Log.d("on click id : ", String.valueOf(searchArray.get(position).getDriverId()));
-
-
-
-
-
+                            Intent in = new Intent(context, Profile.class);
+                            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            in.putExtra("DriverID", driver[i].getDriverId());
+                            in.putExtra("PassengerID", Passenger_ID);
+                            in.putExtra("RouteID", driver[i].getRouteId());
+                            //  Log.d("Array Id :", String.valueOf(searchArray.get(position).getDriverId()));
+                            context.startActivity(in);
+                            //   Log.d("Array id : ", searchArray.get(position).getAccountName());
+                            //  Log.d("on click id : ", String.valueOf(searchArray.get(position).getDriverId()));
 
 
 //                                    if (AccountType.equals("D")) {
@@ -847,7 +828,7 @@ public class GetData {
 //                                        context.startActivity(in);
 //                                  }
 
-                                   // else {
+                            // else {
 //
 //                                        Intent in = new Intent(context, RideDetailsPassenger.class);
 //                                        in.putExtra("RouteID", finalJson.getInt("RouteId"));
@@ -932,21 +913,21 @@ public class GetData {
                             e.printStackTrace();
                         } catch (JSONException e) {
                             e.printStackTrace();
-                                Toast.makeText(context, "No Routes Available ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "No Routes Available ", Toast.LENGTH_SHORT).show();
 
-                                final Dialog dialog = new Dialog(context);
-                                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                                dialog.setContentView(R.layout.noroutesdialog);
-                                Button btn = (Button) dialog.findViewById(R.id.noroute_id);
-                                dialog.show();
+                            final Dialog dialog = new Dialog(context);
+                            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(R.layout.noroutesdialog);
+                            Button btn = (Button) dialog.findViewById(R.id.noroute_id);
+                            dialog.show();
 
-                                btn.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        dialog.dismiss();
-                                        context.finish();
-                                    }
-                                });
+                            btn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialog.dismiss();
+                                    context.finish();
+                                }
+                            });
 
 
                             Log.d("Error Json : ", e.toString());
@@ -1030,13 +1011,13 @@ public class GetData {
                             case "-2":
                                 Toast.makeText(context, "You Have Reached Max Rides Allowable!!", Toast.LENGTH_SHORT).show();
                                 Intent in = new Intent(context, HomePage.class);
-                                in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 context.startActivity(in);
                                 break;
                             default:
                                 Toast.makeText(context, "Ride Created!!", Toast.LENGTH_SHORT).show();
                                 Intent in2 = new Intent(context, DriverCreatedRides.class);
-                                in2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                in2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 context.startActivity(in2);
                                 break;
                         }
@@ -1149,17 +1130,17 @@ public class GetData {
                         response = response.replaceAll("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
                         response = response.replaceAll("<string xmlns=\"http://Sharekni-MobAndroid-Data.org/\">", "");
                         response = response.replaceAll("</string>", "");
-                        Log.d("Edit Profile",url);
+                        Log.d("Edit Profile", url);
                         try {
                             String data = response.substring(40);
                             Log.d("First Array Json : ", data);
 
-                            if (data.equals("\"1\"")){
+                            if (data.equals("\"1\"")) {
                                 Toast.makeText(context, "Account has been Changed", Toast.LENGTH_SHORT).show();
-                                Intent in = new Intent(context,HomePage.class);
-                                in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                Intent in = new Intent(context, HomePage.class);
+                                in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 context.startActivity(in);
-                            }else if(data.equals("\"0\"")){
+                            } else if (data.equals("\"0\"")) {
                                 Toast.makeText(context, "please try again", Toast.LENGTH_SHORT).show();
                             }
                         } catch (StringIndexOutOfBoundsException e) {
