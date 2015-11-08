@@ -203,11 +203,11 @@
         android:text="RouteName"
         android:id="@+id/driver_profile_RouteEnName"
         android:textSize="25sp"
-        android:textStyle="bold"
         android:layout_centerHorizontal="true"
         android:background="@drawable/testborder1"
         android:paddingRight="10dp"
         android:paddingLeft="10dp"
+        android:textColor="@color/primaryColor"
         />
 
 

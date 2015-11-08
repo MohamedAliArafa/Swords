@@ -4,9 +4,8 @@
     android:orientation="vertical">
 
     <include
-        android:id="@+id/app_bar2"
+        android:id="@+id/app_bar"
         layout="@layout/app_bar" />
-
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -29,19 +28,19 @@
 
                 <ImageView
                     android:id="@+id/both_toggle"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_toEndOf="@+id/passenger_toggle"
                     android:layout_toRightOf="@+id/passenger_toggle"
                     android:src="@drawable/bothoff" />
 
                 <ImageView
                     android:id="@+id/both_toggle_active"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
                     android:layout_marginStart="10dp"
@@ -53,16 +52,16 @@
 
                 <ImageView
                     android:id="@+id/passenger_toggle"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_alignTop="@+id/both_toggle"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/passengeroff" />
 
                 <ImageView
                     android:id="@+id/passenger_toggle_active"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_alignTop="@+id/both_toggle"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/passengeractive"
@@ -71,11 +70,11 @@
 
                 <ImageView
                     android:id="@+id/driver_toggle"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
                     android:layout_toLeftOf="@+id/passenger_toggle"
                     android:layout_toStartOf="@+id/passenger_toggle"
 
@@ -83,13 +82,14 @@
 
                 <ImageView
                     android:id="@+id/driver_toggle_active"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_toLeftOf="@+id/passenger_toggle"
                     android:layout_toStartOf="@+id/passenger_toggle"
+
                     android:src="@drawable/driveractive"
                     android:visibility="invisible" />
 
@@ -116,17 +116,19 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/borders_edit_txt_user_register"
-                    android:nextFocusDown="@+id/edit_reg_lname"
+                    android:cursorVisible="true"
                     android:hint="@string/Reg_FirstN"
                     android:lines="1"
                     android:maxLines="1"
+                    android:nextFocusDown="@+id/edit_reg_lname"
+                    android:paddingEnd="10dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:paddingStart="10dp"
                     android:scrollHorizontally="true"
                     android:singleLine="true"
                     android:textColorHint="@color/primaryColor"
-                    android:textSize="18sp" />
+                    android:textSize="20sp" />
 
 
             </LinearLayout>
@@ -143,21 +145,22 @@
 
                 <EditText
                     android:id="@+id/edit_reg_lname"
-                    android:nextFocusDown="@+id/edit_reg_phone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/borders_edit_txt_user_register"
+                    android:cursorVisible="true"
                     android:hint="@string/Reg_LastN"
                     android:lines="1"
                     android:maxLines="1"
+                    android:nextFocusDown="@+id/edit_reg_phone"
+                    android:paddingEnd="10dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
                     android:scrollHorizontally="true"
                     android:singleLine="true"
                     android:textColorHint="@color/primaryColor"
-                    android:textSize="18sp" />
+                    android:textSize="20sp" />
 
 
             </LinearLayout>
@@ -170,34 +173,35 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/user_register_border">
+                android:background="@drawable/user_register_border"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="+971 - "/>
+                    android:text="+971 - " />
 
                 <EditText
                     android:id="@+id/edit_reg_phone"
-                    android:nextFocusDown="@+id/edit_reg_username"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/borders_edit_txt_user_register"
+                    android:cursorVisible="true"
                     android:hint="@string/REg_Mobile"
                     android:inputType="phone"
                     android:lines="1"
+                    android:maxLength="10"
                     android:maxLines="1"
+                    android:nextFocusDown="@+id/edit_reg_username"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:scrollHorizontally="true"
                     android:singleLine="true"
                     android:textColor="#747474"
                     android:textColorHint="@color/primaryColor"
-                    android:textSize="18sp"
-                    android:maxLength="10"
-                    />
+                    android:textSize="20sp" />
 
 
             </LinearLayout>
@@ -217,17 +221,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/borders_edit_txt_user_register"
+                    android:cursorVisible="true"
                     android:hint="@string/Reg_Email"
                     android:lines="1"
                     android:maxLines="1"
+                    android:paddingEnd="10dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
                     android:scrollHorizontally="true"
                     android:singleLine="true"
                     android:textColorHint="@color/primaryColor"
-                    android:textSize="18sp" />
+                    android:textSize="20sp" />
 
 
             </LinearLayout>
@@ -246,19 +251,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/borders_edit_txt_user_register"
+                    android:cursorVisible="true"
                     android:ellipsize="start"
                     android:hint="@string/Reg_pass"
                     android:inputType="textPassword"
                     android:lines="1"
                     android:maxLines="1"
+                    android:paddingEnd="10dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
                     android:scrollHorizontally="true"
                     android:singleLine="true"
                     android:textColorHint="@color/primaryColor"
-                    android:textSize="18sp" />
+                    android:textSize="20sp" />
 
 
             </LinearLayout>
@@ -277,20 +283,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/borders_edit_txt_user_register"
+                    android:cursorVisible="true"
                     android:hint="@string/Reg_Nat"
                     android:lines="1"
-                    android:cursorVisible="false"
                     android:maxLines="1"
-                    android:paddingLeft="10dp"
-                    android:paddingStart="10dp"
                     android:paddingEnd="10dp"
+                    android:paddingLeft="10dp"
                     android:paddingRight="10dp"
+                    android:paddingStart="10dp"
                     android:scrollHorizontally="true"
                     android:singleLine="true"
                     android:textAllCaps="false"
                     android:textColor="@color/primaryColor"
                     android:textColorHint="@color/primaryColor"
-                    android:textSize="18sp" />
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
@@ -308,19 +314,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/borders_edit_txt_user_register"
+                    android:gravity="center_vertical"
                     android:hint="@string/Reg_PrefLang"
                     android:lines="1"
                     android:maxLines="1"
-                    android:paddingLeft="10dp"
-                    android:paddingStart="10dp"
-                    android:paddingRight="10dp"
                     android:paddingEnd="10dp"
-                    android:gravity="start|center_vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingStart="10dp"
                     android:scrollHorizontally="true"
                     android:singleLine="true"
                     android:textColor="@color/primaryColor"
                     android:textColorHint="@color/primaryColor"
-                    android:textSize="18sp" />
+                    android:textSize="20sp" />
 
 
             </LinearLayout>
@@ -328,7 +334,7 @@
             <RelativeLayout
                 android:id="@+id/datepicker_id"
                 android:layout_width="match_parent"
-                android:layout_height="90dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
@@ -339,15 +345,15 @@
                 <ImageView
                     android:id="@+id/imageView4"
                     android:layout_width="50dp"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginStart="10dp"
-                    android:src="@drawable/calicon"
-
-                    />
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/calicon" />
 
 
                 <TextView
@@ -360,7 +366,7 @@
                     android:layout_toEndOf="@+id/imageView4"
                     android:layout_toRightOf="@+id/imageView4"
                     android:textColor="@color/primaryColor"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
 
@@ -373,9 +379,8 @@
                     android:layout_toRightOf="@+id/txt_dayOfWeek"
                     android:text=","
                     android:textColor="@color/primaryColor"
-                    android:textSize="20sp"
-                    android:visibility="invisible"
-                    />
+                    android:textSize="18sp"
+                    android:visibility="invisible" />
 
                 <TextView
                     android:id="@+id/txt_year"
@@ -389,7 +394,7 @@
                     android:layout_toRightOf="@+id/txt_dayOfWeek"
                     android:padding="3dp"
                     android:textColor="@color/primaryColor"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -402,11 +407,9 @@
                     android:layout_toEndOf="@+id/imageView4"
                     android:layout_toRightOf="@+id/imageView4"
                     android:padding="3dp"
-                    android:text="Click to select\nDate of Birth"
+                    android:text="@string/reg_DateOfBirth"
                     android:textColor="@color/primaryColor"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                     />
+                    android:textSize="20sp" />
 
             </RelativeLayout>
 
@@ -418,40 +421,34 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/user_register_border"
-                android:paddingBottom="5dp"
-                android:paddingTop="5dp"
-                >
+                android:background="@drawable/user_register_border">
 
 
                 <TextView
                     android:id="@+id/malefemale_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginRight="30dp"
                     android:layout_toLeftOf="@+id/malefemale"
                     android:layout_toStartOf="@+id/malefemale"
-                    android:text="Male"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginEnd="30dp"
+                    android:text="@string/reg_gender_male"
                     android:textColor="@color/primaryColor"
-                    android:textSize="22sp"
-                    />
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/femalemale_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/malefemale"
-                    android:layout_toEndOf="@+id/malefemale"
-                    android:text="Female"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="30dp"
                     android:layout_marginStart="30dp"
+                    android:layout_toEndOf="@+id/malefemale"
+                    android:layout_toRightOf="@+id/malefemale"
+                    android:text="@string/reg_gender_female"
                     android:textColor="@color/gray_before_login"
-                    android:textSize="22sp"
-                    />
-
-
+                    android:textSize="18sp" />
 
 
                 <ImageView
@@ -460,8 +457,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/slidemale"
-                    />
+                    android:src="@drawable/slidemale" />
 
                 <ImageView
                     android:id="@+id/femalemale"
@@ -480,19 +476,16 @@
             <Button
                 android:id="@+id/btnUploadPhotoReg"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="80dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/user_register_border_button"
-                android:text="Upload your Photo"
-                android:textColor="#FFFFFF"
+                android:text="@string/reg_upload_photo"
                 android:textAllCaps="false"
-                android:textSize="25sp"
-            />
-
-
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
 
 
             <RelativeLayout
@@ -503,41 +496,61 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp">
 
-                <TextView
-                    android:id="@+id/textView26"
+
+                <RelativeLayout
+                    android:id="@+id/terms_relative"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true">
 
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="15dp"
-                    android:text="By Tapping The Save Button below."
-                    android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/Terms_And_Cond_txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/textView26"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
-                    android:text="I Accept The RTA's Terms and Conditions"
-                    android:textColor="@color/primaryColor"
-                    android:textSize="19sp" />
+                    <TextView
+                        android:id="@+id/txt_terms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/reg_accept_rta"
+                        android:textSize="15sp"
+
+                        />
+
+
+                    <TextView
+                        android:id="@+id/Terms_And_Cond_txt_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/txt_terms"
+                        android:layout_toRightOf="@+id/txt_terms"
+                        android:textColor="@color/primaryColor"
+                        android:textSize="15sp" />
+
+
+                    <TextView
+                        android:id="@+id/Privacy_and_poolicy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/Terms_And_Cond_txt_2"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text=""
+                        android:textSize="15sp" />
+
+                </RelativeLayout>
+
 
                 <Button
                     android:id="@+id/btn_register_id"
-                    android:layout_width="160dp"
-                    android:layout_height="60dp"
-                    android:layout_below="@+id/Terms_And_Cond_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/terms_relative"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
-                    android:text="Save"
+                    android:background="@drawable/user_register_border_button"
+                    android:text="@string/reg_save"
                     android:textAllCaps="false"
                     android:textColor="#FFFFFF"
-                    android:background="@drawable/user_register_border_button"
-                    android:textSize="25sp"
-                    />
+                    android:textSize="20sp" />
 
             </RelativeLayout>
 
@@ -549,5 +562,3 @@
 
 
 </LinearLayout>
-
-

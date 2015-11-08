@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,7 +19,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
@@ -42,12 +40,6 @@ import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import rta.ae.sharekni.Arafa.Classes.GetData;
-import rta.ae.sharekni.LogIN.RegisterJsonParse;
-import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
-
-import rta.ae.sharekni.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -80,6 +72,9 @@ import java.util.List;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import rta.ae.sharekni.Arafa.Classes.GetData;
+import rta.ae.sharekni.LogIN.RegisterJsonParse;
 
 public class RegisterNewTest extends AppCompatActivity implements View.OnClickListener {
 
@@ -164,10 +159,6 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
     };
 
 
-
-
-
-
     public static RegisterNewTest getInstance() {
         return registerNewTestActivity;
     }
@@ -222,16 +213,17 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
 
         malefemale = (ImageView) findViewById(R.id.malefemale);
         femalemale = (ImageView) findViewById(R.id.femalemale);
-        Terms_And_Cond_txt = (TextView) findViewById(R.id.Terms_And_Cond_txt);
+        
+        //Terms_And_Cond_txt = (TextView) findViewById(R.id.Terms_And_Cond_txt);
 
         txt_lang = (TextView) findViewById(R.id.autocomplete_lang_id);
         txt_country = (AutoCompleteTextView) findViewById(R.id.autocompletecountry_id);
 
         Terms_And_Cond_txt_2 = (TextView) findViewById(R.id.Terms_And_Cond_txt_2);
-        Terms_And_Cond_txt_2.setText(Html.fromHtml("<u><font color=#e72433>"+getString(R.string.reg_terms)+"</font></u>"));
+        Terms_And_Cond_txt_2.setText(Html.fromHtml("<u><font color=#e72433>" + getString(R.string.reg_terms) + "</font></u>"));
         txt_terms = (RelativeLayout) findViewById(R.id.terms_relative);
-        Privacy_and_poolicy= (TextView) findViewById(R.id.Privacy_and_poolicy);
-        Privacy_and_poolicy.setText(Html.fromHtml("<u><font color=#e72433>"+getString(R.string.reg_policy)+"</font></u>"));
+        Privacy_and_poolicy = (TextView) findViewById(R.id.Privacy_and_poolicy);
+        Privacy_and_poolicy.setText(Html.fromHtml("<u><font color=#e72433>" + getString(R.string.reg_policy) + "</font></u>"));
         initToolbar();
 
 
@@ -328,7 +320,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         edit_user.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (!isEmailValid(edit_user.getText().toString())){
+                if (!isEmailValid(edit_user.getText().toString())) {
                     Toast.makeText(RegisterNewTest.this, R.string.email_valid_form, Toast.LENGTH_SHORT).show();
                 }
             }
@@ -367,14 +359,11 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         driver_toggle_active.setOnClickListener(this);
 
 
-
         // get Languages
         new lang().execute();
 
         // get nationals
         new nat().execute();
-
-
 
 
         btn_save.setOnClickListener(new View.OnClickListener() {
@@ -409,7 +398,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                             case "Driver":
 
                                 registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + URLEncoder.encode(birthdate) + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x, getBaseContext(), country, "D");
-                                Log.d("Reg Driver",GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + URLEncoder.encode(birthdate) + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x);
+                                Log.d("Reg Driver", GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + URLEncoder.encode(birthdate) + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x);
                                 break;
                             case "Both":
                                 registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + URLEncoder.encode(birthdate) + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x, getBaseContext(), country, "D");
@@ -719,7 +708,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id==android.R.id.home){
+        if (id == android.R.id.home) {
             onBackPressed();
             return true;
         }
@@ -771,12 +760,12 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
     }
 
 
-    protected void onPrepareDialog (int id, Dialog dialog)
-    {  if (id==DILOG_ID) {
-        DatePickerDialog datePickerDialog = (DatePickerDialog) dialog;
-        // Get the current date
-        datePickerDialog.updateDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
-    }
+    protected void onPrepareDialog(int id, Dialog dialog) {
+        if (id == DILOG_ID) {
+            DatePickerDialog datePickerDialog = (DatePickerDialog) dialog;
+            // Get the current date
+            datePickerDialog.updateDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+        }
 
     }
 
@@ -785,7 +774,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         if (id == DILOG_ID) {
             DatePickerDialog dp = new DatePickerDialog(this, dPickerListener, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
             d = dp.getDatePicker();
-            d.updateDate(year_x,month_x,day_x);
+            d.updateDate(year_x, month_x, day_x);
             d.setMaxDate(cal.getTimeInMillis());
             return dp;
         }
@@ -959,22 +948,21 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    public boolean isEmailValid(String email)
-    {
+    public boolean isEmailValid(String email) {
         String regExpn =
                 "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
-                        +"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
-                        +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
-                        +"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
-                        +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
-                        +"([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$";
+                        + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
+                        + "([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+                        + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$";
 
         CharSequence inputStr = email;
 
         Pattern pattern = Pattern.compile(regExpn, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(inputStr);
 
-        if(matcher.matches())
+        if (matcher.matches())
             return true;
         else
             return false;

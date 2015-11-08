@@ -1,54 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    >
+    android:orientation="vertical">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        >
+        android:layout_weight="1">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/frbackgroundtwo"
-            />
+            android:background="@drawable/frbackgroundtwo" />
 
         <ImageView
-            android:layout_width="170dp"
-            android:layout_height="170dp"
-            android:src="@drawable/shareknilogo"
             android:id="@+id/imageView"
-            android:layout_marginTop="71dp"
-            android:scaleType="centerCrop"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/shareknilogo" />
 
 
-        <ImageView
-            android:layout_width="260dp"
-            android:layout_height="90dp"
-            android:src="@drawable/onboardbestdrivers"
-            android:layout_marginBottom="70dp"
+        <!--<ImageView-->
+        <!--android:layout_width="160dp"-->
+        <!--android:layout_height="45dp"-->
+        <!--android:src="@drawable/onboardbestdrivers"-->
+        <!--android:layout_marginBottom="45dp"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:id="@+id/im_best_drivers"-->
+
+        <!--/>-->
+
+
+        <RelativeLayout
+            android:id="@+id/im_best_drivers"
+            android:layout_width="220dp"
+            android:layout_height="70dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:id="@+id/im_best_drivers"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/bestdrivers_border"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            >
 
-            />
 
-        <ImageView
-            android:layout_width="260dp"
-            android:layout_height="90dp"
-            android:src="@drawable/onboardbestrides"
+
+            <ImageView
+                android:id="@+id/splash_best_drivers_im"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/splashbestdrivers" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@+id/splash_best_drivers_im"
+                android:layout_toRightOf="@+id/splash_best_drivers_im"
+                android:text="@string/onboard_best_drivers"
+                android:textColor="@color/white"
+                android:textSize="26sp"
+                android:singleLine="true"
+                android:lines="1"
+                android:maxLines="1"
+
+
+                />
+
+
+
+
+        </RelativeLayout>
+
+        <!--<ImageView-->
+        <!--android:layout_width="240dp"-->
+        <!--android:layout_height="65dp"-->
+        <!--android:src="@drawable/onboardbestrides"-->
+        <!--android:layout_above="@+id/im_best_drivers"-->
+        <!--android:layout_alignLeft="@+id/im_best_drivers"-->
+        <!--android:layout_alignStart="@+id/im_best_drivers"-->
+        <!--android:layout_marginBottom="3dp"-->
+        <!--android:id="@+id/im_best_rides"-->
+        <!--/>-->
+
+
+        <RelativeLayout
+            android:id="@+id/im_best_rides"
+            android:layout_width="220dp"
+            android:layout_height="70dp"
             android:layout_above="@+id/im_best_drivers"
             android:layout_alignLeft="@+id/im_best_drivers"
             android:layout_alignStart="@+id/im_best_drivers"
-            android:layout_marginBottom="3dp"
-            android:id="@+id/im_best_rides"
-            />
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/bestdrivers_border"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+
+            >
+
+            <ImageView
+                android:id="@+id/splash_top_rides_im"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/splashmostrides" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@+id/splash_top_rides_im"
+                android:layout_toRightOf="@+id/splash_top_rides_im"
+                android:text="@string/onboard_most_rides"
+                android:textColor="@color/white"
+                android:textSize="26sp"
+
+                />
+
+
+        </RelativeLayout>
 
 
     </RelativeLayout>
