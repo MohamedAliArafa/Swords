@@ -425,7 +425,7 @@
                             android:layout_alignBottom="@+id/ride_details_Nat_txt"
                             android:layout_alignLeft="@+id/PreferredGender"
                             android:layout_alignStart="@+id/PreferredGender"
-                            android:text="NationalityEnName"
+                            android:text="@string/nat_name2"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 

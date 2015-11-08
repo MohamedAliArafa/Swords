@@ -110,7 +110,7 @@ public class RegisterVehicle extends AppCompatActivity {
 
 
                 GetData j = new GetData();
-                if (!full_date.equals("") && !File_num_edit.getText().toString().equals("Please enter the driving license No.") ) {
+                if (!full_date.equals("") && !File_num_edit.getText().toString().equals(getString(R.string.enter_licence)) ) {
                     File_NO_Str = File_num_edit.getText().toString();
                     FileNo = Integer.parseInt(File_NO_Str);
 
@@ -204,7 +204,7 @@ public class RegisterVehicle extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             pDialog = new ProgressDialog(RegisterVehicle.this);
-            pDialog.setMessage("Loading" + "...");
+            pDialog.setMessage(getString(R.string.loading) + "...");
             pDialog.show();
         }
 
@@ -215,16 +215,16 @@ public class RegisterVehicle extends AppCompatActivity {
         protected void onPostExecute(Object o) {
 
             if (data.equals("\"1\"")){
-                Toast.makeText(getBaseContext(), "Verified", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), getString(R.string.verified), Toast.LENGTH_LONG).show();
 
             }else if(data.equals("\"-3\"")){
-                Toast.makeText(getBaseContext(), "Date birth invalid", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), getString(R.string.invalid_dob), Toast.LENGTH_LONG).show();
                 Log.d("inside -3",data);
             }else if (data.equals("\"-4\"")){
-                Toast.makeText(getBaseContext(), "license verified, but no cars found . or invalid file number ", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), getString(R.string.lic_ver_but_no_cars), Toast.LENGTH_LONG).show();
 
             }else if (data.equals("\"-5\"") || data.equals("\"-6\"") ){
-                Toast.makeText(getBaseContext(), "Invalid data, please check agaian", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), getString(R.string.invalid_data), Toast.LENGTH_LONG).show();
 
             }else if (data.equals("\"0\"")){
                 //  Toast.makeText(context, "license verified, but no cars found ", Toast.LENGTH_LONG).show();
@@ -305,7 +305,7 @@ public class RegisterVehicle extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Vehicle");
+        textView.setText(getString(R.string.vehicles));
 
         setSupportActionBar(toolbar);
 

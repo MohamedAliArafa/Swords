@@ -170,14 +170,14 @@ public class Route extends AppCompatActivity {
                 try {
                     String response = j.Driver_DeleteRoute(Route_ID);
                     if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
-                        Toast.makeText(Route.this, "Cannot Delete This Route", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Route.this, R.string.cannot_delete_route, Toast.LENGTH_SHORT).show();
                     } else {
                         Intent in = new Intent(Route.this, HomePage.class);
                         in.putExtra("RouteID", Route_ID);
                         in.putExtra("DriverID",Driver_ID);
                         in.putExtra("RouteName",Route_name);
                         startActivity(in);
-                        Toast.makeText(Route.this, "Route Deleted", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Route.this, R.string.route_deleted, Toast.LENGTH_SHORT).show();
                     }
                     Log.d("join ride res", String.valueOf(response));
                 } catch (JSONException e) {
@@ -201,7 +201,7 @@ public class Route extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             pDialog = new ProgressDialog(Route.this);
-            pDialog.setMessage("Loading" + "...");
+            pDialog.setMessage(getString(R.string.loading) + "...");
             pDialog.show();
             super.onPreExecute();
         }
@@ -220,10 +220,10 @@ public class Route extends AppCompatActivity {
             if (exists) {
                 if (exception == null) {
                     try {
-                        FromRegionEnName.setText(json.getString("FromRegionEnName"));
-                        ToRegionEnName.setText(json.getString("ToRegionEnName"));
-                        FromEmirateEnName.setText(json.getString("FromEmirateEnName"));
-                        ToEmirateEnName.setText(json.getString("ToEmirateEnName"));
+                        FromRegionEnName.setText(json.getString(getString(R.string.from_reg_en_name)));
+                        ToRegionEnName.setText(json.getString(getString(R.string.to_reg_en_name)));
+                        FromEmirateEnName.setText(json.getString(getString(R.string.from_em_en_name)));
+                        ToEmirateEnName.setText(json.getString(getString(R.string.to_em_en_name)));
                         str_StartFromTime = json.getString("StartFromTime");
                         str_EndToTime_ = json.getString("EndToTime_");
                         str_StartFromTime = str_StartFromTime.substring(Math.max(0, str_StartFromTime.length() - 7));
@@ -232,12 +232,12 @@ public class Route extends AppCompatActivity {
                         Log.d("time to", str_EndToTime_);
                         StartFromTime.setText(str_StartFromTime);
                         EndToTime_.setText(str_EndToTime_);
-                        if (json.getString("NationalityEnName").equals("null")) {
-                            NationalityEnName.setText("Not Set");
+                        if (json.getString(getString(R.string.nat_name2)).equals("null")) {
+                            NationalityEnName.setText(getString(R.string.not_set));
                         } else {
-                            NationalityEnName.setText(json.getString("NationalityEnName"));
+                            NationalityEnName.setText(json.getString(getString(R.string.nat_name2)));
                         }
-                        PrefLanguageEnName.setText(json.getString("PrefLanguageEnName"));
+                        PrefLanguageEnName.setText(json.getString(getString(R.string.pref_lang)));
                         AgeRange.setText(json.getString("AgeRange"));
 
 
@@ -245,13 +245,13 @@ public class Route extends AppCompatActivity {
                         Gender_ste = json.getString("PreferredGender");
                         switch (Gender_ste) {
                             case "M":
-                                Gender_ste = "Male";
+                                Gender_ste = getString(R.string.reg_gender_male);
                                 break;
                             case "F":
-                                Gender_ste = "Female";
+                                Gender_ste = getString(R.string.reg_gender_female);
                                 break;
                             default:
-                                Gender_ste = "Not Set";
+                                Gender_ste = getString(R.string.not_set);
                                 break;
                         }
                         PreferredGender.setText(Gender_ste);
@@ -260,9 +260,9 @@ public class Route extends AppCompatActivity {
                         //Done
                         Smokers_str = json.getString("IsSmoking");
                         if (Smokers_str.equals("true")) {
-                            Smokers_str = "Yes";
+                            Smokers_str = getString(R.string.yes);
                         } else if (Smokers_str.equals("false")) {
-                            Smokers_str = "No";
+                            Smokers_str = getString(R.string.no);
                         }
                         IsSmoking.setText(Smokers_str);
                         StartLat = json.getDouble("StartLat");
@@ -272,25 +272,25 @@ public class Route extends AppCompatActivity {
                         Log.d("S Lat", String.valueOf(StartLat));
 
                         if (json.getString("Saturday").equals("true")) {
-                            days += ", Sat";
+                            days += getString(R.string.sat);
                         }
                         if (json.getString("Sunday").equals("true")) {
-                            days += ", Sun";
+                            days += getString(R.string.sun);
                         }
                         if (json.getString("Monday").equals("true")) {
-                            days += ", Mon";
+                            days += getString(R.string.mon);
                         }
                         if (json.getString("Tuesday").equals("true")) {
-                            days += ", Tue";
+                            days += getString(R.string.tue);
                         }
                         if (json.getString("Wednesday").equals("true")) {
-                            days += ", Wed";
+                            days += getString(R.string.wed);
                         }
                         if (json.getString("Thursday").equals("true")) {
-                            days += ", Thu";
+                            days += getString(R.string.thu);
                         }
                         if (json.getString("Friday").equals("true")) {
-                            days += ", Fri";
+                            days += getString(R.string.fri);
                         }
                         if (!days.equals("")){
                             ride_details_day_of_week.setText(days.substring(1));
@@ -306,7 +306,7 @@ public class Route extends AppCompatActivity {
                     }
                 } else {
                     Dialog dialog = new Dialog(Route.this);
-                    dialog.setTitle("Some Thing Is Wrong !?");
+                    dialog.setTitle(R.string.some_thing_is_wrong);
                     dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                         @Override
                         public void onCancel(DialogInterface dialog) {
@@ -324,7 +324,7 @@ public class Route extends AppCompatActivity {
                         in.putExtra("Data", b);
                         in.putExtra("RouteID", Route_ID);
                         try {
-                            in.putExtra("RouteName", json.getString("RouteEnName"));
+                            in.putExtra("RouteName", json.getString(getString(R.string.route_name)));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -442,7 +442,7 @@ public class Route extends AppCompatActivity {
                     review.setReviewID(obj.getInt("ReviewId"));
                     review.setAccountID(obj.getInt("AccountId"));
                     review.setAccountName(obj.getString("AccountName"));
-                    review.setAccountNationalityEn(obj.getString("AccountNationalityEn"));
+                    review.setAccountNationalityEn(obj.getString(getString(R.string.acc_nat_name)));
                     review.setReview(obj.getString("Review"));
                     driverGetReviewDataModels_arr.add(review);
                 } catch (JSONException e) {
@@ -460,7 +460,7 @@ public class Route extends AppCompatActivity {
                         Log.d("Passenger Name", obj.getString("AccountName"));
                         item.setPassengerId(obj.getInt("ID"));
                         item.setAccountName(obj.getString("AccountName"));
-                        item.setAccountNationalityEn(obj.getString("AccountNationalityEn"));
+                        item.setAccountNationalityEn(obj.getString(getString(R.string.acc_nat_name)));
                         Passengers_arr.add(item);
 
                     } catch (JSONException e) {
@@ -601,7 +601,7 @@ public class Route extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Ride Details");
+        textView.setText(getString(R.string.ride_details));
 //        toolbar.setElevation(10);
 
         setSupportActionBar(toolbar);

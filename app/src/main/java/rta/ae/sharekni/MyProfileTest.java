@@ -145,7 +145,7 @@ public class MyProfileTest extends AppCompatActivity {
                 }
                 TopName.setText(json.getString("FirstName") + " " + json.getString("MiddleName"));
                 FullName.setText(json.getString("FirstName") + " " + json.getString("MiddleName") + " " + json.getString("LastName"));
-                NationalityEnName.setText(json.getString("NationalityEnName"));
+                NationalityEnName.setText(json.getString(getString(R.string.nat_name2)));
                 AccountTypeEnName.setText(json.getString("AccountTypeEnName"));
                 GenderEn.setText(json.getString("GenderEn"));
                 ImageDecoder im = new ImageDecoder();

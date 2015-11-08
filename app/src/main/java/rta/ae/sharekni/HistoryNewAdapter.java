@@ -102,9 +102,11 @@ public class HistoryNewAdapter  extends ArrayAdapter<BestRouteDataModel> {
         String[] strArr = bestRouteDataModel.getRouteName().split(" ");
         for (String str : strArr) {
             char[] stringArray = str.trim().toCharArray();
-            stringArray[0] = Character.toUpperCase(stringArray[0]);
-            str = new String(stringArray);
-            res.append(str).append(" ");
+            if (stringArray.length!=0){
+                stringArray[0] = Character.toUpperCase(stringArray[0]);
+                str = new String(stringArray);
+                res.append(str).append(" ");
+            }
         }
         vh.RouteEnName.setText(res);
 //        vh.StartFromTime.setText(bestRouteDataModel.getStartFromTime());

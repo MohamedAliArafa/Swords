@@ -19,7 +19,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps">خريطة</string>
     <string name="title_activity_top_rides">TopRidesActivity</string>
     <string name="title_activity_top_drivers">أفضل السائقين</string>
     <string name="title_activity_On_Boarding">OnBoarding</string>
@@ -64,7 +64,7 @@
     <string name="title_activity_splash">SplashActivity</string>
     <string name="title_activity_test_vedio">شاركني</string>
     <string name="title_activity_passenger_my_approved_rides">PassengerMyApprovedRides</string>
-    <string name="title_activity_history">History</string>
+    <string name="title_activity_history">البحث</string>
     <string name="title_activity_take_atour">TakeATour</string>
 
     <string name="navy_Home_Page_txt">الصفحة الرئيسية</string>
@@ -117,7 +117,7 @@
     <string name="login_check_user_pass">تأكد من إسم المستخدم و كلمة المرور</string>
     <string name="login_wrong_user_pass">خطأ في إسم المستخدم او كلمة المرور</string>
     <string name="login_network_error">خطأ فى الشبكة!</string>
-    <string name="nat_name">NationlityArName</string>
+    <string name="nat_name">NationalityArName</string>
     <string name="nat_name2">NationalityArName</string>
     <string name="lang_name">LanguageArName</string>
     <string name="take_photo">إلتقط صورة</string>
@@ -194,6 +194,7 @@
     <string name="cannot_review">فشل فى الارسال</string>
     <string name="done">تم</string>
     <string name="pref_lang">PrefLanguageArName</string>
+    <string name="pref_lang2">PrefferedLanguageArName</string>
     <string name="yes">نعم</string>
     <string name="no">لا</string>
     <string name="write_remark">أكتب تعليقك</string>
@@ -204,9 +205,59 @@
     <string name="acc_nat_name">AccountNationalityAr</string>
     <string name="from_reg_en_name">FromRegionArName</string>
     <string name="from_em_en_name">FromEmirateArName</string>
-    <string name="to_em_en_name">ToEmirateEnName</string>
+    <string name="to_em_en_name">ToEmirateArName</string>
     <string name="fto_reg_en_name">ToRegionArName</string>
     <string name="to_reg_en_name">ToRegionArName</string>
+    <string name="passenger_send_you_request">ارسل إليك طلب إنضمام</string>
+    <string name="reject_your_request">رفض طلبك</string>
+    <string name="accept_your_request">قبل طلبك</string>
+    <string name="home_page">الصفحة الرئيسية</string>
+    <string name="rides_joined">الرحلات المشترك فيها</string>
+    <string name="saved_search">البحث المحفوظ</string>
+    <string name="create_ride">إنشئ رحلة</string>
+    <string name="history">التاريخ</string>
+    <string name="permit">التصاريح</string>
+    <string name="ride_created">الرحلات المنشأه</string>
+    <string name="ride_joined">الرحلات المشتركة</string>
+    <string name="vehicles">المركبات</string>
+    <string name="accept_request">وافق على طلبك</string>
+    <string name="cannot_delete_route">لايمكن إلغاء هذا الطريق</string>
+    <string name="change_password">تغيير كلمة المرور</string>
+    <string name="invalid_data">بيانات غير صالحة, الرجاء التأكد مرة أخري</string>
+    <string name="invalid_dob">برجاء التأكد من تاريخ الميلاد</string>
+    <string name="join_request">أرسل لك طلب إنضمام</string>
+    <string name="lic_ver_but_no_cars">رخصة القياده صالحه , و لكن لا يوجد مركبات</string>
+    <string name="new_password">كلمة المرور الجديدة</string>
+    <string name="no_created_rides">لا يوجد رحلات منشأه بعد</string>
+    <string name="notification">التنبيهات</string>
+    <string name="old_password">كلمة المرور القديمة</string>
+    <string name="reject_request">رفضل طلبك للإنضمام</string>
+    <string name="route_deleted">تم ألغاء الطريق بنجاح</string>
+    <string name="some_thing_is_wrong">حدث خطأ ما</string>
+    <string name="verified">موثقة</string>
+    <string name="Fri">الجمعة</string>
+    <string name="Mon">الإثنين</string>
+    <string name="Sat">السبت</string>
+    <string name="Sun">الأحد</string>
+    <string name="Thu">الثلاثاء</string>
+    <string name="Tue">الخميس</string>
+    <string name="Wed">الأربعاء</string>
+    <string name="available_seats">المقاعد المتاحة</string>
+    <string name="create">إنشئ</string>
+    <string name="days_of_week">أيام الإسبوع</string>
+    <string name="pref_optional">المفضلات (إختياري)</string>
+    <string name="ride_name">إسم الرحلة</string>
+    <string name="select_pref_lang">إختر اللغة المفضلة</string>
+    <string name="select_pref_nat">الجنسية المفضلة</string>
+    <string name="select_vehicle">إختر مركبة</string>
+    <string name="set_direction">حدد الوجهة</string>
+    <string name="no_permits">ليس هناك تصاريح بعد</string>
+    <string name="no_rides_joined">لا يوجد رحلات بعد</string>
+    <string name="enter_licence">من فضلك أدخل رقم رخصة القيادة</string>
+    <string name="dob">تاريخ الميلاد</string>
+    <string name="first_name">الإسم الأول</string>
+    <string name="select_profile_image">إختر صورة شخصية!!</string>
+    <string name="edit_profile">تعديل الصفحة الشخصية</string>
 
 
 </resources>

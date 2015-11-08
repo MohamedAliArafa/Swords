@@ -298,7 +298,7 @@ public class QuickSearchResults extends AppCompatActivity {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(QuickSearchResults.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(QuickSearchResults.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

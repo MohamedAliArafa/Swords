@@ -94,7 +94,7 @@ public class DriverCreatedRides extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             pDialog = new ProgressDialog(DriverCreatedRides.this);
-            pDialog.setMessage("Loading" + "...");
+            pDialog.setMessage(getString(R.string.loading) + "...");
             pDialog.show();
             super.onPreExecute();
         }
@@ -132,7 +132,7 @@ public class DriverCreatedRides extends AppCompatActivity {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(DriverCreatedRides.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DriverCreatedRides.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -160,7 +160,7 @@ public class DriverCreatedRides extends AppCompatActivity {
                                         Button btn = (Button) dialog.findViewById(R.id.noroute_id);
                                         TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
                                         dialog.show();
-                                        Text_3.setText("There is no Rides Created yet");
+                                        Text_3.setText(R.string.no_created_rides);
 
                                         btn.setOnClickListener(new View.OnClickListener() {
                                             @Override
@@ -179,39 +179,35 @@ public class DriverCreatedRides extends AppCompatActivity {
                                             days = "";
                                             json = jArray.getJSONObject(i);
                                             item.setID(json.getInt("ID"));
-                                            item.setFromEm(json.getString("FromEmirateEnName"));
-                                            item.setFromReg(json.getString("FromRegionEnName"));
-                                            item.setToEm(json.getString("ToEmirateEnName"));
-                                            item.setToReg(json.getString("ToRegionEnName"));
-                                            item.setRouteName(json.getString("RouteEnName"));
+                                            item.setFromEm(json.getString(getString(R.string.from_em_en_name)));
+                                            item.setFromReg(json.getString(getString(R.string.from_reg_en_name)));
+                                            item.setToEm(json.getString(getString(R.string.to_em_en_name)));
+                                            item.setToReg(json.getString(getString(R.string.to_reg_en_name)));
+                                            item.setRouteName(json.getString(getString(R.string.route_name)));
                                             item.setStartFromTime(json.getString("StartFromTime"));
                                             item.setEndToTime_(json.getString("EndToTime_"));
 
                                             if (json.getString("Saturday").equals("true")) {
-                                                days += "Sat , ";
+                                                days += getString(R.string.sat);
                                             }
                                             if (json.getString("Sunday").equals("true")) {
-                                                days += "Sun , ";
-
+                                                days += getString(R.string.sun);
                                             }
                                             if (json.getString("Monday").equals("true")) {
-                                                days += "Mon , ";
-
+                                                days += getString(R.string.mon);
                                             }
                                             if (json.getString("Tuesday").equals("true")) {
-                                                days += "Tue , ";
+                                                days += getString(R.string.tue);
                                             }
                                             if (json.getString("Wednesday").equals("true")) {
-                                                days += "Wed , ";
+                                                days += getString(R.string.wed);
                                             }
                                             if (json.getString("Thursday").equals("true")) {
-                                                days += "Thu , ";
-
+                                                days += getString(R.string.thu);
                                             }
                                             if (json.getString("Friday").equals("true")) {
-                                                days += "Fri ";
+                                                days += getString(R.string.fri);
                                             }
-
 
                                             item.setDriver_profile_dayWeek(days);
                                             days = "";
@@ -264,7 +260,7 @@ public class DriverCreatedRides extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Ride Created");
+        textView.setText(getString(R.string.ride_created));
 //        toolbar.setElevation(10);
 
         setSupportActionBar(toolbar);

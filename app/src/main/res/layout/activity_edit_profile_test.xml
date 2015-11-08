@@ -44,7 +44,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/borders_edit_txt_user_register"
                     android:cursorVisible="true"
-                    android:hint="First Name"
+                    android:hint="@string/Reg_FirstN"
                     android:lines="1"
                     android:maxLines="1"
                     android:paddingLeft="10dp"
@@ -75,7 +75,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/borders_edit_txt_user_register"
                     android:cursorVisible="true"
-                    android:hint="Last Name"
+                    android:hint="@string/Reg_LastN"
                     android:lines="1"
                     android:maxLines="1"
                     android:paddingLeft="10dp"
@@ -110,7 +110,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/borders_edit_txt_user_register"
                     android:cursorVisible="true"
-                    android:hint="Mobile Number"
+                    android:hint="@string/REg_Mobile"
                     android:maxLength="10"
                     android:lines="1"
                     android:maxLines="1"
@@ -142,7 +142,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/borders_edit_txt_user_register"
                     android:cursorVisible="true"
-                    android:hint="Nationality"
+                    android:hint="@string/nationality"
                     android:lines="1"
                     android:maxLines="1"
                     android:paddingLeft="10dp"
@@ -171,7 +171,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/borders_edit_txt_user_register"
                     android:cursorVisible="true"
-                    android:hint="Preferred Language"
+                    android:hint="@string/select_pref_lang"
                     android:lines="1"
                     android:maxLines="1"
                     android:paddingLeft="10dp"
@@ -198,7 +198,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginStart="10dp"
-                    android:text="Date Of Birth"
+                    android:text="@string/dob"
                     android:textColor="@color/primaryColor"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -280,7 +280,7 @@
                         android:layout_toEndOf="@+id/imageView4"
                         android:layout_toRightOf="@+id/imageView4"
                         android:padding="3dp"
-                        android:text="Date of Birth"
+                        android:text="@string/dob"
                         android:textColor="@color/primaryColor"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -310,7 +310,7 @@
                     android:layout_marginRight="30dp"
                     android:layout_toLeftOf="@+id/malefemale_edit"
                     android:layout_toStartOf="@+id/malefemale_edit"
-                    android:text="Male"
+                    android:text="@string/reg_gender_male"
                     android:textColor="@color/primaryColor"
                     android:textSize="16sp" />
 
@@ -323,7 +323,7 @@
                     android:layout_marginStart="30dp"
                     android:layout_toEndOf="@+id/malefemale_edit"
                     android:layout_toRightOf="@+id/malefemale_edit"
-                    android:text="Female"
+                    android:text="@string/reg_gender_female"
                     android:textColor="@color/gray_before_login"
                     android:textSize="16sp" />
 
@@ -359,7 +359,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/user_register_border_button"
-                android:text="Upload your Photo"
+                android:text="@string/reg_upload_photo"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF" />
 
@@ -381,7 +381,7 @@
                     android:layout_marginRight="40dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/user_register_border_button"
-                    android:text="Submit"
+                    android:text="@string/Btn_Submit_txt"
                     android:textAllCaps="false"
 
                     android:textColor="#FFFFFF" />
@@ -394,7 +394,7 @@
                     android:layout_toEndOf="@+id/btn_Edit_id"
                     android:layout_toRightOf="@+id/btn_Edit_id"
                     android:background="@drawable/user_register_border_button"
-                    android:text="cancel"
+                    android:text="@string/cancel"
                     android:textAllCaps="false"
                     android:textColor="#FFFFFF" />
 

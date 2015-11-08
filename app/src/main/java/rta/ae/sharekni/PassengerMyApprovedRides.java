@@ -93,7 +93,7 @@ public class PassengerMyApprovedRides extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             pDialog = new ProgressDialog(PassengerMyApprovedRides.this);
-            pDialog.setMessage("Loading" + "...");
+            pDialog.setMessage(getString(R.string.loading) + "...");
             pDialog.show();
             super.onPreExecute();
         }
@@ -132,7 +132,7 @@ public class PassengerMyApprovedRides extends AppCompatActivity {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(PassengerMyApprovedRides.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PassengerMyApprovedRides.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -163,7 +163,7 @@ public class PassengerMyApprovedRides extends AppCompatActivity {
                                         Button btn = (Button) dialog.findViewById(R.id.noroute_id);
                                         TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
                                         dialog.show();
-                                        Text_3.setText("There is no Rides joined");
+                                        Text_3.setText(R.string.no_rides_joined);
 
                                         btn.setOnClickListener(new View.OnClickListener() {
                                             @Override
@@ -194,11 +194,11 @@ public class PassengerMyApprovedRides extends AppCompatActivity {
                                             String Routename2 = jsonObject.getString("RouteEnName");
                                             Log.d("Route name 2 ", Routename2);
 
-                                            item.setFromEm(jsonObject.getString("FromEmirateEnName"));
-                                            item.setFromReg(jsonObject.getString("FromRegionEnName"));
-                                            item.setToEm(jsonObject.getString("ToEmirateEnName"));
-                                            item.setToReg(jsonObject.getString("ToRegionEnName"));
-                                            item.setRouteName(jsonObject.getString("RouteEnName"));
+                                            item.setFromEm(jsonObject.getString(getString(R.string.from_em_en_name)));
+                                            item.setFromReg(jsonObject.getString(getString(R.string.from_reg_en_name)));
+                                            item.setToEm(jsonObject.getString(getString(R.string.to_em_en_name)));
+                                            item.setToReg(jsonObject.getString(getString(R.string.to_reg_en_name)));
+                                            item.setRouteName(jsonObject.getString(getString(R.string.route_name)));
                                             item.setStartFromTime(jsonObject.getString("StartFromTime"));
                                             item.setEndToTime_(jsonObject.getString("EndToTime_"));
 
@@ -245,7 +245,7 @@ public class PassengerMyApprovedRides extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Ride Joined");
+        textView.setText(getString(R.string.ride_joined));
 //        toolbar.setElevation(10);
 
         setSupportActionBar(toolbar);

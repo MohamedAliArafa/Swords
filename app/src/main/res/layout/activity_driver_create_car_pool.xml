@@ -51,7 +51,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/borders_edit_txt_user_register"
                         android:cursorVisible="true"
-                        android:hint="Ride Name"
+                        android:hint="@string/ride_name"
                         android:lines="1"
                         android:maxLines="1"
                         android:paddingEnd="10dp"
@@ -71,7 +71,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:background="@drawable/borders_quicksearch_btn"
-                    android:text="Set Direction"
+                    android:text="@string/set_direction"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     android:layout_marginTop="10dp"
@@ -102,7 +102,7 @@
                         android:layout_width="120dp"
                         android:layout_height="match_parent"
                         android:background="@drawable/borders_quicksearch_btn"
-                        android:text="Pickup"
+                        android:text="@string/pickup"
                         android:textColor="#FFFFFF"
                         android:textStyle="bold"
 
@@ -117,7 +117,7 @@
                         android:layout_toEndOf="@+id/createCarPool_pickUp"
                         android:layout_toRightOf="@+id/createCarPool_pickUp"
                         android:gravity="center_vertical"
-                        android:text="Start Point"
+                        android:text="@string/start_point"
                         android:textColor="#9e9e9e"
 
                         />
@@ -143,7 +143,7 @@
                         android:layout_width="120dp"
                         android:layout_height="match_parent"
                         android:background="@drawable/borders_quicksearch_btn"
-                        android:text="Drop Off"
+                        android:text="@string/dropoff"
                         android:textColor="#FFFFFF"
                         android:textStyle="bold"
 
@@ -158,7 +158,7 @@
                         android:layout_toEndOf="@+id/createCarPool_search__Dropoff"
                         android:layout_toRightOf="@+id/createCarPool_search__Dropoff"
                         android:gravity="center_vertical"
-                        android:text="End Point"
+                        android:text="@string/end_point"
                         android:textColor="#9e9e9e" />
 
                 </RelativeLayout>
@@ -198,7 +198,7 @@
                             android:layout_marginStart="5dp"
                             android:layout_toEndOf="@+id/imageview_search"
                             android:layout_toRightOf="@+id/imageview_search"
-                            android:text="Start Date"
+                            android:text="@string/start_date"
                             android:textColor="@color/primaryColor"
                             android:textSize="12sp"
                             android:textStyle="bold"
@@ -274,7 +274,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_toEndOf="@+id/imageview_search_time"
                         android:layout_toRightOf="@+id/imageview_search_time"
-                        android:text="Start Time"
+                        android:text="@string/start_time"
                         android:textColor="@color/primaryColor"
                         android:textSize="12sp"
                         android:textStyle="bold"
@@ -357,7 +357,7 @@
                         android:layout_marginRight="25dp"
                         android:layout_toLeftOf="@+id/createCarPool_singleRide_Periodic"
                         android:layout_toStartOf="@+id/createCarPool_singleRide_Periodic"
-                        android:text="Single"
+                        android:text="@string/single"
                         android:textColor="@color/primaryColor"
                         android:textSize="16sp" />
 
@@ -370,7 +370,7 @@
                         android:layout_marginStart="25dp"
                         android:layout_toEndOf="@+id/createCarPool_Periodic_SingleRide"
                         android:layout_toRightOf="@+id/createCarPool_Periodic_SingleRide"
-                        android:text="Periodic"
+                        android:text="@string/periodic"
                         android:textColor="@color/gray_before_login"
                         android:textSize="16sp" />
 
@@ -389,7 +389,7 @@
                     android:layout_marginTop="10dp"
                     android:background="@drawable/borders_quicksearch"
                     android:gravity="center"
-                    android:text="Select Vehicle"
+                    android:text="@string/select_vehicle"
                     android:textColor="@color/primaryColor"
                     android:textColorHint="@color/primaryColor">
 
@@ -417,7 +417,7 @@
                         android:lines="1"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:text="Available Seats"
+                        android:text="@string/available_seats"
                         android:textColor="#000000"
                         android:textSize="15sp" />
 
@@ -526,7 +526,7 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:paddingStart="20dp"
-                android:text="Ride Details"
+                android:text="@string/ride_details"
                 android:textColor="@color/primaryColor"
                 android:textSize="17sp" />
 
@@ -556,7 +556,7 @@
                     android:layout_marginTop="50dp"
                     android:background="@drawable/borders_quicksearch"
                     android:cursorVisible="false"
-                    android:hint="Preferred Nationality"
+                    android:hint="@string/select_pref_nat"
                     android:lines="1"
                     android:maxLines="1"
                     android:paddingLeft="10dp"
@@ -579,7 +579,7 @@
                     android:layout_marginTop="10dp"
                     android:background="@drawable/borders_quicksearch"
                     android:gravity="center"
-                    android:hint="Choose A Language"
+                    android:hint="@string/select_pref_lang"
                     android:textColor="@color/primaryColor"
                     android:textColorHint="@color/primaryColor" />
 
@@ -641,7 +641,7 @@
                         android:layout_marginRight="25dp"
                         android:layout_toLeftOf="@+id/createCarPool_malefemale1"
                         android:layout_toStartOf="@+id/createCarPool_malefemale1"
-                        android:text="Male"
+                        android:text="@string/reg_gender_male"
                         android:textColor="@color/primaryColor"
                         android:textSize="16sp" />
 
@@ -654,7 +654,7 @@
                         android:layout_marginStart="25dp"
                         android:layout_toEndOf="@+id/createCarPool_femalemale2"
                         android:layout_toRightOf="@+id/createCarPool_femalemale2"
-                        android:text="Female"
+                        android:text="@string/reg_gender_female"
                         android:textColor="@color/gray_before_login"
                         android:textSize="16sp" />
 
@@ -681,7 +681,7 @@
                         android:layout_marginTop="10dp"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:text="Days of Week"
+                        android:text="@string/days_of_week"
                         android:textColor="@color/primaryColor"
                         android:textSize="15sp" />
 
@@ -701,7 +701,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
-                            android:text="Sat"
+                            android:text="@string/Sat"
                             android:textColor="@color/white"
                             android:textSize="15sp" />
 
@@ -725,7 +725,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
-                            android:text="Sun"
+                            android:text="@string/Sun"
                             android:textColor="@color/white"
                             android:textSize="15sp" />
 
@@ -749,7 +749,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
-                            android:text="Mon"
+                            android:text="@string/Mon"
                             android:textColor="@color/white"
                             android:textSize="15sp" />
 
@@ -773,7 +773,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
-                            android:text="Tue"
+                            android:text="@string/Tue"
                             android:textColor="@color/white"
                             android:textSize="15sp" />
 
@@ -795,7 +795,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
-                            android:text="Wed"
+                            android:text="@string/Wed"
                             android:textColor="@color/white"
                             android:textSize="15sp" />
 
@@ -817,7 +817,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
-                            android:text="Thu"
+                            android:text="@string/Thu"
                             android:textColor="@color/white"
                             android:textSize="15sp" />
 
@@ -839,7 +839,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
-                            android:text="Fri"
+                            android:text="@string/Fri"
                             android:textColor="@color/white"
                             android:textSize="15sp" />
 
@@ -865,7 +865,7 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:paddingStart="20dp"
-                android:text="Preferences (Optional)"
+                android:text="@string/pref_optional"
                 android:textColor="@color/primaryColor"
                 android:textSize="17sp" />
 
@@ -879,7 +879,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/user_register_border_button"
-                android:text="Create"
+                android:text="@string/create"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF" />
 

@@ -37,16 +37,16 @@ public class Driver_RegisterVehicleWithETService_JsonParse {
                             Log.d("Data:", data);
 
                             if (data.equals("\"1\"")){
-                                Toast.makeText(context, "Verified", Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, R.string.verified, Toast.LENGTH_LONG).show();
 
                             }else if(data.equals("\"-3\"")){
-                                Toast.makeText(context, "Date birth invalid", Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, R.string.invalid_dob, Toast.LENGTH_LONG).show();
                                 Log.d("inside -3",data);
                             }else if (data.equals("\"-4\"")){
-                                Toast.makeText(context, "license verified, but no cars found ", Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, R.string.lic_ver_but_no_cars, Toast.LENGTH_LONG).show();
 
                             }else if (data.equals("\"-5\"") || data.equals("\"-6\"") ){
-                                Toast.makeText(context, "Invalid data, please check agaian", Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, R.string.invalid_data, Toast.LENGTH_LONG).show();
 
                             }else if (data.equals("\"0\"")){
                                //  Toast.makeText(context, "license verified, but no cars found ", Toast.LENGTH_LONG).show();

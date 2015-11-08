@@ -257,7 +257,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
                 Notification.Builder builder = new Notification.Builder(this);
                 builder.setContentTitle("Route :" + j.getString("RouteName"));
-                builder.setContentText(j.getString("PassengerName") + " Send You A Join Request ");
+                builder.setContentText(j.getString("PassengerName") + getString(R.string.passenger_send_you_request));
                 builder.setSmallIcon(R.drawable.sharekni_logo);
                 builder.setContentIntent(pendingIntent);
                 Notification notification = builder.build();
@@ -281,7 +281,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                     PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
                     Notification.Builder builder = new Notification.Builder(this);
                     builder.setContentTitle("Route :" + j.getString("RouteName"));
-                    builder.setContentText(j.getString("DriverName") + " Rejected Your Request ");
+                    builder.setContentText(j.getString("DriverName") + getString(R.string.reject_your_request));
                     builder.setSmallIcon(R.drawable.sharekni_logo);
                     builder.setContentIntent(pendingIntent);
                     Notification notification = builder.build();
@@ -295,7 +295,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                     PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
                     Notification.Builder builder = new Notification.Builder(this);
                     builder.setContentTitle("Route :" + j.getString("RouteName"));
-                    builder.setContentText(j.getString("DriverName") + " Accepted Your Request ");
+                    builder.setContentText(j.getString("DriverName") + getString(R.string.accept_your_request));
                     builder.setSmallIcon(R.drawable.sharekni_logo);
                     builder.setContentIntent(pendingIntent);
                     Notification notification = builder.build();
@@ -385,7 +385,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Home Page");
+        textView.setText(R.string.home_page);
 //        toolbar.setElevation(10);
 
         setSupportActionBar(toolbar);
@@ -403,7 +403,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         @Override
         protected void onPreExecute() {
             pDialog = new ProgressDialog(HomePage.this);
-            pDialog.setMessage("Loading" + "...");
+            pDialog.setMessage(getString(R.string.loading) + "...");
             pDialog.show();
         }
 
@@ -421,7 +421,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 LastName=  LastName.substring(0, 1).toUpperCase() + LastName.substring(1);
                 name_str=Firstname+" "+LastName;
                 //  name_str = (jsonArray.getString("FirstName") + " " + jsonArray.getString("LastName"));
-                nat_str = (jsonArray.getString("NationalityEnName"));
+                nat_str = (jsonArray.getString(getString(R.string.nat_name2)));
                 //   name_str=  name_str.substring(0, 1).toUpperCase() + name_str.substring(1);
                 nat_str= nat_str.substring(0, 1).toUpperCase() + nat_str.substring(1);
                 NavigationDrawerFragment.tv_name_home.setText(name_str);
@@ -449,10 +449,10 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 if (!AccountType.equals("D")) {
                     // btn_create.setBackgroundColor(Color.LTGRAY);
 //                    Home_Relative_Permit.setBackgroundColor(Color.LTGRAY);
-                    Rides_joined_txt_1.setText("Rides Joined");
+                    Rides_joined_txt_1.setText(R.string.rides_joined);
                     Rides_joined_image_1.setImageResource(R.drawable.joinedusertype);
 
-                    Saved_Search_txt_2.setText("Saved Search");
+                    Saved_Search_txt_2.setText(R.string.saved_search);
                     Saved_Search_image_2.setImageResource(R.drawable.homesavedsearchbtn);
 
                     Rides_joined_Relative.setVisibility(View.INVISIBLE);
@@ -639,7 +639,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(HomePage.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HomePage.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }

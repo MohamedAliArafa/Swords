@@ -220,12 +220,12 @@ public class EditProfileTest extends AppCompatActivity {
             full_date = j.getString("BirthDate");
             txt_year.setText(full_date);
             txt_beforeCal.setVisibility(View.INVISIBLE);
-            txt_country.setText(j.getString("NationalityEnName"));
+            txt_country.setText(j.getString(getString(R.string.nat_name2)));
             txt_country.setTextColor(getResources().getColor(R.color.primaryColor));
 
             Nationality_ID = j.getInt("NationalityId");
 
-            txt_lang.setText(j.getString("PrefferedLanguageEnName"));
+            txt_lang.setText(j.getString(getString(R.string.pref_lang2)));
             txt_lang.setTextColor(getResources().getColor(R.color.primaryColor));
 
             Language_ID = j.getInt("PrefferedLanguage");
@@ -271,20 +271,20 @@ public class EditProfileTest extends AppCompatActivity {
         btn_upload_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final CharSequence[] items = { "Take Photo", "Choose from Library", "Cancel" };
+                final CharSequence[] items = { getString(R.string.take_photo), getString(R.string.choose_from_library), getString(R.string.cancel) };
                 android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(EditProfileTest.this);
-                builder.setTitle("Add Photo!");
+                builder.setTitle(getString(R.string.add_photo));
                 builder.setItems(items, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int item) {
-                        if (items[item].equals("Take Photo")) {
+                        if (items[item].equals(getString(R.string.take_photo))) {
                             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                             startActivityForResult(intent, 0);
-                        } else if (items[item].equals("Choose from Library")) {
+                        } else if (items[item].equals(getString(R.string.choose_from_library))) {
                             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                             intent.setType("image/*");
-                            startActivityForResult(Intent.createChooser(intent, "Select File"), 1337);
-                        } else if (items[item].equals("Cancel")) {
+                            startActivityForResult(Intent.createChooser(intent, getString(R.string.select_file)), 1337);
+                        } else if (items[item].equals(getString(R.string.cancel))) {
                             dialog.dismiss();
                         }
                     }
@@ -299,7 +299,7 @@ public class EditProfileTest extends AppCompatActivity {
                 if (!hasFocus) {
                     if (Country_List.size() != 0 && txt_country.getText() != null && !txt_country.getText().toString().equals("Nationality")) {
                         for (int i = 0; i <= 193; i++) {
-                            String a = Country_List.get(i).get("NationalityEnName");
+                            String a = Country_List.get(i).get(getString(R.string.nat_name2));
                             String b = txt_country.getText().toString();
                             if (a.equals(b)) {
                                 result = true;
@@ -307,7 +307,7 @@ public class EditProfileTest extends AppCompatActivity {
                         }
                     }
                     if (!result) {
-                        Toast.makeText(EditProfileTest.this, "unknown Country ( Choose From The List )", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditProfileTest.this, getString(R.string.unknown_country), Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -329,11 +329,11 @@ public class EditProfileTest extends AppCompatActivity {
                             }
                         }
                         if (!result) {
-                            Toast.makeText(EditProfileTest.this, "unknown Language ( Choose From The List )", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditProfileTest.this, getString(R.string.unknown_language), Toast.LENGTH_SHORT).show();
                         }
                     }
                 } catch (NullPointerException e) {
-                    Toast.makeText(EditProfileTest.this, "unknown Language ( Choose From The List )", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditProfileTest.this, getString(R.string.unknown_language), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -343,7 +343,7 @@ public class EditProfileTest extends AppCompatActivity {
             public void onClick(View v) {
                 if (edit_fname.getText() != null && edit_fname.getText().toString() != "First Name" && edit_lname.getText() != null && edit_lname.getText().toString() != "Last Name" && edit_reg_mob.getText() != null && edit_reg_mob.getText().toString() != "Mobile Number" && txt_country.getText() != null && txt_country.getText().toString() != "Nationality" && txt_lang.getText() != null && txt_lang.getText().toString() != "Preferred Language" && full_date != null) {
                     if (uploadedImage == null) {
-                        Toast.makeText(EditProfileTest.this, "Select Profile Image!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditProfileTest.this, R.string.select_profile_image, Toast.LENGTH_SHORT).show();
                     } else {
                         String Fname = edit_fname.getText().toString();
                         String Lname = edit_lname.getText().toString();
@@ -359,7 +359,7 @@ public class EditProfileTest extends AppCompatActivity {
                         gd.EditProfileForm(MyID,Fname,Lname,mobile,String.valueOf(gender),birthdate,y,x,uploadedImage,EditProfileTest.this);
                     }
                 } else {
-                    Toast.makeText(EditProfileTest.this, "Fill Al Required fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditProfileTest.this, getString(R.string.fill_all_error), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -569,7 +569,7 @@ public class EditProfileTest extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Edit Profile");
+        textView.setText(R.string.edit_profile);
 //        toolbar.setElevation(10);
 
         setSupportActionBar(toolbar);
@@ -639,7 +639,7 @@ public class EditProfileTest extends AppCompatActivity {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(EditProfileTest.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditProfileTest.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -650,7 +650,7 @@ public class EditProfileTest extends AppCompatActivity {
                         TreeMap<String, String> valuePairs = new TreeMap<>();
                         JSONObject jsonObject = j.getJSONObject(i);
                         valuePairs.put("LanguageId", jsonObject.getString("LanguageId"));
-                        valuePairs.put("LanguageEnName", jsonObject.getString("LanguageEnName"));
+                        valuePairs.put("LanguageEnName", jsonObject.getString(getString(R.string.lang_name)));
                         Lang_List.add(valuePairs);
                     }
                     Log.d("Language :", Lang_List.toString());
@@ -714,7 +714,7 @@ public class EditProfileTest extends AppCompatActivity {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(EditProfileTest.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditProfileTest.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -725,7 +725,7 @@ public class EditProfileTest extends AppCompatActivity {
                         TreeMap<String, String> valuePairs = new TreeMap<>();
                         JSONObject jsonObject = j.getJSONObject(i);
                         valuePairs.put("ID", jsonObject.getString("ID"));
-                        valuePairs.put("NationalityEnName", jsonObject.getString("NationalityEnName"));
+                        valuePairs.put("NationalityEnName", jsonObject.getString(getString(R.string.nat_name2)));
                         Country_List.add(valuePairs);
                     }
                     Log.d("Nat :", Country_List.toString());
@@ -744,7 +744,7 @@ public class EditProfileTest extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             pDialog = new ProgressDialog(EditProfileTest.this);
-            pDialog.setMessage("Loading" + "...");
+            pDialog.setMessage(getString(R.string.loading) + "...");
             pDialog.show();
             super.onPreExecute();
         }

@@ -2,6 +2,7 @@ package rta.ae.sharekni;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -110,7 +111,22 @@ public class MostRidesDetails extends AppCompatActivity {
     private class back extends AsyncTask{
         JSONArray jsonArray;
         boolean exists = false;
+        ProgressDialog pDialog;
 
+        @Override
+        protected void onPreExecute() {
+            pDialog = new ProgressDialog(MostRidesDetails.this);
+            pDialog.setMessage(getString(R.string.loading) + "...");
+            pDialog.show();
+            super.onPreExecute();
+        }
+
+        private void hidePDialog() {
+            if (pDialog != null) {
+                pDialog.dismiss();
+                pDialog = null;
+            }
+        }
         @Override
         protected void onPostExecute(Object o) {
             String days = "";
@@ -190,6 +206,7 @@ public class MostRidesDetails extends AppCompatActivity {
                 } catch (NullPointerException e) {
                     e.printStackTrace();
                 }
+                hidePDialog();
             }
 
         }

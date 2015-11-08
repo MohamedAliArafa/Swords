@@ -183,7 +183,7 @@ public class BestRideBeforeLogin extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Most Rides");
+        textView.setText(getString(R.string.most_rides));
         //   toolbar.setElevation(10);
 
         setSupportActionBar(toolbar);

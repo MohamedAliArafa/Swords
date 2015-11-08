@@ -150,7 +150,7 @@ public class HistoryNew extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("History");
+        textView.setText(getString(R.string.history));
 //        toolbar.setElevation(10);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -173,7 +173,7 @@ public class HistoryNew extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             pDialog = new ProgressDialog(HistoryNew.this);
-            pDialog.setMessage("Loading" + "...");
+            pDialog.setMessage(getString(R.string.loading) + "...");
             pDialog.show();
             super.onPreExecute();
         }
@@ -211,7 +211,7 @@ public class HistoryNew extends AppCompatActivity {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(HistoryNew.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HistoryNew.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -258,37 +258,37 @@ public class HistoryNew extends AppCompatActivity {
                                             days = "";
                                             json = jArray.getJSONObject(i);
                                             item.setID(json.getInt("ID"));
-                                            item.setFromEm(json.getString("FromEmirateEnName"));
-                                            item.setFromReg(json.getString("FromRegionEnName"));
-                                            item.setToEm(json.getString("ToEmirateEnName"));
-                                            item.setToReg(json.getString("ToRegionEnName"));
-                                            item.setRouteName(json.getString("RouteEnName"));
+                                            item.setFromEm(json.getString(getString(R.string.from_em_en_name)));
+                                            item.setFromReg(json.getString(getString(R.string.from_reg_en_name)));
+                                            item.setToEm(json.getString(getString(R.string.to_em_en_name)));
+                                            item.setToReg(json.getString(getString(R.string.to_reg_en_name)));
+                                            item.setRouteName(json.getString(getString(R.string.route_name)));
 //                                            item.setStartFromTime(json.getString("StartFromTime"));
 //                                            item.setEndToTime_(json.getString("EndToTime_"));
 
                                             if (json.getString("Saturday").equals("true")) {
-                                                days += "Sat , ";
+                                                days += getString(R.string.sat);
                                             }
                                             if (json.getString("Sunday").equals("true")) {
-                                                days += "Sun , ";
+                                                days += getString(R.string.sun);
 
                                             }
                                             if (json.getString("Monday").equals("true")) {
-                                                days += "Mon , ";
+                                                days += getString(R.string.mon);
 
                                             }
                                             if (json.getString("Tuesday").equals("true")) {
-                                                days += "Tue , ";
+                                                days += getString(R.string.thu);
                                             }
                                             if (json.getString("Wednesday").equals("true")) {
-                                                days += "Wed , ";
+                                                days += getString(R.string.wed);
                                             }
                                             if (json.getString("Thursday").equals("true")) {
-                                                days += "Thu , ";
+                                                days += getString(R.string.thu);
 
                                             }
                                             if (json.getString("Friday").equals("true")) {
-                                                days += "Fri ";
+                                                days += getString(R.string.fri);
                                             }
 
 
@@ -365,7 +365,7 @@ public class HistoryNew extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             pDialog = new ProgressDialog(HistoryNew.this);
-            pDialog.setMessage("Loading" + "...");
+            pDialog.setMessage(getString(R.string.loading) + "...");
             pDialog.show();
             super.onPreExecute();
         }
@@ -404,7 +404,7 @@ public class HistoryNew extends AppCompatActivity {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(HistoryNew.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HistoryNew.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -466,11 +466,11 @@ public class HistoryNew extends AppCompatActivity {
                                             String Routename2 = jsonObject.getString("RouteEnName");
                                             Log.d("Route name 2 ", Routename2);
 
-                                            item.setFromEm(jsonObject.getString("FromEmirateEnName"));
-                                            item.setFromReg(jsonObject.getString("FromRegionEnName"));
-                                            item.setToEm(jsonObject.getString("ToEmirateEnName"));
-                                            item.setToReg(jsonObject.getString("ToRegionEnName"));
-                                            item.setRouteName(jsonObject.getString("RouteEnName"));
+                                            item.setFromEm(jsonObject.getString(getString(R.string.from_em_en_name)));
+                                            item.setFromReg(jsonObject.getString(getString(R.string.from_reg_en_name)));
+                                            item.setToEm(jsonObject.getString(getString(R.string.to_em_en_name)));
+                                            item.setToReg(jsonObject.getString(getString(R.string.to_reg_en_name)));
+                                            item.setRouteName(jsonObject.getString(getString(R.string.route_name)));
                                   //          item.setStartFromTime(jsonObject.getString("StartFromTime"));
                                     //        item.setEndToTime_(jsonObject.getString("EndToTime_"));
 

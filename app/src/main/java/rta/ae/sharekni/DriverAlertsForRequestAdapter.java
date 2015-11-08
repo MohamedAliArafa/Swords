@@ -79,32 +79,21 @@ public class DriverAlertsForRequestAdapter extends BaseAdapter {
         PassengerName.setText(model.getPassengerName());
         NationalityEnName.setText(model.getNationalityEnName());
 
-
         if (model.getDriverAccept()!=null) {
             if (model.getDriverAccept().equals("false")) {
 
-                txt_Accepted_or_Rejected.setText("Has Rejected Your Request");
+                txt_Accepted_or_Rejected.setText(R.string.reject_request);
 
             } else {
 
-                txt_Accepted_or_Rejected.setText("Has Accepeted Your Request");
-
+                txt_Accepted_or_Rejected.setText(R.string.accept_request);
             }
-
 
         } //  IF  * 1
         else {
 
-            txt_Accepted_or_Rejected.setText("Send you a join Request");
-
-
-
+            txt_Accepted_or_Rejected.setText(R.string.join_request);
         }
-
-
         return convertView;
-
-
-
     }
 }

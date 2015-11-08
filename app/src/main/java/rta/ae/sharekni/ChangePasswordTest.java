@@ -73,7 +73,7 @@ public class ChangePasswordTest extends AppCompatActivity {
                                             finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                            Toast.makeText(ChangePasswordTest.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ChangePasswordTest.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                         }
                     });
                 }

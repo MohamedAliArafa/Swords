@@ -418,7 +418,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                     TreeMap<String, String> valuePairs = new TreeMap<>();
                     JSONObject jsonObject = j.getJSONObject(i);
                     valuePairs.put("ID", jsonObject.getString("ID"));
-                    valuePairs.put("NationalityEnName", jsonObject.getString("NationalityEnName"));
+                    valuePairs.put("NationalityEnName", jsonObject.getString(getString(R.string.nat_name2)));
                     Create_CarPool_Country_List.add(valuePairs);
                 }
 
@@ -611,7 +611,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(DriverEditCarPool.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DriverEditCarPool.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -804,7 +804,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                         ,pref_lnag,pref_nat,Age_Ranged_id,StartDate,this);
 
             }else{
-                Toast.makeText(DriverEditCarPool.this, "Make Sure Your Fill All Required Fields", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DriverEditCarPool.this,getString(R.string.fill_all_error), Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -818,7 +818,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                     TreeMap<String, String> valuePairs = new TreeMap<>();
                     JSONObject jsonObject = j.getJSONObject(i);
                     valuePairs.put("EmirateId", jsonObject.getString("EmirateId"));
-                    valuePairs.put("EmirateEnName", jsonObject.getString("EmirateEnName"));
+                    valuePairs.put("EmirateEnName", jsonObject.getString(getString(R.string.em_name)));
                     Create_CarPool_Emirates_List.add(valuePairs);
                 }
                 Log.d("test Emirates ", Create_CarPool_Emirates_List.toString());
@@ -835,7 +835,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
             Create_CarPool_MainDialog.setContentView(R.layout.main_search_dialog);
             Create_CarPool_btn_submit_pickUp = (Button) Create_CarPool_MainDialog.findViewById(R.id.btn_submit_puckup);
             TextView Lang_Dialog_txt_id = (TextView) Create_CarPool_MainDialog.findViewById(R.id.Lang_Dialog_txt_id);
-            Lang_Dialog_txt_id.setText("Pick Up");
+            Lang_Dialog_txt_id.setText(getString(R.string.pickup));
             Create_CarPool_txt_regions = (AutoCompleteTextView) Create_CarPool_MainDialog.findViewById(R.id.mainDialog_Regions_auto);
             Create_CarPool_spinner = (Spinner) Create_CarPool_MainDialog.findViewById(R.id.Emirates_spinner);
             Create_CarPool_spinner.setAdapter(Create_CarPool_EmAdapter);
@@ -870,7 +870,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                             TreeMap<String, String> valuePairs = new TreeMap<>();
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
                             valuePairs.put("ID", jsonObject.getString("ID"));
-                            valuePairs.put("RegionEnName", jsonObject.getString("RegionEnName"));
+                            valuePairs.put("RegionEnName", jsonObject.getString(getString(R.string.reg_name)));
                             Create_CarPool_Regions_List.add(valuePairs);
                         }
                         Log.d("test Regions search ", Create_CarPool_Regions_List.toString());
@@ -914,7 +914,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                     TreeMap<String, String> valuePairs = new TreeMap<>();
                     JSONObject jsonObject = j.getJSONObject(i);
                     valuePairs.put("EmirateId", jsonObject.getString("EmirateId"));
-                    valuePairs.put("EmirateEnName", jsonObject.getString("EmirateEnName"));
+                    valuePairs.put("EmirateEnName", jsonObject.getString(getString(R.string.em_name)));
                     Create_CarPool_Emirates_List.add(valuePairs);
                 }
                 Log.d("test Emirates ", Create_CarPool_Emirates_List.toString());
@@ -969,7 +969,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                             TreeMap<String, String> valuePairs = new TreeMap<>();
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
                             valuePairs.put("ID", jsonObject.getString("ID"));
-                            valuePairs.put("RegionEnName", jsonObject.getString("RegionEnName"));
+                            valuePairs.put("RegionEnName", jsonObject.getString(getString(R.string.reg_name)));
                             Create_CarPool_Regions_List.add(valuePairs);
                         }
                         Log.d("test Regions search ", Create_CarPool_Regions_List.toString());

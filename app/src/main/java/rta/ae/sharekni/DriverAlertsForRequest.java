@@ -168,7 +168,7 @@ public class DriverAlertsForRequest extends AppCompatActivity {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(DriverAlertsForRequest.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DriverAlertsForRequest.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -186,7 +186,7 @@ public class DriverAlertsForRequest extends AppCompatActivity {
                         obj = response.getJSONObject(i);
                         final DriverAlertsForRequestDataModel Alert = new DriverAlertsForRequestDataModel(Parcel.obtain());
                         Alert.setPassengerName(obj.getString("PassengerName"));
-                        Alert.setNationalityEnName(obj.getString("NationalityEnName"));
+                        Alert.setNationalityEnName(obj.getString(getString(R.string.nat_name2)));
                         Alert.setAccountPhoto(obj.getString("AccountPhoto"));
                         Alert.setRouteName(obj.getString("RouteName"));
                         Alert.setPassengerMobile(obj.getString("PassengerMobile"));
@@ -253,7 +253,7 @@ public class DriverAlertsForRequest extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Notifications");
+        textView.setText(R.string.notification);
 //        toolbar.setElevation(10);
 
         setSupportActionBar(toolbar);

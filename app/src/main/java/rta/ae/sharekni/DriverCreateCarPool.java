@@ -198,7 +198,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
                     if (From_EmirateEnName_str.equals("null") || From_EmirateEnName_str.equals("")) {
                         From_EmirateEnName_str = "";
-                        From_EmirateEnName_str = "Not set";
+                        From_EmirateEnName_str = getString(R.string.not_set);
                         Create_CarPool_txt_PickUp = "";
                         Create_CarPool_txt_PickUp += From_EmirateEnName_str;
                     } else {
@@ -209,7 +209,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
                     if (From_RegionEnName_str.equals("null") || From_RegionEnName_str.equals("Not Set")) {
                         From_RegionEnName_str = "";
-                        From_RegionEnName_str = "Not set";
+                        From_RegionEnName_str = getString(R.string.not_set);
                         Create_CarPool_txt_PickUp += ",";
                         Create_CarPool_txt_PickUp += From_RegionEnName_str;
 
@@ -221,14 +221,14 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
                 } catch (NullPointerException e) {
 
-                    Create_CarPool_txt_PickUp = "Start Point";
+                    Create_CarPool_txt_PickUp = getString(R.string.start_point);
                 }
 
 
                 try {
                     if (To_EmirateEnName_str.equals("null") || To_EmirateEnName_str.equals("")) {
                         To_EmirateEnName_str = "";
-                        To_EmirateEnName_str = "Not set";
+                        To_EmirateEnName_str = getString(R.string.not_set);
                         Create_CarPool_txt_Drop_Off = "";
                         Create_CarPool_txt_Drop_Off += To_EmirateEnName_str;
                     } else {
@@ -238,7 +238,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
                     if (To_RegionEnName_str.equals("null") || To_RegionEnName_str.equals("Not Set")) {
                         To_RegionEnName_str = "";
-                        To_RegionEnName_str = "Not set";
+                        To_RegionEnName_str = getString(R.string.not_set);
                         Create_CarPool_txt_Drop_Off += ",";
                         Create_CarPool_txt_Drop_Off += To_RegionEnName_str;
 
@@ -249,7 +249,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
                 } catch (NullPointerException e) {
 
-                    Create_CarPool_txt_Drop_Off = "End Point";
+                    Create_CarPool_txt_Drop_Off = getString(R.string.end_point);
                 }
 
                 Log.d("From_Em_Id_2", String.valueOf(intent.getIntExtra("From_Em_Id", 0)));
@@ -263,22 +263,6 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         final Calendar cal = Calendar.getInstance();
         year_x = cal.get(Calendar.YEAR);
@@ -359,7 +343,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
       //  Create_CarPool_dropOff_relative.setOnClickListener(this);
 
         if (i2 == 0) {
-            Create_CarPool_txt_Selecet_Start_Point.setText("Start Point");
+            Create_CarPool_txt_Selecet_Start_Point.setText(getString(R.string.start_point));
             Log.d("pick 1", Create_CarPool_txt_PickUp);
 
         } else if (i2 == 1) {
@@ -369,7 +353,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
 
         if (i2 == 0) {
-            Create_CarPool_txt_Select_Dest.setText("End Point");
+            Create_CarPool_txt_Select_Dest.setText(getString(R.string.end_point));
             Log.d("drop off 1 ", Create_CarPool_txt_Drop_Off);
         } else if (i2 == 1) {
             Create_CarPool_txt_Select_Dest.setText(Create_CarPool_txt_Drop_Off);
@@ -612,7 +596,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Create Ride");
+        textView.setText(getString(R.string.create_ride));
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -662,7 +646,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                 i2 = 1;
 
             } else {
-                Toast.makeText(DriverCreateCarPool.this, "Make Sure You Fill All Required Filds", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DriverCreateCarPool.this, getString(R.string.fill_all_error), Toast.LENGTH_SHORT).show();
             }
         }
 /*
@@ -1054,7 +1038,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(DriverCreateCarPool.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DriverCreateCarPool.this,getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -1065,7 +1049,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                         TreeMap<String, String> valuePairs = new TreeMap<>();
                         JSONObject jsonObject = j.getJSONObject(i);
                         valuePairs.put("ID", jsonObject.getString("ID"));
-                        valuePairs.put("NationalityEnName", jsonObject.getString("NationalityEnName"));
+                        valuePairs.put("NationalityEnName", jsonObject.getString(getString(R.string.nat_name2)));
                         Create_CarPool_Country_List.add(valuePairs);
                     }
 
@@ -1098,7 +1082,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                         Languages_Dilaog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                         Languages_Dilaog.setContentView(R.layout.languages_dialog);
                         TextView Lang_Dialog_txt_id = (TextView) Languages_Dilaog.findViewById(R.id.Lang_Dialog_txt_id);
-                        Lang_Dialog_txt_id.setText("Vehicles");
+                        Lang_Dialog_txt_id.setText(getString(R.string.vehicles));
                         lang_lv = (ListView) Languages_Dilaog.findViewById(R.id.Langs_list);
                         lang_lv.setAdapter(adapter3);
                         Languages_Dilaog.show();
@@ -1146,7 +1130,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(DriverCreateCarPool.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DriverCreateCarPool.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -1232,7 +1216,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(DriverCreateCarPool.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DriverCreateCarPool.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -1244,7 +1228,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                         TreeMap<String, String> valuePairs = new TreeMap<>();
                         JSONObject jsonObject = j.getJSONObject(i);
                         valuePairs.put("LanguageId", jsonObject.getString("LanguageId"));
-                        valuePairs.put("LanguageEnName", jsonObject.getString("LanguageEnName"));
+                        valuePairs.put("LanguageEnName", jsonObject.getString(getString(R.string.lang_name)));
                         Create_CarPool_Lang_List.add(valuePairs);
 
                     }
@@ -1324,7 +1308,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(DriverCreateCarPool.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DriverCreateCarPool.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }

@@ -137,7 +137,7 @@ public class DriverPermits extends AppCompatActivity {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(DriverPermits.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DriverPermits.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -165,7 +165,7 @@ public class DriverPermits extends AppCompatActivity {
                                         Button btn = (Button) dialog.findViewById(R.id.noroute_id);
                                         TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
                                         dialog.show();
-                                        Text_3.setText("There is no permits yet");
+                                        Text_3.setText(R.string.no_permits);
 
                                         btn.setOnClickListener(new View.OnClickListener() {
                                             @Override
@@ -186,7 +186,7 @@ public class DriverPermits extends AppCompatActivity {
                                             item.setFromEm(json.getString("CurrentPassengers"));
                                             item.setToEm(json.getString("IssueDate"));
                                             item.setToReg(json.getString("ExpireDate"));
-                                            item.setRouteName(json.getString("RouteEnName"));
+                                            item.setRouteName(json.getString(getString(R.string.route_name)));
                                             item.setDriver_ID(json.getInt("ID"));
                                             driver[i] = item;
 
@@ -237,7 +237,7 @@ public class DriverPermits extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Permits");
+        textView.setText(getString(R.string.permit));
 //        toolbar.setElevation(10);
 
         setSupportActionBar(toolbar);
