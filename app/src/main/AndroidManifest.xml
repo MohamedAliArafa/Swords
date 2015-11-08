@@ -40,7 +40,9 @@
         android:largeHeap="true"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.Base" >
+        android:theme="@style/AppTheme.Base"
+
+        >
         <activity
             android:name="rta.ae.sharekni.SharekniOld"
             android:label="@string/title_activity_main"

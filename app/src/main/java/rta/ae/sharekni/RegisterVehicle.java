@@ -1,11 +1,15 @@
 package rta.ae.sharekni;
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,10 +23,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import rta.ae.sharekni.R;
-
 import org.json.JSONException;
 
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -56,6 +61,7 @@ public class RegisterVehicle extends AppCompatActivity {
     Bundle in;
     SharedPreferences myPrefs;
 
+    int FileNo;
     int Driver_ID;
 
     Driver_RegisterVehicleWithETService_JsonParse license_check = new  Driver_RegisterVehicleWithETService_JsonParse();
@@ -102,14 +108,24 @@ public class RegisterVehicle extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 GetData j = new GetData();
                 if (!full_date.equals("") && !File_num_edit.getText().toString().equals("Please enter the driving license No.") ) {
                     File_NO_Str = File_num_edit.getText().toString();
-                    int FileNo = Integer.parseInt(File_NO_Str);
+                    FileNo = Integer.parseInt(File_NO_Str);
+
+
+                    new back().execute();
+
+
+                }
 
                 //    license_check.stringRequest(GetData.DOMAIN+"Driver_RegisterVehicleWithETService?AccountId="+Driver_ID+"&TrafficFileNo="+FileNo+"&BirthDate="+full_date,RegisterVehicle.this);
                  //   Log.d("reg vehicle", GetData.DOMAIN + "Driver_RegisterVehicleWithETService?AccountId=" + Driver_ID + "&TrafficFileNo=" + FileNo + "&BirthDate=" + full_date);
 
+
+
+                    /*
                     try {
                       String data =  j.RegisterVehicle(Driver_ID, FileNo, full_date);
                         if (data.equals("\"1\"")){
@@ -119,7 +135,7 @@ public class RegisterVehicle extends AppCompatActivity {
                             Toast.makeText(getBaseContext(), "Date birth invalid", Toast.LENGTH_LONG).show();
                             Log.d("inside -3",data);
                         }else if (data.equals("\"-4\"")){
-                            Toast.makeText(getBaseContext(), "license verified, but no cars found ", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getBaseContext(), "license verified, but no cars found . or invalid file number ", Toast.LENGTH_LONG).show();
 
                         }else if (data.equals("\"-5\"") || data.equals("\"-6\"") ){
                             Toast.makeText(getBaseContext(), "Invalid data, please check agaian", Toast.LENGTH_LONG).show();
@@ -135,6 +151,7 @@ public class RegisterVehicle extends AppCompatActivity {
 
                 }
 
+                */
 
 
                 /*
@@ -161,6 +178,11 @@ public class RegisterVehicle extends AppCompatActivity {
 //                    Intent intent = new Intent(getBaseContext(), Register_Vehicle_Verify.class);
 //                    startActivity(intent);
 
+
+
+
+
+
             }
         });
 
@@ -170,6 +192,111 @@ public class RegisterVehicle extends AppCompatActivity {
 
 
     }  //  on create
+
+
+
+
+    private class back extends AsyncTask {
+
+        ProgressDialog pDialog;
+        boolean exists = false;
+        String data ;
+        @Override
+        protected void onPreExecute() {
+            pDialog = new ProgressDialog(RegisterVehicle.this);
+            pDialog.setMessage("Loading" + "...");
+            pDialog.show();
+        }
+
+
+
+
+        @Override
+        protected void onPostExecute(Object o) {
+
+            if (data.equals("\"1\"")){
+                Toast.makeText(getBaseContext(), "Verified", Toast.LENGTH_LONG).show();
+
+            }else if(data.equals("\"-3\"")){
+                Toast.makeText(getBaseContext(), "Date birth invalid", Toast.LENGTH_LONG).show();
+                Log.d("inside -3",data);
+            }else if (data.equals("\"-4\"")){
+                Toast.makeText(getBaseContext(), "license verified, but no cars found . or invalid file number ", Toast.LENGTH_LONG).show();
+
+            }else if (data.equals("\"-5\"") || data.equals("\"-6\"") ){
+                Toast.makeText(getBaseContext(), "Invalid data, please check agaian", Toast.LENGTH_LONG).show();
+
+            }else if (data.equals("\"0\"")){
+                //  Toast.makeText(context, "license verified, but no cars found ", Toast.LENGTH_LONG).show();
+                Log.d("license no json",data+" Error in Connection with the DataBase Server");
+            }
+
+
+            hidePDialog();
+        }
+
+        @Override
+        protected Object doInBackground(Object[] params) {
+            try {
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                Socket sock = new Socket();
+                int timeoutMs = 20000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                exists = true;
+            } catch (final Exception e) {
+                e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new AlertDialog.Builder(RegisterVehicle.this)
+                                .setTitle(getString(R.string.connection_problem))
+                                .setMessage(getString(R.string.con_problem_message))
+                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                        startActivity(getIntent());
+                                    }
+                                })
+                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                        Toast.makeText(RegisterVehicle.this,getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            if (exists) {
+
+                GetData j = new GetData();
+
+                try {
+                    data =  j.RegisterVehicle(Driver_ID, FileNo, full_date);
+
+                } catch (JSONException e) {
+                    hidePDialog();
+                    e.printStackTrace();
+
+                }
+            }
+            return null;
+        }
+
+
+
+        private void hidePDialog() {
+            if (pDialog != null) {
+                pDialog.dismiss();
+                pDialog = null;
+            }
+        }
+
+    }
+
+
+
+
+
+
 
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)

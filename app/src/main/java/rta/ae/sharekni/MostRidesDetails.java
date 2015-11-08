@@ -2,7 +2,6 @@ package rta.ae.sharekni;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
-import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,7 +10,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
-import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -23,14 +21,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import rta.ae.sharekni.Arafa.Activities.Profile;
-import rta.ae.sharekni.Arafa.Classes.GetData;
-import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
-import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModelDetails;
-import rta.ae.sharekni.Arafa.DataModelAdapter.BestRouteDataModelAdapterDetails;
-
-import rta.ae.sharekni.R;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,6 +29,12 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
 import java.util.ArrayList;
+
+import rta.ae.sharekni.Arafa.Activities.Profile;
+import rta.ae.sharekni.Arafa.Classes.GetData;
+import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
+import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModelDetails;
+import rta.ae.sharekni.Arafa.DataModelAdapter.BestRouteDataModelAdapterDetails;
 
 
 public class MostRidesDetails extends AppCompatActivity {
@@ -228,6 +224,7 @@ public class MostRidesDetails extends AppCompatActivity {
 
                 if (ID== null) {
                     String url = GetData.DOMAIN + "GetMostDesiredRideDetails?AccountID=" + 0 + "&FromEmirateID=" + FromEmirateId + "&FromRegionID=" + FromRegionId + "&ToEmirateID=" + ToEmirateId + "&ToRegionID=" + ToRegionId;
+                    Log.d("Url",url);
                     try {
                         jsonArray = j.MostRidesDetails(url);
                     } catch (JSONException e) {
@@ -235,6 +232,7 @@ public class MostRidesDetails extends AppCompatActivity {
                     }
                 }else {
                     String url = GetData.DOMAIN + "GetMostDesiredRideDetails?AccountID=" + ID + "&FromEmirateID=" + FromEmirateId + "&FromRegionID=" + FromRegionId + "&ToEmirateID=" + ToEmirateId + "&ToRegionID=" + ToRegionId;
+                    Log.d("Url",url);
                     try {
                         jsonArray = j.MostRidesDetails(url);
                     } catch (JSONException e) {

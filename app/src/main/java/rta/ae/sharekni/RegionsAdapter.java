@@ -8,8 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.TextView;
 
-import rta.ae.sharekni.R;
-
 import java.util.ArrayList;
 
 
@@ -97,7 +95,7 @@ public class RegionsAdapter extends ArrayAdapter<RegionsDataModel> {
             if(constraint != null) {
                 suggestions.clear();
                 for (RegionsDataModel customer : itemsAll) {
-                    if(customer.RegionEnName.toLowerCase().startsWith(constraint.toString().toLowerCase())){
+                    if(customer.RegionEnName.toLowerCase().contains(constraint.toString().toLowerCase())){
                         suggestions.add(customer);
                     }
                 }

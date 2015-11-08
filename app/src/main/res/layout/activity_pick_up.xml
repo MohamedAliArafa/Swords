@@ -112,7 +112,7 @@
             android:layout_toLeftOf="@+id/sweep_icon"
             android:layout_toStartOf="@+id/sweep_icon"
             android:background="@drawable/autocomplete_regions_border"
-            android:cursorVisible="false"
+            android:cursorVisible="true"
             android:hint="@string/enter_region"
             android:lines="1"
             android:maxLines="1"
@@ -125,7 +125,7 @@
             android:textColor="@color/primaryColor"
             android:textColorHint="@color/primaryColor"
             android:textSize="15sp"
-
+            android:completionThreshold="1"
 
             />
 
@@ -165,8 +165,8 @@
             android:paddingStart="20dp"
             android:text="@string/pickup"
             android:textSize="20sp"
-            android:textStyle="bold"
             android:layout_marginTop="10dp"
+            android:textColor="@color/primaryColor"
 
             />
 
@@ -261,7 +261,7 @@
                     android:layout_toLeftOf="@+id/sweep_icon_2"
                     android:layout_toStartOf="@+id/sweep_icon_2"
                     android:background="@drawable/autocomplete_regions_border"
-                    android:cursorVisible="false"
+                    android:cursorVisible="true"
                     android:hint="@string/enter_region"
                     android:lines="1"
                     android:maxLines="1"
@@ -274,7 +274,7 @@
                     android:textColor="@color/primaryColor"
                     android:textColorHint="@color/primaryColor"
                     android:textSize="15sp"
-
+                    android:completionThreshold="1"
 
                     />
 
@@ -314,9 +314,9 @@
             android:paddingStart="20dp"
             android:text="@string/dropoff"
             android:textSize="20sp"
-            android:textStyle="bold"
             android:layout_marginTop="10dp"
             android:layout_below="@+id/Dest_Relative_1"
+            android:textColor="@color/primaryColor"
             />
 
 

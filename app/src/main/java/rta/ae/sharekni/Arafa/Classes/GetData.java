@@ -23,7 +23,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import rta.ae.sharekni.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,6 +39,7 @@ import rta.ae.sharekni.DriverCreatedRides;
 import rta.ae.sharekni.HomePage;
 import rta.ae.sharekni.QuickSearchDataModel;
 import rta.ae.sharekni.QuickSearchResultAdapter;
+import rta.ae.sharekni.R;
 import rta.ae.sharekni.Ride_Details_Passengers_Adapter;
 import rta.ae.sharekni.Ride_Details_Passengers_DataModel;
 
@@ -60,10 +60,15 @@ public class GetData {
 
 
 
-    public static final String DOMAIN = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx/";
-    public static final String NonOpDomain = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx";
-    public static final String PhotoURL = "http://213.42.51.219/uploads/personalphoto/";
+//    public static final String DOMAIN = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx/";
+//    public static final String NonOpDomain = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx";
+//    public static final String PhotoURL = "http://213.42.51.219/uploads/personalphoto/";
+//
 
+
+        public static final String DOMAIN = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx/";
+    public static final String NonOpDomain = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx";
+   public static final String PhotoURL = "https://www.sharekni.ae/uploads/personalphoto/";
 
 
 
@@ -397,6 +402,7 @@ public class GetData {
     }
 
     public JSONArray MostDesiredRoutes() throws JSONException {
+        Log.d("most rides",getBestRouteUrl);
         JSONArray json;
         HandleXML obj = new HandleXML(getBestRouteUrl);
         obj.fetchXML();

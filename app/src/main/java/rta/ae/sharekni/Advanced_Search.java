@@ -279,8 +279,8 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
         FemaleMaleTxt2 = (TextView) findViewById(R.id.femalemale_txt2);
         advanced_search_Preferred_Lang_txt = (TextView) findViewById(R.id.advanced_search_Preferred_Lang_txt);
         advanced_search_Age_Range_txt = (TextView) findViewById(R.id.advanced_search_Age_Range_txt);
-        quickSearch_pickUp = (Button) findViewById(R.id.quickSearch_pickUp);
-        quickSearch_Dropoff = (Button) findViewById(R.id.advanced_search__Dropoff);
+//        quickSearch_pickUp = (Button) findViewById(R.id.quickSearch_pickUp);
+  //      quickSearch_Dropoff = (Button) findViewById(R.id.advanced_search__Dropoff);
         dvanced_Destination = (Button) findViewById(R.id.dvanced_Destination);
 
        // quickSearch_pickUp.setOnClickListener(this);

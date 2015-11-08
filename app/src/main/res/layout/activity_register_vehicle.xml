@@ -108,7 +108,7 @@
                 android:layout_toRightOf="@+id/imageView4"
                 android:textColor="@color/primaryColor"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                 />
 
 
             <TextView
@@ -137,7 +137,7 @@
                 android:padding="3dp"
                 android:textColor="@color/primaryColor"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+               />
 
             <TextView
                 android:id="@+id/txt_beforeCal"
@@ -152,7 +152,6 @@
                 android:text="Date of Birth"
                 android:textColor="@color/primaryColor"
                 android:textSize="15sp"
-                android:textStyle="bold"
                 />
 
         </RelativeLayout>
@@ -191,7 +190,8 @@
         android:paddingRight="10dp"
         android:text="@string/Register_Vehicle_Trraffic_Number_Border_Title_"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textColor="@color/primaryColor"
+        />
 
 
 

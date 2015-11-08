@@ -19,11 +19,10 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-
-import rta.ae.sharekni.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -73,6 +72,7 @@ public class PickUpActivity extends AppCompatActivity {
     static PickUpActivity pickUpActivity;
 
     AutoCompleteTextView Create_CarPool_txt_regions, Create_CarPool_txt_regions_2;
+    ImageView sweep_icon, sweep_icon_2;
 
     public static PickUpActivity getInstance() {
         return pickUpActivity;
@@ -98,7 +98,8 @@ public class PickUpActivity extends AppCompatActivity {
 
         Emirates_txt_2 = (TextView) findViewById(R.id.Emirates_spinner_2);
         Create_CarPool_txt_regions_2 = (AutoCompleteTextView) findViewById(R.id.mainDialog_Regions_auto_2);
-
+        sweep_icon = (ImageView) findViewById(R.id.sweep_icon);
+        sweep_icon_2 = (ImageView) findViewById(R.id.sweep_icon_2);
 
         dis_submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -298,30 +299,40 @@ public class PickUpActivity extends AppCompatActivity {
         });
 
 
-        Create_CarPool_txt_regions_2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        Create_CarPool_txt_regions_2.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
 
-                arr_2.clear();
-
-                new backTread2().execute();
-
+                if (hasFocus) {
+                    arr_2.clear();
+                    new backTread2().execute();
+                }
 
             }
         });
+
 
 
         Create_CarPool_txt_regions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 arr.clear();
-
                 new backTread().execute();
-
-
             }
         });
+
+
+
+//        Create_CarPool_txt_regions.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if (hasFocus) {
+//                    arr.clear();
+//                    new backTread().execute();
+//                }
+//            }
+//        });
+
+
+
 
 
     } // oncreate
@@ -356,6 +367,17 @@ public class PickUpActivity extends AppCompatActivity {
 
 
             //  if
+
+
+            sweep_icon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Create_CarPool_txt_regions.setText("");
+                    Create_CarPool_txt_regions.setHint("Enter Region");
+
+                }
+            });
 
 
         }
@@ -436,6 +458,14 @@ public class PickUpActivity extends AppCompatActivity {
 
 
             //  if
+
+            sweep_icon_2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Create_CarPool_txt_regions_2.setText("");
+                    Create_CarPool_txt_regions_2.setHint("Enter Region");
+                }
+            });
 
 
         }

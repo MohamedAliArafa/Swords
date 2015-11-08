@@ -25,11 +25,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-
-import rta.ae.sharekni.Arafa.Activities.BestRideBeforeLogin;
-
-import rta.ae.sharekni.R;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -42,6 +37,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.TreeMap;
+
+import rta.ae.sharekni.Arafa.Activities.BestRideBeforeLogin;
 
 public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
@@ -107,7 +104,6 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
     String From_EmirateEnName_str, From_RegionEnName_str, To_EmirateEnName_str, To_RegionEnName_str;
     int From_Em_Id_2, From_Reg_Id_2, To_Em_Id_2, To_Reg_Id_2;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -240,13 +236,17 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         txt_time_selected = (TextView) findViewById(R.id.txt_time_selected);
         before_Time = (TextView) findViewById(R.id.textview51);
         btn_search_page = (Button) findViewById(R.id.btn_search_page);
-        quickSearch_pickUp = (Button) findViewById(R.id.quickSearch_pickUp);
-        quickSearch_Dropoff = (Button) findViewById(R.id.quickSearch_Dropoff);
+     //   quickSearch_pickUp = (Button) findViewById(R.id.quickSearch_pickUp);
+  //      quickSearch_Dropoff = (Button) findViewById(R.id.quickSearch_Dropoff);
 
         MostRides_Relative = (RelativeLayout) findViewById(R.id.search_top_rides_im);
         MapLookUp_Relative = (RelativeLayout) findViewById(R.id.map_look_up);
         Advanced_Search_Relative_2 = (RelativeLayout) findViewById(R.id.advanced_search);
         quick_Destination = (Button) findViewById(R.id.quick_Destination);
+
+
+
+
 
 
         if (i==0) {
