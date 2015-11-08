@@ -296,6 +296,7 @@
                     android:cursorVisible="true"
                     android:singleLine="true"
                     android:textAllCaps="false"
+                    android:imeOptions="actionDone"
                     android:textColor="@color/primaryColor"
                     android:textColorHint="@color/primaryColor"
                     android:textSize="15sp" />
