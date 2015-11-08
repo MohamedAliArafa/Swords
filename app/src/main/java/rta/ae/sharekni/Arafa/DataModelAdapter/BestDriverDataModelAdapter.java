@@ -10,8 +10,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
+
 import rta.ae.sharekni.Arafa.Classes.AppController;
 import rta.ae.sharekni.Arafa.Classes.CircularNetworkImageView;
 import rta.ae.sharekni.Arafa.Classes.GetData;
@@ -23,7 +25,6 @@ import rta.ae.sharekni.R;
 import java.util.List;
 
 public class BestDriverDataModelAdapter extends BaseAdapter {
-
 
 
     private Activity activity;
@@ -48,12 +49,10 @@ public class BestDriverDataModelAdapter extends BaseAdapter {
     }
 
 
-
     @Override
     public long getItemId(int position) {
         return position;
     }
-
 
 
     @Override
@@ -75,7 +74,7 @@ public class BestDriverDataModelAdapter extends BaseAdapter {
 
         //RatingBar rating = (RatingBar) convertView.findViewById(R.id.ratingBar);
 
-      //  Button Best_Drivers_Item_Details= (Button) convertView.findViewById(R.id.Best_Drivers_Item_Details);
+        //  Button Best_Drivers_Item_Details= (Button) convertView.findViewById(R.id.Best_Drivers_Item_Details);
         ImageView Phone_Call = (ImageView) convertView.findViewById(R.id.im5);
         ImageView Phone_Message = (ImageView) convertView.findViewById(R.id.im1);
 
@@ -88,7 +87,7 @@ public class BestDriverDataModelAdapter extends BaseAdapter {
 
         for (String str : strArr) {
             char[] stringArray = str.trim().toCharArray();
-            if (stringArray.length != 0){
+            if (stringArray.length != 0) {
                 stringArray[0] = Character.toUpperCase(stringArray[0]);
                 str = new String(stringArray);
 
@@ -114,27 +113,33 @@ public class BestDriverDataModelAdapter extends BaseAdapter {
         Phone_Call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+m.getPhoneNumber()));
-                activity.startActivity(intent);
+                if (m.getPhoneNumber() == null || m.getPhoneNumber().equals("")) {
+
+                    Toast.makeText(activity, "No Phone Number" , Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + m.getPhoneNumber()));
+                    activity.startActivity(intent);
+                }
             }
         });
 
         Phone_Message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:"+m.getPhoneNumber()));
-                intent.putExtra( "sms_body", "Hello "+m.getName() );
-                activity.startActivity(intent);
+                if (m.getPhoneNumber()==null || m.getPhoneNumber().equals("")){
+                    Toast.makeText(activity, "No Phone Number" , Toast.LENGTH_SHORT).show();
+                }else {
+
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + m.getPhoneNumber()));
+                    intent.putExtra("sms_body", "Hello " + m.getName());
+                    activity.startActivity(intent);
+                }
             }
         });
 
 
-
-
-
         return convertView;
     }
-
 
 
 }

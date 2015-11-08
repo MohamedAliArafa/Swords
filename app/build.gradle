@@ -6,8 +6,8 @@ android {
         applicationId "rta.ae.sharekni"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 18
-        versionName "2.0.0"
+        versionCode 19
+        versionName "2.0.1"
     }
     buildTypes {
         release {

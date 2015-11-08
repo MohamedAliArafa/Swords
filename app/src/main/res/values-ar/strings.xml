@@ -68,15 +68,15 @@
     <string name="title_activity_take_atour">TakeATour</string>
 
     <string name="navy_Home_Page_txt">الصفحة الرئيسية</string>
-    <string name="navy_Most_Rides_str">أكثر الرحلات</string>
+    <string name="navy_Most_Rides_str">أكثر الرحلات طلبا</string>
     <string name="navy_Best_Drivers_str">أفضل السائقين</string>
     <string name="navy_Search_Options_str">بحث</string>
     <string name="navy_Notifications_str">التنبيهات</string>
-    <string name="navy_Logout_str">تسجيل الخروج</string>
+    <string name="navy_Logout_str">تسجيل خروج</string>
     <string name="navy_List_image_content_Desc">navy_image_icon</string>
 
     <string name="Reg_appBar_name">التسجيل</string>
-    <string name="fill_all_error">جميع الحقول مطلوبة</string>
+    <string name="fill_all_error">جميع الحقول الزاميه</string>
     <string name="Reg_FirstN">الإسم الأول</string>
     <string name="Reg_LastN">الإسم الأخير</string>
     <string name="REg_Mobile">رقم الجوال</string>
@@ -89,7 +89,7 @@
 
 
     <string name="title_activity_register_vehicle">RegisterVehicle</string>
-    <string name="Register_Vehicle_Driving_License_No">رقم ملف المرور</string>
+    <string name="Register_Vehicle_Driving_License_No">رقم الملف المروري</string>
     <string name="Select_Emirate_txt">إختر الإمارة</string>
     <string name="Ok_txt">Ok</string>
     <string name="Register_Vehicle_Trraffic_Number_Border_Title_">تسجيل المركبات</string>
@@ -101,10 +101,10 @@
     <string name="verify_Unified_ID">Unified ID</string>
     <string name="verify_passport_number_txt">من فضلك ادخل رقم جواز السفر</string>
     <string name="mobile_number_const">+ 971 -</string>
-    <string name="onboard_most_rides">أكثر الرحلات</string>
+    <string name="onboard_most_rides">أكثر الرحلات طلبا</string>
     <string name="onboard_best_drivers">افضل السائقين</string>
     <string name="reg_gender_female">أنثى</string>
-    <string name="reg_upload_photo">رفع الصورة الشخصية</string>
+    <string name="reg_upload_photo">تحميل الصورة الشخصية</string>
     <string name="reg_accept_rta">أوافق علي </string>
     <string name="reg_DateOfBirth">تاريخ الميلاد</string>
     <string name="reg_gender_male">ذكر</string>
@@ -129,12 +129,12 @@
     <string name="short_pass">كلمة المرور يجب ان تكون اكثر من 4 احرف</string>
     <string name="short_mobile">رقم الهاتف قصير</string>
     <string name="select_image_first_error">إحتر صورة شخصية اولا</string>
-    <string name="select_type_first_error">أختر نوع الحساب اولا</string>
+    <string name="select_type_first_error">يرجي اختيار نوع التسجيل</string>
     <string name="connection_problem">خطأ بالإتصال!</string>
     <string name="con_problem_message">تأكد من وجود إتصال بالإنترنت</string>
     <string name="retry">اعد المحاولة</string>
     <string name="select_file">إختر ملف</string>
-    <string name="goBack">عودة للخلف</string>
+    <string name="goBack">عودة </string>
     <string name="reg_now">سجل الأن |</string>
     <string name="forget_pass">نسيت كلمة المرور؟</string>
     <string name="exit">خروج!</string>
@@ -150,10 +150,10 @@
     <string name="start_time">وقت البدء</string>
     <string name="search">البحث</string>
     <string name="map_lookup">الخريطة</string>
-    <string name="most_rides">أكثر الرحلات</string>
+    <string name="most_rides">أكثر الرحلات طلبا</string>
     <string name="advanced_search">البحث المتقدم</string>
     <string name="select_emirate">إدخل إسم الإمارة</string>
-    <string name="enter_region">إدخل إسم المقاطعة</string>
+    <string name="enter_region">إدخل إسم المنطقه</string>
     <string name="em_name">EmirateArName</string>
     <string name="reg_name">RegionArName</string>
     <string name="to_reg_name_en">ToRegionNameAr</string>
@@ -169,7 +169,7 @@
     <string name="drivers">السائقين</string>
     <string name="email_valid_form">من فضلك ادخل بريد إلكترونى صحيح</string>
     <string name="ride_details">تفاصيل الرحلة</string>
-    <string name="starting_time">توقيت البدء</string>
+    <string name="starting_time">وقت البدء</string>
     <string name="sat">, السبت</string>
     <string name="sun">, الأحد</string>
     <string name="mon">, اللإثنين</string>
@@ -177,11 +177,11 @@
     <string name="wed">, الأربعاء</string>
     <string name="thu">, الخميس</string>
     <string name="fri">", الجمعة "</string>
-    <string name="driver_details">تفاصيل السائق</string>
+    <string name="driver_details">بيانات السائق</string>
     <string name="route_name">RouteArName</string>
     <string name="time">الوقت</string>
     <string name="ride_days">ايام الرحلة</string>
-    <string name="review">تعليق</string>
+    <string name="review">التعليق</string>
     <string name="pref">التفضيلات</string>
     <string name="language">اللغة</string>
     <string name="age_range">الفئة العمرية</string>
@@ -196,9 +196,9 @@
     <string name="pref_lang">PrefLanguageArName</string>
     <string name="yes">نعم</string>
     <string name="no">لا</string>
-    <string name="write_remark">أكتب تعليقاتك</string>
+    <string name="write_remark">أكتب تعليقك</string>
     <string name="your_remarks">تعليقاتك</string>
-    <string name="i_like_join_ride">يشرفنى ان انضم الى رحلتك</string>
+    <string name="i_like_join_ride">  طلب الانضمام  الى رحلتك</string>
     <string name="already_sent_request">لقد أرسلت طلب بالفعل</string>
     <string name="req_sent_succ">تم إرسال الطلب بنجاح و انتظر موافقة السائق</string>
     <string name="acc_nat_name">AccountNationalityAr</string>

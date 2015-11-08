@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
 import rta.ae.sharekni.Arafa.Classes.AppController;
@@ -98,18 +99,34 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
         vh.Phone_Call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + bestRouteDataModel.getDriverMobile()));
-                context.startActivity(intent);
+                Log.d("tel:", bestRouteDataModel.getDriverMobile());
+
+                if (bestRouteDataModel.getDriverMobile()==null || bestRouteDataModel.getDriverMobile().equals("")) {
+                    Toast.makeText(context, "No Phone Number" , Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + bestRouteDataModel.getDriverMobile()));
+                    context.startActivity(intent);
+                }
+
+
+
             }
         });
 
         vh.Phone_Message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + bestRouteDataModel.getDriverMobile()));
-                intent.putExtra("sms_body", "Hello " + bestRouteDataModel.getDriverName());
-                context.startActivity(intent);
-            }
+
+                if (bestRouteDataModel.getDriverMobile() == null || bestRouteDataModel.getDriverMobile().equals("")) {
+                    Toast.makeText(context, "No Phone Number" , Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + bestRouteDataModel.getDriverMobile()));
+                    intent.putExtra("sms_body", "Hello " + bestRouteDataModel.getDriverName());
+                    context.startActivity(intent);
+                }
+
+
+                }
         });
 
         /*

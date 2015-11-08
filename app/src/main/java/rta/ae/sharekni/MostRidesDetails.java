@@ -114,79 +114,84 @@ public class MostRidesDetails extends AppCompatActivity {
         @Override
         protected void onPostExecute(Object o) {
             String days = "";
-            final BestRouteDataModelDetails[] driver = new BestRouteDataModelDetails[jsonArray.length()];
-            final ArrayList<BestRouteDataModelDetails> ar = new ArrayList<>();
-            try {
-                JSONObject json;
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    try {
-                        final BestRouteDataModelDetails item = new BestRouteDataModelDetails(Parcel.obtain());
-                        json = jsonArray.getJSONObject(i);
-                        item.setFromEmId(json.getInt("FromEmirateId"));
-                        item.setFromRegid(json.getInt("FromRegionId"));
-                        item.setToEmId(json.getInt("ToEmirateId"));
-                        item.setToRegId(json.getInt("ToRegionId"));
-                        item.setDriverName(json.getString("DriverName"));
-                        item.setNationality_en(json.getString(getString(R.string.nat_name)));
-                        item.setSDG_Route_Start_FromTime(json.getString("StartTime"));
-                        item.setDriverMobile(json.getString("DriverMobile"));
-                        item.setDriverId(json.getInt("AccountId"));
-                        item.setRouteId(json.getInt("RouteId"));
-                        item.setPhotoURl(json.getString("DriverPhoto"));
-                        days = "";
+            if (jsonArray.length() != 0) {
 
-                        if (json.getString("Saturday").equals("true")) {
-                            days += getString(R.string.sat);
-                        }
-                        if (json.getString("Sunday").equals("true")) {
-                            days += getString(R.string.sun);
+                final BestRouteDataModelDetails[] driver = new BestRouteDataModelDetails[jsonArray.length()];
+                final ArrayList<BestRouteDataModelDetails> ar = new ArrayList<>();
 
-                        }
-                        if (json.getString("Monday").equals("true")) {
-                            days += getString(R.string.mon);
+                try {
+                    JSONObject json;
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        try {
+                            final BestRouteDataModelDetails item = new BestRouteDataModelDetails(Parcel.obtain());
+                            json = jsonArray.getJSONObject(i);
+                            item.setFromEmId(json.getInt("FromEmirateId"));
+                            item.setFromRegid(json.getInt("FromRegionId"));
+                            item.setToEmId(json.getInt("ToEmirateId"));
+                            item.setToRegId(json.getInt("ToRegionId"));
+                            item.setDriverName(json.getString("DriverName"));
+                            item.setNationality_en(json.getString(getString(R.string.nat_name)));
+                            item.setSDG_Route_Start_FromTime(json.getString("StartTime"));
+                            item.setDriverMobile(json.getString("DriverMobile"));
+                            item.setDriverId(json.getInt("AccountId"));
+                            item.setRouteId(json.getInt("RouteId"));
+                            item.setPhotoURl(json.getString("DriverPhoto"));
+                            days = "";
 
-                        }
-                        if (json.getString("Tuesday").equals("true")) {
-                            days += getString(R.string.tue);
-                        }
-                        if (json.getString("Wendenday").equals("true")) {
-                            days += getString(R.string.wed);
-                        }
-                        if (json.getString("Thrursday").equals("true")) {
-                            days += getString(R.string.thu);
-
-                        }
-                        if (json.getString("Friday").equals("true")) {
-                            days += getString(R.string.fri);
-                        }
-                        if (!days.equals("")){
-                            item.setSDG_RouteDays(days.substring(1));
-                        }
-                        days = "";
-
-                        driver[i] = item;
-                        BestRouteDataModelAdapterDetails arrayAdapter = new BestRouteDataModelAdapterDetails(MostRidesDetails.this, R.layout.quick_search_list_item_2, driver);
-                        lv.setAdapter(arrayAdapter);
-                        ar.add(i, driver[i]);
-                        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                Intent in = new Intent(MostRidesDetails.this, Profile.class);
-                                in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                in.putExtra("DriverID", driver[i].getDriverId());
-                                in.putExtra("PassengerID", ID);
-                                in.putExtra("RouteID", driver[i].getRouteId());
-                                MostRidesDetails.this.startActivity(in);
+                            if (json.getString("Saturday").equals("true")) {
+                                days += getString(R.string.sat);
                             }
+                            if (json.getString("Sunday").equals("true")) {
+                                days += getString(R.string.sun);
 
-                        });
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                            }
+                            if (json.getString("Monday").equals("true")) {
+                                days += getString(R.string.mon);
+
+                            }
+                            if (json.getString("Tuesday").equals("true")) {
+                                days += getString(R.string.tue);
+                            }
+                            if (json.getString("Wendenday").equals("true")) {
+                                days += getString(R.string.wed);
+                            }
+                            if (json.getString("Thrursday").equals("true")) {
+                                days += getString(R.string.thu);
+
+                            }
+                            if (json.getString("Friday").equals("true")) {
+                                days += getString(R.string.fri);
+                            }
+                            if (!days.equals("")) {
+                                item.setSDG_RouteDays(days.substring(1));
+                            }
+                            days = "";
+
+                            driver[i] = item;
+                            BestRouteDataModelAdapterDetails arrayAdapter = new BestRouteDataModelAdapterDetails(MostRidesDetails.this, R.layout.quick_search_list_item_2, driver);
+                            lv.setAdapter(arrayAdapter);
+                            ar.add(i, driver[i]);
+                            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                    Intent in = new Intent(MostRidesDetails.this, Profile.class);
+                                    in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                    in.putExtra("DriverID", driver[i].getDriverId());
+                                    in.putExtra("PassengerID", ID);
+                                    in.putExtra("RouteID", driver[i].getRouteId());
+                                    MostRidesDetails.this.startActivity(in);
+                                }
+
+                            });
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
                 }
-            } catch (NullPointerException e) {
-                e.printStackTrace();
             }
+
         }
 
         @Override
