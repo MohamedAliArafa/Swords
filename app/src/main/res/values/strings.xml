@@ -279,6 +279,8 @@
     <string name="delete">Delete</string>
     <string name="Preferences">Preferences</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="choose_language">Choose Your Language</string>
+    <string name="choose_language_mss">What is your native language ?</string>
 
 
 </resources>

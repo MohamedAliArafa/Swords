@@ -166,8 +166,8 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
             public void onClick(View v) {
 
                 new AlertDialog.Builder(HomePage.this)
-                        .setTitle("Choose Your Language")
-                        .setMessage("What is your native language ?")
+                        .setTitle(R.string.choose_language)
+                        .setMessage(R.string.choose_language_mss)
                         .setPositiveButton("English", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 Locale locale = new Locale("en_US");
@@ -179,7 +179,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                                 startActivity(getIntent());
                             }
                         })
-                        .setNegativeButton("Arabic", new DialogInterface.OnClickListener() {
+                        .setNegativeButton("العربية", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 Locale locale = new Locale("ar");
                                 Locale.setDefault(locale);
