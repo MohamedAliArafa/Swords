@@ -11,6 +11,7 @@ import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -43,6 +44,7 @@ import org.json.JSONObject;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.util.Locale;
 
 
 public class HomePage extends ActionBarActivity implements View.OnClickListener {
@@ -74,7 +76,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
     Activity c;
     TextView Rides_joined_txt_1;
     ImageView Rides_joined_image_1;
-
+    ImageView Edit_Profile_Im;
     TextView Saved_Search_txt_2;
     ImageView Saved_Search_image_2;
 
@@ -129,6 +131,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         setContentView(R.layout.home_page_approved);
         initToolbar();
         c=this;
+
         name = (TextView) findViewById(R.id.tv_name_home);
         nat = (TextView) findViewById(R.id.nat_home);
         Lnag_home = (TextView) findViewById(R.id.lang_Home);
@@ -150,12 +153,45 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         Rides_joined_image_1 = (ImageView) findViewById(R.id.im10);
         Saved_Search_image_2 = (ImageView) findViewById(R.id.im13);
         Saved_Search_txt_2 = (TextView) findViewById(R.id.txt_56);
+        Edit_Profile_Im = (ImageView) findViewById(R.id.Edit_Profile_Im);
 
             circularImageView = (CircularImageView) findViewById(R.id.profilepic);
             circularImageView.setBorderWidth(5);
             circularImageView.setSelectorStrokeWidth(5);
             circularImageView.addShadow();
 
+
+        Edit_Profile_Im.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                new AlertDialog.Builder(HomePage.this)
+                        .setTitle("Choose Your Language")
+                        .setMessage("What is your native language ?")
+                        .setPositiveButton("English", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Locale locale = new Locale("en_US");
+                                Locale.setDefault(locale);
+                                Configuration config = new Configuration();
+                                config.locale = locale;
+                                getBaseContext().getApplicationContext().getResources().updateConfiguration(config, null);
+                                finish();
+                                startActivity(getIntent());
+                            }
+                        })
+                        .setNegativeButton("Arabic", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Locale locale = new Locale("ar");
+                                Locale.setDefault(locale);
+                                Configuration config = new Configuration();
+                                config.locale = locale;
+                                getBaseContext().getApplicationContext().getResources().updateConfiguration(config, null);
+                                finish();
+                                startActivity(getIntent());
+                            }
+                        }).setIcon(android.R.drawable.ic_dialog_alert).show();
+            }
+        });
         myPrefs = this.getSharedPreferences("myPrefs", 0);
         ID = myPrefs.getString("account_id", null);
         AccountType = myPrefs.getString("account_type", null);

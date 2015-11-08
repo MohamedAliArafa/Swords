@@ -179,7 +179,7 @@
     <string name="fri">", Fri "</string>
     <string name="driver_details">Driver Details</string>
     <string name="route_name">RouteEnName</string>
-    <string name="time">Time</string>
+    <string name="time">Time </string>
     <string name="ride_days">Ride Days</string>
     <string name="review">Review</string>
     <string name="pref">Preferences</string>
@@ -275,6 +275,10 @@
     <string name="joined_rides">Joined Rides</string>
     <string name="passenger_name">Passenger Name</string>
     <string name="route_name2">RouteName</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="Preferences">Preferences</string>
+    <string name="title_activity_main2">Main2Activity</string>
 
 
 </resources>

@@ -33,18 +33,16 @@
         android:required="true" />
 
     <application
-        android:name="rta.ae.sharekni.Arafa.Classes.AppController"
+        android:name=".Arafa.Classes.AppController"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.Base"
-
-        >
+        android:theme="@style/AppTheme.Base" >
         <activity
-            android:name="rta.ae.sharekni.SharekniOld"
+            android:name=".SharekniOld"
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait" >
 
@@ -56,7 +54,7 @@
             <!-- </intent-filter> -->
         </activity>
         <activity
-            android:name="rta.ae.sharekni.HomePage"
+            android:name=".HomePage"
             android:label="@string/title_activity_sub_navigate"
             android:screenOrientation="portrait" >
             <meta-data
@@ -64,167 +62,163 @@
                 android:value="rta.ae.sharekni.SharekniOld" />
         </activity>
         <activity
-            android:name="rta.ae.sharekni.TopDriversDir.TopDrivers"
+            android:name=".TopDriversDir.TopDrivers"
             android:label="@string/title_activity_top_drivers"
-            android:parentActivityName="rta.ae.sharekni.SharekniOld"
+            android:parentActivityName=".SharekniOld"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="rta.ae.sharekni.SharekniOld" />
         </activity>
         <activity
-            android:name="rta.ae.sharekni.DriverEditCarPool"
+            android:name=".DriverEditCarPool"
             android:label="@string/title_activity_top_drivers"
-            android:parentActivityName="rta.ae.sharekni.SharekniOld"
+            android:parentActivityName=".SharekniOld"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="rta.ae.sharekni.SharekniOld" />
         </activity>
         <activity
-            android:name="rta.ae.sharekni.OnBoardDir.OnboardingActivity"
+            android:name=".OnBoardDir.OnboardingActivity"
             android:label="@string/title_activity_On_Boarding"
-            android:parentActivityName="rta.ae.sharekni.SharekniOld"
+            android:parentActivityName=".SharekniOld"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="rta.ae.sharekni.SharekniOld" />
         </activity>
         <activity
-            android:name="rta.ae.sharekni.ViewProfileActivity"
+            android:name=".ViewProfileActivity"
             android:label="@string/title_activity_view_profile"
             android:screenOrientation="portrait" />
         <activity
-            android:name="rta.ae.sharekni.Arafa.Activities.ImageUp"
+            android:name=".Arafa.Activities.ImageUp"
             android:label="@string/title_activity_home_page_test"
-            android:parentActivityName="rta.ae.sharekni.SharekniOld"
+            android:parentActivityName=".SharekniOld"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="rta.ae.sharekni.SharekniOld" />
         </activity>
         <activity
-            android:name="rta.ae.sharekni.Arafa.Activities.BestDriversBeforeLogin"
+            android:name=".Arafa.Activities.BestDriversBeforeLogin"
             android:label="@string/title_activity_home_page_test"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="rta.ae.sharekni.Arafa.Activities.BestRideBeforeLogin"
+            android:name=".Arafa.Activities.BestRideBeforeLogin"
             android:label="@string/title_activity_home_page_test"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="rta.ae.sharekni.Arafa.Activities.Profile"
+            android:name=".Arafa.Activities.Profile"
             android:label="@string/title_activity_home_page_test"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="rta.ae.sharekni.Arafa.Activities.Route"
+            android:name=".Arafa.Activities.Route"
             android:label="@string/title_activity_home_page_test"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="rta.ae.sharekni.LoginApproved"
+            android:name=".LoginApproved"
             android:label="@string/title_activity_login_approved"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name="rta.ae.sharekni.SearchOptions"
+            android:name=".SearchOptions"
             android:label="@string/title_activity_search_options"
-            android:parentActivityName="rta.ae.sharekni.SharekniOld"
+            android:parentActivityName=".SharekniOld"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="rta.ae.sharekni.SharekniOld" />
         </activity>
         <activity
-            android:name="rta.ae.sharekni.RegisterNewTest"
+            android:name=".RegisterNewTest"
             android:label="@string/title_activity_register_new_test"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name="rta.ae.sharekni.DriverProfileTest"
+            android:name=".DriverProfileTest"
             android:label="@string/title_activity_my_profile_tet"
             android:screenOrientation="portrait" />
         <activity
-            android:name="rta.ae.sharekni.TopRidesAfterLogin"
+            android:name=".TopRidesAfterLogin"
             android:label="@string/title_activity_top_rides_after_login"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="rta.ae.sharekni.TopDriversAfterLogin"
+            android:name=".TopDriversAfterLogin"
             android:label="@string/title_activity_top_drivers_after_login"
-            android:parentActivityName="rta.ae.sharekni.HomePage"
+            android:parentActivityName=".HomePage"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="rta.ae.sharekni.HomePage" />
         </activity>
         <activity
-            android:name="rta.ae.sharekni.MostRidesDetails"
+            android:name=".MostRidesDetails"
             android:label="@string/title_activity_most_rides_details"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="rta.ae.sharekni.ForgetPassword"
+            android:name=".ForgetPassword"
             android:label="@string/title_activity_forget_password"
-            android:parentActivityName="rta.ae.sharekni.LoginApproved"
+            android:parentActivityName=".LoginApproved"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="rta.ae.sharekni.LoginApproved" />
         </activity>
         <activity
-            android:name="rta.ae.sharekni.ChangePasswordTest"
+            android:name=".ChangePasswordTest"
             android:label="@string/title_activity_change_password_test"
-            android:parentActivityName="rta.ae.sharekni.HomePage"
+            android:parentActivityName=".HomePage"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="rta.ae.sharekni.HomePage" />
         </activity>
         <activity
-            android:name="rta.ae.sharekni.MyProfileTest"
+            android:name=".MyProfileTest"
             android:label="@string/title_activity_my_profile_test"
-            android:parentActivityName="rta.ae.sharekni.HomePage"
+            android:parentActivityName=".HomePage"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="rta.ae.sharekni.HomePage" />
         </activity>
         <activity
-            android:name="rta.ae.sharekni.EditProfileTest"
+            android:name=".EditProfileTest"
             android:label="@string/title_activity_edit_profile_test"
-            android:parentActivityName="rta.ae.sharekni.HomePage"
+            android:parentActivityName=".HomePage"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="rta.ae.sharekni.HomePage" />
         </activity>
         <activity
-            android:name="rta.ae.sharekni.QuickSearchResults"
+            android:name=".QuickSearchResults"
             android:label="@string/title_activity_quick_search_results"
             android:screenOrientation="portrait" >
-
         </activity>
         <activity
-            android:name="rta.ae.sharekni.DriverCreateCarPool"
+            android:name=".DriverCreateCarPool"
             android:label="@string/title_activity_driver_create_car_pool"
             android:screenOrientation="portrait" >
-
         </activity>
         <activity
-            android:name="rta.ae.sharekni.QSearch"
+            android:name=".QSearch"
             android:label="@string/title_activity_qsearch"
             android:screenOrientation="portrait" >
-
         </activity>
         <activity
-            android:name="rta.ae.sharekni.Advanced_Search"
+            android:name=".Advanced_Search"
             android:label="@string/title_activity_advanced__search"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" >
-
         </activity>
 
         <!--
@@ -240,7 +234,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name="rta.ae.sharekni.MapsActivity"
+            android:name=".MapsActivity"
             android:label="@string/title_activity_maps"
             android:screenOrientation="portrait" >
             <meta-data
@@ -248,9 +242,9 @@
                 android:value="rta.ae.sharekni.HomePage" />
         </activity>
         <activity
-            android:name="rta.ae.sharekni.DriverAlertsForRequest"
+            android:name=".DriverAlertsForRequest"
             android:label="@string/title_activity_driver_alerts_for_request"
-            android:parentActivityName="rta.ae.sharekni.HomePage"
+            android:parentActivityName=".HomePage"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" >
             <meta-data
@@ -258,15 +252,15 @@
                 android:value="rta.ae.sharekni.HomePage" />
         </activity>
         <activity
-            android:name="rta.ae.sharekni.RideDetailsPassenger"
+            android:name=".RideDetailsPassenger"
             android:label="@string/title_activity_ride_details_passenger"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" >
         </activity>
         <activity
-            android:name="rta.ae.sharekni.DriverRequestDetails"
+            android:name=".DriverRequestDetails"
             android:label="@string/title_activity_driver_request_details"
-            android:parentActivityName="rta.ae.sharekni.DriverAlertsForRequest"
+            android:parentActivityName=".DriverAlertsForRequest"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" >
             <meta-data
@@ -274,9 +268,9 @@
                 android:value="rta.ae.sharekni.DriverAlertsForRequest" />
         </activity>
         <activity
-            android:name="rta.ae.sharekni.DriverCreatedRides"
+            android:name=".DriverCreatedRides"
             android:label="@string/title_activity_driver_created_rides"
-            android:parentActivityName="rta.ae.sharekni.HomePage"
+            android:parentActivityName=".HomePage"
             android:screenOrientation="portrait"
             app:theme="@style/AppTheme.Base" >
             <meta-data
@@ -284,9 +278,9 @@
                 android:value="rta.ae.sharekni.HomePage" />
         </activity>
         <activity
-            android:name="rta.ae.sharekni.DriverJoinedRides"
+            android:name=".DriverJoinedRides"
             android:label="@string/title_activity_driver_joined_rides"
-            android:parentActivityName="rta.ae.sharekni.HomePage"
+            android:parentActivityName=".HomePage"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" >
             <meta-data
@@ -294,12 +288,12 @@
                 android:value="rta.ae.sharekni.HomePage" />
         </activity>
         <activity
-            android:name="rta.ae.sharekni.SplashActivity"
+            android:name=".SplashActivity"
             android:label="@string/title_activity_splash"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" />
         <activity
-            android:name="rta.ae.sharekni.Sharekni"
+            android:name=".Sharekni"
             android:label="@string/title_activity_test_vedio"
             android:screenOrientation="portrait"
             app:theme="@style/AppTheme.Base" >
@@ -310,9 +304,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="rta.ae.sharekni.PassengerMyApprovedRides"
+            android:name=".PassengerMyApprovedRides"
             android:label="@string/title_activity_passenger_my_approved_rides"
-            android:parentActivityName="rta.ae.sharekni.HomePage"
+            android:parentActivityName=".HomePage"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" >
             <meta-data
@@ -320,7 +314,7 @@
                 android:value="rta.ae.sharekni.HomePage" />
         </activity>
         <activity
-            android:name="rta.ae.sharekni.History"
+            android:name=".History"
             android:label="@string/title_activity_history"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" >
@@ -329,9 +323,9 @@
                 android:value="rta.ae.sharekni.HomePage" />
         </activity>
         <activity
-            android:name="rta.ae.sharekni.TakeATour"
+            android:name=".TakeATour"
             android:label="@string/title_activity_take_atour"
-            android:parentActivityName="rta.ae.sharekni.OnBoardDir.OnboardingActivity"
+            android:parentActivityName=".OnBoardDir.OnboardingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" >
             <meta-data
@@ -339,17 +333,17 @@
                 android:value="rta.ae.sharekni.OnBoardDir.OnboardingActivity" />
         </activity>
 
-        <service android:name="rta.ae.sharekni.MyNotifications" />
+        <service android:name=".MyNotifications" />
 
         <activity
-            android:name="rta.ae.sharekni.PickUpActivity"
+            android:name=".PickUpActivity"
             android:label="@string/title_activity_pick_up"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" />
         <activity
-            android:name="rta.ae.sharekni.TermsAndCond"
+            android:name=".TermsAndCond"
             android:label="@string/title_activity_terms_and_cond"
-            android:parentActivityName="rta.ae.sharekni.RegisterNewTest"
+            android:parentActivityName=".RegisterNewTest"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" >
             <meta-data
@@ -357,7 +351,7 @@
                 android:value="rta.ae.sharekni.RegisterNewTest" />
         </activity>
         <activity
-            android:name="rta.ae.sharekni.RegisterVehicle"
+            android:name=".RegisterVehicle"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" >
             <meta-data
@@ -365,26 +359,26 @@
                 android:value="rta.ae.sharekni.HomePage" />
         </activity>
         <activity
-            android:name="rta.ae.sharekni.HistoryNew"
+            android:name=".HistoryNew"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="rta.ae.sharekni.HomePage" />
         </activity>
         <activity
-            android:name="rta.ae.sharekni.DriverPermits"
+            android:name=".DriverPermits"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="rta.ae.sharekni.HomePage" />
         </activity>
         <activity
-            android:name="rta.ae.sharekni.ViewPermit"
+            android:name=".ViewPermit"
             android:screenOrientation="landscape" >
         </activity>
-        <activity android:name="rta.ae.sharekni.Privacy_Policy" >
+        <activity android:name=".Privacy_Policy" >
         </activity>
-        <activity android:name="rta.ae.sharekni.Destination_Activity" >
+        <activity android:name=".Destination_Activity" >
         </activity>
     </application>
 

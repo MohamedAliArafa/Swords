@@ -197,7 +197,7 @@
                     android:layout_marginTop="10dp"
                     android:lines="1"
                     android:maxLines="1"
-                    android:text="Time "
+                    android:text="@string/time"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -255,7 +255,7 @@
                     android:layout_below="@+id/ride_details_Ride_Days_txt"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/driver_details_btn"
-                    android:text="Delete"
+                    android:text="@string/delete"
                     android:textAllCaps="false" />
 
                 <Button
@@ -270,7 +270,7 @@
                     android:layout_toLeftOf="@+id/Route_Delete_Btn"
                     android:layout_toStartOf="@+id/Route_Delete_Btn"
                     android:background="@drawable/driver_details_btn"
-                    android:text="Edit"
+                    android:text="@string/edit"
                     android:textAllCaps="false" />
 
 
@@ -313,7 +313,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Preferences"
+                        android:text="@string/Preferences"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
