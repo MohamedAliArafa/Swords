@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,7 +13,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
-import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -26,20 +24,9 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
-import rta.ae.sharekni.Arafa.Classes.GetData;
-import rta.ae.sharekni.DriverEditCarPool;
-import rta.ae.sharekni.DriverGetReviewAdapter;
-import rta.ae.sharekni.DriverGetReviewDataModel;
-import rta.ae.sharekni.HomePage;
-import rta.ae.sharekni.PermitJsonParse;
-import rta.ae.sharekni.R;
-import rta.ae.sharekni.Ride_Details_Passengers_Adapter;
-import rta.ae.sharekni.Ride_Details_Passengers_DataModel;
-import rta.ae.sharekni.Route_Get_Accepted_Requests_DataModel;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -61,6 +48,17 @@ import java.net.Socket;
 import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.List;
+
+import rta.ae.sharekni.Arafa.Classes.GetData;
+import rta.ae.sharekni.DriverEditCarPool;
+import rta.ae.sharekni.DriverGetReviewAdapter;
+import rta.ae.sharekni.DriverGetReviewDataModel;
+import rta.ae.sharekni.HomePage;
+import rta.ae.sharekni.PermitJsonParse;
+import rta.ae.sharekni.R;
+import rta.ae.sharekni.Ride_Details_Passengers_Adapter;
+import rta.ae.sharekni.Ride_Details_Passengers_DataModel;
+import rta.ae.sharekni.Route_Get_Accepted_Requests_DataModel;
 
 public class Route extends AppCompatActivity {
 
@@ -86,6 +84,13 @@ public class Route extends AppCompatActivity {
     Button Route_Delete_Btn, Route_Edit_Btn;
     Button Route_permit_Btn;
     String Gender_ste;
+
+    RelativeLayout Relative_REviews;
+    TextView Relative_REviews_Address;
+
+    TextView ride_details_pref_txt,ride_details_nat_txt_2;
+
+
 
     int Vehicle_Id_Permit;
     GetData j = new GetData();
@@ -124,7 +129,7 @@ public class Route extends AppCompatActivity {
         ToRegionEnName = (TextView) findViewById(R.id.ToRegionEnName);
 
         StartFromTime = (TextView) findViewById(R.id.StartFromTime);
-        EndToTime_ = (TextView) findViewById(R.id.EndToTime_);
+      //  EndToTime_ = (TextView) findViewById(R.id.EndToTime_);
 
         FromEmirateEnName = (TextView) findViewById(R.id.FromEmirateEnName);
         ToEmirateEnName = (TextView) findViewById(R.id.ToEmirateEnName);
@@ -142,6 +147,9 @@ public class Route extends AppCompatActivity {
         Route_Delete_Btn = (Button) findViewById(R.id.Route_Delete_Btn);
         Route_Edit_Btn = (Button) findViewById(R.id.Route_Edit_Btn);
         Route_permit_Btn= (Button) findViewById(R.id.Route_permit_Btn);
+        Relative_REviews= (RelativeLayout) findViewById(R.id.Relative_REviews);
+        Relative_REviews_Address = (TextView) findViewById(R.id.Relative_REviews_Address);
+
 
 
         myPrefs = this.getSharedPreferences("myPrefs", 0);
@@ -231,7 +239,7 @@ public class Route extends AppCompatActivity {
                         str_EndToTime_ = str_EndToTime_.substring(Math.max(0, str_EndToTime_.length() - 7));
                         Log.d("time to", str_EndToTime_);
                         StartFromTime.setText(str_StartFromTime);
-                        EndToTime_.setText(str_EndToTime_);
+                       // EndToTime_.setText(str_EndToTime_);
                         if (json.getString(getString(R.string.nat_name2)).equals("null")) {
                             NationalityEnName.setText(getString(R.string.not_set));
                         } else {
@@ -434,24 +442,41 @@ public class Route extends AppCompatActivity {
         @Override
         protected void onPostExecute(Object o) {
 
-            for (int i = 0; i < response1.length(); i++) {
-                try {
-                    JSONObject obj = response1.getJSONObject(i);
-                    final DriverGetReviewDataModel review = new DriverGetReviewDataModel(Parcel.obtain());
-                    review.setDriverID(Driver_ID);
-                    review.setReviewID(obj.getInt("ReviewId"));
-                    review.setAccountID(obj.getInt("AccountId"));
-                    review.setAccountName(obj.getString("AccountName"));
-                    review.setAccountNationalityEn(obj.getString(getString(R.string.acc_nat_name)));
-                    review.setReview(obj.getString("Review"));
-                    driverGetReviewDataModels_arr.add(review);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+
+            if (response1.length()==0){
+                Toast.makeText(getBaseContext(), "No Reviews", Toast.LENGTH_SHORT).show();
+                Relative_REviews.setVisibility(View.INVISIBLE);
+                Relative_REviews_Address.setVisibility(View.INVISIBLE);
+
+            }else {
+
+                for (int i = 0; i < response1.length(); i++) {
+                    try {
+                        JSONObject obj = response1.getJSONObject(i);
+                        final DriverGetReviewDataModel review = new DriverGetReviewDataModel(Parcel.obtain());
+                        review.setDriverID(Driver_ID);
+                        review.setReviewID(obj.getInt("ReviewId"));
+                        review.setAccountID(obj.getInt("AccountId"));
+                        review.setAccountName(obj.getString("AccountName"));
+                        review.setAccountNationalityEn(obj.getString(getString(R.string.acc_nat_name)));
+                        review.setReview(obj.getString("Review"));
+                        driverGetReviewDataModels_arr.add(review);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
                 }
+
 
             }
 
 
+
+
+            if (response2.length()==0){
+                Toast.makeText(getBaseContext(), "No Passengers", Toast.LENGTH_SHORT).show();
+
+            }else {
                 for (int y = 0; y < response2.length(); y++) {
 
                     try {
@@ -467,6 +492,12 @@ public class Route extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
+
+
+            }
+
+
+
 
 
 

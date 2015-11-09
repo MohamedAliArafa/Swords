@@ -65,8 +65,12 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignBottom="@+id/Driver_Get_Review_im"
-        android:text="Delete"
         android:id="@+id/Driver_Delete_Review"
+        android:background="@drawable/user_register_border_button"
+        android:text="@string/delete"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+
         />
 
 

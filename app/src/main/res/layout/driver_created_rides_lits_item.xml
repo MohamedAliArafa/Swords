@@ -156,33 +156,33 @@
 
             />
 
-        <TextView
-            android:id="@+id/comma6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/StartFromTime"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_toEndOf="@+id/StartFromTime"
-            android:layout_toRightOf="@+id/StartFromTime"
-            android:text="-"
-            android:textSize="16sp"
+        <!--<TextView-->
+            <!--android:id="@+id/comma6"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignBottom="@+id/StartFromTime"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:layout_marginRight="5dp"-->
+            <!--android:layout_toEndOf="@+id/StartFromTime"-->
+            <!--android:layout_toRightOf="@+id/StartFromTime"-->
+            <!--android:text="-"-->
+            <!--android:textSize="16sp"-->
 
 
-            />
+            <!--/>-->
 
-        <TextView
-            android:id="@+id/EndToTime_"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/StartFromTime"
-            android:layout_toEndOf="@+id/comma6"
-            android:layout_toRightOf="@+id/comma6"
-            android:lines="1"
-            android:maxLength="8"
-            android:maxLines="1"
-            android:text="00:24 PM"
-            android:textSize="16sp" />
+        <!--<TextView-->
+            <!--android:id="@+id/EndToTime_"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignBottom="@+id/StartFromTime"-->
+            <!--android:layout_toEndOf="@+id/comma6"-->
+            <!--android:layout_toRightOf="@+id/comma6"-->
+            <!--android:lines="1"-->
+            <!--android:maxLength="8"-->
+            <!--android:maxLines="1"-->
+            <!--android:text="00:24 PM"-->
+            <!--android:textSize="16sp" />-->
 
 
         <TextView

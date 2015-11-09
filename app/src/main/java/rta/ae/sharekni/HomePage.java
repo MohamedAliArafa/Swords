@@ -7,7 +7,6 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
-import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,7 +15,6 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.content.IntentCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -29,12 +27,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import rta.ae.sharekni.Arafa.Classes.GetData;
-import rta.ae.sharekni.Arafa.Classes.ImageDecoder;
-import rta.ae.sharekni.MainNavigationDrawerFragment.NavigationDrawerFragment;
-import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
-
-import rta.ae.sharekni.R;
 import com.pkmmte.view.CircularImageView;
 
 import org.json.JSONArray;
@@ -45,6 +37,11 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
 import java.util.Locale;
+
+import rta.ae.sharekni.Arafa.Classes.GetData;
+import rta.ae.sharekni.Arafa.Classes.ImageDecoder;
+import rta.ae.sharekni.MainNavigationDrawerFragment.NavigationDrawerFragment;
+import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
 
 
 public class HomePage extends ActionBarActivity implements View.OnClickListener {
@@ -79,7 +76,6 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
     ImageView Edit_Profile_Im;
     TextView Saved_Search_txt_2;
     ImageView Saved_Search_image_2;
-
 
 
 
@@ -161,7 +157,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
             circularImageView.addShadow();
 
 
-        Edit_Profile_Im.setOnClickListener(new View.OnClickListener() {
+        NavigationDrawerFragment.navy_Change_lang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -585,15 +581,9 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
 
 
 
-            name.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(getBaseContext(), EditProfileTest.class);
-                    startActivity(intent);
-                }
-            });
 
-            circularImageView.setOnClickListener(new View.OnClickListener() {
+
+            Edit_Profile_Im.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getBaseContext(), EditProfileTest.class);

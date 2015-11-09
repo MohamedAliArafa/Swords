@@ -26,6 +26,40 @@
             android:src="@drawable/shareknilogo" />
 
 
+
+        <RelativeLayout
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bestdrivers_border"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:id="@+id/OnBoard_Changelanguae"
+
+            >
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/navy_change_language"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:singleLine="true"
+                android:lines="1"
+                android:maxLines="1"
+
+                />
+
+
+        </RelativeLayout>
+
+
+
         <!--<ImageView-->
         <!--android:layout_width="160dp"-->
         <!--android:layout_height="45dp"-->
@@ -72,7 +106,7 @@
                 android:layout_toRightOf="@+id/splash_best_drivers_im"
                 android:text="@string/onboard_best_drivers"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:singleLine="true"
                 android:lines="1"
@@ -132,7 +166,7 @@
                 android:layout_toRightOf="@+id/splash_top_rides_im"
                 android:text="@string/onboard_most_rides"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
 
                 />

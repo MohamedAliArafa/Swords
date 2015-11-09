@@ -280,6 +280,8 @@
     <string name="edit">تعديل</string>
     <string name="choose_language">إختر اللغة</string>
     <string name="choose_language_mss">ما هي لغتك الأم ؟</string>
+    <string name="navy_change_language">تغيير اللغه</string>
+    <string name="no_review_statement">لا توجد تعليقات مضافه</string>
 
 
 </resources>

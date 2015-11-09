@@ -166,16 +166,16 @@
                         android:textSize="20sp" />
 
 
-                    <TextView
-                        android:id="@+id/textView5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/StartFromTime"
-                        android:layout_toEndOf="@+id/StartFromTime"
-                        android:layout_toRightOf="@+id/StartFromTime"
-                        android:text=":"
-                        android:textColor="#FFFFFF"
-                        android:textSize="18sp" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/textView5"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignBottom="@+id/StartFromTime"-->
+                        <!--android:layout_toEndOf="@+id/StartFromTime"-->
+                        <!--android:layout_toRightOf="@+id/StartFromTime"-->
+                        <!--android:text=":"-->
+                        <!--android:textColor="#FFFFFF"-->
+                        <!--android:textSize="18sp" />-->
 
 
                     <TextView
@@ -210,21 +210,21 @@
                         android:textStyle="bold" />
 
 
-                    <TextView
-                        android:id="@+id/EndToTime_"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/textView5"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_toEndOf="@+id/textView5"
-                        android:layout_toRightOf="@+id/textView5"
-                        android:lines="1"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:text="EndToTime_"
-                        android:textColor="#FFFFFF"
-                        android:textSize="18sp" />
+                    <!--<TextView-->
+                        <!--android:id="@+id/EndToTime_"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignBottom="@+id/textView5"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:layout_marginStart="5dp"-->
+                        <!--android:layout_toEndOf="@+id/textView5"-->
+                        <!--android:layout_toRightOf="@+id/textView5"-->
+                        <!--android:lines="1"-->
+                        <!--android:maxLines="1"-->
+                        <!--android:singleLine="true"-->
+                        <!--android:text="EndToTime_"-->
+                        <!--android:textColor="#FFFFFF"-->
+                        <!--android:textSize="18sp" />-->
 
                     <TextView
                         android:id="@+id/ride_details_Ride_Days_txt"

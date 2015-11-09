@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,7 +13,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
-import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -30,13 +28,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import rta.ae.sharekni.Arafa.Activities.Route;
-import rta.ae.sharekni.Arafa.Classes.GetData;
-import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
-import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
-import rta.ae.sharekni.Arafa.DataModelAdapter.ProfileRideAdapter;
-
-import rta.ae.sharekni.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,6 +36,11 @@ import org.json.JSONObject;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+
+import rta.ae.sharekni.Arafa.Activities.Route;
+import rta.ae.sharekni.Arafa.Classes.GetData;
+import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
+import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
 
 public class DriverCreatedRides extends AppCompatActivity {
 
@@ -59,6 +55,7 @@ public class DriverCreatedRides extends AppCompatActivity {
     ListView user_ride_created;
 
     SharedPreferences myPrefs;
+    String str_StartFromTime;
 
     Activity c;
     @Override
@@ -184,7 +181,13 @@ public class DriverCreatedRides extends AppCompatActivity {
                                             item.setToEm(json.getString(getString(R.string.to_em_en_name)));
                                             item.setToReg(json.getString(getString(R.string.to_reg_en_name)));
                                             item.setRouteName(json.getString(getString(R.string.route_name)));
-                                            item.setStartFromTime(json.getString("StartFromTime"));
+
+                                           // item.setStartFromTime(json.getString("StartFromTime"));
+                                            str_StartFromTime = json.getString("StartFromTime");
+                                            str_StartFromTime = str_StartFromTime.substring(Math.max(0, str_StartFromTime.length() - 7));
+                                            Log.d("string", str_StartFromTime);
+                                            item.setStartFromTime(str_StartFromTime);
+
                                             item.setEndToTime_(json.getString("EndToTime_"));
 
                                             if (json.getString("Saturday").equals("true")) {
@@ -219,7 +222,7 @@ public class DriverCreatedRides extends AppCompatActivity {
                                             Log.d("TomEmlv", json.getString("ToEmirateEnName"));
                                             Log.d("ToReglv", json.getString("ToRegionEnName"));
 
-                                            ProfileRideAdapter arrayAdapter = new ProfileRideAdapter(DriverCreatedRides.this, R.layout.driver_created_rides_lits_item, driver);
+                                            ProfileRideAdapter2 arrayAdapter = new ProfileRideAdapter2(DriverCreatedRides.this, R.layout.driver_created_rides_lits_item, driver);
                                             user_ride_created.setAdapter(arrayAdapter);
                                             user_ride_created.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                                 @Override

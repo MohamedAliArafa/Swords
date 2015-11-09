@@ -16,13 +16,15 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.pkmmte.view.CircularImageView;
+
 import rta.ae.sharekni.Arafa.Activities.BestDriversBeforeLogin;
 import rta.ae.sharekni.Arafa.Activities.BestRideBeforeLogin;
 import rta.ae.sharekni.DriverAlertsForRequest;
+import rta.ae.sharekni.EditProfileTest;
 import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
 import rta.ae.sharekni.QSearch;
 import rta.ae.sharekni.R;
-import com.pkmmte.view.CircularImageView;
 
 
 public class NavigationDrawerFragment extends Fragment {
@@ -32,6 +34,8 @@ public class NavigationDrawerFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView mrecyclerView;
+
+    public  static  RelativeLayout  navy_Change_lang;
 
 
 
@@ -49,7 +53,7 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
 
-    RelativeLayout navy_homePage,navy_TopRides,navy_BestDrivers,navy_SearchOptions,navy_MyProfile,navy_Logout;
+    RelativeLayout navy_homePage,navy_TopRides,navy_BestDrivers,navy_SearchOptions,navy_MyProfile,navy_Logout,navy_Edit_Profile;
   public static   TextView tv_name_home ,nat_home;
 
     @Override
@@ -78,6 +82,11 @@ public class NavigationDrawerFragment extends Fragment {
         navy_Logout= (RelativeLayout) layout.findViewById(R.id.navy_Logout);
         tv_name_home= (TextView) layout.findViewById(R.id.tv_name_home);
         nat_home= (TextView) layout.findViewById(R.id.nat_home);
+        navy_Edit_Profile= (RelativeLayout) layout.findViewById(R.id.navy_Edit_Profile);
+        navy_Change_lang = (RelativeLayout) layout.findViewById(R.id.navy_Change_lang);
+
+
+
 
 
 
@@ -116,6 +125,14 @@ public class NavigationDrawerFragment extends Fragment {
             public void onClick(View v) {
 
                 Intent intent = new Intent(getContext(), DriverAlertsForRequest.class);
+                startActivity(intent);
+            }
+        });
+
+        navy_Edit_Profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), EditProfileTest.class);
                 startActivity(intent);
             }
         });

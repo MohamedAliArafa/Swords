@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,7 +13,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
-import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -31,9 +29,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import rta.ae.sharekni.Arafa.Classes.GetData;
-
-import rta.ae.sharekni.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -55,6 +50,8 @@ import java.net.SocketAddress;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+
+import rta.ae.sharekni.Arafa.Classes.GetData;
 
 
 public class RideDetailsPassenger extends AppCompatActivity   {
@@ -116,7 +113,7 @@ public class RideDetailsPassenger extends AppCompatActivity   {
         ToRegionEnName = (TextView) findViewById(R.id.ToRegionEnName);
 
         StartFromTime = (TextView) findViewById(R.id.StartFromTime);
-        EndToTime_ = (TextView) findViewById(R.id.EndToTime_);
+       // EndToTime_ = (TextView) findViewById(R.id.EndToTime_);
 
         FromEmirateEnName = (TextView) findViewById(R.id.FromEmirateEnName);
         ToEmirateEnName = (TextView) findViewById(R.id.ToEmirateEnName);
@@ -262,11 +259,11 @@ public class RideDetailsPassenger extends AppCompatActivity   {
                     str_EndToTime_ = json.getString("EndToTime_");
                     if (str_EndToTime_.equals("null")){
                         str_EndToTime_=getString(R.string.not_set);
-                        EndToTime_.setText(str_EndToTime_);
+                        //EndToTime_.setText(str_EndToTime_);
                     }else {
                         str_EndToTime_ = str_EndToTime_.substring(Math.max(0, str_EndToTime_.length() - 7));
                         Log.d("time to", str_EndToTime_);
-                        EndToTime_.setText(str_EndToTime_);
+                       // EndToTime_.setText(str_EndToTime_);
                     }
                     Nat_txt = (json.getString(getString(R.string.nat_name2)));
                     if (Nat_txt.equals("null")) {
