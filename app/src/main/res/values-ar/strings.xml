@@ -291,6 +291,11 @@
     <string name="close">إغلاق</string>
     <string name="policy">سياسات الإمان و الخصوصية</string>
     <string name="terms_con">الشروط و الإحكام</string>
+    <string name="decline">رفض</string>
+    <string name="remarks">التعليقات</string>
+    <string name="request_date">تاريخ الطلب</string>
+    <string name="route">الطريق :</string>
+    <string name="send_you_join_request">أرسل لك طلب إنضمام</string>
 
 
 </resources>

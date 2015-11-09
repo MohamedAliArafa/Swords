@@ -293,6 +293,12 @@
     <string name="policy">Security and Privacy Policies</string>
     <string name="close">Close</string>
     <string name="agree">Agree</string>
+    <string name="send_you_join_request">" Send You A Join Request "</string>
+    <string name="route">Route :</string>
+    <string name="request_date">Request Date</string>
+    <string name="remarks">Remarks</string>
+    <string name="decline">Decline</string>
+    <string name="accept">Accept</string>
 
 
 </resources>

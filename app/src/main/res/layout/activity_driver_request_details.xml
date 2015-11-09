@@ -76,7 +76,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
-        android:text="Route"
+        android:text="@string/route"
 
         android:textSize="18sp" />
 
@@ -105,7 +105,7 @@
         android:layout_alignStart="@+id/txt_Route_alert"
         android:layout_below="@+id/txt_Route_alert"
         android:layout_marginTop="10dp"
-        android:text="Request Date"
+        android:text="@string/request_date"
         android:textSize="18sp" />
 
     <TextView
@@ -130,7 +130,7 @@
         android:layout_alignStart="@+id/txt_request_date"
         android:layout_below="@+id/txt_request_date"
         android:layout_marginTop="10dp"
-        android:text="Remarks"
+        android:text="@string/remarks"
         android:textSize="18sp" />
 
 
@@ -159,7 +159,7 @@
         android:layout_marginStart="50sp"
         android:layout_marginTop="50dp"
         android:background="@drawable/borders_quicksearch_btn"
-        android:text="Decline"
+        android:text="@string/decline"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
 
@@ -176,7 +176,7 @@
         android:layout_marginEnd="50dp"
         android:layout_marginRight="50dp"
         android:background="@drawable/borders_quicksearch_btn"
-        android:text="Accept"
+        android:text="@string/accept"
         android:textAllCaps="false"
         android:textColor="#FFFFFF" />
 

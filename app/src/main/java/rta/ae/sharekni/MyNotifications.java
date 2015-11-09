@@ -86,8 +86,8 @@ public class MyNotifications extends Service {
                 Intent intent = new Intent(this, DriverAlertsForRequest.class);
                 PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
                 Notification.Builder builder = new Notification.Builder(this);
-                builder.setContentTitle("Route :" + j.getString("RouteName"));
-                builder.setContentText(j.getString("PassengerName") + " Send You A Join Request ");
+                builder.setContentTitle(getString(R.string.route) + j.getString("RouteName"));
+                builder.setContentText(j.getString("PassengerName") + getString(R.string.send_you_join_request));
                 builder.setSmallIcon(R.drawable.sharekni_logo);
                 builder.setContentIntent(pendingIntent);
                 Notification notification = builder.build();
@@ -109,8 +109,8 @@ public class MyNotifications extends Service {
                 Intent intent = new Intent(this, DriverAlertsForRequest.class);
                 PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
                 Notification.Builder builder = new Notification.Builder(this);
-                builder.setContentTitle("Route :" + j.getString("RouteName"));
-                builder.setContentText(j.getString("DriverName") + " Accepted Your Request ");
+                builder.setContentTitle(getString(R.string.route) + j.getString("RouteName"));
+                builder.setContentText(j.getString("DriverName") + getString(R.string.accept_your_request));
                 builder.setSmallIcon(R.drawable.notificationlogo);
                 builder.setContentIntent(pendingIntent);
                 Notification notification = builder.build();

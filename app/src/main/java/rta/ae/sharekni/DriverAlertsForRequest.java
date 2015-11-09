@@ -63,7 +63,7 @@ public class DriverAlertsForRequest extends AppCompatActivity {
 
 
         ProgressDialog pDialog = new ProgressDialog(this);
-            pDialog.setMessage("Loading" + "...");
+            pDialog.setMessage(getString(R.string.loading) + "...");
             pDialog.show();
 
             new jsoning(Alerts_For_Request, pDialog, this).execute();

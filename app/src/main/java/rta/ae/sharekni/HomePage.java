@@ -288,7 +288,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 Intent intent = new Intent(this, DriverAlertsForRequest.class);
                 PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
                 Notification.Builder builder = new Notification.Builder(this);
-                builder.setContentTitle("Route :" + j.getString("RouteName"));
+                builder.setContentTitle(getString(R.string.route) + j.getString("RouteName"));
                 builder.setContentText(j.getString("PassengerName") + getString(R.string.passenger_send_you_request));
                 builder.setSmallIcon(R.drawable.sharekni_logo);
                 builder.setContentIntent(pendingIntent);
@@ -312,7 +312,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                     Intent intent = new Intent(this, DriverAlertsForRequest.class);
                     PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
                     Notification.Builder builder = new Notification.Builder(this);
-                    builder.setContentTitle("Route :" + j.getString("RouteName"));
+                    builder.setContentTitle(getString(R.string.route) + j.getString("RouteName"));
                     builder.setContentText(j.getString("DriverName") + getString(R.string.reject_your_request));
                     builder.setSmallIcon(R.drawable.sharekni_logo);
                     builder.setContentIntent(pendingIntent);
@@ -326,7 +326,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                     Intent intent = new Intent(this, DriverAlertsForRequest.class);
                     PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
                     Notification.Builder builder = new Notification.Builder(this);
-                    builder.setContentTitle("Route :" + j.getString("RouteName"));
+                    builder.setContentTitle(getString(R.string.route) + j.getString("RouteName"));
                     builder.setContentText(j.getString("DriverName") + getString(R.string.accept_your_request));
                     builder.setSmallIcon(R.drawable.sharekni_logo);
                     builder.setContentIntent(pendingIntent);
