@@ -270,7 +270,7 @@
     <string name="nat_en">Nationality_ar</string>
     <string name="no_routes_available">لا يوجد طرق متوفرة</string>
     <string name="passenger_name">إسم الراكب</string>
-    <string name="passengers">الركاب</string>
+    <string name="passengers">الركاب:</string>
     <string name="route_name2">RouteName</string>
     <string name="search_results">نتائج البحث</string>
     <string name="write_your_review">أكتب تعليق</string>
@@ -279,7 +279,7 @@
     <string name="delete">حذف</string>
     <string name="edit">تعديل</string>
     <string name="choose_language">إختر اللغة</string>
-    <string name="choose_language_mss">ما هي لغتك الأم ؟</string>
+    <string name="choose_language_mss">ما هي لغتك ؟</string>
     <string name="navy_change_language">اللغات</string>
     <string name="no_review_statement">لا توجد تعليقات مضافه</string>
     <string name="cannot_grat_permit">لا يمكن الحصول على تصريح</string>
@@ -287,6 +287,10 @@
     <string name="expite_date">تاريخ الإنتهاء :</string>
     <string name="issue_date">تاريخ الإنشاء :</string>
     <string name="passengers_permit"></string>
+    <string name="agree">أوافق</string>
+    <string name="close">إغلاق</string>
+    <string name="policy">سياسات الإمان و الخصوصية</string>
+    <string name="terms_con">الشروط و الإحكام</string>
 
 
 </resources>

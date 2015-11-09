@@ -26,7 +26,7 @@ public class Privacy_Policy extends AppCompatActivity {
 
         webview = (WebView) findViewById(R.id.webview);
         agreeBtn = (Button) findViewById(R.id.agreeBtn);
-        webview.loadUrl("file:///android_asset/policy.html");
+        webview.loadUrl(getString(R.string.policy_file));
 
 
         agreeBtn.setOnClickListener(new View.OnClickListener() {
@@ -47,7 +47,7 @@ public class Privacy_Policy extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Security and Privacy Policies");
+        textView.setText(R.string.policy);
 //        toolbar.setElevation(10);
 
         setSupportActionBar(toolbar);

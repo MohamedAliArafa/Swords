@@ -280,13 +280,19 @@
     <string name="Preferences">Preferences</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="choose_language">Choose Your Language</string>
-    <string name="choose_language_mss">What is your native language ?</string>
+    <string name="choose_language_mss">What is your Language ?</string>
     <string name="navy_change_language">Languages</string>
     <string name="no_review_statement">There is no reviews added</string>
     <string name="permit_granted">Permit Granted</string>
     <string name="cannot_grat_permit">You can\'t gain permit</string>
     <string name="issue_date">Issue date :</string>
     <string name="expite_date">Expire date :</string>
+    <string name="terms_con">Terms and Conditions</string>
+    <string name="terms_file">file:///android_asset/terms_en.html</string>
+    <string name="policy_file">file:///android_asset/policy.html</string>
+    <string name="policy">Security and Privacy Policies</string>
+    <string name="close">Close</string>
+    <string name="agree">Agree</string>
 
 
 </resources>

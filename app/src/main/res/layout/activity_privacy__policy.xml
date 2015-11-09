@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/primaryColor"
-        android:text="Close"
+        android:text="@string/close"
         android:textStyle="bold"
         android:textColor="@android:color/white"
         android:textSize="22sp"

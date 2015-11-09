@@ -25,7 +25,7 @@ public class TermsAndCond extends AppCompatActivity {
         webview = (WebView) findViewById(R.id.webview);
         agreeBtn = (Button) findViewById(R.id.agreeBtn);
         initToolbar();
-        webview.loadUrl("file:///android_asset/terms_en.html");
+        webview.loadUrl(getString(R.string.terms_file));
 
 
         agreeBtn.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +50,7 @@ public class TermsAndCond extends AppCompatActivity {
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
 
-        textView.setText("Terms and Conditions");
+        textView.setText(R.string.terms_con);
         //  toolbar.setElevation(10);
 
         setSupportActionBar(toolbar);
