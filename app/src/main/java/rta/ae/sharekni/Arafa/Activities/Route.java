@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioGroup;
@@ -88,7 +89,8 @@ public class Route extends AppCompatActivity {
     RelativeLayout Relative_REviews;
     TextView Relative_REviews_Address;
 
-    TextView ride_details_pref_txt,ride_details_nat_txt_2;
+    LinearLayout passenger_relative_2;
+    RelativeLayout REaltive_Passengers_1;
 
 
 
@@ -149,6 +151,10 @@ public class Route extends AppCompatActivity {
         Route_permit_Btn= (Button) findViewById(R.id.Route_permit_Btn);
         Relative_REviews= (RelativeLayout) findViewById(R.id.Relative_REviews);
         Relative_REviews_Address = (TextView) findViewById(R.id.Relative_REviews_Address);
+
+        REaltive_Passengers_1 = (RelativeLayout) findViewById(R.id.REaltive_Passengers_1);
+        passenger_relative_2 = (LinearLayout) findViewById(R.id.passenger_relative_2);
+
 
 
 
@@ -444,11 +450,15 @@ public class Route extends AppCompatActivity {
 
 
             if (response1.length()==0){
-                Toast.makeText(getBaseContext(), "No Reviews", Toast.LENGTH_SHORT).show();
+
                 Relative_REviews.setVisibility(View.INVISIBLE);
                 Relative_REviews_Address.setVisibility(View.INVISIBLE);
 
             }else {
+
+                Relative_REviews.setVisibility(View.VISIBLE);
+                Relative_REviews_Address.setVisibility(View.VISIBLE);
+
 
                 for (int i = 0; i < response1.length(); i++) {
                     try {
@@ -474,9 +484,14 @@ public class Route extends AppCompatActivity {
 
 
             if (response2.length()==0){
-                Toast.makeText(getBaseContext(), "No Passengers", Toast.LENGTH_SHORT).show();
+                REaltive_Passengers_1.setVisibility(View.INVISIBLE);
+                passenger_relative_2.setVisibility(View.INVISIBLE);
+
 
             }else {
+
+                REaltive_Passengers_1.setVisibility(View.VISIBLE);
+                passenger_relative_2.setVisibility(View.VISIBLE);
                 for (int y = 0; y < response2.length(); y++) {
 
                     try {

@@ -8,17 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import rta.ae.sharekni.Arafa.Classes.GetData;
-
-import rta.ae.sharekni.R;
 
 import org.json.JSONException;
 
 import java.util.List;
+
+import rta.ae.sharekni.Arafa.Classes.GetData;
 
 /**
  * Created by Nezar Saleh on 10/8/2015.
@@ -76,7 +74,7 @@ public class DriverGetReviewAdapter extends BaseAdapter {
         TextView Review = (TextView) convertView.findViewById(R.id.Driver_Get_Review_Review);
         TextView AccountName = (TextView) convertView.findViewById(R.id.Driver_Get_Review_AccountName);
         TextView  AccountNationalityEn= (TextView) convertView.findViewById(R.id.Driver_Get_Review_Nat);
-        Button Driver_Delete = (Button) convertView.findViewById(R.id.Driver_Delete_Review);
+        ImageView Driver_Delete = (ImageView) convertView.findViewById(R.id.Driver_Delete_Review);
 
         Driver_Delete.setVisibility(View.INVISIBLE);
         final DriverGetReviewDataModel driverGetReviewDataModel = driverGetReviewDataModels_items.get(position);

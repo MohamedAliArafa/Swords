@@ -451,52 +451,64 @@
 
 
 
-
-                    <TextView
-                        android:id="@+id/ride_details_pref_txt"
-                        android:layout_width="130dp"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/ride_details_Nat_txt"
-                        android:layout_marginBottom="20dp"
-                        android:layout_marginTop="20dp"
-                        android:text="@string/passenger_name"
-                        android:textColor="@color/primaryColor"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
+                        android:id="@+id/REaltive_Passengers_1"
+                        >
+                        <TextView
+                            android:id="@+id/ride_details_pref_txt"
+                            android:layout_width="130dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/passenger_name"
+                            android:textColor="@color/primaryColor"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
 
 
-                        />
+                            />
 
 
-                    <TextView
-                        android:id="@+id/ride_details_nat_txt_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/ride_details_pref_txt"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_toEndOf="@+id/ride_details_pref_txt"
-                        android:layout_toRightOf="@+id/ride_details_pref_txt"
-                        android:text="@string/nationality"
-                        android:textColor="@color/primaryColor"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/ride_details_nat_txt_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/ride_details_pref_txt"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_toEndOf="@+id/ride_details_pref_txt"
+                            android:layout_toRightOf="@+id/ride_details_pref_txt"
+                            android:text="@string/nationality"
+                            android:textColor="@color/primaryColor"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
 
-                    <View
-                        android:id="@+id/view_underline"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_below="@+id/ride_details_nat_txt_2"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp"
-                        android:background="#a3a3a3" />
+                        <View
+                            android:id="@+id/view_underline"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@+id/ride_details_nat_txt_2"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="10dp"
+                            android:background="#a3a3a3" />
+
+                    </RelativeLayout>
+
+
+
+
+
+
 
                     <LinearLayout
-                        android:id="@+id/passenger_relative"
+                        android:id="@+id/passenger_relative_2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/ride_details_pref_txt"
+                        android:layout_below="@+id/REaltive_Passengers_1"
                         android:orientation="vertical">
 
                         <ListView
@@ -514,7 +526,7 @@
                         android:id="@+id/Relative_REviews"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/passenger_relative"
+                        android:layout_below="@+id/passenger_relative_2"
                         android:layout_marginEnd="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
@@ -542,7 +554,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
-                        android:layout_below="@+id/passenger_relative"
+                        android:layout_below="@+id/passenger_relative_2"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="17dp"
                         android:background="@drawable/testborder1"

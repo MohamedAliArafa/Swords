@@ -26,6 +26,7 @@ import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,7 +55,7 @@ import java.util.List;
 import rta.ae.sharekni.Arafa.Classes.GetData;
 
 
-public class RideDetailsPassenger extends AppCompatActivity   {
+public class RideDetailsPassenger extends AppCompatActivity {
 
 
     TextView
@@ -64,7 +65,7 @@ public class RideDetailsPassenger extends AppCompatActivity   {
     String Gender_ste, Nat_txt, Smokers_str;
 
 
-    String str_StartFromTime, str_EndToTime_,str_PrefLanguageEnName;
+    String str_StartFromTime, str_EndToTime_, str_PrefLanguageEnName;
 
 
     String days;
@@ -91,14 +92,16 @@ public class RideDetailsPassenger extends AppCompatActivity   {
     ListView Driver_get_Review_lv;
     int Pass_id;
     boolean exists;
-
+    int FLAG_REVIEW = 0;
     Button Passenger_Review_Driver_Btn;
 
     SharedPreferences myPrefs;
 
     String Review_str;
     EditText Edit_Review_txt;
-    String str_Remarks="";
+    String str_Remarks = "";
+    RelativeLayout Relative_REviews;
+    TextView Relative_REviews_Address_2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,7 +116,7 @@ public class RideDetailsPassenger extends AppCompatActivity   {
         ToRegionEnName = (TextView) findViewById(R.id.ToRegionEnName);
 
         StartFromTime = (TextView) findViewById(R.id.StartFromTime);
-       // EndToTime_ = (TextView) findViewById(R.id.EndToTime_);
+        // EndToTime_ = (TextView) findViewById(R.id.EndToTime_);
 
         FromEmirateEnName = (TextView) findViewById(R.id.FromEmirateEnName);
         ToEmirateEnName = (TextView) findViewById(R.id.ToEmirateEnName);
@@ -128,9 +131,8 @@ public class RideDetailsPassenger extends AppCompatActivity   {
         ride_details_day_of_week = (TextView) findViewById(R.id.ride_details_day_of_week);
         Driver_get_Review_lv = (ListView) findViewById(R.id.Driver_get_Review_lv);
         Passenger_Review_Driver_Btn = (Button) findViewById(R.id.Passenger_Review_Driver_Btn);
-
-
-
+        Relative_REviews= (RelativeLayout) findViewById(R.id.Relative_REviews);
+        Relative_REviews_Address_2 = (TextView) findViewById(R.id.Relative_REviews_Address_2);
         // setListViewHeightBasedOnChildren(Driver_get_Review_lv);
         //setSupportActionBar(toolbar);
         //getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -149,11 +151,10 @@ public class RideDetailsPassenger extends AppCompatActivity   {
         new back().execute();
 
 
-
     }  //  on create
 
 
-    private class back extends AsyncTask implements OnMapReadyCallback{
+    private class back extends AsyncTask implements OnMapReadyCallback {
 
 
         JSONObject json;
@@ -177,18 +178,50 @@ public class RideDetailsPassenger extends AppCompatActivity   {
 
         @Override
         protected void onPostExecute(Object o) {
+
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.map_ride_details);
             mapFragment.getMapAsync(this);
 
 
-                DriverGetReviewAdapter arrayAdapter = new DriverGetReviewAdapter(con, driverGetReviewDataModels_arr);
-                Driver_get_Review_lv.setAdapter(arrayAdapter);
-                setListViewHeightBasedOnChildren(Driver_get_Review_lv);
+            if (FLAG_REVIEW==0){
+                Relative_REviews.setVisibility(View.INVISIBLE);
+                Relative_REviews_Address_2.setVisibility(View.INVISIBLE);
+            }
 
-                Passenger_Review_Driver_Btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+
+            DriverGetReviewAdapter arrayAdapter = new DriverGetReviewAdapter(con, driverGetReviewDataModels_arr);
+            Driver_get_Review_lv.setAdapter(arrayAdapter);
+            setListViewHeightBasedOnChildren(Driver_get_Review_lv);
+
+            Passenger_Review_Driver_Btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (Passenger_ID == 0) {
+                        final Dialog dialog = new Dialog(RideDetailsPassenger.this);
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.please_log_in_dialog);
+                        Button btn = (Button) dialog.findViewById(R.id.noroute_id);
+                        TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
+                        Button No_Btn = (Button) dialog.findViewById(R.id.No_Btn);
+                        Text_3.setText(getString(R.string.login_first));
+                        dialog.show();
+                        No_Btn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+                        btn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                                Intent intent = new Intent(RideDetailsPassenger.this, LoginApproved.class);
+                                RideDetailsPassenger.this.startActivity(intent);
+                            }
+                        });
+                    } else {
+
                         Review_str = "";
                         final Dialog dialog = new Dialog(con);
                         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -199,48 +232,28 @@ public class RideDetailsPassenger extends AppCompatActivity   {
                         btn.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                if (Passenger_ID == 0) {
-                                    final Dialog dialog = new Dialog(RideDetailsPassenger.this);
-                                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                                    dialog.setContentView(R.layout.please_log_in_dialog);
-                                    Button btn = (Button) dialog.findViewById(R.id.noroute_id);
-                                    TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
-                                    Button No_Btn = (Button) dialog.findViewById(R.id.No_Btn);
-                                    Text_3.setText(getString(R.string.login_first));
-                                    dialog.show();
-                                    No_Btn.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            dialog.dismiss();
-                                        }
-                                    });
-                                    btn.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            dialog.dismiss();
-                                            Intent intent = new Intent(RideDetailsPassenger.this, LoginApproved.class);
-                                            RideDetailsPassenger.this.startActivity(intent);
-                                        }
-                                    });
-                                } else {
-                                    Review_str = Edit_Review_txt.getText().toString();
-                                    try {
-                                        String response = j.Passenger_Review_Driver(Driver_ID, Passenger_ID, Route_ID, URLEncoder.encode(Review_str));
-                                        if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
-                                            Toast.makeText(RideDetailsPassenger.this,getString(R.string.cannot_review), Toast.LENGTH_SHORT).show();
-                                        } else {
-                                            Toast.makeText(RideDetailsPassenger.this, getString(R.string.done), Toast.LENGTH_SHORT).show();
-                                            con.recreate();
-                                        }
-                                        dialog.dismiss();
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
+
+                                Review_str = Edit_Review_txt.getText().toString();
+                                try {
+                                    String response = j.Passenger_Review_Driver(Driver_ID, Passenger_ID, Route_ID, URLEncoder.encode(Review_str));
+                                    if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
+                                        Toast.makeText(RideDetailsPassenger.this, getString(R.string.cannot_review), Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(RideDetailsPassenger.this, getString(R.string.done), Toast.LENGTH_SHORT).show();
+                                        con.recreate();
                                     }
+                                    dialog.dismiss();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
                             }
                         });
+
                     }
-                });
+                }
+            });
+
+
             if (exists) {
                 try {
                     days = "";
@@ -249,21 +262,21 @@ public class RideDetailsPassenger extends AppCompatActivity   {
                     FromEmirateEnName.setText(json.getString(getString(R.string.from_em_en_name)));
                     ToEmirateEnName.setText(json.getString(getString(R.string.to_em_en_name)));
                     str_StartFromTime = json.getString("StartFromTime");
-                    if (str_StartFromTime.equals("null")){
-                        str_StartFromTime=getString(R.string.not_set);
+                    if (str_StartFromTime.equals("null")) {
+                        str_StartFromTime = getString(R.string.not_set);
                         StartFromTime.setText(str_StartFromTime);
-                    }else{
+                    } else {
                         str_StartFromTime = str_StartFromTime.substring(Math.max(0, str_StartFromTime.length() - 7));
                         StartFromTime.setText(str_StartFromTime);
                     }
                     str_EndToTime_ = json.getString("EndToTime_");
-                    if (str_EndToTime_.equals("null")){
-                        str_EndToTime_=getString(R.string.not_set);
+                    if (str_EndToTime_.equals("null")) {
+                        str_EndToTime_ = getString(R.string.not_set);
                         //EndToTime_.setText(str_EndToTime_);
-                    }else {
+                    } else {
                         str_EndToTime_ = str_EndToTime_.substring(Math.max(0, str_EndToTime_.length() - 7));
                         Log.d("time to", str_EndToTime_);
-                       // EndToTime_.setText(str_EndToTime_);
+                        // EndToTime_.setText(str_EndToTime_);
                     }
                     Nat_txt = (json.getString(getString(R.string.nat_name2)));
                     if (Nat_txt.equals("null")) {
@@ -272,19 +285,19 @@ public class RideDetailsPassenger extends AppCompatActivity   {
                     } else {
                         NationalityEnName.setText(Nat_txt);
                     }
-                    str_PrefLanguageEnName=json.getString(getString(R.string.pref_lang));
+                    str_PrefLanguageEnName = json.getString(getString(R.string.pref_lang));
 
-                    if (str_PrefLanguageEnName.equals("null")){
-                        str_PrefLanguageEnName=getString(R.string.not_set);
+                    if (str_PrefLanguageEnName.equals("null")) {
+                        str_PrefLanguageEnName = getString(R.string.not_set);
                         PrefLanguageEnName.setText(str_PrefLanguageEnName);
-                    }else {
+                    } else {
                         PrefLanguageEnName.setText(str_PrefLanguageEnName);
                     }
-                    Str_AgeRange=json.getString("AgeRange");
-                    if (Str_AgeRange.equals("null")){
-                        Str_AgeRange=getString(R.string.not_set);
+                    Str_AgeRange = json.getString("AgeRange");
+                    if (Str_AgeRange.equals("null")) {
+                        Str_AgeRange = getString(R.string.not_set);
                         AgeRange.setText(Str_AgeRange);
-                    }else {
+                    } else {
                         AgeRange.setText(Str_AgeRange);
 
                     }
@@ -337,9 +350,9 @@ public class RideDetailsPassenger extends AppCompatActivity   {
                     if (json.getString("Friday").equals("true")) {
                         days += getString(R.string.fri);
                     }
-                    if (!days.equals("")){
+                    if (!days.equals("")) {
                         ride_details_day_of_week.setText(days.substring(1));
-                    }else {
+                    } else {
                         ride_details_day_of_week.setText(days);
                     }
                     days = "";
@@ -375,44 +388,44 @@ public class RideDetailsPassenger extends AppCompatActivity   {
                                 }
                             });
                         } else {
-                                final Dialog dialog = new Dialog(con);
-                                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                                dialog.setContentView(R.layout.review_dialog);
-                                Button btn = (Button) dialog.findViewById(R.id.Review_Btn);
-                                TextView Lang_Dialog_txt_id = (TextView) dialog.findViewById(R.id.Lang_Dialog_txt_id);
-                                TextView Review_text_address = (TextView) dialog.findViewById(R.id.Review_text_address);
-                                Edit_Review_txt = (EditText) dialog.findViewById(R.id.Edit_Review_txt);
-                                Lang_Dialog_txt_id.setText(R.string.write_remark);
-                                Review_text_address.setText(R.string.your_remarks);
+                            final Dialog dialog = new Dialog(con);
+                            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(R.layout.review_dialog);
+                            Button btn = (Button) dialog.findViewById(R.id.Review_Btn);
+                            TextView Lang_Dialog_txt_id = (TextView) dialog.findViewById(R.id.Lang_Dialog_txt_id);
+                            TextView Review_text_address = (TextView) dialog.findViewById(R.id.Review_text_address);
+                            Edit_Review_txt = (EditText) dialog.findViewById(R.id.Edit_Review_txt);
+                            Lang_Dialog_txt_id.setText(R.string.write_remark);
+                            Review_text_address.setText(R.string.your_remarks);
                             Edit_Review_txt.setText(R.string.i_like_join_ride);
-                                dialog.show();
+                            dialog.show();
                             btn.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        str_Remarks = Edit_Review_txt.getText().toString();
-                                        String response = null;
-                                        try {
-                                            response = j.Passenger_SendAlert(Driver_ID, Passenger_ID, Route_ID, URLEncoder.encode(str_Remarks));
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-                                        assert response != null;
-                                        switch (response) {
-                                            case "\"-1\"":
-                                                Toast.makeText(RideDetailsPassenger.this, getString(R.string.already_sent_request), Toast.LENGTH_SHORT).show();
-                                                dialog.dismiss();
-                                                break;
-                                            case "\"0\"":
-                                                Toast.makeText(RideDetailsPassenger.this, getString(R.string.login_network_error), Toast.LENGTH_SHORT).show();
-                                                dialog.dismiss();
-                                                break;
-                                            default:
-                                                Toast.makeText(RideDetailsPassenger.this, R.string.req_sent_succ, Toast.LENGTH_LONG).show();
-                                                dialog.dismiss();
-                                                break;
-                                        }
+                                @Override
+                                public void onClick(View v) {
+                                    str_Remarks = Edit_Review_txt.getText().toString();
+                                    String response = null;
+                                    try {
+                                        response = j.Passenger_SendAlert(Driver_ID, Passenger_ID, Route_ID, URLEncoder.encode(str_Remarks));
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
                                     }
-                                });
+                                    assert response != null;
+                                    switch (response) {
+                                        case "\"-1\"":
+                                            Toast.makeText(RideDetailsPassenger.this, getString(R.string.already_sent_request), Toast.LENGTH_SHORT).show();
+                                            dialog.dismiss();
+                                            break;
+                                        case "\"0\"":
+                                            Toast.makeText(RideDetailsPassenger.this, getString(R.string.login_network_error), Toast.LENGTH_SHORT).show();
+                                            dialog.dismiss();
+                                            break;
+                                        default:
+                                            Toast.makeText(RideDetailsPassenger.this, R.string.req_sent_succ, Toast.LENGTH_LONG).show();
+                                            dialog.dismiss();
+                                            break;
+                                    }
+                                }
+                            });
 
 
                         }
@@ -507,7 +520,11 @@ public class RideDetailsPassenger extends AppCompatActivity   {
                         review.setAccountName(obj.getString("AccountName"));
                         review.setAccountNationalityEn(obj.getString(getString(R.string.acc_nat_name)));
                         review.setReview(obj.getString("Review"));
-                        driverGetReviewDataModels_arr.add(review);
+                        if (!review.getReview().equals("")) {
+                            driverGetReviewDataModels_arr.add(review);
+                            FLAG_REVIEW ++;
+
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -531,7 +548,7 @@ public class RideDetailsPassenger extends AppCompatActivity   {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(RideDetailsPassenger.this,getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RideDetailsPassenger.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -581,8 +598,6 @@ public class RideDetailsPassenger extends AppCompatActivity   {
     }
 
 
-
-
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.app_bar);
@@ -621,7 +636,6 @@ public class RideDetailsPassenger extends AppCompatActivity   {
     }
 
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -635,7 +649,7 @@ public class RideDetailsPassenger extends AppCompatActivity   {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id==android.R.id.home){
+        if (id == android.R.id.home) {
             onBackPressed();
             return true;
         }
@@ -644,6 +658,7 @@ public class RideDetailsPassenger extends AppCompatActivity   {
 
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

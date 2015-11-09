@@ -129,6 +129,7 @@
                     android:textColorHint="@color/primaryColor"
                     android:textSize="15sp"
                     android:cursorVisible="true"
+
                     />
 
 

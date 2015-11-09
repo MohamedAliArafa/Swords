@@ -486,7 +486,9 @@
                         android:paddingStart="20dp"
                         android:text="@string/reviews"
                         android:textColor="@color/primaryColor"
-                        android:textSize="17sp" />
+                        android:textSize="17sp"
+                        android:id="@+id/Relative_REviews_Address_2"
+                        />
 
 
                     <Button

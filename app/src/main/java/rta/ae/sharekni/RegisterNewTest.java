@@ -290,6 +290,11 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                     }
                 }
 
+
+                if (hasFocus){
+                    txt_country.setHint("");
+                }
+
             }
         });
 
@@ -323,6 +328,10 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                 if (!isEmailValid(edit_user.getText().toString())) {
                     Toast.makeText(RegisterNewTest.this, R.string.email_valid_form, Toast.LENGTH_SHORT).show();
                 }
+
+                if (hasFocus){
+                    edit_user.setHint("");
+                }
             }
         });
 
@@ -334,6 +343,10 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                             Toast.makeText(RegisterNewTest.this, R.string.short_pass, Toast.LENGTH_SHORT).show();
                         }
                     }
+                }
+
+                if (hasFocus){
+                    edit_pass.setHint("");
                 }
             }
         });
@@ -348,8 +361,33 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                     }
                 }
 
+                if (hasFocus){
+                    edit_phone.setHint("");
+                }
+
             }
         });
+
+
+
+
+
+        edit_lname.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus){
+                    edit_lname.setHint("");
+                }
+            }
+        });
+
+
+
+
+
+
+
+
 
         both_toggle.setOnClickListener(this);
         driver_toggle.setOnClickListener(this);

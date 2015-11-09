@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import java.util.Locale;
@@ -30,7 +31,7 @@ public class OnboardingFragment2 extends Fragment {
 
     RelativeLayout im_best_rides;
     RelativeLayout im_best_drivers;
-    RelativeLayout OnBoard_Changelanguae;
+    ImageView OnBoard_Changelanguae;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class OnboardingFragment2 extends Fragment {
 
         im_best_drivers= (RelativeLayout) view.findViewById(R.id.im_best_drivers);
         im_best_rides = (RelativeLayout) view.findViewById(R.id.im_best_rides);
-        OnBoard_Changelanguae = (RelativeLayout) view.findViewById(R.id.OnBoard_Changelanguae);
+        OnBoard_Changelanguae = (ImageView) view.findViewById(R.id.OnBoard_Changelanguae);
 
         OnBoard_Changelanguae.setOnClickListener(new View.OnClickListener() {
             @Override
