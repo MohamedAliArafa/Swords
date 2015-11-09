@@ -54,48 +54,48 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
         setSupportActionBar(toolbar);
        // getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        ProgressDialog pDialog = new ProgressDialog(this);
-        pDialog.setMessage(getString(R.string.loading) + "...");
-        pDialog.show();
-
-        new jsoning(lv, pDialog, this).execute();
+        new jsoning().execute();
     }
 
     public class jsoning extends AsyncTask {
 
-        ListView lv;
-        Activity con;
         private ProgressDialog pDialog;
         private List<BestDriverDataModel> arr = new ArrayList<>();
         boolean exists = false;
 
+        @Override
+        protected void onPreExecute() {
 
-        public jsoning(final ListView lv, ProgressDialog pDialog, final Activity con) {
-
-            this.lv = lv;
-            this.con = con;
-            this.pDialog = pDialog;
-
-            BestDriverDataModelAdapter adapter = new BestDriverDataModelAdapter(con, arr);
-            lv.setAdapter(adapter);
+            pDialog = new ProgressDialog(BestDriversBeforeLogin.this);
+            pDialog.setMessage(getString(R.string.loading) + "...");
+            pDialog.setIndeterminate(false);
+            pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            pDialog.show();
         }
 
         @Override
         protected void onPostExecute(Object o) {
+            BestDriverDataModelAdapter adapter = new BestDriverDataModelAdapter(BestDriversBeforeLogin.this, arr);
+            lv.setAdapter(adapter);
             if (exists){
                 lv.requestLayout();
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        Intent in = new Intent(con, Profile.class);
+                        Intent in = new Intent(BestDriversBeforeLogin.this, Profile.class);
                         in.putExtra("DriverID", arr.get(i).getID());
                         Log.d("Array Id :", String.valueOf(arr.get(i).getID()));
                         in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        con.startActivity(in);
+                        BestDriversBeforeLogin.this.startActivity(in);
                     }
                 });
             }
             hidePDialog();
+        }
+
+        @Override
+        protected void onProgressUpdate(Object[] values) {
+            pDialog.setProgress((Integer) values[0]);
         }
 
         private void hidePDialog() {
@@ -153,6 +153,7 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
                         driver.setRating(obj.getInt("Rating"));
                         driver.setPhoneNumber(obj.getString("AccountMobile"));
                         arr.add(driver);
+                        publishProgress((int)(i*100/response.length()));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

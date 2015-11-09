@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 
 import rta.ae.sharekni.Arafa.Classes.GetData;
+import rta.ae.sharekni.Arafa.DataModel.BestDriverDataModel;
 import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
 import rta.ae.sharekni.Arafa.DataModelAdapter.BestRouteDataModelAdapter;
 import rta.ae.sharekni.MostRidesDetails;
@@ -37,6 +38,8 @@ import org.json.JSONObject;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BestRideBeforeLogin extends AppCompatActivity {
 
@@ -51,54 +54,40 @@ public class BestRideBeforeLogin extends AppCompatActivity {
         lv = (ListView) findViewById(R.id.lv_top_rides);
         initToolbar();
 
-//        GetData j = new GetData();
-//        j.GetBestRoutes(lv, this);
-
-        pDialog = new ProgressDialog(this);
-        pDialog.setMessage(getString(R.string.loading) + "...");
-//        pDialog.setCancelable(false);
-//        pDialog.setCanceledOnTouchOutside(false);
-        pDialog.show();
-
-        new jsoning(lv,pDialog, this).execute();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_second, menu);
-        return true;
+        new jsoning().execute();
     }
 
     public class jsoning extends AsyncTask {
 
-        ListView lv;
-        Activity con;
         private ProgressDialog pDialog;
-        BestRouteDataModel[] driver;
         boolean exists = false;
+        BestRouteDataModel[] driver;
 
-        public jsoning(final ListView lv, ProgressDialog pDialog, final Activity con) {
+        @Override
+        protected void onPreExecute() {
 
-            this.lv = lv;
-            this.con = con;
-            this.pDialog = pDialog;
+            pDialog = new ProgressDialog(BestRideBeforeLogin.this);
+            pDialog.setMessage(getString(R.string.loading) + "...");
+            pDialog.setIndeterminate(false);
+            pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            pDialog.show();
         }
 
         @Override
         protected void onPostExecute(Object o) {
             if (exists){
-                BestRouteDataModelAdapter arrayAdapter = new BestRouteDataModelAdapter(con, R.layout.top_rides_custom_row, driver);
+                BestRouteDataModelAdapter arrayAdapter = new BestRouteDataModelAdapter(BestRideBeforeLogin.this, R.layout.top_rides_custom_row, driver);
                 lv.setAdapter(arrayAdapter);
                 lv.requestLayout();
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        Intent in = new Intent(con, MostRidesDetails.class);
+                        Intent in = new Intent(BestRideBeforeLogin.this, MostRidesDetails.class);
                         in.putExtra("ID", i);
                         Bundle b = new Bundle();
                         b.putParcelable("Data", driver[i]);
                         in.putExtras(b);
-                        con.startActivity(in);
+                        BestRideBeforeLogin.this.startActivity(in);
                     }
                 });
             }
@@ -162,6 +151,7 @@ public class BestRideBeforeLogin extends AppCompatActivity {
                             item.setRouteName(json.getString("RoutesCount"));
 //                    arr.add(item);
                             driver[i] = item;
+                        publishProgress((int)(i*100/response.length()));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

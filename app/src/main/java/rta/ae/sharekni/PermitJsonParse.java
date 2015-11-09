@@ -33,10 +33,10 @@ public class PermitJsonParse {
                             Log.d("Data:", data);
 
                             if (data.equals("\"1\"")){
-                                Toast.makeText(context, "Permit Granted", Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, R.string.permit_granted, Toast.LENGTH_LONG).show();
 
                             }else if(data.equals("-1")){
-                                Toast.makeText(context, "You can't gain permit", Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, R.string.cannot_grat_permit, Toast.LENGTH_LONG).show();
                                 Log.d("inside -1",data);
                             }
                         } catch (StringIndexOutOfBoundsException e) {

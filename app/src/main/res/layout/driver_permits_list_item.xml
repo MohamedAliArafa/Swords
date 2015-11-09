@@ -39,7 +39,7 @@
             android:layout_marginRight="2dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
-            android:text="Passengers: "
+            android:text="@string/passengers"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -97,7 +97,7 @@
             android:layout_alignStart="@+id/from_txt_id"
             android:layout_below="@+id/from_txt_id"
             android:layout_marginTop="10dp"
-            android:text="Issue date : "
+            android:text="@string/issue_date"
             android:textSize="16sp"
             android:textStyle="bold"
 
@@ -126,7 +126,7 @@
             android:layout_alignStart="@+id/to_txt_id"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
-            android:text="Expire date : "
+            android:text="@string/expite_date"
             android:textStyle="bold"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="30dp"

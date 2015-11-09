@@ -99,7 +99,7 @@ public class DriverPermits extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             pDialog = new ProgressDialog(DriverPermits.this);
-            pDialog.setMessage("Loading" + "...");
+            pDialog.setMessage(getString(R.string.loading) + "...");
             pDialog.show();
             super.onPreExecute();
         }

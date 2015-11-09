@@ -289,7 +289,7 @@
                     android:layout_marginRight="20dp"
                     android:background="@drawable/driver_details_btn"
                     android:textAllCaps="false"
-                    android:text="Permit"
+                    android:text="@string/permit"
                     android:visibility="invisible"
                     />
 

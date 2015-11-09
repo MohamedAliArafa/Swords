@@ -176,7 +176,7 @@
     <string name="tue">, Tue</string>
     <string name="wed">, Wed</string>
     <string name="thu">, Thu</string>
-    <string name="fri">", Fri "</string>
+    <string name="fri">, Fri </string>
     <string name="driver_details">Driver Details</string>
     <string name="route_name">RouteEnName</string>
     <string name="time">Time </string>
@@ -283,6 +283,10 @@
     <string name="choose_language_mss">What is your native language ?</string>
     <string name="navy_change_language">Languages</string>
     <string name="no_review_statement">There is no reviews added</string>
+    <string name="permit_granted">Permit Granted</string>
+    <string name="cannot_grat_permit">You can\'t gain permit</string>
+    <string name="issue_date">Issue date :</string>
+    <string name="expite_date">Expire date :</string>
 
 
 </resources>
