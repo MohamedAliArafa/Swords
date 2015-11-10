@@ -1,12 +1,10 @@
 package rta.ae.sharekni;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.webkit.WebView;
-
-import rta.ae.sharekni.R;
 
 public class ViewPermit extends AppCompatActivity {
 
@@ -29,8 +27,8 @@ public class ViewPermit extends AppCompatActivity {
 
         webview = (WebView) findViewById(R.id.webview);
 
-        webview.loadUrl("http://sharekni.sdgstaff.com/en/Route_PrintMobilePermit.aspx?p="+Permit_ID);
-
+        webview.loadUrl("https://www.sharekni.ae/en/Route_PrintMobilePermit.aspx?p="+Permit_ID);
+        Log.d("ViewPermit:","https://www.sharekni.ae/en/Route_PrintMobilePermit.aspx?p="+Permit_ID);
 
 
 

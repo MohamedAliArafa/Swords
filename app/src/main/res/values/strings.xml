@@ -290,6 +290,8 @@
     <string name="terms_con">Terms and Conditions</string>
     <string name="terms_file">file:///android_asset/terms_en.html</string>
     <string name="policy_file">file:///android_asset/policy.html</string>
+    <string name="terms_file_ar">file:///android_asset/terms_ar.html</string>
+    <string name="policy_file_ar">file:///android_asset/privacypolicyar.html</string>
     <string name="policy">Security and Privacy Policies</string>
     <string name="close">Close</string>
     <string name="agree">Agree</string>
