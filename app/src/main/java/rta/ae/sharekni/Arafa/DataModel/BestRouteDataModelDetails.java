@@ -33,6 +33,17 @@ public class BestRouteDataModelDetails extends ArrayList<Parcelable> implements 
     public int ToRegId;
     public int DriverId;
 
+    public String DriverRating;
+
+    public String getDriverRating() {
+        return DriverRating;
+    }
+
+    public void setDriverRating(String driverRating) {
+        DriverRating = driverRating;
+    }
+
+
     public int getDriverId() {
         return DriverId;
     }
@@ -83,7 +94,7 @@ public class BestRouteDataModelDetails extends ArrayList<Parcelable> implements 
         ToRegId=in.readInt();
         RouteEnName=in.readString();
         DriverName=in.readString();
-
+        DriverRating=in.readString();
         SDG_Route_Start_FromTime=in.readString();
         Nationality_en=in.readString();
         SDG_RouteDays=in.readString();
@@ -240,6 +251,7 @@ public class BestRouteDataModelDetails extends ArrayList<Parcelable> implements 
         parcel.writeString(SDG_Route_Start_FromTime);
         parcel.writeString(Nationality_en);
         parcel.writeString(SDG_RouteDays);
+        parcel.writeString(DriverRating);
 
     }
 }

@@ -65,6 +65,8 @@ public class Profile extends AppCompatActivity {
     private Toolbar toolbar;
     String FirstName,SecondName,ThirdName,Full_Name;
 
+    TextView Driver_profile_Item_rate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +89,7 @@ public class Profile extends AppCompatActivity {
         NationalityEnName = (TextView) findViewById(R.id.NationalityEnName);
         profile_msg = (ImageView) findViewById(R.id.profile_msg);
         profile_call = (ImageView) findViewById(R.id.profile_call);
+        Driver_profile_Item_rate = (TextView) findViewById(R.id.Driver_profile_Item_rate);
 
         myPrefs = this.getSharedPreferences("myPrefs", 0);
         Passenger_ID = Integer.parseInt(myPrefs.getString("account_id", "0"));
@@ -144,6 +147,7 @@ public class Profile extends AppCompatActivity {
             }
 
 
+          //  Driver_profile_Item_rate.setText(json.getString("AccountRating"));
 
 
 

@@ -42,7 +42,6 @@ import rta.ae.sharekni.Arafa.Activities.BestRideBeforeLogin;
 
 public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
-
     int From_Em_Id;
     int From_Reg_Id;
     int To_Em_Id;
@@ -60,7 +59,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
     RelativeLayout pickup_relative;
     SimpleAdapter EmAdapter;
     Button btn_submit_pickUp;
-    String txt_PickUp;
+    String txt_PickUp= String.valueOf(R.string.start_point);
     JSONArray Regions = null;
     JSONArray Emirates = null;
 
@@ -102,6 +101,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
     Button quick_Destination;
     RelativeLayout MostRides_Relative, MapLookUp_Relative, Advanced_Search_Relative_2;
 
+
     String From_EmirateEnName_str, From_RegionEnName_str, To_EmirateEnName_str, To_RegionEnName_str;
     int From_Em_Id_2, From_Reg_Id_2, To_Em_Id_2, To_Reg_Id_2;
     @Override
@@ -109,11 +109,10 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
 
 
-
-
         i = 0;
 
-        txt_PickUp = getString(R.string.start_point);
+      //  txt_PickUp = getString(R.string.start_point);
+
         try {
             if (TakeATour.getInstance() != null) {
                 TakeATour.getInstance().finish();
@@ -124,6 +123,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
         try {
             if (PickUpActivity.getInstance() != null) {
+
                 Intent intent = getIntent();
                 From_Em_Id_2 = intent.getIntExtra("From_Em_Id", 0);
                 From_Reg_Id_2 = intent.getIntExtra("From_Reg_Id", 0);
@@ -210,10 +210,6 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
 
 
-
-
-
-
         final Calendar cal = Calendar.getInstance();
         year_x = cal.get(Calendar.YEAR);
         month_x = cal.get(Calendar.MONTH);
@@ -222,6 +218,10 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_quick_search);
         showDialogOnButtonClick();
         showTimeDialogOnButtonClick();
+
+
+
+
         initToolbar();
         myPrefs = this.getSharedPreferences("myPrefs", 0);
         MyId = Integer.parseInt(myPrefs.getString("account_id", "0"));
@@ -230,8 +230,9 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         txt_year = (TextView) findViewById(R.id.search_txt_yaer);
         txt_beforeCal = (TextView) findViewById(R.id.textview50);
         pickup_relative = (RelativeLayout) findViewById(R.id.pickup_relative);
-        txt_Selecet_Start_Point = (TextView) findViewById(R.id.txt_Selecet_Start_Point);
         dropOff_relative = (RelativeLayout) findViewById(R.id.dropOff_relative);
+        txt_Selecet_Start_Point = (TextView) findViewById(R.id.txt_Selecet_Start_Point);
+
         txt_Select_Dest = (TextView) findViewById(R.id.txt_Select_Dest);
         txt_time_selected = (TextView) findViewById(R.id.txt_time_selected);
         before_Time = (TextView) findViewById(R.id.textview51);
@@ -244,7 +245,8 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         Advanced_Search_Relative_2 = (RelativeLayout) findViewById(R.id.advanced_search);
         quick_Destination = (Button) findViewById(R.id.quick_Destination);
 
-
+        pickup_relative.setVisibility(View.INVISIBLE);
+        dropOff_relative.setVisibility(View.INVISIBLE);
 
 
 
@@ -252,8 +254,11 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         if (i==0) {
             txt_Selecet_Start_Point.setText(getString(R.string.start_point));
             Log.d("pick 1", txt_PickUp);
+            pickup_relative.setVisibility(View.INVISIBLE);
 
         } else if (i==1){
+            pickup_relative.setVisibility(View.VISIBLE);
+
             txt_Selecet_Start_Point.setText(txt_PickUp);
 
         }
@@ -262,8 +267,12 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         if (i==0) {
             txt_Select_Dest.setText(getString(R.string.end_point));
 //            Log.d("drop off 1 ", txt_Drop_Off);
+            dropOff_relative.setVisibility(View.INVISIBLE);
         } else if (i==1){
+            dropOff_relative.setVisibility(View.VISIBLE);
+
             txt_Select_Dest.setText(txt_Drop_Off);
+
         }
 
 
@@ -928,5 +937,21 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        if (i==0){
 
+            pickup_relative.setVisibility(View.INVISIBLE);
+            dropOff_relative.setVisibility(View.INVISIBLE);
+
+        }else if (i==1){
+
+            pickup_relative.setVisibility(View.VISIBLE);
+            dropOff_relative.setVisibility(View.VISIBLE);
+            i=0;
+
+        }
+
+    }
 }

@@ -60,7 +60,6 @@ public class HandleXML {
         }
         catch (Exception e) {
             e.printStackTrace();
-
         }
     }
 
@@ -71,9 +70,10 @@ public class HandleXML {
         thread = new Thread(new Runnable(){
             @Override
             public void run() {
+                HttpURLConnection conn = null;
                 try {
                     URL url = new URL(urlString);
-                    HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+                    conn = (HttpURLConnection)url.openConnection();
                     Log.d("Url  :", url.toString());
                     conn.setReadTimeout(0 /* milliseconds */);
                     conn.setConnectTimeout(0 /* milliseconds */);
@@ -92,6 +92,10 @@ public class HandleXML {
                     error = true;
                     intrupt();
                     e.printStackTrace();
+                }finally {
+                    if (conn != null) {
+                        conn.disconnect();
+                    }
                 }
             }
         });

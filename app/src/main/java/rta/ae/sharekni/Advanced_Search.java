@@ -693,7 +693,6 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
 
                         Languages_Dilaog = new Dialog(mContext);
-                        ;
                         Languages_Dilaog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                         Languages_Dilaog.setContentView(R.layout.languages_dialog);
 

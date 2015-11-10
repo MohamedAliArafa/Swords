@@ -21,6 +21,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
@@ -68,6 +69,8 @@ public class PickUpActivity extends AppCompatActivity {
     Context mContext;
     Dialog Emirates_Dialog;
     ListView Emirates_lv;
+    ImageView selectarrow_im,selectarrow_im_2;
+    RelativeLayout Emirates_Reltive_1,Emirates_Reltive_2;
 
     static PickUpActivity pickUpActivity;
 
@@ -91,6 +94,10 @@ public class PickUpActivity extends AppCompatActivity {
 
         initToolbar();
         mContext = this;
+        selectarrow_im= (ImageView) findViewById(R.id.selectarrow_im);
+        selectarrow_im_2= (ImageView) findViewById(R.id.selectarrow_im_2);
+        Emirates_Reltive_1= (RelativeLayout) findViewById(R.id.Emirates_Reltive_1);
+        Emirates_Reltive_2= (RelativeLayout) findViewById(R.id.Emirates_Reltive_2);
 
         dis_submit = (Button) findViewById(R.id.dis_submit);
         Emirates_txt = (TextView) findViewById(R.id.Emirates_spinner);
@@ -235,7 +242,7 @@ public class PickUpActivity extends AppCompatActivity {
                 , new int[]{R.id.row_id_search, R.id.row_name_search});
 
 
-        Emirates_txt.setOnClickListener(new View.OnClickListener() {
+        Emirates_Reltive_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -267,7 +274,7 @@ public class PickUpActivity extends AppCompatActivity {
         });
 
 
-        Emirates_txt_2.setOnClickListener(new View.OnClickListener() {
+        Emirates_Reltive_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

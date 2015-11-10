@@ -75,6 +75,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
     ImageView Rides_joined_image_1;
     ImageView Edit_Profile_Im;
     TextView Saved_Search_txt_2;
+    TextView rating;
     ImageView Saved_Search_image_2;
 
 
@@ -131,6 +132,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         name = (TextView) findViewById(R.id.tv_name_home);
         nat = (TextView) findViewById(R.id.nat_home);
         Lnag_home = (TextView) findViewById(R.id.lang_Home);
+        rating = (TextView) findViewById(R.id.textView);
         btn_create = (RelativeLayout) findViewById(R.id.btn_createCarPool);
         Home_Relative_Permit = (RelativeLayout) findViewById(R.id.Home_Relative_Permit);
         Home_Realtive_Vehicles = (RelativeLayout) findViewById(R.id.Home_Realtive_Vehicles);
@@ -240,7 +242,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 PassengerJoinedRidesCount_str += jsonArray.getString("PassengerJoinedRidesCount");
                 PassengerJoinedRidesCount_str += ")";
                 PassengerJoinedRidesCount.setText(PassengerJoinedRidesCount_str);
-
+//                rating.setText(jsonArray.getString("AccountRating"));
                 if (DRIVER_ALERTS_COUNT < All_Alerts){
                     DRIVER_ALERTS_COUNT = All_Alerts;
                     CreateNotification(y++);
@@ -477,6 +479,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 DriverMyRidesCount_str += ")";
                 DriverMyRidesCount.setText(DriverMyRidesCount_str);
                 DriverMyAlertsCount.setText( String.valueOf(All_Alerts));
+//                rating.setText(jsonArray.getString("AccountRating"));
                 assert AccountType != null;
                 if (!AccountType.equals("D")) {
                     // btn_create.setBackgroundColor(Color.LTGRAY);

@@ -71,7 +71,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/Best_Drivers_Item_rate"
+                    android:id="@+id/Driver_profile_Item_rate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/NationalityEnName"

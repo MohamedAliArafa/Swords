@@ -69,6 +69,7 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
             vh.SDG_RouteDays = (TextView) v.findViewById(R.id.search_results_days);
             vh.Phone_Message = (ImageView) v.findViewById(R.id.im1);
             vh.Phone_Call = (ImageView) v.findViewById(R.id.im5);
+            vh.Rating = (TextView) v.findViewById(R.id.Best_Drivers_Item_rate);
            // vh.Route_Join = (ImageView) v.findViewById(R.id.driver_add_pic);
            // vh.Route_Review = (ImageView) v.findViewById(R.id.driver_review);
             vh.Photo = (CircularNetworkImageView) v.findViewById(R.id.search_list_photo);
@@ -92,6 +93,7 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
         vh.SDG_Route_Start_FromTime.setText((bestRouteDataModel.getSDG_Route_Start_FromTime()));
         vh.Nationality_en.setText(bestRouteDataModel.getNationality_en());
         vh.SDG_RouteDays.setText(bestRouteDataModel.getSDG_RouteDays());
+        vh.Rating.setText(bestRouteDataModel.getDriverRating());
         vh.Photo.setImageUrl(URL + bestRouteDataModel.getPhotoURl() , imageLoader);
         Log.d("Photo path",URL + bestRouteDataModel.getPhotoURl());
 
@@ -210,6 +212,7 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
         TextView SDG_Route_Start_FromTime ;
         TextView Nationality_en;
         TextView SDG_RouteDays ;
+        TextView Rating;
         CircularNetworkImageView Photo;
 
 
