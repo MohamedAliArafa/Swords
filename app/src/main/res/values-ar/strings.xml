@@ -289,13 +289,15 @@
     <string name="passengers_permit"></string>
     <string name="agree">أوافق</string>
     <string name="close">إغلاق</string>
-    <string name="policy">سياسات الإمان و الخصوصية</string>
+    <string name="policy">سياسة الأمن و الخصوصية</string>
     <string name="terms_con">الشروط و الإحكام</string>
     <string name="decline">رفض</string>
     <string name="remarks">التعليقات</string>
     <string name="request_date">تاريخ الطلب</string>
     <string name="route">الطريق :</string>
     <string name="send_you_join_request">أرسل لك طلب إنضمام</string>
+    <string name="policy_file">file:///android_asset/privacypolicyar.html</string>
+    <string name="terms_file">file:///android_asset/terms_ar.html</string>
 
 
 </resources>

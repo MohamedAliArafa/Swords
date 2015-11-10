@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +30,7 @@ import org.json.JSONObject;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.util.Locale;
 
 import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.Map.MapDataModel;
@@ -48,10 +50,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     String To_EmirateEnName, From_EmirateEnName, To_RegionEnName, From_RegionEnName;
 
 
-
-
-
-    Double MyLat =  0.0;
+    Double MyLat = 0.0;
     Double My_Lng = 0.0;
 
     @Override
@@ -99,9 +98,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.getUiSettings().setZoomGesturesEnabled(true);
         mMap.setMyLocationEnabled(true);
 
-       mMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
-           @Override
-           public boolean onMyLocationButtonClick() {
+        mMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
+            @Override
+            public boolean onMyLocationButtonClick() {
 
 //               Location myLocation =  mMap.getMyLocation();
 //               if (myLocation!=null) {
@@ -112,9 +111,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //                   }
 //               }
 
-               return false;
-           }
-       });
+                return false;
+            }
+        });
 
 //
 //         GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
@@ -144,8 +143,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        Log.d("My Lat Lng", String.valueOf(userLocation.latitude));
 
 
-
-
 //
 //        MyLat =   mMap.getMyLocation().getLatitude();
 //        My_Lng = mMap.getMyLocation().getLongitude();
@@ -159,8 +156,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     }
-
-
 
 
     @Override
@@ -289,7 +284,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         String snippet = data[i].getFromRegionArName();
                         String title = data[i].getFromRegionEnName();
                         int NoOfRoutes = data[i].getNoOfRoutes();
-                        int  NoOfPassengers_Count = data[i].getNoOFPassengers();
+                        int NoOfPassengers_Count = data[i].getNoOFPassengers();
                         TextView emirateArName = (TextView) v.findViewById(R.id.emirateAr_name_id);
                         TextView emirateEnName = (TextView) v.findViewById(R.id.emirateEn_name_id);
                         TextView emirateLat = (TextView) v.findViewById(R.id.txt_map_lat);
@@ -328,10 +323,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     public void onInfoWindowClick(Marker marker) {
                         int i = Integer.parseInt(marker.getTitle());
 
+
                         From_Em_Id = data[i].getFromEmirateId();
                         From_Reg_Id = data[i].getFromRegionId();
-                        From_EmirateEnName = data[i].getFromEmirateEnName();
-                        From_RegionEnName = data[i].getFromRegionEnName();
+
+                        Locale locale = Locale.getDefault();
+                        String loca = locale.toString();
+                        Log.d("locale", loca);
+                        if (loca.equals("en")) {
+                            From_EmirateEnName = data[i].getFromEmirateEnName();
+                            From_RegionEnName = data[i].getFromRegionEnName();
+                        } else if (loca.equals("ar")) {
+                            From_EmirateEnName = data[i].getFromEmirateArName();
+                            From_RegionEnName = data[i].getFromRegionArName();
+                        }
+
+
                         Intent intent1 = new Intent(getBaseContext(), QuickSearchResults.class);
                         intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                         intent1.putExtra("From_Em_Id", From_Em_Id);

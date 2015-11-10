@@ -27,17 +27,17 @@ public class TermsAndCond extends AppCompatActivity {
         webview = (WebView) findViewById(R.id.webview);
         agreeBtn = (Button) findViewById(R.id.agreeBtn);
         initToolbar();
-        Locale locale = Locale.getDefault();
-        String loca = locale.toString();
-        Log.d("locale", loca);
-        if (loca.equals("en_GB")) {
+//        Locale locale = Locale.getDefault();
+//        String loca = locale.toString();
+//        Log.d("locale", loca);
+//        if (loca.equals("en_GB")) {
 
             webview.loadUrl(getString(R.string.terms_file));
-        } else if (loca.equals("ar")) {
-
-
-            webview.loadUrl(getString(R.string.terms_file_ar));
-        }
+//        } else if (loca.equals("ar")) {
+//
+//
+//            webview.loadUrl(getString(R.string.terms_file_ar));
+//        }
 
 
         agreeBtn.setOnClickListener(new View.OnClickListener() {
