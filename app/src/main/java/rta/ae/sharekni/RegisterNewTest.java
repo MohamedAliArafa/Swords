@@ -35,6 +35,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
@@ -130,6 +131,13 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
     RelativeLayout txt_terms;
     TextView Terms_And_Cond_txt_2;
     TextView Privacy_and_poolicy;
+    LinearLayout FirstName_Linear;
+    LinearLayout LastName_Linear;
+    LinearLayout MobileNumber_Linear;
+    LinearLayout UserName_Linear;
+    LinearLayout Password_Linear;
+    LinearLayout Nat_Linear;
+    LinearLayout Language_Linear;
 
 
     private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
@@ -144,18 +152,22 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
             cal.set(Calendar.YEAR, year_x);
             cal.set(Calendar.MONTH, month_x);
             cal.set(Calendar.DAY_OF_MONTH, day_x + 4);
-            Date date = cal.getTime();
-            String dayOfWeek = simpledateformat.format(date);
-            String year_string = String.valueOf(year_x);
-            String month_string = String.valueOf(month_x);
-            String day_string = String.valueOf(day_x);
-            full_date = day_string + "/" + month_string + "/" + year_string;
-            txt_year.setText(full_date);
-            txt_comma.setVisibility(View.VISIBLE);
-            txt_dayOfWeek.setText(dayOfWeek);
-            Log.d("Calendar test", full_date);
+            if (year < 2015-18){
+                Date date = cal.getTime();
+                String dayOfWeek = simpledateformat.format(date);
+                String year_string = String.valueOf(year_x);
+                String month_string = String.valueOf(month_x);
+                String day_string = String.valueOf(day_x);
+                full_date = day_string + "/" + month_string + "/" + year_string;
+                txt_year.setText(full_date);
+                txt_comma.setVisibility(View.VISIBLE);
+                txt_dayOfWeek.setText(dayOfWeek);
+                Log.d("Calendar test", full_date);
+            }else{
+                txt_dayOfWeek.setText("You Must be more than 18 years old");
+                Toast.makeText(RegisterNewTest.this, "You are too young", Toast.LENGTH_SHORT).show();
+            }
         }
-
     };
 
 
@@ -178,7 +190,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         registerNewTestActivity = this;
         mContext = this;
-        cal.add(Calendar.YEAR, -18);
+//        cal.add(Calendar.YEAR, -18);
 
         year_x = cal.get(Calendar.YEAR);
         month_x = cal.get(Calendar.MONTH);
@@ -219,11 +231,28 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         txt_lang = (TextView) findViewById(R.id.autocomplete_lang_id);
         txt_country = (AutoCompleteTextView) findViewById(R.id.autocompletecountry_id);
 
+
+
+
+
         Terms_And_Cond_txt_2 = (TextView) findViewById(R.id.Terms_And_Cond_txt_2);
         Terms_And_Cond_txt_2.setText(Html.fromHtml("<u><font color=#e72433>" + getString(R.string.reg_terms) + "</font></u>"));
         txt_terms = (RelativeLayout) findViewById(R.id.terms_relative);
         Privacy_and_poolicy = (TextView) findViewById(R.id.Privacy_and_poolicy);
         Privacy_and_poolicy.setText(Html.fromHtml("<u><font color=#e72433>" + getString(R.string.reg_policy) + "</font></u>"));
+
+        FirstName_Linear= (LinearLayout) findViewById(R.id.FirstName_Linear);
+        LastName_Linear= (LinearLayout) findViewById(R.id.LastName_Linear);
+        MobileNumber_Linear = (LinearLayout) findViewById(R.id.MobileNumber_Linear);
+        UserName_Linear = (LinearLayout) findViewById(R.id.UserName_Linear);
+        Password_Linear = (LinearLayout) findViewById(R.id.Password_Linear);
+        Nat_Linear = (LinearLayout) findViewById(R.id.Nat_Linear);
+        Language_Linear = (LinearLayout) findViewById(R.id.Language_Linear);
+
+
+
+
+
         initToolbar();
 
 
@@ -272,52 +301,51 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
             }
         });
 
-        txt_country.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        edit_fname.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                Boolean result = false;
                 if (!hasFocus) {
-                    if (Country_List.size() != 0 && txt_country.getText() != null && !txt_country.getText().toString().equals("Nationality")) {
-                        for (int i = 0; i <= 193; i++) {
-                            String a = Country_List.get(i).get("NationalityEnName");
-                            String b = txt_country.getText().toString();
-                            if (a.equals(b)) {
-                                result = true;
-                            }
-                        }
-                    }
-                    if (!result) {
-                        Toast.makeText(RegisterNewTest.this, R.string.unknown_country, Toast.LENGTH_SHORT).show();
+                    edit_fname.setHint(getString(R.string.Reg_FirstN));
+                    if (edit_fname.getText().length() == 0) {
+                        FirstName_Linear.setBackgroundResource(R.drawable.user_register_border_error);
+                    } else {
+                        FirstName_Linear.setBackgroundResource(R.drawable.user_register_border);
                     }
                 }
-
-
-                if (hasFocus){
-                    txt_country.setHint("");
-                }
-
             }
         });
 
-        txt_lang.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        edit_lname.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                Boolean result = false;
-                try {
-                    if (!hasFocus) {
-                        if (Lang_List.size() != 0 && txt_lang.getText() != null && !txt_lang.getText().toString().equals("Preferred Language")) {
-                            for (int i = 0; i <= Lang_List.size(); i++) {
-                                String a = Lang_List.get(i).get("NationalityEnName");
-                                String b = txt_lang.getText().toString();
-                                if (a.equals(b)) {
-                                    result = true;
-                                }
-                            }
-                        }
-                        if (!result) {
-                            Toast.makeText(RegisterNewTest.this, R.string.unknown_language, Toast.LENGTH_SHORT).show();
-                        }
+                if (!hasFocus) {
+                    edit_lname.setHint(getString(R.string.Reg_FirstN));
+                    if (edit_lname.getText().length() == 0) {
+                        LastName_Linear.setBackgroundResource(R.drawable.user_register_border_error);
+                    } else {
+                        LastName_Linear.setBackgroundResource(R.drawable.user_register_border);
                     }
-                } catch (NullPointerException e) {
-                    Toast.makeText(RegisterNewTest.this, R.string.unknown_language, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        edit_phone.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    edit_phone.setHint(getString(R.string.REg_Mobile));
+                    if (edit_phone != null) {
+                        if (edit_phone.length() < 7) {
+//                            Toast.makeText(RegisterNewTest.this, R.string.short_mobile, Toast.LENGTH_SHORT).show();
+                            MobileNumber_Linear.setBackgroundResource(R.drawable.user_register_border_error);
+                        }else {
+                            MobileNumber_Linear.setBackgroundResource(R.drawable.user_register_border);
+                        }
+                    }else {
+                        MobileNumber_Linear.setBackgroundResource(R.drawable.user_register_border);
+                    }
+                }
+                if (hasFocus){
+                    edit_phone.setHint("");
                 }
             }
         });
@@ -325,10 +353,15 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         edit_user.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (!isEmailValid(edit_user.getText().toString())) {
-                    Toast.makeText(RegisterNewTest.this, R.string.email_valid_form, Toast.LENGTH_SHORT).show();
+                if (!hasFocus){
+                    edit_user.setHint("Username (Your Email)");
+                    if (!isEmailValid(edit_user.getText().toString())) {
+                        UserName_Linear.setBackgroundResource(R.drawable.user_register_border_error);
+//                        Toast.makeText(RegisterNewTest.this, R.string.email_valid_form, Toast.LENGTH_SHORT).show();
+                    }
+                }else {
+                    UserName_Linear.setBackgroundResource(R.drawable.user_register_border);
                 }
-
                 if (hasFocus){
                     edit_user.setHint("");
                 }
@@ -338,56 +371,75 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         edit_pass.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
+                    edit_pass.setHint("Password");
                     if (edit_pass != null) {
                         if (edit_pass.length() <= 4) {
-                            Toast.makeText(RegisterNewTest.this, R.string.short_pass, Toast.LENGTH_SHORT).show();
+                            Password_Linear.setBackgroundResource(R.drawable.user_register_border_error);
+//                            Toast.makeText(RegisterNewTest.this, R.string.short_pass, Toast.LENGTH_SHORT).show();
                         }
                     }
+                }else {
+                    Password_Linear.setBackgroundResource(R.drawable.user_register_border);
                 }
-
                 if (hasFocus){
                     edit_pass.setHint("");
                 }
             }
         });
 
-        edit_phone.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        txt_country.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             public void onFocusChange(View v, boolean hasFocus) {
+                Boolean result = false;
                 if (!hasFocus) {
-                    if (edit_phone != null) {
-                        if (edit_phone.length() == 7) {
-                            Toast.makeText(RegisterNewTest.this, R.string.short_mobile, Toast.LENGTH_SHORT).show();
+                    txt_country.setHint(getString(R.string.nationality));
+                    if (Country_List.size() != 0 && txt_country.getText() != null && !txt_country.getText().toString().equals("Nationality")) {
+                        for (int i = 0; i <= 193; i++) {
+                            String a = Country_List.get(i).get(getString(R.string.nat_name2));
+                            String b = txt_country.getText().toString();
+                            if (a.equals(b)) {
+                                result = true;
+                            }
                         }
                     }
+                    if (!result) {
+                        txt_country.setBackgroundResource(R.drawable.user_register_border_error);
+//                        Toast.makeText(RegisterNewTest.this, R.string.unknown_country, Toast.LENGTH_SHORT).show();
+                    }else {
+                        txt_country.setBackgroundResource(R.drawable.user_register_border);
+                    }
                 }
-
                 if (hasFocus){
-                    edit_phone.setHint("");
+                    txt_country.setHint("");
                 }
-
             }
         });
 
-
-
-
-
-        edit_lname.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
+        txt_lang.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             public void onFocusChange(View v, boolean hasFocus) {
+                Boolean result = false;
+                    if (!hasFocus) {
+                        txt_lang.setHint(getString(R.string.language));
+                        if (Lang_List.size() != 0 && txt_lang.getText() != null && !txt_lang.getText().toString().equals(getString(R.string.Reg_PrefLang))) {
+                            for (int i = 0; i <= Lang_List.size(); i++) {
+                                String a = Lang_List.get(i).get("NationalityEnName");
+                                String b = txt_lang.getText().toString();
+                                if (a.equals(b)) {
+                                    result = true;
+                                }
+                            }
+                        }else {
+                            Nat_Linear.setBackgroundResource(R.drawable.user_register_border);
+                        }
+                        if (!result) {
+                            Nat_Linear.setBackgroundResource(R.drawable.user_register_border_error);
+//                            Toast.makeText(RegisterNewTest.this, R.string.unknown_language, Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 if (hasFocus){
-                    edit_lname.setHint("");
+                    txt_lang.setHint("");
                 }
             }
         });
-
-
-
-
-
-
-
-
 
         both_toggle.setOnClickListener(this);
         driver_toggle.setOnClickListener(this);
@@ -407,8 +459,47 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (edit_fname.getText() != null && edit_fname.getText().toString() != "First Name" && edit_lname.getText() != null && edit_lname.getText().toString() != "Last Name" && edit_phone.getText() != null && edit_phone.getText().toString() != "Mobile Number" && edit_pass.getText() != null && edit_pass.getText().toString() != "Password" && edit_user.getText() != null && edit_user.getText().toString() != "User Name (Your Email)" && txt_country.getText() != null && txt_country.getText().toString() != "Nationality" && txt_lang.getText() != null && txt_lang.getText().toString() != "Preferred Language" && full_date != null) {
-                    if (uploadedImage == null) {
+
+                if (edit_fname.getText().length()==0 ){
+                    FirstName_Linear.setBackgroundResource(R.drawable.user_register_border_error);
+                }else {
+                    FirstName_Linear.setBackgroundResource(R.drawable.user_register_border);
+                }
+                if (edit_lname.getText().length()!=0){
+                    LastName_Linear.setBackgroundResource(R.drawable.user_register_border);
+                }else {
+                    LastName_Linear.setBackgroundResource(R.drawable.user_register_border_error);
+                }
+                if (edit_phone.getText().length()!=0){
+                    MobileNumber_Linear.setBackgroundResource(R.drawable.user_register_border);
+                }else {
+                    MobileNumber_Linear.setBackgroundResource(R.drawable.user_register_border_error);
+                }
+                if (edit_pass.getText().length()!=0){
+                    Password_Linear.setBackgroundResource(R.drawable.user_register_border);
+                }else {
+                    Password_Linear.setBackgroundResource(R.drawable.user_register_border_error);
+                }
+                if (edit_user.getText().length()!=0){
+                    UserName_Linear.setBackgroundResource(R.drawable.user_register_border);
+                }else {
+                    UserName_Linear.setBackgroundResource(R.drawable.user_register_border_error);
+                }
+
+                if (txt_country.getText().length()!=0){
+                    Nat_Linear.setBackgroundResource(R.drawable.user_register_border);
+                }else {
+                    Nat_Linear.setBackgroundResource(R.drawable.user_register_border_error);
+                }
+                if (txt_lang.getText().length()!=0){
+                    Language_Linear.setBackgroundResource(R.drawable.user_register_border);
+                }else {
+                    Language_Linear.setBackgroundResource(R.drawable.user_register_border_error);
+                }
+                if (full_date != null){
+                    btn_datepicker_id.setBackgroundResource(R.drawable.user_register_border);
+                }
+                if (uploadedImage == null) {
                         Toast.makeText(RegisterNewTest.this, R.string.select_image_first_error, Toast.LENGTH_SHORT).show();
                     } else {
                         String Fname = edit_fname.getText().toString();
@@ -444,10 +535,12 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                         }
 
                     }
-                } else {
-                    Toast.makeText(RegisterNewTest.this, R.string.fill_all_error, Toast.LENGTH_SHORT).show();
                 }
-            }
+
+//            else {
+//                    Toast.makeText(RegisterNewTest.this, R.string.fill_all_error, Toast.LENGTH_SHORT).show();
+//                }
+//
         });
 
 
