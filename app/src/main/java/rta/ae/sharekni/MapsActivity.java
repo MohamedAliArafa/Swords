@@ -1,24 +1,18 @@
 package rta.ae.sharekni;
 
 import android.app.AlertDialog;
-import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Parcel;
 import android.support.v4.app.FragmentActivity;
-import android.os.Bundle;
-import android.support.v4.content.IntentCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import rta.ae.sharekni.Arafa.Classes.GetData;
-import rta.ae.sharekni.Map.MapDataModel;
-
-import rta.ae.sharekni.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -35,6 +29,9 @@ import org.json.JSONObject;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+
+import rta.ae.sharekni.Arafa.Classes.GetData;
+import rta.ae.sharekni.Map.MapDataModel;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -102,6 +99,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.getUiSettings().setZoomGesturesEnabled(true);
         mMap.setMyLocationEnabled(true);
 
+       mMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
+           @Override
+           public boolean onMyLocationButtonClick() {
+
+//               Location myLocation =  mMap.getMyLocation();
+//               if (myLocation!=null) {
+//                   LatLng loc = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
+//                   Marker mMarker = mMap.addMarker(new MarkerOptions().position(loc));
+//                   if (mMap != null) {
+//                       mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 16.0f));
+//                   }
+//               }
+
+               return false;
+           }
+       });
+
 //
 //         GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
 //            @Override
@@ -145,6 +159,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     }
+
+
 
 
     @Override

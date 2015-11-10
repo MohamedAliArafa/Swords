@@ -93,11 +93,10 @@
                 android:text="@string/onboard_best_drivers"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                android:textStyle="bold"
                 android:singleLine="true"
                 android:lines="1"
                 android:maxLines="1"
-
+                android:textStyle="bold"
 
                 />
 
@@ -130,6 +129,7 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
 
+
             >
 
             <ImageView
@@ -154,7 +154,6 @@
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
-
                 />
 
 

@@ -63,6 +63,13 @@ public class GetData {
 //    public static final String PhotoURL = "http://213.42.51.219/uploads/personalphoto/";
 //
 
+//
+//        public static final String DOMAIN = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx/";
+//    public static final String NonOpDomain = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx";
+//    public static final String PhotoURL = "http://sharekni-web.sdg.ae/uploads/personalphoto/";
+
+
+
 
     public static final String DOMAIN = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx/";
     public static final String NonOpDomain = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx";
