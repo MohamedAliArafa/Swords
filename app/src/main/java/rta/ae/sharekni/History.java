@@ -109,7 +109,7 @@ public class History extends AppCompatActivity {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(History.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(History.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -160,20 +160,20 @@ public class History extends AppCompatActivity {
 
 
 
-                                            item.setFromEm(json.getString("FromEmirateEnName"));
-                                            item.setFromReg(json.getString("FromRegionEnName"));
+                                            item.setFromEm(json.getString(getString(R.string.from_em_en_name)));
+                                            item.setFromReg(json.getString(getString(R.string.from_reg_en_name)));
 
-                                            ToEmirateEnName_str=json.getString("ToEmirateEnName");
+                                            ToEmirateEnName_str=json.getString(getString(R.string.to_reg_en_name));
                                             if (ToEmirateEnName_str.equals("null")){
-                                                item.setToEm("Not set");
-                                                item.setToReg("Not set");
-                                                item.setRouteName(json.getString("FromEmirateEnName"));
+                                                item.setToEm(getString(R.string.not_set));
+                                                item.setToReg(getString(R.string.not_set));
+                                                item.setRouteName(json.getString(getString(R.string.from_em_en_name)));
 
 
                                             }else{
-                                                item.setRouteName(json.getString("FromEmirateEnName") + " : " + json.getString("ToEmirateEnName"));
-                                                item.setToEm(json.getString("ToEmirateEnName"));
-                                                item.setToReg(json.getString("ToRegionEnName"));
+                                                item.setRouteName(json.getString(getString(R.string.from_em_en_name)) + " : " + json.getString(getString(R.string.to_em_en_name)));
+                                                item.setToEm(json.getString(getString(R.string.to_em_en_name)));
+                                                item.setToReg(json.getString(getString(R.string.to_reg_en_name)));
 
 
                                             }
@@ -190,28 +190,28 @@ public class History extends AppCompatActivity {
 
 
                                             if (json.getString("Saturday").equals("true")) {
-                                                days += "Sat , ";
+                                                days += getString(R.string.sat);
                                             }
                                             if (json.getString("Sunday").equals("true")) {
-                                                days += "Sun , ";
+                                                days += getString(R.string.sun);
 
                                             }
                                             if (json.getString("Monday").equals("true")) {
-                                                days += "Mon , ";
+                                                days += getString(R.string.mon);
 
                                             }
                                             if (json.getString("Tuesday").equals("true")) {
-                                                days += "Tue , ";
+                                                days += getString(R.string.tue);
                                             }
                                             if (json.getString("Wednesday").equals("true")) {
-                                                days += "Wed , ";
+                                                days += getString(R.string.wed);
                                             }
                                             if (json.getString("Thursday").equals("true")) {
-                                                days += "Thu , ";
+                                                days += getString(R.string.thu);
 
                                             }
                                             if (json.getString("Friday").equals("true")) {
-                                                days += "Fri ";
+                                                days += getString(R.string.fri);
                                             }
 
 
