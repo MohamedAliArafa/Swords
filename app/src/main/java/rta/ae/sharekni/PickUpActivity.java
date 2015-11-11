@@ -73,6 +73,8 @@ public class PickUpActivity extends AppCompatActivity {
     RelativeLayout Emirates_Reltive_1,Emirates_Reltive_2;
 
     static PickUpActivity pickUpActivity;
+    backTread back1;
+    backTread2 back2;
 
     AutoCompleteTextView Create_CarPool_txt_regions, Create_CarPool_txt_regions_2;
     ImageView sweep_icon, sweep_icon_2;
@@ -80,6 +82,8 @@ public class PickUpActivity extends AppCompatActivity {
     public static PickUpActivity getInstance() {
         return pickUpActivity;
     }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +95,8 @@ public class PickUpActivity extends AppCompatActivity {
         FLAG_ID = intent.getIntExtra("FALG_SEARCH", 0);
         Log.d("Flag id", String.valueOf(FLAG_ID));
 
+        back1 = new backTread();
+        back2 = new backTread2();
 
         initToolbar();
         mContext = this;
@@ -152,7 +158,8 @@ public class PickUpActivity extends AppCompatActivity {
                         Log.d("To_Em_Id_1", String.valueOf(To_Em_Id));
                         Log.d("To_Reg_Id_1", String.valueOf(To_Reg_Id));
                         startActivity(in);
-
+                        back1.cancel(true);
+                        back2.cancel(true);
                         finish();
 
 
@@ -177,6 +184,8 @@ public class PickUpActivity extends AppCompatActivity {
                         Log.d("To_Em_Id_1", String.valueOf(To_Em_Id));
                         Log.d("To_Reg_Id_1", String.valueOf(To_Reg_Id));
                         startActivity(in);
+                        back1.cancel(true);
+                        back2.cancel(true);
 
                         finish();
 
@@ -311,7 +320,7 @@ public class PickUpActivity extends AppCompatActivity {
 
                 if (hasFocus) {
                     arr_2.clear();
-                    new backTread2().execute();
+                    back2.execute();
                 }
 
             }
@@ -323,7 +332,7 @@ public class PickUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 arr.clear();
-                new backTread().execute();
+                back1.execute();
             }
         });
 
@@ -548,8 +557,9 @@ public class PickUpActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        back1.cancel(true);
+        back2.cancel(true);
         finish();
-
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -564,6 +574,8 @@ public class PickUpActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
+
 
 
 }  //  Class
