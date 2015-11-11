@@ -102,8 +102,8 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     Button Create_CarPool_pickUp;
     Button Create_CarPool_Dropoff;
     Button create;
-    String Create_CarPool_txt_PickUp="Start Point";
-    String Create_CarPool_txt_Drop_Off="End Point";
+    String Create_CarPool_txt_PickUp=getString(R.string.start_point);
+    String Create_CarPool_txt_Drop_Off=getString(R.string.end_point);
     String Create_CarPool_full_date;
     EditText edit_route_name;
     TextView Create_CarPool_txt_Selecet_Start_Point;
@@ -203,7 +203,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                     }
 
 
-                    if (From_RegionEnName_str.equals("null") || From_RegionEnName_str.equals("Not Set")) {
+                    if (From_RegionEnName_str.equals("null") || From_RegionEnName_str.equals(getString(R.string.not_set))) {
                         From_RegionEnName_str = "";
                         From_RegionEnName_str = getString(R.string.not_set);
                         Create_CarPool_txt_PickUp += ",";
@@ -232,7 +232,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                         Create_CarPool_txt_Drop_Off += To_EmirateEnName_str;
                     }
 
-                    if (To_RegionEnName_str.equals("null") || To_RegionEnName_str.equals("Not Set")) {
+                    if (To_RegionEnName_str.equals("null") || To_RegionEnName_str.equals(getString(R.string.not_set))) {
                         To_RegionEnName_str = "";
                         To_RegionEnName_str = getString(R.string.not_set);
                         Create_CarPool_txt_Drop_Off += ",";
@@ -603,7 +603,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         if (v == create) {
 
 
-            if (edit_route_name.getText() != null && edit_route_name.getText().toString() != "Ride Name" && From_Em_Id_2 != -1 && To_Em_Id_2 != -1 && From_Reg_Id_2 != -1 && To_Reg_Id_2 != -1 && Single_Periodic_ID != -1 && Vehicle_Id != -1 && id != -1 && Create_CarPool_txt_beforeCal.getText() != "Click to Select" && Create_CarPool_txt_time_selected.getText() != null && Create_CarPool_txt_time_selected.getText().toString() != "Click to Select") {
+            if (edit_route_name.getText() != null && edit_route_name.getText().toString() != getString(R.string.ride_name) && From_Em_Id_2 != -1 && To_Em_Id_2 != -1 && From_Reg_Id_2 != -1 && To_Reg_Id_2 != -1 && Single_Periodic_ID != -1 && Vehicle_Id != -1 && id != -1 && Create_CarPool_txt_beforeCal.getText() != getString(R.string.click_to_select) && Create_CarPool_txt_time_selected.getText() != null && Create_CarPool_txt_time_selected.getText().toString() != getString(R.string.click_to_select)) {
                 String is_Rounded;
                 String EnName = edit_route_name.getText().toString();
                 int FromEmId = From_Em_Id_2;   // dubai
@@ -1137,7 +1137,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                         TreeMap<String, String> valuePairs = new TreeMap<>();
                         JSONObject jsonObject = j.getJSONObject(i);
                         valuePairs.put("ID", jsonObject.getString("ID"));
-                        valuePairs.put("ManufacturingEnName", jsonObject.getString("ManufacturingEnName"));
+                        valuePairs.put("ManufacturingEnName", jsonObject.getString(getString(R.string.man_en_name)));
                         Create_CarPool_Vehicles_List.add(valuePairs);
                     }
                     //Toast.makeText(RegisterNewTest.this, "test pref lang" + Lang_List.toString(), Toast.LENGTH_LONG).show();

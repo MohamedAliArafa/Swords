@@ -407,7 +407,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(MapsActivity.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MapsActivity.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }

@@ -319,7 +319,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    edit_lname.setHint(getString(R.string.Reg_FirstN));
+                    edit_lname.setHint(getString(R.string.Reg_LastN));
                     if (edit_lname.getText().length() == 0) {
                         LastName_Linear.setBackgroundResource(R.drawable.user_register_border_error);
                     } else {
@@ -371,7 +371,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         edit_pass.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    edit_pass.setHint("Password");
+                    edit_pass.setHint(R.string.password);
                     if (edit_pass != null) {
                         if (edit_pass.length() <= 4) {
                             Password_Linear.setBackgroundResource(R.drawable.user_register_border_error);
@@ -392,9 +392,9 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                 Boolean result = false;
                 if (!hasFocus) {
                     txt_country.setHint(getString(R.string.nationality));
-                    if (Country_List.size() != 0 && txt_country.getText() != null && !txt_country.getText().toString().equals("Nationality")) {
+                    if (Country_List.size() != 0 && txt_country.getText() != null && !txt_country.getText().toString().equals(getString(R.string.nationality))) {
                         for (int i = 0; i <= 193; i++) {
-                            String a = Country_List.get(i).get(getString(R.string.nat_name2));
+                            String a = Country_List.get(i).get("NationalityEnName");
                             String b = txt_country.getText().toString();
                             if (a.equals(b)) {
                                 result = true;

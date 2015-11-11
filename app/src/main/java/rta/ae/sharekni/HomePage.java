@@ -242,7 +242,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 PassengerJoinedRidesCount_str += jsonArray.getString("PassengerJoinedRidesCount");
                 PassengerJoinedRidesCount_str += ")";
                 PassengerJoinedRidesCount.setText(PassengerJoinedRidesCount_str);
-//                rating.setText(jsonArray.getString("AccountRating"));
+                rating.setText(jsonArray.getString("AccountRating"));
                 if (DRIVER_ALERTS_COUNT < All_Alerts){
                     DRIVER_ALERTS_COUNT = All_Alerts;
                     CreateNotification(y++);
@@ -251,7 +251,6 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 DriverMyRidesCount_str += "(";
                 DriverMyRidesCount_str += jsonArray.getString("DriverMyRidesCount");
                 DriverMyRidesCount_str += ")";
-                DriverMyRidesCount.setText(DriverMyRidesCount_str);
                 DriverMyRidesCount.setText(DriverMyRidesCount_str);
                 DriverMyAlertsCount.setText( String.valueOf(All_Alerts));
 
@@ -479,7 +478,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 DriverMyRidesCount_str += ")";
                 DriverMyRidesCount.setText(DriverMyRidesCount_str);
                 DriverMyAlertsCount.setText( String.valueOf(All_Alerts));
-//                rating.setText(jsonArray.getString("AccountRating"));
+                rating.setText(jsonArray.getString("AccountRating"));
                 assert AccountType != null;
                 if (!AccountType.equals("D")) {
                     // btn_create.setBackgroundColor(Color.LTGRAY);

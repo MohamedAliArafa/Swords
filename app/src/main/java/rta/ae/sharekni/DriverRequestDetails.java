@@ -121,9 +121,9 @@ public class DriverRequestDetails extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     public void run() {
                         new AlertDialog.Builder(DriverRequestDetails.this)
-                                .setTitle("Connection Problem!")
-                                .setMessage("Make sure you have internet connection")
-                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                .setTitle(getString(R.string.connection_problem))
+                                .setMessage(getString(R.string.con_problem_message))
+                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                         Intent mainIntent = getIntent();
@@ -143,7 +143,7 @@ public class DriverRequestDetails extends AppCompatActivity {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(DriverRequestDetails.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DriverRequestDetails.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -181,9 +181,9 @@ public class DriverRequestDetails extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     public void run() {
                         new AlertDialog.Builder(DriverRequestDetails.this)
-                                .setTitle("Connection Problem!")
-                                .setMessage("Make sure you have internet connection")
-                                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                                .setTitle(getString(R.string.connection_problem))
+                                .setMessage(getString(R.string.con_problem_message))
+                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                         Intent mainIntent = getIntent();
@@ -203,7 +203,7 @@ public class DriverRequestDetails extends AppCompatActivity {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(DriverRequestDetails.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DriverRequestDetails.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }

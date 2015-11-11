@@ -353,16 +353,16 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
         @Override
         protected void onPostExecute(Object o) {
             try {
-                edit_route_name.setText(j.getString("RouteEnName"));
-                Create_CarPool_txt_Selecet_Start_Point.setText(j.getString("FromEmirateEnName")+" , "+j.getString("FromRegionEnName"));
-                Create_CarPool_txt_Select_Dest.setText(j.getString("ToEmirateEnName")+" , "+j.getString("ToRegionEnName"));
+                edit_route_name.setText(j.getString(getString(R.string.route_name)));
+                Create_CarPool_txt_Selecet_Start_Point.setText(j.getString(getString(R.string.from_em_en_name))+" , "+j.getString(getString(R.string.from_reg_en_name)));
+                Create_CarPool_txt_Select_Dest.setText(j.getString(getString(R.string.to_em_en_name))+" , "+j.getString(getString(R.string.to_reg_en_name)));
                 From_Em_Id = j.getInt("FromEmirateId");
                 From_Reg_Id = j.getInt("FromRegionId");
                 To_Em_Id = j.getInt("ToEmirateId");
                 To_Reg_Id = j.getInt("ToRegionId");
 //                Create_CarPool_txt_year.setText("Not Changed");
                 Vehicle_Id = j.getInt("VehicelId");
-                createCarPool_Vehicles.setText("Select Vehicle");
+                createCarPool_Vehicles.setText(getString(R.string.select_vehicle));
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -473,7 +473,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                     TreeMap<String, String> valuePairs = new TreeMap<>();
                     JSONObject jsonObject = j.getJSONObject(i);
                     valuePairs.put("ID", jsonObject.getString("ID"));
-                    valuePairs.put("ManufacturingEnName", jsonObject.getString("ManufacturingEnName"));
+                    valuePairs.put("ManufacturingEnName", jsonObject.getString(getString(R.string.man_en_name)));
                     Create_CarPool_Vehicles_List.add(valuePairs);
                 }
                 //Toast.makeText(RegisterNewTest.this, "test pref lang" + Lang_List.toString(), Toast.LENGTH_LONG).show();
@@ -527,7 +527,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                     TreeMap<String, String> valuePairs = new TreeMap<>();
                     JSONObject jsonObject = j.getJSONObject(i);
                     valuePairs.put("LanguageId", jsonObject.getString("LanguageId"));
-                    valuePairs.put("LanguageEnName", jsonObject.getString("LanguageEnName"));
+                    valuePairs.put("LanguageEnName", jsonObject.getString(getString(R.string.lang_name)));
                     Create_CarPool_Lang_List.add(valuePairs);
 
                 }
@@ -752,7 +752,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Edit Ride");
+        textView.setText(R.string.edit_ride);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -761,7 +761,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         if (v==create){
-            if (edit_route_name.getText()!=null&&edit_route_name.getText().toString()!="Ride Name"&&From_Em_Id != -1&&To_Em_Id != -1&&From_Reg_Id != -1&&To_Reg_Id != -1&&Single_Periodic_ID != -1&&Vehicle_Id != -1&&id != -1&&Create_CarPool_txt_beforeCal.getText().toString()!="Click to Select"&&Create_CarPool_txt_time_selected.getText()!=null&&Create_CarPool_txt_time_selected.getText().toString() !="Click to Select") {
+            if (edit_route_name.getText()!=null&&edit_route_name.getText().toString()!=getString(R.string.ride_name)&&From_Em_Id != -1&&To_Em_Id != -1&&From_Reg_Id != -1&&To_Reg_Id != -1&&Single_Periodic_ID != -1&&Vehicle_Id != -1&&id != -1&&Create_CarPool_txt_beforeCal.getText().toString()!=getString(R.string.click_to_select)&&Create_CarPool_txt_time_selected.getText()!=null&&Create_CarPool_txt_time_selected.getText().toString() !=getString(R.string.click_to_select)) {
                 String is_Rounded;
                 String EnName = edit_route_name.getText().toString();
                 int FromEmId = From_Em_Id;   // dubai
