@@ -1247,7 +1247,10 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        networkCheck.cancel(true);
+        nat.cancel(true);
+        lan.cancel(true);
+        age.cancel(true);
         finish();
     }
 

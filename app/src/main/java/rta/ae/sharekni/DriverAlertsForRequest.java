@@ -45,6 +45,12 @@ public class DriverAlertsForRequest extends AppCompatActivity {
     SharedPreferences myPrefs;
     jsoning jsoning;
 
+    @Override
+    public void onBackPressed() {
+        jsoning.cancel(true);
+        finish();
+    }
+
     Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -244,6 +250,8 @@ public class DriverAlertsForRequest extends AppCompatActivity {
             return null;
         }
     }
+
+
 
 
 

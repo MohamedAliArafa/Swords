@@ -320,7 +320,9 @@ public class PickUpActivity extends AppCompatActivity {
 
                 if (hasFocus) {
                     arr_2.clear();
-                    back2.execute();
+                    if (!back2.getStatus().equals(AsyncTask.Status.RUNNING)){
+                        back2.execute();
+                    }
                 }
 
             }
@@ -332,7 +334,9 @@ public class PickUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 arr.clear();
-                back1.execute();
+                if (!back1.getStatus().equals(AsyncTask.Status.RUNNING)){
+                    back1.execute();
+                }
             }
         });
 
