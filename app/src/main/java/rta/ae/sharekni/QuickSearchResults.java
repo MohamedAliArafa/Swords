@@ -57,6 +57,8 @@ public class QuickSearchResults extends AppCompatActivity {
     private Toolbar toolbar;
     String ID;
 
+    backTread backTread;
+
     TextView to_txt_id, comma5;
     String Str_To_EmirateEnName_txt, Str_To_RegionEnName_txt;
     Activity acivity;
@@ -106,6 +108,8 @@ public class QuickSearchResults extends AppCompatActivity {
             to_txt_id.setVisibility(View.INVISIBLE);
         }
 
+        backTread = new backTread();
+
 //        if (To_EmirateEnName.equals("null")){
 //            To_EmirateEnName="Not Specified";
 //            To_EmirateEnName_txt.setText(To_EmirateEnName);
@@ -119,7 +123,7 @@ public class QuickSearchResults extends AppCompatActivity {
 //            To_RegionEnName_txt.setText(To_RegionEnName);
 //        }
 
-        new backTread().execute();
+        backTread.execute();
     }
 
 
@@ -137,6 +141,7 @@ public class QuickSearchResults extends AppCompatActivity {
 
                 if (jArray.length()==0) {
                     Toast.makeText(getBaseContext(), getString(R.string.error), Toast.LENGTH_LONG).show();
+                    backTread.cancel(true);
                     finish();
                 }
 
@@ -233,6 +238,8 @@ public class QuickSearchResults extends AppCompatActivity {
                                     QuickSearchResults.this.startActivity(in);
                                     Log.d("Array id : ", searchArray.get(position).getAccountName());
                                     Log.d("on click id : ", String.valueOf(searchArray.get(position).getDriverId()));
+
+                                    backTread.cancel(true);
                                 }
                             });
                         } catch (JSONException e) {
@@ -289,11 +296,13 @@ public class QuickSearchResults extends AppCompatActivity {
                                         mainIntent.putExtra("To_RegionEnName", To_RegionEnName);
                                         mainIntent.putExtra("From_RegionEnName", From_RegionEnName);
                                         mainIntent.putExtra("Gender", Gender);
+                                        backTread.cancel(true);
                                         startActivity(mainIntent);
                                     }
                                 })
                                 .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
+                                        backTread.cancel(true);
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();

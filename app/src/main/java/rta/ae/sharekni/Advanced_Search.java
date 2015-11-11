@@ -109,6 +109,11 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
     Button dvanced_Destination;
     boolean exists = false;
 
+    networkCheck networkCheck;
+    nat nat;
+    lan lan;
+    age age;
+
     int i2 = 0;
     String From_EmirateEnName_str, From_RegionEnName_str, To_EmirateEnName_str, To_RegionEnName_str;
     int From_Em_Id_2, From_Reg_Id_2, To_Em_Id_2, To_Reg_Id_2;
@@ -289,6 +294,11 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
       //  Advanced_dropOff_relative.setOnClickListener(this);
 
 
+        age = new age();
+        lan = new lan();
+        nat = new nat();
+        networkCheck = new networkCheck();
+
         if (i2 == 0) {
             Advanced_txt_Selecet_Start_Point.setText(getString(R.string.start_point));
             Log.d("pick 1", Advanced_txt_PickUp);
@@ -312,6 +322,11 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
             public void onClick(View v) {
                 Intent intent = new Intent(getBaseContext(), PickUpActivity.class);
                 intent.putExtra("FALG_SEARCH", 2);
+                networkCheck.cancel(true);
+                nat.cancel(true);
+                lan.cancel(true);
+                age.cancel(true);
+
                 startActivity(intent);
                 finish();
             }
@@ -439,13 +454,13 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
         }
 
         //  code to get nationals and set the adapter to the autotext complete
-        new nat().execute();
+        nat.execute();
 
         // code to get Languages and set it to the SPinner
-        new lan().execute();
+        lan.execute();
 
         // get age ranges and set it to the spineer
-        new age().execute();
+        age.execute();
 
         Advanced_btn_search_page.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -461,13 +476,19 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                 intent1.putExtra("To_EmirateEnName", To_EmirateEnName_str);
                 intent1.putExtra("To_RegionEnName", To_RegionEnName_str);
                 intent1.putExtra("Gender", i);
+
+                networkCheck.cancel(true);
+                nat.cancel(true);
+                lan.cancel(true);
+                age.cancel(true);
+
                 startActivity(intent1);
 
                 i2 = 1;
             }
         });
 
-        new networkCheck().execute();
+        networkCheck.execute();
     }   //  on create
 
     private class networkCheck extends AsyncTask {
@@ -489,12 +510,22 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                                 .setMessage(getString(R.string.con_problem_message))
                                 .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
+                                        networkCheck.cancel(true);
+                                        nat.cancel(true);
+                                        lan.cancel(true);
+                                        age.cancel(true);
+
                                         finish();
                                         startActivity(getIntent());
                                     }
                                 })
                                 .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
+                                        networkCheck.cancel(true);
+                                        nat.cancel(true);
+                                        lan.cancel(true);
+                                        age.cancel(true);
+
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
@@ -550,12 +581,22 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                                 .setMessage(getString(R.string.con_problem_message))
                                 .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
+                                        networkCheck.cancel(true);
+                                        nat.cancel(true);
+                                        lan.cancel(true);
+                                        age.cancel(true);
+
                                         finish();
                                         startActivity(getIntent());
                                     }
                                 })
                                 .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
+                                        networkCheck.cancel(true);
+                                        nat.cancel(true);
+                                        lan.cancel(true);
+                                        age.cancel(true);
+
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
@@ -636,12 +677,22 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                                 .setMessage(getString(R.string.con_problem_message))
                                 .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
+                                        networkCheck.cancel(true);
+                                        nat.cancel(true);
+                                        lan.cancel(true);
+                                        age.cancel(true);
+
                                         finish();
                                         startActivity(getIntent());
                                     }
                                 })
                                 .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
+                                        networkCheck.cancel(true);
+                                        nat.cancel(true);
+                                        lan.cancel(true);
+                                        age.cancel(true);
+
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
@@ -737,12 +788,22 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                                 .setMessage(getString(R.string.con_problem_message))
                                 .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
+                                        networkCheck.cancel(true);
+                                        nat.cancel(true);
+                                        lan.cancel(true);
+                                        age.cancel(true);
+
                                         finish();
                                         startActivity(getIntent());
                                     }
                                 })
                                 .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
+                                        networkCheck.cancel(true);
+                                        nat.cancel(true);
+                                        lan.cancel(true);
+                                        age.cancel(true);
+
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();

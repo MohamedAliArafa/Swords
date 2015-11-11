@@ -43,6 +43,7 @@ public class DriverAlertsForRequest extends AppCompatActivity {
     ListView Alerts_For_Request;
     int Driver_Id;
     SharedPreferences myPrefs;
+    jsoning jsoning;
 
     Toolbar toolbar;
     @Override
@@ -53,7 +54,6 @@ public class DriverAlertsForRequest extends AppCompatActivity {
             toolbar= (Toolbar) findViewById(R.id.app_bar);
             initToolbar();
 
-
         myPrefs = this.getSharedPreferences("myPrefs", 0);
         String ID = myPrefs.getString("account_id",null);
         Driver_Id = Integer.parseInt(ID);
@@ -63,10 +63,11 @@ public class DriverAlertsForRequest extends AppCompatActivity {
 
 
         ProgressDialog pDialog = new ProgressDialog(this);
-            pDialog.setMessage(getString(R.string.loading) + "...");
-            pDialog.show();
+        pDialog.setMessage(getString(R.string.loading) + "...");
+        pDialog.show();
+        jsoning = new jsoning(Alerts_For_Request, pDialog, this);
 
-            new jsoning(Alerts_For_Request, pDialog, this).execute();
+        jsoning.execute();
 
 
     }
@@ -123,9 +124,8 @@ public class DriverAlertsForRequest extends AppCompatActivity {
 
                         in.putExtra("RequestId", arr.get(i).getRequestId());
                         in.putExtra("RequestDate", arr.get(i).getRequestDate());
-
+                        jsoning.cancel(true);
                         con.startActivity(in);
-
 
                     }
 
