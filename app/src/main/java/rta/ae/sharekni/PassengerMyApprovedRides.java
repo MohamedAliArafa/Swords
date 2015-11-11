@@ -5,16 +5,13 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.ComponentName;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
-import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -29,11 +26,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import rta.ae.sharekni.Arafa.Classes.GetData;
-import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
-import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
-
-import rta.ae.sharekni.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +34,10 @@ import org.json.JSONObject;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+
+import rta.ae.sharekni.Arafa.Classes.GetData;
+import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
+import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
 
 public class PassengerMyApprovedRides extends AppCompatActivity {
 
@@ -184,8 +180,11 @@ public class PassengerMyApprovedRides extends AppCompatActivity {
                                             json = jArray.getJSONObject(i);
                                             int Route_ID = (json.getInt("RouteID"));
                                             int Driver_Account = (json.getInt("Account"));
+
                                             String Route_Name = (json.getString("Name_en"));
                                             item.setRoutePassengerId(json.getInt("RoutePassengerId"));
+                                            item.setRoute_id(Route_ID);
+                                            item.setPassenger_ID(Passenger_ID);
                                             Log.d("Route id", String.valueOf(Route_ID));
                                             Log.d("Driver_account", String.valueOf(Driver_Account));
                                             Log.d("Route Name", Route_Name);
@@ -201,6 +200,7 @@ public class PassengerMyApprovedRides extends AppCompatActivity {
                                             item.setRouteName(jsonObject.getString(getString(R.string.route_name)));
                                             item.setStartFromTime(jsonObject.getString("StartFromTime"));
                                             item.setEndToTime_(jsonObject.getString("EndToTime_"));
+
 
                                             item.setDriver_ID(Driver_Account);
 

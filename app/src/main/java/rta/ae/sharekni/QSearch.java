@@ -245,8 +245,6 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         Advanced_Search_Relative_2 = (RelativeLayout) findViewById(R.id.advanced_search);
         quick_Destination = (Button) findViewById(R.id.quick_Destination);
 
-        pickup_relative.setVisibility(View.INVISIBLE);
-        dropOff_relative.setVisibility(View.INVISIBLE);
 
 
 
@@ -254,10 +252,10 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         if (i==0) {
             txt_Selecet_Start_Point.setText(getString(R.string.start_point));
             Log.d("pick 1", txt_PickUp);
-            pickup_relative.setVisibility(View.INVISIBLE);
+
 
         } else if (i==1){
-            pickup_relative.setVisibility(View.VISIBLE);
+
 
             txt_Selecet_Start_Point.setText(txt_PickUp);
 
@@ -267,9 +265,9 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         if (i==0) {
             txt_Select_Dest.setText(getString(R.string.end_point));
 //            Log.d("drop off 1 ", txt_Drop_Off);
-            dropOff_relative.setVisibility(View.INVISIBLE);
+
         } else if (i==1){
-            dropOff_relative.setVisibility(View.VISIBLE);
+
 
             txt_Select_Dest.setText(txt_Drop_Off);
 
@@ -937,21 +935,5 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
     }
 
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        if (i==0){
 
-            pickup_relative.setVisibility(View.INVISIBLE);
-            dropOff_relative.setVisibility(View.INVISIBLE);
-
-        }else if (i==1){
-
-            pickup_relative.setVisibility(View.VISIBLE);
-            dropOff_relative.setVisibility(View.VISIBLE);
-            i=0;
-
-        }
-
-    }
 }

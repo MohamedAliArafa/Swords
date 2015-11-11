@@ -80,6 +80,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
     int Driver_ID;
     Button Join_Ride_btn;
     ListView ride_details_passengers;
+    int FLAG_1;
 
     private GoogleMap mMap;
 
@@ -133,6 +134,8 @@ public class RideDetailsPassenger extends AppCompatActivity {
         Passenger_Review_Driver_Btn = (Button) findViewById(R.id.Passenger_Review_Driver_Btn);
         Relative_REviews= (RelativeLayout) findViewById(R.id.Relative_REviews);
         Relative_REviews_Address_2 = (TextView) findViewById(R.id.Relative_REviews_Address_2);
+        Join_Ride_btn.setVisibility(View.VISIBLE);
+
         // setListViewHeightBasedOnChildren(Driver_get_Review_lv);
         //setSupportActionBar(toolbar);
         //getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -142,6 +145,16 @@ public class RideDetailsPassenger extends AppCompatActivity {
         Bundle in = getIntent().getExtras();
         Driver_ID = in.getInt("DriverID");
         Route_ID = in.getInt("RouteID");
+
+        try {
+
+            if (in.getInt("FLAG_1")==1){
+                Join_Ride_btn.setVisibility(View.INVISIBLE);
+            }
+        }catch (NullPointerException e){
+
+        }
+
 
         Log.d("Test Driver id", String.valueOf(Driver_ID));
         Log.d("test Route id", String.valueOf(Route_ID));
@@ -422,6 +435,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
                                         default:
                                             Toast.makeText(RideDetailsPassenger.this, R.string.req_sent_succ, Toast.LENGTH_LONG).show();
                                             dialog.dismiss();
+                                            Join_Ride_btn.setVisibility(View.INVISIBLE);
                                             break;
                                     }
                                 }

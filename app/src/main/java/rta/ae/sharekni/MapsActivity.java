@@ -1,8 +1,10 @@
 package rta.ae.sharekni;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcel;
@@ -101,6 +103,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
             @Override
             public boolean onMyLocationButtonClick() {
+
+
+                if (!((LocationManager) context.getSystemService(Context.LOCATION_SERVICE))
+                        .isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                    Intent gpsOptionsIntent = new Intent(
+                            android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    startActivity(gpsOptionsIntent);
+
+
+                    //prompt user to enable gps
+                }else{
+                    //gps is enabled
+
+                }
+
+
 
 //               Location myLocation =  mMap.getMyLocation();
 //               if (myLocation!=null) {

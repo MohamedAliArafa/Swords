@@ -298,6 +298,9 @@
     <string name="send_you_join_request">أرسل لك طلب إنضمام</string>
     <string name="policy_file">file:///android_asset/privacypolicyar.html</string>
     <string name="terms_file">file:///android_asset/terms_ar.html</string>
-
+    <string name="edit_msg">تم تعديل بيانات الحساب</string>
+    <string name="Driver_request_details_address">بيانات التنيه</string>
+    <string name="accept">أوافق</string>
+    <string name="Age_Ranges_str">الفئات العمريه</string>
 
 </resources>

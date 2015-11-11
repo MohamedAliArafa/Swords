@@ -698,7 +698,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
 
                         TextView Lang_Dialog_txt_id = (TextView) Languages_Dilaog.findViewById(R.id.Lang_Dialog_txt_id);
-                        Lang_Dialog_txt_id.setText("Age Ranges");
+                        Lang_Dialog_txt_id.setText(R.string.Age_Ranges_str);
                         lang_lv = (ListView) Languages_Dilaog.findViewById(R.id.Langs_list);
                         lang_lv.setAdapter(AgeRangesAdapter);
                         Languages_Dilaog.show();

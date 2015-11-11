@@ -301,6 +301,8 @@
     <string name="remarks">Remarks</string>
     <string name="decline">Decline</string>
     <string name="accept">Accept</string>
-
+    <string name="edit_msg">Account has been Changed</string>
+    <string name="Driver_request_details_address">Notification Details</string>
+    <string name="Age_Ranges_str">Age Ranges</string>
 
 </resources>

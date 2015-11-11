@@ -2,14 +2,12 @@ package rta.ae.sharekni;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
-import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -19,11 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
-import rta.ae.sharekni.Arafa.Classes.AppController;
-import rta.ae.sharekni.Arafa.Classes.CircularNetworkImageView;
-import rta.ae.sharekni.Arafa.Classes.GetData;
-
-import rta.ae.sharekni.R;
 
 import org.json.JSONException;
 
@@ -32,6 +25,10 @@ import java.net.Socket;
 import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.List;
+
+import rta.ae.sharekni.Arafa.Classes.AppController;
+import rta.ae.sharekni.Arafa.Classes.CircularNetworkImageView;
+import rta.ae.sharekni.Arafa.Classes.GetData;
 
 public class DriverRequestDetails extends AppCompatActivity {
 
@@ -237,7 +234,7 @@ public class DriverRequestDetails extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Notification Details");
+        textView.setText(R.string.Driver_request_details_address);
         //   toolbar.setElevation(10);
 
 
