@@ -116,16 +116,25 @@ public class EditProfileTest extends AppCompatActivity {
             day_x = dayOfMonth;
             txt_beforeCal.setVisibility(View.INVISIBLE);
             SimpleDateFormat simpledateformat = new SimpleDateFormat("EEEE");
-            Date date = new Date(year_x, month_x, day_x + 4);
-            String dayOfWeek = simpledateformat.format(date);
-            String year_string = String.valueOf(year_x);
-            String month_string = String.valueOf(month_x);
-            String day_string = String.valueOf(day_x);
-            full_date = day_string + "/" + month_string + "/" + year_string;
-            txt_year.setText(full_date);
-            txt_comma.setVisibility(View.VISIBLE);
-            txt_dayOfWeek.setText(dayOfWeek);
-            Log.d("Calendar test", full_date);
+            Calendar cal = Calendar.getInstance();
+            cal.set(Calendar.YEAR, year_x);
+            cal.set(Calendar.MONTH, month_x);
+            cal.set(Calendar.DAY_OF_MONTH, day_x + 4);
+            if (year < 2015-18){
+                Date date = cal.getTime();
+                String dayOfWeek = simpledateformat.format(date);
+                String year_string = String.valueOf(year_x);
+                String month_string = String.valueOf(month_x);
+                String day_string = String.valueOf(day_x);
+                full_date = day_string + "/" + month_string + "/" + year_string;
+                txt_year.setText(full_date);
+                txt_comma.setVisibility(View.VISIBLE);
+                txt_dayOfWeek.setText(dayOfWeek);
+                Log.d("Calendar test", full_date);
+            }else{
+                txt_dayOfWeek.setText(R.string.must_be_more_18);
+                Toast.makeText(EditProfileTest.this, R.string.too_young, Toast.LENGTH_SHORT).show();
+            }
         }
     };
 
@@ -197,7 +206,7 @@ public class EditProfileTest extends AppCompatActivity {
         btn_Edit_Cancel= (Button) findViewById(R.id.btn_Edit_Cancel);
         edit_reg_mob = (EditText) findViewById(R.id.edit_reg_mob);
 
-        cal.add(Calendar.YEAR, -18);
+//        cal.add(Calendar.YEAR, -18);
 
         year_x = cal.get(Calendar.YEAR);
         month_x = cal.get(Calendar.MONTH);

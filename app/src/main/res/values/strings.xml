@@ -310,5 +310,7 @@
     <string name="password">Password</string>
     <string name="no_result_criteria">There is no Result matches your search criteria</string>
     <string name="error">Error</string>
+    <string name="must_be_more_18">You Must be more than 18 years old</string>
+    <string name="too_young">You are too young</string>
 
 </resources>

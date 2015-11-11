@@ -164,8 +164,8 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                 txt_dayOfWeek.setText(dayOfWeek);
                 Log.d("Calendar test", full_date);
             }else{
-                txt_dayOfWeek.setText("You Must be more than 18 years old");
-                Toast.makeText(RegisterNewTest.this, "You are too young", Toast.LENGTH_SHORT).show();
+                txt_dayOfWeek.setText(R.string.must_be_more_18);
+                Toast.makeText(RegisterNewTest.this, R.string.too_young, Toast.LENGTH_SHORT).show();
             }
         }
     };

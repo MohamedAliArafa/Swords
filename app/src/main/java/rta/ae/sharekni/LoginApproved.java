@@ -82,11 +82,14 @@ public class LoginApproved extends AppCompatActivity {
         username.setHint(R.string.Reg_Email);
         password.setHint(R.string.login_pass_hint);
 
-        username.setOnClickListener(new View.OnClickListener() {
+        username.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View v) {
-                username.setHint("");
-
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus && username.getText().length() != 0) {
+                    username.setHint("");
+                } else {
+                    username.setHint(getString(R.string.Reg_Email));
+                }
             }
         });
 
@@ -99,7 +102,11 @@ public class LoginApproved extends AppCompatActivity {
         password.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                password.setHint("");
+                if (hasFocus){
+                    password.setHint("");
+                }else {
+                    password.setHint(getString(R.string.password));
+                }
             }
         });
 
