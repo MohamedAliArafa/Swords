@@ -179,6 +179,10 @@ public class QuickSearchResults extends AppCompatActivity {
                             item.setAccountName(json.getString("AccountName"));
                             item.setDriverId(json.getInt("DriverId"));
                             item.setAccountPhoto(json.getString("AccountPhoto"));
+                            if (!json.getString("AccountPhoto").equals("NoImage.png")){
+                                GetData gd = new GetData();
+                                item.setDriverPhoto(gd.GetImage(json.getString("AccountPhoto")));
+                            }
                             item.setDriverEnName(json.getString("DriverEnName"));
 //                    item.setFrom_EmirateName_en(json.getString("From_EmirateName_en"));
 //                    item.setFrom_RegionName_en(json.getString("From_RegionName_en"));

@@ -75,6 +75,11 @@ public class QuickSearchResultAdapter extends BaseAdapter {
 
         final QuickSearchDataModel item = searchItems.get(position);
 //        Photo.setImageUrl(URL + item.getAccountPhoto(), imageLoader);
+        if (item.getDriverPhoto() != null){
+            Photo.setImageBitmap(item.getDriverPhoto());
+        }else {
+            Photo.setImageResource(R.drawable.defaultdriver);
+        }
         SDG_Route_Start_FromTime.setText(item.getSDG_Route_Start_FromTime());
 
 

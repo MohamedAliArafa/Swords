@@ -82,11 +82,8 @@ public class BestDriverDataModelAdapter extends BaseAdapter {
 
 
         final BestDriverDataModel m = driverItems.get(position);
-//        GetData gd = new GetData();
-//        Photo.setImageBitmap(gd.GetImage(m.getPhotoURL()));
-        if (!m.getPhotoURL().equals("NoImage.png")){
-            ImageDecoder im = new ImageDecoder();
-            im.stringRequest(m.getPhotoURL(), Photo, activity);
+        if (m.getPhoto() != null){
+            Photo.setImageBitmap(m.getPhoto());
         }else {
             Photo.setImageResource(R.drawable.defaultdriver);
         }

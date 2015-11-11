@@ -98,9 +98,8 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
         vh.SDG_RouteDays.setText(bestRouteDataModel.getSDG_RouteDays());
         vh.Rating.setText(bestRouteDataModel.getDriverRating());
 //        vh.Photo.setImageUrl(URL + bestRouteDataModel.getPhotoURl() , imageLoader);
-        if (!bestRouteDataModel.getPhotoURl().equals("NoImage.png")){
-            ImageDecoder im = new ImageDecoder();
-            im.stringRequest(bestRouteDataModel.getPhotoURl(), vh.Photo, context);
+        if (bestRouteDataModel.getDriverPhoto() != null){
+            vh.Photo.setImageBitmap(bestRouteDataModel.getDriverPhoto());
         }else {
             vh.Photo.setImageResource(R.drawable.defaultdriver);
         }

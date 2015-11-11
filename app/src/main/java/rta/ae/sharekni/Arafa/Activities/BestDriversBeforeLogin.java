@@ -62,10 +62,14 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
         private ProgressDialog pDialog;
         private List<BestDriverDataModel> arr = new ArrayList<>();
         boolean exists = false;
+        BestDriverDataModelAdapter adapter;
+        BestDriverDataModel driver;
+        JSONObject obj;
 
         @Override
         protected void onPreExecute() {
-
+            adapter = new BestDriverDataModelAdapter(BestDriversBeforeLogin.this, arr);
+            lv.setAdapter(adapter);
             pDialog = new ProgressDialog(BestDriversBeforeLogin.this);
             pDialog.setMessage(getString(R.string.loading) + "...");
             pDialog.setIndeterminate(false);
@@ -75,10 +79,7 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Object o) {
-            BestDriverDataModelAdapter adapter = new BestDriverDataModelAdapter(BestDriversBeforeLogin.this, arr);
-            lv.setAdapter(adapter);
             if (exists){
-                lv.requestLayout();
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -96,6 +97,8 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
         @Override
         protected void onProgressUpdate(Object[] values) {
             pDialog.setProgress((Integer) values[0]);
+            lv.setAdapter(adapter);
+            lv.requestLayout();
         }
 
         private void hidePDialog() {
@@ -144,14 +147,18 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
                 }
                 for (int i = 0; i < response.length(); i++) {
                     try {
-                        JSONObject obj = response.getJSONObject(i);
-                        final BestDriverDataModel driver = new BestDriverDataModel(Parcel.obtain());
+                        obj = response.getJSONObject(i);
+                        driver = new BestDriverDataModel(Parcel.obtain());
                         driver.setID(obj.getInt("AccountId"));
                         driver.setName(obj.getString("AccountName"));
                         driver.setPhotoURL(obj.getString("AccountPhoto"));
                         driver.setNationality(obj.getString(getString(R.string.nat_name2)));
                         driver.setRating(obj.getInt("Rating"));
                         driver.setPhoneNumber(obj.getString("AccountMobile"));
+                        if (!obj.getString("AccountPhoto").equals("NoImage.png")){
+                            GetData gd = new GetData();
+                            driver.setPhoto(gd.GetImage(obj.getString("AccountPhoto")));
+                        }
                         arr.add(driver);
                         publishProgress((int)(i*100/response.length()));
                     } catch (JSONException e) {

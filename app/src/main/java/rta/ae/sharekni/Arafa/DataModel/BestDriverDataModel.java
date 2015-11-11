@@ -1,5 +1,6 @@
 package rta.ae.sharekni.Arafa.DataModel;
 
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -20,6 +21,16 @@ public class BestDriverDataModel extends ArrayList<Parcelable> implements Parcel
 
     public String Name,PhotoURL,Nationality,Language,phoneNumber;
     public int ID,Rating;
+
+    public Bitmap getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Bitmap photo) {
+        this.photo = photo;
+    }
+
+    public Bitmap photo;
 
     public BestDriverDataModel(Parcel in) {
         Name = in.readString();

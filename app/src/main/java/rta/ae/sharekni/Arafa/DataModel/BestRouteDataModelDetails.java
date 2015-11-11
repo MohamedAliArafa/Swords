@@ -1,5 +1,6 @@
 package rta.ae.sharekni.Arafa.DataModel;
 
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -16,7 +17,17 @@ public class BestRouteDataModelDetails extends ArrayList<Parcelable> implements 
     public String FromReg;
     public String ToEm;
     public String ToReg;
-    public  String PhotoURl;
+    public String PhotoURl;
+
+    public Bitmap getDriverPhoto() {
+        return DriverPhoto;
+    }
+
+    public void setDriverPhoto(Bitmap driverPhoto) {
+        DriverPhoto = driverPhoto;
+    }
+
+    public Bitmap DriverPhoto;
 
     public String getDriverMobile() {
         return DriverMobile;

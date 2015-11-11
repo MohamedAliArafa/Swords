@@ -1,5 +1,6 @@
 package rta.ae.sharekni;
 
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -25,7 +26,15 @@ public class QuickSearchDataModel extends ArrayList<Parcelable> implements Parce
             , SDG_Route_Coordinates_Start_Lng, SDG_Route_Coordinates_End_Lng;
 
 
+    public Bitmap getDriverPhoto() {
+        return DriverPhoto;
+    }
 
+    public void setDriverPhoto(Bitmap driverPhoto) {
+        DriverPhoto = driverPhoto;
+    }
+
+    Bitmap DriverPhoto;
 
 
     public QuickSearchDataModel(Parcel in) {

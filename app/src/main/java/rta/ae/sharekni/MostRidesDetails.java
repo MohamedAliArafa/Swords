@@ -117,6 +117,8 @@ public class MostRidesDetails extends AppCompatActivity {
         protected void onPreExecute() {
             pDialog = new ProgressDialog(MostRidesDetails.this);
             pDialog.setMessage(getString(R.string.loading) + "...");
+            pDialog.setIndeterminate(false);
+            pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             pDialog.show();
             super.onPreExecute();
         }
@@ -153,6 +155,10 @@ public class MostRidesDetails extends AppCompatActivity {
                             item.setDriverId(json.getInt("AccountId"));
                             item.setRouteId(json.getInt("RouteId"));
                             item.setPhotoURl(json.getString("DriverPhoto"));
+                            if (!json.getString("DriverPhoto").equals("NoImage.png")){
+                                GetData gd = new GetData();
+                                item.setDriverPhoto(gd.GetImage(json.getString("DriverPhoto").replaceAll(" ","")));
+                            }
                             days = "";
 
                             if (json.getString("Saturday").equals("true")) {
