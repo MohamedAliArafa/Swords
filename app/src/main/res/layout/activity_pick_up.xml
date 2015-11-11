@@ -275,7 +275,7 @@
                     android:textColorHint="@color/primaryColor"
                     android:textSize="15sp"
                     android:completionThreshold="1"
-
+                    android:imeOptions="actionDone"
                     />
 
 

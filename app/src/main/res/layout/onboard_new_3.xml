@@ -36,7 +36,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
             android:id="@+id/OnBoard_Changelanguae"
-            android:src="@drawable/enicon"
+            android:src="@drawable/aricon"
             >
 
         </ImageView>

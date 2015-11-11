@@ -7,7 +7,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,19 +50,6 @@ public class OnboardingFragment2 extends Fragment {
         im_best_drivers = (RelativeLayout) view.findViewById(R.id.im_best_drivers);
         im_best_rides = (RelativeLayout) view.findViewById(R.id.im_best_rides);
         OnBoard_Changelanguae = (ImageView) view.findViewById(R.id.OnBoard_Changelanguae);
-
-
-
-        Locale locale = Locale.getDefault();
-        String loca = locale.toString();
-        Log.d("locale", loca);
-        if (loca.equals("en_GB")) {
-            OnBoard_Changelanguae.setBackgroundResource(R.drawable.enicon);
-
-        } else if (loca.equals("ar")) {
-
-            OnBoard_Changelanguae.setBackgroundResource(R.drawable.aricon);
-        }
 
 
 

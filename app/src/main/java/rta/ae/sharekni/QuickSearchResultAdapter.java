@@ -12,13 +12,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
-import rta.ae.sharekni.Arafa.Classes.AppController;
-import rta.ae.sharekni.Arafa.Classes.CircularNetworkImageView;
-import rta.ae.sharekni.Arafa.Classes.GetData;
-
-import rta.ae.sharekni.R;
+import com.pkmmte.view.CircularImageView;
 
 import java.util.List;
+
+import rta.ae.sharekni.Arafa.Classes.AppController;
+import rta.ae.sharekni.Arafa.Classes.GetData;
 
 /**
  * Created by nezar on 9/20/2015.
@@ -67,7 +66,7 @@ public class QuickSearchResultAdapter extends BaseAdapter {
 
         if (imageLoader == null) imageLoader = AppController.getInstance().getImageLoader();
 
-        CircularNetworkImageView Photo = (CircularNetworkImageView) convertView.findViewById(R.id.search_list_photo);
+        CircularImageView Photo = (CircularImageView) convertView.findViewById(R.id.search_list_photo);
         TextView SDG_Route_Start_FromTime = (TextView) convertView.findViewById(R.id.SDG_Route_Start_FromTime);
         TextView DriverEnName = (TextView) convertView.findViewById(R.id.DriverEnName);
         TextView Nationality_en = (TextView) convertView.findViewById(R.id.Nationality_en);
@@ -75,7 +74,7 @@ public class QuickSearchResultAdapter extends BaseAdapter {
         TextView Best_Drivers_Item_rate = (TextView) convertView.findViewById(R.id.Best_Drivers_Item_rate);
 
         final QuickSearchDataModel item = searchItems.get(position);
-        Photo.setImageUrl(URL + item.getAccountPhoto(), imageLoader);
+//        Photo.setImageUrl(URL + item.getAccountPhoto(), imageLoader);
         SDG_Route_Start_FromTime.setText(item.getSDG_Route_Start_FromTime());
 
 
