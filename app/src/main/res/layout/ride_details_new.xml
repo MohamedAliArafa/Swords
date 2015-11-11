@@ -183,7 +183,7 @@
                     android:layout_toRightOf="@+id/ride_details_time_id"
                     android:lines="1"
                     android:maxLines="1"
-                    android:text="StartFromTime"
+                    android:text="@string/not_set"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp" />
 
@@ -239,7 +239,7 @@
                     android:layout_toRightOf="@+id/ride_details_Ride_Days_txt"
                     android:lines="1"
                     android:maxLines="1"
-                    android:text="DDD, DDD, DDD"
+                    android:text="@string/not_set"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
 

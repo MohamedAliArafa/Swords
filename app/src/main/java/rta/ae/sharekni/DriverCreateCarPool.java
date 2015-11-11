@@ -102,8 +102,8 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     Button Create_CarPool_pickUp;
     Button Create_CarPool_Dropoff;
     Button create;
-    String Create_CarPool_txt_PickUp=getString(R.string.start_point);
-    String Create_CarPool_txt_Drop_Off=getString(R.string.end_point);
+    String Create_CarPool_txt_PickUp;
+    String Create_CarPool_txt_Drop_Off;
     String Create_CarPool_full_date;
     EditText edit_route_name;
     TextView Create_CarPool_txt_Selecet_Start_Point;
@@ -340,7 +340,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
         if (i2 == 0) {
             Create_CarPool_txt_Selecet_Start_Point.setText(getString(R.string.start_point));
-            Log.d("pick 1", Create_CarPool_txt_PickUp);
+//            Log.d("pick 1", Create_CarPool_txt_PickUp);
 
         } else if (i2 == 1) {
             Create_CarPool_txt_Selecet_Start_Point.setText(Create_CarPool_txt_PickUp);
@@ -350,7 +350,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
         if (i2 == 0) {
             Create_CarPool_txt_Select_Dest.setText(getString(R.string.end_point));
-            Log.d("drop off 1 ", Create_CarPool_txt_Drop_Off);
+//            Log.d("drop off 1 ", Create_CarPool_txt_Drop_Off);
         } else if (i2 == 1) {
             Create_CarPool_txt_Select_Dest.setText(Create_CarPool_txt_Drop_Off);
         }
