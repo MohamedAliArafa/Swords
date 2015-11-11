@@ -312,5 +312,6 @@
     <string name="too_young">سنك صغير جدا</string>
     <string name="No_History">لا يوجد تاريخ للبحث</string>
     <string name="No_Saved_Search">لا يوجد بحث محفوظ</string>
+    <string name="driver_nat_en_name">DriverNationalityArName</string>
 
 </resources>

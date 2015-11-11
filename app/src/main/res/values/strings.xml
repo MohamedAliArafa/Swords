@@ -314,5 +314,7 @@
     <string name="too_young">You are too young</string>
     <string name="No_History">No History Found</string>
     <string name="No_Saved_Search">No Saved Search</string>
+    <string name="driver_nat_en_name">DriverNationalityEnName</string>
+
 
 </resources>

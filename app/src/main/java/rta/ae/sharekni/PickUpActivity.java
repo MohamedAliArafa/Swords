@@ -381,7 +381,7 @@ public class PickUpActivity extends AppCompatActivity {
                 public void onClick(View v) {
 
                     Create_CarPool_txt_regions.setText("");
-                    Create_CarPool_txt_regions.setHint("Enter Region");
+                    Create_CarPool_txt_regions.setHint(getString(R.string.enter_region));
 
                 }
             });
@@ -470,7 +470,7 @@ public class PickUpActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Create_CarPool_txt_regions_2.setText("");
-                    Create_CarPool_txt_regions_2.setHint("Enter Region");
+                    Create_CarPool_txt_regions_2.setHint(getString(R.string.enter_region));
                 }
             });
 

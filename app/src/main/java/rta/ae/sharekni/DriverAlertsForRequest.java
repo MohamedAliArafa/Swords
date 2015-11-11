@@ -217,7 +217,7 @@ public class DriverAlertsForRequest extends AppCompatActivity {
                         obj = response.getJSONObject(i);
                         final DriverAlertsForRequestDataModel Alert = new DriverAlertsForRequestDataModel(Parcel.obtain());
                         Alert.setPassengerName(obj.getString("DriverName"));
-                        Alert.setNationalityEnName(obj.getString("DriverNationalityEnName"));
+                        Alert.setNationalityEnName(obj.getString(getString(R.string.driver_nat_en_name)));
                         Alert.setAccountPhoto(obj.getString("DriverPhoto"));
                         Alert.setRouteName(obj.getString("RouteName"));
                         Alert.setPassengerMobile(obj.getString("PassengerMobile"));
