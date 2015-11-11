@@ -13,10 +13,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
+import com.pkmmte.view.CircularImageView;
 
 import rta.ae.sharekni.Arafa.Classes.AppController;
 import rta.ae.sharekni.Arafa.Classes.CircularNetworkImageView;
 import rta.ae.sharekni.Arafa.Classes.GetData;
+import rta.ae.sharekni.Arafa.Classes.ImageDecoder;
 import rta.ae.sharekni.Arafa.DataModel.BestDriverDataModel;
 
 import rta.ae.sharekni.R;
@@ -67,7 +69,7 @@ public class BestDriverDataModelAdapter extends BaseAdapter {
 
         if (imageLoader == null) imageLoader = AppController.getInstance().getImageLoader();
 
-        CircularNetworkImageView Photo = (CircularNetworkImageView) convertView.findViewById(R.id.ivProfile);
+        CircularImageView Photo = (CircularImageView) convertView.findViewById(R.id.ivProfile);
         TextView Name = (TextView) convertView.findViewById(R.id.tvName);
         TextView Nat = (TextView) convertView.findViewById(R.id.tvNat);
         TextView Rat = (TextView) convertView.findViewById(R.id.Best_Drivers_Item_rate);
@@ -80,9 +82,15 @@ public class BestDriverDataModelAdapter extends BaseAdapter {
 
 
         final BestDriverDataModel m = driverItems.get(position);
-        GetData gd = new GetData();
-        Photo.setImageBitmap(gd.GetImage(m.getPhotoURL()));
-//        Photo.setImageUrl(URL + m.getPhotoURL(), imageLoader);
+//        GetData gd = new GetData();
+//        Photo.setImageBitmap(gd.GetImage(m.getPhotoURL()));
+        if (!m.getPhotoURL().equals("NoImage.png")){
+            ImageDecoder im = new ImageDecoder();
+            im.stringRequest(m.getPhotoURL(), Photo, activity);
+        }else {
+            Photo.setImageResource(R.drawable.defaultdriver);
+        }
+
         StringBuffer res = new StringBuffer();
 
         String[] strArr = m.getName().split(" ");

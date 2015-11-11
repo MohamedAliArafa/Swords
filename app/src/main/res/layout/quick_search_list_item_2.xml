@@ -43,7 +43,7 @@
         android:textSize="16sp" />
 
 
-    <rta.ae.sharekni.Arafa.Classes.CircularNetworkImageView
+    <com.pkmmte.view.CircularImageView
         android:id="@+id/search_list_photo"
         android:layout_width="80dp"
         android:layout_height="80dp"

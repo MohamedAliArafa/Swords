@@ -15,9 +15,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
+import com.pkmmte.view.CircularImageView;
+
 import rta.ae.sharekni.Arafa.Classes.AppController;
 import rta.ae.sharekni.Arafa.Classes.CircularNetworkImageView;
 import rta.ae.sharekni.Arafa.Classes.GetData;
+import rta.ae.sharekni.Arafa.Classes.ImageDecoder;
 import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModelDetails;
 
 import rta.ae.sharekni.R;
@@ -72,7 +75,7 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
             vh.Rating = (TextView) v.findViewById(R.id.Best_Drivers_Item_rate);
            // vh.Route_Join = (ImageView) v.findViewById(R.id.driver_add_pic);
            // vh.Route_Review = (ImageView) v.findViewById(R.id.driver_review);
-            vh.Photo = (CircularNetworkImageView) v.findViewById(R.id.search_list_photo);
+            vh.Photo = (CircularImageView) v.findViewById(R.id.search_list_photo);
             v.setTag(vh);
         }else
         {
@@ -94,7 +97,13 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
         vh.Nationality_en.setText(bestRouteDataModel.getNationality_en());
         vh.SDG_RouteDays.setText(bestRouteDataModel.getSDG_RouteDays());
         vh.Rating.setText(bestRouteDataModel.getDriverRating());
-        vh.Photo.setImageUrl(URL + bestRouteDataModel.getPhotoURl() , imageLoader);
+//        vh.Photo.setImageUrl(URL + bestRouteDataModel.getPhotoURl() , imageLoader);
+        if (!bestRouteDataModel.getPhotoURl().equals("NoImage.png")){
+            ImageDecoder im = new ImageDecoder();
+            im.stringRequest(bestRouteDataModel.getPhotoURl(), vh.Photo, context);
+        }else {
+            vh.Photo.setImageResource(R.drawable.defaultdriver);
+        }
         Log.d("Photo path",URL + bestRouteDataModel.getPhotoURl());
 
 
@@ -213,7 +222,7 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
         TextView Nationality_en;
         TextView SDG_RouteDays ;
         TextView Rating;
-        CircularNetworkImageView Photo;
+        CircularImageView Photo;
 
 
     }
