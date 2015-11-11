@@ -158,7 +158,7 @@ public class Profile extends AppCompatActivity {
 
             NationalityEnName.setText(json.getString(getString(R.string.nat_name2)));
             Photo.setImageUrl(URL_Photo + json.getString("PhotoPath"), imageLoader);
-
+            Driver_profile_Item_rate.setText(json.getString("AccountRating"));
             profile_call.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

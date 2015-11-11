@@ -225,7 +225,9 @@ public class EditProfileTest extends AppCompatActivity {
 
             Nationality_ID = j.getInt("NationalityId");
 
-            txt_lang.setText(j.getString(getString(R.string.pref_lang2)));
+            if (!getString(R.string.pref_lang2).equals("null")){
+                txt_lang.setText(j.getString(getString(R.string.pref_lang2)));
+            }
             txt_lang.setTextColor(getResources().getColor(R.color.primaryColor));
 
             Language_ID = j.getInt("PrefferedLanguage");

@@ -136,7 +136,7 @@ public class QuickSearchResults extends AppCompatActivity {
             try {
 
                 if (jArray.length()==0) {
-                    Toast.makeText(getBaseContext(), "Error", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), getString(R.string.error), Toast.LENGTH_LONG).show();
                     finish();
                 }
 

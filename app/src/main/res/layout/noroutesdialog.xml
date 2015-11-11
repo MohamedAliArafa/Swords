@@ -17,7 +17,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
         android:gravity="center"
-        android:text="There is no Result matches your search criteria "
+        android:text="@string/no_result_criteria"
         android:textColor="@color/primaryColor" />
 
     <Button
@@ -28,7 +28,7 @@
         android:layout_marginBottom="20dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/borders_quicksearch_btn"
-        android:text="Ok"
+        android:text="@string/Ok_txt"
         android:textAllCaps="false"
         android:textColor="#FFFFFF" />
 
