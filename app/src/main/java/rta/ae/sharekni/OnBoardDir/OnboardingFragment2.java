@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,6 @@ import java.util.Locale;
 
 import rta.ae.sharekni.Arafa.Activities.BestDriversBeforeLogin;
 import rta.ae.sharekni.Arafa.Activities.BestRideBeforeLogin;
-
 import rta.ae.sharekni.R;
 
 
@@ -26,12 +26,12 @@ import rta.ae.sharekni.R;
  */
 
 
-
 public class OnboardingFragment2 extends Fragment {
 
     RelativeLayout im_best_rides;
     RelativeLayout im_best_drivers;
     ImageView OnBoard_Changelanguae;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,9 +48,24 @@ public class OnboardingFragment2 extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        im_best_drivers= (RelativeLayout) view.findViewById(R.id.im_best_drivers);
+        im_best_drivers = (RelativeLayout) view.findViewById(R.id.im_best_drivers);
         im_best_rides = (RelativeLayout) view.findViewById(R.id.im_best_rides);
         OnBoard_Changelanguae = (ImageView) view.findViewById(R.id.OnBoard_Changelanguae);
+
+
+
+        Locale locale = Locale.getDefault();
+        String loca = locale.toString();
+        Log.d("locale", loca);
+        if (loca.equals("en_GB")) {
+            OnBoard_Changelanguae.setBackgroundResource(R.drawable.enicon);
+
+        } else if (loca.equals("ar")) {
+
+            OnBoard_Changelanguae.setBackgroundResource(R.drawable.aricon);
+        }
+
+
 
         OnBoard_Changelanguae.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +102,7 @@ public class OnboardingFragment2 extends Fragment {
         im_best_rides.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),BestRideBeforeLogin.class);
+                Intent intent = new Intent(getActivity(), BestRideBeforeLogin.class);
                 startActivity(intent);
             }
         });
@@ -95,10 +110,14 @@ public class OnboardingFragment2 extends Fragment {
         im_best_drivers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),BestDriversBeforeLogin.class);
+                Intent intent = new Intent(getActivity(), BestDriversBeforeLogin.class);
                 startActivity(intent);
             }
         });
+
+
+
+
 
 // im_register.setOnClickListener(new View.OnClickListener() {
 //            @Override
