@@ -312,5 +312,7 @@
     <string name="error">Error</string>
     <string name="must_be_more_18">You Must be more than 18 years old</string>
     <string name="too_young">You are too young</string>
+    <string name="No_History">No History Found</string>
+    <string name="No_Saved_Search">No Saved Search</string>
 
 </resources>

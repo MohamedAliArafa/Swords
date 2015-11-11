@@ -1,8 +1,9 @@
 package rta.ae.sharekni;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ComponentName;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,12 +12,13 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
-import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,12 +27,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import rta.ae.sharekni.Arafa.Classes.GetData;
-import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
-import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
-import rta.ae.sharekni.Arafa.DataModelAdapter.ProfileRideAdapter;
-
-import rta.ae.sharekni.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,9 +36,15 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
 
+import rta.ae.sharekni.Arafa.Classes.GetData;
+import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
+import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
+import rta.ae.sharekni.Arafa.DataModelAdapter.ProfileRideAdapter;
+
 public class History extends AppCompatActivity {
 
 
+    Activity c;
     Toolbar toolbar;
     int Driver_ID;
     String days;
@@ -62,6 +64,8 @@ public class History extends AppCompatActivity {
         setContentView(R.layout.activity_history);
         user_ride_created = (ListView) findViewById(R.id.user_ride_created);
         initToolbar();
+        c=this;
+
 
         myPrefs = this.getSharedPreferences("myPrefs", 0);
         ID = Integer.parseInt(myPrefs.getString("account_id", "0"));
@@ -122,6 +126,29 @@ public class History extends AppCompatActivity {
                                 Log.d("url", url + ID);
                                 try {
                                     JSONArray jArray = new JSONArray(data);
+
+                                    if (jArray.length()==0){
+                                        Log.d("Error 3 ","Error3");
+
+                                        final Dialog dialog = new Dialog(c);
+                                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                        dialog.setContentView(R.layout.noroutesdialog);
+                                        Button btn = (Button) dialog.findViewById(R.id.noroute_id);
+                                        TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
+                                        dialog.show();
+                                        Text_3.setText(R.string.No_Saved_Search);
+
+                                        btn.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                dialog.dismiss();
+                                                c.finish();
+                                            }
+                                        });
+
+                                    }
+
+
                                     final BestRouteDataModel[] driver = new BestRouteDataModel[jArray.length()];
                                     JSONObject json;
                                     for (int i = 0; i < jArray.length(); i++) {
@@ -248,7 +275,7 @@ public class History extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText("Saved Search");
+        textView.setText(R.string.saved_search);
 //        toolbar.setElevation(10);
 
         setSupportActionBar(toolbar);

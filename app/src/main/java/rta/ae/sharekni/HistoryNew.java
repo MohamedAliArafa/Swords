@@ -3,23 +3,24 @@ package rta.ae.sharekni;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.os.Parcel;
-import android.support.v4.content.IntentCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioGroup;
@@ -31,13 +32,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import rta.ae.sharekni.Arafa.Activities.Profile;
-import rta.ae.sharekni.Arafa.Activities.Route;
-import rta.ae.sharekni.Arafa.Classes.GetData;
-import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
-import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
-
-import rta.ae.sharekni.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,6 +40,12 @@ import org.json.JSONObject;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+
+import rta.ae.sharekni.Arafa.Activities.Profile;
+import rta.ae.sharekni.Arafa.Activities.Route;
+import rta.ae.sharekni.Arafa.Classes.GetData;
+import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
+import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
 
 
 
@@ -64,13 +64,19 @@ public class HistoryNew extends AppCompatActivity {
     ListView user_ride_created;
 
     SharedPreferences myPrefs;
+    int FLAG_DRIVER_CREATED;
+    int FLAG_DRIVER_JOINED;
+    Boolean CREATED=false;
+    Boolean JOINED=false;
 
     String AccountType;
     Activity c;
 
 
     RelativeLayout history_created_rides_realtive;
+    RelativeLayout history_joined_rides_realtive;
         TextView driver_profile_RouteEnName;
+    TextView driver_profile_RouteEnName2;
 
 
 
@@ -105,6 +111,9 @@ public class HistoryNew extends AppCompatActivity {
         Passenger_Approved_Rides_Lv= (ListView) findViewById(R.id.Passenger_Approved_Rides_Lv);
         history_created_rides_realtive = (RelativeLayout) findViewById(R.id.history_created_rides_realtive);
         driver_profile_RouteEnName= (TextView) findViewById(R.id.driver_profile_RouteEnName);
+        history_joined_rides_realtive= (RelativeLayout) findViewById(R.id.history_joined_rides_realtive);
+        driver_profile_RouteEnName2= (TextView) findViewById(R.id.driver_profile_RouteEnName2);
+
 
         initToolbar();
         myPrefs = this.getSharedPreferences("myPrefs", 0);
@@ -124,18 +133,25 @@ public class HistoryNew extends AppCompatActivity {
 
         if (AccountType.equals("D")) {
 
-
             new rideJson().execute();
             new rideJson2().execute();
+
+
+
+
+
 
         }else if (AccountType.equals("P")){
             user_ride_created.setVisibility(View.INVISIBLE);
             driver_profile_RouteEnName.setVisibility(View.INVISIBLE);
             history_created_rides_realtive.setVisibility(View.INVISIBLE);
-            new rideJson2().execute();
+            new rideJson3().execute();
 
             }
 
+
+        Log.d("create flag", String.valueOf(FLAG_DRIVER_CREATED));
+        Log.d("join flag", String.valueOf(FLAG_DRIVER_JOINED));
 
 
     }
@@ -166,6 +182,7 @@ public class HistoryNew extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Object o) {
+            CREATED=true;
             hidePDialog();
             super.onPostExecute(o);
         }
@@ -232,6 +249,12 @@ public class HistoryNew extends AppCompatActivity {
                                     JSONObject json;
                                     if (jArray.length()==0){
                                         Log.d("Error 3 ","Error3");
+
+                                        FLAG_DRIVER_CREATED=1;
+
+                                        user_ride_created.setVisibility(View.INVISIBLE);
+                                        driver_profile_RouteEnName.setVisibility(View.INVISIBLE);
+                                        history_created_rides_realtive.setVisibility(View.INVISIBLE);
 
 //                                        final Dialog dialog = new Dialog(c);
 //                                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -358,6 +381,206 @@ public class HistoryNew extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Object o) {
+            JOINED=true;
+            Log.d("create flag", String.valueOf(FLAG_DRIVER_CREATED));
+            Log.d("join flag", String.valueOf(FLAG_DRIVER_JOINED));
+            hidePDialog();
+            if (FLAG_DRIVER_JOINED == 1 && FLAG_DRIVER_CREATED == 1) {
+
+                CREATED=false;
+                JOINED=false;
+
+                final Dialog dialog = new Dialog(c);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.noroutesdialog);
+                Button btn = (Button) dialog.findViewById(R.id.noroute_id);
+                TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
+                dialog.show();
+                Text_3.setText(R.string.No_History);
+
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        c.finish();
+                    }
+                });
+
+            }
+
+            super.onPostExecute(o);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            pDialog = new ProgressDialog(HistoryNew.this);
+            pDialog.setMessage(getString(R.string.loading) + "...");
+            pDialog.show();
+            super.onPreExecute();
+        }
+
+        private void hidePDialog() {
+            if (pDialog != null) {
+                pDialog.dismiss();
+                pDialog = null;
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object[] params) {
+            boolean exists = false;
+            try {
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                Socket sock = new Socket();
+                int timeoutMs = 2000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                exists = true;
+            } catch (final Exception e) {
+                e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new AlertDialog.Builder(HistoryNew.this)
+                                .setTitle(getString(R.string.connection_problem))
+                                .setMessage(getString(R.string.con_problem_message))
+                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                        startActivity(getIntent());
+                                    }
+                                })
+                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                        Toast.makeText(HistoryNew.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            if (exists) {
+                final GetData GD = new GetData();
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, url2 + Driver_ID,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                response = response.replaceAll("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
+                                response = response.replaceAll("<string xmlns=\"http://Sharekni-MobAndroid-Data.org/\">", "");
+                                response = response.replaceAll("</string>", "");
+                                // Display the first 500 characters of the response string.
+                                String data = response.substring(40);
+                                Log.d("url", url + Driver_ID);
+                                try {
+                                    JSONArray jArray = new JSONArray(data);
+                                    final BestRouteDataModel[] passenger = new BestRouteDataModel[jArray.length()];
+                                    JSONObject json;
+
+
+                                    if (jArray.length()==0){
+                                        Log.d("Error 3 ","Error3");
+
+                                        FLAG_DRIVER_JOINED=1;
+                                        Passenger_Approved_Rides_Lv.setVisibility(View.INVISIBLE);
+                                        history_joined_rides_realtive.setVisibility(View.INVISIBLE);
+                                        driver_profile_RouteEnName2.setVisibility(View.INVISIBLE);
+
+//                                        final Dialog dialog = new Dialog(c);
+//                                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//                                        dialog.setContentView(R.layout.noroutesdialog);
+//                                        Button btn = (Button) dialog.findViewById(R.id.noroute_id);
+//                                        TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
+//                                        dialog.show();
+//                                        Text_3.setText("There is no Rides joined");
+//
+//                                        btn.setOnClickListener(new View.OnClickListener() {
+//                                            @Override
+//                                            public void onClick(View v) {
+//                                                dialog.dismiss();
+//                                                c.finish();
+//                                            }
+//                                        });
+
+                                    }
+
+
+
+                                    for (int i = 0; i < jArray.length(); i++) {
+                                        try {
+                                            BestRouteDataModel item = new BestRouteDataModel(Parcel.obtain());
+                                            days = "";
+                                            json = jArray.getJSONObject(i);
+                                            int Route_ID = (json.getInt("RouteID"));
+                                            int Driver_Account = (json.getInt("Account"));
+                                            String Route_Name = (json.getString("Name_en"));
+                                            item.setRoutePassengerId(json.getInt("RoutePassengerId"));
+                                            Log.d("Route id", String.valueOf(Route_ID));
+                                            Log.d("Driver_account", String.valueOf(Driver_Account));
+                                            Log.d("Route Name", Route_Name);
+
+                                            JSONObject jsonObject = GD.GetRouteById(Route_ID);
+                                            String Routename2 = jsonObject.getString("RouteEnName");
+                                            Log.d("Route name 2 ", Routename2);
+
+                                            item.setFromEm(jsonObject.getString(getString(R.string.from_em_en_name)));
+                                            item.setFromReg(jsonObject.getString(getString(R.string.from_reg_en_name)));
+                                            item.setToEm(jsonObject.getString(getString(R.string.to_em_en_name)));
+                                            item.setToReg(jsonObject.getString(getString(R.string.to_reg_en_name)));
+                                            item.setRouteName(jsonObject.getString(getString(R.string.route_name)));
+                                  //          item.setStartFromTime(jsonObject.getString("StartFromTime"));
+                                    //        item.setEndToTime_(jsonObject.getString("EndToTime_"));
+
+                                            item.setDriver_ID(Driver_Account);
+
+                                            passenger[i] = item;
+
+                                            Passenger_Approved_Rides_Lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                                @Override
+                                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                                    Intent intent = new Intent(HistoryNew.this, Profile.class);
+                                                    intent.putExtra("DriverID",passenger[position].getDriver_ID() );
+                                                   HistoryNew.this.startActivity(intent);
+                                                }
+                                            });
+
+
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+
+
+                                    HistoryNewAdapter arrayAdapter = new HistoryNewAdapter(HistoryNew.this, R.layout.history_created_joined_rides_list_item, passenger);
+                                    Passenger_Approved_Rides_Lv.setAdapter(arrayAdapter);
+                                    setListViewHeightBasedOnChildren(Passenger_Approved_Rides_Lv);
+
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("Error : ", error.toString());
+                        //Ride.setText("That didn't work! : " + error.toString());
+                    }
+                });
+                VolleySingleton.getInstance(HistoryNew.this).addToRequestQueue(stringRequest);
+            }
+            return null;
+        }  //  do in background
+
+
+    } //  Ride Json
+
+
+
+
+    private class rideJson3 extends AsyncTask {
+        ProgressDialog pDialog;
+
+        @Override
+        protected void onPostExecute(Object o) {
             hidePDialog();
             super.onPostExecute(o);
         }
@@ -426,26 +649,27 @@ public class HistoryNew extends AppCompatActivity {
                                     JSONObject json;
 
 
-//                                    if (jArray.length()==0){
-//                                        Log.d("Error 3 ","Error3");
-//
-//                                        final Dialog dialog = new Dialog(c);
-//                                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//                                        dialog.setContentView(R.layout.noroutesdialog);
-//                                        Button btn = (Button) dialog.findViewById(R.id.noroute_id);
-//                                        TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
-//                                        dialog.show();
-//                                        Text_3.setText("There is no Rides joined");
-//
-//                                        btn.setOnClickListener(new View.OnClickListener() {
-//                                            @Override
-//                                            public void onClick(View v) {
-//                                                dialog.dismiss();
-//                                                c.finish();
-//                                            }
-//                                        });
-//
-//                                    }
+                                    if (jArray.length()==0){
+                                        Log.d("Error 3 ","Error3");
+
+                                        final Dialog dialog = new Dialog(c);
+                                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                        dialog.setContentView(R.layout.noroutesdialog);
+                                        Button btn = (Button) dialog.findViewById(R.id.noroute_id);
+                                        TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
+                                        dialog.show();
+                                        Text_3.setText(R.string.No_History);
+
+                                        btn.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                dialog.dismiss();
+                                                c.finish();
+                                            }
+                                        });
+
+                                    }
+
 
 
 
@@ -471,8 +695,8 @@ public class HistoryNew extends AppCompatActivity {
                                             item.setToEm(jsonObject.getString(getString(R.string.to_em_en_name)));
                                             item.setToReg(jsonObject.getString(getString(R.string.to_reg_en_name)));
                                             item.setRouteName(jsonObject.getString(getString(R.string.route_name)));
-                                  //          item.setStartFromTime(jsonObject.getString("StartFromTime"));
-                                    //        item.setEndToTime_(jsonObject.getString("EndToTime_"));
+                                            //          item.setStartFromTime(jsonObject.getString("StartFromTime"));
+                                            //        item.setEndToTime_(jsonObject.getString("EndToTime_"));
 
                                             item.setDriver_ID(Driver_Account);
 
@@ -483,7 +707,7 @@ public class HistoryNew extends AppCompatActivity {
                                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                                     Intent intent = new Intent(HistoryNew.this, Profile.class);
                                                     intent.putExtra("DriverID",passenger[position].getDriver_ID() );
-                                                   HistoryNew.this.startActivity(intent);
+                                                    HistoryNew.this.startActivity(intent);
                                                 }
                                             });
 

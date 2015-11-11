@@ -310,5 +310,7 @@
     <string name="password">كلمة المرور</string>
     <string name="must_be_more_18">يجب ان تكون اكبر من 18 سنه</string>
     <string name="too_young">سنك صغير جدا</string>
+    <string name="No_History">لا يوجد تاريخ للبحث</string>
+    <string name="No_Saved_Search">لا يوجد بحث محفوظ</string>
 
 </resources>
