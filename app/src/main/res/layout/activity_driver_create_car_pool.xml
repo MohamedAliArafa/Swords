@@ -1,14 +1,14 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
 
-    >
+    <!-->-->
 
 
-    <include
-        android:id="@+id/app_bar"
-        layout="@layout/app_bar" />
+    <!--<include-->
+        <!--android:id="@+id/app_bar"-->
+        <!--layout="@layout/app_bar" />-->
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -566,7 +566,11 @@
                     android:singleLine="true"
                     android:textAllCaps="false"
                     android:textColor="@color/primaryColor"
-                    android:textSize="15sp" />
+                    android:textColorHint="@color/primaryColor"
+                    android:textSize="15sp"
+                    android:imeOptions="actionDone"
+                    android:gravity="center"
+                    />
 
                 <TextView
                     android:id="@+id/createCarPool_Preferred_Lang_txt"
@@ -879,7 +883,6 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/user_register_border_button"
-                android:text="@string/edit"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF" />
 
@@ -890,7 +893,7 @@
     </ScrollView>
 
 
-</RelativeLayout>
+<!--</RelativeLayout>-->
 
 
 

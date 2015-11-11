@@ -286,6 +286,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         Create_CarPool_txt_time_selected = (TextView) findViewById(R.id.createCarPool_txt_time_selected);
         Create_CarPool_before_Time = (TextView) findViewById(R.id.createCarPool_textview51);
         create = (Button) findViewById(R.id.createCarPool);
+        create.setText(getString(R.string.create));
 
         Periodic_SingleRide = (ImageView) findViewById(R.id.createCarPool_Periodic_SingleRide);
         singleRide_Periodic = (ImageView) findViewById(R.id.createCarPool_singleRide_Periodic);

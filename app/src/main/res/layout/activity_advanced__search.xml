@@ -381,7 +381,9 @@
                 android:textAllCaps="false"
                 android:textColor="@color/primaryColor"
                 android:textColorHint="@color/primaryColor"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+
+                />
 
 
             <TextView
