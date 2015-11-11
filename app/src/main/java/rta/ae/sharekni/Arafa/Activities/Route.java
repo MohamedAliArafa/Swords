@@ -498,6 +498,7 @@ public class Route extends AppCompatActivity {
                         JSONObject obj = response2.getJSONObject(y);
                         final Ride_Details_Passengers_DataModel item = new Ride_Details_Passengers_DataModel(Parcel.obtain());
                         Log.d("Passenger Name", obj.getString("AccountName"));
+                        item.setAccountPhoto(obj.getString("AccountPhoto"));
                         item.setPassengerId(obj.getInt("ID"));
                         item.setAccountName(obj.getString("AccountName"));
                         item.setAccountNationalityEn(obj.getString(getString(R.string.acc_nat_name)));

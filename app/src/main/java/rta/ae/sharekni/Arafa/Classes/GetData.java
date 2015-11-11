@@ -23,6 +23,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.pkmmte.view.CircularImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -574,6 +575,17 @@ public class GetData {
         byte[] decodedByte = Base64.decode(obj.getData(), Base64.DEFAULT);
         Bitmap decoded = BitmapFactory.decodeByteArray(decodedByte, 0, decodedByte.length);
         return decoded;
+    }
+
+    public Void SetImage(CircularImageView cm,String photoUrl) {
+        HandleXML obj = new HandleXML(getImage + photoUrl);
+        obj.fetchXML();
+        while (((obj.parsingComplete && !obj.error) && !obj.error)) ;
+        Log.d("obj : ", obj.getData());
+        byte[] decodedByte = Base64.decode(obj.getData(), Base64.DEFAULT);
+        Bitmap decoded = BitmapFactory.decodeByteArray(decodedByte, 0, decodedByte.length);
+        cm.setImageBitmap(decoded);
+        return null;
     }
 
     public static JSONObject jsonArrayToObject(String data) throws JSONException {

@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import rta.ae.sharekni.Arafa.Classes.GetData;
 
+import rta.ae.sharekni.Arafa.Classes.ImageDecoder;
 import rta.ae.sharekni.R;
 
 import org.json.JSONException;
@@ -76,6 +77,9 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
         }
         AccountName.setText(res);
         AccountNationalityEn.setText(m.getAccountNationalityEn());
+
+        ImageDecoder im = new ImageDecoder();
+        im.stringRequest(m.getAccountPhoto(), Driver_Remove_passenger,activity);
 
         Driver_Remove_passenger.setOnClickListener(new View.OnClickListener() {
             @Override

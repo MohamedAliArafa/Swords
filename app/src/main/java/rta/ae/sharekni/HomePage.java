@@ -557,7 +557,9 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 if (jsonArray.getString("GenderEn").equals("Female")) {
                     circularImageView.setImageResource(R.drawable.defaultdriverfemale);
                 }
-
+//                GetData gd = new GetData();
+//                gd.SetImage(circularImageView,jsonArray.getString("PhotoPath"));
+//                circularImageView.setImageBitmap(gd.GetImage(jsonArray.getString("PhotoPath")));
 //                circularImageView.setImageURI(Uri.parse(GetData.PhotoURL));
                 ImageDecoder im = new ImageDecoder();
                 im.stringRequest(jsonArray.getString("PhotoPath"), circularImageView, HomePage.this);
@@ -579,10 +581,6 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 }
             });
 
-
-
-
-
             Edit_Profile_Im.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -590,9 +588,6 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                     startActivity(intent);
                 }
             });
-
-
-
 
             Home_Relative_Notify.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -604,7 +599,6 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 }
             });
 
-
             Relative_quickSearch.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -615,7 +609,6 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
 
                 }
             });
-
 
             driver_rides_Created.setOnClickListener(new View.OnClickListener() {
                 @Override

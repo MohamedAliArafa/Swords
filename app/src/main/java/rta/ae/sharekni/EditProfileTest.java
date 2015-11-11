@@ -499,7 +499,7 @@ public class EditProfileTest extends AppCompatActivity {
             if (requestCode == 0) {
                 Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
                 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+                    thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
                 File destination = new File(Environment.getExternalStorageDirectory(), System.currentTimeMillis() + ".jpg");
                 FileOutputStream fo;
                 try {
@@ -513,7 +513,23 @@ public class EditProfileTest extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                thumbnail.compress(Bitmap.CompressFormat.PNG, 100, stream);
+
+
+                int width = thumbnail.getWidth();
+                int height = thumbnail.getHeight();
+
+                float bitmapRatio = (float)width / (float) height;
+                if (bitmapRatio > 0) {
+                    width = 600;
+                    height = (int) (width / bitmapRatio);
+                } else {
+                    height = 600;
+                    width = (int) (height * bitmapRatio);
+                }
+                Bitmap im = Bitmap.createScaledBitmap(thumbnail, width, height, true);
+
+
+                im.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 byte[] byteArray = stream.toByteArray();
                 String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
                 new ImageUpload().execute(encoded);
@@ -521,8 +537,7 @@ public class EditProfileTest extends AppCompatActivity {
             } else if (requestCode == 1337) {
                 Uri selectedImageUri = data.getData();
                 String[] projection = {MediaStore.MediaColumns.DATA};
-                Cursor cursor = managedQuery(selectedImageUri, projection, null, null,
-                        null);
+                Cursor cursor = managedQuery(selectedImageUri, projection, null, null, null);
                 int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
                 cursor.moveToFirst();
                 String selectedImagePath = cursor.getString(column_index);
@@ -532,13 +547,15 @@ public class EditProfileTest extends AppCompatActivity {
                 BitmapFactory.decodeFile(selectedImagePath, options);
                 final int REQUIRED_SIZE = 200;
                 int scale = 1;
-                while (options.outWidth / scale / 2 >= REQUIRED_SIZE && options.outHeight / scale / 2 >= REQUIRED_SIZE)
-                    scale *= 2;
+                while (options.outWidth / scale / 2 >= REQUIRED_SIZE && options.outHeight / scale / 2 >= REQUIRED_SIZE) scale *= 2;
                 options.inSampleSize = scale;
                 options.inJustDecodeBounds = false;
                 bm = BitmapFactory.decodeFile(selectedImagePath, options);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bm.compress(Bitmap.CompressFormat.PNG, 100, stream);
+
+                Bitmap resizedBitmap = Bitmap.createScaledBitmap(bm, 150, 150, false);
+
+                resizedBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 byte[] byteArray = stream.toByteArray();
                 String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
                 new ImageUpload().execute(encoded);

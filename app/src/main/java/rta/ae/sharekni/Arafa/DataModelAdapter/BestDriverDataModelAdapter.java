@@ -80,7 +80,9 @@ public class BestDriverDataModelAdapter extends BaseAdapter {
 
 
         final BestDriverDataModel m = driverItems.get(position);
-        Photo.setImageUrl(URL + m.getPhotoURL(), imageLoader);
+        GetData gd = new GetData();
+        Photo.setImageBitmap(gd.GetImage(m.getPhotoURL()));
+//        Photo.setImageUrl(URL + m.getPhotoURL(), imageLoader);
         StringBuffer res = new StringBuffer();
 
         String[] strArr = m.getName().split(" ");

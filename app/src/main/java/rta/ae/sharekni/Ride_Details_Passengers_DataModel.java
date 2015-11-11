@@ -11,7 +11,18 @@ import java.util.ArrayList;
 public class Ride_Details_Passengers_DataModel extends ArrayList<Parcelable> implements Parcelable {
 
 
-    String AccountName,AccountNationalityEn;
+    String AccountName;
+    String AccountNationalityEn;
+
+    public String getAccountPhoto() {
+        return AccountPhoto;
+    }
+
+    public void setAccountPhoto(String accountPhoto) {
+        AccountPhoto = accountPhoto;
+    }
+
+    String AccountPhoto;
 
     public int getPassengerId() {
         return PassengerId;

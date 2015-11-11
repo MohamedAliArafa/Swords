@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
+import com.pkmmte.view.CircularImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,10 +41,12 @@ import java.util.List;
 import rta.ae.sharekni.Arafa.Classes.AppController;
 import rta.ae.sharekni.Arafa.Classes.CircularNetworkImageView;
 import rta.ae.sharekni.Arafa.Classes.GetData;
+import rta.ae.sharekni.Arafa.Classes.ImageDecoder;
 import rta.ae.sharekni.Arafa.DataModel.BestDriverDataModel;
 import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
 import rta.ae.sharekni.Arafa.DataModelAdapter.ProfileRideAdapter;
 import rta.ae.sharekni.LoginApproved;
+import rta.ae.sharekni.MainNavigationDrawerFragment.NavigationDrawerFragment;
 import rta.ae.sharekni.R;
 import rta.ae.sharekni.RideDetailsPassenger;
 
@@ -80,7 +83,7 @@ public class Profile extends AppCompatActivity {
         initToolbar();
 
         if (imageLoader == null) imageLoader = AppController.getInstance().getImageLoader();
-        CircularNetworkImageView Photo = (CircularNetworkImageView) findViewById(R.id.profilephoto);
+        CircularImageView Photo = (CircularImageView) findViewById(R.id.profilephoto);
 
         lv_driver = (ListView) findViewById(R.id.user_rides);
         TopName = (TextView) findViewById(R.id.TopName);
@@ -155,7 +158,9 @@ public class Profile extends AppCompatActivity {
             TopName.setText(Full_Name);
 
             NationalityEnName.setText(json.getString(getString(R.string.nat_name2)));
-            Photo.setImageUrl(URL_Photo + json.getString("PhotoPath"), imageLoader);
+            ImageDecoder im = new ImageDecoder();
+            im.stringRequest(json.getString("PhotoPath"), Photo, Profile.this);
+//            Photo.setImageUrl(URL_Photo + json.getString("PhotoPath"), imageLoader);
             Driver_profile_Item_rate.setText(json.getString("AccountRating"));
             profile_call.setOnClickListener(new View.OnClickListener() {
                 @Override

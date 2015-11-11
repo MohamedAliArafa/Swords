@@ -27,16 +27,16 @@
                 >
 
 
-                <rta.ae.sharekni.Arafa.Classes.CircularNetworkImageView
+                <com.pkmmte.view.CircularImageView
                     android:id="@+id/profilephoto"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="20dp"
-                    android:src="@drawable/testprofile"
+                    android:src="@drawable/defaultdriver"
                     app:border="true"
                     app:border_color="#EEEEEE"
-                    app:border_width="4dp"
+                    app:border_width="2dp"
                     app:shadow="true"
                     android:layout_marginBottom="20dp"
                     />
