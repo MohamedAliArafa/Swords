@@ -123,8 +123,6 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
 
         }
 
-
-
         setContentView(R.layout.home_page_approved);
         initToolbar();
         c=this;

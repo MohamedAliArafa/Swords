@@ -227,7 +227,7 @@
                             android:layout_marginStart="2dp"
                             android:layout_toEndOf="@+id/RidesCreated_txt"
                             android:layout_toRightOf="@+id/RidesCreated_txt"
-                            android:text="0"
+                            android:text=""
                             android:textColor="@color/gray_before_login"
                             android:textStyle="bold"
                             android:textSize="13sp"
@@ -284,7 +284,7 @@
                             android:layout_marginStart="2dp"
                             android:layout_toEndOf="@+id/Rides_joined_txt"
                             android:layout_toRightOf="@+id/Rides_joined_txt"
-                            android:text="0"
+                            android:text=""
                             android:textSize="13sp"
                             android:textColor="@color/gray_before_login"
                             android:textStyle="bold" />
