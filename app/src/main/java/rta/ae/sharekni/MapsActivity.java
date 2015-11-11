@@ -247,6 +247,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         item.setFromEmirateEnName(jsonObject.getString("FromEmirateNameEn"));
                         item.setFromEmirateId(jsonObject.getInt("FromEmirateId"));
                         item.setFromRegionId(jsonObject.getInt("FromRegionId"));
+                        item.setFromEmirateArName(jsonObject.getString("FromEmirateNameAr"));
 
 
                         item.setNoOfRoutes(jsonObject.getInt("NoOfRoutes"));
@@ -345,15 +346,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         From_Em_Id = data[i].getFromEmirateId();
                         From_Reg_Id = data[i].getFromRegionId();
 
+
                         Locale locale = Locale.getDefault();
                         String loca = locale.toString();
                         Log.d("locale", loca);
-                        if (loca.equals("en")) {
+                        if (loca.contains("en")) {
                             From_EmirateEnName = data[i].getFromEmirateEnName();
                             From_RegionEnName = data[i].getFromRegionEnName();
+                            Log.d("Maps em en",From_EmirateEnName);
+                            Log.d("Maps em en",From_RegionEnName);
                         } else if (loca.equals("ar")) {
                             From_EmirateEnName = data[i].getFromEmirateArName();
                             From_RegionEnName = data[i].getFromRegionArName();
+                            Log.d("Maps em ar",From_EmirateEnName);
+                            Log.d("Maps em ar",From_RegionEnName);
                         }
 
 
