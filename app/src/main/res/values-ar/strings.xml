@@ -313,5 +313,10 @@
     <string name="No_History">لا يوجد تاريخ للبحث</string>
     <string name="No_Saved_Search">لا يوجد بحث محفوظ</string>
     <string name="driver_nat_en_name">DriverNationalityArName</string>
+    <string name="Register_vehicle_update">تم تحديث  البيانات</string>
+    <string name="Account_Approved_rides_Details">االبيانات</string>
+    <string name="Account_Approved_rides_Driver">السائق</string>
+    <string name="Account_Approved_rides_leave">مغادرة</string>
+
 
 </resources>

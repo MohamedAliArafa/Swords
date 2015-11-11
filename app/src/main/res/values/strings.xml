@@ -315,6 +315,10 @@
     <string name="No_History">No History Found</string>
     <string name="No_Saved_Search">No Saved Search</string>
     <string name="driver_nat_en_name">DriverNationalityEnName</string>
+    <string name="Register_vehicle_update">Details Updated</string>
+    <string name="Account_Approved_rides_Details">Details</string>
+    <string name="Account_Approved_rides_Driver">Driver</string>
+    <string name="Account_Approved_rides_leave">Leave</string>
 
 
 </resources>

@@ -1,6 +1,7 @@
 package rta.ae.sharekni;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -49,7 +50,8 @@ public class RegisterVehicle extends AppCompatActivity {
     TextView txt_dayOfWeek;
     TextView txt_comma;
     TextView txt_beforeCal;
-    String full_date="";
+    String full_date = "";
+    Activity c;
 
 
     Button btn_register_vehicle_1;
@@ -57,14 +59,14 @@ public class RegisterVehicle extends AppCompatActivity {
     RelativeLayout btn_datepicker_id;
 
     EditText File_num_edit;
-    String File_NO_Str="";
+    String File_NO_Str = "";
     Bundle in;
     SharedPreferences myPrefs;
 
     int FileNo;
     int Driver_ID;
 
-    Driver_RegisterVehicleWithETService_JsonParse license_check = new  Driver_RegisterVehicleWithETService_JsonParse();
+    Driver_RegisterVehicleWithETService_JsonParse license_check = new Driver_RegisterVehicleWithETService_JsonParse();
 
 
     @Override
@@ -73,10 +75,11 @@ public class RegisterVehicle extends AppCompatActivity {
         setContentView(R.layout.activity_register_vehicle);
 
         initToolbar();
+        c = this;
 
 
         myPrefs = this.getSharedPreferences("myPrefs", 0);
-        String ID = myPrefs.getString("account_id",null);
+        String ID = myPrefs.getString("account_id", null);
 //        Bundle in = getIntent().getExtras();
 //        Log.d("Intent Id :", String.valueOf(in.getInt("DriverID")));
         Driver_ID = Integer.parseInt(ID);
@@ -99,18 +102,13 @@ public class RegisterVehicle extends AppCompatActivity {
         File_num_edit = (EditText) findViewById(R.id.File_num_edit);
 
 
-
-
-
-
-
         btn_register_vehicle_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
                 GetData j = new GetData();
-                if (!full_date.equals("") && !File_num_edit.getText().toString().equals(getString(R.string.enter_licence)) ) {
+                if (!full_date.equals("") && !File_num_edit.getText().toString().equals(getString(R.string.enter_licence))) {
                     File_NO_Str = File_num_edit.getText().toString();
                     FileNo = Integer.parseInt(File_NO_Str);
 
@@ -121,7 +119,7 @@ public class RegisterVehicle extends AppCompatActivity {
                 }
 
                 //    license_check.stringRequest(GetData.DOMAIN+"Driver_RegisterVehicleWithETService?AccountId="+Driver_ID+"&TrafficFileNo="+FileNo+"&BirthDate="+full_date,RegisterVehicle.this);
-                 //   Log.d("reg vehicle", GetData.DOMAIN + "Driver_RegisterVehicleWithETService?AccountId=" + Driver_ID + "&TrafficFileNo=" + FileNo + "&BirthDate=" + full_date);
+                //   Log.d("reg vehicle", GetData.DOMAIN + "Driver_RegisterVehicleWithETService?AccountId=" + Driver_ID + "&TrafficFileNo=" + FileNo + "&BirthDate=" + full_date);
 
 
 
@@ -174,33 +172,23 @@ public class RegisterVehicle extends AppCompatActivity {
                 */
 
 
-
 //                    Intent intent = new Intent(getBaseContext(), Register_Vehicle_Verify.class);
 //                    startActivity(intent);
-
-
-
-
 
 
             }
         });
 
 
-
-
-
-
     }  //  on create
-
-
 
 
     private class back extends AsyncTask {
 
         ProgressDialog pDialog;
         boolean exists = false;
-        String data ;
+        String data;
+
         @Override
         protected void onPreExecute() {
             pDialog = new ProgressDialog(RegisterVehicle.this);
@@ -209,26 +197,27 @@ public class RegisterVehicle extends AppCompatActivity {
         }
 
 
-
-
         @Override
         protected void onPostExecute(Object o) {
 
-            if (data.equals("\"1\"")){
+            if (data.equals("\"1\"")) {
                 Toast.makeText(getBaseContext(), getString(R.string.verified), Toast.LENGTH_LONG).show();
-
-            }else if(data.equals("\"-3\"")){
+                c.finish();
+            } else if (data.equals("\"-3\"")) {
                 Toast.makeText(getBaseContext(), getString(R.string.invalid_dob), Toast.LENGTH_LONG).show();
-                Log.d("inside -3",data);
-            }else if (data.equals("\"-4\"")){
+                Log.d("inside -3", data);
+            } else if (data.equals("\"-4\"")) {
                 Toast.makeText(getBaseContext(), getString(R.string.lic_ver_but_no_cars), Toast.LENGTH_LONG).show();
 
-            }else if (data.equals("\"-5\"") || data.equals("\"-6\"") ){
+            } else if (data.equals("\"-5\"") || data.equals("\"-6\"")) {
                 Toast.makeText(getBaseContext(), getString(R.string.invalid_data), Toast.LENGTH_LONG).show();
 
-            }else if (data.equals("\"0\"")){
+            } else if (data.equals("\"0\"")) {
                 //  Toast.makeText(context, "license verified, but no cars found ", Toast.LENGTH_LONG).show();
-                Log.d("license no json",data+" Error in Connection with the DataBase Server");
+                Log.d("license no json", data + " Error in Connection with the DataBase Server");
+            } else if (data.equals("\"-2\"")) {
+                Toast.makeText(getBaseContext(), getString(R.string.Register_vehicle_update), Toast.LENGTH_LONG).show();
+                c.finish();
             }
 
 
@@ -261,7 +250,7 @@ public class RegisterVehicle extends AppCompatActivity {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(RegisterVehicle.this,getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterVehicle.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -270,7 +259,7 @@ public class RegisterVehicle extends AppCompatActivity {
                 GetData j = new GetData();
 
                 try {
-                    data =  j.RegisterVehicle(Driver_ID, FileNo, full_date);
+                    data = j.RegisterVehicle(Driver_ID, FileNo, full_date);
 
                 } catch (JSONException e) {
                     hidePDialog();
@@ -282,7 +271,6 @@ public class RegisterVehicle extends AppCompatActivity {
         }
 
 
-
         private void hidePDialog() {
             if (pDialog != null) {
                 pDialog.dismiss();
@@ -291,12 +279,6 @@ public class RegisterVehicle extends AppCompatActivity {
         }
 
     }
-
-
-
-
-
-
 
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -314,7 +296,6 @@ public class RegisterVehicle extends AppCompatActivity {
     }
 
 
-
     public void showDialogOnButtonClick() {
         btn_datepicker_id = (RelativeLayout) findViewById(R.id.datepicker_id);
         btn_datepicker_id.setOnClickListener(new View.OnClickListener() {
@@ -325,13 +306,11 @@ public class RegisterVehicle extends AppCompatActivity {
         });
     }
 
-    protected void onPrepareDialog (int id, Dialog dialog)
-    {
+    protected void onPrepareDialog(int id, Dialog dialog) {
         DatePickerDialog datePickerDialog = (DatePickerDialog) dialog;
         // Get the current date
         datePickerDialog.updateDate(year_x, month_x, day_x);
     }
-
 
 
     @Override
@@ -344,8 +323,6 @@ public class RegisterVehicle extends AppCompatActivity {
         }
         return null;
     }
-
-
 
 
     private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
@@ -372,7 +349,6 @@ public class RegisterVehicle extends AppCompatActivity {
             Log.d("Calendar test", full_date);
         }
     };
-
 
 
 }
