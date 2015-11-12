@@ -277,7 +277,9 @@ public class DriverCreatedRides extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        rideJson.cancel(true);
+        if (rideJson.getStatus()== AsyncTask.Status.RUNNING) {
+            rideJson.cancel(true);
+        }
         finish();
 
     }

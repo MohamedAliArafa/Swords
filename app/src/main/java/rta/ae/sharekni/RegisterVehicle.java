@@ -110,13 +110,24 @@ public class RegisterVehicle extends AppCompatActivity {
 
                 GetData j = new GetData();
                 if (!full_date.equals("") && !File_num_edit.getText().toString().equals(getString(R.string.enter_licence))) {
-                    File_NO_Str = File_num_edit.getText().toString();
-                    FileNo = Integer.parseInt(File_NO_Str);
+                    if (File_num_edit.length()>0) {
+                        File_NO_Str = File_num_edit.getText().toString();
+                        FileNo = Integer.parseInt(File_NO_Str);
+
+                        back.execute();
+                    }else {
+                        Toast.makeText(RegisterVehicle.this, "Enter File Number PLease", Toast.LENGTH_SHORT).show();
+                    }
+
+                    if (full_date.equals("")){
+                        Toast.makeText(RegisterVehicle.this, "Enter Birth Date PLease", Toast.LENGTH_SHORT).show();
+                    }
 
 
-                    back.execute();
 
 
+                }else {
+                    Toast.makeText(RegisterVehicle.this, "Enter File Number and Birth Date Please", Toast.LENGTH_SHORT).show();
                 }
 
                 //    license_check.stringRequest(GetData.DOMAIN+"Driver_RegisterVehicleWithETService?AccountId="+Driver_ID+"&TrafficFileNo="+FileNo+"&BirthDate="+full_date,RegisterVehicle.this);
@@ -284,7 +295,9 @@ public class RegisterVehicle extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        back.cancel(true);
+        if (back.getStatus() == AsyncTask.Status.RUNNING){
+            back.cancel(true);
+        }
         finish();
 
     }

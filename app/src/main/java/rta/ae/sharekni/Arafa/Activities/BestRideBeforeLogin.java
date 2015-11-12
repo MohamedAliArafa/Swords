@@ -1,10 +1,8 @@
 package rta.ae.sharekni.Arafa.Activities;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,24 +10,14 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
-import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
-import rta.ae.sharekni.Arafa.Classes.GetData;
-import rta.ae.sharekni.Arafa.DataModel.BestDriverDataModel;
-import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
-import rta.ae.sharekni.Arafa.DataModelAdapter.BestRouteDataModelAdapter;
-import rta.ae.sharekni.MostRidesDetails;
-import rta.ae.sharekni.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,8 +26,12 @@ import org.json.JSONObject;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
-import java.util.ArrayList;
-import java.util.List;
+
+import rta.ae.sharekni.Arafa.Classes.GetData;
+import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
+import rta.ae.sharekni.Arafa.DataModelAdapter.BestRouteDataModelAdapter;
+import rta.ae.sharekni.MostRidesDetails;
+import rta.ae.sharekni.R;
 
 public class BestRideBeforeLogin extends AppCompatActivity {
 
@@ -207,7 +199,9 @@ public class BestRideBeforeLogin extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        jsoning.cancel(true);
+        if (jsoning.getStatus()== AsyncTask.Status.RUNNING) {
+            jsoning.cancel(true);
+        }
         finish();
     }
 }

@@ -1247,10 +1247,18 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onBackPressed() {
-        networkCheck.cancel(true);
-        nat.cancel(true);
-        lan.cancel(true);
-        age.cancel(true);
+        if (networkCheck.getStatus()== AsyncTask.Status.RUNNING) {
+            networkCheck.cancel(true);
+        }
+        if (nat.getStatus()== AsyncTask.Status.RUNNING) {
+            nat.cancel(true);
+        }
+        if (lan.getStatus()== AsyncTask.Status.RUNNING) {
+            lan.cancel(true);
+        }
+        if (age.getStatus()== AsyncTask.Status.RUNNING) {
+            age.cancel(true);
+        }
         finish();
     }
 

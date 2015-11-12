@@ -1,7 +1,6 @@
 package rta.ae.sharekni.Arafa.Activities;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -216,7 +215,9 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        jsoning.cancel(true);
+        if (jsoning.getStatus() == AsyncTask.Status.RUNNING){
+            jsoning.cancel(true);
+        }
         finish();
     }
 

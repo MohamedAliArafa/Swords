@@ -663,7 +663,9 @@ public class Route extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        loadingReviews.cancel(true);
+        if (loadingReviews.getStatus()== AsyncTask.Status.RUNNING) {
+            loadingReviews.cancel(true);
+        }
         loadingBasicInfo.cancel(true);
         finish();
 

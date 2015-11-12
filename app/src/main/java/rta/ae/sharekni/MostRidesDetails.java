@@ -322,7 +322,9 @@ public class MostRidesDetails extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        back.cancel(true);
+        if (back.getStatus()== AsyncTask.Status.RUNNING) {
+            back.cancel(true);
+        }
         finish();
 
     }

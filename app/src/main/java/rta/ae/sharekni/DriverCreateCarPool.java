@@ -1346,10 +1346,18 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        nationalities.cancel(true);
-        languages.cancel(true);
-        ageRanges.cancel(true);
-        vehicles.cancel(true);
+        if (nationalities.getStatus()== AsyncTask.Status.RUNNING) {
+            nationalities.cancel(true);
+        }
+        if (languages.getStatus()== AsyncTask.Status.RUNNING) {
+            languages.cancel(true);
+        }
+        if (ageRanges.getStatus()== AsyncTask.Status.RUNNING) {
+            ageRanges.cancel(true);
+        }
+        if (vehicles.getStatus()== AsyncTask.Status.RUNNING) {
+            vehicles.cancel(true);
+        }
         finish();
 
     }

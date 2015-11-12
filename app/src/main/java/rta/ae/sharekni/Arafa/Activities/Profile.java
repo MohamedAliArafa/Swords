@@ -39,14 +39,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rta.ae.sharekni.Arafa.Classes.AppController;
-import rta.ae.sharekni.Arafa.Classes.CircularNetworkImageView;
 import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.Arafa.Classes.ImageDecoder;
 import rta.ae.sharekni.Arafa.DataModel.BestDriverDataModel;
 import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
 import rta.ae.sharekni.Arafa.DataModelAdapter.ProfileRideAdapter;
 import rta.ae.sharekni.LoginApproved;
-import rta.ae.sharekni.MainNavigationDrawerFragment.NavigationDrawerFragment;
 import rta.ae.sharekni.R;
 import rta.ae.sharekni.RideDetailsPassenger;
 
@@ -398,7 +396,9 @@ public class Profile extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        jsoning.cancel(true);
+        if (jsoning.getStatus() == AsyncTask.Status.RUNNING) {
+            jsoning.cancel(true);
+        }
         finish();
     }
 

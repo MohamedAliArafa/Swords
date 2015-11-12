@@ -107,9 +107,15 @@ public class HistoryNew extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        rideJson.cancel(true);
-        rideJson2.cancel(true);
-        rideJson3.cancel(true);
+        if (rideJson.getStatus()== AsyncTask.Status.RUNNING) {
+            rideJson.cancel(true);
+        }
+        if (rideJson2.getStatus()== AsyncTask.Status.RUNNING) {
+            rideJson2.cancel(true);
+        }
+        if (rideJson3.getStatus()== AsyncTask.Status.RUNNING) {
+            rideJson3.cancel(true);
+        }
         finish();
 
     }
