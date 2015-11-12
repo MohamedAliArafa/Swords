@@ -78,6 +78,7 @@ public class RegisterVehicle extends AppCompatActivity {
         initToolbar();
         c = this;
 
+        back = new back();
 
         myPrefs = this.getSharedPreferences("myPrefs", 0);
         String ID = myPrefs.getString("account_id", null);
@@ -102,7 +103,6 @@ public class RegisterVehicle extends AppCompatActivity {
         btn_register_vehicle_1 = (Button) findViewById(R.id.btn_register_vehicle_1);
         File_num_edit = (EditText) findViewById(R.id.File_num_edit);
 
-        back = new back();
 
         btn_register_vehicle_1.setOnClickListener(new View.OnClickListener() {
             @Override

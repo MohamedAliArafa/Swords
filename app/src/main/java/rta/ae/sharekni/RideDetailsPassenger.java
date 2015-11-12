@@ -291,28 +291,19 @@ public class RideDetailsPassenger extends AppCompatActivity {
                         Log.d("time to", str_EndToTime_);
                         // EndToTime_.setText(str_EndToTime_);
                     }
-                    Nat_txt = (json.getString(getString(R.string.nat_name2)));
-                    if (Nat_txt.equals("null")) {
-                        Nat_txt = getString(R.string.not_set);
-                        NationalityEnName.setText(Nat_txt);
+                    if (json.getString(getString(R.string.nat_name2)).equals("null")) {
+                        NationalityEnName.setText(getString(R.string.not_set));
                     } else {
-                        NationalityEnName.setText(Nat_txt);
+                        NationalityEnName.setText(json.getString(getString(R.string.nat_name2)));
+                    }if (json.getInt("PrefLanguageId") == 0){
+                        PrefLanguageEnName.setText(getString(R.string.not_set));
+                    }else {
+                        PrefLanguageEnName.setText(json.getString(getString(R.string.pref_lang)));
                     }
-                    str_PrefLanguageEnName = json.getString(getString(R.string.pref_lang));
-
-                    if (str_PrefLanguageEnName.equals("null")) {
-                        str_PrefLanguageEnName = getString(R.string.not_set);
-                        PrefLanguageEnName.setText(str_PrefLanguageEnName);
-                    } else {
-                        PrefLanguageEnName.setText(str_PrefLanguageEnName);
-                    }
-                    Str_AgeRange = json.getString("AgeRange");
-                    if (Str_AgeRange.equals("null")) {
-                        Str_AgeRange = getString(R.string.not_set);
-                        AgeRange.setText(Str_AgeRange);
-                    } else {
-                        AgeRange.setText(Str_AgeRange);
-
+                    if (json.getInt("AgeRangeID") == 0){
+                        AgeRange.setText(json.getString("AgeRange"));
+                    }else {
+                        AgeRange.setText(json.getString(getString(R.string.not_set)));
                     }
                     Gender_ste = "";
                     Gender_ste = json.getString("PreferredGender");

@@ -317,6 +317,9 @@
     <string name="Account_Approved_rides_Details">االبيانات</string>
     <string name="Account_Approved_rides_Driver">السائق</string>
     <string name="Account_Approved_rides_leave">مغادرة</string>
+    <string name="enter_file_no">من فضلك أدخل الرقم المرورى</string>
+    <string name="enter_DOB">من فضلك أدخل تاريخ الميلاد</string>
+    <string name="enter_file_DOB">من فضلك أدخل الرقم المرورى و تاريخ الميلاد</string>
 
 
 </resources>

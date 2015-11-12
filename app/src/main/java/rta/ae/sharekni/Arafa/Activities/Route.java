@@ -252,11 +252,16 @@ public class Route extends AppCompatActivity {
                             NationalityEnName.setText(getString(R.string.not_set));
                         } else {
                             NationalityEnName.setText(json.getString(getString(R.string.nat_name2)));
+                        }if (json.getInt("PrefLanguageId") == 0){
+                            PrefLanguageEnName.setText(getString(R.string.not_set));
+                        }else {
+                            PrefLanguageEnName.setText(json.getString(getString(R.string.pref_lang)));
                         }
-                        PrefLanguageEnName.setText(json.getString(getString(R.string.pref_lang)));
-                        AgeRange.setText(json.getString("AgeRange"));
-
-
+                        if (json.getInt("AgeRangeID") == 0){
+                            AgeRange.setText(json.getString("AgeRange"));
+                        }else {
+                            AgeRange.setText(json.getString(getString(R.string.not_set)));
+                        }
                         Gender_ste = "";
                         Gender_ste = json.getString("PreferredGender");
                         switch (Gender_ste) {

@@ -62,11 +62,11 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     int To_Reg_Id = -1;
     int year_x, month_x, day_x;
     int MyId = -1;
-    int Nationality_ID = 36;
+    int Nationality_ID = 0;
     int Vehicle_Id = -1;
-    int Age_ID = 1;
-    int Language_ID = 1;
-    char gender = 'M';
+    int Age_ID = 0;
+    int Language_ID =0;
+    char gender = 'N';
     String To_EmirateEnName, From_EmirateEnName, To_RegionEnName, From_RegionEnName;
     List<TreeMap<String, String>> Create_CarPool_Emirates_List = new ArrayList<>();
     List<TreeMap<String, String>> Create_CarPool_Regions_List = new ArrayList<>();
