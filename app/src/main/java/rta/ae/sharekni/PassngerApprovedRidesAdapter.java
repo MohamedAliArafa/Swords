@@ -81,7 +81,10 @@ public class PassngerApprovedRidesAdapter extends ArrayAdapter<BestRouteDataMode
                     GetData gd = new GetData();
                     try {
                         String response = gd.Passenger_LeaveRide(bestRouteDataModel.getRoutePassengerId());
-                        Toast.makeText(activity, response, Toast.LENGTH_SHORT).show();
+                        if (response.equals("\"1\"")){
+                            Toast.makeText(activity, "You Have Leaved this Ride", Toast.LENGTH_SHORT).show();
+                        }
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
