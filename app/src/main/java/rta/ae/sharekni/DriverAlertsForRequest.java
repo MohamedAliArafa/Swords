@@ -47,7 +47,9 @@ public class DriverAlertsForRequest extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        jsoning.cancel(true);
+        if (jsoning.getStatus() == AsyncTask.Status.RUNNING){
+            jsoning.cancel(true);
+        }
         finish();
     }
 

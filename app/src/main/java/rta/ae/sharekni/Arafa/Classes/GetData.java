@@ -370,7 +370,7 @@ public class GetData {
     }
 
 
-    public String RegisterVehicle(int Driver_ID, int FileNo, String Birth_Date) throws JSONException {
+    public String RegisterVehicle(int Driver_ID, String FileNo, String Birth_Date) throws JSONException {
         HandleXML obj = new HandleXML(DriverRegisterVehicleUrl + "AccountId=" + Driver_ID + "&TrafficFileNo=" + FileNo + "&BirthDate=" + Birth_Date);
         obj.fetchXML();
         while ((obj.parsingComplete && !obj.error)) ;

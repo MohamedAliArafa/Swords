@@ -102,6 +102,7 @@ public class RegisterVehicle extends AppCompatActivity {
         btn_register_vehicle_1 = (Button) findViewById(R.id.btn_register_vehicle_1);
         File_num_edit = (EditText) findViewById(R.id.File_num_edit);
 
+        back = new back();
 
         btn_register_vehicle_1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,22 +113,21 @@ public class RegisterVehicle extends AppCompatActivity {
                 if (!full_date.equals("") && !File_num_edit.getText().toString().equals(getString(R.string.enter_licence))) {
                     if (File_num_edit.length()>0) {
                         File_NO_Str = File_num_edit.getText().toString();
-                        FileNo = Integer.parseInt(File_NO_Str);
-
+//                        FileNo = Integer.parseInt(File_NO_Str);
                         back.execute();
                     }else {
-                        Toast.makeText(RegisterVehicle.this, "Enter File Number PLease", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterVehicle.this, R.string.enter_file_no, Toast.LENGTH_SHORT).show();
                     }
 
                     if (full_date.equals("")){
-                        Toast.makeText(RegisterVehicle.this, "Enter Birth Date PLease", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterVehicle.this, R.string.enter_DOB, Toast.LENGTH_SHORT).show();
                     }
 
 
 
 
                 }else {
-                    Toast.makeText(RegisterVehicle.this, "Enter File Number and Birth Date Please", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterVehicle.this, R.string.enter_file_DOB, Toast.LENGTH_SHORT).show();
                 }
 
                 //    license_check.stringRequest(GetData.DOMAIN+"Driver_RegisterVehicleWithETService?AccountId="+Driver_ID+"&TrafficFileNo="+FileNo+"&BirthDate="+full_date,RegisterVehicle.this);
@@ -271,7 +271,7 @@ public class RegisterVehicle extends AppCompatActivity {
                 GetData j = new GetData();
 
                 try {
-                    data = j.RegisterVehicle(Driver_ID, FileNo, full_date);
+                    data = j.RegisterVehicle(Driver_ID, File_NO_Str, full_date);
 
                 } catch (JSONException e) {
                     hidePDialog();

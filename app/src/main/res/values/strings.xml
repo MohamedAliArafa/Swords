@@ -319,6 +319,9 @@
     <string name="Account_Approved_rides_Details">Details</string>
     <string name="Account_Approved_rides_Driver">Driver</string>
     <string name="Account_Approved_rides_leave">Leave</string>
+    <string name="enter_file_no">Enter File Number PLease</string>
+    <string name="enter_DOB">Enter Birth Date PLease</string>
+    <string name="enter_file_DOB">Enter File Number and Birth Date Please</string>
 
 
 </resources>

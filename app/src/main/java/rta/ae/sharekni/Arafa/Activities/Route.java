@@ -666,7 +666,9 @@ public class Route extends AppCompatActivity {
         if (loadingReviews.getStatus()== AsyncTask.Status.RUNNING) {
             loadingReviews.cancel(true);
         }
-        loadingBasicInfo.cancel(true);
+        if (loadingBasicInfo.getStatus() == AsyncTask.Status.RUNNING){
+            loadingBasicInfo.cancel(true);
+        }
         finish();
 
     }

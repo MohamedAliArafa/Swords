@@ -61,6 +61,8 @@ public class DriverPermits extends AppCompatActivity {
 
     Activity c;
 
+    rideJson rideJson;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +76,7 @@ public class DriverPermits extends AppCompatActivity {
         Driver_ID = Integer.parseInt(ID);
         Log.d("Driver Id", String.valueOf(Driver_ID));
 
-        new rideJson().execute();
+        rideJson.execute();
 
         c=this;
 
@@ -246,9 +248,12 @@ public class DriverPermits extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-
-
-
-
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (rideJson.getStatus() == AsyncTask.Status.RUNNING){
+            rideJson.cancel(true);
+        }
+        finish();
+    }
 }
