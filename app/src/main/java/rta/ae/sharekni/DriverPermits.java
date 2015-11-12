@@ -76,6 +76,8 @@ public class DriverPermits extends AppCompatActivity {
         Driver_ID = Integer.parseInt(ID);
         Log.d("Driver Id", String.valueOf(Driver_ID));
 
+        rideJson  = new rideJson();
+
         rideJson.execute();
 
         c=this;

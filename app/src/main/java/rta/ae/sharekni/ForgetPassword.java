@@ -65,8 +65,7 @@ public class ForgetPassword extends AppCompatActivity {
 
                     new back().execute();
 
-
-                    }
+                }
                 }
 
         });

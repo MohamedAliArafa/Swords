@@ -60,10 +60,10 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
     int To_Reg_Id = -1;
     int year_x, month_x, day_x;
     int RouteId = -1;
-    int Nationality_ID = 36;
+    int Nationality_ID = 0;
     int Vehicle_Id = -1;
-    int Age_ID = 1;
-    int Language_ID = 1;
+    int Age_ID = 0;
+    int Language_ID = 0;
     int SAT_FLAG = 0;
     int SUN_FLAG = 0;
     int MON_FLAG = 0;
@@ -320,6 +320,8 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
         seat2_off.setOnClickListener(this);
         seat3_off.setOnClickListener(this);
         seat4_off.setOnClickListener(this);
+
+        load = new load();
 
         load.execute();
 
