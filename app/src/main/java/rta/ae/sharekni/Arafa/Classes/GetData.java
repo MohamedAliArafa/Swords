@@ -426,6 +426,15 @@ public class GetData {
 
     }
 
+    public String ForgetPasswordForm2(String Mobile_number, String Email) throws JSONException {
+        Log.d("Forget Pass", ForgetPasswordUrl + "mobile=" + Mobile_number + "&email=" + Email);
+        HandleXML obj = new HandleXML(ForgetPasswordUrl + "mobile=" + Mobile_number + "&email=" + Email);
+        obj.fetchXML();
+        while ((obj.parsingComplete && !obj.error)) ;
+        return obj.getData();
+    }
+
+
 
     public String Passenger_Review_Driver(int Driver_ID, int Passenger_ID, int Route_ID, String Remarks) throws JSONException {
         String Url = Passenger_Review_Driver + "PassengerId=" + Passenger_ID + "&DriverId="

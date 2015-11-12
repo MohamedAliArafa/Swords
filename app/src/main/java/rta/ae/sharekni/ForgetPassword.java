@@ -2,16 +2,30 @@ package rta.ae.sharekni;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONException;
+
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
 
 import rta.ae.sharekni.Arafa.Classes.GetData;
 
@@ -38,33 +52,30 @@ public class ForgetPassword extends AppCompatActivity {
         c=this;
 
 
-//
-//        btn_submit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mobileNumber =edit_number.getText().toString();
-//                Email =edit_mail.getText().toString();
-//
-//                if (edit_mail == null||mobileNumber.length()<= 9) {
-//                    Toast.makeText(getBaseContext(), R.string.check_user_pass, Toast.LENGTH_SHORT).show();
-//                }else {
-//
-//                    new back().execute();
-//
-//                        url = url + "mobile=" + mobileNumber + "&email=" + Email;
-//                        Log.d("URL Login : ", url);
-//                        GetData j = new GetData();
-//                        j.ForgetPasswordForm(mobileNumber, Email, getBaseContext());
-//                    }
-//                }
-//
-//        });
+
+        btn_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mobileNumber =edit_number.getText().toString();
+                Email =edit_mail.getText().toString();
+
+                if (edit_mail == null||mobileNumber.length()<= 9) {
+                    Toast.makeText(getBaseContext(), R.string.check_user_pass, Toast.LENGTH_SHORT).show();
+                }else {
+
+                    new back().execute();
+
+
+                    }
+                }
+
+        });
 
 
     }
 
 
-    /*
+
     private class back extends AsyncTask {
 
         ProgressDialog pDialog;
@@ -82,24 +93,26 @@ public class ForgetPassword extends AppCompatActivity {
         @Override
         protected void onPostExecute(Object o) {
 
-            if (data.equals("\"1\"")) {
-                Toast.makeText(getBaseContext(), getString(R.string.verified), Toast.LENGTH_LONG).show();
-                c.finish();
-            } else if (data.equals("\"-3\"")) {
-                Toast.makeText(getBaseContext(), getString(R.string.invalid_dob), Toast.LENGTH_LONG).show();
-                Log.d("inside -3", data);
-            } else if (data.equals("\"-4\"")) {
-                Toast.makeText(getBaseContext(), getString(R.string.lic_ver_but_no_cars), Toast.LENGTH_LONG).show();
+            if (data.equals("\"A reset password link has been sent to your email\\nPlease note that this link is valid for one day only.\"")) {
+                Toast.makeText(getBaseContext(),"Email Sent", Toast.LENGTH_LONG).show();
+                final Dialog dialog = new Dialog(c);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.noroutesdialog);
+                Button btn = (Button) dialog.findViewById(R.id.noroute_id);
+                TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
+                dialog.show();
+                Text_3.setText("A reset password link has been sent to your email\\nPlease note that this link is valid for one day only.");
 
-            } else if (data.equals("\"-5\"") || data.equals("\"-6\"")) {
-                Toast.makeText(getBaseContext(), getString(R.string.invalid_data), Toast.LENGTH_LONG).show();
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        c.finish();
+                    }
+                });
 
-            } else if (data.equals("\"0\"")) {
-                //  Toast.makeText(context, "license verified, but no cars found ", Toast.LENGTH_LONG).show();
-                Log.d("license no json", data + " Error in Connection with the DataBase Server");
-            } else if (data.equals("\"-2\"")) {
-                Toast.makeText(getBaseContext(), getString(R.string.Register_vehicle_update), Toast.LENGTH_LONG).show();
-                c.finish();
+
+
             }
 
 
@@ -142,7 +155,8 @@ public class ForgetPassword extends AppCompatActivity {
 
                 try {
 
-                    data = j.RegisterVehicle(Driver_ID, FileNo, full_date);
+
+                  data=  j.ForgetPasswordForm2(mobileNumber, Email);
 
                 } catch (JSONException e) {
                     hidePDialog();
@@ -163,7 +177,7 @@ public class ForgetPassword extends AppCompatActivity {
 
     }
 
-    */
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
