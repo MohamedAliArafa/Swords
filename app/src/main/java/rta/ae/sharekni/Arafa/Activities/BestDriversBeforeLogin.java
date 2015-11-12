@@ -42,6 +42,7 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
     TextView tv;
     ListView lv;
     Toolbar toolbar;
+    jsoning jsoning;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,11 +51,12 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
         tv = (TextView) findViewById(R.id.info);
         lv = (ListView) findViewById(R.id.lvMain);
        initToolbar();
+        jsoning = new jsoning();
 
         setSupportActionBar(toolbar);
        // getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        new jsoning().execute();
+        jsoning.execute();
     }
 
     public class jsoning extends AsyncTask {
@@ -214,9 +216,8 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        jsoning.cancel(true);
         finish();
-
     }
 
 }

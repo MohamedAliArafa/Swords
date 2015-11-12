@@ -51,7 +51,7 @@ public class MostRidesDetails extends AppCompatActivity {
     TextView txt_FromReg;
     TextView txt_ToEm;
     TextView txt_ToReg;
-
+    back back;
 
     String ID;
 
@@ -100,7 +100,10 @@ public class MostRidesDetails extends AppCompatActivity {
         }catch (NullPointerException e){
         Toast.makeText(MostRidesDetails.this, e.toString(), Toast.LENGTH_SHORT).show();
         }
-        new back().execute();
+
+        back = new back();
+
+        back.execute();
 
         txt_FromEm.setText(data.getFromEm());
         txt_ToEm.setText(data.getFromReg());
@@ -319,6 +322,7 @@ public class MostRidesDetails extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        back.cancel(true);
         finish();
 
     }

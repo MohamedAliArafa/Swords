@@ -135,6 +135,14 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
     ImageView seat1_on, seat2_on, seat3_on, seat4_on;
     SharedPreferences myPrefs;
 
+
+    getAgeRanges ageRanges;
+    getLanguages languages;
+    getNationalities nationalities;
+    getVehicles vehicles;
+    load load;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -313,19 +321,23 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
         seat3_off.setOnClickListener(this);
         seat4_off.setOnClickListener(this);
 
-        new load().execute();
+        load.execute();
 
         // Create_CarPool
         //  code to get nationals and set the adapter to the autotext complete
 
-        new getNationalities().execute();
+        nationalities = new getNationalities();
+
+        nationalities.execute();
 
         //Toast.makeText(RegisterNewTest.this, "test pref lang" +Lang_List.toString(), Toast.LENGTH_LONG).show();
         Log.d("test pref lang  2 :", Create_CarPool_Country_List.toString());
 
         // code to get Vehicles and set it to txt view
 
-        new getVehicles().execute();
+        vehicles = new getVehicles();
+
+        vehicles.execute();
 
         //Toast.makeText(RegisterNewTest.this, "test pref lang" +Lang_List.toString(), Toast.LENGTH_LONG).show();
         Log.d("test pref lang  2 :", Create_CarPool_Vehicles_List.toString());
@@ -334,7 +346,9 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
         //Create_CarPool
         // code to get Languages and set it to the SPinner
 
-        new getLanguages().execute();
+        languages = new getLanguages();
+
+        languages.execute();
 
         //Toast.makeText(RegisterNewTest.this, "test pref lang" +Lang_List.toString(), Toast.LENGTH_LONG).show();
         Log.d("test pref lang  2 :", Create_CarPool_Lang_List.toString());
@@ -342,7 +356,9 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
         //Create_CarPool
         // get age ranges and set it to the spineer
 
-        new getAgeRanges().execute();
+        ageRanges = new getAgeRanges();
+
+        ageRanges.execute();
 
         //Toast.makeText(RegisterNewTest.this, "test pref lang" +Lang_List.toString(), Toast.LENGTH_LONG).show();
         Log.d("test pref lang  2 :", Create_CarPool_AgeRanges_List.toString());
@@ -1117,6 +1133,18 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
             createCarPool_Fri_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
             FRI_FLAG = 0;
         }
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        nationalities.cancel(true);
+        languages.cancel(true);
+        ageRanges.cancel(true);
+        vehicles.cancel(true);
+        load.cancel(true);
+        finish();
 
     }
 }

@@ -66,6 +66,7 @@ public class RegisterVehicle extends AppCompatActivity {
     int FileNo;
     int Driver_ID;
 
+    back back;
     Driver_RegisterVehicleWithETService_JsonParse license_check = new Driver_RegisterVehicleWithETService_JsonParse();
 
 
@@ -113,7 +114,7 @@ public class RegisterVehicle extends AppCompatActivity {
                     FileNo = Integer.parseInt(File_NO_Str);
 
 
-                    new back().execute();
+                    back.execute();
 
 
                 }
@@ -280,6 +281,13 @@ public class RegisterVehicle extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        back.cancel(true);
+        finish();
+
+    }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void initToolbar() {

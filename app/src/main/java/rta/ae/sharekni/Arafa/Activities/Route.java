@@ -92,7 +92,8 @@ public class Route extends AppCompatActivity {
     LinearLayout passenger_relative_2;
     RelativeLayout REaltive_Passengers_1;
 
-
+    loadingBasicInfo loadingBasicInfo;
+    loadingReviews loadingReviews;
 
     int Vehicle_Id_Permit;
     GetData j = new GetData();
@@ -155,7 +156,8 @@ public class Route extends AppCompatActivity {
         REaltive_Passengers_1 = (RelativeLayout) findViewById(R.id.REaltive_Passengers_1);
         passenger_relative_2 = (LinearLayout) findViewById(R.id.passenger_relative_2);
 
-
+        loadingBasicInfo = new loadingBasicInfo();
+        loadingReviews = new loadingReviews();
 
 
         myPrefs = this.getSharedPreferences("myPrefs", 0);
@@ -168,14 +170,14 @@ public class Route extends AppCompatActivity {
         Log.d("test Passenger id", String.valueOf(Passenger_ID));
         Log.d("test Route id", String.valueOf(Route_ID));
 
-        new loadingBasicInfo().execute();
+        loadingBasicInfo.execute();
 
 
 
 //        GetData j = new GetData();
 //        j.GetPassengersByRouteIdForm(Route_ID, ride_details_passengers, this);
 
-        new loadingReviews().execute();
+        loadingReviews.execute();
 
 
         Route_Delete_Btn.setOnClickListener(new View.OnClickListener() {
@@ -661,7 +663,8 @@ public class Route extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        loadingReviews.cancel(true);
+        loadingBasicInfo.cancel(true);
         finish();
 
     }

@@ -57,6 +57,8 @@ public class DriverCreatedRides extends AppCompatActivity {
     SharedPreferences myPrefs;
     String str_StartFromTime;
 
+    rideJson rideJson;
+
     Activity c;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +73,8 @@ public class DriverCreatedRides extends AppCompatActivity {
         Driver_ID = Integer.parseInt(ID);
         Log.d("Driver Id", String.valueOf(Driver_ID));
 
-        new rideJson().execute();
+        rideJson = new rideJson();
+        rideJson.execute();
 
         c=this;
     }
@@ -271,6 +274,12 @@ public class DriverCreatedRides extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        rideJson.cancel(true);
+        finish();
 
+    }
 
 }

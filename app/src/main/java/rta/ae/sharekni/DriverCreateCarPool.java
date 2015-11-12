@@ -132,6 +132,12 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     String From_EmirateEnName_str, From_RegionEnName_str, To_EmirateEnName_str, To_RegionEnName_str;
     int From_Em_Id_2, From_Reg_Id_2, To_Em_Id_2, To_Reg_Id_2;
     int i2 = 0;
+
+    getAgeRanges ageRanges;
+    getLanguages languages;
+    getNationalities nationalities;
+    getVehicles vehicles;
+
     private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -473,14 +479,18 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         // Create_CarPool
         //  code to get nationals and set the adapter to the autotext complete
 
-        new getNationalities().execute();
+        nationalities = new getNationalities();
+
+        nationalities.execute();
 
         //Toast.makeText(RegisterNewTest.this, "test pref lang" +Lang_List.toString(), Toast.LENGTH_LONG).show();
         Log.d("test pref lang  2 :", Create_CarPool_Country_List.toString());
 
         // code to get Vehicles and set it to txt view
 
-        new getVehicles().execute();
+        vehicles = new getVehicles();
+
+        vehicles.execute();
 
         //Toast.makeText(RegisterNewTest.this, "test pref lang" +Lang_List.toString(), Toast.LENGTH_LONG).show();
         Log.d("test pref lang  2 :", Create_CarPool_Vehicles_List.toString());
@@ -489,7 +499,9 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         //Create_CarPool
         // code to get Languages and set it to the SPinner
 
-        new getLanguages().execute();
+        languages = new getLanguages();
+
+        languages.execute();
 
         //Toast.makeText(RegisterNewTest.this, "test pref lang" +Lang_List.toString(), Toast.LENGTH_LONG).show();
         Log.d("test pref lang  2 :", Create_CarPool_Lang_List.toString());
@@ -497,7 +509,9 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         //Create_CarPool
         // get age ranges and set it to the spineer
 
-        new getAgeRanges().execute();
+        ageRanges = new getAgeRanges();
+
+        ageRanges.execute();
 
         //Toast.makeText(RegisterNewTest.this, "test pref lang" +Lang_List.toString(), Toast.LENGTH_LONG).show();
         Log.d("test pref lang  2 :", Create_CarPool_AgeRanges_List.toString());
@@ -1332,6 +1346,10 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        nationalities.cancel(true);
+        languages.cancel(true);
+        ageRanges.cancel(true);
+        vehicles.cancel(true);
         finish();
 
     }

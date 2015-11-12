@@ -47,14 +47,16 @@ public class BestRideBeforeLogin extends AppCompatActivity {
     ListView lv;
     ProgressDialog pDialog;
     private Toolbar toolbar;
+    jsoning jsoning;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_rides);
         lv = (ListView) findViewById(R.id.lv_top_rides);
         initToolbar();
+        jsoning = new jsoning();
 
-        new jsoning().execute();
+        jsoning.execute();
     }
 
     public class jsoning extends AsyncTask {
@@ -205,8 +207,7 @@ public class BestRideBeforeLogin extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        jsoning.cancel(true);
         finish();
-
     }
 }

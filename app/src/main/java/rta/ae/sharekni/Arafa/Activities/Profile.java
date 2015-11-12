@@ -65,7 +65,7 @@ public class Profile extends AppCompatActivity {
     String ID;
     private Toolbar toolbar;
     String FirstName,SecondName,ThirdName,Full_Name;
-
+    jsoning jsoning;
     TextView Driver_profile_Item_rate;
 
     @Override
@@ -102,8 +102,8 @@ public class Profile extends AppCompatActivity {
         ProgressDialog pDialog = new ProgressDialog(this);
         pDialog.setMessage(getString(R.string.loading) + "...");
         pDialog.show();
-
-        new jsoning(lv_driver,pDialog,this).execute();
+        jsoning = new jsoning(lv_driver,pDialog,this);
+        jsoning.execute();
 
         try {
             final JSONObject json = j.GetDriverById(Driver_ID);
@@ -398,9 +398,8 @@ public class Profile extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        jsoning.cancel(true);
         finish();
-
     }
 
 

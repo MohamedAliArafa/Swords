@@ -72,6 +72,9 @@ public class HistoryNew extends AppCompatActivity {
     String AccountType;
     Activity c;
 
+    rideJson rideJson;
+    rideJson2 rideJson2;
+    rideJson3 rideJson3;
 
     RelativeLayout history_created_rides_realtive;
     RelativeLayout history_joined_rides_realtive;
@@ -101,7 +104,15 @@ public class HistoryNew extends AppCompatActivity {
         listView.requestLayout();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        rideJson.cancel(true);
+        rideJson2.cancel(true);
+        rideJson3.cancel(true);
+        finish();
 
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,6 +137,9 @@ public class HistoryNew extends AppCompatActivity {
         Log.d("Type",AccountType);
 
 
+        rideJson = new rideJson();
+        rideJson2 = new  rideJson2();
+        rideJson3 = new  rideJson3();
 
 
 
@@ -133,8 +147,8 @@ public class HistoryNew extends AppCompatActivity {
 
         if (AccountType.equals("D")) {
 
-            new rideJson().execute();
-            new rideJson2().execute();
+            rideJson.execute();
+            rideJson2.execute();
 
 
 
@@ -145,7 +159,7 @@ public class HistoryNew extends AppCompatActivity {
             user_ride_created.setVisibility(View.INVISIBLE);
             driver_profile_RouteEnName.setVisibility(View.INVISIBLE);
             history_created_rides_realtive.setVisibility(View.INVISIBLE);
-            new rideJson3().execute();
+            rideJson3.execute();
 
             }
 
