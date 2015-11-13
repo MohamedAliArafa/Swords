@@ -662,7 +662,7 @@ public class HistoryNew extends AppCompatActivity {
                                 response = response.replaceAll("</string>", "");
                                 // Display the first 500 characters of the response string.
                                 String data = response.substring(40);
-                                Log.d("url", url + Driver_ID);
+                                Log.d("url", url2 + Driver_ID);
                                 try {
                                     JSONArray jArray = new JSONArray(data);
                                     final BestRouteDataModel[] passenger = new BestRouteDataModel[jArray.length()];
