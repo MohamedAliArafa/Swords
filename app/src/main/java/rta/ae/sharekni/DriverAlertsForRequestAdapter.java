@@ -9,6 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
+import com.pkmmte.view.CircularImageView;
+
 import rta.ae.sharekni.Arafa.Classes.AppController;
 import rta.ae.sharekni.Arafa.Classes.CircularNetworkImageView;
 import rta.ae.sharekni.Arafa.Classes.GetData;
@@ -25,7 +27,7 @@ public class DriverAlertsForRequestAdapter extends BaseAdapter {
     private Activity activity;
     private LayoutInflater inflater;
     private List<DriverAlertsForRequestDataModel> AlertsItem;
-        ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+    ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     String URL = GetData.PhotoURL;
 
 
@@ -68,16 +70,22 @@ public class DriverAlertsForRequestAdapter extends BaseAdapter {
         if (imageLoader == null) imageLoader = AppController.getInstance().getImageLoader();
 
 
-        CircularNetworkImageView Photo = (CircularNetworkImageView) convertView.findViewById(R.id.AccountPhoto);
+        CircularImageView Photo = (CircularImageView) convertView.findViewById(R.id.AccountPhoto);
         TextView PassengerName= (TextView) convertView.findViewById(R.id.PassengerName);
         TextView NationalityEnName= (TextView) convertView.findViewById(R.id.NationalityEnName);
         TextView txt_Accepted_or_Rejected = (TextView) convertView.findViewById(R.id.txt_Accepted_or_Rejected);
 
 
         final DriverAlertsForRequestDataModel model = AlertsItem.get(position);
-        Photo.setImageUrl(URL + model.getAccountPhoto(), imageLoader);
+//        Photo.setImageUrl(URL + model.getAccountPhoto(), imageLoader);
         PassengerName.setText(model.getPassengerName());
         NationalityEnName.setText(model.getNationalityEnName());
+
+        if (model.getAccountPhoto() != null){
+            Photo.setImageBitmap(model.getPhoto());
+        }else {
+            Photo.setImageResource(R.drawable.defaultdriver);
+        }
 
         if (model.getDriverAccept()!=null) {
             if (model.getDriverAccept().equals("false")) {

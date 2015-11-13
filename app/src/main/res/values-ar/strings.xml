@@ -98,7 +98,7 @@
     <string name="title_activity_register__vehicle__verify">Register_Vehicle_Verify</string>
     <string name="register_vehicle_verify_border_title">تأكيد</string>
     <string name="btn_verify_txt">تأكيد</string>
-    <string name="verify_Unified_ID">Unified ID</string>
+    <string name="verify_Unified_ID">تحقيق شخصية غير مؤكد</string>
     <string name="verify_passport_number_txt">من فضلك ادخل رقم جواز السفر</string>
     <string name="mobile_number_const">+ 971 -</string>
     <string name="onboard_most_rides">أكثر الرحلات طلبا</string>
@@ -299,7 +299,7 @@
     <string name="policy_file">file:///android_asset/privacypolicyar.html</string>
     <string name="terms_file">file:///android_asset/terms_ar.html</string>
     <string name="edit_msg">تم تعديل بيانات الحساب</string>
-    <string name="Driver_request_details_address">بيانات التنيه</string>
+    <string name="Driver_request_details_address">بيانات التنبيه</string>
     <string name="accept">أوافق</string>
     <string name="Age_Ranges_str">الفئات العمريه</string>
     <string name="click_to_select">إضغط للإختبار</string>
@@ -314,7 +314,7 @@
     <string name="No_Saved_Search">لا يوجد بحث محفوظ</string>
     <string name="driver_nat_en_name">DriverNationalityArName</string>
     <string name="Register_vehicle_update">تم تحديث  البيانات</string>
-    <string name="Account_Approved_rides_Details">االبيانات</string>
+    <string name="Account_Approved_rides_Details">البيانات</string>
     <string name="Account_Approved_rides_Driver">السائق</string>
     <string name="Account_Approved_rides_leave">مغادرة</string>
     <string name="enter_file_no">من فضلك أدخل الرقم المرورى</string>
@@ -323,6 +323,10 @@
     <string name="ride_updated">تم تحديث الرحلة</string>
     <string name="route_name_exist">إسم الطريق موجود بالفعل</string>
     <string name="cant_user_file_number">لا يمكنك استخدام هذا الرقم المروري</string>
+    <string name="ride_created2">تم إنشاء الرحلة</string>
+    <string name="reached_max_rides">لقد وصلت إلى الحد الأقصى من الطرق المتاحة</string>
+    <string name="request_failed">فشل فى الطلب</string>
+    <string name="review_deleted">تم حذف التعليق</string>
 
 
 </resources>

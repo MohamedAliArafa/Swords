@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
+import com.pkmmte.view.CircularImageView;
 
 import org.json.JSONException;
 
@@ -35,7 +37,8 @@ public class DriverRequestDetails extends AppCompatActivity {
     List<DriverAlertsForRequestDataModel> arr = new ArrayList<>();
     private Toolbar toolbar;
     String PassengerName;
-    String RouteName, NationalityEnName, AccountPhoto, PassengerMobile, Remarks, RequestDate;
+    String RouteName, NationalityEnName, PassengerMobile, Remarks, RequestDate;
+    Bitmap AccountPhoto;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     int RequestId;
     String URL =GetData.PhotoURL;
@@ -53,7 +56,7 @@ public class DriverRequestDetails extends AppCompatActivity {
         PassengerName = intent.getStringExtra("PassengerName");
         RouteName = intent.getStringExtra("RouteName");
         NationalityEnName = intent.getStringExtra("NationalityEnName");
-        AccountPhoto = intent.getStringExtra("AccountPhoto");
+        AccountPhoto = intent.getParcelableExtra("AccountPhoto");
         PassengerMobile = intent.getStringExtra("PassengerMobile");
         Remarks = intent.getStringExtra("Remarks");
         RequestDate = intent.getStringExtra("RequestDate");
@@ -81,9 +84,13 @@ public class DriverRequestDetails extends AppCompatActivity {
         RequestDate_txt.setText(RequestDate);
 
         if (imageLoader == null) imageLoader = AppController.getInstance().getImageLoader();
-        CircularNetworkImageView Photo = (CircularNetworkImageView) findViewById(R.id.AccountPhoto);
-        Photo.setImageUrl(URL + AccountPhoto, imageLoader);
+        CircularImageView Photo = (CircularImageView) findViewById(R.id.AccountPhoto);
 
+        if (AccountPhoto != null){
+            Photo.setImageBitmap(AccountPhoto);
+        }else {
+            Photo.setImageResource(R.drawable.defaultdriver);
+        }
 
 
 

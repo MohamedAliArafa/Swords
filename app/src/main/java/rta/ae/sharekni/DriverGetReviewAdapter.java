@@ -70,7 +70,7 @@ public class DriverGetReviewAdapter extends BaseAdapter {
             convertView = layoutInflater.inflate(R.layout.driver_get_review_listitem, null);
 
 
-
+        ImageView DriverPhoto = (ImageView) convertView.findViewById(R.id.Driver_Get_Review_im);
         TextView Review = (TextView) convertView.findViewById(R.id.Driver_Get_Review_Review);
         TextView AccountName = (TextView) convertView.findViewById(R.id.Driver_Get_Review_AccountName);
         TextView  AccountNationalityEn= (TextView) convertView.findViewById(R.id.Driver_Get_Review_Nat);
@@ -90,19 +90,26 @@ public class DriverGetReviewAdapter extends BaseAdapter {
                     try {
                         String response = gd.Driver_Delete_Review(driverGetReviewDataModel.getReviewID());
                         if (response.equals("\"1\"")) {
-                            Toast.makeText(activity, "Review Deleted", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(activity, activity.getString(R.string.review_deleted), Toast.LENGTH_SHORT).show();
                             activity.recreate();
                         } else {
-                            Toast.makeText(activity, "Something Wrong", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(activity, activity.getString(R.string.error), Toast.LENGTH_SHORT).show();
                         }
                         Log.d("res = ", response);
                     } catch (JSONException e) {
-                        Toast.makeText(activity, "Request Failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(activity, activity.getString(R.string.request_failed), Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
                 }
             });
         }
+
+        if (driverGetReviewDataModel.getPhoto() != null){
+            DriverPhoto.setImageBitmap(driverGetReviewDataModel.getPhoto());
+        }else {
+            DriverPhoto.setImageResource(R.drawable.defaultdriver);
+        }
+
         AccountName.setText(driverGetReviewDataModel.getAccountName());
         AccountNationalityEn.setText(driverGetReviewDataModel.getAccountNationalityEn());
         Review.setText(driverGetReviewDataModel.getReview());

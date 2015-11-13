@@ -17,7 +17,7 @@
         layout="@layout/app_bar" />
 
 
-    <rta.ae.sharekni.Arafa.Classes.CircularNetworkImageView
+    <com.pkmmte.view.CircularImageView
         android:id="@+id/AccountPhoto"
         android:layout_width="70dp"
         android:layout_height="70dp"

@@ -475,6 +475,10 @@ public class Route extends AppCompatActivity {
                         review.setReviewID(obj.getInt("ReviewId"));
                         review.setAccountID(obj.getInt("AccountId"));
                         review.setAccountName(obj.getString("AccountName"));
+                        if (!obj.getString("AccountPhoto").equals("NoImage.png")&&!obj.getString("AccountPhoto").equals("null")){
+                            GetData gd = new GetData();
+                            review.setPhoto(gd.GetImage(obj.getString("AccountPhoto")));
+                        }
                         review.setAccountNationalityEn(obj.getString(getString(R.string.acc_nat_name)));
                         review.setReview(obj.getString("Review"));
                         driverGetReviewDataModels_arr.add(review);

@@ -1,5 +1,6 @@
 package rta.ae.sharekni;
 
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -14,6 +15,16 @@ public class DriverGetReviewDataModel extends ArrayList<Parcelable> implements  
     public String Review,AccountName,AccountNationalityEn;
     public int AccountID;
     public int DriverID;
+
+    public Bitmap getPhoto() {
+        return Photo;
+    }
+
+    public void setPhoto(Bitmap photo) {
+        Photo = photo;
+    }
+
+    public Bitmap Photo;
 
     public int getReviewID() {
         return ReviewID;

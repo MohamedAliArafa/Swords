@@ -104,7 +104,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     Button create;
     String Create_CarPool_txt_PickUp;
     String Create_CarPool_txt_Drop_Off;
-    String Create_CarPool_full_date;
+    String Create_CarPool_full_date = "";
     EditText edit_route_name;
     TextView Create_CarPool_txt_Selecet_Start_Point;
     TextView Create_CarPool_txt_Select_Dest;

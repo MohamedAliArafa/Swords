@@ -217,6 +217,7 @@
     <string name="permit">Permit</string>
     <string name="history">History</string>
     <string name="ride_created">Ride Created</string>
+    <string name="ride_created2">Ride Created!</string>
     <string name="ride_joined">Ride Joined</string>
     <string name="vehicles">Vehicles</string>
     <string name="cannot_delete_route">Cannot Delete This Route</string>
@@ -326,6 +327,8 @@
     <string name="reached_max_rides">You Have Reached Max Rides Allowable!!</string>
     <string name="ride_updated">Ride Updated!!</string>
     <string name="cant_user_file_number">you can\'t use this file number</string>
+    <string name="review_deleted">Review Deleted</string>
+    <string name="request_failed">Request Failed</string>
 
 
 </resources>

@@ -125,11 +125,9 @@ public class DriverAlertsForRequest extends AppCompatActivity {
                         in.putExtra("PassengerName", arr.get(i).getPassengerName());
                         in.putExtra("RouteName", arr.get(i).getRouteName());
                         in.putExtra("NationalityEnName", arr.get(i).getNationalityEnName());
-
-                        in.putExtra("AccountPhoto", arr.get(i).getAccountPhoto());
+                        in.putExtra("AccountPhoto", arr.get(i).getPhoto());
                         in.putExtra("PassengerMobile", arr.get(i).getPassengerMobile());
                         in.putExtra("Remarks", arr.get(i).getRemarks());
-
                         in.putExtra("RequestId", arr.get(i).getRequestId());
                         in.putExtra("RequestDate", arr.get(i).getRequestDate());
                         jsoning.cancel(true);
@@ -201,7 +199,10 @@ public class DriverAlertsForRequest extends AppCompatActivity {
                         Alert.setRemarks(obj.getString("Remarks"));
                         Alert.setRequestId(obj.getInt("RequestId"));
                         Alert.setRequestDate(obj.getString("RequestDate"));
-
+                        if (!obj.getString("AccountPhoto").equals("NoImage.png")){
+                            GetData gd = new GetData();
+                            Alert.setPhoto(gd.GetImage(obj.getString("AccountPhoto")));
+                        }
                         //driver.setRating(obj.getInt("Rating"));
                         arr.add(Alert);
                     } catch (JSONException e) {
@@ -232,11 +233,11 @@ public class DriverAlertsForRequest extends AppCompatActivity {
                         Alert.setRemarks(obj.getString("Remarks"));
                         Alert.setRequestId(obj.getInt("RequestId"));
                         Alert.setRequestDate(obj.getString("RequestDate"));
-
-
                         Alert.setDriverAccept(obj.getString("DriverAccept"));
-
-
+                        if (!obj.getString("DriverPhoto").equals("NoImage.png")){
+                            GetData gd = new GetData();
+                            Alert.setPhoto(gd.GetImage(obj.getString("DriverPhoto")));
+                        }
                         //driver.setRating(obj.getInt("Rating"));
                         arr.add(Alert);
                     } catch (JSONException e) {

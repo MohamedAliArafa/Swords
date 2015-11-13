@@ -1,5 +1,6 @@
 package rta.ae.sharekni;
 
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -14,6 +15,15 @@ public class DriverAlertsForRequestDataModel extends ArrayList<Parcelable> imple
 public  int RequestId;
     public  String PassengerName,RouteName,Remarks,RequestDate,PassengerMobile,AccountPhoto,AccountGender,NationalityEnName,DriverAccept;
 
+    public Bitmap getPhoto() {
+        return Photo;
+    }
+
+    public void setPhoto(Bitmap photo) {
+        Photo = photo;
+    }
+
+    public Bitmap Photo;
 
     public String getDriverAccept() {
         return DriverAccept;
