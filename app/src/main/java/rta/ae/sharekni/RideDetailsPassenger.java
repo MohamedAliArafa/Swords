@@ -63,6 +63,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
 
 
     String Gender_ste, Nat_txt, Smokers_str;
+    int No_Seats;
 
 
     String str_StartFromTime, str_EndToTime_, str_PrefLanguageEnName;
@@ -275,6 +276,10 @@ public class RideDetailsPassenger extends AppCompatActivity {
                     FromEmirateEnName.setText(json.getString(getString(R.string.from_em_en_name)));
                     ToEmirateEnName.setText(json.getString(getString(R.string.to_em_en_name)));
                     str_StartFromTime = json.getString("StartFromTime");
+                    No_Seats=json.getInt("NoOfSeats");
+                    if (No_Seats==0){
+                        Join_Ride_btn.setVisibility(View.INVISIBLE);
+                    }
                     if (str_StartFromTime.equals("null")) {
                         str_StartFromTime = getString(R.string.not_set);
                         StartFromTime.setText(str_StartFromTime);
