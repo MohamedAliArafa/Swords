@@ -53,7 +53,7 @@ import rta.ae.sharekni.Arafa.Classes.GetData;
 
 public class Advanced_Search extends AppCompatActivity implements View.OnClickListener {
 
-    char i = 'M';
+    char i = 'N';
     static final int DILOG_ID = 0;
     static final int TIME_DIALOG_ID = 999;
     int Single_Periodic_ID;
