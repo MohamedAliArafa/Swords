@@ -322,6 +322,7 @@
     <string name="enter_file_DOB">من فضلك أدخل الرقم المرورى و تاريخ الميلاد</string>
     <string name="ride_updated">تم تحديث الرحلة</string>
     <string name="route_name_exist">إسم الطريق موجود بالفعل</string>
+    <string name="cant_user_file_number">لا يمكنك استخدام هذا الرقم المروري</string>
 
 
 </resources>

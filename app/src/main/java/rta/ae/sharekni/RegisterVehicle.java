@@ -211,6 +211,7 @@ public class RegisterVehicle extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Object o) {
+            
 
             if (data.equals("\"1\"")) {
                 Toast.makeText(getBaseContext(), getString(R.string.verified), Toast.LENGTH_LONG).show();
@@ -228,7 +229,7 @@ public class RegisterVehicle extends AppCompatActivity {
                 //  Toast.makeText(context, "license verified, but no cars found ", Toast.LENGTH_LONG).show();
                 Log.d("license no json", data + " Error in Connection with the DataBase Server");
             } else if (data.equals("\"-2\"")) {
-                Toast.makeText(getBaseContext(), getString(R.string.Register_vehicle_update), Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(),getString( R.string.cant_user_file_number) , Toast.LENGTH_LONG).show();
                 c.finish();
             }
 

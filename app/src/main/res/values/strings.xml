@@ -325,6 +325,7 @@
     <string name="route_name_exist">Route Name Exists!!</string>
     <string name="reached_max_rides">You Have Reached Max Rides Allowable!!</string>
     <string name="ride_updated">Ride Updated!!</string>
+    <string name="cant_user_file_number">you can\'t use this file number</string>
 
 
 </resources>
