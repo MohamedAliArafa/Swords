@@ -301,9 +301,9 @@ public class RideDetailsPassenger extends AppCompatActivity {
                         PrefLanguageEnName.setText(json.getString(getString(R.string.pref_lang)));
                     }
                     if (json.getInt("AgeRangeID") == 0){
-                        AgeRange.setText(json.getString("AgeRange"));
+                        AgeRange.setText(getString(R.string.not_set));
                     }else {
-                        AgeRange.setText(json.getString(getString(R.string.not_set)));
+                        AgeRange.setText(json.getString("AgeRange"));
                     }
                     Gender_ste = "";
                     Gender_ste = json.getString("PreferredGender");

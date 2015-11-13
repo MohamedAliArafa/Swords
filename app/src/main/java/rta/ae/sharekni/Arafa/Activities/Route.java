@@ -258,9 +258,9 @@ public class Route extends AppCompatActivity {
                             PrefLanguageEnName.setText(json.getString(getString(R.string.pref_lang)));
                         }
                         if (json.getInt("AgeRangeID") == 0){
-                            AgeRange.setText(json.getString("AgeRange"));
+                            AgeRange.setText(getString(R.string.not_set));
                         }else {
-                            AgeRange.setText(json.getString(getString(R.string.not_set)));
+                            AgeRange.setText(json.getString("AgeRange"));
                         }
                         Gender_ste = "";
                         Gender_ste = json.getString("PreferredGender");
@@ -505,7 +505,7 @@ public class Route extends AppCompatActivity {
                         JSONObject obj = response2.getJSONObject(y);
                         final Ride_Details_Passengers_DataModel item = new Ride_Details_Passengers_DataModel(Parcel.obtain());
                         Log.d("Passenger Name", obj.getString("AccountName"));
-                        item.setAccountPhoto(obj.getString("AccountPhoto"));
+//                        item.setAccountPhoto(obj.getString("AccountPhoto"));
                         item.setPassengerId(obj.getInt("ID"));
                         item.setAccountName(obj.getString("AccountName"));
                         item.setAccountNationalityEn(obj.getString(getString(R.string.acc_nat_name)));

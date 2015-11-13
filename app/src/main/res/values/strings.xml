@@ -322,6 +322,9 @@
     <string name="enter_file_no">Enter File Number PLease</string>
     <string name="enter_DOB">Enter Birth Date PLease</string>
     <string name="enter_file_DOB">Enter File Number and Birth Date Please</string>
+    <string name="route_name_exist">Route Name Exists!!</string>
+    <string name="reached_max_rides">You Have Reached Max Rides Allowable!!</string>
+    <string name="ride_updated">Ride Updated!!</string>
 
 
 </resources>
