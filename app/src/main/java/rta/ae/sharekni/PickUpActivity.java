@@ -24,6 +24,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -136,8 +137,11 @@ public class PickUpActivity extends AppCompatActivity {
                         Log.d("To_Em_Id_1", String.valueOf(To_Em_Id));
                         Log.d("To_Reg_Id_1", String.valueOf(To_Reg_Id));
                         startActivity(in);
-
+                        back1.cancel(true);
+                        back2.cancel(true);
                         finish();
+                    }else {
+                        Toast.makeText(PickUpActivity.this, "Please enter Emitrate and Region", Toast.LENGTH_SHORT).show();
                     }
                 }  // flag id
                 else if (FLAG_ID == 2) {
@@ -161,8 +165,8 @@ public class PickUpActivity extends AppCompatActivity {
                         back1.cancel(true);
                         back2.cancel(true);
                         finish();
-
-
+                    }else {
+                        Toast.makeText(PickUpActivity.this, "Please enter Emitrate and Region", Toast.LENGTH_SHORT).show();
                     }
                 } //  else if 2
 
@@ -190,6 +194,8 @@ public class PickUpActivity extends AppCompatActivity {
                         finish();
 
 
+                    }else {
+                        Toast.makeText(PickUpActivity.this, "Please enter Emitrate and Region", Toast.LENGTH_SHORT).show();
                     }
                 } //  else if 2
 
@@ -275,6 +281,8 @@ public class PickUpActivity extends AppCompatActivity {
                         From_EmirateEnName = txt_em_name.getText().toString();
                         Emirates_txt.setText(txt_em_name.getText().toString());
                         Emirates_Dialog.dismiss();
+                        Create_CarPool_txt_regions.setText("");
+                        From_Reg_Id = -1;
                     }
                 });
 
@@ -307,6 +315,8 @@ public class PickUpActivity extends AppCompatActivity {
                         To_EmirateEnName = txt_em_name.getText().toString();
                         Emirates_txt_2.setText(txt_em_name.getText().toString());
                         Emirates_Dialog.dismiss();
+                        Create_CarPool_txt_regions_2.setText("");
+                        To_Reg_Id = -1;
                     }
                 });
 
@@ -321,6 +331,7 @@ public class PickUpActivity extends AppCompatActivity {
                 if (hasFocus) {
                     arr_2.clear();
                     if (!back2.getStatus().equals(AsyncTask.Status.RUNNING)){
+                        back2 = new backTread2();
                         back2.execute();
                     }
                 }
@@ -335,6 +346,7 @@ public class PickUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 arr.clear();
                 if (!back1.getStatus().equals(AsyncTask.Status.RUNNING)){
+                    back1 = new backTread();
                     back1.execute();
                 }
             }

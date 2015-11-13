@@ -523,22 +523,22 @@ public class EditProfileTest extends AppCompatActivity {
                 }
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
-
-                int width = thumbnail.getWidth();
-                int height = thumbnail.getHeight();
-
-                float bitmapRatio = (float)width / (float) height;
-                if (bitmapRatio > 0) {
-                    width = 600;
-                    height = (int) (width / bitmapRatio);
-                } else {
-                    height = 600;
-                    width = (int) (height * bitmapRatio);
-                }
-                Bitmap im = Bitmap.createScaledBitmap(thumbnail, width, height, true);
-
-
-                im.compress(Bitmap.CompressFormat.PNG, 100, stream);
+//
+//                int width = thumbnail.getWidth();
+//                int height = thumbnail.getHeight();
+//
+//                float bitmapRatio = (float)width / (float) height;
+//                if (bitmapRatio > 0) {
+//                    width = 600;
+//                    height = (int) (width / bitmapRatio);
+//                } else {
+//                    height = 600;
+//                    width = (int) (height * bitmapRatio);
+//                }
+//                Bitmap im = Bitmap.createScaledBitmap(thumbnail, width, height, true);
+//
+                Bitmap resizedBitmap = Bitmap.createScaledBitmap(thumbnail, 150, 150, false);
+                resizedBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 byte[] byteArray = stream.toByteArray();
                 String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
                 new ImageUpload().execute(encoded);
@@ -561,9 +561,7 @@ public class EditProfileTest extends AppCompatActivity {
                 options.inJustDecodeBounds = false;
                 bm = BitmapFactory.decodeFile(selectedImagePath, options);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-
                 Bitmap resizedBitmap = Bitmap.createScaledBitmap(bm, 150, 150, false);
-
                 resizedBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 byte[] byteArray = stream.toByteArray();
                 String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);

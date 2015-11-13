@@ -791,7 +791,8 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                     e.printStackTrace();
                 }
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                thumbnail.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                Bitmap resizedBitmap = Bitmap.createScaledBitmap(thumbnail, 150, 150, false);
+                resizedBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 byte[] byteArray = stream.toByteArray();
                 String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
                 new ImageUpload().execute(encoded);
@@ -816,7 +817,8 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                 options.inJustDecodeBounds = false;
                 bm = BitmapFactory.decodeFile(selectedImagePath, options);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bm.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                Bitmap resizedBitmap = Bitmap.createScaledBitmap(bm, 150, 150, false);
+                resizedBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 byte[] byteArray = stream.toByteArray();
                 String encoded = Base64.encodeToString(byteArray, Base64.DEFAULT);
                 new ImageUpload().execute(encoded);
