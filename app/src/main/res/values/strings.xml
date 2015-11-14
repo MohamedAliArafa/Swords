@@ -125,10 +125,10 @@
     <string name="cancel">Cancel</string>
     <string name="add_photo">Add Photo!</string>
     <string name="select_file">Select File</string>
-    <string name="unknown_country">unknown Country ( Choose From The List )</string>
+    <string name="unknown_country">Incorrect Country ( Choose From The List )</string>
     <string name="unknown_language">unknown Language ( Choose From The List )</string>
-    <string name="short_pass">Password must be more than 4 Character</string>
-    <string name="short_mobile">So Short For Mobile Number</string>
+    <string name="short_pass">Password must be at least 5 Character</string>
+    <string name="short_mobile">Enter Valid Mobile Number</string>
     <string name="select_image_first_error">Select Profile Image!!</string>
     <string name="select_type_first_error">please Choose a user Type</string>
     <string name="connection_problem">Connection Problem!</string>

@@ -124,10 +124,10 @@
     <string name="choose_from_library">إختر من المكتبة</string>
     <string name="cancel">إلغاء</string>
     <string name="add_photo">إضافة صورة!</string>
-    <string name="unknown_country">بلد غير معروف (فضلا إختر من القائمة)</string>
+    <string name="unknown_country">بلد غير صحيح (فضلا إختر من القائمة)</string>
     <string name="unknown_language">لغة غير معروفه (فضلا إختر من القائمة)</string>
-    <string name="short_pass">كلمة المرور يجب ان تكون اكثر من 4 احرف</string>
-    <string name="short_mobile">رقم الهاتف قصير</string>
+    <string name="short_pass">كبمة المرور يجب ان تكون على الأقل 5 أحرف</string>
+    <string name="short_mobile">أدخل رقم جوال صحيح</string>
     <string name="select_image_first_error">إحتر صورة شخصية اولا</string>
     <string name="select_type_first_error">يرجي اختيار نوع التسجيل</string>
     <string name="connection_problem">خطأ بالإتصال!</string>

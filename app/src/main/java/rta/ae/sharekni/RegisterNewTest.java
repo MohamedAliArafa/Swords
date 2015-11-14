@@ -139,6 +139,8 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
     LinearLayout Nat_Linear;
     LinearLayout Language_Linear;
 
+    RelativeLayout Date_Relative;
+
 
     private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
         @Override
@@ -162,8 +164,10 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                 txt_year.setText(full_date);
                 txt_comma.setVisibility(View.VISIBLE);
                 txt_dayOfWeek.setText(dayOfWeek);
+                Date_Relative.setBackgroundResource(R.drawable.user_register_border);
                 Log.d("Calendar test", full_date);
             }else{
+                Date_Relative.setBackgroundResource(R.drawable.user_register_border_error);
                 txt_dayOfWeek.setText(R.string.must_be_more_18);
                 Toast.makeText(RegisterNewTest.this, R.string.too_young, Toast.LENGTH_SHORT).show();
             }
@@ -248,6 +252,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         Password_Linear = (LinearLayout) findViewById(R.id.Password_Linear);
         Nat_Linear = (LinearLayout) findViewById(R.id.Nat_Linear);
         Language_Linear = (LinearLayout) findViewById(R.id.Language_Linear);
+        Date_Relative = (RelativeLayout) findViewById(R.id.datepicker_id);
 
 
 
@@ -334,7 +339,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                 if (!hasFocus) {
                     edit_phone.setHint(getString(R.string.REg_Mobile));
                     if (edit_phone != null) {
-                        if (edit_phone.length() < 7) {
+                        if (edit_phone.length() < 9) {
                             Toast.makeText(RegisterNewTest.this, getString(R.string.short_mobile), Toast.LENGTH_SHORT).show();
                             MobileNumber_Linear.setBackgroundResource(R.drawable.user_register_border_error);
                         }else {
@@ -403,7 +408,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                     }
                     if (!result) {
                         txt_country.setBackgroundResource(R.drawable.user_register_border_error);
-//                        Toast.makeText(RegisterNewTest.this, R.string.unknown_country, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterNewTest.this, R.string.unknown_country, Toast.LENGTH_SHORT).show();
                     }else {
                         txt_country.setBackgroundResource(R.drawable.user_register_border);
                     }
@@ -500,7 +505,8 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                 }
                 if (full_date == null) {
                         Toast.makeText(RegisterNewTest.this, R.string.fill_all_error, Toast.LENGTH_SHORT).show();
-                    } else {
+                        Date_Relative.setBackgroundResource(R.drawable.user_register_border_error);
+                } else {
 
                     if (edit_fname.getText() != null && !edit_fname.getText().toString().equals(getString(R.string.Reg_FirstN)) && edit_lname.getText() != null && !edit_lname.getText().toString().equals(getString(R.string.Reg_LastN)) && edit_phone.getText() != null && !edit_phone.getText().toString().equals(getString(R.string.REg_Mobile)) && edit_pass.getText() != null && !edit_pass.getText().toString().equals(getString(R.string.Reg_pass)) && edit_user.getText() != null && !edit_user.getText().toString().equals(getString(R.string.Reg_Email)) && txt_country.getText() != null && !edit_lname.getText().toString().equals(getString(R.string.Reg_Nat)) && Language_ID != -1 && Nationality_ID != -1 && full_date != null) {
                         String Fname = edit_fname.getText().toString();

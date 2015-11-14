@@ -262,13 +262,21 @@ public class EditProfileTest extends AppCompatActivity {
         edit_reg_mob.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
+                    edit_reg_mob.setHint(getString(R.string.REg_Mobile));
                     if (edit_reg_mob != null) {
-                        if (edit_reg_mob.length() == 7) {
-                            Toast.makeText(EditProfileTest.this, R.string.short_mobile, Toast.LENGTH_SHORT).show();
+                        if (edit_reg_mob.length() < 9) {
+                            Toast.makeText(EditProfileTest.this, getString(R.string.short_mobile), Toast.LENGTH_SHORT).show();
+//                            MobileNumber_Linear.setBackgroundResource(R.drawable.user_register_border_error);
+                        }else {
+//                            MobileNumber_Linear.setBackgroundResource(R.drawable.user_register_border);
                         }
+                    }else {
+//                        MobileNumber_Linear.setBackgroundResource(R.drawable.user_register_border);
                     }
                 }
-
+                if (hasFocus){
+                    edit_reg_mob.setHint("");
+                }
             }
         });
 
