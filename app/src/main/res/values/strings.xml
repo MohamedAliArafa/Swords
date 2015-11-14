@@ -337,7 +337,12 @@
     <string name="choose_birth_date">Choose your Birth Date</string>
     <string name="taken_username">Cannot Register , Please choose another username</string>
     <string name="taken_mobile">Cannot Register , Check your Mobile Number</string>
-
+    <string name="Write_review_first">Please write a review first</string>
+    <string name="Delete_Review_Str">Delete Review</string>
+    <string name="Leave_Ride_Str">Leave Ride</string>
+    <string name="Are_you_sure_leave_ride">Are you sure that you want to leave this ride ?</string>
+    <string name="You_have_leaved_this_ride">You Have Leaved this Ride</string>
+    <string name="delet_ride_str">Are you Sure You that you wnt to delete this ride ?</string>
 
 
 </resources>

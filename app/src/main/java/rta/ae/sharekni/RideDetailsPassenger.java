@@ -244,6 +244,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
                         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                         dialog.setContentView(R.layout.review_dialog);
                         Button btn = (Button) dialog.findViewById(R.id.Review_Btn);
+                        final TextView Review_Empty_Error = (TextView) dialog.findViewById(R.id.Review_Empty_Error);
                         Edit_Review_txt = (EditText) dialog.findViewById(R.id.Edit_Review_txt);
                         dialog.show();
                         btn.setOnClickListener(new View.OnClickListener() {
@@ -251,18 +252,29 @@ public class RideDetailsPassenger extends AppCompatActivity {
                             public void onClick(View v) {
 
                                 Review_str = Edit_Review_txt.getText().toString();
-                                try {
-                                    String response = j.Passenger_Review_Driver(Driver_ID, Passenger_ID, Route_ID, URLEncoder.encode(Review_str));
-                                    if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
-                                        Toast.makeText(RideDetailsPassenger.this, getString(R.string.cannot_review), Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Toast.makeText(RideDetailsPassenger.this, getString(R.string.done), Toast.LENGTH_SHORT).show();
-                                        con.recreate();
+
+                                if (!Review_str.equals("")) {
+                                    Review_Empty_Error.setVisibility(View.INVISIBLE);
+                                    try {
+                                        String response = j.Passenger_Review_Driver(Driver_ID, Passenger_ID, Route_ID, URLEncoder.encode(Review_str));
+                                        if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
+                                            Toast.makeText(RideDetailsPassenger.this, getString(R.string.cannot_review), Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(RideDetailsPassenger.this, getString(R.string.done), Toast.LENGTH_SHORT).show();
+                                            con.recreate();
+                                        }
+                                        dialog.dismiss();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
                                     }
-                                    dialog.dismiss();
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
+
+                                }//  if review is null
+                                else {
+                                    Review_Empty_Error.setVisibility(View.VISIBLE);
+
                                 }
+
+
                             }
                         });
 

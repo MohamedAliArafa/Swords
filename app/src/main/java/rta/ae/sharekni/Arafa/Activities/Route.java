@@ -188,7 +188,7 @@ public class Route extends AppCompatActivity {
 
                 new AlertDialog.Builder(c)
                         .setTitle(R.string.Delete_Ride)
-                        .setMessage(R.string.Are_You_Sure_msg_dilog)
+                        .setMessage(R.string.delet_ride_str)
                         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
 
