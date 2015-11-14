@@ -316,9 +316,9 @@ public class EditProfileTest extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 Boolean result = false;
                 if (!hasFocus) {
-                    if (Country_List.size() != 0 && txt_country.getText() != null && !txt_country.getText().toString().equals("Nationality")) {
+                    if (Country_List.size() != 0 && txt_country.getText() != null && !txt_country.getText().toString().equals(getString(R.string.Reg_Nat))) {
                         for (int i = 0; i <= 193; i++) {
-                            String a = Country_List.get(i).get(getString(R.string.nat_name2));
+                            String a = Country_List.get(i).get("NationalityEnName");
                             String b = txt_country.getText().toString();
                             if (a.equals(b)) {
                                 result = true;
@@ -338,7 +338,7 @@ public class EditProfileTest extends AppCompatActivity {
                 Boolean result = false;
                 try {
                     if (!hasFocus) {
-                        if (Lang_List.size() != 0 && txt_lang.getText() != null && !txt_lang.getText().toString().equals("Preferred Language")) {
+                        if (Lang_List.size() != 0 && txt_lang.getText() != null && !txt_lang.getText().toString().equals(getString(R.string.Reg_PrefLang))) {
                             for (int i = 0; i <= Lang_List.size(); i++) {
                                 String a = Lang_List.get(i).get("NationalityEnName");
                                 String b = txt_lang.getText().toString();
@@ -360,7 +360,7 @@ public class EditProfileTest extends AppCompatActivity {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (edit_fname.getText() != null && edit_fname.getText().toString() != "First Name" && edit_lname.getText() != null && edit_lname.getText().toString() != "Last Name" && edit_reg_mob.getText() != null && edit_reg_mob.getText().toString() != "Mobile Number" && txt_country.getText() != null && txt_country.getText().toString() != "Nationality" && txt_lang.getText() != null && txt_lang.getText().toString() != "Preferred Language" && full_date != null) {
+                if (!edit_fname.getText().toString().equals("") && !edit_fname.getText().toString().equals(getString(R.string.Reg_FirstN)) && !edit_lname.getText().toString().equals("") && !edit_lname.getText().toString().equals(getString(R.string.Reg_LastN)) && !edit_reg_mob.getText().toString().equals("") && !edit_reg_mob.getText().toString().equals(getString(R.string.REg_Mobile)) && txt_country.getText() != null && !txt_country.getText().toString().equals(getString(R.string.Reg_Nat)) && txt_lang.getText() != null && !txt_lang.getText().toString().equals(getString(R.string.Reg_PrefLang)) && full_date != null) {
                     if (uploadedImage == null) {
                         Toast.makeText(EditProfileTest.this, R.string.select_profile_image, Toast.LENGTH_SHORT).show();
                     } else {
