@@ -335,7 +335,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                     edit_phone.setHint(getString(R.string.REg_Mobile));
                     if (edit_phone != null) {
                         if (edit_phone.length() < 7) {
-//                            Toast.makeText(RegisterNewTest.this, R.string.short_mobile, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterNewTest.this, getString(R.string.short_mobile), Toast.LENGTH_SHORT).show();
                             MobileNumber_Linear.setBackgroundResource(R.drawable.user_register_border_error);
                         }else {
                             MobileNumber_Linear.setBackgroundResource(R.drawable.user_register_border);
@@ -354,10 +354,10 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus){
-                    edit_user.setHint("Username (Your Email)");
+                    edit_user.setHint(getString(R.string.Reg_Email));
                     if (!isEmailValid(edit_user.getText().toString())) {
                         UserName_Linear.setBackgroundResource(R.drawable.user_register_border_error);
-//                        Toast.makeText(RegisterNewTest.this, R.string.email_valid_form, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterNewTest.this, getString(R.string.email_valid_form), Toast.LENGTH_SHORT).show();
                     }
                 }else {
                     UserName_Linear.setBackgroundResource(R.drawable.user_register_border);
@@ -375,7 +375,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                     if (edit_pass != null) {
                         if (edit_pass.length() <= 4) {
                             Password_Linear.setBackgroundResource(R.drawable.user_register_border_error);
-//                            Toast.makeText(RegisterNewTest.this, R.string.short_pass, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterNewTest.this, getString(R.string.short_pass), Toast.LENGTH_SHORT).show();
                         }
                     }
                 }else {
@@ -502,7 +502,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                         Toast.makeText(RegisterNewTest.this, R.string.choose_birth_date, Toast.LENGTH_SHORT).show();
                     } else {
 
-                    if (edit_fname.getText() != null && !edit_fname.getText().toString().equals(getString(R.string.Reg_FirstN)) && edit_lname.getText() != null && !edit_lname.getText().toString().equals(getString(R.string.Reg_LastN)) && edit_phone.getText() != null && !edit_phone.getText().toString().equals(getString(R.string.REg_Mobile)) && edit_pass.getText() != null && !edit_pass.getText().toString().equals(getString(R.string.Reg_pass)) && edit_user.getText() != null && !edit_user.getText().toString().equals(getString(R.string.Reg_Email)) && txt_country.getText() != null && !edit_lname.getText().toString().equals(getString(R.string.Reg_Nat)) && Language_ID != -1 && Nationality_ID != -1 && full_date != null) {
+                    if (edit_fname.getText() != null && !edit_fname.getText().toString().equals(getString(R.string.fill_all_error)) && edit_lname.getText() != null && !edit_lname.getText().toString().equals(getString(R.string.Reg_LastN)) && edit_phone.getText() != null && !edit_phone.getText().toString().equals(getString(R.string.REg_Mobile)) && edit_pass.getText() != null && !edit_pass.getText().toString().equals(getString(R.string.Reg_pass)) && edit_user.getText() != null && !edit_user.getText().toString().equals(getString(R.string.Reg_Email)) && txt_country.getText() != null && !edit_lname.getText().toString().equals(getString(R.string.Reg_Nat)) && Language_ID != -1 && Nationality_ID != -1 && full_date != null) {
                         String Fname = edit_fname.getText().toString();
                         String Lname = edit_lname.getText().toString();
                         String phone = edit_phone.getText().toString();
