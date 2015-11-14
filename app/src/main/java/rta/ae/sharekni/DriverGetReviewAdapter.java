@@ -1,7 +1,9 @@
 package rta.ae.sharekni;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -86,20 +88,57 @@ public class DriverGetReviewAdapter extends BaseAdapter {
             Driver_Delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    GetData gd = new GetData();
-                    try {
-                        String response = gd.Driver_Delete_Review(driverGetReviewDataModel.getReviewID());
-                        if (response.equals("\"1\"")) {
-                            Toast.makeText(activity, activity.getString(R.string.review_deleted), Toast.LENGTH_SHORT).show();
-                            activity.recreate();
-                        } else {
-                            Toast.makeText(activity, activity.getString(R.string.error), Toast.LENGTH_SHORT).show();
-                        }
-                        Log.d("res = ", response);
-                    } catch (JSONException e) {
-                        Toast.makeText(activity, activity.getString(R.string.request_failed), Toast.LENGTH_SHORT).show();
-                        e.printStackTrace();
-                    }
+
+                    new AlertDialog.Builder(activity)
+                            .setTitle(R.string.Delete_Passenger_dialog_str)
+                            .setMessage(R.string.Are_You_Sure_msg_dilog)
+                            .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+
+
+
+                                    GetData gd = new GetData();
+                                    try {
+                                        String response = gd.Driver_Delete_Review(driverGetReviewDataModel.getReviewID());
+                                        if (response.equals("\"1\"")) {
+                                            Toast.makeText(activity, activity.getString(R.string.review_deleted), Toast.LENGTH_SHORT).show();
+                                            activity.recreate();
+                                        } else {
+                                            Toast.makeText(activity, activity.getString(R.string.error), Toast.LENGTH_SHORT).show();
+                                        }
+                                        Log.d("res = ", response);
+                                    } catch (JSONException e) {
+                                        Toast.makeText(activity, activity.getString(R.string.request_failed), Toast.LENGTH_SHORT).show();
+                                        e.printStackTrace();
+                                    }
+
+
+
+                                }
+                            })
+                            .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                    dialog.dismiss();
+
+                                }
+                            }).setIcon(android.R.drawable.ic_dialog_alert).show();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 }
             });
         }

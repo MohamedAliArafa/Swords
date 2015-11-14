@@ -195,7 +195,7 @@
                     android:hint="@string/REg_Mobile"
                     android:inputType="phone"
                     android:lines="1"
-                    android:maxLength="10"
+                    android:maxLength="9"
                     android:maxLines="1"
                     android:nextFocusDown="@+id/edit_reg_username"
                     android:paddingLeft="10dp"

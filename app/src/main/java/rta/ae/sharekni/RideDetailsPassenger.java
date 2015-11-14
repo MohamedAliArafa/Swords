@@ -58,6 +58,7 @@ import rta.ae.sharekni.Arafa.Classes.GetData;
 public class RideDetailsPassenger extends AppCompatActivity {
 
 
+    final List<Ride_Details_Passengers_DataModel> Passengers_arr = new ArrayList<>();
     TextView
             FromRegionEnName, ToRegionEnName, FromEmirateEnName, ToEmirateEnName, StartFromTime, EndToTime_, AgeRange, PreferredGender, IsSmoking, ride_details_day_of_week, NationalityEnName, PrefLanguageEnName;
 
@@ -133,7 +134,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
         ride_details_day_of_week = (TextView) findViewById(R.id.ride_details_day_of_week);
         Driver_get_Review_lv = (ListView) findViewById(R.id.Driver_get_Review_lv);
         Passenger_Review_Driver_Btn = (Button) findViewById(R.id.Passenger_Review_Driver_Btn);
-        Relative_REviews= (RelativeLayout) findViewById(R.id.Relative_REviews);
+        Relative_REviews = (RelativeLayout) findViewById(R.id.Relative_REviews);
         Relative_REviews_Address_2 = (TextView) findViewById(R.id.Relative_REviews_Address_2);
         Join_Ride_btn.setVisibility(View.VISIBLE);
 
@@ -149,10 +150,10 @@ public class RideDetailsPassenger extends AppCompatActivity {
 
         try {
 
-            if (in.getInt("FLAG_1")==1){
+            if (in.getInt("FLAG_1") == 1) {
                 Join_Ride_btn.setVisibility(View.INVISIBLE);
             }
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
 
         }
 
@@ -169,6 +170,8 @@ public class RideDetailsPassenger extends AppCompatActivity {
 
 
     private class back extends AsyncTask implements OnMapReadyCallback {
+
+        JSONArray response2 = null;
 
 
         JSONObject json;
@@ -198,7 +201,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
             mapFragment.getMapAsync(this);
 
 
-            if (FLAG_REVIEW==0){
+            if (FLAG_REVIEW == 0) {
                 Relative_REviews.setVisibility(View.INVISIBLE);
                 Relative_REviews_Address_2.setVisibility(View.INVISIBLE);
             }
@@ -276,8 +279,8 @@ public class RideDetailsPassenger extends AppCompatActivity {
                     FromEmirateEnName.setText(json.getString(getString(R.string.from_em_en_name)));
                     ToEmirateEnName.setText(json.getString(getString(R.string.to_em_en_name)));
                     str_StartFromTime = json.getString("StartFromTime");
-                    No_Seats=json.getInt("NoOfSeats");
-                    if (No_Seats==0){
+                    No_Seats = json.getInt("NoOfSeats");
+                    if (No_Seats == 0) {
                         Join_Ride_btn.setVisibility(View.INVISIBLE);
                     }
                     if (str_StartFromTime.equals("null")) {
@@ -300,14 +303,15 @@ public class RideDetailsPassenger extends AppCompatActivity {
                         NationalityEnName.setText(getString(R.string.not_set));
                     } else {
                         NationalityEnName.setText(json.getString(getString(R.string.nat_name2)));
-                    }if (json.getInt("PrefLanguageId") == 0){
+                    }
+                    if (json.getInt("PrefLanguageId") == 0) {
                         PrefLanguageEnName.setText(getString(R.string.not_set));
-                    }else {
+                    } else {
                         PrefLanguageEnName.setText(json.getString(getString(R.string.pref_lang)));
                     }
-                    if (json.getInt("AgeRangeID") == 0){
+                    if (json.getInt("AgeRangeID") == 0) {
                         AgeRange.setText(getString(R.string.not_set));
-                    }else {
+                    } else {
                         AgeRange.setText(json.getString("AgeRange"));
                     }
                     Gender_ste = "";
@@ -369,6 +373,38 @@ public class RideDetailsPassenger extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+
+                for (int y = 0; y < response2.length(); y++) {
+
+                    try {
+                        JSONObject obj = response2.getJSONObject(y);
+                        final Ride_Details_Passengers_DataModel item = new Ride_Details_Passengers_DataModel(Parcel.obtain());
+                        Log.d("Passenger Name", obj.getString("AccountName"));
+//                        item.setAccountPhoto(obj.getString("AccountPhoto"));
+                        Log.d("Passenger id", String.valueOf(Passenger_ID));
+                        Log.d("Pass list id", String.valueOf(obj.getInt("ID")));
+                        if (Passenger_ID==obj.getInt("AccountId")){
+                            Join_Ride_btn.setVisibility(View.INVISIBLE);
+                        }
+
+                        item.setPassengerId(obj.getInt("ID"));
+                        item.setAccountName(obj.getString("AccountName"));
+
+                        if (obj.getString("AccountMobile").equals("null")) {
+                            item.setAccountMobile("");
+                        } else {
+                            item.setAccountMobile(obj.getString("AccountMobile"));
+                        }
+
+                        item.setAccountNationalityEn(obj.getString(getString(R.string.acc_nat_name)));
+                        Passengers_arr.add(item);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
 
                 Join_Ride_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -518,6 +554,8 @@ public class RideDetailsPassenger extends AppCompatActivity {
                 Socket sock = new Socket();
                 int timeoutMs = 2000;   // 2 seconds
                 sock.connect(sockaddr, timeoutMs);
+
+
                 json = new GetData().GetRouteById(Route_ID);
                 response1 = new GetData().Driver_GetReview(Driver_ID, Route_ID);
                 assert response1 != null;
@@ -532,12 +570,17 @@ public class RideDetailsPassenger extends AppCompatActivity {
                         review.setReview(obj.getString("Review"));
                         if (!review.getReview().equals("")) {
                             driverGetReviewDataModels_arr.add(review);
-                            FLAG_REVIEW ++;
+                            FLAG_REVIEW++;
 
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+
+
+                    response2 = new GetData().GetPassengers_ByRouteID(Route_ID);
+
+
                 }
                 exists = true;
             } catch (final Exception e) {

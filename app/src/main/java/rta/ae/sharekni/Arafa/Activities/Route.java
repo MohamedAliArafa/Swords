@@ -519,7 +519,6 @@ public class Route extends AppCompatActivity {
 
 
 
-
             if (response2.length()==0){
                 REaltive_Passengers_1.setVisibility(View.INVISIBLE);
                 passenger_relative_2.setVisibility(View.INVISIBLE);
@@ -555,12 +554,6 @@ public class Route extends AppCompatActivity {
 
 
             }
-
-
-
-
-
-
 
             for (int x1 = 0; x1 < response3.length(); x1++) {
 

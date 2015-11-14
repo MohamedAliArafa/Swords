@@ -1,7 +1,9 @@
 package rta.ae.sharekni;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -78,16 +80,50 @@ public class PassngerApprovedRidesAdapter extends ArrayAdapter<BestRouteDataMode
                 @Override
                 public void onClick(View v) {
 
-                    GetData gd = new GetData();
-                    try {
-                        String response = gd.Passenger_LeaveRide(bestRouteDataModel.getRoutePassengerId());
-                        if (response.equals("\"1\"")){
-                            Toast.makeText(activity, "You Have Leaved this Ride", Toast.LENGTH_SHORT).show();
-                        }
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+
+                    new AlertDialog.Builder(activity)
+                            .setTitle(R.string.Delete_Passenger_dialog_str)
+                            .setMessage(R.string.Are_You_Sure_msg_dilog)
+                            .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+
+
+                                    GetData gd = new GetData();
+                                    try {
+                                        String response = gd.Passenger_LeaveRide(bestRouteDataModel.getRoutePassengerId());
+                                        if (response.equals("\"1\"")){
+                                            Toast.makeText(activity, "You Have Leaved this Ride", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+
+
+                                }
+                            })
+                            .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                    dialog.dismiss();
+
+                                }
+                            }).setIcon(android.R.drawable.ic_dialog_alert).show();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 }
             });
 
@@ -98,6 +134,7 @@ public class PassngerApprovedRidesAdapter extends ArrayAdapter<BestRouteDataMode
                     Intent intent =  new Intent(activity,RideDetailsPassenger.class);
                     intent.putExtra("RouteID",bestRouteDataModel.getRoute_id());
                     intent.putExtra("PassengerID",bestRouteDataModel.getPassenger_ID());
+                    intent.putExtra("DriverID", vh.Driver_Id);
                     intent.putExtra("FLAG_1",1);
                     activity.startActivity(intent);
                 }
