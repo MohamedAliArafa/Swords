@@ -93,6 +93,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginEnd="8dp"
         android:paddingTop="5dp"
+        android:id="@+id/passenger_lits_item_Msg"
         />
 
 

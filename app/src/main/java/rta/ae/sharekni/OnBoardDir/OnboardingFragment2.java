@@ -56,6 +56,7 @@ public class OnboardingFragment2 extends Fragment {
         OnBoard_Changelanguae.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 new AlertDialog.Builder(getActivity())
                         .setTitle(R.string.choose_language)
                         .setMessage(R.string.choose_language_mss)

@@ -13,6 +13,7 @@ public class Ride_Details_Passengers_DataModel extends ArrayList<Parcelable> imp
 
     String AccountName;
     String AccountNationalityEn;
+    String AccountMobile;
 
     public String getAccountPhoto() {
         return AccountPhoto;
@@ -41,11 +42,18 @@ public class Ride_Details_Passengers_DataModel extends ArrayList<Parcelable> imp
 
         AccountName=in.readString();
         AccountNationalityEn=in.readString();
+        AccountMobile=in.readString();
 
     }
 
 
+    public String getAccountMobile() {
+        return AccountMobile;
+    }
 
+    public void setAccountMobile(String accountMobile) {
+        AccountMobile = accountMobile;
+    }
 
     public static final Creator<Ride_Details_Passengers_DataModel> CREATOR = new Creator<Ride_Details_Passengers_DataModel>() {
         @Override
@@ -86,5 +94,6 @@ public class Ride_Details_Passengers_DataModel extends ArrayList<Parcelable> imp
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(AccountName);
         dest.writeString(AccountNationalityEn);
+        dest.writeString(AccountMobile);
     }
 }

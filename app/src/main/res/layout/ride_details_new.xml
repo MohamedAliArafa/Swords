@@ -397,7 +397,7 @@
                         android:layout_alignStart="@+id/PrefLanguageEnName"
                         android:layout_toEndOf="@+id/ride_details_Gender_txt"
                         android:layout_toRightOf="@+id/ride_details_Gender_txt"
-                        android:maxLength="6"
+                        android:maxLength="7"
                         android:text="Gender"
                         android:textSize="18sp"
                         android:textStyle="bold" />
