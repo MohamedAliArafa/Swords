@@ -94,6 +94,7 @@ public class Route extends AppCompatActivity {
 
     loadingBasicInfo loadingBasicInfo;
     loadingReviews loadingReviews;
+    Activity c;
 
     int Vehicle_Id_Permit;
     GetData j = new GetData();
@@ -127,7 +128,7 @@ public class Route extends AppCompatActivity {
         initToolbar();
         con = this;
         ride_details_passengers = (ListView) findViewById(R.id.ride_details_passengers);
-
+        c=this;
         FromRegionEnName = (TextView) findViewById(R.id.FromRegionEnName);
         ToRegionEnName = (TextView) findViewById(R.id.ToRegionEnName);
 
@@ -183,22 +184,47 @@ public class Route extends AppCompatActivity {
         Route_Delete_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    String response = j.Driver_DeleteRoute(Route_ID);
-                    if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
-                        Toast.makeText(Route.this, R.string.cannot_delete_route, Toast.LENGTH_SHORT).show();
-                    } else {
-                        Intent in = new Intent(Route.this, HomePage.class);
-                        in.putExtra("RouteID", Route_ID);
-                        in.putExtra("DriverID",Driver_ID);
-                        in.putExtra("RouteName",Route_name);
-                        startActivity(in);
-                        Toast.makeText(Route.this, R.string.route_deleted, Toast.LENGTH_SHORT).show();
-                    }
-                    Log.d("join ride res", String.valueOf(response));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+
+
+                new AlertDialog.Builder(c)
+                        .setTitle(R.string.Delete_Ride)
+                        .setMessage(R.string.Are_You_Sure_msg_dilog)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                try {
+                                    String response = j.Driver_DeleteRoute(Route_ID);
+                                    if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
+                                        Toast.makeText(Route.this, R.string.cannot_delete_route, Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Intent in = new Intent(Route.this, HomePage.class);
+                                        in.putExtra("RouteID", Route_ID);
+                                        in.putExtra("DriverID",Driver_ID);
+                                        in.putExtra("RouteName",Route_name);
+                                        startActivity(in);
+                                        finish();
+                                        Toast.makeText(Route.this, R.string.route_deleted, Toast.LENGTH_SHORT).show();
+                                    }
+                                    Log.d("join ride res", String.valueOf(response));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        })
+                        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                dialog.dismiss();
+
+                            }
+                        }).setIcon(android.R.drawable.ic_dialog_alert).show();
+
+
+
+
+
+
 
 
             }
@@ -512,6 +538,13 @@ public class Route extends AppCompatActivity {
 //                        item.setAccountPhoto(obj.getString("AccountPhoto"));
                         item.setPassengerId(obj.getInt("ID"));
                         item.setAccountName(obj.getString("AccountName"));
+
+                        if (obj.getString("AccountMobile").equals("null")){
+                            item.setAccountMobile("");
+                        }else {
+                            item.setAccountMobile(obj.getString("AccountMobile"));
+                        }
+
                         item.setAccountNationalityEn(obj.getString(getString(R.string.acc_nat_name)));
                         Passengers_arr.add(item);
 

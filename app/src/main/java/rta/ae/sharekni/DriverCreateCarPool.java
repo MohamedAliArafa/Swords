@@ -67,6 +67,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     int Age_ID = 0;
     int Language_ID =0;
     char gender = 'N';
+    int Number_Of_Seats=0;
     String To_EmirateEnName, From_EmirateEnName, To_RegionEnName, From_RegionEnName;
     List<TreeMap<String, String>> Create_CarPool_Emirates_List = new ArrayList<>();
     List<TreeMap<String, String>> Create_CarPool_Regions_List = new ArrayList<>();
@@ -639,7 +640,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                 String Thursday = String.valueOf(THU_FLAG);
                 String Friday = String.valueOf(FRI_FLAG);
                 int Vehicle_ID = Vehicle_Id;
-                int No_OF_Seats = id;
+                int No_OF_Seats = Number_Of_Seats;
                 double Start_Lat = 25.19757887867318;
                 double Start_Lng = 55.27437007440332;
                 double End_Lat = 25.32912394868096;
@@ -879,42 +880,51 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
             seat1_on.setVisibility(View.VISIBLE);
             seat1_off.setVisibility(View.INVISIBLE);
             id = 2;
+            Number_Of_Seats=1;
+
         }
         if (v == seat1_on && id == 2) {
             seat1_on.setVisibility(View.INVISIBLE);
             seat1_off.setVisibility(View.VISIBLE);
             id = 1;
+            Number_Of_Seats=0;
         }
         if (v == seat2_off && id == 2) {
             seat2_off.setVisibility(View.INVISIBLE);
             seat2_on.setVisibility(View.VISIBLE);
             id = 3;
+            Number_Of_Seats=2;
         }
         if (v == seat2_on && id == 3) {
             seat2_off.setVisibility(View.VISIBLE);
             seat2_on.setVisibility(View.INVISIBLE);
             id = 2;
+            Number_Of_Seats=1;
         }
         if (v == seat3_off && id == 3) {
             seat3_off.setVisibility(View.INVISIBLE);
             seat3_on.setVisibility(View.VISIBLE);
             id = 4;
+            Number_Of_Seats=3;
         }
         if (v == seat3_on && id == 4) {
             seat3_on.setVisibility(View.INVISIBLE);
             seat3_off.setVisibility(View.VISIBLE);
             id = 3;
+            Number_Of_Seats=2;
         }
         if (v == seat4_off && id == 4) {
             seat4_off.setVisibility(View.INVISIBLE);
             seat4_on.setVisibility(View.VISIBLE);
             id = 5;
+            Number_Of_Seats=4;
         }
 
         if (v == seat4_on && id == 5) {
             seat4_on.setVisibility(View.INVISIBLE);
             seat4_off.setVisibility(View.VISIBLE);
             id = 4;
+            Number_Of_Seats=3;
         }
 
 

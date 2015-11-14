@@ -49,6 +49,8 @@ public class PickUpActivity extends AppCompatActivity {
     int To_Reg_Id;
     int FLAG_ID;
 
+    Double Start_Latitude,Start_Longitude,End_Latitude,End_Longitude;
+
     TextView Emirates_txt, Emirates_txt_2;
 
     Button dis_submit;
@@ -391,6 +393,13 @@ public class PickUpActivity extends AppCompatActivity {
                     Create_CarPool_txt_regions.setText(arr.get(position).getRegionEnName());
                     From_Reg_Id = arr.get(position).getID();
                     From_RegionEnName = arr.get(position).getRegionEnName();
+
+                    Start_Latitude=arr.get(position).getRegionLatitude();
+                    Start_Longitude= arr.get(position).getRegionLongitude();
+
+
+                    Log.d("Start lat", String.valueOf(Start_Latitude));
+                    Log.d("Start lat", String.valueOf(Start_Longitude));
                     Log.d("Em Name : ", From_EmirateEnName);
                     Log.d("Reg Name", From_RegionEnName);
                     Log.d("Reg id ", String.valueOf(From_Reg_Id));
@@ -441,6 +450,8 @@ public class PickUpActivity extends AppCompatActivity {
                         final RegionsDataModel regions = new RegionsDataModel(Parcel.obtain());
                         regions.setID(jsonObject.getInt("ID"));
                         regions.setRegionEnName(jsonObject.getString(getString(R.string.reg_name)));
+                        regions.setRegionLatitude(jsonObject.getDouble("RegionLatitude"));
+                        regions.setRegionLongitude(jsonObject.getDouble("RegionLongitude"));
                         arr.add(regions);
                     }
                 }

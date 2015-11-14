@@ -105,8 +105,8 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
     RelativeLayout createCarPool_Fri_Day;
     SimpleAdapter Create_CarPool_EmAdapter;
     Button Create_CarPool_btn_submit_pickUp;
-    Button Create_CarPool_pickUp;
-    Button Create_CarPool_Dropoff;
+    TextView Create_CarPool_pickUp;
+    TextView Create_CarPool_Dropoff;
     Button create;
     String Create_CarPool_txt_PickUp;
     String Create_CarPool_txt_Drop_Off;
@@ -192,8 +192,8 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
 
         Create_CarPool_Preferred_Lang_txt = (TextView) findViewById(R.id.createCarPool_Preferred_Lang_txt);
         Create_CarPool_Age_Range_txt = (TextView) findViewById(R.id.createCarPool_Age_Range_txt);
-        Create_CarPool_pickUp = (Button) findViewById(R.id.createCarPool_pickUp);
-        Create_CarPool_Dropoff = (Button) findViewById(R.id.createCarPool_search__Dropoff);
+        Create_CarPool_pickUp = (TextView) findViewById(R.id.createCarPool_pickUp);
+        Create_CarPool_Dropoff = (TextView) findViewById(R.id.createCarPool_search__Dropoff);
 
         createCarPool_Sat_Day = (RelativeLayout) findViewById(R.id.createCarPool_Sat_Day);
         createCarPool_Sun_Day = (RelativeLayout) findViewById(R.id.createCarPool_Sun_Day);

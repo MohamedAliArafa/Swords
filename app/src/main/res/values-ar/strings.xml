@@ -6,7 +6,7 @@
     <string name="hello_world">مرحبا</string>
     <string name="action_settings">الإعدادات</string>
     <string name="next">التالى</string>
-    <string name="title_activity_sub_navigate">HelloAppbar</string>
+    <string name="title_activity_sub_navigate">شاركني</string>
     <string name="drawer_open">فتح</string>
     <string name="drawer_colse">إغلاق</string>
 
@@ -22,7 +22,7 @@
     <string name="title_activity_maps">خريطة</string>
     <string name="title_activity_top_rides">TopRidesActivity</string>
     <string name="title_activity_top_drivers">أفضل السائقين</string>
-    <string name="title_activity_On_Boarding">OnBoarding</string>
+    <string name="title_activity_On_Boarding">شاركني</string>
     <string name="title_activity_view_profile">ViewProfileActivity</string>
     <string name="txt_yo_yo">yo yo</string>
     <string name="from_text_top_ride">من :</string>
@@ -196,7 +196,6 @@
     <string name="pref_lang">PrefLanguageArName</string>
     <string name="pref_lang2">PrefferedLanguageArName</string>
     <string name="yes">نعم</string>
-    <string name="no">لا</string>
     <string name="write_remark">أكتب تعليقك</string>
     <string name="your_remarks">تعليقاتك</string>
     <string name="i_like_join_ride">  طلب الانضمام  الى رحلتك</string>
@@ -334,6 +333,11 @@
     <string name="taken_mobile">لا يمكن التسجيل , برجاء التأكد من رقم الجوال</string>
     <string name="taken_username">لا يمكن التسجيل , هذا البريد الألكترونى مسجل بالفعل</string>
     <string name="choose_birth_date">إختر تاريخ الميلاد</string>
+    <string name="Delete_Passenger_dialog_str">حذف راكب</string>
+    <string name="Are_You_Sure_msg_dilog">هل تريد حذف هذا الراكب بالفعل ؟</string>
+    <string name="passenger_deleted_successfully">تم حذف الراكب</string>
+    <string name="no">كلا</string>
+    <string name="Delete_Ride">حذف رحلة</string>
 
 
 </resources>
