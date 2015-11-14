@@ -227,7 +227,7 @@ public class GetData {
             , String Time, String sat, String sun, String mon, String tue, String wed
             , String thu, String fri, char gender, int VehicleID, int NoOfSeats
             , double StartLat, double StartLng, double EndLat, double EndLng
-            , int Pref_Lang, int Nat, int AgeRangedId, String Start_Date, Activity context) {
+            , int Pref_Lang, String Nat, int AgeRangedId, String Start_Date, Activity context) {
 
         DriverCreateCarPoolStringRequest(DriverCreateCarPoolUrl + "AccountID=" + myId
                 + "&EnName=" + URLEncoder.encode(En_Name)
@@ -557,6 +557,7 @@ public class GetData {
         json = new JSONArray(obj.getData().toString());
         return json;
     }
+
 
     public JSONArray GetAgeRanges() throws JSONException {
         JSONArray json = null;

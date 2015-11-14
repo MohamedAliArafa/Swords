@@ -62,7 +62,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     int To_Reg_Id = -1;
     int year_x, month_x, day_x;
     int MyId = -1;
-    int Nationality_ID = 0;
+    String Nationality_ID ;
     int Vehicle_Id = -1;
     int Age_ID = 0;
     int Language_ID =0;
@@ -99,8 +99,8 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     int FRI_FLAG = 0;
     SimpleAdapter Create_CarPool_EmAdapter;
     Button Create_CarPool_btn_submit_pickUp;
-    Button Create_CarPool_pickUp;
-    Button Create_CarPool_Dropoff;
+    TextView Create_CarPool_pickUp;
+    TextView Create_CarPool_Dropoff;
     Button create;
     String Create_CarPool_txt_PickUp;
     String Create_CarPool_txt_Drop_Off;
@@ -307,8 +307,8 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
         Create_CarPool_Preferred_Lang_txt = (TextView) findViewById(R.id.createCarPool_Preferred_Lang_txt);
         Create_CarPool_Age_Range_txt = (TextView) findViewById(R.id.createCarPool_Age_Range_txt);
-        Create_CarPool_pickUp = (Button) findViewById(R.id.createCarPool_pickUp);
-        Create_CarPool_Dropoff = (Button) findViewById(R.id.createCarPool_search__Dropoff);
+        Create_CarPool_pickUp = (TextView) findViewById(R.id.createCarPool_pickUp);
+        Create_CarPool_Dropoff = (TextView) findViewById(R.id.createCarPool_search__Dropoff);
 
         seat1_off = (ImageView) findViewById(R.id.seat1_off);
         seat2_off = (ImageView) findViewById(R.id.seat2_off);
@@ -568,8 +568,8 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         if (id == DILOG_ID) {
             DatePickerDialog dp = new DatePickerDialog(this, dPickerListener, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
             d = dp.getDatePicker();
-            d.updateDate(year_x,month_x,day_x);
-            d.setMaxDate(cal.getTimeInMillis());
+            d.updateDate(year_x, month_x, day_x);
+           // d.setMaxDate(cal.getTimeInMillis());
             return dp;        }
         if (id == TIME_DIALOG_ID) {
             return new TimePickerDialog(this,
@@ -645,7 +645,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                 double End_Lat = 25.32912394868096;
                 double End_Lng = 55.51227235846654;
                 int pref_lnag = Language_ID;
-                int pref_nat = Nationality_ID;
+                String pref_nat = Nationality_ID;
                 int Age_Ranged_id = Age_ID;
                 String StartDate = Create_CarPool_full_date;
 
@@ -1015,7 +1015,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         TextView txt_lang_name = (TextView) view.findViewById(R.id.row_name);
                         TextView txt_lang_id = (TextView) view.findViewById(R.id.row_id);
-                        Nationality_ID = Integer.parseInt(txt_lang_id.getText().toString());
+                        Nationality_ID = (txt_lang_id.getText().toString());
                         Create_CarPool_search_Nat.setText(txt_lang_name.getText().toString());
                         Log.d("id of lang", "" + Nationality_ID);
                     }

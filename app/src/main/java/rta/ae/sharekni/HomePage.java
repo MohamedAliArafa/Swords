@@ -56,6 +56,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
     TextView name, nat, Lnag_home;
     SharedPreferences myPrefs;
     RelativeLayout btn_create,btn_history;
+    int Vehicles_Count_FLAG=0;
 
     int Driver_ID;
     RelativeLayout Relative_quickSearch;
@@ -232,6 +233,10 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
             VehiclesCount_str += "(";
             try {
                 All_Alerts = jsonArray.getInt("DriverMyAlertsCount")+jsonArray.getInt("PassengerMyAlertsCount");
+
+                Vehicles_Count_FLAG=jsonArray.getInt("VehiclesCount");
+                Log.d("vehicle count flag", String.valueOf(Vehicles_Count_FLAG));
+
                 VehiclesCount_str += jsonArray.getString("VehiclesCount");
                 VehiclesCount_str += ")";
                 VehiclesCount.setText(VehiclesCount_str);
@@ -460,6 +465,8 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 nat.setText(nat_str);
                 NavigationDrawerFragment.nat_home.setText(nat_str);
                 //   str.substring(0, 1).toUpperCase() + str.substring(1);
+                Vehicles_Count_FLAG=jsonArray.getInt("VehiclesCount");
+                Log.d("vehicle count flag", String.valueOf(Vehicles_Count_FLAG));
                 VehiclesCount_str="";
                 VehiclesCount_str += "(";
                 VehiclesCount_str += (jsonArray.getString("VehiclesCount"));
@@ -489,12 +496,16 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
 
                     Rides_joined_Relative.setVisibility(View.INVISIBLE);
 
+                    NavigationDrawerFragment.Convert_txt_id.setText(getString(R.string.saved_search));
+                    NavigationDrawerFragment.menuicon12.setImageResource(R.drawable.menusavesearchicon);
+
+
 
                     btn_create.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
 
-                            Intent intent =  new Intent(getBaseContext(),PassengerMyApprovedRides.class);
+                            Intent intent = new Intent(getBaseContext(), PassengerMyApprovedRides.class);
                             startActivity(intent);
 
                         }
@@ -510,9 +521,34 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                     });
 
 
+                    NavigationDrawerFragment.navy_My_vehicles.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getBaseContext(), History.class);
+                            startActivity(intent);
+                        }
+                    });
+
+
                     Home_Realtive_Vehicles.setVisibility(View.INVISIBLE);
                     driver_rides_Created.setVisibility(View.INVISIBLE);
                 }else {
+
+
+                    NavigationDrawerFragment.navy_My_vehicles.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (Vehicles_Count_FLAG==0) {
+
+                                Intent intent = new Intent(getBaseContext(), RegisterVehicle.class);
+                                startActivity(intent);
+                            }else {
+                                Intent intent = new Intent(getBaseContext(), Display_My_Vehicles.class);
+                                startActivity(intent);
+
+                            }
+                        }
+                    });
 
 
 
@@ -529,9 +565,18 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                     Home_Realtive_Vehicles.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            Log.d("vehicle flag count", String.valueOf(Vehicles_Count_FLAG));
 
-                            Intent intent = new Intent(getBaseContext(),RegisterVehicle.class);
-                            startActivity(intent);
+                            if (Vehicles_Count_FLAG==0) {
+
+                                Intent intent = new Intent(getBaseContext(), RegisterVehicle.class);
+                                startActivity(intent);
+                            }else {
+                                Intent intent = new Intent(getBaseContext(), Display_My_Vehicles.class);
+                                startActivity(intent);
+
+                            }
+
 
 //                            final Dialog dialog = new Dialog(c);
 //                            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
