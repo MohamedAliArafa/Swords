@@ -499,10 +499,10 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                     btn_datepicker_id.setBackgroundResource(R.drawable.user_register_border);
                 }
                 if (full_date == null) {
-                        Toast.makeText(RegisterNewTest.this, R.string.choose_birth_date, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterNewTest.this, R.string.fill_all_error, Toast.LENGTH_SHORT).show();
                     } else {
 
-                    if (edit_fname.getText() != null && !edit_fname.getText().toString().equals(getString(R.string.fill_all_error)) && edit_lname.getText() != null && !edit_lname.getText().toString().equals(getString(R.string.Reg_LastN)) && edit_phone.getText() != null && !edit_phone.getText().toString().equals(getString(R.string.REg_Mobile)) && edit_pass.getText() != null && !edit_pass.getText().toString().equals(getString(R.string.Reg_pass)) && edit_user.getText() != null && !edit_user.getText().toString().equals(getString(R.string.Reg_Email)) && txt_country.getText() != null && !edit_lname.getText().toString().equals(getString(R.string.Reg_Nat)) && Language_ID != -1 && Nationality_ID != -1 && full_date != null) {
+                    if (edit_fname.getText() != null && !edit_fname.getText().toString().equals(getString(R.string.Reg_FirstN)) && edit_lname.getText() != null && !edit_lname.getText().toString().equals(getString(R.string.Reg_LastN)) && edit_phone.getText() != null && !edit_phone.getText().toString().equals(getString(R.string.REg_Mobile)) && edit_pass.getText() != null && !edit_pass.getText().toString().equals(getString(R.string.Reg_pass)) && edit_user.getText() != null && !edit_user.getText().toString().equals(getString(R.string.Reg_Email)) && txt_country.getText() != null && !edit_lname.getText().toString().equals(getString(R.string.Reg_Nat)) && Language_ID != -1 && Nationality_ID != -1 && full_date != null) {
                         String Fname = edit_fname.getText().toString();
                         String Lname = edit_lname.getText().toString();
                         String phone = edit_phone.getText().toString();
