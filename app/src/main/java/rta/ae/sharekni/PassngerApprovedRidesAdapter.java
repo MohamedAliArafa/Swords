@@ -83,8 +83,8 @@ public class PassngerApprovedRidesAdapter extends ArrayAdapter<BestRouteDataMode
 
 
                     new AlertDialog.Builder(activity)
-                            .setTitle(R.string.Delete_Passenger_dialog_str)
-                            .setMessage(R.string.Are_You_Sure_msg_dilog)
+                            .setTitle(R.string.Leave_Ride_Str)
+                            .setMessage(R.string.Are_you_sure_leave_ride)
                             .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
 
@@ -93,7 +93,7 @@ public class PassngerApprovedRidesAdapter extends ArrayAdapter<BestRouteDataMode
                                     try {
                                         String response = gd.Passenger_LeaveRide(bestRouteDataModel.getRoutePassengerId());
                                         if (response.equals("\"1\"")){
-                                            Toast.makeText(activity, "You Have Leaved this Ride", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(activity, R.string.You_have_leaved_this_ride, Toast.LENGTH_SHORT).show();
                                         }
 
                                     } catch (JSONException e) {

@@ -338,6 +338,12 @@
     <string name="passenger_deleted_successfully">تم حذف الراكب</string>
     <string name="no">كلا</string>
     <string name="Delete_Ride">حذف رحلة</string>
+    <string name="Write_review_first">يرجي ادخال التعليق أولا</string>
+    <string name="Delete_Review_Str">حذف تعليق</string>
+    <string name="Leave_Ride_Str">مغادرة الرحلة</string>
+    <string name="Are_you_sure_leave_ride">هل أنت متأكد  انك تريد مغادرة هذه الرحلة ؟</string>
+    <string name="You_have_leaved_this_ride">لقد غادرت هذه الرحلة</string>
+    <string name="delet_ride_str">هل انت متاكد انك تريد حذف هذه الرحلة ؟</string>
 
 
 </resources>

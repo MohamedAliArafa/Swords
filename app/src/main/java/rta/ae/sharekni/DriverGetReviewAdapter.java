@@ -90,7 +90,7 @@ public class DriverGetReviewAdapter extends BaseAdapter {
                 public void onClick(View v) {
 
                     new AlertDialog.Builder(activity)
-                            .setTitle(R.string.Delete_Passenger_dialog_str)
+                            .setTitle(R.string.Delete_Review_Str)
                             .setMessage(R.string.Are_You_Sure_msg_dilog)
                             .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
@@ -123,12 +123,6 @@ public class DriverGetReviewAdapter extends BaseAdapter {
 
                                 }
                             }).setIcon(android.R.drawable.ic_dialog_alert).show();
-
-
-
-
-
-
 
 
 
