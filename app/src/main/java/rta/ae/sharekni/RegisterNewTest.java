@@ -84,8 +84,8 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
     final Calendar cal = Calendar.getInstance();
     int year_x, month_x, day_x;
     char i = 'M';
-    int Nationality_ID;
-    int Language_ID;
+    int Nationality_ID = -1;
+    int Language_ID = -1;
     EditText edit_fname;
     EditText edit_lname;
     EditText edit_phone;
@@ -485,7 +485,6 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                 }else {
                     UserName_Linear.setBackgroundResource(R.drawable.user_register_border_error);
                 }
-
                 if (txt_country.getText().length()!=0){
                     Nat_Linear.setBackgroundResource(R.drawable.user_register_border);
                 }else {
@@ -499,9 +498,11 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                 if (full_date != null){
                     btn_datepicker_id.setBackgroundResource(R.drawable.user_register_border);
                 }
-                if (uploadedImage == null) {
-                        Toast.makeText(RegisterNewTest.this, R.string.select_image_first_error, Toast.LENGTH_SHORT).show();
+                if (full_date == null) {
+                        Toast.makeText(RegisterNewTest.this, R.string.choose_birth_date, Toast.LENGTH_SHORT).show();
                     } else {
+
+                    if (edit_fname.getText() != null && !edit_fname.getText().toString().equals(getString(R.string.Reg_FirstN)) && edit_lname.getText() != null && !edit_lname.getText().toString().equals(getString(R.string.Reg_LastN)) && edit_phone.getText() != null && !edit_phone.getText().toString().equals(getString(R.string.REg_Mobile)) && edit_pass.getText() != null && !edit_pass.getText().toString().equals(getString(R.string.Reg_pass)) && edit_user.getText() != null && !edit_user.getText().toString().equals(getString(R.string.Reg_Email)) && txt_country.getText() != null && !edit_lname.getText().toString().equals(getString(R.string.Reg_Nat)) && Language_ID != -1 && Nationality_ID != -1 && full_date != null) {
                         String Fname = edit_fname.getText().toString();
                         String Lname = edit_lname.getText().toString();
                         String phone = edit_phone.getText().toString();
@@ -532,6 +533,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                             case "Both":
                                 registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + URLEncoder.encode(birthdate) + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x, getBaseContext(), country, "D");
                                 break;
+                            }
                         }
 
                     }

@@ -234,6 +234,7 @@
                     android:paddingRight="10dp"
                     android:paddingStart="10dp"
                     android:scrollHorizontally="true"
+                    android:inputType="textEmailAddress"
                     android:singleLine="true"
                     android:textColorHint="@color/primaryColor"
                     android:textSize="15sp" />

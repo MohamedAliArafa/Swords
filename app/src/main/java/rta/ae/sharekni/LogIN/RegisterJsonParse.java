@@ -16,6 +16,7 @@ import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
 import rta.ae.sharekni.Arafa.DataModel.BestDriverDataModel;
 import rta.ae.sharekni.HomePage;
+import rta.ae.sharekni.R;
 
 
 import org.json.JSONArray;
@@ -60,10 +61,10 @@ public class RegisterJsonParse {
                             in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             context.startActivity(in);
                         }else if ( data.equals("-1") ) {
-                            Toast.makeText(context, "Cannot Register , Please choose another username", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, context.getString(R.string.taken_username), Toast.LENGTH_LONG).show();
                         }else if (data.equals("-2")){
 
-                            Toast.makeText(context, "Cannot Register , Check your Mobile Number ", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, context.getString(R.string.taken_mobile), Toast.LENGTH_LONG).show();
 
                         }
 
