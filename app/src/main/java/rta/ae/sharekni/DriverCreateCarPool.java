@@ -52,6 +52,8 @@ import rta.ae.sharekni.Arafa.Classes.GetData;
 public class DriverCreateCarPool extends AppCompatActivity implements View.OnClickListener {
 
 
+    Double Start_Latitude,Start_Longitude,End_Latitude,End_Longitude;
+
     static final int DILOG_ID = 0;
     static final int TIME_DIALOG_ID = 999;
     int id = 1;
@@ -189,6 +191,22 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                 From_Reg_Id_2 = intent.getIntExtra("From_Reg_Id", 0);
                 To_Em_Id_2 = intent.getIntExtra("To_Em_Id", 0);
                 To_Reg_Id_2 = intent.getIntExtra("To_Reg_Id", 0);
+                Start_Latitude=intent.getDoubleExtra("Start_Latitude", 0);
+                Start_Longitude=intent.getDoubleExtra("Start_Longitude", 0);
+                End_Latitude=intent.getDoubleExtra("End_Latitude",0);
+                End_Longitude=intent.getDoubleExtra("End_Longitude",0);
+
+                Log.d("Start lat", String.valueOf(End_Latitude));
+                Log.d("Start lat", String.valueOf(End_Longitude));
+
+                Log.d("Start lat", String.valueOf(Start_Latitude));
+                Log.d("Start lat", String.valueOf(Start_Longitude));
+
+//                in.putExtra("Start_Latitude",Start_Latitude);
+//                in.putExtra("Start_Longitude",Start_Longitude);
+//                in.putExtra("End_Latitude",End_Latitude);
+//                in.putExtra("End_Longitude",End_Longitude);
+
 
                 Create_CarPool_txt_PickUp = "";
                 From_EmirateEnName_str = intent.getStringExtra("From_EmirateEnName");
@@ -641,10 +659,10 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                 String Friday = String.valueOf(FRI_FLAG);
                 int Vehicle_ID = Vehicle_Id;
                 int No_OF_Seats = Number_Of_Seats;
-                double Start_Lat = 25.19757887867318;
-                double Start_Lng = 55.27437007440332;
-                double End_Lat = 25.32912394868096;
-                double End_Lng = 55.51227235846654;
+                double Start_Lat = Start_Latitude;
+                double Start_Lng = Start_Longitude;
+                double End_Lat = End_Latitude;
+                double End_Lng = End_Longitude;
                 int pref_lnag = Language_ID;
                 String pref_nat = Nationality_ID;
                 int Age_Ranged_id = Age_ID;

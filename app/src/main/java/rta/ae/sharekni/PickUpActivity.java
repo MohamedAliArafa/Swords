@@ -184,6 +184,10 @@ public class PickUpActivity extends AppCompatActivity {
                         in.putExtra("To_EmirateEnName", To_EmirateEnName);
                         in.putExtra("To_RegionEnName", To_RegionEnName);
                         in.putExtra("To_Reg_Id", To_Reg_Id);
+                        in.putExtra("Start_Latitude",Start_Latitude);
+                        in.putExtra("Start_Longitude",Start_Longitude);
+                        in.putExtra("End_Latitude",End_Latitude);
+                        in.putExtra("End_Longitude",End_Longitude);
 
                         Log.d("From_Em_Id_1", String.valueOf(From_Em_Id));
                         Log.d("From_Reg_Id_1", String.valueOf(From_Reg_Id));
@@ -490,8 +494,12 @@ public class PickUpActivity extends AppCompatActivity {
                     Create_CarPool_txt_regions_2.setText(arr_2.get(position).getRegionEnName());
                     To_Reg_Id = arr_2.get(position).getID();
                     To_RegionEnName = arr_2.get(position).getRegionEnName();
+                    End_Latitude=arr_2.get(position).getRegionLatitude();
+                    End_Longitude=arr_2.get(position).getRegionLongitude();
 
 
+                    Log.d("Start lat", String.valueOf(End_Latitude));
+                    Log.d("Start lat", String.valueOf(End_Longitude));
                     Log.d("Em Name : ", To_EmirateEnName);
                     Log.d("Reg Name", To_RegionEnName);
                     Log.d("Reg id ", String.valueOf(To_Reg_Id));
@@ -540,6 +548,8 @@ public class PickUpActivity extends AppCompatActivity {
                         final RegionsDataModel regions = new RegionsDataModel(Parcel.obtain());
                         regions.setID(jsonObject.getInt("ID"));
                         regions.setRegionEnName(jsonObject.getString(getString(R.string.reg_name)));
+                        regions.setRegionLatitude(jsonObject.getDouble("RegionLatitude"));
+                        regions.setRegionLongitude(jsonObject.getDouble("RegionLongitude"));
                         arr_2.add(regions);
                     }
                 }
