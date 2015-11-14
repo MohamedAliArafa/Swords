@@ -83,6 +83,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
     int i = 0;
     private int hour;
     private int minute;
+    int savefind=0;
 
     static final int TIME_DIALOG_ID = 999;
 
@@ -104,6 +105,9 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
     String From_EmirateEnName_str, From_RegionEnName_str, To_EmirateEnName_str, To_RegionEnName_str;
     int From_Em_Id_2, From_Reg_Id_2, To_Em_Id_2, To_Reg_Id_2;
+    ImageView save_off,save_on;
+    TextView save_search_txt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -245,6 +249,32 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         Advanced_Search_Relative_2 = (RelativeLayout) findViewById(R.id.advanced_search);
         quick_Destination = (Button) findViewById(R.id.quick_Destination);
 
+        save_off= (ImageView) findViewById(R.id.save_off);
+        save_on= (ImageView) findViewById(R.id.save_on);
+        save_search_txt= (TextView) findViewById(R.id.save_search_txt);
+
+
+
+        save_off.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                save_off.setVisibility(View.INVISIBLE);
+                save_on.setVisibility(View.VISIBLE);
+                save_search_txt.setTextColor(Color.RED);
+                savefind=1;
+            }
+        });
+
+        save_on.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                save_on.setVisibility(View.INVISIBLE);
+                save_off.setVisibility(View.VISIBLE);
+                save_search_txt.setTextColor(Color.GRAY);
+                savefind=0;
+
+            }
+        });
 
 
 
@@ -356,6 +386,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
                 intent1.putExtra("From_RegionEnName", From_RegionEnName_str);
                 intent1.putExtra("To_EmirateEnName", To_EmirateEnName_str);
                 intent1.putExtra("To_RegionEnName", To_RegionEnName_str);
+                intent1.putExtra("SaveFind",savefind);
                 Log.d("Test", From_EmirateEnName + From_RegionEnName + To_EmirateEnName + To_RegionEnName);
                 startActivity(intent1);
 

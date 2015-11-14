@@ -327,9 +327,10 @@
     <string name="reached_max_rides">لقد وصلت إلى الحد الأقصى من الطرق المتاحة</string>
     <string name="request_failed">فشل فى الطلب</string>
     <string name="review_deleted">تم حذف التعليق</string>
-    <string name="choose_birth_date">إختر تاريخ الميلاد</string>
-    <string name="taken_mobile">لا يمكن التسجيل , تأكد من رقم الجوال</string>
-    <string name="taken_username">لا يمكن التسجيل , إختر بريد إلكترونى أخر</string>
+    <string name="My_vehicles_str">المركبات</string>
+    <string name="Registered_Vehicles_str">المركبات المسجله</string>
+    <string name="Emirate_Dubai">دبي</string>
+    <string name="No_Vehicles">لا توجد مركبات</string>
 
 
 </resources>

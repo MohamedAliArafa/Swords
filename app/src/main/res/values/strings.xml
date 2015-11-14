@@ -329,9 +329,10 @@
     <string name="cant_user_file_number">you can\'t use this file number</string>
     <string name="review_deleted">Review Deleted</string>
     <string name="request_failed">Request Failed</string>
-    <string name="choose_birth_date">Choose your Birth Date</string>
-    <string name="taken_username">Cannot Register , Please choose another username</string>
-    <string name="taken_mobile">"Cannot Register , Check your Mobile Number "</string>
+    <string name="My_vehicles_str">vehicles</string>
+    <string name="Registered_Vehicles_str">Registered Vehicles</string>
+    <string name="Emirate_Dubai">Dubai</string>
+    <string name="No_Vehicles">No vehicles</string>
 
 
 </resources>

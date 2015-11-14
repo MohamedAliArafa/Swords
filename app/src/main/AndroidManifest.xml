@@ -380,6 +380,8 @@
         </activity>
         <activity android:name=".Destination_Activity" >
         </activity>
+        <activity android:name=".Display_My_Vehicles" >
+        </activity>
     </application>
 
 </manifest>

@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -31,6 +32,8 @@ public class NavigationDrawerFragment extends Fragment {
 
 
   public static   CircularImageView circularImageView;
+
+
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView mrecyclerView;
@@ -53,8 +56,12 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
 
+   public static TextView Convert_txt_id;
+    public static ImageView menuicon12;
+   public  static  RelativeLayout navy_My_vehicles;
     RelativeLayout navy_homePage,navy_TopRides,navy_BestDrivers,navy_SearchOptions,navy_MyProfile,navy_Logout,navy_Edit_Profile;
   public static   TextView tv_name_home ,nat_home;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -84,6 +91,10 @@ public class NavigationDrawerFragment extends Fragment {
         nat_home= (TextView) layout.findViewById(R.id.nat_home);
         navy_Edit_Profile= (RelativeLayout) layout.findViewById(R.id.navy_Edit_Profile);
         navy_Change_lang = (RelativeLayout) layout.findViewById(R.id.navy_Change_lang);
+
+        navy_My_vehicles= (RelativeLayout) layout.findViewById(R.id.navy_My_vehicles);
+        menuicon12= (ImageView) layout.findViewById(R.id.menuicon12);
+        Convert_txt_id = (TextView) layout.findViewById(R.id.Convert_txt_id);
 
 
 

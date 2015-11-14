@@ -53,7 +53,7 @@ import rta.ae.sharekni.Arafa.Classes.GetData;
 
 public class Advanced_Search extends AppCompatActivity implements View.OnClickListener {
 
-    char i = 'M';
+    char i = 'N';
     static final int DILOG_ID = 0;
     static final int TIME_DIALOG_ID = 999;
     int Single_Periodic_ID;
@@ -77,8 +77,8 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
     JSONArray Emirates = null;
     JSONArray Regions = null;
     Button Advanced_btn_submit_pickUp;
-    String Advanced_txt_PickUp="Start Point";
-    String Advanced_txt_Drop_Off="End Point";
+    String Advanced_txt_PickUp = "Start Point";
+    String Advanced_txt_Drop_Off = "End Point";
     String To_EmirateEnName, From_EmirateEnName, To_RegionEnName, From_RegionEnName;
     String Advanced_full_date;
     AutoCompleteTextView advanced_search_Nat;
@@ -117,6 +117,10 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
     int i2 = 0;
     String From_EmirateEnName_str, From_RegionEnName_str, To_EmirateEnName_str, To_RegionEnName_str;
     int From_Em_Id_2, From_Reg_Id_2, To_Em_Id_2, To_Reg_Id_2;
+
+    ImageView save_off, save_on;
+    TextView save_search_txt;
+    int savefind = 0;
 
     private Toolbar toolbar;
     private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
@@ -262,7 +266,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
         initToolbar();
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         MyId = intent.getIntExtra("ID", 0);
         Advanced_txt_year = (TextView) findViewById(R.id.Advanced_search_txt_yaer);
         Advanced_txt_beforeCal = (TextView) findViewById(R.id.Advanced_textview50);
@@ -285,13 +289,18 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
         advanced_search_Preferred_Lang_txt = (TextView) findViewById(R.id.advanced_search_Preferred_Lang_txt);
         advanced_search_Age_Range_txt = (TextView) findViewById(R.id.advanced_search_Age_Range_txt);
 //        quickSearch_pickUp = (Button) findViewById(R.id.quickSearch_pickUp);
-  //      quickSearch_Dropoff = (Button) findViewById(R.id.advanced_search__Dropoff);
+        //      quickSearch_Dropoff = (Button) findViewById(R.id.advanced_search__Dropoff);
         dvanced_Destination = (Button) findViewById(R.id.dvanced_Destination);
 
-       // quickSearch_pickUp.setOnClickListener(this);
+        // quickSearch_pickUp.setOnClickListener(this);
         //Advanced_pickup_relative.setOnClickListener(this);
-      //  quickSearch_Dropoff.setOnClickListener(this);
-      //  Advanced_dropOff_relative.setOnClickListener(this);
+        //  quickSearch_Dropoff.setOnClickListener(this);
+        //  Advanced_dropOff_relative.setOnClickListener(this);
+
+
+        save_off = (ImageView) findViewById(R.id.save_off);
+        save_on = (ImageView) findViewById(R.id.save_on);
+        save_search_txt = (TextView) findViewById(R.id.save_search_txt);
 
 
         age = new age();
@@ -430,6 +439,28 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
         });
 
 
+        save_off.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                save_off.setVisibility(View.INVISIBLE);
+                save_on.setVisibility(View.VISIBLE);
+                save_search_txt.setTextColor(Color.RED);
+                savefind = 1;
+            }
+        });
+
+        save_on.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                save_on.setVisibility(View.INVISIBLE);
+                save_off.setVisibility(View.VISIBLE);
+                save_search_txt.setTextColor(Color.GRAY);
+                savefind = 0;
+
+            }
+        });
+
+
         String ret;
         try {
             InputStream inputStream = openFileInput("Emirates.txt");
@@ -476,6 +507,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                 intent1.putExtra("To_EmirateEnName", To_EmirateEnName_str);
                 intent1.putExtra("To_RegionEnName", To_RegionEnName_str);
                 intent1.putExtra("Gender", i);
+                intent1.putExtra("SaveFind", savefind);
 
                 networkCheck.cancel(true);
                 nat.cancel(true);
@@ -840,14 +872,14 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
     DatePicker d;
 
     protected void onPrepareDialog(int id, Dialog dialog) {
-        if (id==DILOG_ID) {
+        if (id == DILOG_ID) {
             DatePickerDialog datePickerDialog = (DatePickerDialog) dialog;
             // Get the current date
             datePickerDialog.updateDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
-        }else if (id==TIME_DIALOG_ID){
+        } else if (id == TIME_DIALOG_ID) {
 
             TimePickerDialog timePickerDialog = (TimePickerDialog) dialog;
-            timePickerDialog.updateTime(cal.get(Calendar.HOUR_OF_DAY),cal.get(Calendar.MINUTE) );
+            timePickerDialog.updateTime(cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE));
 
         }
 
@@ -1247,16 +1279,16 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onBackPressed() {
-        if (networkCheck.getStatus()== AsyncTask.Status.RUNNING) {
+        if (networkCheck.getStatus() == AsyncTask.Status.RUNNING) {
             networkCheck.cancel(true);
         }
-        if (nat.getStatus()== AsyncTask.Status.RUNNING) {
+        if (nat.getStatus() == AsyncTask.Status.RUNNING) {
             nat.cancel(true);
         }
-        if (lan.getStatus()== AsyncTask.Status.RUNNING) {
+        if (lan.getStatus() == AsyncTask.Status.RUNNING) {
             lan.cancel(true);
         }
-        if (age.getStatus()== AsyncTask.Status.RUNNING) {
+        if (age.getStatus() == AsyncTask.Status.RUNNING) {
             age.cancel(true);
         }
         finish();

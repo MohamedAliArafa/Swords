@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/user_vehicle_border"
+        android:paddingBottom="5dp">
+
+
+        <TextView
+            android:id="@+id/user_vehicles_em_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/Emirate_Dubai"
+            android:textAllCaps="true"
+            android:textSize="18sp"
+            android:textStyle="bold"
+
+
+            />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/user_vehicles_em_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="15dp"
+
+
+            >
+
+            <TextView
+                android:id="@+id/user_vehicles_plate_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="a"
+                android:textAllCaps="true"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/user_vehicles_plate_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/user_vehicles_plate_code"
+                android:layout_toRightOf="@+id/user_vehicles_plate_code"
+                android:text="2156"
+                android:textAllCaps="true"
+                android:textSize="18sp"
+
+                />
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

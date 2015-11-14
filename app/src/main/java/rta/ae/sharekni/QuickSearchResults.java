@@ -57,6 +57,8 @@ public class QuickSearchResults extends AppCompatActivity {
     private Toolbar toolbar;
     String ID;
 
+    int SaveFind=0;
+
     backTread backTread;
 
     TextView to_txt_id, comma5;
@@ -88,6 +90,9 @@ public class QuickSearchResults extends AppCompatActivity {
         To_RegionEnName = intent.getStringExtra("To_RegionEnName");
         From_RegionEnName = intent.getStringExtra("From_RegionEnName");
         Gender = intent.getCharExtra("Gender", ' ');
+        SaveFind= intent.getIntExtra("SaveFind", 0);
+        Log.d("save find one :", String.valueOf(SaveFind));
+
 
         From_EmirateEnName_txt = (TextView) findViewById(R.id.quick_search_em_from);
         From_RegionEnName_txt = (TextView) findViewById(R.id.quick_search_reg_from);
@@ -265,7 +270,8 @@ public class QuickSearchResults extends AppCompatActivity {
             int pref_nat = 0;
             int Age_Ranged_id = 0;
             String StartDate = "";
-            int saveFind = 1;
+            int saveFind = SaveFind;
+            Log.d("save find two :", String.valueOf(saveFind));
 
             boolean exists = false;
             try {
