@@ -331,6 +331,9 @@
     <string name="Registered_Vehicles_str">المركبات المسجله</string>
     <string name="Emirate_Dubai">دبي</string>
     <string name="No_Vehicles">لا توجد مركبات</string>
+    <string name="taken_mobile">لا يمكن التسجيل , برجاء التأكد من رقم الجوال</string>
+    <string name="taken_username">لا يمكن التسجيل , هذا البريد الألكترونى مسجل بالفعل</string>
+    <string name="choose_birth_date">إختر تاريخ الميلاد</string>
 
 
 </resources>

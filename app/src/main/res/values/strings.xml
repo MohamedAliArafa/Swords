@@ -279,7 +279,6 @@
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="Preferences">Preferences</string>
-    <string name="title_activity_main2">Main2Activity</string>
     <string name="choose_language">Choose Your Language</string>
     <string name="choose_language_mss">What is your Preferred Language ?</string>
     <string name="navy_change_language">Languages</string>
@@ -291,8 +290,6 @@
     <string name="terms_con">Terms and Conditions</string>
     <string name="terms_file">file:///android_asset/terms_en.html</string>
     <string name="policy_file">file:///android_asset/policy.html</string>
-    <string name="terms_file_ar">file:///android_asset/terms_ar.html</string>
-    <string name="policy_file_ar">file:///android_asset/privacypolicyar.html</string>
     <string name="policy">Security and Privacy Policies</string>
     <string name="close">Close</string>
     <string name="agree">Agree</string>
@@ -333,6 +330,10 @@
     <string name="Registered_Vehicles_str">Registered Vehicles</string>
     <string name="Emirate_Dubai">Dubai</string>
     <string name="No_Vehicles">No vehicles</string>
+    <string name="choose_birth_date">Choose your Birth Date</string>
+    <string name="taken_username">Cannot Register , Please choose another username</string>
+    <string name="taken_mobile">Cannot Register , Check your Mobile Number</string>
+
 
 
 </resources>
