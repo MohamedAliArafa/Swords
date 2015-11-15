@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,7 +19,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
@@ -40,10 +38,6 @@ import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import rta.ae.sharekni.Arafa.Classes.GetData;
-
-import rta.ae.sharekni.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -74,6 +68,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.TreeMap;
 
+import rta.ae.sharekni.Arafa.Classes.GetData;
+
 
 public class EditProfileTest extends AppCompatActivity {
 
@@ -93,7 +89,7 @@ public class EditProfileTest extends AppCompatActivity {
     int Nationality_ID;
     char i = 'M';
     ImageView malefemale, femalemale;
-    AutoCompleteTextView txt_lang;
+    TextView txt_lang;
     AutoCompleteTextView txt_country;
     String full_date;
     String uploadedImage;
@@ -198,7 +194,7 @@ public class EditProfileTest extends AppCompatActivity {
         femalemale = (ImageView) findViewById(R.id.femalemale_edit);
         btn_upload_image = (Button) findViewById(R.id.btnUploadPhotoEdt);
         txt_country = (AutoCompleteTextView) findViewById(R.id.autocompletecountry_id);
-        txt_lang = (AutoCompleteTextView) findViewById(R.id.autocomplete_lang_id);
+        txt_lang = (TextView) findViewById(R.id.autocomplete_lang_id);
         txt_year = (TextView) findViewById(R.id.txt_year);
         txt_beforeCal = (TextView) findViewById(R.id.txt_beforeCal);
         txt_comma = (TextView) findViewById(R.id.Register_comma_cal);

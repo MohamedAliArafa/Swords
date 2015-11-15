@@ -167,12 +167,11 @@
                 android:layout_marginTop="5dp"
                 android:background="@drawable/user_register_border">
 
-                <AutoCompleteTextView
+                <TextView
                     android:id="@+id/autocomplete_lang_id"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/borders_edit_txt_user_register"
-                    android:cursorVisible="true"
                     android:hint="@string/select_pref_lang"
                     android:lines="1"
                     android:maxLines="1"
