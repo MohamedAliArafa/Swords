@@ -346,10 +346,14 @@
     <string name="Login_page">تسجيل دخول</string>
     <string name="New_Registration_str">تسجيل جديد</string>
     <string name="Serch_takeatour">بحث </string>
-    <string name="Now_What_would_you_like_to_do">الأن... ماذا تريد أن تفعل؟</string>
+    <string name="Now_What_would_you_like_to_do">إبدا في استخدام التطبيق</string>
     <string name="Mon">الاثنين</string>
     <string name="short_pass">كلمة المرور يجب ان لا تقل عن 5 حروف</string>
     <string name="too_young">يجب ان تكون اكبر من 18 سنه</string>
-
+    <string name="please_confirm_to_delete">يرجي تأكيد الحذف</string>
+    <string name="Delete_msg">حذف</string>
+    <string name="Confirm_str">تأكيد</string>
+    <string name="Cancel_msg">إلغاء</string>
+    <string name="No_Phone_Number_msg">لا يوجد رقم للأتصال</string>
 
 </resources>

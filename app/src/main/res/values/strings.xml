@@ -348,7 +348,12 @@
     <string name="New_Registration_str">New Registration</string>
     <string name="Serch_takeatour">Search</string>
     <string name="Ride_Edited">Ride Edited</string>
-    <string name="Now_What_would_you_like_to_do">Now, What Would you like to do ?</string>
+    <string name="Now_What_would_you_like_to_do">Start using the App</string>
+    <string name="please_confirm_to_delete">Please confirm to delete</string>
+    <string name="Delete_msg">Delete</string>
+    <string name="Confirm_str">Confirm</string>
+    <string name="Cancel_msg">Cancel</string>
+    <string name="No_Phone_Number_msg">No Phone Number</string>
 
 
 </resources>

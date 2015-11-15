@@ -4,7 +4,6 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,7 +12,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
-import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -22,10 +20,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import rta.ae.sharekni.Arafa.Classes.GetData;
-
-import rta.ae.sharekni.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,6 +30,8 @@ import java.net.Socket;
 import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.List;
+
+import rta.ae.sharekni.Arafa.Classes.GetData;
 
 public class DriverAlertsForRequest extends AppCompatActivity {
 
@@ -125,7 +121,7 @@ public class DriverAlertsForRequest extends AppCompatActivity {
                         in.putExtra("PassengerName", arr.get(i).getPassengerName());
                         in.putExtra("RouteName", arr.get(i).getRouteName());
                         in.putExtra("NationalityEnName", arr.get(i).getNationalityEnName());
-                        in.putExtra("AccountPhoto", arr.get(i).getPhoto());
+                      //  in.putExtra("AccountPhoto", arr.get(i).getPhoto());
                         in.putExtra("PassengerMobile", arr.get(i).getPassengerMobile());
                         in.putExtra("Remarks", arr.get(i).getRemarks());
                         in.putExtra("RequestId", arr.get(i).getRequestId());

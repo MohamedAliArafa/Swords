@@ -187,9 +187,9 @@ public class Route extends AppCompatActivity {
 
 
                 new AlertDialog.Builder(c)
-                        .setTitle(R.string.Delete_Ride)
-                        .setMessage(R.string.delet_ride_str)
-                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                        .setTitle(R.string.Delete_msg)
+                        .setMessage(R.string.please_confirm_to_delete)
+                        .setPositiveButton(R.string.Confirm_str, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
 
                                 try {
@@ -212,7 +212,7 @@ public class Route extends AppCompatActivity {
 
                             }
                         })
-                        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                        .setNegativeButton(R.string.Cancel_msg, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
 
                                 dialog.dismiss();

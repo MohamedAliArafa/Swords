@@ -90,9 +90,9 @@ public class DriverGetReviewAdapter extends BaseAdapter {
                 public void onClick(View v) {
 
                     new AlertDialog.Builder(activity)
-                            .setTitle(R.string.Delete_Review_Str)
-                            .setMessage(R.string.Are_You_Sure_msg_dilog)
-                            .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            .setTitle(R.string.Delete_msg)
+                            .setMessage(R.string.please_confirm_to_delete)
+                            .setPositiveButton(R.string.Confirm_str, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
 
 
@@ -116,7 +116,7 @@ public class DriverGetReviewAdapter extends BaseAdapter {
 
                                 }
                             })
-                            .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                            .setNegativeButton(R.string.Cancel_msg, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
 
                                     dialog.dismiss();

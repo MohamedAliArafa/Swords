@@ -304,10 +304,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="25dp"
-                    android:layout_marginRight="25dp"
-                    android:layout_toLeftOf="@+id/singleRide_Periodic"
-                    android:layout_toStartOf="@+id/singleRide_Periodic"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_toEndOf="@+id/Periodic_SingleRide"
+                    android:layout_toRightOf="@+id/Periodic_SingleRide"
+
                     android:text="@string/single"
                     android:textColor="@color/primaryColor"
                     android:textSize="16sp" />
@@ -317,10 +318,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_toEndOf="@+id/Periodic_SingleRide"
-                    android:layout_toRightOf="@+id/Periodic_SingleRide"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_toLeftOf="@+id/singleRide_Periodic"
+                    android:layout_toStartOf="@+id/singleRide_Periodic"
+
+
                     android:text="@string/periodic"
                     android:textColor="@color/gray_before_login"
                     android:textSize="16sp" />
@@ -503,10 +506,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="25dp"
-                    android:layout_marginRight="25dp"
-                    android:layout_toLeftOf="@+id/Advanced_malefemale1"
-                    android:layout_toStartOf="@+id/Advanced_malefemale1"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_toEndOf="@+id/Advanced_femalemale2"
+                    android:layout_toRightOf="@+id/Advanced_femalemale2"
+
+
                     android:text="@string/reg_gender_male"
                     android:textColor="@color/primaryColor"
                     android:textSize="16sp" />
@@ -516,10 +521,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_toEndOf="@+id/Advanced_femalemale2"
-                    android:layout_toRightOf="@+id/Advanced_femalemale2"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_toLeftOf="@+id/Advanced_malefemale1"
+                    android:layout_toStartOf="@+id/Advanced_malefemale1"
                     android:text="@string/reg_gender_female"
                     android:textColor="@color/gray_before_login"
                     android:textSize="16sp" />
