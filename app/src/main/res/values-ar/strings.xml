@@ -355,5 +355,6 @@
     <string name="Confirm_str">تأكيد</string>
     <string name="Cancel_msg">إلغاء</string>
     <string name="No_Phone_Number_msg">لا يوجد رقم للأتصال</string>
+    <string name="Accept_Smokers_txt">يقبل المدخنين</string>
 
 </resources>

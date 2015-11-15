@@ -307,9 +307,9 @@ public class Route extends AppCompatActivity {
                         //Done
                         Smokers_str = json.getString("IsSmoking");
                         if (Smokers_str.equals("true")) {
-                            Smokers_str = getString(R.string.yes);
+                            Smokers_str = getString(R.string.Accept_Smokers_txt);
                         } else if (Smokers_str.equals("false")) {
-                            Smokers_str = getString(R.string.no);
+                            Smokers_str = getString(R.string.not_set);
                         }
                         IsSmoking.setText(Smokers_str);
                         StartLat = json.getDouble("StartLat");

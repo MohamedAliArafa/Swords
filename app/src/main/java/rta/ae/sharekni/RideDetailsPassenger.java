@@ -77,7 +77,6 @@ public class RideDetailsPassenger extends AppCompatActivity {
     final JSONArray[] myJsonArray = new JSONArray[1];
     private Toolbar toolbar;
 
-
     int Route_ID;
     int Passenger_ID;
     int Driver_ID;
@@ -153,6 +152,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
 
             if (in.getInt("FLAG_1") == 1) {
                 Join_Ride_btn.setVisibility(View.INVISIBLE);
+
             }
         } catch (NullPointerException e) {
 
@@ -347,9 +347,9 @@ public class RideDetailsPassenger extends AppCompatActivity {
                     Smokers_str = "";
                     Smokers_str = json.getString("IsSmoking");
                     if (Smokers_str.equals("true")) {
-                        Smokers_str = getString(R.string.yes);
+                        Smokers_str = getString(R.string.Accept_Smokers_txt);
                     } else if (Smokers_str.equals("false")) {
-                        Smokers_str = getString(R.string.no);
+                        Smokers_str = getString(R.string.not_set);
                     }
                     IsSmoking.setText(Smokers_str);
                     StartLat = json.getDouble("StartLat");
@@ -654,6 +654,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
             mMap.getUiSettings().setMapToolbarEnabled(false);
             mMap.getUiSettings().setZoomControlsEnabled(true);
             mMap.getUiSettings().setZoomGesturesEnabled(true);
+
 
 // Get back the mutable Polyline
             Polyline polyline = mMap.addPolyline(rectOptions);
