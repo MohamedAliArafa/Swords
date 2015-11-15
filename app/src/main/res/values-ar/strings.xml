@@ -126,7 +126,6 @@
     <string name="add_photo">إضافة صورة!</string>
     <string name="unknown_country">بلد غير صحيح (فضلا إختر من القائمة)</string>
     <string name="unknown_language">لغة غير معروفه (فضلا إختر من القائمة)</string>
-    <string name="short_pass">كبمة المرور يجب ان تكون على الأقل 5 أحرف</string>
     <string name="short_mobile">أدخل رقم جوال صحيح</string>
     <string name="select_image_first_error">إحتر صورة شخصية اولا</string>
     <string name="select_type_first_error">يرجي اختيار نوع التسجيل</string>
@@ -212,8 +211,8 @@
     <string name="accept_your_request">قبل طلبك</string>
     <string name="home_page">الصفحة الرئيسية</string>
     <string name="rides_joined">الرحلات المشترك فيها</string>
-    <string name="saved_search">البحث المحفوظ</string>
-    <string name="create_ride">إنشئ رحلة</string>
+    <string name="saved_search">حفظ البحث</string>
+    <string name="create_ride">إنشاء رحلة</string>
     <string name="history">التاريخ</string>
     <string name="permit">التصاريح</string>
     <string name="ride_created">الرحلات المنشأه</string>
@@ -235,14 +234,13 @@
     <string name="some_thing_is_wrong">حدث خطأ ما</string>
     <string name="verified">موثقة</string>
     <string name="Fri">الجمعة</string>
-    <string name="Mon">الإثنين</string>
     <string name="Sat">السبت</string>
     <string name="Sun">الأحد</string>
     <string name="Thu">الثلاثاء</string>
     <string name="Tue">الخميس</string>
     <string name="Wed">الأربعاء</string>
     <string name="available_seats">المقاعد المتاحة</string>
-    <string name="create">إنشئ</string>
+    <string name="create">إنشاء</string>
     <string name="days_of_week">أيام الإسبوع</string>
     <string name="pref_optional">المفضلات (إختياري)</string>
     <string name="ride_name">إسم الرحلة</string>
@@ -308,7 +306,6 @@
     <string name="no_result_criteria">لا يوجد نتائج توافق مدخلات البحث</string>
     <string name="password">كلمة المرور</string>
     <string name="must_be_more_18">يجب ان تكون اكبر من 18 سنه</string>
-    <string name="too_young">سنك صغير جدا</string>
     <string name="No_History">لا يوجد تاريخ للبحث</string>
     <string name="No_Saved_Search">لا يوجد بحث محفوظ</string>
     <string name="driver_nat_en_name">DriverNationalityArName</string>
@@ -345,6 +342,14 @@
     <string name="You_have_leaved_this_ride">لقد غادرت هذه الرحلة</string>
     <string name="delet_ride_str">هل انت متاكد انك تريد حذف هذه الرحلة ؟</string>
     <string name="Ride_Edited">تم تعديل الرحلة</string>
+    <string name="Main_Screen">الشاشة الرئيسيه</string>
+    <string name="Login_page">تسجيل دخول</string>
+    <string name="New_Registration_str">تسجيل جديد</string>
+    <string name="Serch_takeatour">بحث </string>
+    <string name="Now_What_would_you_like_to_do">الأن... ماذا تريد أن تفعل؟</string>
+    <string name="Mon">الاثنين</string>
+    <string name="short_pass">كلمة المرور يجب ان لا تقل عن 5 حروف</string>
+    <string name="too_young">يجب ان تكون اكبر من 18 سنه</string>
 
 
 </resources>

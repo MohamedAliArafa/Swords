@@ -114,7 +114,10 @@ public class RegisterVehicle extends AppCompatActivity {
                     if (File_num_edit.length()>0) {
                         File_NO_Str = File_num_edit.getText().toString();
 //                        FileNo = Integer.parseInt(File_NO_Str);
+
+
                         back.execute();
+
                     }else {
                         Toast.makeText(RegisterVehicle.this, R.string.enter_file_no, Toast.LENGTH_SHORT).show();
                     }
@@ -219,15 +222,17 @@ public class RegisterVehicle extends AppCompatActivity {
             } else if (data.equals("\"-3\"")) {
                 Toast.makeText(getBaseContext(), getString(R.string.invalid_dob), Toast.LENGTH_LONG).show();
                 Log.d("inside -3", data);
+                c.finish();
             } else if (data.equals("\"-4\"")) {
                 Toast.makeText(getBaseContext(), getString(R.string.lic_ver_but_no_cars), Toast.LENGTH_LONG).show();
-
+                c.finish();
             } else if (data.equals("\"-5\"") || data.equals("\"-6\"")) {
                 Toast.makeText(getBaseContext(), getString(R.string.invalid_data), Toast.LENGTH_LONG).show();
-
+                c.finish();
             } else if (data.equals("\"0\"")) {
                 //  Toast.makeText(context, "license verified, but no cars found ", Toast.LENGTH_LONG).show();
                 Log.d("license no json", data + " Error in Connection with the DataBase Server");
+                c.finish();
             } else if (data.equals("\"-2\"")) {
                 Toast.makeText(getBaseContext(),getString( R.string.cant_user_file_number) , Toast.LENGTH_LONG).show();
                 c.finish();

@@ -378,15 +378,15 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
         Log.d("test pref lang  2 :", Create_CarPool_AgeRanges_List.toString());
     }
 
-    private class load extends AsyncTask{
+    private class load extends AsyncTask {
         JSONObject j;
 
         @Override
         protected void onPostExecute(Object o) {
             try {
                 edit_route_name.setText(j.getString(getString(R.string.route_name)));
-                Create_CarPool_txt_Selecet_Start_Point.setText(j.getString(getString(R.string.from_em_en_name))+" , "+j.getString(getString(R.string.from_reg_en_name)));
-                Create_CarPool_txt_Select_Dest.setText(j.getString(getString(R.string.to_em_en_name))+" , "+j.getString(getString(R.string.to_reg_en_name)));
+                Create_CarPool_txt_Selecet_Start_Point.setText(j.getString(getString(R.string.from_em_en_name)) + " , " + j.getString(getString(R.string.from_reg_en_name)));
+                Create_CarPool_txt_Select_Dest.setText(j.getString(getString(R.string.to_em_en_name)) + " , " + j.getString(getString(R.string.to_reg_en_name)));
                 From_Em_Id = j.getInt("FromEmirateId");
                 From_Reg_Id = j.getInt("FromRegionId");
                 To_Em_Id = j.getInt("ToEmirateId");
@@ -413,9 +413,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
     }
 
 
-
-
-    private class getNationalities extends AsyncTask{
+    private class getNationalities extends AsyncTask {
 
         @Override
         protected void onPostExecute(Object o) {
@@ -459,7 +457,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
         }
     }
 
-    private class getVehicles extends AsyncTask{
+    private class getVehicles extends AsyncTask {
 
         @Override
         protected void onPostExecute(Object o) {
@@ -516,7 +514,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
         }
     }
 
-    private class getLanguages extends AsyncTask{
+    private class getLanguages extends AsyncTask {
 
         @Override
         protected void onPostExecute(Object o) {
@@ -572,7 +570,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
         }
     }
 
-    private class getAgeRanges extends AsyncTask{
+    private class getAgeRanges extends AsyncTask {
         boolean exists = false;
 
         @Override
@@ -678,7 +676,6 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
         int id = item.getItemId();
 
 
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -686,16 +683,15 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
     Calendar cal = Calendar.getInstance();
     DatePicker d;
 
-    protected void onPrepareDialog (int id, Dialog dialog)
-    {
-        if (id==DILOG_ID) {
+    protected void onPrepareDialog(int id, Dialog dialog) {
+        if (id == DILOG_ID) {
             DatePickerDialog datePickerDialog = (DatePickerDialog) dialog;
             // Get the current date
             datePickerDialog.updateDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
-        }else if (id==TIME_DIALOG_ID){
+        } else if (id == TIME_DIALOG_ID) {
 
             TimePickerDialog timePickerDialog = (TimePickerDialog) dialog;
-            timePickerDialog.updateTime(cal.get(Calendar.HOUR_OF_DAY),cal.get(Calendar.MINUTE) );
+            timePickerDialog.updateTime(cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE));
 
         }
 
@@ -706,9 +702,10 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
         if (id == DILOG_ID) {
             DatePickerDialog dp = new DatePickerDialog(this, dPickerListener, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
             d = dp.getDatePicker();
-            d.updateDate(year_x,month_x,day_x);
+            d.updateDate(year_x, month_x, day_x);
             d.setMaxDate(cal.getTimeInMillis());
-            return dp;        }
+            return dp;
+        }
         if (id == TIME_DIALOG_ID) {
             return new TimePickerDialog(this,
                     timePickerListener, hour, minute, false);
@@ -791,20 +788,20 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        if (v==create){
-            if (edit_route_name.getText()!=null&&edit_route_name.getText().toString()!=getString(R.string.ride_name)&&From_Em_Id != -1&&To_Em_Id != -1&&From_Reg_Id != -1&&To_Reg_Id != -1&&Single_Periodic_ID != -1&&Vehicle_Id != -1&&id != -1&&Create_CarPool_txt_beforeCal.getText().toString()!=getString(R.string.click_to_select)&&Create_CarPool_txt_time_selected.getText()!=null&&Create_CarPool_txt_time_selected.getText().toString() !=getString(R.string.click_to_select)) {
+        if (v == create) {
+            if (edit_route_name.getText() != null && edit_route_name.getText().toString() != getString(R.string.ride_name) && From_Em_Id != -1 && To_Em_Id != -1 && From_Reg_Id != -1 && To_Reg_Id != -1 && Single_Periodic_ID != -1 && Vehicle_Id != -1 && id != -1 && Create_CarPool_txt_beforeCal.getText().toString() != getString(R.string.click_to_select) && Create_CarPool_txt_time_selected.getText() != null && Create_CarPool_txt_time_selected.getText().toString() != getString(R.string.click_to_select)) {
                 String is_Rounded;
                 String EnName = edit_route_name.getText().toString();
                 int FromEmId = From_Em_Id;   // dubai
                 int ToEmId = To_Em_Id;   // 3agman
                 int FromRegId = From_Reg_Id;//
                 int ToRegId = To_Reg_Id;   // 3agman mueseum
-                if (Single_Periodic_ID == 1){
+                if (Single_Periodic_ID == 1) {
                     is_Rounded = "true";
-                }else{
+                } else {
                     is_Rounded = "false";
                 }
-                String Time="10:00";
+                String Time = "10:00";
                 String Saturday = String.valueOf(SAT_FLAG);
                 String Sunday = String.valueOf(SUN_FLAG);
                 String Monday = String.valueOf(MON_FLAG);
@@ -825,13 +822,13 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                 String StartDate = "15/6/2015";
 
                 GetData j = new GetData();
-                j.DriverEditCarPoolFrom(RouteId,EnName,FromEmId,ToEmId,FromRegId,ToRegId
-                        ,is_Rounded,Time,Saturday,Sunday,Monday,Tuesday,Wednesday,Thursday,Friday
-                        ,gender,Vehicle_ID,No_OF_Seats,Start_Lat,Start_Lng,End_Lat,End_Lng
-                        ,pref_lnag,pref_nat,Age_Ranged_id,StartDate,this);
+                j.DriverEditCarPoolFrom(RouteId, EnName, FromEmId, ToEmId, FromRegId, ToRegId
+                        , is_Rounded, Time, Saturday, Sunday, Monday, Tuesday, Wednesday, Thursday, Friday
+                        , gender, Vehicle_ID, No_OF_Seats, Start_Lat, Start_Lng, End_Lat, End_Lng
+                        , pref_lnag, pref_nat, Age_Ranged_id, StartDate, this);
 
-            }else{
-                Toast.makeText(DriverEditCarPool.this,getString(R.string.fill_all_error), Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(DriverEditCarPool.this, getString(R.string.fill_all_error), Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -1153,19 +1150,19 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if (nationalities.getStatus()== AsyncTask.Status.RUNNING) {
+        if (nationalities.getStatus() == AsyncTask.Status.RUNNING) {
             nationalities.cancel(true);
         }
-        if (languages.getStatus()== AsyncTask.Status.RUNNING) {
+        if (languages.getStatus() == AsyncTask.Status.RUNNING) {
             languages.cancel(true);
         }
-        if (ageRanges.getStatus()== AsyncTask.Status.RUNNING) {
+        if (ageRanges.getStatus() == AsyncTask.Status.RUNNING) {
             ageRanges.cancel(true);
         }
-        if (vehicles.getStatus()== AsyncTask.Status.RUNNING) {
+        if (vehicles.getStatus() == AsyncTask.Status.RUNNING) {
             vehicles.cancel(true);
         }
-        if (load.getStatus()== AsyncTask.Status.RUNNING) {
+        if (load.getStatus() == AsyncTask.Status.RUNNING) {
             load.cancel(true);
         }
         finish();

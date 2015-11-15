@@ -66,6 +66,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
     String Gender_ste, Nat_txt, Smokers_str;
     int No_Seats;
 
+    int FLAG_HIDE_JOIN = 1;
 
     String str_StartFromTime, str_EndToTime_, str_PrefLanguageEnName;
 
@@ -200,6 +201,9 @@ public class RideDetailsPassenger extends AppCompatActivity {
                     .findFragmentById(R.id.map_ride_details);
             mapFragment.getMapAsync(this);
 
+            if (FLAG_HIDE_JOIN==2){
+                Join_Ride_btn.setVisibility(View.INVISIBLE);
+            }
 
             if (FLAG_REVIEW == 0) {
                 Relative_REviews.setVisibility(View.INVISIBLE);
@@ -321,7 +325,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
                     } else {
                         PrefLanguageEnName.setText(json.getString(getString(R.string.pref_lang)));
                     }
-                    if (json.getInt("AgeRangeID") == 0) {
+                    if (json.getString("AgeRangeID").equals("0") || json.getString("AgeRangeID").equals("null") )  {
                         AgeRange.setText(getString(R.string.not_set));
                     } else {
                         AgeRange.setText(json.getString("AgeRange"));
@@ -384,37 +388,6 @@ public class RideDetailsPassenger extends AppCompatActivity {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                }
-
-
-                for (int y = 0; y < response2.length(); y++) {
-
-                    try {
-                        JSONObject obj = response2.getJSONObject(y);
-                        final Ride_Details_Passengers_DataModel item = new Ride_Details_Passengers_DataModel(Parcel.obtain());
-                        Log.d("Passenger Name", obj.getString("AccountName"));
-//                        item.setAccountPhoto(obj.getString("AccountPhoto"));
-                        Log.d("Passenger id", String.valueOf(Passenger_ID));
-                        Log.d("Pass list id", String.valueOf(obj.getInt("ID")));
-                        if (Passenger_ID==obj.getInt("AccountId")){
-                            Join_Ride_btn.setVisibility(View.INVISIBLE);
-                        }
-
-                        item.setPassengerId(obj.getInt("ID"));
-                        item.setAccountName(obj.getString("AccountName"));
-
-                        if (obj.getString("AccountMobile").equals("null")) {
-                            item.setAccountMobile("");
-                        } else {
-                            item.setAccountMobile(obj.getString("AccountMobile"));
-                        }
-
-                        item.setAccountNationalityEn(obj.getString(getString(R.string.acc_nat_name)));
-                        Passengers_arr.add(item);
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
                 }
 
 
@@ -591,6 +564,41 @@ public class RideDetailsPassenger extends AppCompatActivity {
 
 
                     response2 = new GetData().GetPassengers_ByRouteID(Route_ID);
+
+                    if (response2.length() > 0 && response2 != null) {
+                        for (int y = 0; y < response2.length(); y++) {
+
+                            try {
+                                JSONObject obj = response2.getJSONObject(y);
+                                final Ride_Details_Passengers_DataModel item = new Ride_Details_Passengers_DataModel(Parcel.obtain());
+                                Log.d("Passenger Name", obj.getString("AccountName"));
+//                        item.setAccountPhoto(obj.getString("AccountPhoto"));
+                                Log.d("Passenger id", String.valueOf(Passenger_ID));
+                                Log.d("Pass list id", String.valueOf(obj.getInt("ID")));
+                                if (Passenger_ID == obj.getInt("AccountId")) {
+                                    FLAG_HIDE_JOIN = 2;
+                                }
+
+                                item.setPassengerId(obj.getInt("ID"));
+                                item.setAccountName(obj.getString("AccountName"));
+
+                                if (obj.getString("AccountMobile").equals("null")) {
+                                    item.setAccountMobile("");
+                                } else {
+                                    item.setAccountMobile(obj.getString("AccountMobile"));
+                                }
+
+                                item.setAccountNationalityEn(obj.getString(getString(R.string.acc_nat_name)));
+                                Passengers_arr.add(item);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            } catch (NullPointerException ex) {
+                                ex.printStackTrace();
+                            }
+                        }
+
+                    }
 
 
                 }

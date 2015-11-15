@@ -23,7 +23,7 @@
             android:layout_marginTop="30dp"
             android:maxLines="1"
             android:singleLine="true"
-            android:text="Now, What Would you like to do ?"
+            android:text="@string/Now_What_would_you_like_to_do"
             android:textColor="@color/primaryColor"
             android:textSize="18sp" />
 
@@ -36,7 +36,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:background="@drawable/bordersbuttom"
-            android:text="Main Screen"
+            android:text="@string/Main_Screen"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
 
@@ -50,7 +50,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:background="@drawable/bordersbuttom"
-            android:text="Login Page"
+            android:text="@string/Login_page"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
 
@@ -64,7 +64,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:background="@drawable/bordersbuttom"
-            android:text="New Registration"
+            android:text="@string/New_Registration_str"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
 
@@ -78,7 +78,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:background="@drawable/bordersbuttom"
-            android:text="Search"
+            android:text="@string/Serch_takeatour"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
 

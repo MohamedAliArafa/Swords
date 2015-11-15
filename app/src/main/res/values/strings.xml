@@ -309,7 +309,7 @@
     <string name="no_result_criteria">There is no Result matches your search criteria</string>
     <string name="error">Error</string>
     <string name="must_be_more_18">You Must be more than 18 years</string>
-    <string name="too_young">You are too young</string>
+    <string name="too_young">you should be older than 18 years</string>
     <string name="No_History">No History Found</string>
     <string name="No_Saved_Search">No Saved Search</string>
     <string name="driver_nat_en_name">DriverNationalityEnName</string>
@@ -343,6 +343,12 @@
     <string name="Are_you_sure_leave_ride">Are you sure that you want to leave this ride ?</string>
     <string name="You_have_leaved_this_ride">You Have Leaved this Ride</string>
     <string name="delet_ride_str">Are you Sure You that you wnt to delete this ride ?</string>
+    <string name="Main_Screen">Main Screen</string>
+    <string name="Login_page">Login Page</string>
+    <string name="New_Registration_str">New Registration</string>
+    <string name="Serch_takeatour">Search</string>
+    <string name="Ride_Edited">Ride Edited</string>
+    <string name="Now_What_would_you_like_to_do">Now, What Would you like to do ?</string>
 
 
 </resources>
