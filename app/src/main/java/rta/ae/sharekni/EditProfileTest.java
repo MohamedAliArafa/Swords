@@ -360,7 +360,7 @@ public class EditProfileTest extends AppCompatActivity {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!edit_fname.getText().toString().equals("") && !edit_fname.getText().toString().equals(getString(R.string.Reg_FirstN)) && !edit_lname.getText().toString().equals("") && !edit_lname.getText().toString().equals(getString(R.string.Reg_LastN)) && !edit_reg_mob.getText().toString().equals("") && !edit_reg_mob.getText().toString().equals(getString(R.string.REg_Mobile)) && txt_country.getText() != null && !txt_country.getText().toString().equals(getString(R.string.Reg_Nat)) && txt_lang.getText() != null && !txt_lang.getText().toString().equals(getString(R.string.Reg_PrefLang)) && full_date != null) {
+                if (!edit_fname.getText().toString().equals("") && !edit_fname.getText().toString().equals(getString(R.string.Reg_FirstN)) && !edit_lname.getText().toString().equals("") && !edit_lname.getText().toString().equals(getString(R.string.Reg_LastN)) && !edit_reg_mob.getText().toString().equals("") && !edit_reg_mob.getText().toString().equals(getString(R.string.REg_Mobile)) && !txt_country.getText().toString().equals("") && !txt_country.getText().toString().equals(getString(R.string.Reg_Nat)) && !txt_lang.getText().toString().equals("") && !txt_lang.getText().toString().equals(getString(R.string.Reg_PrefLang)) && full_date != null) {
                     if (uploadedImage == null) {
                         Toast.makeText(EditProfileTest.this, R.string.select_profile_image, Toast.LENGTH_SHORT).show();
                     } else {
@@ -369,6 +369,17 @@ public class EditProfileTest extends AppCompatActivity {
                         String mobile = edit_reg_mob.getText().toString();
 //                        String country = txt_country.getText().toString();
 //                        String lang = txt_lang.getText().toString();
+                        if (i == 'M'){
+                            femalemale.setVisibility(View.INVISIBLE);
+                            malefemale.setVisibility(View.VISIBLE);
+                            malefemale_txt.setTextColor(Color.RED);
+                            femalemale_txt.setTextColor(Color.GRAY);
+                        }else {
+                            malefemale.setVisibility(View.INVISIBLE);
+                            femalemale.setVisibility(View.VISIBLE);
+                            malefemale_txt.setTextColor(Color.GRAY);
+                            femalemale_txt.setTextColor(Color.RED);
+                        }
                         char gender = i;
                         String birthdate = full_date;
                         //String photoname = "testing.jpg";
