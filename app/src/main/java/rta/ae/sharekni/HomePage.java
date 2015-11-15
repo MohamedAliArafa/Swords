@@ -55,8 +55,8 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
     CircularImageView circularImageView;
     TextView name, nat, Lnag_home;
     SharedPreferences myPrefs;
-    RelativeLayout btn_create,btn_history;
-    int Vehicles_Count_FLAG=0;
+    RelativeLayout btn_create, btn_history;
+    int Vehicles_Count_FLAG = 0;
 
     int Driver_ID;
     RelativeLayout Relative_quickSearch;
@@ -66,11 +66,11 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
     Toolbar toolbar;
     RelativeLayout Home_Relative_Permit, Home_Realtive_Vehicles, driver_rides_Created;
     RelativeLayout Rides_joined_Relative;
-    String name_str,nat_str;
-    int DRIVER_ALERTS_COUNT=0;
+    String name_str, nat_str;
+    int DRIVER_ALERTS_COUNT = 0;
     int y;
     int All_Alerts;
-    String Firstname,LastName;
+    String Firstname, LastName;
     Activity c;
     TextView Rides_joined_txt_1;
     ImageView Rides_joined_image_1;
@@ -78,8 +78,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
     TextView Saved_Search_txt_2;
     TextView rating;
     ImageView Saved_Search_image_2;
-
-
+    String Locale_Str;
 
 
     public static HomePage getInstance() {
@@ -126,7 +125,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
 
         setContentView(R.layout.home_page_approved);
         initToolbar();
-        c=this;
+        c = this;
 
         name = (TextView) findViewById(R.id.tv_name_home);
         nat = (TextView) findViewById(R.id.nat_home);
@@ -144,7 +143,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         Relative_quickSearch = (RelativeLayout) findViewById(R.id.Relative_quickSearch);
         Home_Relative_Notify = (RelativeLayout) findViewById(R.id.Home_Relative_Notify);
         driver_rides_Created = (RelativeLayout) findViewById(R.id.driver_rides_Created);
-        Rides_joined_Relative= (RelativeLayout) findViewById(R.id.Rides_joined_Relative);
+        Rides_joined_Relative = (RelativeLayout) findViewById(R.id.Rides_joined_Relative);
         btn_history = (RelativeLayout) findViewById(R.id.home_history);
         Rides_joined_txt_1 = (TextView) findViewById(R.id.txt_55);
         Rides_joined_image_1 = (ImageView) findViewById(R.id.im10);
@@ -152,41 +151,73 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         Saved_Search_txt_2 = (TextView) findViewById(R.id.txt_56);
         Edit_Profile_Im = (ImageView) findViewById(R.id.Edit_Profile_Im);
 
-            circularImageView = (CircularImageView) findViewById(R.id.profilepic);
-            circularImageView.setBorderWidth(5);
-            circularImageView.setSelectorStrokeWidth(5);
-            circularImageView.addShadow();
+        circularImageView = (CircularImageView) findViewById(R.id.profilepic);
+        circularImageView.setBorderWidth(5);
+        circularImageView.setSelectorStrokeWidth(5);
+        circularImageView.addShadow();
 
 
         NavigationDrawerFragment.navy_Change_lang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                new AlertDialog.Builder(HomePage.this)
-                        .setTitle(R.string.choose_language)
-                        .setMessage(R.string.choose_language_mss)
-                        .setPositiveButton("English", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                Locale locale = new Locale("en_US");
-                                Locale.setDefault(locale);
-                                Configuration config = new Configuration();
-                                config.locale = locale;
-                                getBaseContext().getApplicationContext().getResources().updateConfiguration(config, null);
-                                finish();
-                                startActivity(getIntent());
-                            }
-                        })
-                        .setNegativeButton("العربية", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                Locale locale = new Locale("ar");
-                                Locale.setDefault(locale);
-                                Configuration config = new Configuration();
-                                config.locale = locale;
-                                getBaseContext().getApplicationContext().getResources().updateConfiguration(config, null);
-                                finish();
-                                startActivity(getIntent());
-                            }
-                        }).setIcon(android.R.drawable.ic_dialog_alert).show();
+
+                Locale locale = Locale.getDefault();
+                Locale_Str = locale.toString();
+                Log.d("test locale", Locale_Str);
+
+
+                if (Locale_Str.contains("en")) {
+
+                    Locale locale2 = new Locale("ar");
+                    Locale.setDefault(locale2);
+                    Configuration config2 = new Configuration();
+                    config2.locale = locale2;
+                    getApplicationContext().getResources().updateConfiguration(config2, null);
+                    finish();
+                    startActivity(getIntent());
+
+
+                } else {
+
+
+                    Locale locale3 = new Locale("en");
+                    Locale.setDefault(locale3);
+                    Configuration config3 = new Configuration();
+                    config3.locale = locale3;
+                    getApplicationContext().getResources().updateConfiguration(config3, null);
+                    finish();
+                    startActivity(getIntent());
+                }
+
+
+//                new AlertDialog.Builder(HomePage.this)
+//                        .setTitle(R.string.choose_language)
+//                        .setMessage(R.string.choose_language_mss)
+//                        .setPositiveButton("English", new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                Locale locale = new Locale("en_US");
+//                                Locale.setDefault(locale);
+//                                Configuration config = new Configuration();
+//                                config.locale = locale;
+//                                getBaseContext().getApplicationContext().getResources().updateConfiguration(config, null);
+//                                finish();
+//                                startActivity(getIntent());
+//                            }
+//                        })
+//                        .setNegativeButton("العربية", new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                Locale locale = new Locale("ar");
+//                                Locale.setDefault(locale);
+//                                Configuration config = new Configuration();
+//                                config.locale = locale;
+//                                getBaseContext().getApplicationContext().getResources().updateConfiguration(config, null);
+//                                finish();
+//                                startActivity(getIntent());
+//                            }
+//                        }).setIcon(android.R.drawable.ic_dialog_alert).show();
+
+
             }
         });
         myPrefs = this.getSharedPreferences("myPrefs", 0);
@@ -217,45 +248,42 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         new loading().execute();
 
 
-
     }  // on create
 
 
-
-
-    private class refresh extends AsyncTask{
+    private class refresh extends AsyncTask {
 
         JSONObject jsonArray;
 
         @Override
         protected void onPostExecute(Object o) {
-            VehiclesCount_str="";
+            VehiclesCount_str = "";
             VehiclesCount_str += "(";
             try {
-                All_Alerts = jsonArray.getInt("DriverMyAlertsCount")+jsonArray.getInt("PassengerMyAlertsCount");
+                All_Alerts = jsonArray.getInt("DriverMyAlertsCount") + jsonArray.getInt("PassengerMyAlertsCount");
 
-                Vehicles_Count_FLAG=jsonArray.getInt("VehiclesCount");
+                Vehicles_Count_FLAG = jsonArray.getInt("VehiclesCount");
                 Log.d("vehicle count flag", String.valueOf(Vehicles_Count_FLAG));
 
                 VehiclesCount_str += jsonArray.getString("VehiclesCount");
                 VehiclesCount_str += ")";
                 VehiclesCount.setText(VehiclesCount_str);
-                PassengerJoinedRidesCount_str="";
+                PassengerJoinedRidesCount_str = "";
                 PassengerJoinedRidesCount_str += "(";
                 PassengerJoinedRidesCount_str += jsonArray.getString("PassengerJoinedRidesCount");
                 PassengerJoinedRidesCount_str += ")";
                 PassengerJoinedRidesCount.setText(PassengerJoinedRidesCount_str);
                 rating.setText(jsonArray.getString("AccountRating"));
-                if (DRIVER_ALERTS_COUNT < All_Alerts){
+                if (DRIVER_ALERTS_COUNT < All_Alerts) {
                     DRIVER_ALERTS_COUNT = All_Alerts;
                     CreateNotification(y++);
                 }
-                DriverMyRidesCount_str="";
+                DriverMyRidesCount_str = "";
                 DriverMyRidesCount_str += "(";
                 DriverMyRidesCount_str += jsonArray.getString("DriverMyRidesCount");
                 DriverMyRidesCount_str += ")";
                 DriverMyRidesCount.setText(DriverMyRidesCount_str);
-                DriverMyAlertsCount.setText( String.valueOf(All_Alerts));
+                DriverMyAlertsCount.setText(String.valueOf(All_Alerts));
 
 //                if (DRIVER_ALERTS_COUNT>0){
 //
@@ -264,7 +292,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
 //                }
 
 
-                DriverMyAlertsCount.setText( String.valueOf(All_Alerts));
+                DriverMyAlertsCount.setText(String.valueOf(All_Alerts));
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -287,7 +315,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         GetData gd = new GetData();
         try {
             JSONArray jsonArray = gd.GetDriverAlertsForRequest(Integer.parseInt(ID));
-            for (int i = 0;i< jsonArray.length();i++){
+            for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject j = jsonArray.getJSONObject(i);
                 Intent intent = new Intent(this, DriverAlertsForRequest.class);
                 PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
@@ -309,9 +337,9 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         try {
             JSONArray jsonArray = gd.Get_Passenger_GetAcceptedRequestsFromDriver(Integer.parseInt(ID));
 
-            for (int i = 0;i< jsonArray.length();i++){
+            for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject j = jsonArray.getJSONObject(i);
-                if (j.getString("DriverAccept").equals("false")){
+                if (j.getString("DriverAccept").equals("false")) {
 
                     Intent intent = new Intent(this, DriverAlertsForRequest.class);
                     PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
@@ -325,7 +353,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                     manager.notify(y, notification);
 
                 } //  if
-                 else {
+                else {
 
                     Intent intent = new Intent(this, DriverAlertsForRequest.class);
                     PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
@@ -339,7 +367,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                     manager.notify(y, notification);
                 } // else
 
-                }
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -359,7 +387,6 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
 
 
 //
@@ -407,7 +434,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 Intent intent = new Intent(getBaseContext(), DriverCreateCarPool.class);
                 intent.putExtra("ID", Driver_ID);
                 startActivity(intent);
-            }else {
+            } else {
 
                 Intent intent = new Intent(getBaseContext(), PassengerMyApprovedRides.class);
                 startActivity(intent);
@@ -431,7 +458,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
 
     }
 
-    private class loading extends AsyncTask{
+    private class loading extends AsyncTask {
 
         ProgressDialog pDialog;
         JSONObject jsonArray;
@@ -446,43 +473,43 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         @Override
         protected void onPostExecute(Object o) {
             try {
-                All_Alerts = jsonArray.getInt("DriverMyAlertsCount")+jsonArray.getInt("PassengerMyAlertsCount");
-                name_str="";
-                nat_str="";
-                Firstname="";
-                LastName="";
-                Firstname=(jsonArray.getString("FirstName"));
-                Firstname=  Firstname.substring(0, 1).toUpperCase() + Firstname.substring(1);
-                LastName= (jsonArray.getString("LastName"));
-                LastName=  LastName.substring(0, 1).toUpperCase() + LastName.substring(1);
-                name_str=Firstname+" "+LastName;
+                All_Alerts = jsonArray.getInt("DriverMyAlertsCount") + jsonArray.getInt("PassengerMyAlertsCount");
+                name_str = "";
+                nat_str = "";
+                Firstname = "";
+                LastName = "";
+                Firstname = (jsonArray.getString("FirstName"));
+                Firstname = Firstname.substring(0, 1).toUpperCase() + Firstname.substring(1);
+                LastName = (jsonArray.getString("LastName"));
+                LastName = LastName.substring(0, 1).toUpperCase() + LastName.substring(1);
+                name_str = Firstname + " " + LastName;
                 //  name_str = (jsonArray.getString("FirstName") + " " + jsonArray.getString("LastName"));
                 nat_str = (jsonArray.getString(getString(R.string.nat_name2)));
                 //   name_str=  name_str.substring(0, 1).toUpperCase() + name_str.substring(1);
-                nat_str= nat_str.substring(0, 1).toUpperCase() + nat_str.substring(1);
+                nat_str = nat_str.substring(0, 1).toUpperCase() + nat_str.substring(1);
                 NavigationDrawerFragment.tv_name_home.setText(name_str);
                 name.setText(name_str);
                 nat.setText(nat_str);
                 NavigationDrawerFragment.nat_home.setText(nat_str);
                 //   str.substring(0, 1).toUpperCase() + str.substring(1);
-                Vehicles_Count_FLAG=jsonArray.getInt("VehiclesCount");
+                Vehicles_Count_FLAG = jsonArray.getInt("VehiclesCount");
                 Log.d("vehicle count flag", String.valueOf(Vehicles_Count_FLAG));
-                VehiclesCount_str="";
+                VehiclesCount_str = "";
                 VehiclesCount_str += "(";
                 VehiclesCount_str += (jsonArray.getString("VehiclesCount"));
                 VehiclesCount_str += ")";
                 VehiclesCount.setText(VehiclesCount_str);
-                PassengerJoinedRidesCount_str="";
+                PassengerJoinedRidesCount_str = "";
                 PassengerJoinedRidesCount_str += "(";
                 PassengerJoinedRidesCount_str += (jsonArray.getString("PassengerJoinedRidesCount"));
                 PassengerJoinedRidesCount_str += ")";
                 PassengerJoinedRidesCount.setText(PassengerJoinedRidesCount_str);
-                DriverMyRidesCount_str="";
+                DriverMyRidesCount_str = "";
                 DriverMyRidesCount_str += "(";
                 DriverMyRidesCount_str += (jsonArray.getString("DriverMyRidesCount"));
                 DriverMyRidesCount_str += ")";
                 DriverMyRidesCount.setText(DriverMyRidesCount_str);
-                DriverMyAlertsCount.setText( String.valueOf(All_Alerts));
+                DriverMyAlertsCount.setText(String.valueOf(All_Alerts));
                 rating.setText(jsonArray.getString("AccountRating"));
                 assert AccountType != null;
                 if (!AccountType.equals("D")) {
@@ -498,7 +525,6 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
 
                     NavigationDrawerFragment.Convert_txt_id.setText(getString(R.string.saved_search));
                     NavigationDrawerFragment.menuicon12.setImageResource(R.drawable.menusavesearchicon);
-
 
 
                     btn_create.setOnClickListener(new View.OnClickListener() {
@@ -532,24 +558,23 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
 
                     Home_Realtive_Vehicles.setVisibility(View.INVISIBLE);
                     driver_rides_Created.setVisibility(View.INVISIBLE);
-                }else {
+                } else {
 
 
                     NavigationDrawerFragment.navy_My_vehicles.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (Vehicles_Count_FLAG==0) {
+                            if (Vehicles_Count_FLAG == 0) {
 
                                 Intent intent = new Intent(getBaseContext(), RegisterVehicle.class);
                                 startActivity(intent);
-                            }else {
+                            } else {
                                 Intent intent = new Intent(getBaseContext(), Display_My_Vehicles.class);
                                 startActivity(intent);
 
                             }
                         }
                     });
-
 
 
                     Home_Relative_Permit.setOnClickListener(new View.OnClickListener() {
@@ -567,11 +592,11 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                         public void onClick(View v) {
                             Log.d("vehicle flag count", String.valueOf(Vehicles_Count_FLAG));
 
-                            if (Vehicles_Count_FLAG==0) {
+                            if (Vehicles_Count_FLAG == 0) {
 
                                 Intent intent = new Intent(getBaseContext(), RegisterVehicle.class);
                                 startActivity(intent);
-                            }else {
+                            } else {
                                 Intent intent = new Intent(getBaseContext(), Display_My_Vehicles.class);
                                 startActivity(intent);
 
@@ -613,14 +638,14 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
             } catch (JSONException e) {
                 hidePDialog();
                 e.printStackTrace();
-            }catch (NullPointerException e){
+            } catch (NullPointerException e) {
                 e.printStackTrace();
             }
 
             btn_history.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent =  new Intent(getBaseContext(),HistoryNew.class);
+                    Intent intent = new Intent(getBaseContext(), HistoryNew.class);
                     startActivity(intent);
 
                 }
@@ -649,7 +674,7 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
                 public void onClick(View v) {
 
                     Intent intent = new Intent(getBaseContext(), QSearch.class);
-                    intent.putExtra("PassengerId",ID);
+                    intent.putExtra("PassengerId", ID);
                     startActivity(intent);
 
                 }

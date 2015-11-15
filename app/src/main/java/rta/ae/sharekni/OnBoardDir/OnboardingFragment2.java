@@ -1,12 +1,11 @@
 package rta.ae.sharekni.OnBoardDir;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +30,8 @@ public class OnboardingFragment2 extends Fragment {
     RelativeLayout im_best_drivers;
     ImageView OnBoard_Changelanguae;
 
+    String Locale_Str;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -52,36 +53,42 @@ public class OnboardingFragment2 extends Fragment {
         OnBoard_Changelanguae = (ImageView) view.findViewById(R.id.OnBoard_Changelanguae);
 
 
-
         OnBoard_Changelanguae.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                new AlertDialog.Builder(getActivity())
-                        .setTitle(R.string.choose_language)
-                        .setMessage(R.string.choose_language_mss)
-                        .setPositiveButton("English", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                Locale locale = new Locale("en_US");
-                                Locale.setDefault(locale);
-                                Configuration config = new Configuration();
-                                config.locale = locale;
-                                getActivity().getApplicationContext().getResources().updateConfiguration(config, null);
-                                getActivity().finish();
-                                startActivity(getActivity().getIntent());
-                            }
-                        })
-                        .setNegativeButton("العربية", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                Locale locale = new Locale("ar");
-                                Locale.setDefault(locale);
-                                Configuration config = new Configuration();
-                                config.locale = locale;
-                                getActivity().getApplicationContext().getResources().updateConfiguration(config, null);
-                                getActivity().finish();
-                                startActivity(getActivity().getIntent());
-                            }
-                        }).setIcon(android.R.drawable.ic_dialog_alert).show();
+
+                Configuration config = new Configuration();
+                Locale locale = Locale.getDefault();
+                Locale_Str = locale.toString();
+                Log.d("test locale", Locale_Str);
+
+
+               if (Locale_Str.contains("en")){
+
+                   Locale locale2 = new Locale("ar");
+                   Locale.setDefault(locale2);
+                   Configuration config2 = new Configuration();
+                   config2.locale = locale2;
+                   getActivity().getApplicationContext().getResources().updateConfiguration(config2, null);
+                   getActivity().finish();
+                   startActivity(getActivity().getIntent());
+
+
+               }else {
+
+
+                   Locale locale3 = new Locale("en");
+                   Locale.setDefault(locale3);
+                   Configuration config3 = new Configuration();
+                   config3.locale = locale3;
+                   getActivity().getApplicationContext().getResources().updateConfiguration(config3, null);
+                   getActivity().finish();
+                   startActivity(getActivity().getIntent());
+               }
+
+
+
             }
         });
 
@@ -101,9 +108,6 @@ public class OnboardingFragment2 extends Fragment {
                 startActivity(intent);
             }
         });
-
-
-
 
 
 // im_register.setOnClickListener(new View.OnClickListener() {

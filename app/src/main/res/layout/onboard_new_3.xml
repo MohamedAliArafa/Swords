@@ -38,7 +38,6 @@
             android:id="@+id/OnBoard_Changelanguae"
             android:src="@drawable/aricon"
             >
-
         </ImageView>
 
 
