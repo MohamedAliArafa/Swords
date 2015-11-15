@@ -52,8 +52,7 @@ import rta.ae.sharekni.Arafa.Classes.GetData;
 public class DriverCreateCarPool extends AppCompatActivity implements View.OnClickListener {
 
 
-    Double Start_Latitude,Start_Longitude,End_Latitude,End_Longitude;
-
+    Double Start_Latitude=0.0,Start_Longitude=0.0,End_Latitude=0.0,End_Longitude=0.0;
     static final int DILOG_ID = 0;
     static final int TIME_DIALOG_ID = 999;
     int id = 1;
@@ -70,6 +69,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     int Language_ID =0;
     char gender = 'N';
     int Number_Of_Seats=0;
+    String CHECK_TIME="b";
     String To_EmirateEnName, From_EmirateEnName, To_RegionEnName, From_RegionEnName;
     List<TreeMap<String, String>> Create_CarPool_Emirates_List = new ArrayList<>();
     List<TreeMap<String, String>> Create_CarPool_Regions_List = new ArrayList<>();
@@ -100,6 +100,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     int WED_FLAG = 0;
     int THU_FLAG = 0;
     int FRI_FLAG = 0;
+    int FLAG_WEEK_DAYS=1;
     SimpleAdapter Create_CarPool_EmAdapter;
     Button Create_CarPool_btn_submit_pickUp;
     TextView Create_CarPool_pickUp;
@@ -107,7 +108,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     Button create;
     String Create_CarPool_txt_PickUp;
     String Create_CarPool_txt_Drop_Off;
-    String Create_CarPool_full_date = "";
+    String Create_CarPool_full_date = "a";
     EditText edit_route_name;
     TextView Create_CarPool_txt_Selecet_Start_Point;
     TextView Create_CarPool_txt_Select_Dest;
@@ -165,7 +166,9 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                     minute = selectedMinute;
                     Create_CarPool_before_Time.setVisibility(View.INVISIBLE);
                     // set current time into textview
-                    Create_CarPool_txt_time_selected.setText(new StringBuilder().append(pad(hour)).append(":").append(pad(minute)));
+                    CHECK_TIME = String.valueOf(new StringBuilder().append(pad(hour)).append(":").append(pad(minute)));
+                    Log.d("check time",CHECK_TIME);
+                    Create_CarPool_txt_time_selected.setText(CHECK_TIME);
 
                 }
             };
@@ -637,7 +640,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         if (v == create) {
 
 
-            if (edit_route_name.getText() != null && edit_route_name.getText().toString() != getString(R.string.ride_name) && From_Em_Id_2 != -1 && To_Em_Id_2 != -1 && From_Reg_Id_2 != -1 && To_Reg_Id_2 != -1 && Single_Periodic_ID != -1 && Vehicle_Id != -1 && id != -1 && Create_CarPool_txt_beforeCal.getText() != getString(R.string.click_to_select) && Create_CarPool_txt_time_selected.getText() != null && Create_CarPool_txt_time_selected.getText().toString() != getString(R.string.click_to_select)) {
+            if ( !CHECK_TIME.equals("b") && FLAG_WEEK_DAYS==2 && Create_CarPool_full_date!=null &&  !Create_CarPool_full_date.equals("a") && edit_route_name.getText() != null && edit_route_name.getText().toString() != getString(R.string.ride_name) && From_Em_Id_2 != -1 && To_Em_Id_2 != -1 && From_Reg_Id_2 != -1 && To_Reg_Id_2 != -1 && Single_Periodic_ID != -1 && Vehicle_Id != -1 && id != -1 && Create_CarPool_txt_beforeCal.getText() != getString(R.string.click_to_select) && Create_CarPool_txt_time_selected.getText() != null && Create_CarPool_txt_time_selected.getText().toString() != getString(R.string.click_to_select) && Start_Latitude!=0.0 && Start_Longitude!=0.0 && End_Latitude!=0.0 && End_Longitude!=0.0 && Number_Of_Seats!=0 ) {
                 String is_Rounded;
                 String EnName = edit_route_name.getText().toString();
                 int FromEmId = From_Em_Id_2;   // dubai
@@ -649,6 +652,8 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                 } else {
                     is_Rounded = "false";
                 }
+
+
                 String Time = Create_CarPool_txt_time_selected.getText().toString();
                 String Saturday = String.valueOf(SAT_FLAG);
                 String Sunday = String.valueOf(SUN_FLAG);
@@ -950,10 +955,12 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
             createCarPool_Sat_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
             SAT_FLAG = 1;
+            FLAG_WEEK_DAYS=2;
         } else if (v == createCarPool_Sat_Day && SAT_FLAG == 1) {
 
             createCarPool_Sat_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
             SAT_FLAG = 0;
+            FLAG_WEEK_DAYS=1;
         }
 
 
@@ -961,10 +968,12 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
             createCarPool_Sun_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
             SUN_FLAG = 1;
+            FLAG_WEEK_DAYS=2;
         } else if (v == createCarPool_Sun_Day && SUN_FLAG == 1) {
 
             createCarPool_Sun_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
             SUN_FLAG = 0;
+            FLAG_WEEK_DAYS=1;
         }
 
 
@@ -972,10 +981,12 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
             createCarPool_Mon_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
             MON_FLAG = 1;
+            FLAG_WEEK_DAYS=2;
         } else if (v == createCarPool_Mon_Day && MON_FLAG == 1) {
 
             createCarPool_Mon_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
             MON_FLAG = 0;
+            FLAG_WEEK_DAYS=1;
         }
 
 
@@ -983,20 +994,24 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
             createCarPool_Tues_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
             TUES_FLAG = 1;
+            FLAG_WEEK_DAYS=2;
         } else if (v == createCarPool_Tues_Day && TUES_FLAG == 1) {
 
             createCarPool_Tues_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
             TUES_FLAG = 0;
+            FLAG_WEEK_DAYS=1;
         }
 
         if (v == createCarPool_Wed_Day && WED_FLAG == 0) {
 
             createCarPool_Wed_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
             WED_FLAG = 1;
+            FLAG_WEEK_DAYS=2;
         } else if (v == createCarPool_Wed_Day && WED_FLAG == 1) {
 
             createCarPool_Wed_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
             WED_FLAG = 0;
+            FLAG_WEEK_DAYS=1;
         }
 
 
@@ -1004,10 +1019,12 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
             createCarPool_Thu_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
             THU_FLAG = 1;
+            FLAG_WEEK_DAYS=2;
         } else if (v == createCarPool_Thu_Day && THU_FLAG == 1) {
 
             createCarPool_Thu_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
             THU_FLAG = 0;
+            FLAG_WEEK_DAYS=1;
         }
 
 
@@ -1015,10 +1032,12 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
             createCarPool_Fri_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
             FRI_FLAG = 1;
+            FLAG_WEEK_DAYS=2;
         } else if (v == createCarPool_Fri_Day && FRI_FLAG == 1) {
 
             createCarPool_Fri_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
             FRI_FLAG = 0;
+            FLAG_WEEK_DAYS=1;
         }
 
 
