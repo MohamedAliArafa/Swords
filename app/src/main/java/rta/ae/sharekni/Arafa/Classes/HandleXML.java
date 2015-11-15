@@ -74,7 +74,7 @@ public class HandleXML {
                 try {
                     URL url = new URL(urlString);
                     conn = (HttpURLConnection)url.openConnection();
-                    Log.d("Url  :", url.toString());
+//                    Log.d("Url  :", url.toString());
                     conn.setReadTimeout(0 /* milliseconds */);
                     conn.setConnectTimeout(0 /* milliseconds */);
                     conn.setRequestMethod("GET");

@@ -82,7 +82,11 @@ public class DriverAlertsForRequestAdapter extends BaseAdapter {
         NationalityEnName.setText(model.getNationalityEnName());
 
         if (model.getAccountPhoto() != null){
-            Photo.setImageBitmap(model.getPhoto());
+            if (!model.getAccountPhoto().equals("NoImage.png")){
+                Photo.setImageBitmap(model.getPhoto());
+            }else {
+                Photo.setImageResource(R.drawable.defaultdriver);
+            }
         }else {
             Photo.setImageResource(R.drawable.defaultdriver);
         }

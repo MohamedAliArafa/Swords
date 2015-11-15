@@ -1084,7 +1084,7 @@ public class GetData {
                                 context.startActivity(in);
                                 break;
                             default:
-                                Toast.makeText(context, context.getString(R.string.ride_created2), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, context.getString(R.string.ride_updated), Toast.LENGTH_SHORT).show();
                                 Intent in2 = new Intent(context, DriverCreatedRides.class);
                                 in2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 context.startActivity(in2);

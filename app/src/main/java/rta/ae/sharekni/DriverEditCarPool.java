@@ -394,6 +394,113 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
 //                Create_CarPool_txt_year.setText("Not Changed");
                 Vehicle_Id = j.getInt("VehicelId");
                 createCarPool_Vehicles.setText(getString(R.string.select_vehicle));
+                Nationality_ID = j.getInt("NationalityId");
+                Language_ID = j.getInt("PrefLanguageId");
+                Age_ID = j.getInt("AgeRangeID");
+                Create_CarPool_search_Nat.setText(j.getString(getString(R.string.nat_name2)));
+                Create_CarPool_Preferred_Lang_txt.setText(j.getString(getString(R.string.pref_lang)));
+                Create_CarPool_Age_Range_txt.setText(j.getString("AgeRange"));
+
+
+                if (j.getInt("NoOfSeats") == 1) {
+                    seat1_on.setVisibility(View.VISIBLE);
+                    seat1_off.setVisibility(View.INVISIBLE);
+                    id = 1;
+                }
+                if (j.getInt("NoOfSeats") == 2) {
+                    seat1_on.setVisibility(View.VISIBLE);
+                    seat1_off.setVisibility(View.INVISIBLE);
+                    seat2_off.setVisibility(View.INVISIBLE);
+                    seat2_on.setVisibility(View.VISIBLE);
+                    id = 2;
+                }
+                if (j.getInt("NoOfSeats") == 3) {
+                    seat1_on.setVisibility(View.VISIBLE);
+                    seat1_off.setVisibility(View.INVISIBLE);
+                    seat2_off.setVisibility(View.INVISIBLE);
+                    seat2_on.setVisibility(View.VISIBLE);
+                    seat3_off.setVisibility(View.INVISIBLE);
+                    seat3_on.setVisibility(View.VISIBLE);
+                    id = 3;
+                }
+                if (j.getInt("NoOfSeats") == 4) {
+                    seat1_on.setVisibility(View.VISIBLE);
+                    seat1_off.setVisibility(View.INVISIBLE);
+                    seat2_off.setVisibility(View.INVISIBLE);
+                    seat2_on.setVisibility(View.VISIBLE);
+                    seat3_off.setVisibility(View.INVISIBLE);
+                    seat3_on.setVisibility(View.VISIBLE);
+                    seat4_off.setVisibility(View.INVISIBLE);
+                    seat4_on.setVisibility(View.VISIBLE);
+                    id = 4;
+                }
+
+
+                if (j.getString("PreferredGender").equals("M")){
+                    gender = 'M';
+                    maleFemaleTxt.setTextColor(Color.RED);
+                    FemaleMaleTxt.setTextColor(Color.GRAY);
+                    Create_CarPool_malefemale1.setVisibility(View.INVISIBLE);
+                    Create_CarPool_femalemale2.setVisibility(View.VISIBLE);
+                }else if (j.getString("PreferredGender").equals("F")){
+                    gender = 'F';
+                    maleFemaleTxt.setTextColor(Color.GRAY);
+                    FemaleMaleTxt.setTextColor(Color.RED);
+                    Create_CarPool_malefemale1.setVisibility(View.INVISIBLE);
+                    Create_CarPool_femalemale2.setVisibility(View.VISIBLE);
+                }
+
+
+                if (j.getBoolean("Saturday")) {
+                    createCarPool_Sat_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
+                    SAT_FLAG = 1;
+                } else {
+                    createCarPool_Sat_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
+                    SAT_FLAG = 0;
+                }
+                if (j.getBoolean("Sunday")) {
+                    createCarPool_Sun_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
+                    SUN_FLAG = 1;
+                } else {
+                    createCarPool_Sun_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
+                    SUN_FLAG = 0;
+                }
+                if (j.getBoolean("Monday")) {
+                    createCarPool_Mon_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
+                    MON_FLAG = 1;
+                } else {
+                    createCarPool_Mon_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
+                    MON_FLAG = 0;
+                }
+                if (j.getBoolean("Tuesday")) {
+                    createCarPool_Tues_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
+                    TUES_FLAG = 1;
+                } else {
+                    createCarPool_Tues_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
+                    TUES_FLAG = 0;
+                }
+                if (j.getBoolean("Wednesday")) {
+                    createCarPool_Wed_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
+                    WED_FLAG = 1;
+                } else {
+                    createCarPool_Wed_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
+                    WED_FLAG = 0;
+                }
+                if (j.getBoolean("Thursday")) {
+                    createCarPool_Thu_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
+                    THU_FLAG = 1;
+                } else {
+                    createCarPool_Thu_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
+                    THU_FLAG = 0;
+                }
+                if (j.getBoolean("Friday")) {
+                    createCarPool_Fri_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
+                    FRI_FLAG = 1;
+                } else {
+                    createCarPool_Fri_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
+                    FRI_FLAG = 0;
+                }
+
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -809,7 +916,6 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                 String Wednesday = String.valueOf(WED_FLAG);
                 String Thursday = String.valueOf(THU_FLAG);
                 String Friday = String.valueOf(FRI_FLAG);
-                char gender = 'N';
                 int Vehicle_ID = Vehicle_Id;
                 int No_OF_Seats = id;
                 double Start_Lat = 25.19757887867318;
