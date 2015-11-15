@@ -453,6 +453,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                 Create_CarPool_femalemale2.setVisibility(View.VISIBLE);
                 maleFemaleTxt.setTextColor(Color.GRAY);
                 FemaleMaleTxt.setTextColor(Color.RED);
+                Log.d("gender", String.valueOf(gender));
             }
         });
 
@@ -464,6 +465,8 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                 Create_CarPool_malefemale1.setVisibility(View.VISIBLE);
                 maleFemaleTxt.setTextColor(Color.RED);
                 FemaleMaleTxt.setTextColor(Color.GRAY);
+                Log.d("gender", String.valueOf(gender));
+
             }
         });
 
@@ -473,8 +476,9 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                 gender = 'F';
                 maleFemaleTxt.setTextColor(Color.GRAY);
                 FemaleMaleTxt.setTextColor(Color.RED);
-                Create_CarPool_malefemale1.setVisibility(View.VISIBLE);
-                Create_CarPool_femalemale2.setVisibility(View.INVISIBLE);
+                Create_CarPool_malefemale1.setVisibility(View.INVISIBLE);
+                Create_CarPool_femalemale2.setVisibility(View.VISIBLE);
+                Log.d("gender", String.valueOf(gender));
             }
         });
 
@@ -484,8 +488,10 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                 gender = 'M';
                 maleFemaleTxt.setTextColor(Color.RED);
                 FemaleMaleTxt.setTextColor(Color.GRAY);
-                Create_CarPool_malefemale1.setVisibility(View.INVISIBLE);
-                Create_CarPool_femalemale2.setVisibility(View.VISIBLE);
+                Create_CarPool_malefemale1.setVisibility(View.VISIBLE);
+                Create_CarPool_femalemale2.setVisibility(View.INVISIBLE);
+                Log.d("gender", String.valueOf(gender));
+
             }
         });
 

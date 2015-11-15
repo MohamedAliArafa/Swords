@@ -344,6 +344,7 @@
     <string name="Are_you_sure_leave_ride">هل أنت متأكد  انك تريد مغادرة هذه الرحلة ؟</string>
     <string name="You_have_leaved_this_ride">لقد غادرت هذه الرحلة</string>
     <string name="delet_ride_str">هل انت متاكد انك تريد حذف هذه الرحلة ؟</string>
+    <string name="Ride_Edited">تم تعديل الرحلة</string>
 
 
 </resources>

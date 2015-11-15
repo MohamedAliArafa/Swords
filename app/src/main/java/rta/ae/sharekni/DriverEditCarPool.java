@@ -71,6 +71,8 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
     int WED_FLAG = 0;
     int THU_FLAG = 0;
     int FRI_FLAG = 0;
+
+    char gender = 'N';
     String To_EmirateEnName, From_EmirateEnName, To_RegionEnName, From_RegionEnName;
 
     List<TreeMap<String, String>> Create_CarPool_Emirates_List = new ArrayList<>();
@@ -275,40 +277,50 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
         Create_CarPool_malefemale1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                gender = 'F';
                 Create_CarPool_malefemale1.setVisibility(View.INVISIBLE);
                 Create_CarPool_femalemale2.setVisibility(View.VISIBLE);
                 maleFemaleTxt.setTextColor(Color.GRAY);
                 FemaleMaleTxt.setTextColor(Color.RED);
+                Log.d("gender", String.valueOf(gender));
             }
         });
 
         Create_CarPool_femalemale2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                gender = 'M';
                 Create_CarPool_femalemale2.setVisibility(View.INVISIBLE);
                 Create_CarPool_malefemale1.setVisibility(View.VISIBLE);
                 maleFemaleTxt.setTextColor(Color.RED);
                 FemaleMaleTxt.setTextColor(Color.GRAY);
+                Log.d("gender", String.valueOf(gender));
+
             }
         });
 
         FemaleMaleTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                gender = 'F';
                 maleFemaleTxt.setTextColor(Color.GRAY);
                 FemaleMaleTxt.setTextColor(Color.RED);
-                Create_CarPool_malefemale1.setVisibility(View.VISIBLE);
-                Create_CarPool_femalemale2.setVisibility(View.INVISIBLE);
+                Create_CarPool_malefemale1.setVisibility(View.INVISIBLE);
+                Create_CarPool_femalemale2.setVisibility(View.VISIBLE);
+                Log.d("gender", String.valueOf(gender));
             }
         });
 
         maleFemaleTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                gender = 'M';
                 maleFemaleTxt.setTextColor(Color.RED);
                 FemaleMaleTxt.setTextColor(Color.GRAY);
-                Create_CarPool_malefemale1.setVisibility(View.INVISIBLE);
-                Create_CarPool_femalemale2.setVisibility(View.VISIBLE);
+                Create_CarPool_malefemale1.setVisibility(View.VISIBLE);
+                Create_CarPool_femalemale2.setVisibility(View.INVISIBLE);
+                Log.d("gender", String.valueOf(gender));
+
             }
         });
 
