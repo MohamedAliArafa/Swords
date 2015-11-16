@@ -1,26 +1,23 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-
-    >
 
 
-    <include
-        android:id="@+id/app_bar"
-        layout="@layout/app_bar" />
+
+
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/app_bar">
+       >
 
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF">
+            android:background="#FFFFFF"
 
+            >
+            <include
+                android:id="@+id/app_bar"
+                layout="@layout/app_bar" />
 
             <RelativeLayout
                 android:id="@+id/createCarPool_Relative_1"
@@ -28,6 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
+                android:layout_below="@+id/app_bar"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/borders">
 
@@ -521,6 +519,7 @@
                 android:paddingRight="20dp"
                 android:paddingStart="20dp"
                 android:text="@string/ride_details"
+                android:layout_below="@+id/app_bar"
                 android:textColor="@color/primaryColor"
                 android:textSize="17sp" />
 
@@ -886,7 +885,6 @@
     </ScrollView>
 
 
-</RelativeLayout>
 
 
 

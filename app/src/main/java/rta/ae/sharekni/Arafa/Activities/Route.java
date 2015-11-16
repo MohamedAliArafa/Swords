@@ -266,13 +266,19 @@ public class Route extends AppCompatActivity {
                         ToRegionEnName.setText(json.getString(getString(R.string.to_reg_en_name)));
                         FromEmirateEnName.setText(json.getString(getString(R.string.from_em_en_name)));
                         ToEmirateEnName.setText(json.getString(getString(R.string.to_em_en_name)));
+
                         str_StartFromTime = json.getString("StartFromTime");
+
                         str_EndToTime_ = json.getString("EndToTime_");
+
                         str_StartFromTime = str_StartFromTime.substring(Math.max(0, str_StartFromTime.length() - 7));
                         Log.d("string", str_StartFromTime);
+
                         str_EndToTime_ = str_EndToTime_.substring(Math.max(0, str_EndToTime_.length() - 7));
                         Log.d("time to", str_EndToTime_);
                         StartFromTime.setText(str_StartFromTime);
+
+
                        // EndToTime_.setText(str_EndToTime_);
                         if (json.getString(getString(R.string.nat_name2)).equals("null")) {
                             NationalityEnName.setText(getString(R.string.not_set));

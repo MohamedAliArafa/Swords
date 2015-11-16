@@ -234,7 +234,7 @@
                     android:id="@+id/ride_details_day_of_week"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/ride_details_Ride_Days_txt"
+                    android:layout_alignTop="@+id/ride_details_Ride_Days_txt"
                     android:layout_marginLeft="5dp"
                     android:layout_marginStart="5dp"
                     android:layout_toEndOf="@+id/ride_details_Ride_Days_txt"
@@ -348,8 +348,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/ride_details_Nat_txt"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginRight="30dp"
                             android:text="@string/age_range"
                             android:textSize="16sp" />
 
@@ -365,6 +365,8 @@
                             android:maxLines="1"
                             android:layout_alignLeft="@+id/NationalityEnName"
                             android:layout_alignStart="@+id/NationalityEnName"
+                           android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
                             android:text="AgeRange"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -378,6 +380,8 @@
                             android:layout_alignStart="@+id/ride_details_lang_txt"
                             android:layout_below="@+id/ride_details_lang_txt"
                             android:layout_marginTop="15dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginRight="30dp"
                             android:text="@string/gender"
                             android:textSize="16sp" />
 
@@ -402,6 +406,8 @@
                             android:text="@string/smokers"
                             android:textSize="16sp"
                             android:layout_marginTop="15dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginRight="30dp"
                             />
 
 
@@ -429,6 +435,8 @@
                             android:layout_below="@+id/ride_details_Gender_txt"
                             android:layout_marginBottom="20dp"
                             android:layout_marginTop="15dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginRight="30dp"
                             android:text="@string/nationality"
                             android:textSize="16sp" />
 

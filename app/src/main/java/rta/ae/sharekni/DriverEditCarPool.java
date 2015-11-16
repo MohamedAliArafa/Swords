@@ -136,6 +136,8 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
     ImageView Periodic_SingleRide, singleRide_Periodic, Create_CarPool_malefemale1, Create_CarPool_femalemale2;
     ImageView seat1_on, seat2_on, seat3_on, seat4_on;
     SharedPreferences myPrefs;
+    String str_StartFromTime;
+    String str_StartFromDate;
 
 
     getAgeRanges ageRanges;
@@ -143,6 +145,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
     getNationalities nationalities;
     getVehicles vehicles;
     load load;
+    int Number_Of_Seats=0;
 
 
     @Override
@@ -153,7 +156,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
         month_x = cal.get(Calendar.MONTH);
         day_x = cal.get(Calendar.DAY_OF_MONTH);
 
-        setContentView(R.layout.activity_driver_create_car_pool);
+        setContentView(R.layout.activity_driver_edit_car_pool);
         showDialogOnButtonClick();
         showTimeDialogOnButtonClick();
         mContext = this;
@@ -324,6 +327,13 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
             }
         });
 
+
+
+
+
+
+
+
         seat1_on.setOnClickListener(this);
         seat2_on.setOnClickListener(this);
         seat3_on.setOnClickListener(this);
@@ -397,22 +407,41 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                 Nationality_ID = j.getInt("NationalityId");
                 Language_ID = j.getInt("PrefLanguageId");
                 Age_ID = j.getInt("AgeRangeID");
-                Create_CarPool_search_Nat.setText(j.getString(getString(R.string.nat_name2)));
-                Create_CarPool_Preferred_Lang_txt.setText(j.getString(getString(R.string.pref_lang)));
-                Create_CarPool_Age_Range_txt.setText(j.getString("AgeRange"));
+                if (j.getString(getString(R.string.nat_name2)).equals("null")){
+                    Create_CarPool_search_Nat.setText(getString(R.string.select_pref_nat));
+                }else {
+                    Create_CarPool_search_Nat.setText(j.getString(getString(R.string.nat_name2)));
+
+                }
+
+                if (j.getString(getString(R.string.pref_lang)).equals("null")){
+
+                    Create_CarPool_Preferred_Lang_txt.setText(getString(R.string.select_pref_lang));
+                }else {
+                    Create_CarPool_Preferred_Lang_txt.setText(j.getString(getString(R.string.pref_lang)));
+                }
+
+                if (j.getString("AgeRange").equals("null")){
+                    Create_CarPool_Age_Range_txt.setText(getString(R.string.choose_age));
+                }else {
+                    Create_CarPool_Age_Range_txt.setText(j.getString("AgeRange"));
+
+                }
+
+
 
 
                 if (j.getInt("NoOfSeats") == 1) {
                     seat1_on.setVisibility(View.VISIBLE);
                     seat1_off.setVisibility(View.INVISIBLE);
-                    id = 1;
+                    id = 2;
                 }
                 if (j.getInt("NoOfSeats") == 2) {
                     seat1_on.setVisibility(View.VISIBLE);
                     seat1_off.setVisibility(View.INVISIBLE);
                     seat2_off.setVisibility(View.INVISIBLE);
                     seat2_on.setVisibility(View.VISIBLE);
-                    id = 2;
+                    id = 3;
                 }
                 if (j.getInt("NoOfSeats") == 3) {
                     seat1_on.setVisibility(View.VISIBLE);
@@ -421,7 +450,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                     seat2_on.setVisibility(View.VISIBLE);
                     seat3_off.setVisibility(View.INVISIBLE);
                     seat3_on.setVisibility(View.VISIBLE);
-                    id = 3;
+                    id = 4;
                 }
                 if (j.getInt("NoOfSeats") == 4) {
                     seat1_on.setVisibility(View.VISIBLE);
@@ -432,7 +461,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                     seat3_on.setVisibility(View.VISIBLE);
                     seat4_off.setVisibility(View.INVISIBLE);
                     seat4_on.setVisibility(View.VISIBLE);
-                    id = 4;
+                    id = 5;
                 }
 
 
@@ -500,6 +529,27 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                     createCarPool_Fri_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
                     FRI_FLAG = 0;
                 }
+
+
+
+                str_StartFromTime = j.getString("StartFromTime");
+                str_StartFromDate=j.getString("StartFromTime");
+
+                str_StartFromDate=str_StartFromDate.substring(0,str_StartFromDate.length() -8);
+                Log.d("Date 1 ",str_StartFromDate);
+
+                str_StartFromTime = str_StartFromTime.substring(Math.max(0, str_StartFromTime.length() - 7));
+                Log.d("string", str_StartFromTime);
+
+                if (!str_StartFromTime.equals("")){
+                    Create_CarPool_before_Time.setVisibility(View.INVISIBLE);
+                    Create_CarPool_txt_time_selected.setText(str_StartFromTime);
+
+                }
+
+
+
+
 
 
             } catch (JSONException e) {
@@ -857,7 +907,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                     minute = selectedMinute;
                     Create_CarPool_before_Time.setVisibility(View.INVISIBLE);
                     // set current time into textview
-                    Create_CarPool_txt_time_selected.setText(new StringBuilder().append(pad(hour)).append(":").append(pad(minute)));
+                        Create_CarPool_txt_time_selected.setText(new StringBuilder().append(pad(hour)).append(":").append(pad(minute)));
 
                 }
             };
@@ -917,7 +967,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                 String Thursday = String.valueOf(THU_FLAG);
                 String Friday = String.valueOf(FRI_FLAG);
                 int Vehicle_ID = Vehicle_Id;
-                int No_OF_Seats = id;
+                int No_OF_Seats = Number_Of_Seats;
                 double Start_Lat = 25.19757887867318;
                 double Start_Lng = 55.27437007440332;
                 double End_Lat = 25.32912394868096;
@@ -1138,42 +1188,52 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
             seat1_on.setVisibility(View.VISIBLE);
             seat1_off.setVisibility(View.INVISIBLE);
             id = 2;
+            Number_Of_Seats=1;
+
         }
+
         if (v == seat1_on && id == 2) {
             seat1_on.setVisibility(View.INVISIBLE);
             seat1_off.setVisibility(View.VISIBLE);
             id = 1;
+            Number_Of_Seats=0;
         }
         if (v == seat2_off && id == 2) {
             seat2_off.setVisibility(View.INVISIBLE);
             seat2_on.setVisibility(View.VISIBLE);
             id = 3;
+            Number_Of_Seats=2;
         }
         if (v == seat2_on && id == 3) {
             seat2_off.setVisibility(View.VISIBLE);
             seat2_on.setVisibility(View.INVISIBLE);
             id = 2;
+            Number_Of_Seats=1;
         }
         if (v == seat3_off && id == 3) {
             seat3_off.setVisibility(View.INVISIBLE);
             seat3_on.setVisibility(View.VISIBLE);
             id = 4;
+            Number_Of_Seats=3;
         }
         if (v == seat3_on && id == 4) {
             seat3_on.setVisibility(View.INVISIBLE);
             seat3_off.setVisibility(View.VISIBLE);
             id = 3;
+            Number_Of_Seats=2;
         }
         if (v == seat4_off && id == 4) {
             seat4_off.setVisibility(View.INVISIBLE);
             seat4_on.setVisibility(View.VISIBLE);
             id = 5;
+            Number_Of_Seats=4;
         }
 
         if (v == seat4_on && id == 5) {
             seat4_on.setVisibility(View.INVISIBLE);
             seat4_off.setVisibility(View.VISIBLE);
             id = 4;
+            Number_Of_Seats=3;
         }
 
         if (v == createCarPool_Sat_Day && SAT_FLAG == 0) {
