@@ -1,7 +1,8 @@
 apply plugin: 'com.android.application'
+
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion "23.0.2"
     defaultConfig {
         applicationId "rta.ae.sharekni"
         minSdkVersion 16
@@ -25,12 +26,13 @@ repositories {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.0'
-    compile 'com.android.support:recyclerview-v7:23.1.0'
-    compile 'com.google.android.gms:play-services:8.1.0'
-    compile 'com.android.support:design:23.1.0'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:recyclerview-v7:23.1.1'
+    compile 'com.google.android.gms:play-services:8.3.0'
+    compile 'com.android.support:design:23.1.1'
     compile 'com.ogaclejapan.smarttablayout:library:1.2.1@aar'
     compile 'com.mcxiaoke.volley:library:1.0.18'
     compile 'com.pkmmte.view:circularimageview:1.1'
     compile 'soap:soap:2.3.1'
+
 }

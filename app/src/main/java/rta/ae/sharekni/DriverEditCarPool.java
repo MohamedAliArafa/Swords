@@ -52,6 +52,8 @@ import rta.ae.sharekni.Arafa.Classes.GetData;
 public class DriverEditCarPool extends AppCompatActivity implements View.OnClickListener {
 
 
+    Double Start_Latitude=0.0,Start_Longitude=0.0,End_Latitude=0.0,End_Longitude=0.0;
+
     int id = 1;
     int Single_Periodic_ID = 0;
     int From_Em_Id = -1;
@@ -228,11 +230,11 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
 
 
         createCarPool_Vehicles = (TextView) findViewById(R.id.createCarPool_Vehicles);
-        Create_CarPool_pickUp.setOnClickListener(this);
+
         create.setOnClickListener(this);
-        Create_CarPool_pickup_relative.setOnClickListener(this);
-        Create_CarPool_Dropoff.setOnClickListener(this);
-        Create_CarPool_dropOff_relative.setOnClickListener(this);
+
+
+
 
         singleRide_Periodic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -401,6 +403,15 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                 From_Reg_Id = j.getInt("FromRegionId");
                 To_Em_Id = j.getInt("ToEmirateId");
                 To_Reg_Id = j.getInt("ToRegionId");
+
+               Start_Latitude =  j.getDouble("StartLat");
+                Start_Longitude = j.getDouble("StartLng");
+                End_Latitude = j.getDouble("EndLat");
+                End_Longitude = j.getDouble("EndLng");
+
+
+
+
 //                Create_CarPool_txt_year.setText("Not Changed");
                 Vehicle_Id = j.getInt("VehicelId");
                 createCarPool_Vehicles.setText(getString(R.string.select_vehicle));
@@ -603,7 +614,6 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                     valuePairs.put("NationalityEnName", jsonObject.getString(getString(R.string.nat_name2)));
                     Create_CarPool_Country_List.add(valuePairs);
                 }
-
                 //Toast.makeText(RegisterNewTest.this, "test pref lang" + Lang_List.toString(), Toast.LENGTH_LONG).show();
                 Log.d("test pref lang", Create_CarPool_Country_List.toString());
 
@@ -958,7 +968,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                 } else {
                     is_Rounded = "false";
                 }
-                String Time = "10:00";
+                String Time = Create_CarPool_txt_time_selected.getText().toString();
                 String Saturday = String.valueOf(SAT_FLAG);
                 String Sunday = String.valueOf(SUN_FLAG);
                 String Monday = String.valueOf(MON_FLAG);
@@ -968,10 +978,10 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                 String Friday = String.valueOf(FRI_FLAG);
                 int Vehicle_ID = Vehicle_Id;
                 int No_OF_Seats = Number_Of_Seats;
-                double Start_Lat = 25.19757887867318;
-                double Start_Lng = 55.27437007440332;
-                double End_Lat = 25.32912394868096;
-                double End_Lng = 55.51227235846654;
+                double Start_Lat = Start_Latitude;
+                double Start_Lng = Start_Longitude;
+                double End_Lat = End_Latitude;
+                double End_Lng = End_Longitude;
                 int pref_lnag = Language_ID;
                 int pref_nat = Nationality_ID;
                 int Age_Ranged_id = Age_ID;
@@ -988,201 +998,6 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
             }
         }
 
-
-        if (v == Create_CarPool_pickup_relative || v == Create_CarPool_pickUp) {
-            Create_CarPool_Emirates_List.clear();
-            try {
-                JSONArray j = new GetData().GetEmitares();
-                for (int i = 0; i < j.length(); i++) {
-
-                    TreeMap<String, String> valuePairs = new TreeMap<>();
-                    JSONObject jsonObject = j.getJSONObject(i);
-                    valuePairs.put("EmirateId", jsonObject.getString("EmirateId"));
-                    valuePairs.put("EmirateEnName", jsonObject.getString(getString(R.string.em_name)));
-                    Create_CarPool_Emirates_List.add(valuePairs);
-                }
-                Log.d("test Emirates ", Create_CarPool_Emirates_List.toString());
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            Create_CarPool_EmAdapter = new SimpleAdapter(DriverEditCarPool.this, Create_CarPool_Emirates_List
-                    , R.layout.dialog_pick_emirate_lv_row
-                    , new String[]{"EmirateId", "EmirateEnName"}
-                    , new int[]{R.id.row_id_search, R.id.row_name_search});
-
-            Create_CarPool_MainDialog = new Dialog(DriverEditCarPool.this);
-            Create_CarPool_MainDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            Create_CarPool_MainDialog.setContentView(R.layout.main_search_dialog);
-            Create_CarPool_btn_submit_pickUp = (Button) Create_CarPool_MainDialog.findViewById(R.id.btn_submit_puckup);
-            TextView Lang_Dialog_txt_id = (TextView) Create_CarPool_MainDialog.findViewById(R.id.Lang_Dialog_txt_id);
-            Lang_Dialog_txt_id.setText(getString(R.string.pickup));
-            Create_CarPool_txt_regions = (AutoCompleteTextView) Create_CarPool_MainDialog.findViewById(R.id.mainDialog_Regions_auto);
-            Create_CarPool_spinner = (Spinner) Create_CarPool_MainDialog.findViewById(R.id.Emirates_spinner);
-            Create_CarPool_spinner.setAdapter(Create_CarPool_EmAdapter);
-            Create_CarPool_MainDialog.show();
-            Create_CarPool_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    Create_CarPool_txt_PickUp = "";
-
-                    txt_em_name = (TextView) view.findViewById(R.id.row_name_search);
-                    txt_em_id = (TextView) view.findViewById(R.id.row_id_search);
-                    From_Em_Id = Integer.parseInt(txt_em_id.getText().toString());
-                    From_EmirateEnName = txt_em_name.getText().toString();
-                    Create_CarPool_txt_PickUp += txt_em_name.getText().toString();
-                    Create_CarPool_txt_PickUp += ", ";
-                    Log.d("id of lang", "" + From_Em_Id);
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
-
-            Create_CarPool_txt_regions.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    GetData getData = new GetData();
-                    try {
-                        JSONArray jsonArray = getData.GetRegionsByEmiratesID(From_Em_Id);
-                        for (int i = 0; i < jsonArray.length(); i++) {
-                            TreeMap<String, String> valuePairs = new TreeMap<>();
-                            JSONObject jsonObject = jsonArray.getJSONObject(i);
-                            valuePairs.put("ID", jsonObject.getString("ID"));
-                            valuePairs.put("RegionEnName", jsonObject.getString(getString(R.string.reg_name)));
-                            Create_CarPool_Regions_List.add(valuePairs);
-                        }
-                        Log.d("test Regions search ", Create_CarPool_Regions_List.toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                    final SimpleAdapter RegAdapter = new SimpleAdapter(DriverEditCarPool.this, Create_CarPool_Regions_List
-                            , R.layout.dialog_pick_emirate_lv_row
-                            , new String[]{"ID", "RegionEnName"}
-                            , new int[]{R.id.row_id_search, R.id.row_name_search});
-                    Create_CarPool_txt_regions.setAdapter(RegAdapter);
-                    Create_CarPool_txt_regions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            TextView txt_reg_name = (TextView) view.findViewById(R.id.row_name_search);
-                            TextView txt_reg_id = (TextView) view.findViewById(R.id.row_id_search);
-                            From_Reg_Id = Integer.parseInt(txt_reg_id.getText().toString());
-                            From_RegionEnName = txt_reg_name.getText().toString();
-                            Create_CarPool_txt_regions.setText(txt_reg_name.getText().toString());
-                            Create_CarPool_txt_PickUp += txt_reg_name.getText().toString();
-                        }
-                    });
-                }
-            });
-
-            Create_CarPool_btn_submit_pickUp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Create_CarPool_txt_Selecet_Start_Point.setText(Create_CarPool_txt_PickUp);
-                    Create_CarPool_MainDialog.dismiss();
-                }
-            });
-        }
-
-        if (v == Create_CarPool_dropOff_relative || v == Create_CarPool_Dropoff) {
-            Create_CarPool_Emirates_List.clear();
-            try {
-                JSONArray j = new GetData().GetEmitares();
-                for (int i = 0; i < j.length(); i++) {
-                    TreeMap<String, String> valuePairs = new TreeMap<>();
-                    JSONObject jsonObject = j.getJSONObject(i);
-                    valuePairs.put("EmirateId", jsonObject.getString("EmirateId"));
-                    valuePairs.put("EmirateEnName", jsonObject.getString(getString(R.string.em_name)));
-                    Create_CarPool_Emirates_List.add(valuePairs);
-                }
-                Log.d("test Emirates ", Create_CarPool_Emirates_List.toString());
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            Create_CarPool_EmAdapter = new SimpleAdapter(DriverEditCarPool.this, Create_CarPool_Emirates_List
-                    , R.layout.dialog_pick_emirate_lv_row
-                    , new String[]{"EmirateId", "EmirateEnName"}
-                    , new int[]{R.id.row_id_search, R.id.row_name_search});
-
-            Create_CarPool_MainDialog = new Dialog(DriverEditCarPool.this);
-            Create_CarPool_MainDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            Create_CarPool_MainDialog.setContentView(R.layout.main_search_dialog);
-            TextView Lang_Dialog_txt_id = (TextView) Create_CarPool_MainDialog.findViewById(R.id.Lang_Dialog_txt_id);
-            Lang_Dialog_txt_id.setText("Drop Off");
-            Create_CarPool_btn_submit_pickUp = (Button) Create_CarPool_MainDialog.findViewById(R.id.btn_submit_puckup);
-            Create_CarPool_txt_regions = (AutoCompleteTextView) Create_CarPool_MainDialog.findViewById(R.id.mainDialog_Regions_auto);
-            Create_CarPool_spinner = (Spinner) Create_CarPool_MainDialog.findViewById(R.id.Emirates_spinner);
-            Create_CarPool_spinner.setAdapter(Create_CarPool_EmAdapter);
-            Create_CarPool_MainDialog.show();
-            Create_CarPool_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    Create_CarPool_txt_Drop_Off = "";
-                    TextView txt_em_name = (TextView) view.findViewById(R.id.row_name_search);
-                    TextView txt_em_id = (TextView) view.findViewById(R.id.row_id_search);
-                    To_Em_Id = Integer.parseInt(txt_em_id.getText().toString());
-                    To_EmirateEnName = txt_em_name.getText().toString();
-                    Create_CarPool_txt_Drop_Off += txt_em_name.getText().toString();
-                    Create_CarPool_txt_Drop_Off += ", ";
-                    Log.d("id of lang", "" + To_Em_Id);
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
-
-
-            Create_CarPool_txt_regions.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Create_CarPool_Regions_List.clear();
-                    GetData getData = new GetData();
-                    try {
-                        JSONArray jsonArray = getData.GetRegionsByEmiratesID(To_Em_Id);
-
-                        for (int i = 0; i < jsonArray.length(); i++) {
-
-                            TreeMap<String, String> valuePairs = new TreeMap<>();
-                            JSONObject jsonObject = jsonArray.getJSONObject(i);
-                            valuePairs.put("ID", jsonObject.getString("ID"));
-                            valuePairs.put("RegionEnName", jsonObject.getString(getString(R.string.reg_name)));
-                            Create_CarPool_Regions_List.add(valuePairs);
-                        }
-                        Log.d("test Regions search ", Create_CarPool_Regions_List.toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    final SimpleAdapter RegAdapter = new SimpleAdapter(DriverEditCarPool.this, Create_CarPool_Regions_List
-                            , R.layout.dialog_pick_emirate_lv_row
-                            , new String[]{"ID", "RegionEnName"}
-                            , new int[]{R.id.row_id_search, R.id.row_name_search});
-
-                    Create_CarPool_txt_regions.setAdapter(RegAdapter);
-                    Create_CarPool_txt_regions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            TextView txt_reg_name = (TextView) view.findViewById(R.id.row_name_search);
-                            TextView txt_reg_id = (TextView) view.findViewById(R.id.row_id_search);
-                            To_Reg_Id = Integer.parseInt(txt_reg_id.getText().toString());
-                            To_RegionEnName = txt_reg_name.getText().toString();
-                            Create_CarPool_txt_regions.setText(txt_reg_name.getText().toString());
-                            Create_CarPool_txt_Drop_Off += txt_reg_name.getText().toString();
-                        }
-                    });
-                }
-            });
-            Create_CarPool_btn_submit_pickUp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Create_CarPool_txt_Select_Dest.setText(Create_CarPool_txt_Drop_Off);
-                    Create_CarPool_MainDialog.dismiss();
-                }
-            });
-        }   // drop oof relative
 
         if (v == seat1_off && id == 1) {
             seat1_on.setVisibility(View.VISIBLE);
@@ -1334,4 +1149,13 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
         finish();
 
     }
+
+
+
+
+
+
+
+
+
 }
