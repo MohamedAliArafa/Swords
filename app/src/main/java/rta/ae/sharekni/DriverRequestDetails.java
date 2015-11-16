@@ -55,7 +55,7 @@ public class DriverRequestDetails extends AppCompatActivity {
         PassengerName = intent.getStringExtra("PassengerName");
         RouteName = intent.getStringExtra("RouteName");
         NationalityEnName = intent.getStringExtra("NationalityEnName");
-        AccountPhoto = intent.getParcelableExtra("AccountPhoto");
+      //  AccountPhoto = intent.getParcelableExtra("AccountPhoto");
         PassengerMobile = intent.getStringExtra("PassengerMobile");
         Remarks = intent.getStringExtra("Remarks");
         RequestDate = intent.getStringExtra("RequestDate");
@@ -136,7 +136,7 @@ public class DriverRequestDetails extends AppCompatActivity {
                                         mainIntent.putExtra("PassengerName",PassengerName);
                                         mainIntent.putExtra("RouteName",RouteName);
                                         mainIntent.putExtra("NationalityEnName",NationalityEnName);
-                                        mainIntent.putExtra("AccountPhoto",AccountPhoto);
+                                      //  mainIntent.putExtra("AccountPhoto",AccountPhoto);
                                         mainIntent.putExtra("PassengerMobile",PassengerMobile);
                                         mainIntent.putExtra("Remarks",Remarks);
                                         mainIntent.putExtra("RequestDate",RequestDate);
@@ -196,7 +196,7 @@ public class DriverRequestDetails extends AppCompatActivity {
                                         mainIntent.putExtra("PassengerName",PassengerName);
                                         mainIntent.putExtra("RouteName",RouteName);
                                         mainIntent.putExtra("NationalityEnName",NationalityEnName);
-                                        mainIntent.putExtra("AccountPhoto",AccountPhoto);
+                                      //  mainIntent.putExtra("AccountPhoto",AccountPhoto);
                                         mainIntent.putExtra("PassengerMobile",PassengerMobile);
                                         mainIntent.putExtra("Remarks",Remarks);
                                         mainIntent.putExtra("RequestDate",RequestDate);

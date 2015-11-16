@@ -58,6 +58,10 @@ public class RegisterVehicle extends AppCompatActivity {
 
     RelativeLayout btn_datepicker_id;
 
+    public static  String  TRAFFIC_FILE_NUMBER="a";
+    public static  String  TRAFFIC_BIRTH_DATE="a";
+
+
     EditText File_num_edit;
     String File_NO_Str = "";
     Bundle in;
@@ -218,6 +222,10 @@ public class RegisterVehicle extends AppCompatActivity {
 
             if (data.equals("\"1\"")) {
                 Toast.makeText(getBaseContext(), getString(R.string.verified), Toast.LENGTH_LONG).show();
+                TRAFFIC_FILE_NUMBER = File_NO_Str;
+                TRAFFIC_BIRTH_DATE = full_date;
+
+
                 c.finish();
             } else if (data.equals("\"-3\"")) {
                 Toast.makeText(getBaseContext(), getString(R.string.invalid_dob), Toast.LENGTH_LONG).show();

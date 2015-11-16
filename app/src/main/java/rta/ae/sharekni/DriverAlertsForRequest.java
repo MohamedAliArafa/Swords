@@ -121,7 +121,7 @@ public class DriverAlertsForRequest extends AppCompatActivity {
                         in.putExtra("PassengerName", arr.get(i).getPassengerName());
                         in.putExtra("RouteName", arr.get(i).getRouteName());
                         in.putExtra("NationalityEnName", arr.get(i).getNationalityEnName());
-                        in.putExtra("AccountPhoto", arr.get(i).getPhoto());
+                      //  in.putExtra("AccountPhoto", arr.get(i).getPhoto());
                         in.putExtra("PassengerMobile", arr.get(i).getPassengerMobile());
                         in.putExtra("Remarks", arr.get(i).getRemarks());
                         in.putExtra("RequestId", arr.get(i).getRequestId());

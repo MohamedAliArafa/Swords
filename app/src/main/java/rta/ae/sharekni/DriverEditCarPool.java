@@ -41,6 +41,7 @@ import org.json.JSONObject;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -989,7 +990,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
 
                 GetData j = new GetData();
                 j.DriverEditCarPoolFrom(RouteId, EnName, FromEmId, ToEmId, FromRegId, ToRegId
-                        , is_Rounded, Time, Saturday, Sunday, Monday, Tuesday, Wednesday, Thursday, Friday
+                        , is_Rounded, URLEncoder.encode(Time), Saturday, Sunday, Monday, Tuesday, Wednesday, Thursday, Friday
                         , gender, Vehicle_ID, No_OF_Seats, Start_Lat, Start_Lng, End_Lat, End_Lng
                         , pref_lnag, pref_nat, Age_Ranged_id, StartDate, this);
 

@@ -320,7 +320,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
                     } else {
                         NationalityEnName.setText(json.getString(getString(R.string.nat_name2)));
                     }
-                    if (json.getInt("PrefLanguageId") == 0) {
+                    if (json.getString("PrefLanguageId").equals("0") ||  json.getString("PrefLanguageId").equals("null") ) {
                         PrefLanguageEnName.setText(getString(R.string.not_set));
                     } else {
                         PrefLanguageEnName.setText(json.getString(getString(R.string.pref_lang)));

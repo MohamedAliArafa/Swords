@@ -55,6 +55,8 @@ public class Display_My_Vehicles extends AppCompatActivity {
     String GetVehiclesUrl = GetData.DOMAIN + "GetByDriverId?id=";
     SharedPreferences myPrefs;
     int Driver_ID;
+    back back;
+    Button Refresh_vehicles_Btn;
 
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
@@ -84,7 +86,10 @@ public class Display_My_Vehicles extends AppCompatActivity {
         setContentView(R.layout.activity_display__my__vehicles);
         initToolbar();
         c=this;
+        back = new back();
+
         user_vehicles = (ListView) findViewById(R.id.user_vehicles);
+        Refresh_vehicles_Btn= (Button) findViewById(R.id.Refresh_vehicles_Btn);
 
         myPrefs = this.getSharedPreferences("myPrefs", 0);
         String ID = myPrefs.getString("account_id",null);
@@ -98,6 +103,26 @@ public class Display_My_Vehicles extends AppCompatActivity {
         rideJson.execute();
 
 
+
+
+        Refresh_vehicles_Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if ( !RegisterVehicle.TRAFFIC_BIRTH_DATE.equals("a")  ||  !RegisterVehicle.TRAFFIC_FILE_NUMBER.equals("a") ){
+
+                    Toast.makeText(Display_My_Vehicles.this, "Updting Vehicles", Toast.LENGTH_SHORT).show();
+                    Log.d("traffic birthdate", RegisterVehicle.TRAFFIC_BIRTH_DATE);
+                    Log.d("traffic file num",RegisterVehicle.TRAFFIC_FILE_NUMBER);
+                    back.execute();
+
+
+                }else {
+                    Toast.makeText(Display_My_Vehicles.this, "Please check file number first", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
 
 
     }
@@ -262,12 +287,122 @@ public class Display_My_Vehicles extends AppCompatActivity {
 
 
 
+
+
+
+    private class back extends AsyncTask {
+
+        ProgressDialog pDialog;
+        boolean exists = false;
+        String data;
+
+        @Override
+        protected void onPreExecute() {
+            pDialog = new ProgressDialog(Display_My_Vehicles.this);
+            pDialog.setMessage(getString(R.string.loading) + "...");
+            pDialog.show();
+        }
+
+
+        @Override
+        protected void onPostExecute(Object o) {
+
+
+            if (data.equals("\"1\"")) {
+                Toast.makeText(getBaseContext(), getString(R.string.verified), Toast.LENGTH_LONG).show();
+
+            } else if (data.equals("\"-3\"")) {
+                Toast.makeText(getBaseContext(), getString(R.string.invalid_dob), Toast.LENGTH_LONG).show();
+                Log.d("inside -3", data);
+
+            } else if (data.equals("\"-4\"")) {
+                Toast.makeText(getBaseContext(), getString(R.string.lic_ver_but_no_cars), Toast.LENGTH_LONG).show();
+
+            } else if (data.equals("\"-5\"") || data.equals("\"-6\"")) {
+                Toast.makeText(getBaseContext(), getString(R.string.invalid_data), Toast.LENGTH_LONG).show();
+
+            } else if (data.equals("\"0\"")) {
+                //  Toast.makeText(context, "license verified, but no cars found ", Toast.LENGTH_LONG).show();
+                Log.d("license no json", data + " Error in Connection with the DataBase Server");
+
+            } else if (data.equals("\"-2\"")) {
+                Toast.makeText(getBaseContext(),getString( R.string.cant_user_file_number) , Toast.LENGTH_LONG).show();
+
+            }
+
+
+            hidePDialog();
+        }
+
+        @Override
+        protected Object doInBackground(Object[] params) {
+            try {
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                Socket sock = new Socket();
+                int timeoutMs = 20000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                exists = true;
+            } catch (final Exception e) {
+                e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new AlertDialog.Builder(Display_My_Vehicles.this)
+                                .setTitle(getString(R.string.connection_problem))
+                                .setMessage(getString(R.string.con_problem_message))
+                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                        startActivity(getIntent());
+                                    }
+                                })
+                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                        Toast.makeText(Display_My_Vehicles.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            if (exists) {
+
+                GetData j = new GetData();
+
+                try {
+
+                    data = j.RegisterVehicle(Driver_ID, RegisterVehicle.TRAFFIC_FILE_NUMBER, RegisterVehicle.TRAFFIC_BIRTH_DATE);
+
+                } catch (JSONException e) {
+                    hidePDialog();
+                    e.printStackTrace();
+
+                }
+            }
+            return null;
+        }
+
+
+        private void hidePDialog() {
+            if (pDialog != null) {
+                pDialog.dismiss();
+                pDialog = null;
+            }
+        }
+
+    }
+
+
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         if (rideJson.getStatus()== AsyncTask.Status.RUNNING) {
             rideJson.cancel(true);
         }
+        if (back.getStatus() == AsyncTask.Status.RUNNING){
+            back.cancel(true);
+        }
+
 
         finish();
 
@@ -284,7 +419,7 @@ public class Display_My_Vehicles extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_driver_create_car_pool, menu);
+        getMenuInflater().inflate(R.menu.display_my_vehicles_menu, menu);
         return true;
     }
 
@@ -299,6 +434,16 @@ public class Display_My_Vehicles extends AppCompatActivity {
             onBackPressed();
             return true;
         }
+
+
+
+//        if (id == R.id.test_vehicles){
+//            Intent intent = new Intent(getBaseContext(),RegisterVehicle.class);
+//            startActivity(intent);
+//        }
+
+
+
 
 
         return super.onOptionsItemSelected(item);

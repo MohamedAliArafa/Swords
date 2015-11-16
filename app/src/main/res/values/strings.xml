@@ -356,6 +356,7 @@
     <string name="No_Phone_Number_msg">No Phone Number</string>
     <string name="Accept_Smokers_txt">Accept Smokers</string>
     <string name="change_vehicle">Change Vehicle</string>
+    <string name="Refresh_vehicles">Refresh</string>
 
 
 </resources>

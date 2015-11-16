@@ -338,7 +338,7 @@
                             android:layout_alignStart="@+id/AgeRange"
                             android:layout_toEndOf="@+id/ride_details_lang_txt"
                             android:layout_toRightOf="@+id/ride_details_lang_txt"
-                            android:text="Languag"
+                            android:text="Language"
                             android:textSize="16sp"
                             android:textStyle="bold"
 
