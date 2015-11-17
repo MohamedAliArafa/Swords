@@ -508,42 +508,52 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                         Date_Relative.setBackgroundResource(R.drawable.user_register_border_error);
                 } else {
                     if (edit_fname.getText() != null && !edit_fname.getText().toString().equals(getString(R.string.Reg_FirstN)) && edit_lname.getText() != null && !edit_lname.getText().toString().equals(getString(R.string.Reg_LastN)) && edit_phone.getText() != null && !edit_phone.getText().toString().equals(getString(R.string.REg_Mobile)) && edit_pass.getText() != null && !edit_pass.getText().toString().equals(getString(R.string.Reg_pass)) && edit_user.getText() != null && !edit_user.getText().toString().equals(getString(R.string.Reg_Email)) && txt_country.getText() != null && !edit_lname.getText().toString().equals(getString(R.string.Reg_Nat)) && Language_ID != -1 && Nationality_ID != -1 && full_date != null) {
-                        String Fname = edit_fname.getText().toString();
-                        String Lname = edit_lname.getText().toString();
-                        String phone = edit_phone.getText().toString();
-                        String pass = edit_pass.getText().toString();
-                        String user = edit_user.getText().toString();
-                        String country = txt_country.getText().toString();
+                        ArrayList codes = new ArrayList();
+                        codes.add("50");
+                        codes.add("52");
+                        codes.add("55");
+                        codes.add("56");
+                        String code = edit_phone.getText().toString().substring(0,2);
+                        if (!codes.contains(code)) {
+                            Toast.makeText(RegisterNewTest.this, getString(R.string.short_mobile), Toast.LENGTH_SHORT).show();
+                        } else {
+                            String Fname = edit_fname.getText().toString();
+                            String Lname = edit_lname.getText().toString();
+                            String phone = edit_phone.getText().toString();
+                            String pass = edit_pass.getText().toString();
+                            String user = edit_user.getText().toString();
+                            String country = txt_country.getText().toString();
 //                        String lang = txt_lang.getText().toString();
-                        char gender = i;
-                        String birthdate = full_date;
-                        int x = Language_ID;
-                        int y = Nationality_ID;
-                        RegisterJsonParse registerJsonParse = new RegisterJsonParse();
+                            char gender = i;
+                            String birthdate = full_date;
+                            int x = Language_ID;
+                            int y = Nationality_ID;
+                            RegisterJsonParse registerJsonParse = new RegisterJsonParse();
 
-                        switch (usertype) {
-                            case "Passenger":
-                                registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterPassenger?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + URLEncoder.encode(birthdate) + "&NationalityId=" + y + "&PreferredLanguageId=" + x + "&photoName=" + uploadedImage, getBaseContext(), country, "P");
-                                Log.d("Registration :", GetData.DOMAIN + "RegisterPassenger?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + URLEncoder.encode(birthdate) + "&NationalityId=" + y + "&PreferredLanguageId=" + x + "&photoName=" + uploadedImage);
-                                break;
-                            case "1":
-                                Toast.makeText(RegisterNewTest.this, R.string.select_type_first_error, Toast.LENGTH_SHORT).show();
+                            switch (usertype) {
+                                case "Passenger":
+                                    registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterPassenger?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + URLEncoder.encode(birthdate) + "&NationalityId=" + y + "&PreferredLanguageId=" + x + "&photoName=" + uploadedImage, getBaseContext(), country, "P");
+                                    Log.d("Registration :", GetData.DOMAIN + "RegisterPassenger?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + URLEncoder.encode(birthdate) + "&NationalityId=" + y + "&PreferredLanguageId=" + x + "&photoName=" + uploadedImage);
+                                    break;
+                                case "1":
+                                    Toast.makeText(RegisterNewTest.this, R.string.select_type_first_error, Toast.LENGTH_SHORT).show();
 
-                                break;
-                            case "Driver":
+                                    break;
+                                case "Driver":
 
-                                registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + URLEncoder.encode(birthdate) + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x, getBaseContext(), country, "D");
-                                Log.d("Reg Driver", GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + URLEncoder.encode(birthdate) + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x);
-                                break;
-                            case "Both":
-                                registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + URLEncoder.encode(birthdate) + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x, getBaseContext(), country, "D");
-                                break;
+                                    registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + URLEncoder.encode(birthdate) + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x, getBaseContext(), country, "D");
+                                    Log.d("Reg Driver", GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + URLEncoder.encode(birthdate) + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x);
+                                    break;
+                                case "Both":
+                                    registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + URLEncoder.encode(birthdate) + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x, getBaseContext(), country, "D");
+                                    break;
+                                }
                             }
-                        }else {
-                        Toast.makeText(RegisterNewTest.this, R.string.fill_all_error, Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(RegisterNewTest.this, R.string.fill_all_error, Toast.LENGTH_SHORT).show();
+                        }
                     }
 
-                    }
                 }
 
 //            else {
