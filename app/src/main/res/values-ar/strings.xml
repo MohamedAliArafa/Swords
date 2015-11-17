@@ -358,6 +358,6 @@
     <string name="change_vehicle">تغيير المركبة</string>
     <string name="Refresh_vehicles">تحديث</string>
     <string name="Rate_str">قيم</string>
-    <string name="Verify_str">تحقق من</string>
+    <string name="Verify_str">تحقق </string>
 
 </resources>

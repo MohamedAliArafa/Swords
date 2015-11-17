@@ -163,14 +163,36 @@
                 android:textSize="15sp" />
 
 
-            <TextView
-                android:id="@+id/lang_Home"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/nat_home"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="3dp"
-                android:textSize="16sp" />
+                >
+                <TextView
+                    android:id="@+id/Account_PhoneNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text=""
+                    />
+
+                <TextView
+                    android:id="@+id/Verify_Phone_num_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/Account_PhoneNumber"
+                    android:layout_toEndOf="@+id/Account_PhoneNumber"
+                    android:layout_alignBottom="@+id/Account_PhoneNumber"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/Verify_str"
+                    android:textSize="16sp"
+                    />
+
+
+            </RelativeLayout>
 
 
             <RelativeLayout
