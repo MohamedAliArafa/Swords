@@ -26,6 +26,7 @@ import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioGroup;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -105,6 +106,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
     String str_Remarks = "";
     RelativeLayout Relative_REviews;
     TextView Relative_REviews_Address_2;
+    int NoOfStars;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,7 +139,8 @@ public class RideDetailsPassenger extends AppCompatActivity {
         Passenger_Review_Driver_Btn = (Button) findViewById(R.id.Passenger_Review_Driver_Btn);
         Relative_REviews = (RelativeLayout) findViewById(R.id.Relative_REviews);
         Relative_REviews_Address_2 = (TextView) findViewById(R.id.Relative_REviews_Address_2);
-        Join_Ride_btn.setVisibility(View.VISIBLE);
+        Join_Ride_btn.setVisibility(View.INVISIBLE);
+        Pass_rate_Driver_btn.setVisibility(View.INVISIBLE);
 
         // setListViewHeightBasedOnChildren(Driver_get_Review_lv);
         //setSupportActionBar(toolbar);
@@ -149,10 +152,33 @@ public class RideDetailsPassenger extends AppCompatActivity {
         Driver_ID = in.getInt("DriverID");
         Route_ID = in.getInt("RouteID");
 
+        Pass_rate_Driver_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Dialog dialog = new Dialog(RideDetailsPassenger.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.rate_layout);
+                Button btn = (Button) dialog.findViewById(R.id.noroute_id);
+                final RatingBar ratingBar = (RatingBar) dialog.findViewById(R.id.ratingBar);
+                ratingBar.setStepSize(1);
+                dialog.show();
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        NoOfStars = (int) ratingBar.getRating();
+                        Log.d("NoOfStars", String.valueOf(NoOfStars));
+                        new rateDriver().execute();
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
+
         try {
 
             if (in.getInt("FLAG_1") == 1) {
                 Join_Ride_btn.setVisibility(View.INVISIBLE);
+                Pass_rate_Driver_btn.setVisibility(View.VISIBLE);
 
             }
         } catch (NullPointerException e) {
@@ -170,6 +196,28 @@ public class RideDetailsPassenger extends AppCompatActivity {
 
     }  //  on create
 
+
+    private class rateDriver extends AsyncTask{
+
+        String res;
+
+        @Override
+        protected void onPostExecute(Object o) {
+            super.onPostExecute(o);
+            Log.d("res", res);
+        }
+
+        @Override
+        protected Object doInBackground(Object[] params) {
+            GetData gd = new GetData();
+            try {
+               res = gd.Passenger_RateDriver(Driver_ID, Passenger_ID, Route_ID, NoOfStars);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
 
     private class back extends AsyncTask implements OnMapReadyCallback {
 
@@ -202,8 +250,13 @@ public class RideDetailsPassenger extends AppCompatActivity {
                     .findFragmentById(R.id.map_ride_details);
             mapFragment.getMapAsync(this);
 
-            if (FLAG_HIDE_JOIN==2){
-                Join_Ride_btn.setVisibility(View.INVISIBLE);
+            if (FLAG_HIDE_JOIN==1) {
+                Join_Ride_btn.setVisibility(View.VISIBLE);
+                Pass_rate_Driver_btn.setVisibility(View.INVISIBLE);
+            }
+
+            if (FLAG_HIDE_JOIN==2) {
+                Pass_rate_Driver_btn.setVisibility(View.VISIBLE);
             }
 
             if (FLAG_REVIEW == 0) {
