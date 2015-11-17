@@ -10,9 +10,14 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
 
+import rta.ae.sharekni.R;
 
 public class AppController extends Application {
+
+    private Tracker mTracker;
 
     public static final String TAG = AppController.class.getSimpleName();
 
@@ -63,4 +68,17 @@ public class AppController extends Application {
             mRequestQueue.cancelAll(tag);
         }
     }
+
+
+
+
+    synchronized public Tracker getDefaultTracker() {
+        if (mTracker == null) {
+            GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
+            // To enable debug logging use: adb shell setprop log.tag.GAv4 DEBUG
+            mTracker = analytics.newTracker(R.xml.global_tracker);
+        }
+        return mTracker;
+    }
+
 }

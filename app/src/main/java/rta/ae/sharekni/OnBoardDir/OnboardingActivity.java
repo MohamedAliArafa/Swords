@@ -11,16 +11,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.google.android.gms.analytics.Tracker;
-
-import rta.ae.sharekni.AnalyticsApplication;
 import rta.ae.sharekni.HomePage;
 import rta.ae.sharekni.LoginApproved;
 import rta.ae.sharekni.QSearch;
 import rta.ae.sharekni.R;
 import rta.ae.sharekni.RegisterNewTest;
-import rta.ae.sharekni.Sharekni;
 import rta.ae.sharekni.TakeATour;
+import rta.ae.sharekni.Sharekni;
 
 /*
  * Created by nezar on 8/11/2015.
@@ -29,18 +26,11 @@ public class OnboardingActivity extends FragmentActivity {
 
 
     static OnboardingActivity onboardingActivity;
-    private Tracker mTracker;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         onboardingActivity=this;
-
-
-        AnalyticsApplication application = (AnalyticsApplication) getApplication();
-        mTracker = application.getDefaultTracker();
-
 
 //        Intent intent =  new Intent(this,TestVedio.class);
 //        startActivity(intent);

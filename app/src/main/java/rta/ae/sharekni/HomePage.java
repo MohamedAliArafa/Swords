@@ -16,7 +16,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -27,6 +27,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.pkmmte.view.CircularImageView;
 
 import org.json.JSONArray;
@@ -38,13 +40,14 @@ import java.net.Socket;
 import java.net.SocketAddress;
 import java.util.Locale;
 
+import rta.ae.sharekni.Arafa.Classes.AppController;
 import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.Arafa.Classes.ImageDecoder;
 import rta.ae.sharekni.MainNavigationDrawerFragment.NavigationDrawerFragment;
 import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
 
 
-public class HomePage extends ActionBarActivity implements View.OnClickListener {
+public class HomePage extends AppCompatActivity implements View.OnClickListener {
 
 
     public static String ImagePhotoPath;
@@ -79,6 +82,8 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
     TextView rating;
     ImageView Saved_Search_image_2;
     String Locale_Str;
+
+    Tracker mTracker;
 
 
     public static HomePage getInstance() {
@@ -122,6 +127,13 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
 
 
         }
+
+
+        // Obtain the shared Tracker instance.
+        AppController application = (AppController) getApplication();
+        mTracker = application.getDefaultTracker();
+
+
 
         setContentView(R.layout.home_page_approved);
         initToolbar();
@@ -420,6 +432,16 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
         return super.onOptionsItemSelected(item);
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Log.i("Home Page", "Setting screen name: " + name);
+        mTracker.setScreenName("Image~" + name);
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+    }
+
     @Override
     protected void onDestroy() {
         t.interrupt();
@@ -662,6 +684,11 @@ public class HomePage extends ActionBarActivity implements View.OnClickListener 
             Home_Relative_Notify.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    mTracker.send(new HitBuilders.EventBuilder()
+                            .setCategory("Action")
+                            .setAction("Share")
+                            .build());
 
                     Intent intent = new Intent(getBaseContext(), DriverAlertsForRequest.class);
                     startActivity(intent);
