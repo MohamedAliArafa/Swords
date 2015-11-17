@@ -55,10 +55,13 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     String ID;
     String AccountType;
     CircularImageView circularImageView;
-    TextView name, nat, Lnag_home;
+    TextView name, nat, Account_PhoneNumber;
     SharedPreferences myPrefs;
     RelativeLayout btn_create, btn_history;
     int Vehicles_Count_FLAG = 0;
+    TextView Verify_Phone_num_txt;
+
+    back1 mobile_verify;
 
     int Driver_ID;
     RelativeLayout Relative_quickSearch;
@@ -81,8 +84,6 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     TextView rating;
     ImageView Saved_Search_image_2;
     String Locale_Str;
-
-
 
 
     public static HomePage getInstance() {
@@ -128,18 +129,13 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         }
 
 
-
-
-
-
-
         setContentView(R.layout.home_page_approved);
         initToolbar();
         c = this;
 
         name = (TextView) findViewById(R.id.tv_name_home);
         nat = (TextView) findViewById(R.id.nat_home);
-        Lnag_home = (TextView) findViewById(R.id.lang_Home);
+        Account_PhoneNumber = (TextView) findViewById(R.id.Account_PhoneNumber);
         rating = (TextView) findViewById(R.id.textView);
         btn_create = (RelativeLayout) findViewById(R.id.btn_createCarPool);
         Home_Relative_Permit = (RelativeLayout) findViewById(R.id.Home_Relative_Permit);
@@ -160,6 +156,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         Saved_Search_image_2 = (ImageView) findViewById(R.id.im13);
         Saved_Search_txt_2 = (TextView) findViewById(R.id.txt_56);
         Edit_Profile_Im = (ImageView) findViewById(R.id.Edit_Profile_Im);
+
+        Verify_Phone_num_txt= (TextView) findViewById(R.id.Verify_Phone_num_txt);
 
         circularImageView = (CircularImageView) findViewById(R.id.profilepic);
         circularImageView.setBorderWidth(5);
@@ -257,6 +255,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
         new loading().execute();
 
+        mobile_verify =  new back1();
+
+
 
     }  // on create
 
@@ -320,6 +321,124 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
             return null;
         }
     }
+
+
+
+
+
+    private class back1 extends AsyncTask {
+
+        ProgressDialog pDialog;
+        boolean exists = false;
+        String data;
+
+        @Override
+        protected void onPreExecute() {
+            pDialog = new ProgressDialog(HomePage.this);
+            pDialog.setMessage(getString(R.string.loading) + "...");
+            pDialog.show();
+        }
+
+
+        @Override
+        protected void onPostExecute(Object o) {
+
+            if (data.equals("\"1\"")) {
+
+                Toast.makeText(getBaseContext(),"Mobile Verification Code has been sent to your mobile .", Toast.LENGTH_LONG).show();
+
+//
+
+ //               final Dialog dialog = new Dialog(c);
+///                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//                dialog.setContentView(R.layout.noroutesdialog);
+//                Button btn = (Button) dialog.findViewById(R.id.noroute_id);
+//                TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
+//                dialog.show();
+//                Text_3.setText("Mobile Verification Code has been sent to your mobile .");
+//
+//                btn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        dialog.dismiss();
+//                        c.finish();
+//                    }
+//                });
+
+            }else {
+                Toast.makeText(c, "Please Check Mobile Number", Toast.LENGTH_SHORT).show();
+            }
+
+
+            hidePDialog();
+        }
+
+        @Override
+        protected Object doInBackground(Object[] params) {
+            try {
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                Socket sock = new Socket();
+                int timeoutMs = 20000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                exists = true;
+            } catch (final Exception e) {
+                e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new AlertDialog.Builder(HomePage.this)
+                                .setTitle(getString(R.string.connection_problem))
+                                .setMessage(getString(R.string.con_problem_message))
+                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                        startActivity(getIntent());
+                                    }
+                                })
+                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                        Toast.makeText(HomePage.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            if (exists) {
+
+                GetData j = new GetData();
+
+                try {
+
+
+                    data=  j.SendMobileVerification(Integer.parseInt(ID));
+
+                } catch (JSONException e) {
+                    hidePDialog();
+                    e.printStackTrace();
+
+                }
+            }
+            return null;
+        }
+
+
+        private void hidePDialog() {
+            if (pDialog != null) {
+                pDialog.dismiss();
+                pDialog = null;
+            }
+        }
+
+    }
+
+
+
+
+
+
+
+
+
 
     private void CreateNotification(int y) {
         GetData gd = new GetData();
@@ -501,6 +620,12 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 LastName = (jsonArray.getString("LastName"));
                 LastName = LastName.substring(0, 1).toUpperCase() + LastName.substring(1);
                 name_str = Firstname + " " + LastName;
+
+                if (!jsonArray.getString("Mobile").equals("null") && !jsonArray.getString("Mobile").equals("")) {
+                    Account_PhoneNumber.setText(jsonArray.getString("Mobile"));
+                }
+
+
                 //  name_str = (jsonArray.getString("FirstName") + " " + jsonArray.getString("LastName"));
                 nat_str = (jsonArray.getString(getString(R.string.nat_name2)));
                 //   name_str=  name_str.substring(0, 1).toUpperCase() + name_str.substring(1);
@@ -530,6 +655,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 DriverMyAlertsCount.setText(String.valueOf(All_Alerts));
                 rating.setText(jsonArray.getString("AccountRating"));
                 assert AccountType != null;
+
+
+
                 if (!AccountType.equals("D")) {
                     // btn_create.setBackgroundColor(Color.LTGRAY);
 //                    Home_Relative_Permit.setBackgroundColor(Color.LTGRAY);
@@ -572,6 +700,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                             startActivity(intent);
                         }
                     });
+
+
+
 
 
                     Home_Realtive_Vehicles.setVisibility(View.INVISIBLE);
@@ -690,6 +821,14 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
                 }
             });
+
+            Verify_Phone_num_txt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mobile_verify.execute();
+                }
+            });
+
 
             Relative_quickSearch.setOnClickListener(new View.OnClickListener() {
                 @Override

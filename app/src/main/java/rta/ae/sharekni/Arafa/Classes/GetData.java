@@ -134,7 +134,11 @@ public class GetData {
     String getBestRouteUrl = DOMAIN + "GetMostDesiredRides";
     String getDriverRideUrl = DOMAIN + "GetDriverDetailsByAccountId?AccountId=";
     String getRouteByRouteId = DOMAIN + "GetRouteByRouteId?RouteId=";
+
     String Passenger_SendAlert = DOMAIN + "Passenger_SendAlert?";
+
+    String SendMobileVerification = DOMAIN + "SendMobileVerification?AccountID=";
+
     String GetPassengersByRouteIDUrl = DOMAIN + "GetPassengersByRouteId?id=";
     String GetAcceptedRequestsURL = DOMAIN + "Route_GetAcceptedRequests?RouteId=";
     String Passenger_Review_Driver = DOMAIN + "Passenger_ReviewDriver?";
@@ -425,6 +429,19 @@ public class GetData {
         return json;
 
     }
+
+
+    public String SendMobileVerification(int AccountID ) throws JSONException {
+        String json;
+        String Url = SendMobileVerification + AccountID;
+        HandleXML obj = new HandleXML(Url);
+        obj.fetchXML();
+        while ((obj.parsingComplete && !obj.error)) ;
+        json = obj.getData().toString();
+        return json;
+
+    }
+
 
     public String ForgetPasswordForm2(String Mobile_number, String Email) throws JSONException {
         Log.d("Forget Pass", ForgetPasswordUrl + "mobile=" + Mobile_number + "&email=" + Email);
