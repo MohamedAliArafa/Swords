@@ -87,7 +87,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
     private GoogleMap mMap;
 
     double StartLat, StartLng, EndLat, EndLng;
-
+    Button Pass_rate_Driver_btn;
     Activity con;
 
     private List<DriverGetReviewDataModel> driverGetReviewDataModels_arr = new ArrayList<>();
@@ -123,6 +123,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
 
         FromEmirateEnName = (TextView) findViewById(R.id.FromEmirateEnName);
         ToEmirateEnName = (TextView) findViewById(R.id.ToEmirateEnName);
+        Pass_rate_Driver_btn= (Button) findViewById(R.id.Pass_rate_Driver_btn);
 
         NationalityEnName = (TextView) findViewById(R.id.NationalityEnName);
         PrefLanguageEnName = (TextView) findViewById(R.id.PrefLanguageEnName);

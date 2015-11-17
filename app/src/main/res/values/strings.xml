@@ -357,6 +357,8 @@
     <string name="Accept_Smokers_txt">Accept Smokers</string>
     <string name="change_vehicle">Change Vehicle</string>
     <string name="Refresh_vehicles">Refresh</string>
+    <string name="Rate_str">Rate</string>
+    <string name="Verify_str">Verify</string>
 
 
 </resources>

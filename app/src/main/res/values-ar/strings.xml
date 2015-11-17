@@ -357,5 +357,7 @@
     <string name="Accept_Smokers_txt">يقبل المدخنين</string>
     <string name="change_vehicle">تغيير المركبة</string>
     <string name="Refresh_vehicles">تحديث</string>
+    <string name="Rate_str">قيم</string>
+    <string name="Verify_str">تحقق من</string>
 
 </resources>

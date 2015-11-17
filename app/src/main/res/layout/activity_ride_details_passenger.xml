@@ -264,6 +264,20 @@
                     android:text="@string/review"
                     android:textAllCaps="false" />
 
+                <Button
+                    android:id="@+id/Pass_rate_Driver_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/Passenger_Review_Driver_Btn"
+                    android:layout_toStartOf="@+id/Passenger_Review_Driver_Btn"
+                    android:layout_alignBottom="@+id/Passenger_Review_Driver_Btn"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/driver_details_btn"
+                    android:text="@string/Rate_str"
+                    android:textAllCaps="false"
+                    />
+
 
                 <!--<Button-->
                 <!--android:layout_width="wrap_content"-->
