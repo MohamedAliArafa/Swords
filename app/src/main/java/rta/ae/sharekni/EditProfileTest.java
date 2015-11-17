@@ -101,6 +101,7 @@ public class EditProfileTest extends AppCompatActivity {
     Dialog list_dialog;
     ListView mListView;
     Button btn_Edit_Cancel;
+    Boolean mobile_no_ver = false;
 
     List<TreeMap<String, String>> Lang_List = new ArrayList<>();
     List<TreeMap<String, String>> Country_List = new ArrayList<>();
@@ -220,7 +221,7 @@ public class EditProfileTest extends AppCompatActivity {
             LastName=  LastName.substring(0, 1).toUpperCase() + LastName.substring(1);
             edit_lname.setText(LastName);
             edit_lname.setTextColor(getResources().getColor(R.color.primaryColor));
-            edit_reg_mob.setText(j.getString("Mobile").substring(4));
+            edit_reg_mob.setText(j.getString("Mobile").substring(5));
             edit_reg_mob.setTextColor(getResources().getColor(R.color.primaryColor));
             full_date = j.getString("BirthDate");
             txt_year.setText(full_date);
@@ -357,8 +358,14 @@ public class EditProfileTest extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!edit_fname.getText().toString().equals("") && !edit_fname.getText().toString().equals(getString(R.string.Reg_FirstN)) && !edit_lname.getText().toString().equals("") && !edit_lname.getText().toString().equals(getString(R.string.Reg_LastN)) && !edit_reg_mob.getText().toString().equals("") && !edit_reg_mob.getText().toString().equals(getString(R.string.REg_Mobile)) && !txt_country.getText().toString().equals("") && !txt_country.getText().toString().equals(getString(R.string.Reg_Nat)) && !txt_lang.getText().toString().equals("") && !txt_lang.getText().toString().equals(getString(R.string.Reg_PrefLang)) && full_date != null) {
-                    if (uploadedImage == null) {
-                        Toast.makeText(EditProfileTest.this, R.string.select_profile_image, Toast.LENGTH_SHORT).show();
+                    ArrayList codes = new ArrayList();
+                    codes.add("50");
+                    codes.add("52");
+                    codes.add("55");
+                    codes.add("56");
+                    String code = edit_reg_mob.getText().toString().substring(0,2);
+                    if (!codes.contains(code)){
+                        Toast.makeText(EditProfileTest.this, getString(R.string.short_mobile), Toast.LENGTH_SHORT).show();
                     } else {
                         String Fname = edit_fname.getText().toString();
                         String Lname = edit_lname.getText().toString();

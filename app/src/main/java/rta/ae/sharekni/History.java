@@ -159,17 +159,22 @@ public class History extends AppCompatActivity {
                                             item.setID(json.getInt("RouteId"));
 
 
+                                            FromEmirateEnName_str=json.getString(getString(R.string.from_reg_en_name));
+                                            if (FromEmirateEnName_str.equals("null")){
+                                                item.setFromEm(getString(R.string.not_set));
+                                                item.setFromReg(getString(R.string.not_set));
+                                                item.setRouteName(getString(R.string.not_set));
+                                            }else {
+                                                item.setFromEm(json.getString(getString(R.string.from_em_en_name)));
+                                                item.setFromReg(json.getString(getString(R.string.from_reg_en_name)));
+                                            }
 
-                                            item.setFromEm(json.getString(getString(R.string.from_em_en_name)));
-                                            item.setFromReg(json.getString(getString(R.string.from_reg_en_name)));
 
                                             ToEmirateEnName_str=json.getString(getString(R.string.to_reg_en_name));
                                             if (ToEmirateEnName_str.equals("null")){
                                                 item.setToEm(getString(R.string.not_set));
                                                 item.setToReg(getString(R.string.not_set));
-                                                item.setRouteName(json.getString(getString(R.string.from_em_en_name)));
-
-
+//                                                item.setRouteName(json.getString(getString(R.string.from_em_en_name)));
                                             }else{
                                                 item.setRouteName(json.getString(getString(R.string.from_em_en_name)) + " : " + json.getString(getString(R.string.to_em_en_name)));
                                                 item.setToEm(json.getString(getString(R.string.to_em_en_name)));
