@@ -11,50 +11,6 @@ import java.util.ArrayList;
 public class Ride_Details_Passengers_DataModel extends ArrayList<Parcelable> implements Parcelable {
 
 
-    String AccountName;
-    String AccountNationalityEn;
-    String AccountMobile;
-
-    public String getAccountPhoto() {
-        return AccountPhoto;
-    }
-
-    public void setAccountPhoto(String accountPhoto) {
-        AccountPhoto = accountPhoto;
-    }
-
-    String AccountPhoto;
-
-    public int getPassengerId() {
-        return PassengerId;
-    }
-
-    public void setPassengerId(int passengerId) {
-        PassengerId = passengerId;
-    }
-
-    int PassengerId;
-
-
-
-
-    public Ride_Details_Passengers_DataModel(Parcel in) {
-
-        AccountName=in.readString();
-        AccountNationalityEn=in.readString();
-        AccountMobile=in.readString();
-
-    }
-
-
-    public String getAccountMobile() {
-        return AccountMobile;
-    }
-
-    public void setAccountMobile(String accountMobile) {
-        AccountMobile = accountMobile;
-    }
-
     public static final Creator<Ride_Details_Passengers_DataModel> CREATOR = new Creator<Ride_Details_Passengers_DataModel>() {
         @Override
         public Ride_Details_Passengers_DataModel createFromParcel(Parcel in) {
@@ -66,23 +22,85 @@ public class Ride_Details_Passengers_DataModel extends ArrayList<Parcelable> imp
             return new Ride_Details_Passengers_DataModel[size];
         }
     };
+    String AccountName;
+    String AccountNationalityEn;
+    String AccountMobile;
+    String AccountPhoto;
+    int PassengerId;
+    int DriverId;
+    int RouteId;
+    int Rate;
 
-
-    public void setAccountName(String accountName) {
-        AccountName = accountName;
+    public int getRate() {
+        return Rate;
     }
 
-    public void setAccountNationalityEn(String accountNationalityEn) {
-        AccountNationalityEn = accountNationalityEn;
+    public void setRate(int rate) {
+        Rate = rate;
     }
 
+    public int getRouteId() {
+        return RouteId;
+    }
+
+    public void setRouteId(int routeId) {
+        RouteId = routeId;
+    }
+
+    public int getDriverId() {
+        return DriverId;
+    }
+
+    public void setDriverId(int driverId) {
+        DriverId = driverId;
+    }
+
+    public Ride_Details_Passengers_DataModel(Parcel in) {
+
+        AccountName=in.readString();
+        AccountNationalityEn=in.readString();
+        AccountMobile=in.readString();
+
+    }
+
+    public String getAccountPhoto() {
+        return AccountPhoto;
+    }
+
+    public void setAccountPhoto(String accountPhoto) {
+        AccountPhoto = accountPhoto;
+    }
+
+    public int getPassengerId() {
+        return PassengerId;
+    }
+
+    public void setPassengerId(int passengerId) {
+        PassengerId = passengerId;
+    }
+
+    public String getAccountMobile() {
+        return AccountMobile;
+    }
+
+    public void setAccountMobile(String accountMobile) {
+        AccountMobile = accountMobile;
+    }
 
     public String getAccountName() {
         return AccountName;
     }
 
+    public void setAccountName(String accountName) {
+        AccountName = accountName;
+    }
+
     public String getAccountNationalityEn() {
         return AccountNationalityEn;
+    }
+
+    public void setAccountNationalityEn(String accountNationalityEn) {
+        AccountNationalityEn = accountNationalityEn;
     }
 
     @Override

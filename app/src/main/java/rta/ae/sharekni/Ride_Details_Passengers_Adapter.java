@@ -6,12 +6,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +31,8 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
     private Activity activity;
     private LayoutInflater inflater;
     private List<Ride_Details_Passengers_DataModel> PassengersItems;
+    Ride_Details_Passengers_DataModel m;
+    int NoOfStars;
 
 
     public Ride_Details_Passengers_Adapter(Activity activity, List<Ride_Details_Passengers_DataModel> PassengersItems) {
@@ -68,9 +72,20 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
         ImageView Driver_Remove_passenger = (ImageView) convertView.findViewById(R.id.Driver_Remove_Passenger);
         ImageView passenger_lits_item_call = (ImageView) convertView.findViewById(R.id.passenger_lits_item_call);
         ImageView passenger_lits_item_Msg = (ImageView) convertView.findViewById(R.id.passenger_lits_item_Msg);
+        RatingBar ratingBar = (RatingBar) convertView.findViewById(R.id.ratingBar2);
+        ratingBar.setStepSize(1);
+//        ratingBar.setRating(m.getRate());
+
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                NoOfStars = (int) rating;
+                new ratePassenger().execute();
+            }
+        });
 
 
-        final Ride_Details_Passengers_DataModel m = PassengersItems.get(position);
+        m = PassengersItems.get(position);
         final StringBuffer res = new StringBuffer();
         String[] strArr = m.getAccountName().split(" ");
         for (String str : strArr) {
@@ -158,5 +173,27 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
         return convertView;
 
 
+    }
+
+    private class ratePassenger extends AsyncTask {
+
+        String res;
+
+        @Override
+        protected void onPostExecute(Object o) {
+            Log.d("res", res);
+            super.onPostExecute(o);
+        }
+
+        @Override
+        protected Object doInBackground(Object[] params) {
+            GetData gd = new GetData();
+            try {
+                res = gd.Driver_RatePassenger(m.getDriverId(), m.getPassengerId(), m.getRouteId(), NoOfStars);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
     }
 }

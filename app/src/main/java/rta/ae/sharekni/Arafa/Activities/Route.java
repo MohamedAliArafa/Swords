@@ -512,7 +512,11 @@ public class Route extends AppCompatActivity {
                             review.setPhoto(gd.GetImage(obj.getString("AccountPhoto")));
                         }
                         review.setAccountNationalityEn(obj.getString(getString(R.string.acc_nat_name)));
-                        review.setReview(obj.getString("Review"));
+                        if (obj.getString("Review").equals("null")){
+                            review.setReview("");
+                        }else {
+                            review.setReview(obj.getString("Review"));
+                        }
                         driverGetReviewDataModels_arr.add(review);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -543,7 +547,9 @@ public class Route extends AppCompatActivity {
 //                        item.setAccountPhoto(obj.getString("AccountPhoto"));
                         item.setPassengerId(obj.getInt("ID"));
                         item.setAccountName(obj.getString("AccountName"));
-
+                        item.setDriverId(Driver_ID);
+                        item.setRouteId(Route_ID);
+//                        item.setRate(obj.getInt("PassenegerRateByDriver"));
                         if (obj.getString("AccountMobile").equals("null")){
                             item.setAccountMobile("");
                         }else {
