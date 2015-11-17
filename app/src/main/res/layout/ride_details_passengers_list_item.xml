@@ -96,9 +96,15 @@
         android:id="@+id/passenger_lits_item_Msg"
         />
 
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingBar2"
+        android:layout_below="@+id/AccountName"
+        style="@android:style/Widget.DeviceDefault.RatingBar.Small"
 
 
-
+        />
 
 
 </RelativeLayout>
