@@ -28,7 +28,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 import com.pkmmte.view.CircularImageView;
 
 import org.json.JSONArray;
@@ -83,7 +82,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     ImageView Saved_Search_image_2;
     String Locale_Str;
 
-    Tracker mTracker;
+
 
 
     public static HomePage getInstance() {
@@ -129,9 +128,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         }
 
 
-        // Obtain the shared Tracker instance.
-        AppController application = (AppController) getApplication();
-        mTracker = application.getDefaultTracker();
+
+
 
 
 
@@ -437,9 +435,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     protected void onResume() {
         super.onResume();
 
-        Log.i("Home Page", "Setting screen name: " + name);
-        mTracker.setScreenName("Image~" + name);
-        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+
     }
 
     @Override
@@ -685,9 +681,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 @Override
                 public void onClick(View v) {
 
-                    mTracker.send(new HitBuilders.EventBuilder()
-                            .setCategory("Action")
-                            .setAction("Share")
+                    AppController.tracker().send(new HitBuilders.EventBuilder("ui", "open")
+                            .setLabel("settings")
                             .build());
 
                     Intent intent = new Intent(getBaseContext(), DriverAlertsForRequest.class);
