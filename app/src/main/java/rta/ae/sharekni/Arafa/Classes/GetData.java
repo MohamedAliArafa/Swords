@@ -125,6 +125,7 @@ public class GetData {
     String EditProfileUrl = DOMAIN + "EditProfile?";
     String ForgetPasswordUrl = DOMAIN + "ForgetPassword?";
     String getImage = DOMAIN + "GetPhotoPath?s_FileName=";
+    String SendMobileVerification = DOMAIN + "SendMobileVerification?AccountID=";
 
     String getBestDriverUrl = DOMAIN + "GetBestDrivers";
     String DriverEditCarPoolUrl = DOMAIN + "Driver_EditCarpool?";
@@ -397,6 +398,11 @@ public class GetData {
         return json;
     }
 
+
+
+
+
+
     public JSONObject GetRouteById(int ID) throws JSONException {
         JSONObject json;
         HandleXML obj = new HandleXML(getRouteByRouteId + ID);
@@ -453,6 +459,7 @@ public class GetData {
         return obj.getData();
     }
 
+
     public String GetCalculatedRating(int AccountId) throws JSONException {
         Log.d("Forget Pass", GetCalculatedRating + "AccountId=" + AccountId);
         HandleXML obj = new HandleXML(GetCalculatedRating + "AccountId=" + AccountId);
@@ -460,6 +467,19 @@ public class GetData {
         while ((obj.parsingComplete && !obj.error)) ;
         return obj.getData();
     }
+
+
+    public String SendMobileVerification(int AccountID ) throws JSONException {
+        String json;
+        String Url = SendMobileVerification + AccountID;
+        HandleXML obj = new HandleXML(Url);
+        obj.fetchXML();
+        while ((obj.parsingComplete && !obj.error)) ;
+        json = obj.getData().toString();
+        return json;
+
+    }
+
 
     public String Passenger_Review_Driver(int Driver_ID, int Passenger_ID, int Route_ID, String Remarks) throws JSONException {
         String Url = Passenger_Review_Driver + "PassengerId=" + Passenger_ID + "&DriverId="

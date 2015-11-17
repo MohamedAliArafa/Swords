@@ -825,6 +825,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
             Verify_Phone_num_txt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    mobile_verify = new back1();
                     mobile_verify.execute();
                 }
             });
@@ -913,4 +914,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         }
     }
 
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

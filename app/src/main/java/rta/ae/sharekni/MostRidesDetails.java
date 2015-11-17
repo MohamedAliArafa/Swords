@@ -135,7 +135,7 @@ public class MostRidesDetails extends AppCompatActivity {
         @Override
         protected void onPostExecute(Object o) {
             String days = "";
-            if (jsonArray.length() != 0) {
+            if (jsonArray.length() != 0 || jsonArray != null) {
 
                 final BestRouteDataModelDetails[] driver = new BestRouteDataModelDetails[jsonArray.length()];
                 final ArrayList<BestRouteDataModelDetails> ar = new ArrayList<>();
