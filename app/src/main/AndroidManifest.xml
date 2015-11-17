@@ -272,7 +272,7 @@
             android:label="@string/title_activity_driver_created_rides"
             android:parentActivityName=".HomePage"
             android:screenOrientation="portrait"
-            app:theme="@style/AppTheme.Base" >
+            android:theme="@style/AppTheme.Base" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="rta.ae.sharekni.HomePage" />
@@ -296,7 +296,7 @@
             android:name=".Sharekni"
             android:label="@string/title_activity_test_vedio"
             android:screenOrientation="portrait"
-            app:theme="@style/AppTheme.Base" >
+            android:theme="@style/AppTheme.Base" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
