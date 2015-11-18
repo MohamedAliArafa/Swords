@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:isIndicator="false"
         android:id="@+id/ratingBar"
-        style="?android:attr/ratingBarStyleSmall"
+        style="@android:style/Widget.DeviceDefault.RatingBar.Indicator"
         android:numStars="5"
         android:layout_gravity="center"
         />

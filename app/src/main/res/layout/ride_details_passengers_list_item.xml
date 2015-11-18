@@ -100,12 +100,13 @@
 
     <RatingBar
         android:layout_width="wrap_content"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:id="@+id/ratingBar2"
         android:layout_below="@+id/AccountName"
         android:isIndicator="false"
-        style="@android:style/Widget.DeviceDefault.RatingBar.Small"
+        style="@android:style/Widget.DeviceDefault.RatingBar.Indicator"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
         />
 
 
