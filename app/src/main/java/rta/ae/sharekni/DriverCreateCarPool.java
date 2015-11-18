@@ -647,7 +647,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         if (v == create) {
 
 
-            if ( !CHECK_TIME.equals("b") && FLAG_WEEK_DAYS==2 && Create_CarPool_full_date!=null &&  !Create_CarPool_full_date.equals("a") && edit_route_name.getText() != null && edit_route_name.getText().toString() != getString(R.string.ride_name) && From_Em_Id_2 != -1 && To_Em_Id_2 != -1 && From_Reg_Id_2 != -1 && To_Reg_Id_2 != -1 && Single_Periodic_ID != -1 && Vehicle_Id != -1 && id != -1 && Create_CarPool_txt_beforeCal.getText() != getString(R.string.click_to_select) && Create_CarPool_txt_time_selected.getText() != null && Create_CarPool_txt_time_selected.getText().toString() != getString(R.string.click_to_select) && Start_Latitude!=0.0 && Start_Longitude!=0.0 && End_Latitude!=0.0 && End_Longitude!=0.0 && Number_Of_Seats!=0 ) {
+            if ( !CHECK_TIME.equals("b") && FLAG_WEEK_DAYS==2 && Create_CarPool_full_date!=null &&  !Create_CarPool_full_date.equals("a") && edit_route_name.getText() != null && edit_route_name.getText().toString() != getString(R.string.ride_name) && From_Em_Id_2 != 0 && To_Em_Id_2 != 0 && From_Reg_Id_2 != 0 && To_Reg_Id_2 != 0 && Single_Periodic_ID != -1 && Vehicle_Id != -1 && id != -1 && Create_CarPool_txt_beforeCal.getText() != getString(R.string.click_to_select) && Create_CarPool_txt_time_selected.getText() != null && Create_CarPool_txt_time_selected.getText().toString() != getString(R.string.click_to_select) && Start_Latitude!=0.0 && Start_Longitude!=0.0 && End_Latitude!=0.0 && End_Longitude!=0.0 && Number_Of_Seats!=0 ) {
                 String is_Rounded;
                 String EnName = edit_route_name.getText().toString();
                 int FromEmId = From_Em_Id_2;   // dubai

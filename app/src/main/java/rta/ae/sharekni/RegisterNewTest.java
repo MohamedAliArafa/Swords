@@ -127,7 +127,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
     TextView Terms_And_Cond_txt;
 
     DatePicker d;
-
+    Boolean vailedEmail;
     RelativeLayout txt_terms;
     TextView Terms_And_Cond_txt_2;
     TextView Privacy_and_poolicy;
@@ -361,10 +361,12 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                 if (!hasFocus){
                     edit_user.setHint(getString(R.string.Reg_Email));
                     if (!isEmailValid(edit_user.getText().toString())) {
+                        vailedEmail = false;
                         UserName_Linear.setBackgroundResource(R.drawable.user_register_border_error);
                         Toast.makeText(RegisterNewTest.this, getString(R.string.email_valid_form), Toast.LENGTH_SHORT).show();
                     }
                 }else {
+                    vailedEmail = true;
                     UserName_Linear.setBackgroundResource(R.drawable.user_register_border);
                 }
                 if (hasFocus){
@@ -464,6 +466,11 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!vailedEmail){
+                    UserName_Linear.setBackgroundResource(R.drawable.user_register_border_error);
+                }else {
+                    UserName_Linear.setBackgroundResource(R.drawable.user_register_border);
+                }
 
                 if (edit_fname.getText().length()==0 ){
                     FirstName_Linear.setBackgroundResource(R.drawable.user_register_border_error);
@@ -485,11 +492,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                 }else {
                     Password_Linear.setBackgroundResource(R.drawable.user_register_border_error);
                 }
-                if (edit_user.getText().length()!=0){
-                    UserName_Linear.setBackgroundResource(R.drawable.user_register_border);
-                }else {
-                    UserName_Linear.setBackgroundResource(R.drawable.user_register_border_error);
-                }
+
                 if (txt_country.getText().length()!=0){
                     Nat_Linear.setBackgroundResource(R.drawable.user_register_border);
                 }else {
@@ -507,7 +510,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                         Toast.makeText(RegisterNewTest.this, R.string.fill_all_error, Toast.LENGTH_SHORT).show();
                         Date_Relative.setBackgroundResource(R.drawable.user_register_border_error);
                 } else {
-                    if (edit_fname.getText() != null && !edit_fname.getText().toString().equals(getString(R.string.Reg_FirstN)) && edit_lname.getText() != null && !edit_lname.getText().toString().equals(getString(R.string.Reg_LastN)) && edit_phone.getText() != null && !edit_phone.getText().toString().equals(getString(R.string.REg_Mobile)) && edit_pass.getText() != null && !edit_pass.getText().toString().equals(getString(R.string.Reg_pass)) && edit_user.getText() != null && !edit_user.getText().toString().equals(getString(R.string.Reg_Email)) && txt_country.getText() != null && !edit_lname.getText().toString().equals(getString(R.string.Reg_Nat)) && Language_ID != -1 && Nationality_ID != -1 && full_date != null) {
+                    if (edit_fname.getText() != null && !edit_fname.getText().toString().equals(getString(R.string.Reg_FirstN)) && edit_lname.getText() != null && !edit_lname.getText().toString().equals(getString(R.string.Reg_LastN)) && edit_phone.getText() != null && !edit_phone.getText().toString().equals(getString(R.string.REg_Mobile)) && edit_pass.getText() != null && !edit_pass.getText().toString().equals(getString(R.string.Reg_pass)) && edit_user.getText() != null && !edit_user.getText().toString().equals(getString(R.string.Reg_Email)) && txt_country.getText() != null && !edit_lname.getText().toString().equals(getString(R.string.Reg_Nat)) && Language_ID != -1 && Nationality_ID != -1 && full_date != null && vailedEmail == true) {
                         ArrayList codes = new ArrayList();
                         codes.add("50");
                         codes.add("52");
