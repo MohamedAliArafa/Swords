@@ -362,6 +362,7 @@
     <string name="rate_submitted">Rate is successfully submitted</string>
     <string name="rate_submit_failed">can\'t submit review</string>
     <string name="Save_Changes_Edit_Carpool">Save Changes</string>
+    <string name="VehicleName_Edit_CarPool">VehicleEnName</string>
 
 
 </resources>
