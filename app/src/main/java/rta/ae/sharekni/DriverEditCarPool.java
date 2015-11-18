@@ -989,7 +989,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                 int pref_lnag = Language_ID;
                 int pref_nat = Nationality_ID;
                 int Age_Ranged_id = Age_ID;
-                String StartDate = "15/6/2015";
+                String StartDate = Create_CarPool_txt_year.getText().toString();
 
                 GetData j = new GetData();
                 j.DriverEditCarPoolFrom(RouteId, EnName, FromEmId, ToEmId, FromRegId, ToRegId
