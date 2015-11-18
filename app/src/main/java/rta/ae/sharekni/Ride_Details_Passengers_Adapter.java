@@ -182,6 +182,11 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
         @Override
         protected void onPostExecute(Object o) {
             Log.d("res", res);
+            if (res.equals("1")){
+                Toast.makeText(activity, R.string.rate_submitted, Toast.LENGTH_SHORT).show();
+            }else {
+                Toast.makeText(activity, R.string.rate_submit_failed, Toast.LENGTH_SHORT).show();
+            }
             super.onPostExecute(o);
         }
 

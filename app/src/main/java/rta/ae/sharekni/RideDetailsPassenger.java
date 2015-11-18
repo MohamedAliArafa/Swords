@@ -205,6 +205,11 @@ public class RideDetailsPassenger extends AppCompatActivity {
         protected void onPostExecute(Object o) {
             super.onPostExecute(o);
             Log.d("res", res);
+            if (res.equals("1")){
+                Toast.makeText(RideDetailsPassenger.this, R.string.rate_submitted, Toast.LENGTH_SHORT).show();
+            }else {
+                Toast.makeText(RideDetailsPassenger.this, R.string.rate_submit_failed, Toast.LENGTH_SHORT).show();
+            }
         }
 
         @Override

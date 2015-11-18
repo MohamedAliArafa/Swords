@@ -17,7 +17,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
         android:gravity="center"
-        android:text="Rate"
+        android:text="@string/Rate_str"
         android:textColor="@color/primaryColor" />
 
     <RatingBar

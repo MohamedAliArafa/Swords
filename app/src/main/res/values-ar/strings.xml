@@ -359,5 +359,7 @@
     <string name="Refresh_vehicles">تحديث</string>
     <string name="Rate_str">قيم</string>
     <string name="Verify_str">تحقق </string>
+    <string name="rate_submitted">تم تسجيل التقييم</string>
+    <string name="rate_submit_failed">فشل تسجيل التقييم</string>
 
 </resources>

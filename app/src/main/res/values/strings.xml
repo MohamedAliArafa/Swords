@@ -359,6 +359,8 @@
     <string name="Refresh_vehicles">Refresh</string>
     <string name="Rate_str">Rate</string>
     <string name="Verify_str">Verify</string>
+    <string name="rate_submitted">Rate is successfully submitted</string>
+    <string name="rate_submit_failed">can\'t submit review</string>
 
 
 </resources>
