@@ -117,7 +117,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
     Button create;
     String Create_CarPool_txt_PickUp;
     String Create_CarPool_txt_Drop_Off;
-    String Create_CarPool_full_date;
+    String Create_CarPool_full_date="";
     String Route_Name;
     EditText edit_route_name;
     TextView Create_CarPool_txt_Selecet_Start_Point;
@@ -144,7 +144,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
     SharedPreferences myPrefs;
     String str_StartFromTime;
     String str_StartFromDate;
-
+    String StartDate;
 
     getAgeRanges ageRanges;
     getLanguages languages;
@@ -408,11 +408,11 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
 //                Create_CarPool_txt_year.setText("Not Changed");
                 Vehicle_Id = j.getInt("VehicelId");
 
-                Vehicle_Name_str=j.getString(getString(R.string.VehicleName_Edit_CarPool));
+                Vehicle_Name_str = j.getString(getString(R.string.VehicleName_Edit_CarPool));
 
-                if ( !Vehicle_Name_str.equals("null") && !Vehicle_Name_str.equals("")) {
+                if (!Vehicle_Name_str.equals("null") && !Vehicle_Name_str.equals("")) {
                     createCarPool_Vehicles.setText(Vehicle_Name_str);
-                }else {
+                } else {
                     createCarPool_Vehicles.setText(getString(R.string.select_vehicle));
                 }
                 Nationality_ID = j.getInt("NationalityId");
@@ -994,7 +994,17 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                 int pref_lnag = Language_ID;
                 int pref_nat = Nationality_ID;
                 int Age_Ranged_id = Age_ID;
-                String StartDate = Create_CarPool_txt_year.getText().toString();
+                // String StartDate = Create_CarPool_txt_year.getText().toString();
+                if ( !Create_CarPool_full_date.equals("") ) {
+                     StartDate = Create_CarPool_full_date;
+                }else {
+
+                    StartDate = "";
+
+                }
+
+
+
 
                 GetData j = new GetData();
                 j.DriverEditCarPoolFrom(RouteId, EnName, FromEmId, ToEmId, FromRegId, ToRegId
