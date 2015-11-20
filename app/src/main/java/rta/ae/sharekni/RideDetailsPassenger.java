@@ -64,6 +64,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
             FromRegionEnName, ToRegionEnName, FromEmirateEnName, ToEmirateEnName, StartFromTime, EndToTime_, AgeRange, PreferredGender, IsSmoking, ride_details_day_of_week, NationalityEnName, PrefLanguageEnName;
 
 
+
     String Gender_ste, Nat_txt, Smokers_str;
     int No_Seats;
 
