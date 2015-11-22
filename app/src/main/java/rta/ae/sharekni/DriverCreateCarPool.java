@@ -63,7 +63,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     int To_Reg_Id = -1;
     int year_x, month_x, day_x;
     int MyId = -1;
-    String Nationality_ID ;
+    String Nationality_ID="" ;
     int Vehicle_Id = -1;
     int Age_ID = 0;
     int Language_ID =0;

@@ -61,8 +61,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     int Vehicles_Count_FLAG = 0;
     TextView Verify_Phone_num_txt;
 
-    public static  String  TRAFFIC_FILE_NUMBER="a";
-    public static  String  TRAFFIC_BIRTH_DATE="a";
+    public static  String  TRAFFIC_FILE_NUMBER="";
+    public static  String  TRAFFIC_BIRTH_DATE="";
 
     back1 mobile_verify;
 
@@ -89,7 +89,10 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     TextView rating;
     ImageView Saved_Search_image_2;
     String Locale_Str;
-
+    String IsMobileVerified;
+    String IsPhotoVerified;
+    ImageView Verified_Im;
+    ImageView Photo_Verified_id;
 
     public static HomePage getInstance() {
         return HomaPageActivity;
@@ -163,6 +166,10 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         Edit_Profile_Im = (ImageView) findViewById(R.id.Edit_Profile_Im);
 
         Verify_Phone_num_txt= (TextView) findViewById(R.id.Verify_Phone_num_txt);
+        Verified_Im= (ImageView) findViewById(R.id.Verified_Im);
+        Photo_Verified_id  = (ImageView) findViewById(R.id.Photo_Verified_id);
+
+
 
         circularImageView = (CircularImageView) findViewById(R.id.profilepic);
         circularImageView.setBorderWidth(5);
@@ -270,36 +277,40 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     private class refresh extends AsyncTask {
 
         JSONObject jsonArray;
+        ProgressDialog pDialog;
+        boolean exists = false;
+        String data;
 
         @Override
         protected void onPostExecute(Object o) {
-            VehiclesCount_str = "";
-            VehiclesCount_str += "(";
-            try {
-                All_Alerts = jsonArray.getInt("DriverMyAlertsCount") + jsonArray.getInt("PassengerMyAlertsCount");
+            if(jsonArray != null) {
+                VehiclesCount_str = "";
+                VehiclesCount_str += "(";
+                try {
+                    All_Alerts = jsonArray.getInt("DriverMyAlertsCount") + jsonArray.getInt("PassengerMyAlertsCount");
 
-                Vehicles_Count_FLAG = jsonArray.getInt("VehiclesCount");
-                Log.d("vehicle count flag", String.valueOf(Vehicles_Count_FLAG));
+                    Vehicles_Count_FLAG = jsonArray.getInt("VehiclesCount");
+                    Log.d("vehicle count flag", String.valueOf(Vehicles_Count_FLAG));
 
-                VehiclesCount_str += jsonArray.getString("VehiclesCount");
-                VehiclesCount_str += ")";
-                VehiclesCount.setText(VehiclesCount_str);
-                PassengerJoinedRidesCount_str = "";
-                PassengerJoinedRidesCount_str += "(";
-                PassengerJoinedRidesCount_str += jsonArray.getString("PassengerJoinedRidesCount");
-                PassengerJoinedRidesCount_str += ")";
-                PassengerJoinedRidesCount.setText(PassengerJoinedRidesCount_str);
-                rating.setText(jsonArray.getString("AccountRating"));
-                if (DRIVER_ALERTS_COUNT < All_Alerts) {
-                    DRIVER_ALERTS_COUNT = All_Alerts;
-                    CreateNotification(y++);
-                }
-                DriverMyRidesCount_str = "";
-                DriverMyRidesCount_str += "(";
-                DriverMyRidesCount_str += jsonArray.getString("DriverMyRidesCount");
-                DriverMyRidesCount_str += ")";
-                DriverMyRidesCount.setText(DriverMyRidesCount_str);
-                DriverMyAlertsCount.setText(String.valueOf(All_Alerts));
+                    VehiclesCount_str += jsonArray.getString("VehiclesCount");
+                    VehiclesCount_str += ")";
+                    VehiclesCount.setText(VehiclesCount_str);
+                    PassengerJoinedRidesCount_str = "";
+                    PassengerJoinedRidesCount_str += "(";
+                    PassengerJoinedRidesCount_str += jsonArray.getString("PassengerJoinedRidesCount");
+                    PassengerJoinedRidesCount_str += ")";
+                    PassengerJoinedRidesCount.setText(PassengerJoinedRidesCount_str);
+                    rating.setText(jsonArray.getString("AccountRating"));
+                    if (DRIVER_ALERTS_COUNT < All_Alerts) {
+                        DRIVER_ALERTS_COUNT = All_Alerts;
+                        CreateNotification(y++);
+                    }
+                    DriverMyRidesCount_str = "";
+                    DriverMyRidesCount_str += "(";
+                    DriverMyRidesCount_str += jsonArray.getString("DriverMyRidesCount");
+                    DriverMyRidesCount_str += ")";
+                    DriverMyRidesCount.setText(DriverMyRidesCount_str);
+                    DriverMyAlertsCount.setText(String.valueOf(All_Alerts));
 
 //                if (DRIVER_ALERTS_COUNT>0){
 //
@@ -308,20 +319,52 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 //                }
 
 
-                DriverMyAlertsCount.setText(String.valueOf(All_Alerts));
+                    DriverMyAlertsCount.setText(String.valueOf(All_Alerts));
 
-            } catch (JSONException e) {
-                e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
         @Override
         protected Object doInBackground(Object[] params) {
             final GetData j = new GetData();
+
             try {
-                jsonArray = j.GetDriverById(Integer.parseInt(ID));
-            } catch (JSONException e) {
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                Socket sock = new Socket();
+                int timeoutMs = 20000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                exists = true;
+            } catch (final Exception e) {
                 e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new AlertDialog.Builder(HomePage.this)
+                                .setTitle(getString(R.string.connection_problem))
+                                .setMessage(getString(R.string.con_problem_message))
+                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                        startActivity(getIntent());
+                                    }
+                                })
+                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                        Toast.makeText(HomePage.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            if (exists) {
+                try {
+                    jsonArray = j.GetDriverById(Integer.parseInt(ID));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
             return null;
         }
@@ -626,6 +669,19 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 LastName = LastName.substring(0, 1).toUpperCase() + LastName.substring(1);
                 name_str = Firstname + " " + LastName;
 
+                IsMobileVerified= jsonArray.getString("IsMobileVerified");
+                if (IsMobileVerified.equals("true")){
+                    Verify_Phone_num_txt.setVisibility(View.INVISIBLE);
+                    Verified_Im.setVisibility(View.VISIBLE);
+                }
+
+
+                IsPhotoVerified = jsonArray.getString("IsPhotoVerified");
+                if (IsPhotoVerified.equals("true")){
+                    Photo_Verified_id.setVisibility(View.VISIBLE);
+                }
+
+
                 if (!jsonArray.getString("Mobile").equals("null") && !jsonArray.getString("Mobile").equals("")) {
                     Account_PhoneNumber.setText(jsonArray.getString("Mobile"));
                 }
@@ -661,12 +717,15 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 rating.setText(jsonArray.getString("AccountRating"));
 
 
-//                if (!jsonArray.getString("DriverTrafficFileNo").equals("") &&  !jsonArray.getString("DriverTrafficFileNo").equals("null")){
-//                    TRAFFIC_FILE_NUMBER = jsonArray.getString("DriverTrafficFileNo");
-//                }
-//                if (!jsonArray.getString("BirthDate").equals("") &&  !jsonArray.getString("BirthDate").equals("null")){
-//                    TRAFFIC_BIRTH_DATE = jsonArray.getString("BirthDate");
-//                }
+                if (!jsonArray.getString("DriverTrafficFileNo").equals("") &&  !jsonArray.getString("DriverTrafficFileNo").equals("null")){
+                    TRAFFIC_FILE_NUMBER = jsonArray.getString("DriverTrafficFileNo");
+
+                    Log.d("traffic file num",TRAFFIC_FILE_NUMBER);
+                }
+                if (!jsonArray.getString("BirthDate").equals("") &&  !jsonArray.getString("BirthDate").equals("null")){
+                    TRAFFIC_BIRTH_DATE = jsonArray.getString("BirthDate");
+                    Log.d("traffic birthdate", TRAFFIC_BIRTH_DATE);
+                }
 
 
 
@@ -734,10 +793,12 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                                 Intent intent = new Intent(getBaseContext(), RegisterVehicle.class);
                                 startActivity(intent);
                             } else {
-                                Intent intent = new Intent(getBaseContext(), Display_My_Vehicles.class);
-//                                intent.putExtra("TRAFFIC_FILE_NUMBER",TRAFFIC_FILE_NUMBER);
-//                                intent.putExtra("TRAFFIC_BIRTH_DATE",TRAFFIC_BIRTH_DATE);
-                                startActivity(intent);
+                                Intent in2 = new Intent(getBaseContext(), Display_My_Vehicles.class);
+                                in2.putExtra("TRAFFIC_FILE_NUMBER",TRAFFIC_FILE_NUMBER);
+                                in2.putExtra("TRAFFIC_BIRTH_DATE",TRAFFIC_BIRTH_DATE);
+                                Log.d("traffic birthdate 2", TRAFFIC_BIRTH_DATE);
+                                Log.d("traffic file num 2", TRAFFIC_FILE_NUMBER);
+                                startActivity(in2);
 
                             }
                         }
@@ -764,8 +825,12 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                                 Intent intent = new Intent(getBaseContext(), RegisterVehicle.class);
                                 startActivity(intent);
                             } else {
-                                Intent intent = new Intent(getBaseContext(), Display_My_Vehicles.class);
-                                startActivity(intent);
+                                Intent in2 = new Intent(getBaseContext(), Display_My_Vehicles.class);
+                                in2.putExtra("TRAFFIC_FILE_NUMBER",TRAFFIC_FILE_NUMBER);
+                                in2.putExtra("TRAFFIC_BIRTH_DATE",TRAFFIC_BIRTH_DATE);
+                                Log.d("traffic birthdate 2", TRAFFIC_BIRTH_DATE);
+                                Log.d("traffic file num 2", TRAFFIC_FILE_NUMBER);
+                                startActivity(in2);
 
                             }
 

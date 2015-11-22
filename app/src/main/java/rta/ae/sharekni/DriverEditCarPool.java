@@ -415,7 +415,15 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                 } else {
                     createCarPool_Vehicles.setText(getString(R.string.select_vehicle));
                 }
-                Nationality_ID = j.getInt("NationalityId");
+
+
+                if( !j.getString("NationalityId").equals("null")  &&  !j.getString("NationalityId").equals("")  ){
+                    Nationality_ID = j.getInt("NationalityId");
+                }else {
+                    Nationality_ID = 0;
+                }
+
+
                 Language_ID = j.getInt("PrefLanguageId");
 
                 Age_ID = j.getInt("AgeRangeID");

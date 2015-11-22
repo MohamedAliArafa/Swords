@@ -363,6 +363,7 @@
     <string name="rate_submit_failed">can\'t submit rate</string>
     <string name="Save_Changes_Edit_Carpool">Save Changes</string>
     <string name="VehicleName_Edit_CarPool">VehicleEnName</string>
+    <string name="check_internet">Failed to get data Check Internet connection!</string>
 
 
 </resources>

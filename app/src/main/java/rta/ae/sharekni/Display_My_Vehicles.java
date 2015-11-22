@@ -58,8 +58,8 @@ public class Display_My_Vehicles extends AppCompatActivity {
     int Driver_ID;
     back back;
     Button Refresh_vehicles_Btn;
-    public static  String  TRAFFIC_FILE_NUMBER="a";
-    public static  String  TRAFFIC_BIRTH_DATE="a";
+    public static  String  TRAFFIC_FILE_NUMBER="";
+    public static  String  TRAFFIC_BIRTH_DATE="";
 
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
@@ -106,8 +106,12 @@ public class Display_My_Vehicles extends AppCompatActivity {
 
 
         Intent in =  getIntent();
-//        TRAFFIC_FILE_NUMBER =  in.getStringExtra("TRAFFIC_FILE_NUMBER");
-//        TRAFFIC_BIRTH_DATE =  in.getStringExtra("TRAFFIC_BIRTH_DATE");
+
+        TRAFFIC_FILE_NUMBER =  in.getStringExtra("TRAFFIC_FILE_NUMBER");
+        TRAFFIC_BIRTH_DATE =  in.getStringExtra("TRAFFIC_BIRTH_DATE");
+        Log.d("traffic birthdate 3", TRAFFIC_BIRTH_DATE);
+        Log.d("traffic file num 3",TRAFFIC_FILE_NUMBER);
+
 
 
         rideJson = new rideJson();
@@ -120,11 +124,11 @@ public class Display_My_Vehicles extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if ( !RegisterVehicle.TRAFFIC_BIRTH_DATE.equals("a")  ||  !RegisterVehicle.TRAFFIC_FILE_NUMBER.equals("a") ){
+                if ( !TRAFFIC_BIRTH_DATE.equals("")  &&  !TRAFFIC_FILE_NUMBER.equals("")  ){
 
                     Toast.makeText(Display_My_Vehicles.this, "Updting Vehicles", Toast.LENGTH_SHORT).show();
-                    Log.d("traffic birthdate", RegisterVehicle.TRAFFIC_BIRTH_DATE);
-                    Log.d("traffic file num",RegisterVehicle.TRAFFIC_FILE_NUMBER);
+                    Log.d("traffic birthdate", TRAFFIC_BIRTH_DATE);
+                    Log.d("traffic file num",TRAFFIC_FILE_NUMBER);
                     back.execute();
 
 
@@ -383,7 +387,7 @@ public class Display_My_Vehicles extends AppCompatActivity {
 
                 try {
 
-                    data = j.RegisterVehicle(Driver_ID, RegisterVehicle.TRAFFIC_FILE_NUMBER, RegisterVehicle.TRAFFIC_BIRTH_DATE);
+                    data = j.RegisterVehicle(Driver_ID, TRAFFIC_FILE_NUMBER, TRAFFIC_BIRTH_DATE);
 
                 } catch (JSONException e) {
                     hidePDialog();

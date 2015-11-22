@@ -363,5 +363,6 @@
     <string name="rate_submit_failed">فشل تسجيل التقييم</string>
     <string name="Save_Changes_Edit_Carpool">حفظ التعديل</string>
     <string name="VehicleName_Edit_CarPool">VehicleArName</string>
+    <string name="check_internet">فشل فى البيانات , تأكد من إتصال الإنترنت!</string>
 
 </resources>
