@@ -198,6 +198,8 @@ public class RideDetailsPassenger extends AppCompatActivity {
                 Join_Ride_btn.setVisibility(View.INVISIBLE);
                 ratingBar.setVisibility(View.VISIBLE);
 
+            }else {
+                Join_Ride_btn.setVisibility(View.VISIBLE);
             }
         } catch (NullPointerException e) {
 
@@ -279,6 +281,8 @@ public class RideDetailsPassenger extends AppCompatActivity {
             if (FLAG_HIDE_JOIN==2) {
 
                 ratingBar.setVisibility(View.VISIBLE);
+                Join_Ride_btn.setVisibility(View.INVISIBLE);
+
             }
 
             if (FLAG_REVIEW == 0) {
