@@ -111,7 +111,7 @@
                     android:background="@drawable/borders_edit_txt_user_register"
                     android:cursorVisible="true"
                     android:hint="@string/REg_Mobile"
-                    android:maxLength="10"
+                    android:maxLength="9"
                     android:lines="1"
                     android:maxLines="1"
                     android:paddingLeft="10dp"

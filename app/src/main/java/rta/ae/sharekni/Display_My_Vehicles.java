@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -57,6 +58,8 @@ public class Display_My_Vehicles extends AppCompatActivity {
     int Driver_ID;
     back back;
     Button Refresh_vehicles_Btn;
+    public static  String  TRAFFIC_FILE_NUMBER="a";
+    public static  String  TRAFFIC_BIRTH_DATE="a";
 
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
@@ -93,10 +96,18 @@ public class Display_My_Vehicles extends AppCompatActivity {
 
         myPrefs = this.getSharedPreferences("myPrefs", 0);
         String ID = myPrefs.getString("account_id",null);
+
+
+
 //        Bundle in = getIntent().getExtras();
 //        Log.d("Intent Id :", String.valueOf(in.getInt("DriverID")));
         Driver_ID = Integer.parseInt(ID);
         Log.d("Driver Id", String.valueOf(Driver_ID));
+
+
+        Intent in =  getIntent();
+//        TRAFFIC_FILE_NUMBER =  in.getStringExtra("TRAFFIC_FILE_NUMBER");
+//        TRAFFIC_BIRTH_DATE =  in.getStringExtra("TRAFFIC_BIRTH_DATE");
 
 
         rideJson = new rideJson();
@@ -272,6 +283,8 @@ public class Display_My_Vehicles extends AppCompatActivity {
                                     e.printStackTrace();
                                     Log.d("Error 2 ", e.toString());
                                 }
+
+
 
                             }
                         }, new Response.ErrorListener() {

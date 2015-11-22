@@ -417,7 +417,9 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                 }
                 Nationality_ID = j.getInt("NationalityId");
                 Language_ID = j.getInt("PrefLanguageId");
+
                 Age_ID = j.getInt("AgeRangeID");
+
                 if (j.getString(getString(R.string.nat_name2)).equals("null")) {
                     Create_CarPool_search_Nat.setText(getString(R.string.select_pref_nat));
                 } else {
@@ -879,7 +881,8 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
             DatePickerDialog dp = new DatePickerDialog(this, dPickerListener, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
             d = dp.getDatePicker();
             d.updateDate(year_x, month_x, day_x);
-            d.setMaxDate(cal.getTimeInMillis());
+          //  d.setMaxDate(cal.getTimeInMillis());
+            d.setMinDate(cal.getTimeInMillis());
             return dp;
         }
         if (id == TIME_DIALOG_ID) {
@@ -995,13 +998,15 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                 int pref_nat = Nationality_ID;
                 int Age_Ranged_id = Age_ID;
                 // String StartDate = Create_CarPool_txt_year.getText().toString();
-                if ( !Create_CarPool_full_date.equals("") ) {
-                     StartDate = Create_CarPool_full_date;
-                }else {
+                 StartDate =  Create_CarPool_txt_year.getText().toString();
 
-                    StartDate = "";
-
-                }
+//                if ( !Create_CarPool_full_date.equals("") ) {
+//                     StartDate = Create_CarPool_full_date;
+//                }else {
+//
+//                    StartDate = "";
+//
+//                }
 
 
 

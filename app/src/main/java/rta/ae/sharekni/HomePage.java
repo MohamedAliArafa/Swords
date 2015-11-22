@@ -61,7 +61,12 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     int Vehicles_Count_FLAG = 0;
     TextView Verify_Phone_num_txt;
 
+    public static  String  TRAFFIC_FILE_NUMBER="a";
+    public static  String  TRAFFIC_BIRTH_DATE="a";
+
     back1 mobile_verify;
+
+
 
     int Driver_ID;
     RelativeLayout Relative_quickSearch;
@@ -654,6 +659,17 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 DriverMyRidesCount.setText(DriverMyRidesCount_str);
                 DriverMyAlertsCount.setText(String.valueOf(All_Alerts));
                 rating.setText(jsonArray.getString("AccountRating"));
+
+
+//                if (!jsonArray.getString("DriverTrafficFileNo").equals("") &&  !jsonArray.getString("DriverTrafficFileNo").equals("null")){
+//                    TRAFFIC_FILE_NUMBER = jsonArray.getString("DriverTrafficFileNo");
+//                }
+//                if (!jsonArray.getString("BirthDate").equals("") &&  !jsonArray.getString("BirthDate").equals("null")){
+//                    TRAFFIC_BIRTH_DATE = jsonArray.getString("BirthDate");
+//                }
+
+
+
                 assert AccountType != null;
 
 
@@ -719,6 +735,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                                 startActivity(intent);
                             } else {
                                 Intent intent = new Intent(getBaseContext(), Display_My_Vehicles.class);
+//                                intent.putExtra("TRAFFIC_FILE_NUMBER",TRAFFIC_FILE_NUMBER);
+//                                intent.putExtra("TRAFFIC_BIRTH_DATE",TRAFFIC_BIRTH_DATE);
                                 startActivity(intent);
 
                             }

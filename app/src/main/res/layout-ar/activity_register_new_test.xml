@@ -129,7 +129,10 @@
                     android:scrollHorizontally="true"
                     android:singleLine="true"
                     android:textColorHint="@color/primaryColor"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZضصثقفغإعهخحجدذشسيبللأاأتنمكطئءؤرلالآىةوزظ"
+
+                    />
 
 
             </LinearLayout>
@@ -162,7 +165,10 @@
                     android:scrollHorizontally="true"
                     android:singleLine="true"
                     android:textColorHint="@color/primaryColor"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZضصثقفغإعهخحجدذشسيبللأاأتنمكطئءؤرلالآىةوزظ"
+
+                    />
 
 
             </LinearLayout>
@@ -204,7 +210,9 @@
                     android:singleLine="true"
                     android:textColor="#747474"
                     android:textColorHint="@color/primaryColor"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:digits="1234567890"
+                    />
 
 
             </LinearLayout>

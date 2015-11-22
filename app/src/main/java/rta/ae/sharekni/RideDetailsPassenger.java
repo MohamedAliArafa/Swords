@@ -89,8 +89,9 @@ public class RideDetailsPassenger extends AppCompatActivity {
     private GoogleMap mMap;
 
     double StartLat, StartLng, EndLat, EndLng;
-    Button Pass_rate_Driver_btn;
+
     Activity con;
+    RatingBar ratingBar;
 
     private List<DriverGetReviewDataModel> driverGetReviewDataModels_arr = new ArrayList<>();
 
@@ -126,7 +127,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
 
         FromEmirateEnName = (TextView) findViewById(R.id.FromEmirateEnName);
         ToEmirateEnName = (TextView) findViewById(R.id.ToEmirateEnName);
-        Pass_rate_Driver_btn= (Button) findViewById(R.id.Pass_rate_Driver_btn);
+        //Pass_rate_Driver_btn= (Button) findViewById(R.id.Pass_rate_Driver_btn);
 
         NationalityEnName = (TextView) findViewById(R.id.NationalityEnName);
         PrefLanguageEnName = (TextView) findViewById(R.id.PrefLanguageEnName);
@@ -140,8 +141,24 @@ public class RideDetailsPassenger extends AppCompatActivity {
         Passenger_Review_Driver_Btn = (Button) findViewById(R.id.Passenger_Review_Driver_Btn);
         Relative_REviews = (RelativeLayout) findViewById(R.id.Relative_REviews);
         Relative_REviews_Address_2 = (TextView) findViewById(R.id.Relative_REviews_Address_2);
+
+         ratingBar = (RatingBar) findViewById(R.id.ratingBar2);
+        ratingBar.setStepSize(1);
+
+
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                NoOfStars = (int) rating;
+                new rateDriver().execute();
+            }
+        });
+
+
+
         Join_Ride_btn.setVisibility(View.INVISIBLE);
-        Pass_rate_Driver_btn.setVisibility(View.INVISIBLE);
+        //Pass_rate_Driver_btn.setVisibility(View.INVISIBLE);
+        ratingBar.setVisibility(View.INVISIBLE);
 
         // setListViewHeightBasedOnChildren(Driver_get_Review_lv);
         //setSupportActionBar(toolbar);
@@ -153,33 +170,33 @@ public class RideDetailsPassenger extends AppCompatActivity {
         Driver_ID = in.getInt("DriverID");
         Route_ID = in.getInt("RouteID");
 
-        Pass_rate_Driver_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Dialog dialog = new Dialog(RideDetailsPassenger.this);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.rate_layout);
-                Button btn = (Button) dialog.findViewById(R.id.noroute_id);
-                final RatingBar ratingBar = (RatingBar) dialog.findViewById(R.id.ratingBar);
-                ratingBar.setStepSize(1);
-                dialog.show();
-                btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        NoOfStars = (int) ratingBar.getRating();
-                        Log.d("NoOfStars", String.valueOf(NoOfStars));
-                        new rateDriver().execute();
-                        dialog.dismiss();
-                    }
-                });
-            }
-        });
+//        Pass_rate_Driver_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                final Dialog dialog = new Dialog(RideDetailsPassenger.this);
+//                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//                dialog.setContentView(R.layout.rate_layout);
+//                Button btn = (Button) dialog.findViewById(R.id.noroute_id);
+//                final RatingBar ratingBar = (RatingBar) dialog.findViewById(R.id.ratingBar);
+//                ratingBar.setStepSize(1);
+//                dialog.show();
+//                btn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        NoOfStars = (int) ratingBar.getRating();
+//                        Log.d("NoOfStars", String.valueOf(NoOfStars));
+//                        new rateDriver().execute();
+//                        dialog.dismiss();
+//                    }
+//                });
+//            }
+//        });
 
         try {
 
             if (in.getInt("FLAG_1") == 1) {
                 Join_Ride_btn.setVisibility(View.INVISIBLE);
-                Pass_rate_Driver_btn.setVisibility(View.VISIBLE);
+                ratingBar.setVisibility(View.VISIBLE);
 
             }
         } catch (NullPointerException e) {
@@ -228,8 +245,6 @@ public class RideDetailsPassenger extends AppCompatActivity {
     private class back extends AsyncTask implements OnMapReadyCallback {
 
         JSONArray response2 = null;
-
-
         JSONObject json;
         private ProgressDialog pDialog;
         JSONArray response1 = null;
@@ -256,13 +271,14 @@ public class RideDetailsPassenger extends AppCompatActivity {
                     .findFragmentById(R.id.map_ride_details);
             mapFragment.getMapAsync(this);
 
-            if (FLAG_HIDE_JOIN==1) {
-                Join_Ride_btn.setVisibility(View.VISIBLE);
-                Pass_rate_Driver_btn.setVisibility(View.INVISIBLE);
-            }
+//            if (FLAG_HIDE_JOIN==1) {
+//                Join_Ride_btn.setVisibility(View.VISIBLE);
+
+//            }
 
             if (FLAG_HIDE_JOIN==2) {
-                Pass_rate_Driver_btn.setVisibility(View.VISIBLE);
+
+                ratingBar.setVisibility(View.VISIBLE);
             }
 
             if (FLAG_REVIEW == 0) {
@@ -602,6 +618,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
 
 
                 json = new GetData().GetRouteById(Route_ID);
+                response2 = new GetData().GetPassengers_ByRouteID(Route_ID);
                 response1 = new GetData().Driver_GetReview(Driver_ID, Route_ID);
                 assert response1 != null;
                 for (int i = 0; i < response1.length(); i++) {
@@ -623,45 +640,48 @@ public class RideDetailsPassenger extends AppCompatActivity {
                     }
 
 
-                    response2 = new GetData().GetPassengers_ByRouteID(Route_ID);
+                }
 
-                    if (response2.length() > 0 && response2 != null) {
-                        for (int y = 0; y < response2.length(); y++) {
 
-                            try {
-                                JSONObject obj = response2.getJSONObject(y);
-                                final Ride_Details_Passengers_DataModel item = new Ride_Details_Passengers_DataModel(Parcel.obtain());
-                                Log.d("Passenger Name", obj.getString("AccountName"));
+                assert response2 != null;
+                Log.d("Passengers resp", response2.toString());
+
+                for (int y = 0; y < response2.length(); y++) {
+
+                    try {
+                        JSONObject obj = response2.getJSONObject(y);
+                        final Ride_Details_Passengers_DataModel item = new Ride_Details_Passengers_DataModel(Parcel.obtain());
+                        Log.d("Passenger Name", obj.getString("AccountName"));
 //                        item.setAccountPhoto(obj.getString("AccountPhoto"));
-                                Log.d("Passenger id", String.valueOf(Passenger_ID));
-                                Log.d("Pass list id", String.valueOf(obj.getInt("ID")));
-                                if (Passenger_ID == obj.getInt("AccountId")) {
-                                    FLAG_HIDE_JOIN = 2;
-                                }
-
-                                item.setPassengerId(obj.getInt("ID"));
-                                item.setAccountName(obj.getString("AccountName"));
-
-                                if (obj.getString("AccountMobile").equals("null")) {
-                                    item.setAccountMobile("");
-                                } else {
-                                    item.setAccountMobile(obj.getString("AccountMobile"));
-                                }
-
-                                item.setAccountNationalityEn(obj.getString(getString(R.string.acc_nat_name)));
-                                Passengers_arr.add(item);
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            } catch (NullPointerException ex) {
-                                ex.printStackTrace();
-                            }
+                        Log.d("Passenger id", String.valueOf(Passenger_ID));
+                        Log.d("Pass list id", String.valueOf(obj.getInt("AccountId")));
+                        if (Passenger_ID == obj.getInt("AccountId")) {
+                            FLAG_HIDE_JOIN = 2;
                         }
 
+                        item.setPassengerId(obj.getInt("ID"));
+                        item.setAccountName(obj.getString("AccountName"));
+
+                        if (obj.getString("AccountMobile").equals("null")) {
+                            item.setAccountMobile("");
+                        } else {
+                            item.setAccountMobile(obj.getString("AccountMobile"));
+                        }
+
+                        item.setAccountNationalityEn(obj.getString(getString(R.string.acc_nat_name)));
+                        Passengers_arr.add(item);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (NullPointerException ex) {
+                        ex.printStackTrace();
                     }
-
-
                 }
+
+
+
+
+
                 exists = true;
             } catch (final Exception e) {
                 e.printStackTrace();
@@ -687,6 +707,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
             }
             return null;
         }
+
 
         @Override
         public void onMapReady(GoogleMap googleMap) {
@@ -799,6 +820,9 @@ public class RideDetailsPassenger extends AppCompatActivity {
         finish();
 
     }
+
+
+
 
 
 }
