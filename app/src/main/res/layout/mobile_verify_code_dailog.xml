@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:paddingBottom="10dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/primaryColor">
+
+        <TextView
+            android:id="@+id/Lang_Dialog_txt_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/write_your_code"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+
+            />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/Review_text_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/Your_Code"
+        android:textColor="@color/primaryColor" />
+
+
+    <EditText
+        android:id="@+id/Edit_Mobile_Verify_txt"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/borders_quicksearch"
+        android:paddingLeft="10dp"
+        android:inputType="phone"
+        android:digits="0123456789"
+        android:paddingRight="10dp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/please_enter_code_first"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/primaryColor"
+        android:visibility="invisible"
+        android:id="@+id/Mobile_verify_Empty_Error"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primaryColor"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/Mobile_Verify_Resend_Code"
+        />
+
+    <Button
+        android:id="@+id/Mobile_Verify_Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/borders_quicksearch_btn"
+        android:text="@string/Btn_Submit_txt"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF" />
+
+
+
+
+</LinearLayout>
