@@ -312,7 +312,7 @@
                 android:value="rta.ae.sharekni.HomePage" />
         </activity>
         <activity
-            android:name=".History"
+            android:name=".SavedSearch"
             android:label="@string/title_activity_history"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base">

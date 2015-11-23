@@ -774,7 +774,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                     Home_Relative_Permit.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(getBaseContext(), History.class);
+                            Intent intent = new Intent(getBaseContext(), SavedSearch.class);
                             startActivity(intent);
 
                         }
@@ -784,7 +784,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                     NavigationDrawerFragment.navy_My_vehicles.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(getBaseContext(), History.class);
+                            Intent intent = new Intent(getBaseContext(), SavedSearch.class);
                             startActivity(intent);
                         }
                     });

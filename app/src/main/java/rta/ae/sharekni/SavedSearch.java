@@ -40,7 +40,7 @@ import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
 import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
 
-public class History extends AppCompatActivity {
+public class SavedSearch extends AppCompatActivity {
 
 
     Activity c;
@@ -94,7 +94,7 @@ public class History extends AppCompatActivity {
                 e.printStackTrace();
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        new AlertDialog.Builder(History.this)
+                        new AlertDialog.Builder(SavedSearch.this)
                                 .setTitle(getString(R.string.connection_problem))
                                 .setMessage(getString(R.string.con_problem_message))
                                 .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
@@ -108,7 +108,7 @@ public class History extends AppCompatActivity {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(History.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SavedSearch.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -229,7 +229,7 @@ public class History extends AppCompatActivity {
                                             Log.d("TomEmlv", json.getString("ToEmirateEnName"));
                                             Log.d("ToReglv", json.getString("ToRegionEnName"));
 
-                                            SavedSearchAdapter arrayAdapter = new SavedSearchAdapter(History.this, R.layout.saved_search_list_item, driver);
+                                            SavedSearchAdapter arrayAdapter = new SavedSearchAdapter(SavedSearch.this, R.layout.saved_search_list_item, driver);
                                             user_ride_created.setAdapter(arrayAdapter);
                                             user_ride_created.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                                 @Override
@@ -266,7 +266,7 @@ public class History extends AppCompatActivity {
                         //Ride.setText("That didn't work! : " + error.toString());
                     }
                 });
-                VolleySingleton.getInstance(History.this).addToRequestQueue(stringRequest);
+                VolleySingleton.getInstance(SavedSearch.this).addToRequestQueue(stringRequest);
             }
             return null;
         }
