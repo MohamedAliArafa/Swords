@@ -142,6 +142,7 @@ public class GetData {
     String Passenger_RateDriver = DOMAIN + "Passenger_RateDriver?";
     String GetCalculatedRating = DOMAIN + "GetCalculatedRating?";
     String Passenger_Review_Driver = DOMAIN + "Passenger_ReviewDriver?";
+    String Confrim_Mobile_URl = DOMAIN + "Confirm_Mobile?AccountID=";
     String Driver_RemoveReview = DOMAIN + "Driver_RemoveReview?";
     String DriverAlertsForRequestUrl = DOMAIN + "Driver_AlertsForRequest?d_AccountId=";
     String DriverAcceptPassengerUrl = DOMAIN + "Driver_AcceptRequest?RequestId=";
@@ -490,6 +491,17 @@ public class GetData {
         return obj.getData();
 
     }
+
+    public String Confirm_Mobile(int Account_Id, String Code) throws JSONException {
+        String Url = Confrim_Mobile_URl + Account_Id + "&Code=" + Code;
+        HandleXML obj = new HandleXML(Url);
+        obj.fetchXML();
+        while ((obj.parsingComplete && !obj.error)) ;
+        return obj.getData();
+
+    }
+
+
 
     public String Driver_Remove_Passenger(int Passenger_ID) throws JSONException {
         String Url = Driver_RemovePassenger + "RoutePassengerId=" + Passenger_ID;

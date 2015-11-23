@@ -39,7 +39,6 @@ import java.net.SocketAddress;
 import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
 import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
-import rta.ae.sharekni.Arafa.DataModelAdapter.ProfileRideAdapter;
 
 public class History extends AppCompatActivity {
 
@@ -88,7 +87,7 @@ public class History extends AppCompatActivity {
             try {
                 SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
                 Socket sock = new Socket();
-                int timeoutMs = 2000;   // 2 seconds
+                int timeoutMs = 20000;   // 2 seconds
                 sock.connect(sockaddr, timeoutMs);
                 exists = true;
             } catch (final Exception e) {
@@ -230,7 +229,7 @@ public class History extends AppCompatActivity {
                                             Log.d("TomEmlv", json.getString("ToEmirateEnName"));
                                             Log.d("ToReglv", json.getString("ToRegionEnName"));
 
-                                            ProfileRideAdapter arrayAdapter = new ProfileRideAdapter(History.this, R.layout.saved_search_list_item, driver);
+                                            SavedSearchAdapter arrayAdapter = new SavedSearchAdapter(History.this, R.layout.saved_search_list_item, driver);
                                             user_ride_created.setAdapter(arrayAdapter);
                                             user_ride_created.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                                 @Override

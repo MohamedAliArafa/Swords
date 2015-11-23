@@ -129,6 +129,7 @@ public class Display_My_Vehicles extends AppCompatActivity {
                     Toast.makeText(Display_My_Vehicles.this, "Updting Vehicles", Toast.LENGTH_SHORT).show();
                     Log.d("traffic birthdate", TRAFFIC_BIRTH_DATE);
                     Log.d("traffic file num",TRAFFIC_FILE_NUMBER);
+                    back = new back();
                     back.execute();
 
 
@@ -280,7 +281,7 @@ public class Display_My_Vehicles extends AppCompatActivity {
 
                                     User_vehicles_Adapter arrayAdapter = new User_vehicles_Adapter(Display_My_Vehicles.this, R.layout.user_vehicles_item, driver);
                                     user_vehicles.setAdapter(arrayAdapter);
-                                  // setListViewHeightBasedOnChildren(user_vehicles);
+                                    setListViewHeightBasedOnChildren(user_vehicles);
 
 
                                 } catch (JSONException e) {

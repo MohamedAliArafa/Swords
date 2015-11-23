@@ -169,6 +169,7 @@
                 android:layout_below="@+id/nat_home"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="3dp"
+                android:id="@+id/Mobile_Number_Relative"
                 >
                 <TextView
                     android:id="@+id/Account_PhoneNumber"
@@ -178,35 +179,52 @@
                     android:text=""
                     />
 
-                <TextView
-                    android:id="@+id/Verify_Phone_num_txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/Account_PhoneNumber"
-                    android:layout_toEndOf="@+id/Account_PhoneNumber"
-                    android:layout_alignBottom="@+id/Account_PhoneNumber"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginStart="5dp"
-                    android:text="@string/Verify_str"
-                    android:textSize="16sp"
-                    />
 
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/verified"
-                    android:layout_toRightOf="@+id/Account_PhoneNumber"
-                    android:layout_toEndOf="@+id/Account_PhoneNumber"
-                    android:layout_alignBottom="@+id/Account_PhoneNumber"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginStart="5dp"
-                    android:visibility="invisible"
-                    android:id="@+id/Verified_Im"
-                    />
 
 
 
             </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/Verify_Phone_num_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/Mobile_Number_Relative"
+                android:layout_toStartOf="@+id/Mobile_Number_Relative"
+                android:layout_alignBottom="@+id/Mobile_Number_Relative"
+                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
+                android:text="@string/Verify_str"
+                android:textSize="16sp"
+                android:textColor="@color/primaryColor"
+                />
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/verified"
+                android:layout_toLeftOf="@+id/Mobile_Number_Relative"
+                android:layout_toStartOf="@+id/Mobile_Number_Relative"
+                android:layout_alignBottom="@+id/Mobile_Number_Relative"
+                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
+                android:visibility="invisible"
+                android:id="@+id/Verified_Im"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/Mobile_Number_Relative"
+                android:text=""
+                android:textSize="14sp"
+                android:id="@+id/Account_Email"
+                />
+
+
 
 
             <RelativeLayout

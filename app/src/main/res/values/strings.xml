@@ -364,6 +364,11 @@
     <string name="Save_Changes_Edit_Carpool">Save Changes</string>
     <string name="VehicleName_Edit_CarPool">VehicleEnName</string>
     <string name="check_internet">Failed to get data Check Internet connection!</string>
+    <string name="write_your_code">Enter Your Code</string>
+    <string name="please_enter_code_first">Please Enter your code first</string>
+    <string name="Your_Code">Your Code</string>
+    <string name="code_is_wrong">Code is Wrong</string>
+        <string name="Enter_code_again">Resend Code again</string>
 
 
 </resources>

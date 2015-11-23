@@ -3,6 +3,7 @@ package rta.ae.sharekni;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -18,10 +19,14 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -37,6 +42,7 @@ import org.json.JSONObject;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.net.URLEncoder;
 import java.util.Locale;
 
 import rta.ae.sharekni.Arafa.Classes.AppController;
@@ -93,6 +99,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     String IsPhotoVerified;
     ImageView Verified_Im;
     ImageView Photo_Verified_id;
+    TextView Account_Email;
+    EditText Edit_Mobile_Verify_txt;
+    String VERIFICATION_CODE="";
 
     public static HomePage getInstance() {
         return HomaPageActivity;
@@ -168,6 +177,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         Verify_Phone_num_txt= (TextView) findViewById(R.id.Verify_Phone_num_txt);
         Verified_Im= (ImageView) findViewById(R.id.Verified_Im);
         Photo_Verified_id  = (ImageView) findViewById(R.id.Photo_Verified_id);
+        Account_Email= (TextView) findViewById(R.id.Account_Email);
 
 
 
@@ -647,6 +657,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
         ProgressDialog pDialog;
         JSONObject jsonArray;
+        GetData j = new GetData();
 
         @Override
         protected void onPreExecute() {
@@ -668,6 +679,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 LastName = (jsonArray.getString("LastName"));
                 LastName = LastName.substring(0, 1).toUpperCase() + LastName.substring(1);
                 name_str = Firstname + " " + LastName;
+
+                Account_Email.setText(jsonArray.getString("Username"));
 
                 IsMobileVerified= jsonArray.getString("IsMobileVerified");
                 if (IsMobileVerified.equals("true")){
@@ -705,7 +718,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 VehiclesCount.setText(VehiclesCount_str);
                 PassengerJoinedRidesCount_str = "";
                 PassengerJoinedRidesCount_str += "(";
-                PassengerJoinedRidesCount_str += (jsonArray.getString("PassengerJoinedRidesCount"));
+                PassengerJoinedRidesCount_str += (jsonArray.getString("DriverJoinedRidesCount"));
                 PassengerJoinedRidesCount_str += ")";
                 PassengerJoinedRidesCount.setText(PassengerJoinedRidesCount_str);
                 DriverMyRidesCount_str = "";
@@ -910,6 +923,59 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 public void onClick(View v) {
                     mobile_verify = new back1();
                     mobile_verify.execute();
+
+                    VERIFICATION_CODE="";
+                    final Dialog dialog = new Dialog(c);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setContentView(R.layout.mobile_verify_code_dailog);
+                    Button Mobile_Verify_Btn = (Button) dialog.findViewById(R.id.Mobile_Verify_Btn);
+                    TextView Mobile_Verify_Resend_Code = (TextView) dialog.findViewById(R.id.Mobile_Verify_Resend_Code);
+                    final TextView Mobile_verify_Empty_Error = (TextView) dialog.findViewById(R.id.Mobile_verify_Empty_Error);
+                    Edit_Mobile_Verify_txt = (EditText) dialog.findViewById(R.id.Edit_Mobile_Verify_txt);
+                    Mobile_Verify_Resend_Code.setText(Html.fromHtml("<u><font color=#e72433>" + getString(R.string.Enter_code_again) + "</font></u>"));
+                    dialog.show();
+
+                    Mobile_Verify_Btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            VERIFICATION_CODE = Edit_Mobile_Verify_txt.getText().toString();
+                            if (!VERIFICATION_CODE.equals("")) {
+                                Mobile_verify_Empty_Error.setVisibility(View.INVISIBLE);
+                                try {
+                                    String response = j.Confirm_Mobile(Integer.parseInt(ID), URLEncoder.encode(VERIFICATION_CODE));
+                                    if (response.equals("\"2\"")) {
+                                        Toast.makeText(HomePage.this, getString(R.string.code_is_wrong), Toast.LENGTH_SHORT).show();
+                                    } else if (response.equals("\"1\"")) {
+                                        Toast.makeText(HomePage.this, getString(R.string.done), Toast.LENGTH_SHORT).show();
+                                        c.recreate();
+                                        dialog.dismiss();
+                                    }
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                            } else {
+                                Mobile_verify_Empty_Error.setVisibility(View.VISIBLE);
+
+                            }
+                        }
+                    });
+
+
+
+                    Mobile_Verify_Resend_Code.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mobile_verify = new back1();
+                            mobile_verify.execute();
+
+                        }
+                    });
+
+
+
                 }
             });
 

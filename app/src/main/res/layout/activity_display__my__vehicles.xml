@@ -1,83 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context="rta.ae.sharekni.Display_My_Vehicles">
+    android:layout_height="wrap_content">
 
-    <include
-        android:id="@+id/app_bar"
-        layout="@layout/app_bar"
-
-        />
-
-    <RelativeLayout
-        android:id="@+id/history_created_rides_realtive"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/app_bar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginEnd="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/borders"
-        android:gravity="center_horizontal"
+        android:background="@color/white"
+        tools:context="rta.ae.sharekni.Display_My_Vehicles">
 
-        >
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/app_bar"
 
-        <ListView
-            android:id="@+id/user_vehicles"
+            />
+
+        <RelativeLayout
+            android:id="@+id/history_created_rides_realtive"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
+            android:layout_below="@+id/app_bar"
+            android:layout_centerHorizontal="true"
             android:layout_marginEnd="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="30dp"
-            android:divider="@color/white"
-            android:dividerHeight="5dp"
+            android:background="@drawable/borders"
+            android:gravity="center_horizontal"
 
             >
 
-        </ListView>
+            <ListView
+                android:id="@+id/user_vehicles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:divider="@color/white"
+                android:dividerHeight="5dp"
+
+                >
+
+            </ListView>
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/driver_profile_RouteEnName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/app_bar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="19dp"
+            android:background="@drawable/testborder1"
+            android:gravity="center_horizontal|center"
+            android:paddingEnd="20dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingStart="20dp"
+            android:text="@string/Registered_Vehicles_str"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/Refresh_vehicles_Btn"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/history_created_rides_realtive"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/user_register_border_button"
+            android:text="@string/Refresh_vehicles"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF" />
 
 
     </RelativeLayout>
-
-    <TextView
-        android:id="@+id/driver_profile_RouteEnName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/app_bar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="19dp"
-        android:background="@drawable/testborder1"
-        android:gravity="center_horizontal|center"
-        android:paddingEnd="20dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingStart="20dp"
-        android:text="@string/Registered_Vehicles_str"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <Button
-        android:layout_centerHorizontal="true"
-        android:id="@+id/Refresh_vehicles_Btn"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/user_register_border_button"
-        android:text="@string/Refresh_vehicles"
-        android:layout_below="@+id/history_created_rides_realtive"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF" />
-
-
-</RelativeLayout>
+</ScrollView>

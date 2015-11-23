@@ -364,5 +364,10 @@
     <string name="Save_Changes_Edit_Carpool">حفظ التعديل</string>
     <string name="VehicleName_Edit_CarPool">VehicleArName</string>
     <string name="check_internet">فشل فى البيانات , تأكد من إتصال الإنترنت!</string>
+    <string name="write_your_code">ادخل الكود</string>
+    <string name="please_enter_code_first">من فضلك ادخل الكود أولا</string>
+    <string name="Your_Code">الكود</string>
+    <string name="code_is_wrong">الكود خطأ</string>
+    <string name="Enter_code_again">إعادة ارسال الكود</string>
 
 </resources>
