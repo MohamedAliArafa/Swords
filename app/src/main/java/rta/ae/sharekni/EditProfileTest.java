@@ -313,6 +313,7 @@ public class EditProfileTest extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 Boolean result = false;
                 if (!hasFocus) {
+                    txt_country.setHint(getString(R.string.nationality));
                     if (Country_List.size() != 0 && txt_country.getText() != null && !txt_country.getText().toString().equals(getString(R.string.Reg_Nat))) {
                         for (int i = 0; i <= 193; i++) {
                             String a = Country_List.get(i).get("NationalityEnName");
@@ -324,9 +325,10 @@ public class EditProfileTest extends AppCompatActivity {
                     }
                     if (!result) {
                         Toast.makeText(EditProfileTest.this, getString(R.string.unknown_country), Toast.LENGTH_SHORT).show();
-                    }
-                }
 
+                    }
+
+                }
             }
         });
 

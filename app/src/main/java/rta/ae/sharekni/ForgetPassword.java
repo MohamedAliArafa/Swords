@@ -33,7 +33,7 @@ import rta.ae.sharekni.Arafa.Classes.GetData;
 public class ForgetPassword extends AppCompatActivity {
 
     Activity c;
-    String mobileNumber,Email;
+    String mobileNumber="",Email="";
     EditText edit_number;
     EditText edit_mail;
     Button btn_submit;
@@ -59,9 +59,9 @@ public class ForgetPassword extends AppCompatActivity {
                 mobileNumber =edit_number.getText().toString();
                 Email =edit_mail.getText().toString();
 
-                if (edit_mail == null || mobileNumber.length()< 9) {
-                    Toast.makeText(getBaseContext(), R.string.check_user_pass, Toast.LENGTH_SHORT).show();
-                }else {
+                if (Email.equals("")|| mobileNumber.length()< 9) {
+                    Toast.makeText(getBaseContext(), R.string.fill_all_error, Toast.LENGTH_SHORT).show();
+                }else if (!Email.equals("") && !mobileNumber.equals("") ){
 
                     new back().execute();
 
