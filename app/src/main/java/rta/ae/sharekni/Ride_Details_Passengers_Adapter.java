@@ -113,8 +113,9 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
                                     String response = gd.Driver_Remove_Passenger(m.getPassengerId());
                                     Log.d("delete passenger", response);
 //                    Toast.makeText(activity, response, Toast.LENGTH_SHORT).show();
-                                    if (response.equals("1")) {
+                                    if (response.equals("\"1\"")) {
                                         Toast.makeText(activity, R.string.passenger_deleted_successfully, Toast.LENGTH_SHORT).show();
+                                        activity.recreate();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();

@@ -372,6 +372,7 @@
     <string name="Updating_vehicles_str">Updating Vehicles</string>
     <string name="plese_check_file_number_first">Please check file number first</string>
     <string name="check_mobile_and_email">Please check Mobile Number and Email</string>
+    <string name="select_start_point">PLease Select Start Point at least 5</string>
 
 
 </resources>

@@ -116,7 +116,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
     int i2 = 0;
     String From_EmirateEnName_str, From_RegionEnName_str, To_EmirateEnName_str, To_RegionEnName_str;
-    int From_Em_Id_2, From_Reg_Id_2, To_Em_Id_2, To_Reg_Id_2;
+    int From_Em_Id_2 = -1 , From_Reg_Id_2 = -1, To_Em_Id_2, To_Reg_Id_2;
 
     ImageView save_off, save_on;
     TextView save_search_txt;
@@ -497,7 +497,10 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
             @Override
 
             public void onClick(View v) {
-                Intent intent1 = new Intent(getBaseContext(), QuickSearchResults.class);
+
+                if (From_Em_Id_2 != -1 && From_Reg_Id_2 != -1){
+
+                    Intent intent1 = new Intent(getBaseContext(), QuickSearchResults.class);
                 intent1.putExtra("From_Em_Id", From_Em_Id_2);
                 intent1.putExtra("To_Em_Id", To_Em_Id_2);
                 intent1.putExtra("From_Reg_Id", From_Reg_Id_2);
@@ -517,6 +520,12 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent1);
 
                 i2 = 1;
+
+
+                  }else {
+                    Toast.makeText(Advanced_Search.this, R.string.select_start_point, Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 

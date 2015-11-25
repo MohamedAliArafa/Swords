@@ -372,5 +372,6 @@
     <string name="Updating_vehicles_str">تحديث المركبات</string>
     <string name="plese_check_file_number_first">الرجاء التأكد من الرقم المروري</string>
     <string name="check_mobile_and_email">الرجاء التاكد من رقم الهاتف والبريد الاكتروني</string>
+    <string name="select_start_point">الرجاء اختيار نقطة الانطلاق علي الاقل</string>
 
 </resources>

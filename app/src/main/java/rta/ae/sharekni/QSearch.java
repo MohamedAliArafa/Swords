@@ -398,7 +398,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
                     i = 1;
 
                 }else {
-                    Toast.makeText(QSearch.this, "PLease Select Start Point at least", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(QSearch.this, R.string.select_start_point, Toast.LENGTH_SHORT).show();
                 }
             }
         });
