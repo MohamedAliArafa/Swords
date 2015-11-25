@@ -42,6 +42,10 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -127,7 +131,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
     TextView Terms_And_Cond_txt;
 
     DatePicker d;
-    Boolean vailedEmail;
+    Boolean vailedEmail=false;
     RelativeLayout txt_terms;
     TextView Terms_And_Cond_txt_2;
     TextView Privacy_and_poolicy;
@@ -154,7 +158,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
             cal.set(Calendar.YEAR, year_x);
             cal.set(Calendar.MONTH, month_x);
             cal.set(Calendar.DAY_OF_MONTH, day_x + 4);
-            if (year < 2015-18){
+            if (year < 2015 - 18) {
                 Date date = cal.getTime();
                 String dayOfWeek = simpledateformat.format(date);
                 String year_string = String.valueOf(year_x);
@@ -166,13 +170,18 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                 txt_dayOfWeek.setText(dayOfWeek);
                 Date_Relative.setBackgroundResource(R.drawable.user_register_border);
                 Log.d("Calendar test", full_date);
-            }else{
+            } else {
                 Date_Relative.setBackgroundResource(R.drawable.user_register_border_error);
                 txt_dayOfWeek.setText(R.string.must_be_more_18);
                 Toast.makeText(RegisterNewTest.this, R.string.too_young, Toast.LENGTH_SHORT).show();
             }
         }
     };
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
 
     public static RegisterNewTest getInstance() {
@@ -229,14 +238,11 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
 
         malefemale = (ImageView) findViewById(R.id.malefemale);
         femalemale = (ImageView) findViewById(R.id.femalemale);
-        
+
         //Terms_And_Cond_txt = (TextView) findViewById(R.id.Terms_And_Cond_txt);
 
         txt_lang = (TextView) findViewById(R.id.autocomplete_lang_id);
         txt_country = (AutoCompleteTextView) findViewById(R.id.autocompletecountry_id);
-
-
-
 
 
         Terms_And_Cond_txt_2 = (TextView) findViewById(R.id.Terms_And_Cond_txt_2);
@@ -245,17 +251,14 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         Privacy_and_poolicy = (TextView) findViewById(R.id.Privacy_and_poolicy);
         Privacy_and_poolicy.setText(Html.fromHtml("<u><font color=#e72433>" + getString(R.string.reg_policy) + "</font></u>"));
 
-        FirstName_Linear= (LinearLayout) findViewById(R.id.FirstName_Linear);
-        LastName_Linear= (LinearLayout) findViewById(R.id.LastName_Linear);
+        FirstName_Linear = (LinearLayout) findViewById(R.id.FirstName_Linear);
+        LastName_Linear = (LinearLayout) findViewById(R.id.LastName_Linear);
         MobileNumber_Linear = (LinearLayout) findViewById(R.id.MobileNumber_Linear);
         UserName_Linear = (LinearLayout) findViewById(R.id.UserName_Linear);
         Password_Linear = (LinearLayout) findViewById(R.id.Password_Linear);
         Nat_Linear = (LinearLayout) findViewById(R.id.Nat_Linear);
         Language_Linear = (LinearLayout) findViewById(R.id.Language_Linear);
         Date_Relative = (RelativeLayout) findViewById(R.id.datepicker_id);
-
-
-
 
 
         initToolbar();
@@ -342,14 +345,14 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                         if (edit_phone.length() < 9) {
                             Toast.makeText(RegisterNewTest.this, getString(R.string.short_mobile), Toast.LENGTH_SHORT).show();
                             MobileNumber_Linear.setBackgroundResource(R.drawable.user_register_border_error);
-                        }else {
+                        } else {
                             MobileNumber_Linear.setBackgroundResource(R.drawable.user_register_border);
                         }
-                    }else {
+                    } else {
                         MobileNumber_Linear.setBackgroundResource(R.drawable.user_register_border);
                     }
                 }
-                if (hasFocus){
+                if (hasFocus) {
                     edit_phone.setHint("");
                 }
             }
@@ -358,18 +361,18 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         edit_user.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus){
+                if (!hasFocus) {
                     edit_user.setHint(getString(R.string.Reg_Email));
                     if (!isEmailValid(edit_user.getText().toString())) {
                         vailedEmail = false;
                         UserName_Linear.setBackgroundResource(R.drawable.user_register_border_error);
                         Toast.makeText(RegisterNewTest.this, getString(R.string.email_valid_form), Toast.LENGTH_SHORT).show();
                     }
-                }else {
+                } else {
                     vailedEmail = true;
                     UserName_Linear.setBackgroundResource(R.drawable.user_register_border);
                 }
-                if (hasFocus){
+                if (hasFocus) {
                     edit_user.setHint("");
                 }
             }
@@ -385,10 +388,10 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                             Toast.makeText(RegisterNewTest.this, getString(R.string.short_pass), Toast.LENGTH_SHORT).show();
                         }
                     }
-                }else {
+                } else {
                     Password_Linear.setBackgroundResource(R.drawable.user_register_border);
                 }
-                if (hasFocus){
+                if (hasFocus) {
                     edit_pass.setHint("");
                 }
             }
@@ -411,11 +414,11 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                     if (!result) {
                         txt_country.setBackgroundResource(R.drawable.user_register_border_error);
                         Toast.makeText(RegisterNewTest.this, R.string.unknown_country, Toast.LENGTH_SHORT).show();
-                    }else {
+                    } else {
                         txt_country.setBackgroundResource(R.drawable.user_register_border);
                     }
                 }
-                if (hasFocus){
+                if (hasFocus) {
                     txt_country.setHint("");
                 }
             }
@@ -424,25 +427,25 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         txt_lang.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             public void onFocusChange(View v, boolean hasFocus) {
                 Boolean result = false;
-                    if (!hasFocus) {
-                        txt_lang.setHint(getString(R.string.language));
-                        if (Lang_List.size() != 0 && txt_lang.getText() != null && !txt_lang.getText().toString().equals(getString(R.string.Reg_PrefLang))) {
-                            for (int i = 0; i <= Lang_List.size(); i++) {
-                                String a = Lang_List.get(i).get("NationalityEnName");
-                                String b = txt_lang.getText().toString();
-                                if (a.equals(b)) {
-                                    result = true;
-                                }
+                if (!hasFocus) {
+                    txt_lang.setHint(getString(R.string.language));
+                    if (Lang_List.size() != 0 && txt_lang.getText() != null && !txt_lang.getText().toString().equals(getString(R.string.Reg_PrefLang))) {
+                        for (int i = 0; i <= Lang_List.size(); i++) {
+                            String a = Lang_List.get(i).get("NationalityEnName");
+                            String b = txt_lang.getText().toString();
+                            if (a.equals(b)) {
+                                result = true;
                             }
-                        }else {
-                            Nat_Linear.setBackgroundResource(R.drawable.user_register_border);
                         }
-                        if (!result) {
-                            Nat_Linear.setBackgroundResource(R.drawable.user_register_border_error);
-//                            Toast.makeText(RegisterNewTest.this, R.string.unknown_language, Toast.LENGTH_SHORT).show();
-                        }
+                    } else {
+                        Nat_Linear.setBackgroundResource(R.drawable.user_register_border);
                     }
-                if (hasFocus){
+                    if (!result) {
+                        Nat_Linear.setBackgroundResource(R.drawable.user_register_border_error);
+//                            Toast.makeText(RegisterNewTest.this, R.string.unknown_language, Toast.LENGTH_SHORT).show();
+                    }
+                }
+                if (hasFocus) {
                     txt_lang.setHint("");
                 }
             }
@@ -466,49 +469,49 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!vailedEmail){
+                if (!vailedEmail) {
                     UserName_Linear.setBackgroundResource(R.drawable.user_register_border_error);
-                }else {
+                } else {
                     UserName_Linear.setBackgroundResource(R.drawable.user_register_border);
                 }
 
-                if (edit_fname.getText().length()==0 ){
+                if (edit_fname.getText().length() == 0) {
                     FirstName_Linear.setBackgroundResource(R.drawable.user_register_border_error);
-                }else {
+                } else {
                     FirstName_Linear.setBackgroundResource(R.drawable.user_register_border);
                 }
-                if (edit_lname.getText().length()!=0){
+                if (edit_lname.getText().length() != 0) {
                     LastName_Linear.setBackgroundResource(R.drawable.user_register_border);
-                }else {
+                } else {
                     LastName_Linear.setBackgroundResource(R.drawable.user_register_border_error);
                 }
-                if (edit_phone.getText().length()!=0){
+                if (edit_phone.getText().length() != 0) {
                     MobileNumber_Linear.setBackgroundResource(R.drawable.user_register_border);
-                }else {
+                } else {
                     MobileNumber_Linear.setBackgroundResource(R.drawable.user_register_border_error);
                 }
-                if (edit_pass.getText().length()!=0){
+                if (edit_pass.getText().length() != 0) {
                     Password_Linear.setBackgroundResource(R.drawable.user_register_border);
-                }else {
+                } else {
                     Password_Linear.setBackgroundResource(R.drawable.user_register_border_error);
                 }
 
-                if (txt_country.getText().length()!=0){
+                if (txt_country.getText().length() != 0) {
                     Nat_Linear.setBackgroundResource(R.drawable.user_register_border);
-                }else {
+                } else {
                     Nat_Linear.setBackgroundResource(R.drawable.user_register_border_error);
                 }
-                if (txt_lang.getText().length()!=0){
+                if (txt_lang.getText().length() != 0) {
                     Language_Linear.setBackgroundResource(R.drawable.user_register_border);
-                }else {
+                } else {
                     Language_Linear.setBackgroundResource(R.drawable.user_register_border_error);
                 }
-                if (full_date != null){
+                if (full_date != null) {
                     btn_datepicker_id.setBackgroundResource(R.drawable.user_register_border);
                 }
                 if (full_date == null) {
-                        Toast.makeText(RegisterNewTest.this, R.string.fill_all_error, Toast.LENGTH_SHORT).show();
-                        Date_Relative.setBackgroundResource(R.drawable.user_register_border_error);
+                    Toast.makeText(RegisterNewTest.this, R.string.fill_all_error, Toast.LENGTH_SHORT).show();
+                    Date_Relative.setBackgroundResource(R.drawable.user_register_border_error);
                 } else {
                     if (edit_fname.getText() != null && !edit_fname.getText().toString().equals(getString(R.string.Reg_FirstN)) && edit_lname.getText() != null && !edit_lname.getText().toString().equals(getString(R.string.Reg_LastN)) && edit_phone.getText() != null && !edit_phone.getText().toString().equals(getString(R.string.REg_Mobile)) && edit_pass.getText() != null && !edit_pass.getText().toString().equals(getString(R.string.Reg_pass)) && edit_user.getText() != null && !edit_user.getText().toString().equals(getString(R.string.Reg_Email)) && txt_country.getText() != null && !edit_lname.getText().toString().equals(getString(R.string.Reg_Nat)) && Language_ID != -1 && Nationality_ID != -1 && full_date != null && vailedEmail == true) {
                         ArrayList codes = new ArrayList();
@@ -516,7 +519,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                         codes.add("52");
                         codes.add("55");
                         codes.add("56");
-                        String code = edit_phone.getText().toString().substring(0,2);
+                        String code = edit_phone.getText().toString().substring(0, 2);
                         if (!codes.contains(code)) {
                             Toast.makeText(RegisterNewTest.this, getString(R.string.short_mobile), Toast.LENGTH_SHORT).show();
                         } else {
@@ -550,14 +553,14 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                                 case "Both":
                                     registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + URLEncoder.encode(birthdate) + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x, getBaseContext(), country, "D");
                                     break;
-                                }
                             }
-                        }else{
-                            Toast.makeText(RegisterNewTest.this, R.string.fill_all_error, Toast.LENGTH_SHORT).show();
                         }
+                    } else {
+                        Toast.makeText(RegisterNewTest.this, R.string.fill_all_error, Toast.LENGTH_SHORT).show();
                     }
-
                 }
+
+            }
 
 //            else {
 //                    Toast.makeText(RegisterNewTest.this, R.string.fill_all_error, Toast.LENGTH_SHORT).show();
@@ -618,6 +621,49 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         });
 
 
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "RegisterNewTest Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://rta.ae.sharekni/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "RegisterNewTest Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://rta.ae.sharekni/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();
     }
 
     private class ImageUpload extends AsyncTask<String, Void, String> {
@@ -833,7 +879,8 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                 BitmapFactory.decodeFile(selectedImagePath, options);
                 final int REQUIRED_SIZE = 200;
                 int scale = 1;
-                while (options.outWidth / scale / 2 >= REQUIRED_SIZE && options.outHeight / scale / 2 >= REQUIRED_SIZE) scale *= 2;
+                while (options.outWidth / scale / 2 >= REQUIRED_SIZE && options.outHeight / scale / 2 >= REQUIRED_SIZE)
+                    scale *= 2;
                 options.inSampleSize = scale;
                 options.inJustDecodeBounds = false;
                 bm = BitmapFactory.decodeFile(selectedImagePath, options);

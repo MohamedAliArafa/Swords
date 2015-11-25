@@ -14,16 +14,12 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/borders"
+        android:background="#FFFFFF"
         android:layout_marginTop="10dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:paddingTop="15dp"
         android:layout_marginBottom="15dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginStart="10dp"
 
         >
 
@@ -272,22 +268,6 @@
     </RelativeLayout>
 
 
-    <TextView
-        android:id="@+id/driver_profile_RouteEnName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:text="RouteName"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:background="@drawable/testborder1"
-        android:gravity="center_horizontal|center"
-        android:paddingEnd="20dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingStart="20dp"
-        />
 
 
 </RelativeLayout>

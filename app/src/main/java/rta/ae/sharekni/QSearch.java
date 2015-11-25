@@ -24,6 +24,7 @@ import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -104,7 +105,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
 
     String From_EmirateEnName_str, From_RegionEnName_str, To_EmirateEnName_str, To_RegionEnName_str;
-    int From_Em_Id_2, From_Reg_Id_2, To_Em_Id_2, To_Reg_Id_2;
+    int From_Em_Id_2=-1, From_Reg_Id_2=-1, To_Em_Id_2, To_Reg_Id_2;
     ImageView save_off,save_on;
     TextView save_search_txt;
 
@@ -376,21 +377,29 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
             @Override
 
             public void onClick(View v) {
-                Intent intent1 = new Intent(getBaseContext(), QuickSearchResults.class);
-                intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent1.putExtra("From_Em_Id", From_Em_Id_2);
-                intent1.putExtra("To_Em_Id", To_Em_Id_2);
-                intent1.putExtra("From_Reg_Id", From_Reg_Id_2);
-                intent1.putExtra("To_Reg_Id", To_Reg_Id_2);
-                intent1.putExtra("From_EmirateEnName", From_EmirateEnName_str);
-                intent1.putExtra("From_RegionEnName", From_RegionEnName_str);
-                intent1.putExtra("To_EmirateEnName", To_EmirateEnName_str);
-                intent1.putExtra("To_RegionEnName", To_RegionEnName_str);
-                intent1.putExtra("SaveFind",savefind);
-                Log.d("Test", From_EmirateEnName + From_RegionEnName + To_EmirateEnName + To_RegionEnName);
-                startActivity(intent1);
 
-                i=1;
+
+                if (From_Em_Id_2 != -1  && From_Reg_Id_2!=-1 ) {
+
+                    Intent intent1 = new Intent(getBaseContext(), QuickSearchResults.class);
+                    intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent1.putExtra("From_Em_Id", From_Em_Id_2);
+                    intent1.putExtra("To_Em_Id", To_Em_Id_2);
+                    intent1.putExtra("From_Reg_Id", From_Reg_Id_2);
+                    intent1.putExtra("To_Reg_Id", To_Reg_Id_2);
+                    intent1.putExtra("From_EmirateEnName", From_EmirateEnName_str);
+                    intent1.putExtra("From_RegionEnName", From_RegionEnName_str);
+                    intent1.putExtra("To_EmirateEnName", To_EmirateEnName_str);
+                    intent1.putExtra("To_RegionEnName", To_RegionEnName_str);
+                    intent1.putExtra("SaveFind", savefind);
+                    Log.d("Test", From_EmirateEnName + From_RegionEnName + To_EmirateEnName + To_RegionEnName);
+                    startActivity(intent1);
+
+                    i = 1;
+
+                }else {
+                    Toast.makeText(QSearch.this, "PLease Select Start Point at least", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }  // on create

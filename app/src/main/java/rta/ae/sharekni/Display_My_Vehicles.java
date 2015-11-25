@@ -126,7 +126,7 @@ public class Display_My_Vehicles extends AppCompatActivity {
 
                 if ( !TRAFFIC_BIRTH_DATE.equals("")  &&  !TRAFFIC_FILE_NUMBER.equals("")  ){
 
-                    Toast.makeText(Display_My_Vehicles.this, "Updting Vehicles", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Display_My_Vehicles.this, R.string.Updating_vehicles_str, Toast.LENGTH_SHORT).show();
                     Log.d("traffic birthdate", TRAFFIC_BIRTH_DATE);
                     Log.d("traffic file num",TRAFFIC_FILE_NUMBER);
                     back = new back();
@@ -134,7 +134,7 @@ public class Display_My_Vehicles extends AppCompatActivity {
 
 
                 }else {
-                    Toast.makeText(Display_My_Vehicles.this, "Please check file number first", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Display_My_Vehicles.this, R.string.plese_check_file_number_first, Toast.LENGTH_SHORT).show();
                 }
 
             }

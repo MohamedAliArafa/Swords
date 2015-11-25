@@ -369,5 +369,8 @@
     <string name="Your_Code">الكود</string>
     <string name="code_is_wrong">الكود خطأ</string>
     <string name="Enter_code_again">إعادة ارسال الكود</string>
+    <string name="Updating_vehicles_str">تحديث المركبات</string>
+    <string name="plese_check_file_number_first">الرجاء التأكد من الرقم المروري</string>
+    <string name="check_mobile_and_email">الرجاء التاكد من رقم الهاتف والبريد الاكتروني</string>
 
 </resources>

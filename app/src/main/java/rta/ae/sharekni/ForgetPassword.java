@@ -59,7 +59,7 @@ public class ForgetPassword extends AppCompatActivity {
                 mobileNumber =edit_number.getText().toString();
                 Email =edit_mail.getText().toString();
 
-                if (edit_mail == null||mobileNumber.length()<= 9) {
+                if (edit_mail == null || mobileNumber.length()< 9) {
                     Toast.makeText(getBaseContext(), R.string.check_user_pass, Toast.LENGTH_SHORT).show();
                 }else {
 
@@ -112,6 +112,9 @@ public class ForgetPassword extends AppCompatActivity {
 
 
 
+            }else if (data.equals("null")){
+
+                Toast.makeText(c, R.string.check_mobile_and_email, Toast.LENGTH_SHORT).show();
             }
 
 
