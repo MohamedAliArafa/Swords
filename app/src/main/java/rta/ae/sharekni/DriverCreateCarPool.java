@@ -648,46 +648,51 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         if (v == create) {
 
 
-            if ( !CHECK_TIME.equals("b") && FLAG_WEEK_DAYS==2 && Create_CarPool_full_date!=null &&  !Create_CarPool_full_date.equals("a") && edit_route_name.getText() != null && edit_route_name.getText().toString() != getString(R.string.ride_name) && From_Em_Id_2 != 0 && To_Em_Id_2 != 0 && From_Reg_Id_2 != 0 && To_Reg_Id_2 != 0 && Single_Periodic_ID != -1 && Vehicle_Id != -1 && id != -1 && Create_CarPool_txt_beforeCal.getText() != getString(R.string.click_to_select) && Create_CarPool_txt_time_selected.getText() != null && Create_CarPool_txt_time_selected.getText().toString() != getString(R.string.click_to_select) && Start_Latitude!=0.0 && Start_Longitude!=0.0 && End_Latitude!=0.0 && End_Longitude!=0.0 && Number_Of_Seats!=0 ) {
-                String is_Rounded;
-                String EnName = edit_route_name.getText().toString();
-                int FromEmId = From_Em_Id_2;   // dubai
-                int ToEmId = To_Em_Id_2;   // 3agman
-                int FromRegId = From_Reg_Id_2;//
-                int ToRegId = To_Reg_Id_2;   // 3agman mueseum
-                if (Single_Periodic_ID == 1) {
-                    is_Rounded = "true";
+            if (!CHECK_TIME.equals("b") && Create_CarPool_full_date != null && !Create_CarPool_full_date.equals("a") && edit_route_name.getText() != null && edit_route_name.getText().toString() != getString(R.string.ride_name) && From_Em_Id_2 != 0 && To_Em_Id_2 != 0 && From_Reg_Id_2 != 0 && To_Reg_Id_2 != 0 && Single_Periodic_ID != -1 && Vehicle_Id != -1 && id != -1 && Create_CarPool_txt_beforeCal.getText() != getString(R.string.click_to_select) && Create_CarPool_txt_time_selected.getText() != null && Create_CarPool_txt_time_selected.getText().toString() != getString(R.string.click_to_select) && Start_Latitude != 0.0 && Start_Longitude != 0.0 && End_Latitude != 0.0 && End_Longitude != 0.0 && Number_Of_Seats != 0) {
+                if (From_Em_Id_2 == To_Em_Id_2 && From_Reg_Id_2 == To_Reg_Id_2) {
+                    Toast.makeText(DriverCreateCarPool.this, R.string.region_identical, Toast.LENGTH_SHORT).show();
+                } else if (FLAG_WEEK_DAYS == 1) {
+                    Toast.makeText(DriverCreateCarPool.this, R.string.choose_oneday, Toast.LENGTH_SHORT).show();
                 } else {
-                    is_Rounded = "false";
+                    String is_Rounded;
+                    String EnName = edit_route_name.getText().toString();
+                    int FromEmId = From_Em_Id_2;   // dubai
+                    int ToEmId = To_Em_Id_2;   // 3agman
+                    int FromRegId = From_Reg_Id_2;//
+                    int ToRegId = To_Reg_Id_2;   // 3agman mueseum
+                    if (Single_Periodic_ID == 1) {
+                        is_Rounded = "true";
+                    } else {
+                        is_Rounded = "false";
+                    }
+
+
+                    String Time = Create_CarPool_txt_time_selected.getText().toString();
+                    String Saturday = String.valueOf(SAT_FLAG);
+                    String Sunday = String.valueOf(SUN_FLAG);
+                    String Monday = String.valueOf(MON_FLAG);
+                    String Tuesday = String.valueOf(TUES_FLAG);
+                    String Wednesday = String.valueOf(WED_FLAG);
+                    String Thursday = String.valueOf(THU_FLAG);
+                    String Friday = String.valueOf(FRI_FLAG);
+                    int Vehicle_ID = Vehicle_Id;
+                    int No_OF_Seats = Number_Of_Seats;
+                    double Start_Lat = Start_Latitude;
+                    double Start_Lng = Start_Longitude;
+                    double End_Lat = End_Latitude;
+                    double End_Lng = End_Longitude;
+                    int pref_lnag = Language_ID;
+                    String pref_nat = Nationality_ID;
+                    int Age_Ranged_id = Age_ID;
+                    String StartDate = Create_CarPool_full_date;
+
+                    GetData j = new GetData();
+                    j.DriverCreateCarPoolFrom(MyId, EnName, FromEmId, ToEmId, FromRegId, ToRegId
+                            , is_Rounded, Time, Saturday, Sunday, Monday, Tuesday, Wednesday, Thursday, Friday
+                            , gender, Vehicle_ID, No_OF_Seats, Start_Lat, Start_Lng, End_Lat, End_Lng
+                            , pref_lnag, pref_nat, Age_Ranged_id, StartDate, this);
+                    i2 = 1;
                 }
-
-
-                String Time = Create_CarPool_txt_time_selected.getText().toString();
-                String Saturday = String.valueOf(SAT_FLAG);
-                String Sunday = String.valueOf(SUN_FLAG);
-                String Monday = String.valueOf(MON_FLAG);
-                String Tuesday = String.valueOf(TUES_FLAG);
-                String Wednesday = String.valueOf(WED_FLAG);
-                String Thursday = String.valueOf(THU_FLAG);
-                String Friday = String.valueOf(FRI_FLAG);
-                int Vehicle_ID = Vehicle_Id;
-                int No_OF_Seats = Number_Of_Seats;
-                double Start_Lat = Start_Latitude;
-                double Start_Lng = Start_Longitude;
-                double End_Lat = End_Latitude;
-                double End_Lng = End_Longitude;
-                int pref_lnag = Language_ID;
-                String pref_nat = Nationality_ID;
-                int Age_Ranged_id = Age_ID;
-                String StartDate = Create_CarPool_full_date;
-
-                GetData j = new GetData();
-                j.DriverCreateCarPoolFrom(MyId, EnName, FromEmId, ToEmId, FromRegId, ToRegId
-                        , is_Rounded, Time, Saturday, Sunday, Monday, Tuesday, Wednesday, Thursday, Friday
-                        , gender, Vehicle_ID, No_OF_Seats, Start_Lat, Start_Lng, End_Lat, End_Lng
-                        , pref_lnag, pref_nat, Age_Ranged_id, StartDate, this);
-                i2 = 1;
-
             } else {
                 Toast.makeText(DriverCreateCarPool.this, getString(R.string.fill_all_error), Toast.LENGTH_SHORT).show();
             }

@@ -168,7 +168,7 @@ public class PickUpActivity extends AppCompatActivity {
                         back2.cancel(true);
                         finish();
                     }else {
-                        Toast.makeText(PickUpActivity.this, "Please enter Emitrate and Region", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PickUpActivity.this, "Please enter Emirate and Region", Toast.LENGTH_SHORT).show();
                     }
                 } //  else if 2
 
@@ -398,9 +398,8 @@ public class PickUpActivity extends AppCompatActivity {
                     From_Reg_Id = arr.get(position).getID();
                     From_RegionEnName = arr.get(position).getRegionEnName();
 
-                    Start_Latitude=arr.get(position).getRegionLatitude();
-                    Start_Longitude= arr.get(position).getRegionLongitude();
-
+                    Start_Latitude = arr.get(position).getRegionLatitude();
+                    Start_Longitude = arr.get(position).getRegionLongitude();
 
                     Log.d("Start lat", String.valueOf(Start_Latitude));
                     Log.d("Start lat", String.valueOf(Start_Longitude));
@@ -447,9 +446,7 @@ public class PickUpActivity extends AppCompatActivity {
 
                     JSONArray jsonArray = Regions;
 
-
                     for (int i = 0; i < jsonArray.length(); i++) {
-
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         final RegionsDataModel regions = new RegionsDataModel(Parcel.obtain());
                         regions.setID(jsonObject.getInt("ID"));

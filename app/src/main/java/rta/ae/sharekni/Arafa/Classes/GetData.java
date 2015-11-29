@@ -198,7 +198,7 @@ public class GetData {
             , double StartLat, double StartLng, double EndLat, double EndLng
             , int Pref_Lang, int Nat, int AgeRangedId, String Start_Date, Activity context) {
 
-        DriverCreateCarPoolStringRequest(DriverEditCarPoolUrl + "RouteID=" + myId
+        DriverEditCarPoolStringRequest(DriverEditCarPoolUrl + "RouteID=" + myId
                 + "&EnName=" + URLEncoder.encode(En_Name)
                 + "&FromEmirateID=" + From_EmID
                 + "&ToEmirateID=" + To_EmID
@@ -445,7 +445,7 @@ public class GetData {
     }
 
     public String Driver_RatePassenger(int DriverId, int PassengerId, int RouteId, int NoOfStars) throws JSONException {
-        Log.d("Forget Pass", Driver_RatePassenger + "DriverId=" + DriverId + "&PassengerId=" + PassengerId + "&RouteId=" + RouteId + "&NoOfStars=" + NoOfStars );
+        Log.d("Forget Pass", Driver_RatePassenger + "DriverId=" + DriverId + "&PassengerId=" + PassengerId + "&RouteId=" + RouteId + "&NoOfStars=" + NoOfStars);
         HandleXML obj = new HandleXML(Driver_RatePassenger + "DriverId=" + DriverId + "&PassengerId=" + PassengerId + "&RouteId=" + RouteId + "&NoOfStars=" + NoOfStars);
         obj.fetchXML();
         while ((obj.parsingComplete && !obj.error)) ;
@@ -1078,7 +1078,7 @@ public class GetData {
         VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
     }
 
-    private void DriverEditCarPoolStringRequest(final String url, final Activity context) {
+    private void DriverCreateCarPoolStringRequest(final String url, final Activity context) {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -1092,7 +1092,7 @@ public class GetData {
                         Log.d("Search  Array Output : ", response);
                         switch (response) {
                             case "-1":
-                                Toast.makeText(context, context.getString(R.string.route_name_exist), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context,  context.getString(R.string.route_name_exist), Toast.LENGTH_SHORT).show();
                                 break;
                             case "-2":
                                 Toast.makeText(context, context.getString(R.string.reached_max_rides), Toast.LENGTH_SHORT).show();
@@ -1101,7 +1101,7 @@ public class GetData {
                                 context.startActivity(in);
                                 break;
                             default:
-                                Toast.makeText(context, context.getString(R.string.ride_updated), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, context.getString(R.string.ride_created2), Toast.LENGTH_SHORT).show();
                                 Intent in2 = new Intent(context, DriverCreatedRides.class);
                                 in2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 context.startActivity(in2);
@@ -1118,7 +1118,7 @@ public class GetData {
         VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
     }
 
-    private void DriverCreateCarPoolStringRequest(final String url, final Activity context) {
+    private void DriverEditCarPoolStringRequest(final String url, final Activity context) {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override

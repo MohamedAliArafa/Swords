@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -38,6 +39,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
@@ -152,7 +158,6 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
     getVehicles vehicles;
     load load;
     int Number_Of_Seats = 0;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -416,13 +421,19 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                     createCarPool_Vehicles.setText(getString(R.string.select_vehicle));
                 }
 
-
                 if( !j.getString("NationalityId").equals("null")  &&  !j.getString("NationalityId").equals("")  ){
                     Nationality_ID = j.getInt("NationalityId");
                 }else {
                     Nationality_ID = 0;
                 }
 
+                if (j.getString("StartLat").equals("") && j.getString("StartLng").equals("") || j.getString("StartLat").equals("0.0") && j.getString("StartLng").equals("0.0")){
+                    new FromLongLat().execute();
+                }
+
+                if (j.getString("EndLat").equals("")  &&  !j.getString("EndLng").equals("") || j.getString("EndLat").equals("0.0")  &&  !j.getString("EndLng").equals("0.0")){
+                    new ToLongLat().execute();
+                }
 
                 Language_ID = j.getInt("PrefLanguageId");
 
@@ -502,7 +513,6 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                     Create_CarPool_femalemale2.setVisibility(View.VISIBLE);
                 }
 
-
                 if (j.getBoolean("Saturday")) {
                     createCarPool_Sat_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
                     SAT_FLAG = 1;
@@ -552,7 +562,6 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                     createCarPool_Fri_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
                     FRI_FLAG = 0;
                 }
-
 
                 str_StartFromTime = j.getString("StartFromTime");
                 str_StartFromDate = j.getString("StartFromTime");
@@ -674,8 +683,6 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                             Languages_Dilaog.dismiss();
                         }
                     });
-
-
                 }
             });
         }
@@ -826,6 +833,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                     }
                 });
             }
+
             if (exists) {
                 try {
                     JSONArray j = new GetData().GetAgeRanges();
@@ -977,36 +985,36 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         if (v == create) {
             if (edit_route_name.getText() != null && edit_route_name.getText().toString() != getString(R.string.ride_name) && From_Em_Id != -1 && To_Em_Id != -1 && From_Reg_Id != -1 && To_Reg_Id != -1 && Single_Periodic_ID != -1 && Vehicle_Id != -1 && id != -1 && Create_CarPool_txt_beforeCal.getText().toString() != getString(R.string.click_to_select) && Create_CarPool_txt_time_selected.getText() != null && Create_CarPool_txt_time_selected.getText().toString() != getString(R.string.click_to_select)) {
-                String is_Rounded;
-                String EnName = edit_route_name.getText().toString();
-                int FromEmId = From_Em_Id;   // dubai
-                int ToEmId = To_Em_Id;   // 3agman
-                int FromRegId = From_Reg_Id;//
-                int ToRegId = To_Reg_Id;   // 3agman mueseum
-                if (Single_Periodic_ID == 1) {
-                    is_Rounded = "true";
-                } else {
-                    is_Rounded = "false";
-                }
-                String Time = Create_CarPool_txt_time_selected.getText().toString();
-                String Saturday = String.valueOf(SAT_FLAG);
-                String Sunday = String.valueOf(SUN_FLAG);
-                String Monday = String.valueOf(MON_FLAG);
-                String Tuesday = String.valueOf(TUES_FLAG);
-                String Wednesday = String.valueOf(WED_FLAG);
-                String Thursday = String.valueOf(THU_FLAG);
-                String Friday = String.valueOf(FRI_FLAG);
-                int Vehicle_ID = Vehicle_Id;
-                int No_OF_Seats = Number_Of_Seats;
-                double Start_Lat = Start_Latitude;
-                double Start_Lng = Start_Longitude;
-                double End_Lat = End_Latitude;
-                double End_Lng = End_Longitude;
-                int pref_lnag = Language_ID;
-                int pref_nat = Nationality_ID;
-                int Age_Ranged_id = Age_ID;
-                // String StartDate = Create_CarPool_txt_year.getText().toString();
-                 StartDate =  Create_CarPool_txt_year.getText().toString();
+                    String is_Rounded;
+                    String EnName = edit_route_name.getText().toString();
+                    int FromEmId = From_Em_Id;   // dubai
+                    int ToEmId = To_Em_Id;   // 3agman
+                    int FromRegId = From_Reg_Id;//
+                    int ToRegId = To_Reg_Id;   // 3agman mueseum
+                    if (Single_Periodic_ID == 1) {
+                        is_Rounded = "true";
+                    } else {
+                        is_Rounded = "false";
+                    }
+                    String Time = Create_CarPool_txt_time_selected.getText().toString();
+                    String Saturday = String.valueOf(SAT_FLAG);
+                    String Sunday = String.valueOf(SUN_FLAG);
+                    String Monday = String.valueOf(MON_FLAG);
+                    String Tuesday = String.valueOf(TUES_FLAG);
+                    String Wednesday = String.valueOf(WED_FLAG);
+                    String Thursday = String.valueOf(THU_FLAG);
+                    String Friday = String.valueOf(FRI_FLAG);
+                    int Vehicle_ID = Vehicle_Id;
+                    int No_OF_Seats = Number_Of_Seats;
+                    double Start_Lat = Start_Latitude;
+                    double Start_Lng = Start_Longitude;
+                    double End_Lat = End_Latitude;
+                    double End_Lng = End_Longitude;
+                    int pref_lnag = Language_ID;
+                    int pref_nat = Nationality_ID;
+                    int Age_Ranged_id = Age_ID;
+                    // String StartDate = Create_CarPool_txt_year.getText().toString();
+                    StartDate = Create_CarPool_txt_year.getText().toString();
 
 //                if ( !Create_CarPool_full_date.equals("") ) {
 //                     StartDate = Create_CarPool_full_date;
@@ -1017,14 +1025,11 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
 //                }
 
 
-
-
-                GetData j = new GetData();
-                j.DriverEditCarPoolFrom(RouteId, EnName, FromEmId, ToEmId, FromRegId, ToRegId
-                        , is_Rounded, URLEncoder.encode(Time), Saturday, Sunday, Monday, Tuesday, Wednesday, Thursday, Friday
-                        , gender, Vehicle_ID, No_OF_Seats, Start_Lat, Start_Lng, End_Lat, End_Lng
-                        , pref_lnag, pref_nat, Age_Ranged_id, StartDate, this);
-
+                    GetData j = new GetData();
+                    j.DriverEditCarPoolFrom(RouteId, EnName, FromEmId, ToEmId, FromRegId, ToRegId
+                            , is_Rounded, URLEncoder.encode(Time), Saturday, Sunday, Monday, Tuesday, Wednesday, Thursday, Friday
+                            , gender, Vehicle_ID, No_OF_Seats, Start_Lat, Start_Lng, End_Lat, End_Lng
+                            , pref_lnag, pref_nat, Age_Ranged_id, StartDate, this);
             } else {
                 Toast.makeText(DriverEditCarPool.this, getString(R.string.fill_all_error), Toast.LENGTH_SHORT).show();
             }
@@ -1036,7 +1041,6 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
             seat1_off.setVisibility(View.INVISIBLE);
             id = 2;
             Number_Of_Seats = 1;
-
         }
 
         if (v == seat1_on && id == 2) {
@@ -1159,6 +1163,88 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
         }
 
     }
+
+    private class ToLongLat extends AsyncTask {
+
+        @Override
+        protected Object doInBackground(Object[] params) {
+
+            String ret;
+            try {
+                InputStream inputStream = openFileInput("Regions" + To_Em_Id + ".txt");
+                if (inputStream != null) {
+                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                    String receiveString;
+                    StringBuilder stringBuilder = new StringBuilder();
+                    while ((receiveString = bufferedReader.readLine()) != null) {
+                        stringBuilder.append(receiveString);
+                    }
+                    inputStream.close();
+                    ret = stringBuilder.toString();
+
+                    JSONArray jsonArray = new JSONArray(ret);
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        if (jsonObject.getInt("ID") == From_Reg_Id){
+                            End_Latitude = jsonObject.getDouble("RegionLatitude");
+                            End_Longitude = jsonObject.getDouble("RegionLongitude");
+                        }
+                    }
+                }
+            } catch (FileNotFoundException e) {
+                Log.e("login activity", "File not found: " + e.toString());
+            } catch (IOException e) {
+                Log.e("login activity", "Can not read file: " + e.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }    // back thread classs
+
+
+    private class FromLongLat extends AsyncTask {
+
+        @Override
+        protected Object doInBackground(Object[] params) {
+
+            String ret;
+            try {
+                InputStream inputStream = openFileInput("Regions" + From_Em_Id + ".txt");
+                if (inputStream != null) {
+                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                    String receiveString;
+                    StringBuilder stringBuilder = new StringBuilder();
+                    while ((receiveString = bufferedReader.readLine()) != null) {
+                        stringBuilder.append(receiveString);
+                    }
+                    inputStream.close();
+                    ret = stringBuilder.toString();
+
+                    JSONArray jsonArray = new JSONArray(ret);
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        if (jsonObject.getInt("ID") == From_Reg_Id){
+                            Start_Latitude = jsonObject.getDouble("RegionLatitude");
+                            Start_Longitude = jsonObject.getDouble("RegionLongitude");
+                        }
+                    }
+                }
+            } catch (FileNotFoundException e) {
+                Log.e("login activity", "File not found: " + e.toString());
+            } catch (IOException e) {
+                Log.e("login activity", "Can not read file: " + e.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }    // back thread classs
+
 
     @Override
     public void onBackPressed() {
