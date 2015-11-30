@@ -33,6 +33,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.analytics.HitBuilders;
+import com.mobileapptracker.MobileAppTracker;
 import com.pkmmte.view.CircularImageView;
 
 import org.json.JSONArray;
@@ -102,6 +103,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     TextView Account_Email;
     EditText Edit_Mobile_Verify_txt;
     String VERIFICATION_CODE="";
+    public MobileAppTracker mobileAppTracker = null;
 
     public static HomePage getInstance() {
         return HomaPageActivity;
@@ -110,6 +112,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
 
         HomaPageActivity = this;
 
@@ -149,6 +152,14 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         setContentView(R.layout.home_page_approved);
         initToolbar();
         c = this;
+
+
+        mobileAppTracker = MobileAppTracker.init(getApplicationContext(),
+                "189698",
+                "172510cf81e7148e5a01851f65fb0c7e");
+
+
+
 
         name = (TextView) findViewById(R.id.tv_name_home);
         nat = (TextView) findViewById(R.id.nat_home);
@@ -611,6 +622,11 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     @Override
     protected void onResume() {
         super.onResume();
+
+        // Get source of open for app re-engagement
+        mobileAppTracker.setReferralSources(this);
+        // MAT will not function unless the measureSession call is included
+        mobileAppTracker.measureSession();
 
 
     }

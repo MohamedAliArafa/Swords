@@ -36,4 +36,5 @@ dependencies {
     compile 'com.pkmmte.view:circularimageview:1.1'
     compile 'soap:soap:2.3.1'
     compile 'com.google.android.gms:play-services-analytics:8.3.0'
+    compile 'com.google.android.gms:play-services-ads:8.3.0'
 }
