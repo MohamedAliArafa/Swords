@@ -16,8 +16,8 @@ import rta.ae.sharekni.LoginApproved;
 import rta.ae.sharekni.QSearch;
 import rta.ae.sharekni.R;
 import rta.ae.sharekni.RegisterNewTest;
-import rta.ae.sharekni.TakeATour;
 import rta.ae.sharekni.Sharekni;
+import rta.ae.sharekni.TakeATour;
 
 /*
  * Created by nezar on 8/11/2015.

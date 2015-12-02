@@ -9,12 +9,8 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
-
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
-
-
-
 
     <uses-feature
         android:name="android.hardware.telephony"
@@ -51,9 +47,6 @@
             android:name=".SharekniOld"
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait">
-
-
-
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -113,19 +106,19 @@
         <activity
             android:name=".Arafa.Activities.BestDriversBeforeLogin"
             android:label="@string/title_activity_home_page_test"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Arafa.Activities.BestRideBeforeLogin"
             android:label="@string/title_activity_home_page_test"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Arafa.Activities.Profile"
             android:label="@string/title_activity_home_page_test"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Arafa.Activities.Route"
             android:label="@string/title_activity_home_page_test"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LoginApproved"
             android:label="@string/title_activity_login_approved"
@@ -152,7 +145,7 @@
         <activity
             android:name=".TopRidesAfterLogin"
             android:label="@string/title_activity_top_rides_after_login"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".TopDriversAfterLogin"
             android:label="@string/title_activity_top_drivers_after_login"
@@ -165,7 +158,7 @@
         <activity
             android:name=".MostRidesDetails"
             android:label="@string/title_activity_most_rides_details"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ForgetPassword"
             android:label="@string/title_activity_forget_password"
@@ -205,20 +198,20 @@
         <activity
             android:name=".QuickSearchResults"
             android:label="@string/title_activity_quick_search_results"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".DriverCreateCarPool"
             android:label="@string/title_activity_driver_create_car_pool"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".QSearch"
             android:label="@string/title_activity_qsearch"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Advanced_Search"
             android:label="@string/title_activity_advanced__search"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base"></activity>
+            android:theme="@style/AppTheme.Base" />
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -254,7 +247,7 @@
             android:name=".RideDetailsPassenger"
             android:label="@string/title_activity_ride_details_passenger"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Base"></activity>
+            android:theme="@style/AppTheme.Base" />
         <activity
             android:name=".DriverRequestDetails"
             android:label="@string/title_activity_driver_request_details"
@@ -372,24 +365,23 @@
         </activity>
         <activity
             android:name=".ViewPermit"
-            android:screenOrientation="landscape"></activity>
-        <activity android:name=".Privacy_Policy"></activity>
-        <activity android:name=".Destination_Activity"></activity>
-        <activity android:name=".Display_My_Vehicles"></activity>
-
-
+            android:screenOrientation="landscape" />
+        <activity android:name=".Privacy_Policy" />
+        <activity android:name=".Destination_Activity" />
+        <activity android:name=".Display_My_Vehicles" />
 
         <receiver android:name=".SmsReceiver">
             <intent-filter>
-                <action android:name=
-                    "android.provider.Telephony.SMS_RECEIVED" />
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
-        </receiver><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        </receiver>
+        <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
 
         <receiver android:name=".MyMobileAppTrackerReceiver">
             <intent-filter>
@@ -397,7 +389,7 @@
             </intent-filter>
         </receiver>
 
-
+        <activity android:name=".MrMohamedAliTest"></activity>
     </application>
 
 </manifest>

@@ -161,6 +161,8 @@ public class GetData {
 
     String GetMapLookUpUrl = DOMAIN + "GetFromOnlyMostDesiredRides";
 
+    String GetAllMostDesiredRidesURl = DOMAIN + "GetAllMostDesiredRides?";
+
 
     public void QuickSearchForm(int myId, char gender, String time
             , int fromEmId, int fromRegId, int toEmId, int toRegId
@@ -423,6 +425,21 @@ public class GetData {
         json = new JSONArray(obj.getData().toString());
         return json;
     }
+
+
+    public JSONArray AllMostDesiredRoutes() throws JSONException {
+        Log.d("All Rides :  ", GetAllMostDesiredRidesURl);
+        JSONArray json;
+        HandleXML obj = new HandleXML(GetAllMostDesiredRidesURl);
+        obj.fetchXML();
+        while ((obj.parsingComplete && !obj.error)) ;
+        json = new JSONArray(obj.getData().toString());
+        return json;
+    }
+
+
+
+
 
     public String Passenger_SendAlert(int Driver_ID, int Passenger_ID, int Route_ID, String Remarks) throws JSONException {
         String json;
