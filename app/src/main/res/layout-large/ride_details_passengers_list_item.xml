@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="wrap_content"
+    android:paddingBottom="5dp"
     >
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/AccountName"
-    android:text="AccountName Abcd "
-    android:textSize="21sp"
-    android:layout_marginTop="20dp"
-    android:maxLength="15"
-    android:layout_marginBottom="10dp"
-    />
+    <TextView
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/AccountName"
+        android:text="AccountName"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        android:maxLength="12"
+        android:layout_marginBottom="10dp"
+        />
 
 
     <TextView
@@ -26,49 +27,65 @@
         android:layout_alignBottom="@+id/AccountName"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
-        android:maxLength="17"
-        android:textSize="21sp"
+        android:maxLength="10"
 
         />
 
 
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/chat"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@+id/AccountName"
-        android:id="@+id/passenger_lits_item_chat"
-        />
+    <!--<ImageView-->
+    <!--android:layout_width="25dp"-->
+    <!--android:layout_height="25dp"-->
+    <!--android:src="@drawable/chat"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_alignParentEnd="true"-->
+    <!--android:layout_alignBottom="@+id/AccountName"-->
+    <!--android:id="@+id/passenger_lits_item_chat"-->
+    <!--/>-->
+
+    <!--<ImageView-->
+    <!--android:layout_width="25dp"-->
+    <!--android:layout_height="25dp"-->
+    <!--android:src="@drawable/add"-->
+    <!--android:layout_alignBottom="@+id/AccountName"-->
+    <!--android:layout_toLeftOf="@+id/passenger_lits_item_chat"-->
+    <!--android:layout_toStartOf="@+id/passenger_lits_item_chat"-->
+    <!--android:layout_marginRight="8dp"-->
+    <!--android:layout_marginEnd="8dp"-->
+    <!--android:id="@+id/passenger_lits_item_add"-->
+    <!--/>-->
+    <!-- -->
 
     <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/add"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/call"
         android:layout_alignBottom="@+id/AccountName"
-        android:layout_toLeftOf="@+id/passenger_lits_item_chat"
-        android:layout_toStartOf="@+id/passenger_lits_item_chat"
+        android:layout_toLeftOf="@+id/Driver_Remove_Passenger"
+        android:layout_toStartOf="@+id/Driver_Remove_Passenger"
         android:layout_marginRight="8dp"
         android:layout_marginEnd="8dp"
-        android:id="@+id/passenger_lits_item_add"
+        android:paddingTop="5dp"
+        android:id="@+id/passenger_lits_item_call"
         />
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/call"
-            android:layout_alignBottom="@+id/AccountName"
-            android:layout_toLeftOf="@+id/passenger_lits_item_add"
-            android:layout_toStartOf="@+id/passenger_lits_item_add"
-            android:layout_marginRight="8dp"
-            android:layout_marginEnd="8dp"
-            android:paddingTop="5dp"
-            android:id="@+id/passenger_lits_item_call"
-            />
 
     <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/Driver_Remove_Passenger"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/deletered"
+        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp"
+        android:paddingTop="5dp"
+        android:layout_alignBottom="@+id/AccountName"
+        />
+
+
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:src="@drawable/msg"
         android:layout_alignBottom="@+id/AccountName"
         android:layout_toLeftOf="@+id/passenger_lits_item_call"
@@ -76,11 +93,21 @@
         android:layout_marginRight="8dp"
         android:layout_marginEnd="8dp"
         android:paddingTop="5dp"
+        android:id="@+id/passenger_lits_item_Msg"
         />
 
 
 
-
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingBar2"
+        android:layout_below="@+id/AccountName"
+        android:isIndicator="false"
+        style="@android:style/Widget.DeviceDefault.RatingBar.Indicator"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        />
 
 
 </RelativeLayout>

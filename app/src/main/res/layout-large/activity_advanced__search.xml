@@ -4,16 +4,18 @@
     android:layout_height="match_parent"
     tools:context="com.example.nezar.materialtest.QuickSearch">
 
+
     <include
         android:id="@+id/app_bar"
         layout="@layout/app_bar" />
 
+
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/registerbackgroundtest"
         android:layout_below="@+id/app_bar"
-        >
+        android:background="@drawable/registerbackgroundtest">
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -24,27 +26,26 @@
             <Button
                 android:id="@+id/dvanced_Destination"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:background="@drawable/borders_quicksearch_btn"
-                android:text="@string/destination"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:layout_marginTop="20dp"
-                android:textAllCaps="false"
+                android:layout_height="60dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/borders_quicksearch_btn"
+                android:text="@string/destination"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
 
                 />
-
 
 
             <RelativeLayout
                 android:id="@+id/advanced_search_pickup_relative"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginBottom="10dp"
+                android:layout_height="40dp"
                 android:layout_below="@+id/dvanced_Destination"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
@@ -54,13 +55,13 @@
 
                 <TextView
                     android:id="@+id/quickSearch_pickUp"
-                    android:layout_width="100dp"
+                    android:layout_width="70dp"
                     android:layout_height="match_parent"
+                    android:gravity="center_vertical|center_horizontal"
                     android:text="@string/pickup"
                     android:textAllCaps="false"
                     android:textColor="#9e9e9e"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:textSize="18sp"
+
                     />
 
                 <TextView
@@ -74,7 +75,7 @@
                     android:gravity="center_vertical"
                     android:text="@string/start_point"
                     android:textColor="#9e9e9e"
-                    android:textSize="18sp"
+
                     />
 
             </RelativeLayout>
@@ -83,7 +84,7 @@
             <RelativeLayout
                 android:id="@+id/advanced_search_dropOff_relative"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="40dp"
                 android:layout_below="@+id/advanced_search_pickup_relative"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="20dp"
@@ -95,14 +96,12 @@
 
                 <TextView
                     android:id="@+id/advanced_search__Dropoff"
-                    android:layout_width="100dp"
+                    android:layout_width="70dp"
                     android:layout_height="match_parent"
+                    android:gravity="center_vertical|center_horizontal"
                     android:text="@string/dropoff"
                     android:textAllCaps="false"
-                    android:textColor="#9e9e9e"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:textSize="18sp"
-                    />
+                    android:textColor="#9e9e9e" />
 
                 <TextView
                     android:id="@+id/Advanced_txt_Select_Dest"
@@ -114,17 +113,15 @@
                     android:layout_toRightOf="@+id/advanced_search__Dropoff"
                     android:gravity="center_vertical"
                     android:text="@string/end_point"
-                    android:textColor="#9e9e9e"
-                    android:textSize="18sp"
-                    />
+                    android:textColor="#9e9e9e" />
 
             </RelativeLayout>
 
 
             <RelativeLayout
                 android:id="@+id/advanced_search_calendar_relative"
-                android:layout_width="180dp"
-                android:layout_height="80dp"
+                android:layout_width="140dp"
+                android:layout_height="60dp"
                 android:layout_below="@+id/advanced_search_dropOff_relative"
                 android:layout_marginBottom="10dp"
                 android:layout_marginEnd="5dp"
@@ -133,18 +130,16 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/user_register_border_quicksearch"
-                android:gravity="center"
-                >
+                android:gravity="center">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="5dp"
-                    android:layout_marginRight="5dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:layout_marginStart="5dp"
-                    android:gravity="center_horizontal|center_vertical"
-                    >
+                    android:gravity="center_horizontal|center_vertical">
 
 
                     <TextView
@@ -156,20 +151,20 @@
                         android:layout_marginStart="5dp"
                         android:layout_toEndOf="@+id/imageview_search"
                         android:layout_toRightOf="@+id/imageview_search"
-                        android:text="@string/start_date"
-                        android:textColor="@color/primaryColor"
-                        android:textSize="18sp"
                         android:lines="1"
                         android:maxLines="1"
                         android:singleLine="true"
+                        android:text="@string/start_date"
+                        android:textColor="@color/primaryColor"
+                        android:textSize="12sp"
 
                         />
 
 
                     <ImageView
                         android:id="@+id/imageview_search"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
@@ -185,12 +180,11 @@
                         android:layout_marginStart="5dp"
                         android:layout_toEndOf="@+id/imageview_search"
                         android:layout_toRightOf="@+id/imageview_search"
-                        android:textColor="@color/primaryColor"
-                        android:textSize="18sp"
                         android:lines="1"
                         android:maxLines="1"
                         android:singleLine="true"
-                        />
+                        android:textColor="@color/primaryColor"
+                        android:textSize="16sp" />
                 </RelativeLayout>
 
             </RelativeLayout>
@@ -198,8 +192,8 @@
 
             <RelativeLayout
                 android:id="@+id/advanced_search_time_relative"
-                android:layout_width="180dp"
-                android:layout_height="80dp"
+                android:layout_width="140dp"
+                android:layout_height="60dp"
                 android:layout_alignEnd="@+id/advanced_search_dropOff_relative"
                 android:layout_alignRight="@+id/advanced_search_dropOff_relative"
                 android:layout_below="@+id/advanced_search_dropOff_relative"
@@ -217,11 +211,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="5dp"
-                    android:layout_marginRight="5dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:layout_marginStart="5dp"
-                    android:gravity="center_horizontal|center_vertical"
-                    >
+                    android:gravity="center_horizontal|center_vertical">
 
 
                     <TextView
@@ -233,20 +226,20 @@
                         android:layout_marginStart="5dp"
                         android:layout_toEndOf="@+id/imageview_search_time"
                         android:layout_toRightOf="@+id/imageview_search_time"
-                        android:text="@string/start_time"
-                        android:textColor="@color/primaryColor"
-                        android:textSize="18sp"
                         android:lines="1"
                         android:maxLines="1"
                         android:singleLine="true"
+                        android:text="@string/start_time"
+                        android:textColor="@color/primaryColor"
+                        android:textSize="13sp"
 
                         />
 
 
                     <ImageView
                         android:id="@+id/imageview_search_time"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
@@ -264,12 +257,11 @@
                         android:layout_marginStart="5dp"
                         android:layout_toEndOf="@+id/imageview_search_time"
                         android:layout_toRightOf="@+id/imageview_search_time"
-                        android:textColor="@color/primaryColor"
-                        android:textSize="18sp"
                         android:lines="1"
                         android:maxLines="1"
                         android:singleLine="true"
-                        />
+                        android:textColor="@color/primaryColor"
+                        android:textSize="16sp" />
 
                 </RelativeLayout>
 
@@ -279,12 +271,12 @@
             <RelativeLayout
                 android:id="@+id/single_periodic_relative"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="40dp"
                 android:layout_below="@+id/advanced_search_time_relative"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/user_register_border">
 
                 <ImageView
@@ -311,36 +303,77 @@
                     android:id="@+id/malefemale_txt2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginRight="25dp"
                     android:layout_toLeftOf="@+id/singleRide_Periodic"
                     android:layout_toStartOf="@+id/singleRide_Periodic"
                     android:text="@string/single"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="25dp"
-                    android:layout_marginEnd="25dp"
                     android:textColor="@color/primaryColor"
-                    android:textSize="18sp"
-                    />
+                    android:textSize="16sp" />
+
                 <TextView
                     android:id="@+id/femalemale_txt2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/Periodic_SingleRide"
-                    android:layout_toEndOf="@+id/Periodic_SingleRide"
-                    android:text="@string/periodic"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="25dp"
                     android:layout_marginStart="25dp"
+                    android:layout_toEndOf="@+id/Periodic_SingleRide"
+                    android:layout_toRightOf="@+id/Periodic_SingleRide"
+                    android:text="@string/periodic"
                     android:textColor="@color/gray_before_login"
-                    android:textSize="18sp"
-                    />
+                    android:textSize="16sp" />
 
 
+            </RelativeLayout>
 
 
+            <RelativeLayout
+                android:id="@+id/save_search_relative"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/single_periodic_relative"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/user_register_border">
+
+                <ImageView
+                    android:id="@+id/save_off"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/saveoff" />
+
+                <ImageView
+                    android:id="@+id/save_on"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/slidefemale"
+                    android:visibility="invisible" />
 
 
-
-
+                <TextView
+                    android:id="@+id/save_search_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_toEndOf="@+id/save_on"
+                    android:layout_toRightOf="@+id/save_on"
+                    android:text="@string/saved_search"
+                    android:textColor="@color/gray_before_login"
+                    android:textSize="16sp" />
 
             </RelativeLayout>
 
@@ -349,15 +382,14 @@
                 android:id="@+id/advanced_search_txt_optional"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/single_periodic_relative"
+                android:layout_below="@+id/save_search_relative"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/optional"
                 android:textColor="@color/primaryColor"
-                android:textSize="22sp"
-                />
+                android:textSize="20sp" />
 
 
             <View
@@ -374,7 +406,7 @@
             <AutoCompleteTextView
                 android:id="@+id/advanced_search_Nat"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/view_underline"
@@ -385,7 +417,9 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/borders_quicksearch"
                 android:cursorVisible="false"
+                android:gravity="center"
                 android:hint="@string/pref_nat"
+                android:imeOptions="actionDone"
                 android:lines="1"
                 android:maxLines="1"
                 android:paddingLeft="10dp"
@@ -395,7 +429,8 @@
                 android:singleLine="true"
                 android:textAllCaps="false"
                 android:textColor="@color/primaryColor"
-                android:textSize="18sp"
+                android:textColorHint="@color/primaryColor"
+                android:textSize="15sp"
 
                 />
 
@@ -403,47 +438,39 @@
             <TextView
                 android:id="@+id/advanced_search_Preferred_Lang_txt"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@drawable/borders_quicksearch"
+                android:layout_height="50dp"
                 android:layout_below="@+id/advanced_search_Nat"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/borders_quicksearch"
+                android:gravity="center"
                 android:hint="@string/choose_lang"
                 android:textColor="@color/primaryColor"
-                android:gravity="center"
-                android:textColorHint="@color/primaryColor"
-                android:textSize="18sp"
-                />
+                android:textColorHint="@color/primaryColor" />
 
 
             <TextView
                 android:id="@+id/advanced_search_Age_Range_txt"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@drawable/borders_quicksearch"
+                android:layout_height="50dp"
                 android:layout_below="@+id/advanced_search_Preferred_Lang_txt"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/borders_quicksearch"
+                android:gravity="center"
                 android:hint="@string/choose_age"
                 android:textColor="@color/primaryColor"
-                android:gravity="center"
-                android:textColorHint="@color/primaryColor"
-                android:textSize="18sp"
-
-                />
-
-
-
+                android:textColorHint="@color/primaryColor" />
 
 
             <RelativeLayout
                 android:id="@+id/advanced_search_Male_Female"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="40dp"
                 android:layout_below="@+id/advanced_search_Age_Range_txt"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="20dp"
@@ -475,31 +502,27 @@
                     android:id="@+id/malefemale_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginRight="25dp"
                     android:layout_toLeftOf="@+id/Advanced_malefemale1"
                     android:layout_toStartOf="@+id/Advanced_malefemale1"
                     android:text="@string/reg_gender_male"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="25dp"
-                    android:layout_marginEnd="25dp"
                     android:textColor="@color/primaryColor"
-                    android:textSize="18sp"
-                    />
+                    android:textSize="16sp" />
+
                 <TextView
                     android:id="@+id/femalemale_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/Advanced_femalemale2"
-                    android:layout_toEndOf="@+id/Advanced_femalemale2"
-                    android:text="@string/reg_gender_female"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="25dp"
                     android:layout_marginStart="25dp"
+                    android:layout_toEndOf="@+id/Advanced_femalemale2"
+                    android:layout_toRightOf="@+id/Advanced_femalemale2"
+                    android:text="@string/reg_gender_female"
                     android:textColor="@color/gray_before_login"
-                    android:textSize="18sp"
-                    />
-
-
-
+                    android:textSize="16sp" />
 
 
             </RelativeLayout>
@@ -507,17 +530,16 @@
 
             <Button
                 android:id="@+id/btn_advanced_search_page"
-                android:layout_width="160dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/advanced_search_Male_Female"
                 android:layout_centerHorizontal="true"
+                android:layout_marginBottom="30dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/user_register_border_button"
                 android:text="@string/search"
                 android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                />
+                android:textColor="#FFFFFF" />
 
         </RelativeLayout>
 

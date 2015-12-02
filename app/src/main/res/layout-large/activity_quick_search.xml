@@ -28,7 +28,7 @@
                 <Button
                     android:id="@+id/quick_Destination"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
+                    android:layout_height="60dp"
                     android:background="@drawable/borders_quicksearch_btn"
                     android:text="@string/destination"
                     android:textColor="#FFFFFF"
@@ -37,7 +37,7 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:textSize="22sp"
+                    android:textSize="18sp"
 
                     />
 
@@ -45,25 +45,24 @@
                 <RelativeLayout
                     android:id="@+id/pickup_relative"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="40dp"
                     android:layout_below="@+id/quick_Destination"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/user_register_border_quicksearch"
                     android:orientation="horizontal">
 
 
                     <TextView
                         android:id="@+id/quickSearch_pickUp"
-                        android:layout_width="100dp"
+                        android:layout_width="70dp"
                         android:layout_height="match_parent"
                         android:text="@string/pickup"
                         android:textAllCaps="false"
                         android:textColor="#9e9e9e"
                         android:gravity="center_vertical|center_horizontal"
-                        android:textSize="18sp"
                         />
 
                     <TextView
@@ -77,7 +76,6 @@
                         android:text="@string/start_point"
                         android:textColor="#9e9e9e"
                         android:id="@+id/txt_Selecet_Start_Point"
-                        android:textSize="18sp"
 
                         />
 
@@ -87,24 +85,24 @@
                 <RelativeLayout
                     android:id="@+id/dropOff_relative"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="40dp"
                     android:layout_below="@+id/pickup_relative"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/user_register_border_quicksearch"
                     android:orientation="horizontal">
 
 
                     <TextView
                         android:id="@+id/quickSearch_Dropoff"
-                        android:layout_width="100dp"
+                        android:layout_width="70dp"
                         android:layout_height="match_parent"
                         android:text="@string/dropoff"
                         android:textColor="#9e9e9e"
                         android:gravity="center_vertical|center_horizontal"
-                        android:textSize="18sp"
+
                         />
 
                     <TextView
@@ -118,7 +116,6 @@
                         android:text="@string/end_point"
                         android:id="@+id/txt_Select_Dest"
                         android:textColor="#9e9e9e"
-                        android:textSize="18sp"
                         />
 
                 </RelativeLayout>
@@ -126,15 +123,15 @@
 
                 <RelativeLayout
                     android:id="@+id/calendar_relative"
-                    android:layout_width="180dp"
-                    android:layout_height="80dp"
+                    android:layout_width="140dp"
+                    android:layout_height="60dp"
                     android:layout_below="@+id/dropOff_relative"
                     android:layout_marginBottom="10dp"
                     android:layout_marginEnd="5dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/user_register_border_quicksearch"
                     android:gravity="center"
                     >
@@ -157,7 +154,7 @@
                             android:layout_marginStart="5dp"
                             android:text="@string/start_date"
                             android:textColor="@color/primaryColor"
-                            android:textSize="18sp"
+                            android:textSize="13sp"
                             android:layout_centerVertical="true"
                             android:lines="1"
                             android:maxLines="1"
@@ -170,8 +167,8 @@
 
                         <ImageView
                             android:id="@+id/imageview_search"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentStart="true"
                             android:layout_centerVertical="true"
@@ -188,7 +185,7 @@
                             android:layout_toEndOf="@+id/imageview_search"
                             android:layout_toRightOf="@+id/imageview_search"
                             android:textColor="@color/primaryColor"
-                            android:textSize="18sp"
+                            android:textSize="16sp"
                             android:id="@+id/search_txt_yaer"
                             android:lines="1"
                             android:maxLines="1"
@@ -208,13 +205,13 @@
                     android:layout_alignEnd="@+id/dropOff_relative"
                     android:layout_alignRight="@+id/dropOff_relative"
                     android:id="@+id/time_relative"
-                    android:layout_width="180dp"
-                    android:layout_height="80dp"
+                    android:layout_width="140dp"
+                    android:layout_height="60dp"
                     android:layout_below="@+id/dropOff_relative"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/user_register_border_quicksearch"
                     android:gravity="center"
                     >
@@ -245,15 +242,15 @@
                             android:singleLine="true"
                             android:textColor="@color/primaryColor"
                             android:layout_centerVertical="true"
-                            android:textSize="18sp"
+                            android:textSize="13sp"
 
                             />
 
 
                         <ImageView
                             android:id="@+id/imageview_search_time"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentStart="true"
                             android:layout_centerVertical="true"
@@ -271,7 +268,7 @@
                             android:layout_toEndOf="@+id/imageview_search_time"
                             android:layout_toRightOf="@+id/imageview_search_time"
                             android:textColor="@color/primaryColor"
-                            android:textSize="18sp"
+                            android:textSize="16sp"
                             android:id="@+id/txt_time_selected"
                             android:lines="1"
                             android:maxLines="1"
@@ -281,21 +278,71 @@
 
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:id="@+id/single_periodic_relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/time_relative"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/user_register_border">
+
+                    <ImageView
+                        android:id="@+id/save_off"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/saveoff"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        />
+
+                    <ImageView
+                        android:id="@+id/save_on"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/slidefemale"
+                        android:visibility="invisible"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        />
+
+
+
+                    <TextView
+                        android:id="@+id/save_search_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginStart="25dp"
+                        android:layout_toEndOf="@+id/save_on"
+                        android:layout_toRightOf="@+id/save_on"
+                        android:text="@string/saved_search"
+                        android:textColor="@color/gray_before_login"
+                        android:textSize="16sp" />
+
+
+                </RelativeLayout>
+
+
 
                 <Button
                     android:id="@+id/btn_search_page"
-                    android:layout_width="160dp"
-                    android:layout_height="60dp"
-                    android:layout_below="@+id/time_relative"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/single_periodic_relative"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/user_register_border_button"
                     android:text="@string/search"
                     android:textAllCaps="false"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp"
-
-                    />
+                    android:textColor="#FFFFFF" />
 
 
             </RelativeLayout>
@@ -445,7 +492,7 @@
 
 
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="100dp"
             android:background="@color/primaryColor"
             android:layout_alignParentBottom="true"
             android:orientation="vertical"
@@ -470,9 +517,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@color/primaryColor"
-                    android:gravity="center_vertical"
-                    >
+                    android:src="@color/primaryColor">
 
 
                     <ImageView
@@ -480,6 +525,7 @@
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginTop="20dp"
                         android:src="@drawable/searchoptionmaplookup" />
 
 
@@ -491,7 +537,7 @@
                         android:layout_marginTop="5dp"
                         android:text="@string/map_lookup"
                         android:textColor="#FFFFFF"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
 
                 </RelativeLayout>
@@ -508,7 +554,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:src="@color/primaryColor"
-                    android:gravity="center_vertical"
+
                     >
 
                     <ImageView
@@ -516,6 +562,7 @@
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginTop="20dp"
                         android:src="@drawable/searchoptiontoprides" />
 
                     <TextView
@@ -526,7 +573,7 @@
                         android:layout_marginTop="5dp"
                         android:text="@string/most_rides"
                         android:textColor="#FFFFFF"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                 </RelativeLayout>
 
@@ -540,15 +587,14 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@color/primaryColor"
-                    android:gravity="center_vertical"
-                    >
+                    android:src="@color/primaryColor">
 
                     <ImageView
                         android:id="@+id/im11"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginTop="20dp"
                         android:src="@drawable/searchoptionadvanced" />
 
                     <TextView
@@ -560,7 +606,7 @@
                         android:layout_marginTop="5dp"
                         android:text="@string/advanced_search"
                         android:textColor="#FFFFFF"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                 </RelativeLayout>
 

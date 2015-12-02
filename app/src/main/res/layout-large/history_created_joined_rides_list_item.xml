@@ -3,27 +3,22 @@
     android:id="@+id/linear2"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="10dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    android:layout_marginStart="10dp"
     android:layout_marginTop="25dp"
-    android:paddingBottom="10dp">
+    android:paddingBottom="5dp"
+    android:background="@color/white"
+    >
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/borders"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:paddingTop="15dp"
+        android:paddingTop="20dp"
+        android:id="@+id/Relative_for_divider"
+
 
         >
 
@@ -112,6 +107,7 @@
             android:text="@string/city_to_txt"
             android:textSize="16sp"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
             />
 
         <TextView
@@ -140,60 +136,60 @@
             android:text="@string/district_name_2"
             android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/StartFromTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/em_to"
-            android:layout_alignStart="@+id/em_to"
-            android:layout_below="@+id/em_to"
-            android:layout_marginTop="10dp"
-            android:lines="1"
-            android:maxLength="8"
-            android:maxLines="1"
-            android:text="00:00 AM"
-            android:textSize="16sp"
+        <!--<TextView-->
+            <!--android:id="@+id/StartFromTime"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignLeft="@+id/em_to"-->
+            <!--android:layout_alignStart="@+id/em_to"-->
+            <!--android:layout_below="@+id/em_to"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:lines="1"-->
+            <!--android:maxLength="8"-->
+            <!--android:maxLines="1"-->
+            <!--android:text="00:00 AM"-->
+            <!--android:textSize="16sp"-->
 
-            />
+            <!--/>-->
 
         <!--<TextView-->
-        <!--android:id="@+id/comma6"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignBottom="@+id/StartFromTime"-->
-        <!--android:layout_marginLeft="5dp"-->
-        <!--android:layout_marginRight="5dp"-->
-        <!--android:layout_toEndOf="@+id/StartFromTime"-->
-        <!--android:layout_toRightOf="@+id/StartFromTime"-->
-        <!--android:text="-"-->
-        <!--android:textSize="16sp"-->
+            <!--android:id="@+id/comma6"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignBottom="@+id/StartFromTime"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:layout_marginRight="5dp"-->
+            <!--android:layout_toEndOf="@+id/StartFromTime"-->
+            <!--android:layout_toRightOf="@+id/StartFromTime"-->
+            <!--android:text="-"-->
+            <!--android:textSize="16sp"-->
 
 
-        <!--/>-->
+            <!--/>-->
 
         <!--<TextView-->
-        <!--android:id="@+id/EndToTime_"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignBottom="@+id/StartFromTime"-->
-        <!--android:layout_toEndOf="@+id/comma6"-->
-        <!--android:layout_toRightOf="@+id/comma6"-->
-        <!--android:lines="1"-->
-        <!--android:maxLength="8"-->
-        <!--android:maxLines="1"-->
-        <!--android:text="00:24 PM"-->
-        <!--android:textSize="16sp" />-->
+            <!--android:id="@+id/EndToTime_"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignBottom="@+id/StartFromTime"-->
+            <!--android:layout_toEndOf="@+id/comma6"-->
+            <!--android:layout_toRightOf="@+id/comma6"-->
+            <!--android:lines="1"-->
+            <!--android:maxLength="8"-->
+            <!--android:maxLines="1"-->
+            <!--android:text="00:24 PM"-->
+            <!--android:textSize="16sp" />-->
 
 
-        <TextView
-            android:id="@+id/driver_profile_dayWeek"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/StartFromTime"
-            android:layout_alignStart="@+id/StartFromTime"
-            android:layout_below="@+id/StartFromTime"
-            android:layout_marginTop="10dp"
-            android:textSize="16sp" />
+        <!--<TextView-->
+            <!--android:id="@+id/driver_profile_dayWeek"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignLeft="@+id/StartFromTime"-->
+            <!--android:layout_alignStart="@+id/StartFromTime"-->
+            <!--android:layout_below="@+id/StartFromTime"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:textSize="16sp" />-->
 
 
         <!--<RelativeLayout-->
@@ -268,15 +264,16 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/testborder1"
         android:gravity="center_horizontal|center"
         android:paddingEnd="20dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingStart="20dp"
-        android:text="RouteName"
+        android:text="@string/route_name2"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        />
 
 
 </RelativeLayout>
