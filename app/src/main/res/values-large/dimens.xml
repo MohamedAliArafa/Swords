@@ -7,4 +7,10 @@
     <dimen name="navy_list_item_relative_height">90dp</dimen>
 
 
+    <dimen name="Register_UserType_Image_Height">90dp</dimen>
+    <dimen name="Register_UserTypre_Image_Width">90dp</dimen>
+    <dimen name="Register_Input_Fields_Height">60dp</dimen>
+    <dimen name="Register_InputField_textSize">18sp</dimen>
+
+
 </resources>

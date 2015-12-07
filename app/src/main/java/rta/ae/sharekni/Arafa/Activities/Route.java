@@ -289,7 +289,7 @@ public class Route extends AppCompatActivity {
                         }else {
                             PrefLanguageEnName.setText(json.getString(getString(R.string.pref_lang)));
                         }
-                        if (json.getInt("AgeRangeID") == 0){
+                        if (json.getString("AgeRangeID").equals("0") || json.getString("AgeRangeID").equals("null") ){
                             AgeRange.setText(getString(R.string.not_set));
                         }else {
                             AgeRange.setText(json.getString("AgeRange"));
