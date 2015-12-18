@@ -96,6 +96,9 @@ public class Route extends AppCompatActivity {
     loadingReviews loadingReviews;
     Activity c;
 
+    String FromRegionEnName_Str, ToRegionEnName_Str, FromEmirateEnName_Str, ToEmirateEnName_Str;
+
+
     int Vehicle_Id_Permit;
     GetData j = new GetData();
 
@@ -266,6 +269,12 @@ public class Route extends AppCompatActivity {
                         ToRegionEnName.setText(json.getString(getString(R.string.to_reg_en_name)));
                         FromEmirateEnName.setText(json.getString(getString(R.string.from_em_en_name)));
                         ToEmirateEnName.setText(json.getString(getString(R.string.to_em_en_name)));
+
+                        FromRegionEnName_Str = (json.getString(getString(R.string.from_reg_en_name)));
+                        ToRegionEnName_Str = (json.getString(getString(R.string.fto_reg_en_name)));
+                        FromEmirateEnName_Str = (json.getString(getString(R.string.from_em_en_name)));
+                        ToEmirateEnName_Str = (json.getString(getString(R.string.to_em_en_name)));
+
 
                         str_StartFromTime = json.getString("StartFromTime");
 
@@ -453,7 +462,7 @@ public class Route extends AppCompatActivity {
             mMap = googleMap;
 
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
-                    (new LatLng(StartLat, EndLng), 8.1f));
+                    (new LatLng(StartLat, EndLng), 12.1f));
             mMap.getUiSettings().setMapToolbarEnabled(false);
             mMap.getUiSettings().setZoomControlsEnabled(true);
             mMap.getUiSettings().setZoomGesturesEnabled(true);
@@ -472,13 +481,13 @@ public class Route extends AppCompatActivity {
 
             final Marker markerZero = mMap.addMarker(new MarkerOptions().
                     position(new LatLng(StartLat, StartLng))
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor)));
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor)).snippet(FromRegionEnName_Str).title(FromEmirateEnName_Str));
 
-            final Marker markerZero2 = mMap.addMarker(new MarkerOptions().
+             mMap.addMarker(new MarkerOptions().
                     position(new LatLng(EndLat, EndLng))
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor)));
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor)).snippet(ToRegionEnName_Str).title(ToEmirateEnName_Str));
 
-
+            markerZero.showInfoWindow();
         }
     }
 

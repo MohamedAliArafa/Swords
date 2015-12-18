@@ -64,7 +64,6 @@ public class RideDetailsPassenger extends AppCompatActivity {
             FromRegionEnName, ToRegionEnName, FromEmirateEnName, ToEmirateEnName, StartFromTime, EndToTime_, AgeRange, PreferredGender, IsSmoking, ride_details_day_of_week, NationalityEnName, PrefLanguageEnName;
 
 
-
     String Gender_ste, Nat_txt, Smokers_str;
     int No_Seats;
 
@@ -109,6 +108,9 @@ public class RideDetailsPassenger extends AppCompatActivity {
     RelativeLayout Relative_REviews;
     TextView Relative_REviews_Address_2;
     int NoOfStars;
+
+    String FromRegionEnName_Str, ToRegionEnName_Str, FromEmirateEnName_Str, ToEmirateEnName_Str;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -189,7 +191,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
                 ratingBar.setVisibility(View.VISIBLE);
                 Passenger_Review_Driver_Btn.setVisibility(View.VISIBLE);
 
-            }else {
+            } else {
                 Join_Ride_btn.setVisibility(View.VISIBLE);
                 Passenger_Review_Driver_Btn.setVisibility(View.INVISIBLE);
             }
@@ -209,7 +211,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
     }  //  on create
 
 
-    private class rateDriver extends AsyncTask{
+    private class rateDriver extends AsyncTask {
 
         String res;
 
@@ -217,9 +219,9 @@ public class RideDetailsPassenger extends AppCompatActivity {
         protected void onPostExecute(Object o) {
             super.onPostExecute(o);
             Log.d("res", res);
-            if (res.equals("\"1\"")){
+            if (res.equals("\"1\"")) {
                 Toast.makeText(RideDetailsPassenger.this, R.string.rate_submitted, Toast.LENGTH_SHORT).show();
-            }else {
+            } else {
                 Toast.makeText(RideDetailsPassenger.this, R.string.rate_submit_failed, Toast.LENGTH_SHORT).show();
             }
         }
@@ -228,7 +230,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
         protected Object doInBackground(Object[] params) {
             GetData gd = new GetData();
             try {
-               res = gd.Passenger_RateDriver(Driver_ID, Passenger_ID, Route_ID, NoOfStars);
+                res = gd.Passenger_RateDriver(Driver_ID, Passenger_ID, Route_ID, NoOfStars);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -270,7 +272,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
 
 //            }
 
-            if (FLAG_HIDE_JOIN==2) {
+            if (FLAG_HIDE_JOIN == 2) {
 
                 ratingBar.setVisibility(View.VISIBLE);
                 Join_Ride_btn.setVisibility(View.INVISIBLE);
@@ -362,7 +364,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
 
             if (exists) {
                 try {
-                    ratingBar.setRating(Float.parseFloat(j.Passenger_GetDriverRate(Driver_ID,Passenger_ID,Route_ID)));
+                    ratingBar.setRating(Float.parseFloat(j.Passenger_GetDriverRate(Driver_ID, Passenger_ID, Route_ID)));
                     ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
                         @Override
                         public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
@@ -375,6 +377,13 @@ public class RideDetailsPassenger extends AppCompatActivity {
                     ToRegionEnName.setText(json.getString(getString(R.string.fto_reg_en_name)));
                     FromEmirateEnName.setText(json.getString(getString(R.string.from_em_en_name)));
                     ToEmirateEnName.setText(json.getString(getString(R.string.to_em_en_name)));
+
+                    FromRegionEnName_Str = (json.getString(getString(R.string.from_reg_en_name)));
+                    ToRegionEnName_Str = (json.getString(getString(R.string.fto_reg_en_name)));
+                    FromEmirateEnName_Str = (json.getString(getString(R.string.from_em_en_name)));
+                    ToEmirateEnName_Str = (json.getString(getString(R.string.to_em_en_name)));
+
+
                     str_StartFromTime = json.getString("StartFromTime");
                     No_Seats = json.getInt("NoOfSeats");
                     if (No_Seats == 0) {
@@ -401,12 +410,12 @@ public class RideDetailsPassenger extends AppCompatActivity {
                     } else {
                         NationalityEnName.setText(json.getString(getString(R.string.nat_name2)));
                     }
-                    if (json.getString("PrefLanguageId").equals("0") ||  json.getString("PrefLanguageId").equals("null") ) {
+                    if (json.getString("PrefLanguageId").equals("0") || json.getString("PrefLanguageId").equals("null")) {
                         PrefLanguageEnName.setText(getString(R.string.not_set));
                     } else {
                         PrefLanguageEnName.setText(json.getString(getString(R.string.pref_lang)));
                     }
-                    if (json.getString("AgeRangeID").equals("0") || json.getString("AgeRangeID").equals("null") )  {
+                    if (json.getString("AgeRangeID").equals("0") || json.getString("AgeRangeID").equals("null")) {
                         AgeRange.setText(getString(R.string.not_set));
                     } else {
                         AgeRange.setText(json.getString("AgeRange"));
@@ -685,9 +694,6 @@ public class RideDetailsPassenger extends AppCompatActivity {
                 }
 
 
-
-
-
                 exists = true;
             } catch (final Exception e) {
                 e.printStackTrace();
@@ -722,7 +728,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
             mMap = googleMap;
 
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
-                    (new LatLng(StartLat, EndLng), 8.1f));
+                    (new LatLng(StartLat, EndLng), 12.1f));
 
             // Instantiates a new Polyline object and adds points to define a rectangle
 
@@ -746,13 +752,15 @@ public class RideDetailsPassenger extends AppCompatActivity {
 // Get back the mutable Polyline
             Polyline polyline = mMap.addPolyline(rectOptions);
 
+
             final Marker markerZero = mMap.addMarker(new MarkerOptions().
                     position(new LatLng(StartLat, StartLng))
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor)));
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor)).snippet(FromRegionEnName_Str).title(FromEmirateEnName_Str));
 
-            final Marker markerZero2 = mMap.addMarker(new MarkerOptions().
+             mMap.addMarker(new MarkerOptions().
                     position(new LatLng(EndLat, EndLng))
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor)));
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor)).snippet(ToRegionEnName_Str).title(ToEmirateEnName_Str));
+            markerZero.showInfoWindow();
 
 
         }
@@ -826,9 +834,6 @@ public class RideDetailsPassenger extends AppCompatActivity {
         finish();
 
     }
-
-
-
 
 
 }

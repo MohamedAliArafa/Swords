@@ -32,12 +32,11 @@ public class PassngerApprovedRidesAdapter extends ArrayAdapter<BestRouteDataMode
 
     public PassngerApprovedRidesAdapter(Activity activity, int resource, BestRouteDataModel[] objects) {
         super(activity, resource, objects);
-        this.activity=activity;
-        this.resourse=resource;
-        this.BestrouteArray =objects;
+        this.activity = activity;
+        this.resourse = resource;
+        this.BestrouteArray = objects;
         layoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
-
 
 
     @Override
@@ -46,23 +45,21 @@ public class PassngerApprovedRidesAdapter extends ArrayAdapter<BestRouteDataMode
         final BestRouteDataModel bestRouteDataModel = BestrouteArray[position];
         View v = convertView;
         final ViewHolder vh;
-        if (v==null)
-        {
-            v = layoutInflater.inflate(resourse,parent,false);
-            vh= new ViewHolder();
+        if (v == null) {
+            v = layoutInflater.inflate(resourse, parent, false);
+            vh = new ViewHolder();
             vh.FromEm = (TextView) v.findViewById(R.id.em_from);
             vh.ToEm = (TextView) v.findViewById(R.id.em_to);
-            vh.FromReg= (TextView) v.findViewById(R.id.reg_from);
+            vh.FromReg = (TextView) v.findViewById(R.id.reg_from);
             vh.ToReg = (TextView) v.findViewById(R.id.reg_to);
-            vh.RouteEnName= (TextView) v.findViewById(R.id.driver_profile_RouteEnName);
-            vh.StartFromTime= (TextView) v.findViewById(R.id.StartFromTime);
-         //   vh.EndToTime_= (TextView) v.findViewById(R.id.EndToTime_);
+            vh.RouteEnName = (TextView) v.findViewById(R.id.driver_profile_RouteEnName);
+            vh.StartFromTime = (TextView) v.findViewById(R.id.StartFromTime);
+            //   vh.EndToTime_= (TextView) v.findViewById(R.id.EndToTime_);
             // vh.driver_profile_dayWeek= (TextView) v.findViewById(R.id.driver_profile_dayWeek);
 
-            vh.Relative_Leave= (RelativeLayout) v.findViewById(R.id.Relative_Leave);
-            vh.Relative_Details= (RelativeLayout) v.findViewById(R.id.Relative_Details);
+            vh.Relative_Leave = (RelativeLayout) v.findViewById(R.id.Relative_Leave);
+            vh.Relative_Details = (RelativeLayout) v.findViewById(R.id.Relative_Details);
             vh.Relative_Driver = (RelativeLayout) v.findViewById(R.id.Relative_Driver);
-
 
 
             vh.Relative_Driver.setOnClickListener(new View.OnClickListener() {
@@ -75,11 +72,9 @@ public class PassngerApprovedRidesAdapter extends ArrayAdapter<BestRouteDataMode
             });
 
 
-
             vh.Relative_Leave.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
 
 
                     new AlertDialog.Builder(activity)
@@ -92,7 +87,7 @@ public class PassngerApprovedRidesAdapter extends ArrayAdapter<BestRouteDataMode
                                     GetData gd = new GetData();
                                     try {
                                         String response = gd.Passenger_LeaveRide(bestRouteDataModel.getRoutePassengerId());
-                                        if (response.equals("\"1\"")){
+                                        if (response.equals("\"1\"")) {
                                             Toast.makeText(activity, R.string.You_have_leaved_this_ride, Toast.LENGTH_SHORT).show();
                                         }
 
@@ -112,18 +107,6 @@ public class PassngerApprovedRidesAdapter extends ArrayAdapter<BestRouteDataMode
                             }).setIcon(android.R.drawable.ic_dialog_alert).show();
 
 
-
-
-
-
-
-
-
-
-
-
-
-
                 }
             });
 
@@ -131,19 +114,18 @@ public class PassngerApprovedRidesAdapter extends ArrayAdapter<BestRouteDataMode
             vh.Relative_Details.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent =  new Intent(activity,RideDetailsPassenger.class);
-                    intent.putExtra("RouteID",bestRouteDataModel.getRoute_id());
-                    intent.putExtra("PassengerID",bestRouteDataModel.getPassenger_ID());
+                    Intent intent = new Intent(activity, RideDetailsPassenger.class);
+                    intent.putExtra("RouteID", bestRouteDataModel.getRoute_id());
+                    intent.putExtra("PassengerID", bestRouteDataModel.getPassenger_ID());
                     intent.putExtra("DriverID", vh.Driver_Id);
-                    intent.putExtra("FLAG_1",1);
+                    intent.putExtra("FLAG_1", 1);
                     activity.startActivity(intent);
                 }
             });
 
 
             v.setTag(vh);
-        }else
-        {
+        } else {
             vh = (ViewHolder) v.getTag();
         }
 
@@ -151,10 +133,10 @@ public class PassngerApprovedRidesAdapter extends ArrayAdapter<BestRouteDataMode
         vh.ToEm.setText(bestRouteDataModel.getToEm());
         vh.FromReg.setText(bestRouteDataModel.getFromReg());
         vh.ToReg.setText(bestRouteDataModel.getToReg());
-        vh.FromEmId=bestRouteDataModel.getFromEmId();
-        vh.FromRegid=bestRouteDataModel.getFromRegid();
-        vh.ToEmId=bestRouteDataModel.getToEmId();
-        vh.ToRegId=bestRouteDataModel.getToRegId();
+        vh.FromEmId = bestRouteDataModel.getFromEmId();
+        vh.FromRegid = bestRouteDataModel.getFromRegid();
+        vh.ToEmId = bestRouteDataModel.getToEmId();
+        vh.ToRegId = bestRouteDataModel.getToRegId();
 
         StringBuffer res = new StringBuffer();
         String[] strArr = bestRouteDataModel.getRouteName().split(" ");
@@ -168,43 +150,35 @@ public class PassngerApprovedRidesAdapter extends ArrayAdapter<BestRouteDataMode
         vh.StartFromTime.setText(bestRouteDataModel.getStartFromTime());
 //        vh.EndToTime_.setText(bestRouteDataModel.getEndToTime_());
         vh.Driver_Id = bestRouteDataModel.getDriver_ID();
-        vh.Route_id=bestRouteDataModel.getRoute_id();
-        vh.Passenger_id=bestRouteDataModel.getPassenger_ID();
-
-
-
+        vh.Route_id = bestRouteDataModel.getRoute_id();
+        vh.Passenger_id = bestRouteDataModel.getPassenger_ID();
 
 
         //   vh.driver_profile_dayWeek.setText(bestRouteDataModel.getDriver_profile_dayWeek());
         return v;
 
 
-
-
     }
 
 
-    static class ViewHolder
-    {
+    static class ViewHolder {
         TextView FromEm;
         TextView ToEm;
         TextView FromReg;
         TextView ToReg;
         TextView RouteEnName;
         TextView StartFromTime;
-     //   TextView EndToTime_;
+        //   TextView EndToTime_;
         // TextView driver_profile_dayWeek;
-        int FromEmId,ToEmId,FromRegid,ToRegId;
+        int FromEmId, ToEmId, FromRegid, ToRegId;
 
-        RelativeLayout Relative_Leave,Relative_Details,Relative_Driver;
+        RelativeLayout Relative_Leave, Relative_Details, Relative_Driver;
         int Driver_Id;
         int Route_id;
         int Passenger_id;
 
 
-
     }
-
 
 
 }

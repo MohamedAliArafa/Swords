@@ -1,4 +1,29 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    >
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar" />
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map_ride_details"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        tools:context="rta.ae.sharekni.MapsActivity" />
+
+
+
+
+
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF">
@@ -9,9 +34,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include
-            android:id="@+id/app_bar"
-            layout="@layout/app_bar" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,14 +41,6 @@
             android:background="#FFFFFF"
             android:orientation="vertical">
 
-
-            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/map_ride_details"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                tools:context="rta.ae.sharekni.MapsActivity" />
 
 
             <RelativeLayout
@@ -605,3 +619,4 @@
 
     </LinearLayout>
 </ScrollView>
+</LinearLayout>
