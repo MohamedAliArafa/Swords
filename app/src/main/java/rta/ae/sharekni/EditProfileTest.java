@@ -221,7 +221,7 @@ public class EditProfileTest extends AppCompatActivity {
             LastName=  LastName.substring(0, 1).toUpperCase() + LastName.substring(1);
             edit_lname.setText(LastName);
             edit_lname.setTextColor(getResources().getColor(R.color.primaryColor));
-            edit_reg_mob.setText(j.getString("Mobile").substring(5));
+            edit_reg_mob.setText(j.getString("Mobile").substring(4));
             edit_reg_mob.setTextColor(getResources().getColor(R.color.primaryColor));
             full_date = j.getString("BirthDate");
             txt_year.setText(full_date);

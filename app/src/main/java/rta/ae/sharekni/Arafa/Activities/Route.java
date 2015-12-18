@@ -553,7 +553,7 @@ public class Route extends AppCompatActivity {
                         item.setAccountName(obj.getString("AccountName"));
                         item.setDriverId(Driver_ID);
                         item.setRouteId(Route_ID);
-//                        item.setRate(obj.getInt("PassenegerRateByDriver"));
+                        item.setRate(obj.getInt("PassenegerRateByDriver"));
                         if (obj.getString("AccountMobile").equals("null")){
                             item.setAccountMobile("");
                         }else {

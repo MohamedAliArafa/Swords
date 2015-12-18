@@ -726,7 +726,10 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
 
                 if (!jsonArray.getString("Mobile").equals("null") && !jsonArray.getString("Mobile").equals("")) {
-                    Account_PhoneNumber.setText(jsonArray.getString("Mobile"));
+                    String Mob_txt = jsonArray.getString("Mobile");
+                    Log.d("Mobile",Mob_txt);
+                    Mob_txt = Mob_txt.substring(0, 4) + " " + Mob_txt.substring(4, 6) + " " + Mob_txt.substring(6, Mob_txt.length());
+                    Account_PhoneNumber.setText(Mob_txt);
                 }
 
 

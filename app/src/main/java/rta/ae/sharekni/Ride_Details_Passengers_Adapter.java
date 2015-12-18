@@ -75,19 +75,10 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
         RatingBar ratingBar = (RatingBar) convertView.findViewById(R.id.ratingBar2);
         ratingBar.setStepSize(1);
 //        ratingBar.setRating(m.getRate());
-
-        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                NoOfStars = (int) rating;
-                new ratePassenger().execute();
-            }
-        });
-
-
         m = PassengersItems.get(position);
         final StringBuffer res = new StringBuffer();
         String[] strArr = m.getAccountName().split(" ");
+        NoOfStars = m.getRate();
         for (String str : strArr) {
             char[] stringArray = str.trim().toCharArray();
             stringArray[0] = Character.toUpperCase(stringArray[0]);
@@ -96,7 +87,15 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
         }
         AccountName.setText(res);
         AccountNationalityEn.setText(m.getAccountNationalityEn());
+        ratingBar.setRating(NoOfStars);
 
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                NoOfStars = (int) rating;
+                new ratePassenger().execute();
+            }
+        });
 
         Driver_Remove_passenger.setOnClickListener(new View.OnClickListener() {
             @Override

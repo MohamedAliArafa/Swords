@@ -142,19 +142,8 @@ public class RideDetailsPassenger extends AppCompatActivity {
         Relative_REviews = (RelativeLayout) findViewById(R.id.Relative_REviews);
         Relative_REviews_Address_2 = (TextView) findViewById(R.id.Relative_REviews_Address_2);
 
-         ratingBar = (RatingBar) findViewById(R.id.ratingBar2);
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar2);
         ratingBar.setStepSize(1);
-
-
-        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                NoOfStars = (int) rating;
-                new rateDriver().execute();
-            }
-        });
-
-
 
         Join_Ride_btn.setVisibility(View.INVISIBLE);
         //Pass_rate_Driver_btn.setVisibility(View.INVISIBLE);
@@ -373,6 +362,14 @@ public class RideDetailsPassenger extends AppCompatActivity {
 
             if (exists) {
                 try {
+                    ratingBar.setRating(Float.parseFloat(j.Passenger_GetDriverRate(Driver_ID,Passenger_ID,Route_ID)));
+                    ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+                        @Override
+                        public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                            NoOfStars = (int) rating;
+                            new rateDriver().execute();
+                        }
+                    });
                     days = "";
                     FromRegionEnName.setText(json.getString(getString(R.string.from_reg_en_name)));
                     ToRegionEnName.setText(json.getString(getString(R.string.fto_reg_en_name)));
@@ -623,8 +620,6 @@ public class RideDetailsPassenger extends AppCompatActivity {
                 Socket sock = new Socket();
                 int timeoutMs = 2000;   // 2 seconds
                 sock.connect(sockaddr, timeoutMs);
-
-
                 json = new GetData().GetRouteById(Route_ID);
                 response2 = new GetData().GetPassengers_ByRouteID(Route_ID);
                 response1 = new GetData().Driver_GetReview(Driver_ID, Route_ID);
@@ -653,7 +648,6 @@ public class RideDetailsPassenger extends AppCompatActivity {
 
                 }
 
-
                 assert response2 != null;
                 Log.d("Passengers resp", response2.toString());
 
@@ -672,6 +666,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
 
                         item.setPassengerId(obj.getInt("ID"));
                         item.setAccountName(obj.getString("AccountName"));
+                        item.setRate(obj.getInt("PassenegerRateByDriver"));
 
                         if (obj.getString("AccountMobile").equals("null")) {
                             item.setAccountMobile("");

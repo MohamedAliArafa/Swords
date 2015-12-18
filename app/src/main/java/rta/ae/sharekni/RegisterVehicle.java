@@ -114,26 +114,15 @@ public class RegisterVehicle extends AppCompatActivity {
 
 
                 GetData j = new GetData();
-                if (!full_date.equals("") && !File_num_edit.getText().toString().equals(getString(R.string.enter_licence))) {
-                    if (File_num_edit.length()>0) {
-                        File_NO_Str = File_num_edit.getText().toString();
-//                        FileNo = Integer.parseInt(File_NO_Str);
-
-
-                        back.execute();
-
-                    }else {
-                        Toast.makeText(RegisterVehicle.this, R.string.enter_file_no, Toast.LENGTH_SHORT).show();
-                    }
-
-                    if (full_date.equals("")){
-                        Toast.makeText(RegisterVehicle.this, R.string.enter_DOB, Toast.LENGTH_SHORT).show();
-                    }
-
-
-
-
-                }else {
+                if (!full_date.equals("") && !File_num_edit.getText().toString().equals(getString(R.string.enter_licence)) && (File_num_edit.length()>0)) {
+                    File_NO_Str = File_num_edit.getText().toString();
+                    back.execute();
+                }else if (File_num_edit.length()<=0){
+                    Toast.makeText(RegisterVehicle.this, R.string.enter_file_no, Toast.LENGTH_SHORT).show();
+                }else if (full_date.equals("")){
+                    Toast.makeText(RegisterVehicle.this, R.string.enter_DOB, Toast.LENGTH_SHORT).show();
+                }
+                else {
                     Toast.makeText(RegisterVehicle.this, R.string.enter_file_DOB, Toast.LENGTH_SHORT).show();
                 }
 
@@ -218,14 +207,11 @@ public class RegisterVehicle extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Object o) {
-            
 
             if (data.equals("\"1\"")) {
                 Toast.makeText(getBaseContext(), getString(R.string.verified), Toast.LENGTH_LONG).show();
                 TRAFFIC_FILE_NUMBER = File_NO_Str;
                 TRAFFIC_BIRTH_DATE = full_date;
-
-
                 c.finish();
             } else if (data.equals("\"-3\"")) {
                 Toast.makeText(getBaseContext(), getString(R.string.invalid_dob), Toast.LENGTH_LONG).show();
@@ -245,8 +231,6 @@ public class RegisterVehicle extends AppCompatActivity {
                 Toast.makeText(getBaseContext(),getString( R.string.cant_user_file_number) , Toast.LENGTH_LONG).show();
                 c.finish();
             }
-
-
             hidePDialog();
         }
 
