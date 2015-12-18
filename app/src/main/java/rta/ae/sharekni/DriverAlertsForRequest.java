@@ -43,27 +43,27 @@ public class DriverAlertsForRequest extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (jsoning.getStatus() == AsyncTask.Status.RUNNING){
+        if (jsoning.getStatus() == AsyncTask.Status.RUNNING) {
             jsoning.cancel(true);
         }
         finish();
     }
 
     Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_driver_alerts_for_request);
-            Alerts_For_Request= (ListView) findViewById(R.id.Alerts_For_Request);
-            toolbar= (Toolbar) findViewById(R.id.app_bar);
-            initToolbar();
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_driver_alerts_for_request);
+        Alerts_For_Request = (ListView) findViewById(R.id.Alerts_For_Request);
+        toolbar = (Toolbar) findViewById(R.id.app_bar);
+        initToolbar();
 
         myPrefs = this.getSharedPreferences("myPrefs", 0);
-        String ID = myPrefs.getString("account_id",null);
+        String ID = myPrefs.getString("account_id", null);
         Driver_Id = Integer.parseInt(ID);
 
-        Log.d("final",ID);
-
+        Log.d("final", ID);
 
 
         ProgressDialog pDialog = new ProgressDialog(this);
@@ -75,10 +75,6 @@ public class DriverAlertsForRequest extends AppCompatActivity {
 
 
     }
-
-
-
-
 
 
     public class jsoning extends AsyncTask {
@@ -106,31 +102,52 @@ public class DriverAlertsForRequest extends AppCompatActivity {
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                 @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
 //                    Intent in = new Intent(con, Profile.class);
 //                    in.putExtra("ID", arr.get(i).getID());
 //                    Log.d("Array Id :", String.valueOf(arr.get(i).getID()));
 //                    in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                    con.startActivity(in);
-//
-//
 
-                    if (arr.get(i).getDriverAccept()==null) {
-
+                    if (arr.get(i).getDriverAccept() == null) {
                         Intent in = new Intent(con, DriverRequestDetails.class);
                         in.putExtra("PassengerName", arr.get(i).getPassengerName());
                         in.putExtra("RouteName", arr.get(i).getRouteName());
                         in.putExtra("NationalityEnName", arr.get(i).getNationalityEnName());
-                      //  in.putExtra("AccountPhoto", arr.get(i).getPhoto());
+                        //in.putExtra("AccountPhoto", arr.get(i).getPhoto());
                         in.putExtra("PassengerMobile", arr.get(i).getPassengerMobile());
                         in.putExtra("Remarks", arr.get(i).getRemarks());
                         in.putExtra("RequestId", arr.get(i).getRequestId());
                         in.putExtra("RequestDate", arr.get(i).getRequestDate());
                         jsoning.cancel(true);
                         con.startActivity(in);
+                    }else if (arr.get(i).getDriverAccept().equals("null")){
+                        final String[] res = new String[1];
+                        new AlertDialog.Builder(DriverAlertsForRequest.this)
+                                .setTitle(R.string.Cancel_msg)
+                                .setMessage(R.string.please_confirm_to_cancel)
+                                .setPositiveButton(R.string.Confirm_str, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        try {
+                                            res[0] = new GetData().Passenger_RemoveRequest(arr.get(i).getRequestId());
+                                            if (res[0].equals("\"1\"")){
+                                                Toast.makeText(getBaseContext(), getString(R.string.request_removed), Toast.LENGTH_SHORT).show();
+                                                DriverAlertsForRequest.this.recreate();
+                                            }else {
+                                                Toast.makeText(getBaseContext(), getString(R.string.error), Toast.LENGTH_SHORT).show();
+                                            }
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                })
+                                .setNegativeButton(R.string.Cancel_msg, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
 
                     }
-
                 }
             });
             hidePDialog();
@@ -176,8 +193,6 @@ public class DriverAlertsForRequest extends AppCompatActivity {
             }
             if (exists) {
                 JSONArray response = null;
-
-
                 try {
                     response = new GetData().GetDriverAlertsForRequest(Driver_Id);
                 } catch (JSONException e) {
@@ -195,7 +210,7 @@ public class DriverAlertsForRequest extends AppCompatActivity {
                         Alert.setRemarks(obj.getString("Remarks"));
                         Alert.setRequestId(obj.getInt("RequestId"));
                         Alert.setRequestDate(obj.getString("RequestDate"));
-                        if (!obj.getString("AccountPhoto").equals("NoImage.png")){
+                        if (!obj.getString("AccountPhoto").equals("NoImage.png")) {
                             GetData gd = new GetData();
                             Alert.setPhoto(gd.GetImage(obj.getString("AccountPhoto")));
                         }
@@ -207,10 +222,35 @@ public class DriverAlertsForRequest extends AppCompatActivity {
                     //hidePDialog();
                 }
 
-
-
-
-
+                try {
+                    response = new GetData().Passenger_GetPendingRequestsFromDriver(Driver_Id);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        obj = response.getJSONObject(i);
+                        final DriverAlertsForRequestDataModel Alert = new DriverAlertsForRequestDataModel(Parcel.obtain());
+                        Alert.setPassengerName(obj.getString("DriverName"));
+                        Alert.setNationalityEnName(obj.getString(getString(R.string.driver_nat_en_name)));
+                        Alert.setAccountPhoto(obj.getString("DriverPhoto"));
+                        Alert.setRouteName(obj.getString("RouteName"));
+                        Alert.setPassengerMobile(obj.getString("PassengerMobile"));
+                        Alert.setRemarks(obj.getString("Remarks"));
+                        Alert.setRequestId(obj.getInt("RequestId"));
+                        Alert.setRequestDate(obj.getString("RequestDate"));
+                        Alert.setDriverAccept(obj.getString("DriverAccept"));
+                        if (!obj.getString("DriverPhoto").equals("NoImage.png")) {
+                            GetData gd = new GetData();
+                            Alert.setPhoto(gd.GetImage(obj.getString("DriverPhoto")));
+                        }
+                        //driver.setRating(obj.getInt("Rating"));
+                        arr.add(Alert);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    //hidePDialog();
+                }
 
                 try {
                     response = new GetData().Get_Passenger_GetAcceptedRequestsFromDriver(Driver_Id);
@@ -230,7 +270,7 @@ public class DriverAlertsForRequest extends AppCompatActivity {
                         Alert.setRequestId(obj.getInt("RequestId"));
                         Alert.setRequestDate(obj.getString("RequestDate"));
                         Alert.setDriverAccept(obj.getString("DriverAccept"));
-                        if (!obj.getString("DriverPhoto").equals("NoImage.png")){
+                        if (!obj.getString("DriverPhoto").equals("NoImage.png")) {
                             GetData gd = new GetData();
                             Alert.setPhoto(gd.GetImage(obj.getString("DriverPhoto")));
                         }
@@ -241,17 +281,11 @@ public class DriverAlertsForRequest extends AppCompatActivity {
                     }
                     //hidePDialog();
                 }
-
-
-
             }
 
             return null;
         }
     }
-
-
-
 
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -268,7 +302,6 @@ public class DriverAlertsForRequest extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-
 
 
 }

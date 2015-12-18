@@ -75,7 +75,6 @@ public class DriverAlertsForRequestAdapter extends BaseAdapter {
         TextView NationalityEnName= (TextView) convertView.findViewById(R.id.NationalityEnName);
         TextView txt_Accepted_or_Rejected = (TextView) convertView.findViewById(R.id.txt_Accepted_or_Rejected);
 
-
         final DriverAlertsForRequestDataModel model = AlertsItem.get(position);
 //        Photo.setImageUrl(URL + model.getAccountPhoto(), imageLoader);
         PassengerName.setText(model.getPassengerName());
@@ -92,18 +91,20 @@ public class DriverAlertsForRequestAdapter extends BaseAdapter {
         }
 
         if (model.getDriverAccept()!=null) {
-            if (model.getDriverAccept().equals("false")) {
-
-                txt_Accepted_or_Rejected.setText(R.string.reject_request);
-
-            } else {
-
-                txt_Accepted_or_Rejected.setText(R.string.accept_request);
+            switch (model.getDriverAccept()) {
+                case "false":
+                    txt_Accepted_or_Rejected.setText(R.string.reject_request);
+                    break;
+                case "true":
+                    txt_Accepted_or_Rejected.setText(R.string.accept_request);
+                    break;
+                case "null":
+                    txt_Accepted_or_Rejected.setText(R.string.pending_request);
+                    break;
             }
 
         } //  IF  * 1
         else {
-
             txt_Accepted_or_Rejected.setText(R.string.join_request);
         }
         return convertView;

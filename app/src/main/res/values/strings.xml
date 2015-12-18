@@ -233,6 +233,7 @@
     <string name="notification">Notifications</string>
     <string name="reject_request">Has Rejected Your Request</string>
     <string name="accept_request">Has Accepted Your Request</string>
+    <string name="pending_request">Received Your Request And Waiting For Approval</string>
     <string name="join_request">Send you a join Request</string>
     <string name="no_created_rides">There is no Rides Created yet</string>
     <string name="set_direction">Set Direction</string>
@@ -350,9 +351,10 @@
     <string name="Ride_Edited">Ride Edited</string>
     <string name="Now_What_would_you_like_to_do">Start using the App</string>
     <string name="please_confirm_to_delete">Please confirm to delete</string>
+    <string name="please_confirm_to_cancel">Please confirm to delete request</string>
     <string name="Delete_msg">Delete</string>
     <string name="Confirm_str">Confirm</string>
-    <string name="Cancel_msg">Cancel</string>
+    <string name="Cancel_msg">Delete Request</string>
     <string name="No_Phone_Number_msg">No Phone Number</string>
     <string name="Accept_Smokers_txt">Accept Smokers</string>
     <string name="change_vehicle">Change Vehicle</string>
@@ -360,6 +362,7 @@
     <string name="Rate_str">Rate</string>
     <string name="Verify_str">Verify</string>
     <string name="rate_submitted">Rate is successfully submitted</string>
+    <string name="request_removed">Request is successfully removed</string>
     <string name="rate_submit_failed">can\'t submit rate</string>
     <string name="Save_Changes_Edit_Carpool">Save Changes</string>
     <string name="VehicleName_Edit_CarPool">VehicleEnName</string>

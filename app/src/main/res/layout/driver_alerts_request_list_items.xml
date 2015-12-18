@@ -29,27 +29,20 @@
         android:id="@+id/txt_Accepted_or_Rejected"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/PassengerName"
-        android:layout_toEndOf="@+id/PassengerName"
         android:text="Send you a join request"
-        android:layout_alignBottom="@+id/PassengerName"
-        android:layout_marginLeft="2dp"
-        android:layout_marginStart="2dp"
-        android:lines="1"
-        android:maxLines="1"
 
-        />
+        android:layout_below="@+id/PassengerName"
+        android:layout_alignLeft="@+id/PassengerName"
+        android:layout_alignStart="@+id/PassengerName" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/PassengerName"
-        android:layout_alignStart="@+id/PassengerName"
-        android:layout_alignLeft="@+id/PassengerName"
         android:id="@+id/NationalityEnName"
         android:text="Egypt"
-        android:layout_marginTop="5dp"
 
-        />
+        android:layout_below="@+id/txt_Accepted_or_Rejected"
+        android:layout_toRightOf="@+id/AccountPhoto"
+        android:layout_toEndOf="@+id/AccountPhoto" />
 
 </RelativeLayout>

@@ -138,6 +138,8 @@ public class GetData {
     String Passenger_Review_Driver = DOMAIN + "Passenger_ReviewDriver?";
     String Confrim_Mobile_URl = DOMAIN + "Confirm_Mobile?AccountID=";
     String Driver_RemoveReview = DOMAIN + "Driver_RemoveReview?";
+    String Passenger_RemoveRequest = DOMAIN + "Passenger_RemoveRequest?RoutePassengerId=";
+    String Passenger_GetPendingRequestsFromDriver = DOMAIN + "Passenger_GetPendingRequestsFromDriver?accountId=";
     String DriverAlertsForRequestUrl = DOMAIN + "Driver_AlertsForRequest?d_AccountId=";
     String DriverAcceptPassengerUrl = DOMAIN + "Driver_AcceptRequest?RequestId=";
     String DriverRegisterVehicleUrl = DOMAIN + "Driver_RegisterVehicleWithETService?";
@@ -363,6 +365,23 @@ public class GetData {
         return json.length();
     }
 
+    public JSONArray Passenger_GetPendingRequestsFromDriver(int id) throws JSONException {
+
+        HandleXML obj = new HandleXML(Passenger_GetPendingRequestsFromDriver + id);
+        obj.fetchXML();
+        while ((obj.parsingComplete && !obj.error)) ;
+        JSONArray json = new JSONArray(obj.getData());
+        return json;
+    }
+
+    public String Passenger_RemoveRequest(int id) throws JSONException {
+
+        HandleXML obj = new HandleXML(Passenger_RemoveRequest + id);
+        obj.fetchXML();
+        while ((obj.parsingComplete && !obj.error)) ;
+        return obj.getData();
+    }
+
     public JSONArray GetDriverAlertsForRequest(int id) throws JSONException {
 
         HandleXML obj = new HandleXML(DriverAlertsForRequestUrl + id);
@@ -371,6 +390,7 @@ public class GetData {
         JSONArray json = new JSONArray(obj.getData());
         return json;
     }
+
 
     public JSONArray Get_Passenger_GetAcceptedRequestsFromDriver(int id) throws JSONException {
 

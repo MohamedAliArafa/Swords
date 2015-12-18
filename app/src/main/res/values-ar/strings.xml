@@ -382,5 +382,10 @@
     <string name="is_smoking_Str">مدخنين</string>
     <string name="preferred_gender_Str">الجنسيه المفضلة</string>
     <string name="Review_updated">تم تحديث التعليق</string>
+    <string name="pending_request">إستلم طلبك و فى انتظار موافقته</string>
+    <string name="google_app_id">1:780076415361:android:c101984c52985d9b</string>
+    <string name="ga_trackingId">UA-70176053-1</string>
+    <string name="request_removed">لقد تم إلعاء الطلب بنجاح</string>
+    <string name="please_confirm_to_cancel">اتريد حقا الغاء الطلب ؟</string>
 
 </resources>
