@@ -51,7 +51,7 @@ import rta.ae.sharekni.RideDetailsPassenger;
 public class Profile extends AppCompatActivity {
 
     TextView TopName, NationalityEnName;
-    ImageView profile_msg,profile_call;
+    ImageView profile_msg, profile_call;
     ListView lv_driver;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     String URL_Photo = GetData.PhotoURL;
@@ -62,9 +62,10 @@ public class Profile extends AppCompatActivity {
     String AccountType;
     String ID;
     private Toolbar toolbar;
-    String FirstName,SecondName,ThirdName,Full_Name;
+    String FirstName, SecondName, ThirdName, Full_Name;
     jsoning jsoning;
     TextView Driver_profile_Item_rate;
+    String IsMobileVerified, IsPhotoVerified;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,57 +101,53 @@ public class Profile extends AppCompatActivity {
         ProgressDialog pDialog = new ProgressDialog(this);
         pDialog.setMessage(getString(R.string.loading) + "...");
         pDialog.show();
-        jsoning = new jsoning(lv_driver,pDialog,this);
+        jsoning = new jsoning(lv_driver, pDialog, this);
         jsoning.execute();
 
         try {
             final JSONObject json = j.GetDriverById(Driver_ID);
 
-           // TopName.setText(json.getString("FirstName") + " " + json.getString("MiddleName"));
+            // TopName.setText(json.getString("FirstName") + " " + json.getString("MiddleName"));
 
-            Full_Name="";
-            FirstName= json.getString("FirstName");
-            if (FirstName.equals("")){
-                Full_Name+="";
-            }else{
+            Full_Name = "";
+            FirstName = json.getString("FirstName");
+            if (FirstName.equals("")) {
+                Full_Name += "";
+            } else {
                 FirstName = FirstName.substring(0, 1).toUpperCase() + FirstName.substring(1);
-                Log.d("First Name",FirstName);
-                Full_Name+=FirstName;
+                Log.d("First Name", FirstName);
+                Full_Name += FirstName;
 
             }
 
 
             SecondName = json.getString("MiddleName");
-            if (SecondName.equals("")){
-                Full_Name+=" ";
-            }else{
+            if (SecondName.equals("")) {
+                Full_Name += " ";
+            } else {
 
-                Log.d("Second name 1",SecondName);
-                SecondName =  SecondName.substring(0, 1).toUpperCase() + SecondName.substring(1);
-                Log.d("Second name 2",SecondName);
-                Full_Name+=" ";
-                Full_Name+=SecondName;
+                Log.d("Second name 1", SecondName);
+                SecondName = SecondName.substring(0, 1).toUpperCase() + SecondName.substring(1);
+                Log.d("Second name 2", SecondName);
+                Full_Name += " ";
+                Full_Name += SecondName;
             }
 
             ThirdName = json.getString("LastName");
-            if (ThirdName.equals("")){
+            if (ThirdName.equals("")) {
 
-                Full_Name+=" ";
-            }else {
+                Full_Name += " ";
+            } else {
 
-                Log.d("Second name 1",ThirdName);
-                ThirdName =  ThirdName.substring(0, 1).toUpperCase() + ThirdName.substring(1);
-                Log.d("Second name 2",ThirdName);
-                Full_Name+=" ";
-                Full_Name+=ThirdName;
+                Log.d("Second name 1", ThirdName);
+                ThirdName = ThirdName.substring(0, 1).toUpperCase() + ThirdName.substring(1);
+                Log.d("Second name 2", ThirdName);
+                Full_Name += " ";
+                Full_Name += ThirdName;
             }
 
 
-          //  Driver_profile_Item_rate.setText(json.getString("AccountRating"));
-
-
-
-
+            //  Driver_profile_Item_rate.setText(json.getString("AccountRating"));
 
 
             TopName.setText(Full_Name);
@@ -160,32 +157,56 @@ public class Profile extends AppCompatActivity {
             im.stringRequest(json.getString("PhotoPath"), Photo, Profile.this);
 //            Photo.setImageUrl(URL_Photo + json.getString("PhotoPath"), imageLoader);
             Driver_profile_Item_rate.setText(json.getString("AccountRating"));
+
+            IsMobileVerified = json.getString("IsMobileVerified");
+            IsPhotoVerified = json.getString("IsPhotoVerified");
+
+
             profile_call.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = null;
-                    try {
-                        intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + json.getString("Mobile")));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+
+                    if (IsMobileVerified.equals("false")) {
+                        Toast.makeText(getBaseContext(), "No Phone Number" , Toast.LENGTH_SHORT).show();
+
+                    } else if (IsMobileVerified.equals("true")) {
+
+                        Intent intent = null;
+                        try {
+                            intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + json.getString("Mobile")));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        startActivity(intent);
+
                     }
-                    startActivity(intent);
                 }
             });
 
             profile_msg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = null;
-                    try {
-                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + json.getString("Mobile")));
-                        intent.putExtra("sms_body", getString(R.string.hello_world) + json.getString("FirstName"));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+
+                    if (IsMobileVerified.equals("false")) {
+                        Toast.makeText(getBaseContext(), "No Phone Number" , Toast.LENGTH_SHORT).show();
+
+                    } else if (IsMobileVerified.equals("true")) {
+
+                        Intent intent = null;
+                        try {
+                            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + json.getString("Mobile")));
+                            intent.putExtra("sms_body", getString(R.string.hello_world) + json.getString("FirstName"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        startActivity(intent);
+
+
                     }
-                    startActivity(intent);
+
                 }
             });
+
         } catch (JSONException e1) {
             e1.printStackTrace();
         }
@@ -226,7 +247,7 @@ public class Profile extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Object o) {
-            if (exists){
+            if (exists) {
                 ProfileRideAdapter arrayAdapter = new ProfileRideAdapter(Profile.this, R.layout.driver_profile_rides, driver);
                 lv.setAdapter(arrayAdapter);
                 lv.requestLayout();
@@ -248,7 +269,7 @@ public class Profile extends AppCompatActivity {
                             } else {
                                 Intent in = new Intent(Profile.this, Route.class);
                                 in.putExtra("RouteID", driver[i].getID());
-                                in.putExtra("RouteName",driver[i].getRouteName());
+                                in.putExtra("RouteName", driver[i].getRouteName());
                                 in.putExtra("PassengerID", Passenger_ID);
                                 Log.d("Last 3", String.valueOf(Passenger_ID));
                                 in.putExtra("DriverID", Driver_ID);
@@ -294,7 +315,7 @@ public class Profile extends AppCompatActivity {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                         Intent in = getIntent();
-                                        in.putExtra("DriverID",Driver_ID);
+                                        in.putExtra("DriverID", Driver_ID);
                                         startActivity(getIntent());
                                     }
                                 })
@@ -303,7 +324,7 @@ public class Profile extends AppCompatActivity {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(Profile.this,getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Profile.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -382,7 +403,7 @@ public class Profile extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id==android.R.id.home){
+        if (id == android.R.id.home) {
             onBackPressed();
             return true;
         }
@@ -391,7 +412,6 @@ public class Profile extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 
 
     @Override

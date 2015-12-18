@@ -1,19 +1,17 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_below="@+id/app_bar">
 
-    >
 
-
-    <include
-        android:id="@+id/app_bar"
-        layout="@layout/app_bar" />
-
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/app_bar">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/app_bar" />
 
 
         <RelativeLayout
@@ -85,9 +83,8 @@
                         android:background="@drawable/borders_quicksearch_btn"
                         android:text="Pickup"
                         android:textColor="#FFFFFF"
-                        android:textStyle="bold"
                         android:textSize="18sp"
-                        />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/createCarPool_txt_Selecet_Start_Point"
@@ -100,8 +97,7 @@
                         android:gravity="center_vertical"
                         android:text="Start Point"
                         android:textColor="#9e9e9e"
-                        android:textSize="18sp"
-                        />
+                        android:textSize="18sp" />
 
                 </RelativeLayout>
 
@@ -126,9 +122,8 @@
                         android:background="@drawable/borders_quicksearch_btn"
                         android:text="Drop Off"
                         android:textColor="#FFFFFF"
-                        android:textStyle="bold"
                         android:textSize="18sp"
-                        />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/createCarPool_txt_Select_Dest"
@@ -141,8 +136,7 @@
                         android:gravity="center_vertical"
                         android:text="End Point"
                         android:textColor="#9e9e9e"
-                        android:textSize="18sp"
-                        />
+                        android:textSize="18sp" />
 
                 </RelativeLayout>
 
@@ -287,9 +281,8 @@
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/user_register_border"
-                    android:paddingTop="5dp"
                     android:paddingBottom="5dp"
-                    >
+                    android:paddingTop="5dp">
 
                     <ImageView
                         android:id="@+id/createCarPool_singleRide_Periodic"
@@ -305,10 +298,10 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
                         android:src="@drawable/slidefemale"
                         android:visibility="invisible"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
 
                         />
 
@@ -565,73 +558,136 @@
                     android:textColorHint="@color/primaryColor" />
 
 
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/createCarPool_Male_Female"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/createCarPool_Age_Range_txt"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/user_register_border">
+                    android:background="@drawable/user_register_border"
+                    android:orientation="vertical">
 
 
-                    <ImageView
-                        android:id="@+id/createCarPool_malefemale1"
-                        android:layout_width="100dp"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:src="@drawable/slidemale" />
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/preferred_gender_Str"
+                        android:textColor="@color/primaryColor"
+                        android:textSize="18sp"
 
-                    <ImageView
-                        android:id="@+id/createCarPool_femalemale2"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:src="@drawable/slidefemale"
-                        android:visibility="invisible"
 
                         />
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/check_Both"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/reg_gender_both"
+                            android:textColor="@color/primaryColor"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:id="@+id/Check_Male"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/reg_gender_male"
+                            android:textColor="@color/primaryColor"
+                            android:textSize="15sp" />
+
+                        <CheckBox
+                            android:id="@+id/Check_Female"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/reg_gender_female"
+                            android:textColor="@color/primaryColor"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/createCarPool_Smokers_NotSmokers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/createCarPool_Male_Female"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/user_register_border"
+                    android:orientation="vertical"
+
+                    >
 
                     <TextView
-                        android:id="@+id/createCarPool_malefemale_txt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="25dp"
-                        android:layout_marginRight="25dp"
-                        android:layout_toLeftOf="@+id/createCarPool_malefemale1"
-                        android:layout_toStartOf="@+id/createCarPool_malefemale1"
-                        android:text="Male"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/is_smoking_Str"
                         android:textColor="@color/primaryColor"
-                        android:textSize="16sp" />
+                        android:textSize="18sp"
 
-                    <TextView
-                        android:id="@+id/createCarPool_femalemale_txt"
-                        android:layout_width="wrap_content"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginStart="25dp"
-                        android:layout_toEndOf="@+id/createCarPool_femalemale2"
-                        android:layout_toRightOf="@+id/createCarPool_femalemale2"
-                        android:text="Female"
-                        android:textColor="@color/gray_before_login"
-                        android:textSize="16sp" />
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/Check_Smoking"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/accept_smokers_str"
+                            android:textColor="@color/primaryColor"
+                            android:textSize="15sp" />
+
+                        <CheckBox
+                            android:id="@+id/Check_NotSmoking"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/not_accept_smokers_str"
+                            android:textColor="@color/primaryColor"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
 
 
-                </RelativeLayout>
+                </LinearLayout>
 
 
                 <RelativeLayout
                     android:id="@+id/createCarPool_DaysOFWeek"
                     android:layout_width="match_parent"
                     android:layout_height="160dp"
-                    android:layout_below="@+id/createCarPool_Male_Female"
+                    android:layout_below="@+id/createCarPool_Smokers_NotSmokers"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
@@ -852,12 +908,7 @@
         </RelativeLayout>
 
 
-    </ScrollView>
+    </LinearLayout>
 
-
-</RelativeLayout>
-
-
-
-
+</ScrollView>
 

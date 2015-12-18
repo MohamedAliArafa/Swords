@@ -5,17 +5,15 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.os.Parcel;
-import android.support.v4.content.IntentCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -31,12 +29,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
-import rta.ae.sharekni.Arafa.Classes.GetData;
-import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
-import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
-
-import rta.ae.sharekni.R;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,6 +36,10 @@ import org.json.JSONObject;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+
+import rta.ae.sharekni.Arafa.Classes.GetData;
+import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
+import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
 
 public class DriverPermits extends AppCompatActivity {
 
@@ -70,22 +66,19 @@ public class DriverPermits extends AppCompatActivity {
         user_ride_created = (ListView) findViewById(R.id.user_ride_created);
         initToolbar();
         myPrefs = this.getSharedPreferences("myPrefs", 0);
-        String ID = myPrefs.getString("account_id",null);
+        String ID = myPrefs.getString("account_id", null);
 //        Bundle in = getIntent().getExtras();
 //        Log.d("Intent Id :", String.valueOf(in.getInt("DriverID")));
         Driver_ID = Integer.parseInt(ID);
         Log.d("Driver Id", String.valueOf(Driver_ID));
 
-        rideJson  = new rideJson();
+        rideJson = new rideJson();
 
         rideJson.execute();
 
-        c=this;
+        c = this;
 
     }
-
-
-
 
 
 
@@ -160,8 +153,8 @@ public class DriverPermits extends AppCompatActivity {
                                     JSONArray jArray = new JSONArray(data);
                                     final BestRouteDataModel[] driver = new BestRouteDataModel[jArray.length()];
                                     JSONObject json;
-                                    if (jArray.length()==0){
-                                        Log.d("Error 3 ","Error3");
+                                    if (jArray.length() == 0) {
+                                        Log.d("Error 3 ", "Error3");
 
                                         final Dialog dialog = new Dialog(c);
                                         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -188,6 +181,15 @@ public class DriverPermits extends AppCompatActivity {
                                             days = "";
                                             json = jArray.getJSONObject(i);
                                             item.setFromEm(json.getString("CurrentPassengers"));
+
+//                                            if (json.getString("CurrentPassengers").equals("0")) {
+//
+//                                                c.finish();
+//                                                Toast.makeText(c, R.string.no_permits, Toast.LENGTH_SHORT).show();
+//
+//                                            }
+//
+
                                             item.setToEm(json.getString("IssueDate"));
                                             item.setToReg(json.getString("ExpireDate"));
                                             item.setRouteName(json.getString(getString(R.string.route_name)));
@@ -195,7 +197,7 @@ public class DriverPermits extends AppCompatActivity {
                                             driver[i] = item;
 
                                             Log.d("FromEmlv", json.getString("MaxPassengers"));
-                                          //  Log.d("FromReglv", json.getString("FromRegionEnName"));
+                                            //  Log.d("FromReglv", json.getString("FromRegionEnName"));
                                             Log.d("TomEmlv", json.getString("IssueDate"));
                                             Log.d("ToReglv", json.getString("ExpireDate"));
 
@@ -205,17 +207,16 @@ public class DriverPermits extends AppCompatActivity {
                                             user_ride_created.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                                 @Override
                                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                                    Intent intent =  new Intent(DriverPermits.this,ViewPermit.class);
-                                                    intent.putExtra("ID",driver[position].Driver_ID);
+                                                    Intent intent = new Intent(DriverPermits.this, ViewPermit.class);
+                                                    intent.putExtra("ID", driver[position].Driver_ID);
                                                     startActivity(intent);
                                                 }
                                             });
 
 
-
                                         } catch (JSONException e) {
                                             e.printStackTrace();
-                                            Log.d("Error 1 ",e.toString());
+                                            Log.d("Error 1 ", e.toString());
                                         }
                                     }
                                 } catch (JSONException e) {
@@ -253,7 +254,7 @@ public class DriverPermits extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if (rideJson.getStatus() == AsyncTask.Status.RUNNING){
+        if (rideJson.getStatus() == AsyncTask.Status.RUNNING) {
             rideJson.cancel(true);
         }
         finish();

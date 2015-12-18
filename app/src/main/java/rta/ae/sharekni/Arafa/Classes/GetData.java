@@ -59,10 +59,10 @@ public class GetData {
     // public static final String PhotoURL = "http://sharekni.sdgstaff.com/uploads/personalphoto/";
 
 
-//    public static final String DOMAIN = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx/";
-//    public static final String NonOpDomain = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx";
-//    public static final String PhotoURL = "http://213.42.51.219/uploads/personalphoto/";
-//
+    public static final String DOMAIN = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx/";
+    public static final String NonOpDomain = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx";
+    public static final String PhotoURL = "http://213.42.51.219/uploads/personalphoto/";
+
 
 //
 //        public static final String DOMAIN = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx/";
@@ -70,11 +70,9 @@ public class GetData {
 //    public static final String PhotoURL = "http://sharekni-web.sdg.ae/uploads/personalphoto/";
 
 
-
-
-    public static final String DOMAIN = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx/";
-    public static final String NonOpDomain = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx";
-    public static final String PhotoURL = "https://www.sharekni.ae/uploads/personalphoto/";
+    // public static final String DOMAIN = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx/";
+    // public static final String NonOpDomain = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx";
+    // public static final String PhotoURL = "https://www.sharekni.ae/uploads/personalphoto/";
 
 
 //    String data;
@@ -170,18 +168,18 @@ public class GetData {
             , String startDate, int saveFind, ListView lv, Activity context) {
 
         QuickSearchStringRequest(QuickSearchUrl + "AccountID=" + myId
-                + "&PreferredGender=" + gender
-                + "&Time="
-                + "&FromEmirateID=" + fromEmId
-                + "&FromRegionID=" + fromRegId
-                + "&ToEmirateID=" + toEmId
-                + "&ToRegionID=" + toRegId
-                + "&PrefferedLanguageId=" + pref_lnag
-                + "&PrefferedNationlaities="
-                + "&AgeRangeId=" + age_Ranged_id
-                + "&StartDate="
-                + "&SaveFind=" + saveFind
-                + "&IsPeriodic="
+                        + "&PreferredGender=" + gender
+                        + "&Time="
+                        + "&FromEmirateID=" + fromEmId
+                        + "&FromRegionID=" + fromRegId
+                        + "&ToEmirateID=" + toEmId
+                        + "&ToRegionID=" + toRegId
+                        + "&PrefferedLanguageId=" + pref_lnag
+                        + "&PrefferedNationlaities="
+                        + "&AgeRangeId=" + age_Ranged_id
+                        + "&StartDate="
+                        + "&SaveFind=" + saveFind
+                        + "&IsPeriodic="
 
                 , lv
                 , myId, context);
@@ -198,34 +196,35 @@ public class GetData {
             , String Time, String sat, String sun, String mon, String tue, String wed
             , String thu, String fri, char gender, int VehicleID, int NoOfSeats
             , double StartLat, double StartLng, double EndLat, double EndLng
-            , int Pref_Lang, int Nat, int AgeRangedId, String Start_Date, Activity context) {
+            , int Pref_Lang, int Nat, int AgeRangedId, String Start_Date,String IsSmoking,Activity context) {
 
         DriverEditCarPoolStringRequest(DriverEditCarPoolUrl + "RouteID=" + myId
-                + "&EnName=" + URLEncoder.encode(En_Name)
-                + "&FromEmirateID=" + From_EmID
-                + "&ToEmirateID=" + To_EmID
-                + "&FromRegionID=" + From_RegId
-                + "&ToRegionID=" + To_RegId
-                + "&IsRounded=" + isRounded
-                + "&Time=" + Time
-                + "&Saturday=" + sat
-                + "&Sunday=" + sun
-                + "&Monday=" + mon
-                + "&Tuesday=" + tue
-                + "&Wednesday=" + wed
-                + "&Thursday=" + thu
-                + "&Friday=" + fri
-                + "&PreferredGender=" + gender
-                + "&VehicleID=" + VehicleID
-                + "&NoOfSeats=" + NoOfSeats
-                + "&StartLat=" + StartLat
-                + "&StartLng=" + StartLng
-                + "&EndLat=" + EndLat
-                + "&EndLng=" + EndLng
-                + "&PrefferedLanguageId=" + Pref_Lang
-                + "&PrefferedNationlaities=" + Nat
-                + "&AgeRangeId=" + AgeRangedId
-                + "&StartDate=" + Start_Date
+                        + "&EnName=" + URLEncoder.encode(En_Name)
+                        + "&FromEmirateID=" + From_EmID
+                        + "&ToEmirateID=" + To_EmID
+                        + "&FromRegionID=" + From_RegId
+                        + "&ToRegionID=" + To_RegId
+                        + "&IsRounded=" + isRounded
+                        + "&Time=" + Time
+                        + "&Saturday=" + sat
+                        + "&Sunday=" + sun
+                        + "&Monday=" + mon
+                        + "&Tuesday=" + tue
+                        + "&Wednesday=" + wed
+                        + "&Thursday=" + thu
+                        + "&Friday=" + fri
+                        + "&PreferredGender=" + gender
+                        + "&VehicleID=" + VehicleID
+                        + "&NoOfSeats=" + NoOfSeats
+                        + "&StartLat=" + StartLat
+                        + "&StartLng=" + StartLng
+                        + "&EndLat=" + EndLat
+                        + "&EndLng=" + EndLng
+                        + "&PrefferedLanguageId=" + Pref_Lang
+                        + "&PrefferedNationlaities=" + Nat
+                        + "&AgeRangeId=" + AgeRangedId
+                        + "&StartDate=" + Start_Date
+                        + "&IsSmoking=" + IsSmoking
                 , context);
     }
 
@@ -234,34 +233,35 @@ public class GetData {
             , String Time, String sat, String sun, String mon, String tue, String wed
             , String thu, String fri, char gender, int VehicleID, int NoOfSeats
             , double StartLat, double StartLng, double EndLat, double EndLng
-            , int Pref_Lang, String Nat, int AgeRangedId, String Start_Date, Activity context) {
+            , int Pref_Lang, String Nat, int AgeRangedId, String Start_Date,String IsSmoking, Activity context) {
 
         DriverCreateCarPoolStringRequest(DriverCreateCarPoolUrl + "AccountID=" + myId
-                + "&EnName=" + URLEncoder.encode(En_Name)
-                + "&FromEmirateID=" + From_EmID
-                + "&ToEmirateID=" + To_EmID
-                + "&FromRegionID=" + From_RegId
-                + "&ToRegionID=" + To_RegId
-                + "&IsRounded=" + isRounded
-                + "&Time=" + Time
-                + "&Saturday=" + sat
-                + "&Sunday=" + sun
-                + "&Monday=" + mon
-                + "&Tuesday=" + tue
-                + "&Wednesday=" + wed
-                + "&Thursday=" + thu
-                + "&Friday=" + fri
-                + "&PreferredGender=" + gender
-                + "&VehicleID=" + VehicleID
-                + "&NoOfSeats=" + NoOfSeats
-                + "&StartLat=" + StartLat
-                + "&StartLng=" + StartLng
-                + "&EndLat=" + EndLat
-                + "&EndLng=" + EndLng
-                + "&PrefferedLanguageId=" + Pref_Lang
-                + "&PrefferedNationlaities=" + Nat
-                + "&AgeRangeId=" + AgeRangedId
-                + "&StartDate=" + Start_Date
+                        + "&EnName=" + URLEncoder.encode(En_Name)
+                        + "&FromEmirateID=" + From_EmID
+                        + "&ToEmirateID=" + To_EmID
+                        + "&FromRegionID=" + From_RegId
+                        + "&ToRegionID=" + To_RegId
+                        + "&IsRounded=" + isRounded
+                        + "&Time=" + Time
+                        + "&Saturday=" + sat
+                        + "&Sunday=" + sun
+                        + "&Monday=" + mon
+                        + "&Tuesday=" + tue
+                        + "&Wednesday=" + wed
+                        + "&Thursday=" + thu
+                        + "&Friday=" + fri
+                        + "&PreferredGender=" + gender
+                        + "&VehicleID=" + VehicleID
+                        + "&NoOfSeats=" + NoOfSeats
+                        + "&StartLat=" + StartLat
+                        + "&StartLng=" + StartLng
+                        + "&EndLat=" + EndLat
+                        + "&EndLng=" + EndLng
+                        + "&PrefferedLanguageId=" + Pref_Lang
+                        + "&PrefferedNationlaities=" + Nat
+                        + "&AgeRangeId=" + AgeRangedId
+                        + "&StartDate=" + Start_Date
+                        + "&IsSmoking=" + IsSmoking
                 , context);
     }
 
@@ -284,15 +284,15 @@ public class GetData {
             , Context context) {
 
         EditProfileFormStringRequest(EditProfileUrl
-                + "id=" + id
-                + "&firstName=" + URLEncoder.encode(firstName)
-                + "&lastName=" + URLEncoder.encode(lastName)
-                + "&Mobile=" + mobile
-                + "&gender=" + gender
-                + "&BirthDate=" + BirthDate
-                + "&NationalityId=" + NationalityId
-                + "&PreferredLanguageId=" + PreferredLanguageId
-                + "&NewPhotoName=" + NewPhotoName
+                        + "id=" + id
+                        + "&firstName=" + URLEncoder.encode(firstName)
+                        + "&lastName=" + URLEncoder.encode(lastName)
+                        + "&Mobile=" + mobile
+                        + "&gender=" + gender
+                        + "&BirthDate=" + BirthDate
+                        + "&NationalityId=" + NationalityId
+                        + "&PreferredLanguageId=" + PreferredLanguageId
+                        + "&NewPhotoName=" + NewPhotoName
                 , context);
     }
 
@@ -314,7 +314,7 @@ public class GetData {
     public JSONArray Search(int myId, char gender, String time
             , int fromEmId, int fromRegId, int toEmId, int toRegId
             , int pref_lnag, int pref_nat, int age_Ranged_id
-            , String startDate, int saveFind, final Activity activity) throws JSONException {
+            , String startDate, int saveFind,String Smokers, final Activity activity) throws JSONException {
         HandleXML obj = new HandleXML(QuickSearchUrl
                 + "AccountID=" + myId
                 + "&PreferredGender=" + gender
@@ -328,7 +328,8 @@ public class GetData {
                 + "&AgeRangeId=" + age_Ranged_id
                 + "&StartDate="
                 + "&SaveFind=" + saveFind
-                + "&IsPeriodic=");
+                + "&IsPeriodic="
+                + "&IsSmoking="+Smokers);
         obj.fetchXML();
         while ((obj.parsingComplete && !obj.error)) ;
         Log.d("Test big", obj.getData());
@@ -402,10 +403,6 @@ public class GetData {
     }
 
 
-
-
-
-
     public JSONObject GetRouteById(int ID) throws JSONException {
         JSONObject json;
         HandleXML obj = new HandleXML(getRouteByRouteId + ID);
@@ -438,9 +435,6 @@ public class GetData {
     }
 
 
-
-
-
     public String Passenger_SendAlert(int Driver_ID, int Passenger_ID, int Route_ID, String Remarks) throws JSONException {
         String json;
         String Url = Passenger_SendAlert + "RouteID=" + Route_ID + "&PassengerID="
@@ -470,7 +464,7 @@ public class GetData {
     }
 
     public String Passenger_RateDriver(int DriverId, int PassengerId, int RouteId, int NoOfStars) throws JSONException {
-        Log.d("Forget Pass", Passenger_RateDriver + "DriverId=" + DriverId + "&PassengerId=" + PassengerId + "&RouteId=" + RouteId + "&NoOfStars=" + NoOfStars );
+        Log.d("Forget Pass", Passenger_RateDriver + "DriverId=" + DriverId + "&PassengerId=" + PassengerId + "&RouteId=" + RouteId + "&NoOfStars=" + NoOfStars);
         HandleXML obj = new HandleXML(Passenger_RateDriver + "DriverId=" + DriverId + "&PassengerId=" + PassengerId + "&RouteId=" + RouteId + "&NoOfStars=" + NoOfStars);
         obj.fetchXML();
         while ((obj.parsingComplete && !obj.error)) ;
@@ -487,7 +481,7 @@ public class GetData {
     }
 
 
-    public String SendMobileVerification(int AccountID ) throws JSONException {
+    public String SendMobileVerification(int AccountID) throws JSONException {
         String json;
         String Url = SendMobileVerification + AccountID;
         HandleXML obj = new HandleXML(Url);
@@ -517,7 +511,6 @@ public class GetData {
         return obj.getData();
 
     }
-
 
 
     public String Driver_Remove_Passenger(int Passenger_ID) throws JSONException {
@@ -661,7 +654,7 @@ public class GetData {
         return decoded;
     }
 
-    public Void SetImage(CircularImageView cm,String photoUrl) {
+    public Void SetImage(CircularImageView cm, String photoUrl) {
         HandleXML obj = new HandleXML(getImage + photoUrl);
         obj.fetchXML();
         while (((obj.parsingComplete && !obj.error) && !obj.error)) ;
@@ -1109,7 +1102,7 @@ public class GetData {
                         Log.d("Search  Array Output : ", response);
                         switch (response) {
                             case "-1":
-                                Toast.makeText(context,  context.getString(R.string.route_name_exist), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, context.getString(R.string.route_name_exist), Toast.LENGTH_SHORT).show();
                                 break;
                             case "-2":
                                 Toast.makeText(context, context.getString(R.string.reached_max_rides), Toast.LENGTH_SHORT).show();
@@ -1149,7 +1142,7 @@ public class GetData {
                         Log.d("Search  Array Output : ", response);
                         switch (response) {
                             case "-1":
-                                Toast.makeText(context,  context.getString(R.string.route_name_exist), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, context.getString(R.string.route_name_exist), Toast.LENGTH_SHORT).show();
                                 break;
                             case "-2":
                                 Toast.makeText(context, context.getString(R.string.reached_max_rides), Toast.LENGTH_SHORT).show();

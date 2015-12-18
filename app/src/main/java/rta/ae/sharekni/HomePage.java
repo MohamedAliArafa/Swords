@@ -16,6 +16,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -32,6 +33,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.analytics.HitBuilders;
 import com.mobileapptracker.MobileAppTracker;
 import com.pkmmte.view.CircularImageView;
@@ -49,6 +54,8 @@ import java.util.Locale;
 import rta.ae.sharekni.Arafa.Classes.AppController;
 import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.Arafa.Classes.ImageDecoder;
+import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
+import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
 import rta.ae.sharekni.MainNavigationDrawerFragment.NavigationDrawerFragment;
 import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
 
@@ -56,6 +63,10 @@ import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
 public class HomePage extends AppCompatActivity implements View.OnClickListener {
 
 
+
+    String urlPermit = GetData.DOMAIN + "GetPermitByDriverId?id=";
+    public String Driver_Current_Passnger="";
+    rideJson rideJson;
     public static String ImagePhotoPath;
     public Thread t;
     static HomePage HomaPageActivity;
@@ -157,6 +168,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         mobileAppTracker = MobileAppTracker.init(getApplicationContext(),
                 "189698",
                 "172510cf81e7148e5a01851f65fb0c7e");
+//        mobileAppTracker.setDebugMode(true);
+ //       mobileAppTracker.setAllowDuplicates(true);
+
 
 
 
@@ -837,6 +851,12 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                     Home_Relative_Permit.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+
+//                            rideJson = new rideJson();
+//                            rideJson.execute();
+
+                            //Log.d("Driver permit pass",Driver_Current_Passnger);
+
                             Intent intent = new Intent(getBaseContext(), DriverPermits.class);
                             startActivity(intent);
 
@@ -1078,6 +1098,141 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
             }
         }
     }
+
+
+
+    private class rideJson extends AsyncTask {
+        boolean exists = false;
+        ProgressDialog pDialog;
+
+
+        @Override
+        protected void onPostExecute(Object o) {
+            hidePDialog();
+            super.onPostExecute(o);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            pDialog = new ProgressDialog(HomePage.this);
+            pDialog.setMessage(getString(R.string.loading) + "...");
+            pDialog.show();
+            super.onPreExecute();
+        }
+
+        private void hidePDialog() {
+            if (pDialog != null) {
+                pDialog.dismiss();
+                pDialog = null;
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object[] params) {
+            try {
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                Socket sock = new Socket();
+                int timeoutMs = 2000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                exists = true;
+            } catch (final Exception e) {
+                e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new AlertDialog.Builder(HomePage.this)
+                                .setTitle(getString(R.string.connection_problem))
+                                .setMessage(getString(R.string.con_problem_message))
+                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                        startActivity(getIntent());
+                                    }
+                                })
+                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                        Toast.makeText(HomePage.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            if (exists) {
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, urlPermit + Driver_ID,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                response = response.replaceAll("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "");
+                                response = response.replaceAll("<string xmlns=\"http://Sharekni-MobAndroid-Data.org/\">", "");
+                                response = response.replaceAll("</string>", "");
+                                // Display the first 500 characters of the response string.
+                                String data = response.substring(40);
+                                Log.d("url", urlPermit + Driver_ID);
+                                try {
+                                    JSONArray jArray = new JSONArray(data);
+                                    final BestRouteDataModel[] driver = new BestRouteDataModel[jArray.length()];
+                                    JSONObject json;
+                                    if (jArray.length() == 0) {
+                                        Log.d("Error 3 ", "Error3");
+
+                                        final Dialog dialog = new Dialog(c);
+                                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                        dialog.setContentView(R.layout.noroutesdialog);
+                                        Button btn = (Button) dialog.findViewById(R.id.noroute_id);
+                                        TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
+                                        dialog.show();
+                                        Text_3.setText(R.string.no_permits);
+
+                                        btn.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                dialog.dismiss();
+
+                                            }
+                                        });
+
+                                    }
+
+
+                                    for (int i = 0; i < jArray.length(); i++) {
+                                        try {
+                                            BestRouteDataModel item = new BestRouteDataModel(Parcel.obtain());
+
+                                            json = jArray.getJSONObject(i);
+                                            item.setFromEm(json.getString("CurrentPassengers"));
+                                               Driver_Current_Passnger =json.getString("CurrentPassengers");
+
+//                                            if (json.getString("CurrentPassengers").equals("0")) {
+//                                                Toast.makeText(c, R.string.no_permits, Toast.LENGTH_SHORT).show();
+//                                            }
+
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                            Log.d("Error 1 ", e.toString());
+                                        }
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                    Log.d("Error 2 ", e.toString());
+                                }
+
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                });
+                VolleySingleton.getInstance(HomePage.this).addToRequestQueue(stringRequest);
+            }
+            return null;
+        }
+    }
+
+
+
+
+
+
 
 
     @Override

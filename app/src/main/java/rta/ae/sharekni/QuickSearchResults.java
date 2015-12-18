@@ -56,6 +56,7 @@ public class QuickSearchResults extends AppCompatActivity {
     ListView lvResult;
     private Toolbar toolbar;
     String ID;
+    String Smokers;
 
     int SaveFind=0;
 
@@ -91,6 +92,7 @@ public class QuickSearchResults extends AppCompatActivity {
         From_RegionEnName = intent.getStringExtra("From_RegionEnName");
         Gender = intent.getCharExtra("Gender", ' ');
         SaveFind= intent.getIntExtra("SaveFind", 0);
+        Smokers=intent.getStringExtra("Smokers");
         Log.d("save find one :", String.valueOf(SaveFind));
 
 
@@ -323,7 +325,7 @@ public class QuickSearchResults extends AppCompatActivity {
                         try {
                             jArray = j.Search(0, Gender, Time, From_Em_Id
                                     , From_Reg_Id, To_Em_Id, To_Reg_Id, pref_lnag, pref_nat
-                                    , Age_Ranged_id, StartDate, saveFind,acivity);
+                                    , Age_Ranged_id, StartDate, saveFind,Smokers,acivity);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -332,7 +334,7 @@ public class QuickSearchResults extends AppCompatActivity {
                         try {
                             jArray = j.Search(0, gender, Time, From_Em_Id
                                     , From_Reg_Id, To_Em_Id, To_Reg_Id, pref_lnag, pref_nat
-                                    , Age_Ranged_id, StartDate, saveFind,acivity);
+                                    , Age_Ranged_id, StartDate, saveFind,Smokers,acivity);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -342,7 +344,7 @@ public class QuickSearchResults extends AppCompatActivity {
                     try {
                         jArray = j.Search(Integer.parseInt(ID), gender, Time, From_Em_Id
                                 , From_Reg_Id, To_Em_Id, To_Reg_Id, pref_lnag, pref_nat
-                                , Age_Ranged_id, StartDate, saveFind,acivity);
+                                , Age_Ranged_id, StartDate, saveFind,Smokers,acivity);
                     } catch (JSONException e) {
                         error = true;
                         e.printStackTrace();

@@ -22,6 +22,8 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -54,6 +56,7 @@ import rta.ae.sharekni.Arafa.Classes.GetData;
 public class Advanced_Search extends AppCompatActivity implements View.OnClickListener {
 
     char i = 'N';
+    String IS_Smoking ="";
     static final int DILOG_ID = 0;
     static final int TIME_DIALOG_ID = 999;
     int Single_Periodic_ID;
@@ -116,11 +119,14 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
     int i2 = 0;
     String From_EmirateEnName_str, From_RegionEnName_str, To_EmirateEnName_str, To_RegionEnName_str;
-    int From_Em_Id_2 = -1 , From_Reg_Id_2 = -1, To_Em_Id_2, To_Reg_Id_2;
+    int From_Em_Id_2 = -1, From_Reg_Id_2 = -1, To_Em_Id_2, To_Reg_Id_2;
 
     ImageView save_off, save_on;
     TextView save_search_txt;
     int savefind = 0;
+
+    CheckBox check_Both, Check_Male, Check_Female;
+    CheckBox Check_Smoking,Check_NotSmoking;
 
     private Toolbar toolbar;
     private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
@@ -279,11 +285,11 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
         Advanced_btn_search_page = (Button) findViewById(R.id.btn_advanced_search_page);
         Periodic_SingleRide = (ImageView) findViewById(R.id.Periodic_SingleRide);
         singleRide_Periodic = (ImageView) findViewById(R.id.singleRide_Periodic);
-        Advanced_malefemale1 = (ImageView) findViewById(R.id.Advanced_malefemale1);
-        Advanced_femalemale2 = (ImageView) findViewById(R.id.Advanced_femalemale2);
+//        Advanced_malefemale1 = (ImageView) findViewById(R.id.Advanced_malefemale1);
+//        Advanced_femalemale2 = (ImageView) findViewById(R.id.Advanced_femalemale2);
         advanced_search_Nat = (AutoCompleteTextView) findViewById(R.id.advanced_search_Nat);
-        maleFemaleTxt = (TextView) findViewById(R.id.malefemale_txt);
-        FemaleMaleTxt = (TextView) findViewById(R.id.femalemale_txt);
+//        maleFemaleTxt = (TextView) findViewById(R.id.malefemale_txt);
+//      FemaleMaleTxt = (TextView) findViewById(R.id.femalemale_txt);
         maleFemaleTxt2 = (TextView) findViewById(R.id.malefemale_txt2);
         FemaleMaleTxt2 = (TextView) findViewById(R.id.femalemale_txt2);
         advanced_search_Preferred_Lang_txt = (TextView) findViewById(R.id.advanced_search_Preferred_Lang_txt);
@@ -301,6 +307,72 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
         save_off = (ImageView) findViewById(R.id.save_off);
         save_on = (ImageView) findViewById(R.id.save_on);
         save_search_txt = (TextView) findViewById(R.id.save_search_txt);
+
+
+        check_Both = (CheckBox) findViewById(R.id.check_Both);
+        Check_Male = (CheckBox) findViewById(R.id.Check_Male);
+        Check_Female = (CheckBox) findViewById(R.id.Check_Female);
+
+        Check_Smoking = (CheckBox) findViewById(R.id.Check_Smoking);
+        Check_NotSmoking= (CheckBox) findViewById(R.id.Check_NotSmoking);
+
+        Check_Smoking.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    IS_Smoking="1";
+                    Check_NotSmoking.setChecked(false);
+                }
+            }
+        });
+
+
+        Check_NotSmoking.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    IS_Smoking="0";
+                    Check_Smoking.setChecked(false);
+                }
+            }
+        });
+
+
+
+        check_Both.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    i = 'N';
+                    Check_Male.setChecked(false);
+                    Check_Female.setChecked(false);
+                }
+            }
+        });
+
+
+        Check_Male.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    i = 'M';
+                    check_Both.setChecked(false);
+                    Check_Female.setChecked(false);
+                }
+            }
+        });
+
+
+        Check_Female.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    i = 'F';
+                    check_Both.setChecked(false);
+                    Check_Male.setChecked(false);
+                }
+            }
+        });
 
 
         age = new age();
@@ -389,54 +461,54 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
         });
 
 
-        Advanced_malefemale1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Advanced_malefemale1.setVisibility(View.INVISIBLE);
-                Advanced_femalemale2.setVisibility(View.VISIBLE);
-                maleFemaleTxt.setTextColor(Color.GRAY);
-                FemaleMaleTxt.setTextColor(Color.RED);
-                i = 'F';
-
-            }
-        });
-
-
-        Advanced_femalemale2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Advanced_femalemale2.setVisibility(View.INVISIBLE);
-                Advanced_malefemale1.setVisibility(View.VISIBLE);
-                maleFemaleTxt.setTextColor(Color.RED);
-                FemaleMaleTxt.setTextColor(Color.GRAY);
-                i = 'M';
-
-            }
-        });
-
-        FemaleMaleTxt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                maleFemaleTxt.setTextColor(Color.GRAY);
-                FemaleMaleTxt.setTextColor(Color.RED);
-                Advanced_malefemale1.setVisibility(View.INVISIBLE);
-                Advanced_femalemale2.setVisibility(View.VISIBLE);
-                i = 'F';
-
-            }
-        });
-
-        maleFemaleTxt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                maleFemaleTxt.setTextColor(Color.RED);
-                FemaleMaleTxt.setTextColor(Color.GRAY);
-                Advanced_malefemale1.setVisibility(View.VISIBLE);
-                Advanced_femalemale2.setVisibility(View.INVISIBLE);
-                i = 'M';
-            }
-        });
+//        Advanced_malefemale1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Advanced_malefemale1.setVisibility(View.INVISIBLE);
+//                Advanced_femalemale2.setVisibility(View.VISIBLE);
+//                maleFemaleTxt.setTextColor(Color.GRAY);
+//                FemaleMaleTxt.setTextColor(Color.RED);
+//                i = 'F';
+//
+//            }
+//        });
+//
+//
+//        Advanced_femalemale2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Advanced_femalemale2.setVisibility(View.INVISIBLE);
+//                Advanced_malefemale1.setVisibility(View.VISIBLE);
+//                maleFemaleTxt.setTextColor(Color.RED);
+//                FemaleMaleTxt.setTextColor(Color.GRAY);
+//                i = 'M';
+//
+//            }
+//        });
+//
+//        FemaleMaleTxt.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                maleFemaleTxt.setTextColor(Color.GRAY);
+//                FemaleMaleTxt.setTextColor(Color.RED);
+//                Advanced_malefemale1.setVisibility(View.INVISIBLE);
+//                Advanced_femalemale2.setVisibility(View.VISIBLE);
+//                i = 'F';
+//
+//            }
+//        });
+//
+//        maleFemaleTxt.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                maleFemaleTxt.setTextColor(Color.RED);
+//                FemaleMaleTxt.setTextColor(Color.GRAY);
+//                Advanced_malefemale1.setVisibility(View.VISIBLE);
+//                Advanced_femalemale2.setVisibility(View.INVISIBLE);
+//                i = 'M';
+//            }
+//        });
 
 
         save_off.setOnClickListener(new View.OnClickListener() {
@@ -498,31 +570,32 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
             public void onClick(View v) {
 
-                if (From_Em_Id_2 != -1 && From_Reg_Id_2 != -1){
+                if (From_Em_Id_2 != -1 && From_Reg_Id_2 != -1) {
 
                     Intent intent1 = new Intent(getBaseContext(), QuickSearchResults.class);
-                intent1.putExtra("From_Em_Id", From_Em_Id_2);
-                intent1.putExtra("To_Em_Id", To_Em_Id_2);
-                intent1.putExtra("From_Reg_Id", From_Reg_Id_2);
-                intent1.putExtra("To_Reg_Id", To_Reg_Id_2);
-                intent1.putExtra("From_EmirateEnName", From_EmirateEnName_str);
-                intent1.putExtra("From_RegionEnName", From_RegionEnName_str);
-                intent1.putExtra("To_EmirateEnName", To_EmirateEnName_str);
-                intent1.putExtra("To_RegionEnName", To_RegionEnName_str);
-                intent1.putExtra("Gender", i);
-                intent1.putExtra("SaveFind", savefind);
+                    intent1.putExtra("From_Em_Id", From_Em_Id_2);
+                    intent1.putExtra("To_Em_Id", To_Em_Id_2);
+                    intent1.putExtra("From_Reg_Id", From_Reg_Id_2);
+                    intent1.putExtra("To_Reg_Id", To_Reg_Id_2);
+                    intent1.putExtra("From_EmirateEnName", From_EmirateEnName_str);
+                    intent1.putExtra("From_RegionEnName", From_RegionEnName_str);
+                    intent1.putExtra("To_EmirateEnName", To_EmirateEnName_str);
+                    intent1.putExtra("To_RegionEnName", To_RegionEnName_str);
+                    intent1.putExtra("Gender", i);
+                    intent1.putExtra("SaveFind", savefind);
+                    intent1.putExtra("Smokers",IS_Smoking);
 
-                networkCheck.cancel(true);
-                nat.cancel(true);
-                lan.cancel(true);
-                age.cancel(true);
+                    networkCheck.cancel(true);
+                    nat.cancel(true);
+                    lan.cancel(true);
+                    age.cancel(true);
 
-                startActivity(intent1);
+                    startActivity(intent1);
 
-                i2 = 1;
+                    i2 = 1;
 
 
-                  }else {
+                } else {
                     Toast.makeText(Advanced_Search.this, R.string.select_start_point, Toast.LENGTH_SHORT).show();
                 }
 
@@ -531,6 +604,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
         networkCheck.execute();
     }   //  on create
+
 
     private class networkCheck extends AsyncTask {
 

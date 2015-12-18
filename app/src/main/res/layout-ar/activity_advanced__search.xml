@@ -1,13 +1,3 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.nezar.materialtest.QuickSearch">
-
-
-    <include
-        android:id="@+id/app_bar"
-        layout="@layout/app_bar" />
 
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -16,6 +6,17 @@
         android:layout_below="@+id/app_bar"
         android:background="@drawable/registerbackgroundtest">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+
+
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/app_bar" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -470,74 +471,144 @@
                 android:textColorHint="@color/primaryColor" />
 
 
-            <RelativeLayout
-                android:id="@+id/advanced_search_Male_Female"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/advanced_search_Age_Range_txt"
+                android:id="@+id/checkbox_Relative"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/user_register_border">
+                android:orientation="vertical"
+                android:background="@drawable/user_register_border"
+                >
 
-                <ImageView
-                    android:id="@+id/Advanced_malefemale1"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/slidemale" />
 
-                <ImageView
-                    android:id="@+id/Advanced_femalemale2"
-                    android:layout_width="100dp"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/slidefemale"
-                    android:visibility="invisible"
+                    android:text="@string/preferred_gender_Str"
+                    android:textSize="18sp"
+                    android:textColor="@color/primaryColor"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+
 
                     />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    >
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/reg_gender_both"
+                        android:id="@+id/check_Both"
+                        android:textColor="@color/primaryColor"
+                        android:textSize="16sp"
+                        android:layout_weight="1"
+                        />
+
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/reg_gender_male"
+                        android:id="@+id/Check_Male"
+                        android:textColor="@color/primaryColor"
+                        android:textSize="15sp"
+                        android:layout_weight="1"
+                        />
+
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/reg_gender_female"
+                        android:id="@+id/Check_Female"
+                        android:textColor="@color/primaryColor"
+                        android:textSize="15sp"
+                        android:layout_weight="1"
+                        />
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/IsSmoking_Relative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/checkbox_Relative"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/user_register_border"
+                >
+
+
 
                 <TextView
-                    android:id="@+id/malefemale_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_toEndOf="@+id/Advanced_femalemale2"
-                    android:layout_toRightOf="@+id/Advanced_femalemale2"
-
-
-                    android:text="@string/reg_gender_male"
+                    android:text="@string/is_smoking_Str"
+                    android:textSize="18sp"
                     android:textColor="@color/primaryColor"
-                    android:textSize="16sp" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
 
-                <TextView
-                    android:id="@+id/femalemale_txt"
-                    android:layout_width="wrap_content"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="25dp"
-                    android:layout_marginRight="25dp"
-                    android:layout_toLeftOf="@+id/Advanced_malefemale1"
-                    android:layout_toStartOf="@+id/Advanced_malefemale1"
-                    android:text="@string/reg_gender_female"
-                    android:textColor="@color/gray_before_login"
-                    android:textSize="16sp" />
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    >
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/accept_smokers_str"
+                        android:id="@+id/Check_Smoking"
+                        android:textColor="@color/primaryColor"
+                        android:textSize="15sp"
+                        android:layout_weight="1"
+                        />
 
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/not_accept_smokers_str"
+                        android:id="@+id/Check_NotSmoking"
+                        android:textColor="@color/primaryColor"
+                        android:textSize="15sp"
+                        android:layout_weight="1"
+                        />
 
-            </RelativeLayout>
+                </LinearLayout>
+
+            </LinearLayout>
 
 
             <Button
                 android:id="@+id/btn_advanced_search_page"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/advanced_search_Male_Female"
+                android:layout_below="@+id/IsSmoking_Relative"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="30dp"
                 android:layout_marginTop="30dp"
@@ -549,7 +620,7 @@
         </RelativeLayout>
 
 
+        </LinearLayout>
     </ScrollView>
 
 
-</RelativeLayout>

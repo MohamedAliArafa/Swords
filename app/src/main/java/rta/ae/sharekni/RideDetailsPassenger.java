@@ -159,6 +159,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
         Join_Ride_btn.setVisibility(View.INVISIBLE);
         //Pass_rate_Driver_btn.setVisibility(View.INVISIBLE);
         ratingBar.setVisibility(View.INVISIBLE);
+        Passenger_Review_Driver_Btn.setVisibility(View.INVISIBLE);
 
         // setListViewHeightBasedOnChildren(Driver_get_Review_lv);
         //setSupportActionBar(toolbar);
@@ -197,9 +198,11 @@ public class RideDetailsPassenger extends AppCompatActivity {
             if (in.getInt("FLAG_1") == 1) {
                 Join_Ride_btn.setVisibility(View.INVISIBLE);
                 ratingBar.setVisibility(View.VISIBLE);
+                Passenger_Review_Driver_Btn.setVisibility(View.VISIBLE);
 
             }else {
                 Join_Ride_btn.setVisibility(View.VISIBLE);
+                Passenger_Review_Driver_Btn.setVisibility(View.INVISIBLE);
             }
         } catch (NullPointerException e) {
 
@@ -282,6 +285,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
 
                 ratingBar.setVisibility(View.VISIBLE);
                 Join_Ride_btn.setVisibility(View.INVISIBLE);
+                Passenger_Review_Driver_Btn.setVisibility(View.VISIBLE);
 
             }
 
@@ -634,6 +638,9 @@ public class RideDetailsPassenger extends AppCompatActivity {
                         review.setAccountName(obj.getString("AccountName"));
                         review.setAccountNationalityEn(obj.getString(getString(R.string.acc_nat_name)));
                         review.setReview(obj.getString("Review"));
+                        review.setReviewID(obj.getInt("ReviewId"));
+                        review.setRoute_ID(Route_ID);
+                        review.setDriverID(Driver_ID);
                         if (!review.getReview().equals("")) {
                             driverGetReviewDataModels_arr.add(review);
                             FLAG_REVIEW++;

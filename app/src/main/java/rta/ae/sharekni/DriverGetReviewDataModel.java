@@ -15,6 +15,15 @@ public class DriverGetReviewDataModel extends ArrayList<Parcelable> implements  
     public String Review,AccountName,AccountNationalityEn;
     public int AccountID;
     public int DriverID;
+    public int Route_ID;
+
+    public int getRoute_ID() {
+        return Route_ID;
+    }
+
+    public void setRoute_ID(int route_ID) {
+        Route_ID = route_ID;
+    }
 
     public Bitmap getPhoto() {
         return Photo;
@@ -52,6 +61,8 @@ public class DriverGetReviewDataModel extends ArrayList<Parcelable> implements  
         AccountName = in.readString();
         AccountID = in.readInt();
         AccountNationalityEn=in.readString();
+        DriverID=in.readInt();
+        Route_ID=in.readInt();
     }
 
     public static final Creator<DriverGetReviewDataModel> CREATOR = new Creator<DriverGetReviewDataModel>() {
@@ -113,5 +124,7 @@ public class DriverGetReviewDataModel extends ArrayList<Parcelable> implements  
         dest.writeString(AccountName);
         dest.writeInt(AccountID);
         dest.writeString(AccountNationalityEn);
+        dest.writeInt(DriverID);
+        dest.writeInt(Route_ID);
     }
 }

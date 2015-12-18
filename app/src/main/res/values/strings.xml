@@ -375,6 +375,13 @@
     <string name="select_start_point">PLease Select Start Point at least</string>
     <string name="region_identical">From and To Regions Can\'t Be Identical!</string>
     <string name="choose_oneday">Please Choose at least 1 Day</string>
+    <string name="reg_gender_both">Both</string>
+    <string name="accept_smoking_Str">Accept Smoking</string>
+    <string name="accept_smokers_str">Accept</string>
+    <string name="not_accept_smokers_str">Not Accept</string>
+    <string name="is_smoking_Str">Smokers</string>
+    <string name="preferred_gender_Str">Preferred Gender</string>
+    <string name="Review_updated">Review Updated</string>
 
 
 </resources>

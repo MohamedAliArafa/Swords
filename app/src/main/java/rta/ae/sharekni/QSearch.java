@@ -47,6 +47,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
     int From_Reg_Id;
     int To_Em_Id;
     int To_Reg_Id;
+    String IS_Smoking ="";
 
     String To_EmirateEnName, From_EmirateEnName, To_RegionEnName, From_RegionEnName;
 
@@ -392,6 +393,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
                     intent1.putExtra("To_EmirateEnName", To_EmirateEnName_str);
                     intent1.putExtra("To_RegionEnName", To_RegionEnName_str);
                     intent1.putExtra("SaveFind", savefind);
+                    intent1.putExtra("Smokers",IS_Smoking);
                     Log.d("Test", From_EmirateEnName + From_RegionEnName + To_EmirateEnName + To_RegionEnName);
                     startActivity(intent1);
 

@@ -289,11 +289,15 @@ public class Route extends AppCompatActivity {
                         }else {
                             PrefLanguageEnName.setText(json.getString(getString(R.string.pref_lang)));
                         }
+
+
                         if (json.getString("AgeRangeID").equals("0") || json.getString("AgeRangeID").equals("null") ){
                             AgeRange.setText(getString(R.string.not_set));
                         }else {
                             AgeRange.setText(json.getString("AgeRange"));
                         }
+
+
                         Gender_ste = "";
                         Gender_ste = json.getString("PreferredGender");
                         switch (Gender_ste) {
@@ -545,7 +549,7 @@ public class Route extends AppCompatActivity {
                         final Ride_Details_Passengers_DataModel item = new Ride_Details_Passengers_DataModel(Parcel.obtain());
                         Log.d("Passenger Name", obj.getString("AccountName"));
 //                        item.setAccountPhoto(obj.getString("AccountPhoto"));
-                        item.setPassengerId(obj.getInt("ID"));
+                        item.setPassengerId(obj.getInt("AccountId"));
                         item.setAccountName(obj.getString("AccountName"));
                         item.setDriverId(Driver_ID);
                         item.setRouteId(Route_ID);

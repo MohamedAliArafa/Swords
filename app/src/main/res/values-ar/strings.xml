@@ -359,7 +359,7 @@
     <string name="Refresh_vehicles">تحديث</string>
     <string name="Rate_str">قيم</string>
     <string name="Verify_str">تحقق </string>
-    <string name="rate_submitted">تم تسجيل التقييم</string>
+    <string name="rate_submitted">تم التقييم بنجاح</string>
     <string name="rate_submit_failed">فشل تسجيل التقييم</string>
     <string name="Save_Changes_Edit_Carpool">حفظ التعديل</string>
     <string name="VehicleName_Edit_CarPool">VehicleArName</string>
@@ -375,5 +375,12 @@
     <string name="select_start_point">الرجاء اختيار نقطة الانطلاق علي الاقل</string>
     <string name="region_identical">لا يمكن ان تكون نقطه الإنطلاق و نقطة الوصول متطابقة</string>
     <string name="choose_oneday">من فضلك إختر على الأقل يوم واحد</string>
+    <string name="reg_gender_both">كلاهما</string>
+    <string name="accept_smoking_Str">Accept Smoking</string>
+    <string name="accept_smokers_str">أقبل</string>
+    <string name="not_accept_smokers_str">لا أقبل</string>
+    <string name="is_smoking_Str">مدخنين</string>
+    <string name="preferred_gender_Str">الجنسيه المفضلة</string>
+    <string name="Review_updated">تم تحديث التعليق</string>
 
 </resources>

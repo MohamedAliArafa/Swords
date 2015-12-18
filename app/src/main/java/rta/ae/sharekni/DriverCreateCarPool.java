@@ -23,6 +23,8 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -142,6 +144,9 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     getLanguages languages;
     getNationalities nationalities;
     getVehicles vehicles;
+    CheckBox check_Both, Check_Male, Check_Female;
+    CheckBox Check_Smoking,Check_NotSmoking;
+    String IS_Smoking ="";
 
     private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
         @Override
@@ -319,12 +324,12 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
         Periodic_SingleRide = (ImageView) findViewById(R.id.createCarPool_Periodic_SingleRide);
         singleRide_Periodic = (ImageView) findViewById(R.id.createCarPool_singleRide_Periodic);
-        Create_CarPool_malefemale1 = (ImageView) findViewById(R.id.createCarPool_malefemale1);
-        Create_CarPool_femalemale2 = (ImageView) findViewById(R.id.createCarPool_femalemale2);
+       // Create_CarPool_malefemale1 = (ImageView) findViewById(R.id.createCarPool_malefemale1);
+       // Create_CarPool_femalemale2 = (ImageView) findViewById(R.id.createCarPool_femalemale2);
         Create_CarPool_search_Nat = (AutoCompleteTextView) findViewById(R.id.createCarPool_search_Nat);
 
-        maleFemaleTxt = (TextView) findViewById(R.id.createCarPool_malefemale_txt);
-        FemaleMaleTxt = (TextView) findViewById(R.id.createCarPool_femalemale_txt);
+       // maleFemaleTxt = (TextView) findViewById(R.id.createCarPool_malefemale_txt);
+      //  FemaleMaleTxt = (TextView) findViewById(R.id.createCarPool_femalemale_txt);
         maleFemaleTxt2 = (TextView) findViewById(R.id.createCarPool_malefemale_txt2);
         FemaleMaleTxt2 = (TextView) findViewById(R.id.createCarPool_femalemale_txt2);
 
@@ -352,6 +357,8 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         createCarPool_Thu_Day = (RelativeLayout) findViewById(R.id.createCarPool_Thu_Day);
         createCarPool_Fri_Day = (RelativeLayout) findViewById(R.id.createCarPool_Fri_Day);
 
+
+
         createCarPool_Sat_Day.setOnClickListener(this);
         createCarPool_Sun_Day.setOnClickListener(this);
         createCarPool_Mon_Day.setOnClickListener(this);
@@ -359,6 +366,85 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         createCarPool_Wed_Day.setOnClickListener(this);
         createCarPool_Thu_Day.setOnClickListener(this);
         createCarPool_Fri_Day.setOnClickListener(this);
+
+
+
+
+        check_Both = (CheckBox) findViewById(R.id.check_Both);
+        Check_Male = (CheckBox) findViewById(R.id.Check_Male);
+        Check_Female = (CheckBox) findViewById(R.id.Check_Female);
+
+        Check_Smoking = (CheckBox) findViewById(R.id.Check_Smoking);
+        Check_NotSmoking= (CheckBox) findViewById(R.id.Check_NotSmoking);
+
+        Check_Smoking.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    IS_Smoking="1";
+                    Check_NotSmoking.setChecked(false);
+                }
+            }
+        });
+
+
+        Check_NotSmoking.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    IS_Smoking="0";
+                    Check_Smoking.setChecked(false);
+                }
+            }
+        });
+
+
+
+        check_Both.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    gender = 'N';
+                    Check_Male.setChecked(false);
+                    Check_Female.setChecked(false);
+                }
+            }
+        });
+
+
+        Check_Male.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    gender = 'M';
+                    check_Both.setChecked(false);
+                    Check_Female.setChecked(false);
+                }
+            }
+        });
+
+
+        Check_Female.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    gender = 'F';
+                    check_Both.setChecked(false);
+                    Check_Male.setChecked(false);
+                }
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
 
 
         createCarPool_Vehicles = (TextView) findViewById(R.id.createCarPool_Vehicles);
@@ -445,56 +531,56 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
             }
         });
 
-        //Create_CarPool
-        Create_CarPool_malefemale1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gender = 'F';
-                Create_CarPool_malefemale1.setVisibility(View.INVISIBLE);
-                Create_CarPool_femalemale2.setVisibility(View.VISIBLE);
-                maleFemaleTxt.setTextColor(Color.GRAY);
-                FemaleMaleTxt.setTextColor(Color.RED);
-                Log.d("gender", String.valueOf(gender));
-            }
-        });
+//        //Create_CarPool
+//        Create_CarPool_malefemale1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                gender = 'F';
+//                Create_CarPool_malefemale1.setVisibility(View.INVISIBLE);
+//                Create_CarPool_femalemale2.setVisibility(View.VISIBLE);
+//                maleFemaleTxt.setTextColor(Color.GRAY);
+//                FemaleMaleTxt.setTextColor(Color.RED);
+//                Log.d("gender", String.valueOf(gender));
+//            }
+//        });
 
-        Create_CarPool_femalemale2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gender = 'M';
-                Create_CarPool_femalemale2.setVisibility(View.INVISIBLE);
-                Create_CarPool_malefemale1.setVisibility(View.VISIBLE);
-                maleFemaleTxt.setTextColor(Color.RED);
-                FemaleMaleTxt.setTextColor(Color.GRAY);
-                Log.d("gender", String.valueOf(gender));
+//        Create_CarPool_femalemale2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                gender = 'M';
+//                Create_CarPool_femalemale2.setVisibility(View.INVISIBLE);
+//                Create_CarPool_malefemale1.setVisibility(View.VISIBLE);
+//                maleFemaleTxt.setTextColor(Color.RED);
+//                FemaleMaleTxt.setTextColor(Color.GRAY);
+//                Log.d("gender", String.valueOf(gender));
+//
+//            }
+//        });
 
-            }
-        });
-
-        FemaleMaleTxt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gender = 'F';
-                maleFemaleTxt.setTextColor(Color.GRAY);
-                FemaleMaleTxt.setTextColor(Color.RED);
-                Create_CarPool_malefemale1.setVisibility(View.INVISIBLE);
-                Create_CarPool_femalemale2.setVisibility(View.VISIBLE);
-                Log.d("gender", String.valueOf(gender));
-            }
-        });
-
-        maleFemaleTxt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gender = 'M';
-                maleFemaleTxt.setTextColor(Color.RED);
-                FemaleMaleTxt.setTextColor(Color.GRAY);
-                Create_CarPool_malefemale1.setVisibility(View.VISIBLE);
-                Create_CarPool_femalemale2.setVisibility(View.INVISIBLE);
-                Log.d("gender", String.valueOf(gender));
-
-            }
-        });
+//        FemaleMaleTxt.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                gender = 'F';
+//                maleFemaleTxt.setTextColor(Color.GRAY);
+//                FemaleMaleTxt.setTextColor(Color.RED);
+//                Create_CarPool_malefemale1.setVisibility(View.INVISIBLE);
+//                Create_CarPool_femalemale2.setVisibility(View.VISIBLE);
+//                Log.d("gender", String.valueOf(gender));
+//            }
+//        });
+//
+//        maleFemaleTxt.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                gender = 'M';
+//                maleFemaleTxt.setTextColor(Color.RED);
+//                FemaleMaleTxt.setTextColor(Color.GRAY);
+//                Create_CarPool_malefemale1.setVisibility(View.VISIBLE);
+//                Create_CarPool_femalemale2.setVisibility(View.INVISIBLE);
+//                Log.d("gender", String.valueOf(gender));
+//
+//            }
+//        });
 
         seat1_on.setOnClickListener(this);
         seat2_on.setOnClickListener(this);
@@ -690,7 +776,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                     j.DriverCreateCarPoolFrom(MyId, EnName, FromEmId, ToEmId, FromRegId, ToRegId
                             , is_Rounded, Time, Saturday, Sunday, Monday, Tuesday, Wednesday, Thursday, Friday
                             , gender, Vehicle_ID, No_OF_Seats, Start_Lat, Start_Lng, End_Lat, End_Lng
-                            , pref_lnag, pref_nat, Age_Ranged_id, StartDate, this);
+                            , pref_lnag, pref_nat, Age_Ranged_id, StartDate,IS_Smoking, this);
                     i2 = 1;
                 }
             } else {
