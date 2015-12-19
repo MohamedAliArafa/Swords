@@ -351,18 +351,18 @@
             </RelativeLayout>
 
 
-            <Button
-                android:id="@+id/btnUploadPhotoEdt"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/user_register_border_button"
-                android:text="@string/reg_upload_photo"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF" />
+            <!--<Button-->
+                <!--android:id="@+id/btnUploadPhotoEdt"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="60dp"-->
+                <!--android:layout_marginBottom="10dp"-->
+                <!--android:layout_marginLeft="20dp"-->
+                <!--android:layout_marginRight="20dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:background="@drawable/user_register_border_button"-->
+                <!--android:text="@string/reg_upload_photo"-->
+                <!--android:textAllCaps="false"-->
+                <!--android:textColor="#FFFFFF" />-->
 
 
             <RelativeLayout

@@ -558,6 +558,7 @@ public class Route extends AppCompatActivity {
                         final Ride_Details_Passengers_DataModel item = new Ride_Details_Passengers_DataModel(Parcel.obtain());
                         Log.d("Passenger Name", obj.getString("AccountName"));
 //                        item.setAccountPhoto(obj.getString("AccountPhoto"));
+                        item.setID(obj.getInt("ID"));
                         item.setPassengerId(obj.getInt("AccountId"));
                         item.setAccountName(obj.getString("AccountName"));
                         item.setDriverId(Driver_ID);

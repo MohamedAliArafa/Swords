@@ -354,7 +354,7 @@
     <string name="please_confirm_to_cancel">Please confirm to delete request</string>
     <string name="Delete_msg">Delete</string>
     <string name="Confirm_str">Confirm</string>
-    <string name="Cancel_msg">Delete Request</string>
+    <string name="Cancel_msg">DELETE</string>
     <string name="No_Phone_Number_msg">No Phone Number</string>
     <string name="Accept_Smokers_txt">Accept Smokers</string>
     <string name="change_vehicle">Change Vehicle</string>

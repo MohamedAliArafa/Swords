@@ -23,16 +23,13 @@ import java.util.List;
 
 import rta.ae.sharekni.Arafa.Classes.GetData;
 
-/**
- * Created by Nezar Saleh on 10/6/2015.
- */
 public class Ride_Details_Passengers_Adapter extends BaseAdapter {
 
+    Ride_Details_Passengers_DataModel m;
+    int NoOfStars;
     private Activity activity;
     private LayoutInflater inflater;
     private List<Ride_Details_Passengers_DataModel> PassengersItems;
-    Ride_Details_Passengers_DataModel m;
-    int NoOfStars;
 
 
     public Ride_Details_Passengers_Adapter(Activity activity, List<Ride_Details_Passengers_DataModel> PassengersItems) {
@@ -57,7 +54,7 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
 
         if (inflater == null)
@@ -65,7 +62,6 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (convertView == null)
             convertView = inflater.inflate(R.layout.ride_details_passengers_list_item, null);
-
 
 
         TextView AccountName = (TextView) convertView.findViewById(R.id.AccountName);
@@ -94,7 +90,8 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 NoOfStars = (int) rating;
-                new ratePassenger().execute();
+                int passengetId = PassengersItems.get(position).getPassengerId();
+                new ratePassenger(passengetId).execute();
             }
         });
 
@@ -110,7 +107,7 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
 
                                 GetData gd = new GetData();
                                 try {
-                                    String response = gd.Driver_Remove_Passenger(m.getPassengerId());
+                                    String response = gd.Driver_Remove_Passenger(PassengersItems.get(position).getID());
                                     Log.d("delete passenger", response);
 //                    Toast.makeText(activity, response, Toast.LENGTH_SHORT).show();
                                     if (response.equals("\"1\"")) {
@@ -130,7 +127,6 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
 
                             }
                         }).setIcon(android.R.drawable.ic_dialog_alert).show();
-
             }
         });
 
@@ -141,11 +137,8 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
                 if (m.getAccountMobile() == null || m.getAccountMobile().equals("")) {
                     Toast.makeText(activity, R.string.No_Phone_Number_msg, Toast.LENGTH_SHORT).show();
                 } else {
-
                     try {
-
-
-                        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + m.getAccountMobile()));
+                        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + PassengersItems.get(position).getAccountMobile()));
                         activity.startActivity(intent);
                     } catch (SecurityException e) {
                         Log.d("Passngr list", e.toString());
@@ -159,10 +152,10 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
         passenger_lits_item_Msg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (m.getAccountMobile() == null || m.getAccountMobile().equals("")) {
+                if (m.getAccountMobile() == null || m.getAccountMobile().equals("") || m.getAccountMobile().equals("null")) {
                     Toast.makeText(activity, "No Phone Number", Toast.LENGTH_SHORT).show();
                 } else {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + m.getAccountMobile()));
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + PassengersItems.get(position).getAccountMobile()));
                     intent.putExtra("sms_body", "Hello " + m.getAccountMobile());
                     activity.startActivity(intent);
                 }
@@ -179,13 +172,18 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
     private class ratePassenger extends AsyncTask {
 
         String res;
+        int passengerId;
+
+        public ratePassenger(int passengetId) {
+            this.passengerId = passengetId;
+        }
 
         @Override
         protected void onPostExecute(Object o) {
             Log.d("res", res);
-            if (res.equals("\"1\"")){
+            if (res.equals("\"1\"")) {
                 Toast.makeText(activity, R.string.rate_submitted, Toast.LENGTH_SHORT).show();
-            }else {
+            } else {
                 Toast.makeText(activity, R.string.rate_submit_failed, Toast.LENGTH_SHORT).show();
             }
             super.onPostExecute(o);
@@ -195,7 +193,7 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
         protected Object doInBackground(Object[] params) {
             GetData gd = new GetData();
             try {
-                res = gd.Driver_RatePassenger(m.getDriverId(), m.getPassengerId(), m.getRouteId(), NoOfStars);
+                res = gd.Driver_RatePassenger(m.getDriverId(), passengerId, m.getRouteId(), NoOfStars);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

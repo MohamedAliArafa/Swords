@@ -22,6 +22,16 @@ public class Ride_Details_Passengers_DataModel extends ArrayList<Parcelable> imp
             return new Ride_Details_Passengers_DataModel[size];
         }
     };
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    int ID;
     String AccountName;
     String AccountNationalityEn;
     String AccountMobile;

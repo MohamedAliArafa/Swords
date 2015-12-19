@@ -193,7 +193,7 @@ public class EditProfileTest extends AppCompatActivity {
         femalemale_txt = (TextView) findViewById(R.id.femalemale_txt_edit);
         malefemale = (ImageView) findViewById(R.id.malefemale_edit);
         femalemale = (ImageView) findViewById(R.id.femalemale_edit);
-        btn_upload_image = (Button) findViewById(R.id.btnUploadPhotoEdt);
+//        btn_upload_image = (Button) findViewById(R.id.btnUploadPhotoEdt);
         txt_country = (AutoCompleteTextView) findViewById(R.id.autocompletecountry_id);
         txt_lang = (TextView) findViewById(R.id.autocomplete_lang_id);
         txt_year = (TextView) findViewById(R.id.txt_year);
@@ -284,30 +284,30 @@ public class EditProfileTest extends AppCompatActivity {
             }
         });
 
-        btn_upload_image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final CharSequence[] items = { getString(R.string.take_photo), getString(R.string.choose_from_library), getString(R.string.cancel) };
-                android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(EditProfileTest.this);
-                builder.setTitle(getString(R.string.add_photo));
-                builder.setItems(items, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int item) {
-                        if (items[item].equals(getString(R.string.take_photo))) {
-                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                            startActivityForResult(intent, 0);
-                        } else if (items[item].equals(getString(R.string.choose_from_library))) {
-                            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                            intent.setType("image/*");
-                            startActivityForResult(Intent.createChooser(intent, getString(R.string.select_file)), 1337);
-                        } else if (items[item].equals(getString(R.string.cancel))) {
-                            dialog.dismiss();
-                        }
-                    }
-                });
-                builder.show();
-            }
-        });
+//        btn_upload_image.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                final CharSequence[] items = { getString(R.string.take_photo), getString(R.string.choose_from_library), getString(R.string.cancel) };
+//                android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(EditProfileTest.this);
+//                builder.setTitle(getString(R.string.add_photo));
+//                builder.setItems(items, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int item) {
+//                        if (items[item].equals(getString(R.string.take_photo))) {
+//                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                            startActivityForResult(intent, 0);
+//                        } else if (items[item].equals(getString(R.string.choose_from_library))) {
+//                            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                            intent.setType("image/*");
+//                            startActivityForResult(Intent.createChooser(intent, getString(R.string.select_file)), 1337);
+//                        } else if (items[item].equals(getString(R.string.cancel))) {
+//                            dialog.dismiss();
+//                        }
+//                    }
+//                });
+//                builder.show();
+//            }
+//        });
 
         txt_country.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             public void onFocusChange(View v, boolean hasFocus) {

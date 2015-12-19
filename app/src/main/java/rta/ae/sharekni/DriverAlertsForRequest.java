@@ -124,9 +124,9 @@ public class DriverAlertsForRequest extends AppCompatActivity {
                     }else if (arr.get(i).getDriverAccept().equals("null")){
                         final String[] res = new String[1];
                         new AlertDialog.Builder(DriverAlertsForRequest.this)
-                                .setTitle(R.string.Cancel_msg)
+                                .setTitle(R.string.yes)
                                 .setMessage(R.string.please_confirm_to_cancel)
-                                .setPositiveButton(R.string.Confirm_str, new DialogInterface.OnClickListener() {
+                                .setPositiveButton(R.string.Cancel_msg, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         try {
                                             res[0] = new GetData().Passenger_RemoveRequest(arr.get(i).getRequestId());
@@ -141,7 +141,7 @@ public class DriverAlertsForRequest extends AppCompatActivity {
                                         }
                                     }
                                 })
-                                .setNegativeButton(R.string.Cancel_msg, new DialogInterface.OnClickListener() {
+                                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         dialog.dismiss();
                                     }
