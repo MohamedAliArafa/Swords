@@ -67,6 +67,7 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.ride_details_passengers_list_item, null);
 
 
+
         TextView AccountName = (TextView) convertView.findViewById(R.id.AccountName);
         TextView AccountNationalityEn = (TextView) convertView.findViewById(R.id.AccountNationalityEn);
         ImageView Driver_Remove_passenger = (ImageView) convertView.findViewById(R.id.Driver_Remove_Passenger);
