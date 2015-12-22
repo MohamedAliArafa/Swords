@@ -122,30 +122,49 @@ public class DriverAlertsForRequest extends AppCompatActivity {
                         jsoning.cancel(true);
                         con.startActivity(in);
                     }else if (arr.get(i).getDriverAccept().equals("null")){
-                        final String[] res = new String[1];
-                        new AlertDialog.Builder(DriverAlertsForRequest.this)
-                                .setTitle(R.string.yes)
-                                .setMessage(R.string.please_confirm_to_cancel)
-                                .setPositiveButton(R.string.Cancel_msg, new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        try {
-                                            res[0] = new GetData().Passenger_RemoveRequest(arr.get(i).getRequestId());
-                                            if (res[0].equals("\"1\"")){
-                                                Toast.makeText(getBaseContext(), getString(R.string.request_removed), Toast.LENGTH_SHORT).show();
-                                                DriverAlertsForRequest.this.recreate();
-                                            }else {
-                                                Toast.makeText(getBaseContext(), getString(R.string.error), Toast.LENGTH_SHORT).show();
-                                            }
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                })
-                                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();
-                                    }
-                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+
+                        Intent in = new Intent(con, PendingRequestDetails.class);
+                        in.putExtra("PassengerName", arr.get(i).getPassengerName());
+                        in.putExtra("RouteName", arr.get(i).getRouteName());
+                        in.putExtra("NationalityEnName", arr.get(i).getNationalityEnName());
+                        //in.putExtra("AccountPhoto", arr.get(i).getPhoto());
+                        in.putExtra("PassengerMobile", arr.get(i).getPassengerMobile());
+                        in.putExtra("Remarks", arr.get(i).getRemarks());
+                        in.putExtra("RequestId", arr.get(i).getRequestId());
+                        in.putExtra("RequestDate", arr.get(i).getRequestDate());
+                        jsoning.cancel(true);
+                        con.startActivity(in);
+
+
+
+
+
+//                        final String[] res = new String[1];
+//                        new AlertDialog.Builder(DriverAlertsForRequest.this)
+//                                .setTitle(R.string.yes)
+//                                .setMessage(R.string.please_confirm_to_cancel)
+//                                .setPositiveButton(R.string.Cancel_msg, new DialogInterface.OnClickListener() {
+//                                    public void onClick(DialogInterface dialog, int which) {
+//                                        try {
+//                                            res[0] = new GetData().Passenger_RemoveRequest(arr.get(i).getRequestId());
+//                                            if (res[0].equals("\"1\"")){
+//                                                Toast.makeText(getBaseContext(), getString(R.string.request_removed), Toast.LENGTH_SHORT).show();
+//                                                DriverAlertsForRequest.this.recreate();
+//                                            }else {
+//                                                Toast.makeText(getBaseContext(), getString(R.string.error), Toast.LENGTH_SHORT).show();
+//                                            }
+//                                        } catch (JSONException e) {
+//                                            e.printStackTrace();
+//                                        }
+//                                    }
+//                                })
+//                                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+//                                    public void onClick(DialogInterface dialog, int which) {
+//                                        dialog.dismiss();
+//                                    }
+//                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+//
+
 
                     }
                 }
@@ -286,6 +305,7 @@ public class DriverAlertsForRequest extends AppCompatActivity {
             return null;
         }
     }
+
 
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)

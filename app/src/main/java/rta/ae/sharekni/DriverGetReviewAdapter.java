@@ -104,6 +104,7 @@ public class DriverGetReviewAdapter extends BaseAdapter {
                     final TextView Review_Empty_Error = (TextView) dialog.findViewById(R.id.Review_Empty_Error);
                     final EditText Edit_Review_txt = (EditText) dialog.findViewById(R.id.Edit_Review_txt);
                     Edit_Review_txt.setText(Review_str[0]);
+                    Log.d("Review_ID", String.valueOf(driverGetReviewDataModel.getReviewID()));
                     dialog.show();
                     btn.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -114,7 +115,7 @@ public class DriverGetReviewAdapter extends BaseAdapter {
                             if (!Review_str[0].equals("")) {
                                 Review_Empty_Error.setVisibility(View.INVISIBLE);
                                 try {
-                                    String response = j.Passenger_Review_Driver(driverGetReviewDataModel.getDriverID(), driverGetReviewDataModel.getAccountID(), driverGetReviewDataModel.getRoute_ID(), URLEncoder.encode(Review_str[0]));
+                                    String response = j.Passenger_Edit_Review(driverGetReviewDataModel.getReviewID(), URLEncoder.encode(Review_str[0]));
                                     if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
                                         Toast.makeText(activity, (R.string.cannot_review), Toast.LENGTH_SHORT).show();
                                     } else {
@@ -172,7 +173,7 @@ public class DriverGetReviewAdapter extends BaseAdapter {
 
                                 }
                             })
-                            .setNegativeButton(R.string.Cancel_msg, new DialogInterface.OnClickListener() {
+                            .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
 
                                     dialog.dismiss();

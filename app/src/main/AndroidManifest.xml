@@ -389,7 +389,18 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".MrMohamedAliTest"></activity>
+        <activity android:name=".MrMohamedAliTest" />
+
+        <activity
+            android:name=".PendingRequestDetails"
+            android:parentActivityName=".DriverAlertsForRequest"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Base">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="rta.ae.sharekni.DriverAlertsForRequest" />
+
+        </activity>
     </application>
 
 </manifest>

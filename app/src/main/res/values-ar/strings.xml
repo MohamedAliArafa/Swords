@@ -387,5 +387,6 @@
     <string name="ga_trackingId">UA-70176053-1</string>
     <string name="request_removed">لقد تم إلعاء الطلب بنجاح</string>
     <string name="please_confirm_to_cancel">اتريد حقا الغاء الطلب ؟</string>
+    <string name="delete_request_Str">إلغاء الطلب</string>
 
 </resources>

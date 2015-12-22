@@ -7,10 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
 
-import rta.ae.sharekni.Arafa.Classes.GetData;
-import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
-
-import rta.ae.sharekni.R;
+import com.mobileapptracker.MobileAppTracker;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,14 +18,20 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import rta.ae.sharekni.Arafa.Classes.GetData;
+import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
+
 public class Sharekni extends Activity {
     static Sharekni TestVedio;
 
-    public static Sharekni getInstance(){
-        return  TestVedio ;
+    public static Sharekni getInstance() {
+        return TestVedio;
     }
 
+    public static MobileAppTracker mobileAppTracker = null;
+
     ImageView Splash_background;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,9 +59,16 @@ public class Sharekni extends Activity {
         }, 8000);
 
 
+        mobileAppTracker = MobileAppTracker.init(getApplicationContext(),
+                "189698",
+                "172510cf81e7148e5a01851f65fb0c7e");
+       // mobileAppTracker.setDebugMode(true);
+      //  mobileAppTracker.setAllowDuplicates(true);
+
+
     } //  on create
 
-    private class backThread extends AsyncTask{
+    private class backThread extends AsyncTask {
         JSONArray jsonArray;
         JSONArray Emirates;
         JSONArray Countries;
@@ -66,9 +76,10 @@ public class Sharekni extends Activity {
         GetData j = new GetData();
         FileOutputStream fileOutputStream = null;
         File file = null;
+
         @Override
         protected Object doInBackground(Object[] params) {
-                file = getFilesDir();
+            file = getFilesDir();
             try {
                 InputStream emirates = openFileInput("Emirates.txt");
             } catch (FileNotFoundException e) {
@@ -80,7 +91,7 @@ public class Sharekni extends Activity {
                     e1.printStackTrace();
                 }
                 e.printStackTrace();
-                }
+            }
             try {
                 InputStream Countries = openFileInput("Countries.txt");
             } catch (FileNotFoundException e) {
@@ -108,26 +119,34 @@ public class Sharekni extends Activity {
             }
 
 
-                for (int i = 0;i <= 7;i++){
+            for (int i = 0; i <= 7; i++) {
+                try {
+                    InputStream inputStream = openFileInput("Regions" + i + ".txt");
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
                     try {
-                        InputStream inputStream = openFileInput("Regions"+i+".txt");
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                        try {
-                            jsonArray = j.GetRegionsByEmiratesID(i);
-                            fileOutputStream = openFileOutput("Regions" + i + ".txt", Sharekni.MODE_PRIVATE);
-                            fileOutputStream.write(jsonArray.toString().getBytes());
-                        } catch (JSONException | IOException e1) {
-                            e1.printStackTrace();
-                        }
+                        jsonArray = j.GetRegionsByEmiratesID(i);
+                        fileOutputStream = openFileOutput("Regions" + i + ".txt", Sharekni.MODE_PRIVATE);
+                        fileOutputStream.write(jsonArray.toString().getBytes());
+                    } catch (JSONException | IOException e1) {
+                        e1.printStackTrace();
                     }
                 }
+            }
             return null;
         }
     }
 
 
-    } //  class
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Get source of open for app re-engagement
+        mobileAppTracker.setReferralSources(this);
+        // MAT will not function unless the measureSession call is included
+        mobileAppTracker.measureSession();
+    }
+} //  class
 
 
 

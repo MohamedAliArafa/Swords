@@ -645,7 +645,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
                         review.setReviewID(obj.getInt("ReviewId"));
                         review.setRoute_ID(Route_ID);
                         review.setDriverID(Driver_ID);
-                        if (!review.getReview().equals("")) {
+                        if (!review.getReview().equals("") && !review.getReview().equals("null")) {
                             driverGetReviewDataModels_arr.add(review);
                             FLAG_REVIEW++;
 
@@ -728,7 +728,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
             mMap = googleMap;
 
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
-                    (new LatLng(StartLat, EndLng), 12.1f));
+                    (new LatLng(StartLat, EndLng), 8.1f));
 
             // Instantiates a new Polyline object and adds points to define a rectangle
 

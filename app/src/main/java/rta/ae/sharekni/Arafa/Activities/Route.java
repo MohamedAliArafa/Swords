@@ -462,7 +462,7 @@ public class Route extends AppCompatActivity {
             mMap = googleMap;
 
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
-                    (new LatLng(StartLat, EndLng), 12.1f));
+                    (new LatLng(StartLat, EndLng), 8.1f));
             mMap.getUiSettings().setMapToolbarEnabled(false);
             mMap.getUiSettings().setZoomControlsEnabled(true);
             mMap.getUiSettings().setZoomGesturesEnabled(true);
@@ -530,7 +530,12 @@ public class Route extends AppCompatActivity {
                         }else {
                             review.setReview(obj.getString("Review"));
                         }
-                        driverGetReviewDataModels_arr.add(review);
+
+                        if (!review.getReview().equals("") && !review.getReview().equals("null")) {
+                            driverGetReviewDataModels_arr.add(review);
+                        }
+
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

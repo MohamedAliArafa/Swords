@@ -47,7 +47,6 @@ import rta.ae.sharekni.Ride_Details_Passengers_DataModel;
 public class GetData {
 
 
-
 //    public static final String DOMAIN = "http://sharekni.sdgstaff.com";
 //http://sharekni.sdgstaff.com/_mobfiles/CLS_MobAndroid.asmx
     //http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx/
@@ -58,21 +57,21 @@ public class GetData {
     // public static final String NonOpDomain = "http://sharekni.sdgstaff.com/_mobfiles/CLS_MobAndroid.asmx";
     // public static final String PhotoURL = "http://sharekni.sdgstaff.com/uploads/personalphoto/";
 
-//    public static final String DOMAIN = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx/";
-//    public static final String NonOpDomain = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx";
-//    public static final String PhotoURL = "http://213.42.51.219/uploads/personalphoto/";
+    //   public static final String DOMAIN = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx/";
+    //  public static final String NonOpDomain = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx";
+    // public static final String PhotoURL = "http://213.42.51.219/uploads/personalphoto/";
     final JSONArray[] myJsonArray = new JSONArray[1];
 
 
-//
-     //   public static final String DOMAIN = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx/";
- //  public static final String NonOpDomain = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx";
-  // public static final String PhotoURL = "http://sharekni-web.sdg.ae/uploads/personalphoto/";
+    //
+    // public static final String DOMAIN = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx/";
+    //  public static final String NonOpDomain = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx";
+    //  public static final String PhotoURL = "http://sharekni-web.sdg.ae/uploads/personalphoto/";
 
 
-     public static final String DOMAIN = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx/";
-     public static final String NonOpDomain = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx";
-     public static final String PhotoURL = "https://www.sharekni.ae/uploads/personalphoto/";
+    public static final String DOMAIN = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx/";
+    public static final String NonOpDomain = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx";
+    public static final String PhotoURL = "https://www.sharekni.ae/uploads/personalphoto/";
 
 
     //    String data;
@@ -138,6 +137,7 @@ public class GetData {
     String Passenger_RateDriver = DOMAIN + "Passenger_RateDriver?";
     String GetCalculatedRating = DOMAIN + "GetCalculatedRating?";
     String Passenger_Review_Driver = DOMAIN + "Passenger_ReviewDriver?";
+    String Passenger_Edit_Review = DOMAIN + "EditReview?";
     String Confrim_Mobile_URl = DOMAIN + "Confirm_Mobile?AccountID=";
     String Driver_RemoveReview = DOMAIN + "Driver_RemoveReview?";
     String Passenger_RemoveRequest = DOMAIN + "Passenger_RemoveRequest?RoutePassengerId=";
@@ -176,18 +176,18 @@ public class GetData {
             , String startDate, int saveFind, ListView lv, Activity context) {
 
         QuickSearchStringRequest(QuickSearchUrl + "AccountID=" + myId
-                + "&PreferredGender=" + gender
-                + "&Time="
-                + "&FromEmirateID=" + fromEmId
-                + "&FromRegionID=" + fromRegId
-                + "&ToEmirateID=" + toEmId
-                + "&ToRegionID=" + toRegId
-                + "&PrefferedLanguageId=" + pref_lnag
-                + "&PrefferedNationlaities="
-                + "&AgeRangeId=" + age_Ranged_id
-                + "&StartDate="
-                + "&SaveFind=" + saveFind
-                + "&IsPeriodic="
+                        + "&PreferredGender=" + gender
+                        + "&Time="
+                        + "&FromEmirateID=" + fromEmId
+                        + "&FromRegionID=" + fromRegId
+                        + "&ToEmirateID=" + toEmId
+                        + "&ToRegionID=" + toRegId
+                        + "&PrefferedLanguageId=" + pref_lnag
+                        + "&PrefferedNationlaities="
+                        + "&AgeRangeId=" + age_Ranged_id
+                        + "&StartDate="
+                        + "&SaveFind=" + saveFind
+                        + "&IsPeriodic="
 
                 , lv
                 , myId, context);
@@ -207,32 +207,32 @@ public class GetData {
             , int Pref_Lang, int Nat, int AgeRangedId, String Start_Date, String IsSmoking, Activity context) {
 
         DriverEditCarPoolStringRequest(DriverEditCarPoolUrl + "RouteID=" + myId
-                + "&EnName=" + URLEncoder.encode(En_Name)
-                + "&FromEmirateID=" + From_EmID
-                + "&ToEmirateID=" + To_EmID
-                + "&FromRegionID=" + From_RegId
-                + "&ToRegionID=" + To_RegId
-                + "&IsRounded=" + isRounded
-                + "&Time=" + Time
-                + "&Saturday=" + sat
-                + "&Sunday=" + sun
-                + "&Monday=" + mon
-                + "&Tuesday=" + tue
-                + "&Wednesday=" + wed
-                + "&Thursday=" + thu
-                + "&Friday=" + fri
-                + "&PreferredGender=" + gender
-                + "&VehicleID=" + VehicleID
-                + "&NoOfSeats=" + NoOfSeats
-                + "&StartLat=" + StartLat
-                + "&StartLng=" + StartLng
-                + "&EndLat=" + EndLat
-                + "&EndLng=" + EndLng
-                + "&PrefferedLanguageId=" + Pref_Lang
-                + "&PrefferedNationlaities=" + Nat
-                + "&AgeRangeId=" + AgeRangedId
-                + "&StartDate=" + Start_Date
-                + "&IsSmoking=" + IsSmoking
+                        + "&EnName=" + URLEncoder.encode(En_Name)
+                        + "&FromEmirateID=" + From_EmID
+                        + "&ToEmirateID=" + To_EmID
+                        + "&FromRegionID=" + From_RegId
+                        + "&ToRegionID=" + To_RegId
+                        + "&IsRounded=" + isRounded
+                        + "&Time=" + Time
+                        + "&Saturday=" + sat
+                        + "&Sunday=" + sun
+                        + "&Monday=" + mon
+                        + "&Tuesday=" + tue
+                        + "&Wednesday=" + wed
+                        + "&Thursday=" + thu
+                        + "&Friday=" + fri
+                        + "&PreferredGender=" + gender
+                        + "&VehicleID=" + VehicleID
+                        + "&NoOfSeats=" + NoOfSeats
+                        + "&StartLat=" + StartLat
+                        + "&StartLng=" + StartLng
+                        + "&EndLat=" + EndLat
+                        + "&EndLng=" + EndLng
+                        + "&PrefferedLanguageId=" + Pref_Lang
+                        + "&PrefferedNationlaities=" + Nat
+                        + "&AgeRangeId=" + AgeRangedId
+                        + "&StartDate=" + Start_Date
+                        + "&IsSmoking=" + IsSmoking
                 , context);
     }
 
@@ -244,32 +244,32 @@ public class GetData {
             , int Pref_Lang, String Nat, int AgeRangedId, String Start_Date, String IsSmoking, Activity context) {
 
         DriverCreateCarPoolStringRequest(DriverCreateCarPoolUrl + "AccountID=" + myId
-                + "&EnName=" + URLEncoder.encode(En_Name)
-                + "&FromEmirateID=" + From_EmID
-                + "&ToEmirateID=" + To_EmID
-                + "&FromRegionID=" + From_RegId
-                + "&ToRegionID=" + To_RegId
-                + "&IsRounded=" + isRounded
-                + "&Time=" + Time
-                + "&Saturday=" + sat
-                + "&Sunday=" + sun
-                + "&Monday=" + mon
-                + "&Tuesday=" + tue
-                + "&Wednesday=" + wed
-                + "&Thursday=" + thu
-                + "&Friday=" + fri
-                + "&PreferredGender=" + gender
-                + "&VehicleID=" + VehicleID
-                + "&NoOfSeats=" + NoOfSeats
-                + "&StartLat=" + StartLat
-                + "&StartLng=" + StartLng
-                + "&EndLat=" + EndLat
-                + "&EndLng=" + EndLng
-                + "&PrefferedLanguageId=" + Pref_Lang
-                + "&PrefferedNationlaities=" + Nat
-                + "&AgeRangeId=" + AgeRangedId
-                + "&StartDate=" + Start_Date
-                + "&IsSmoking=" + IsSmoking
+                        + "&EnName=" + URLEncoder.encode(En_Name)
+                        + "&FromEmirateID=" + From_EmID
+                        + "&ToEmirateID=" + To_EmID
+                        + "&FromRegionID=" + From_RegId
+                        + "&ToRegionID=" + To_RegId
+                        + "&IsRounded=" + isRounded
+                        + "&Time=" + Time
+                        + "&Saturday=" + sat
+                        + "&Sunday=" + sun
+                        + "&Monday=" + mon
+                        + "&Tuesday=" + tue
+                        + "&Wednesday=" + wed
+                        + "&Thursday=" + thu
+                        + "&Friday=" + fri
+                        + "&PreferredGender=" + gender
+                        + "&VehicleID=" + VehicleID
+                        + "&NoOfSeats=" + NoOfSeats
+                        + "&StartLat=" + StartLat
+                        + "&StartLng=" + StartLng
+                        + "&EndLat=" + EndLat
+                        + "&EndLng=" + EndLng
+                        + "&PrefferedLanguageId=" + Pref_Lang
+                        + "&PrefferedNationlaities=" + Nat
+                        + "&AgeRangeId=" + AgeRangedId
+                        + "&StartDate=" + Start_Date
+                        + "&IsSmoking=" + IsSmoking
                 , context);
     }
 
@@ -292,15 +292,15 @@ public class GetData {
             , Context context) {
 
         EditProfileFormStringRequest(EditProfileUrl
-                + "id=" + id
-                + "&firstName=" + URLEncoder.encode(firstName)
-                + "&lastName=" + URLEncoder.encode(lastName)
-                + "&Mobile=" + mobile
-                + "&gender=" + gender
-                + "&BirthDate=" + BirthDate
-                + "&NationalityId=" + NationalityId
-                + "&PreferredLanguageId=" + PreferredLanguageId
-                + "&NewPhotoName=" + NewPhotoName
+                        + "id=" + id
+                        + "&firstName=" + URLEncoder.encode(firstName)
+                        + "&lastName=" + URLEncoder.encode(lastName)
+                        + "&Mobile=" + mobile
+                        + "&gender=" + gender
+                        + "&BirthDate=" + BirthDate
+                        + "&NationalityId=" + NationalityId
+                        + "&PreferredLanguageId=" + PreferredLanguageId
+                        + "&NewPhotoName=" + NewPhotoName
                 , context);
     }
 
@@ -528,6 +528,16 @@ public class GetData {
         return obj.getData();
 
     }
+
+    public String Passenger_Edit_Review(int Review_ID, String Remarks) throws JSONException {
+        String Url = Passenger_Edit_Review + "ReviewId=" + Review_ID + "&ReviewText=" + Remarks;
+        HandleXML obj = new HandleXML(Url);
+        obj.fetchXML();
+        while ((obj.parsingComplete && !obj.error)) ;
+        return obj.getData();
+
+    }
+
 
     public String Confirm_Mobile(int Account_Id, String Code) throws JSONException {
         String Url = Confrim_Mobile_URl + Account_Id + "&Code=" + Code;

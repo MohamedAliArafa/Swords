@@ -38,7 +38,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.analytics.HitBuilders;
-import com.mobileapptracker.MobileAppTracker;
 import com.pkmmte.view.CircularImageView;
 
 import org.json.JSONArray;
@@ -63,9 +62,8 @@ import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
 public class HomePage extends AppCompatActivity implements View.OnClickListener {
 
 
-
     String urlPermit = GetData.DOMAIN + "GetPermitByDriverId?id=";
-    public String Driver_Current_Passnger="";
+    public String Driver_Current_Passnger = "";
     rideJson rideJson;
     public static String ImagePhotoPath;
     public Thread t;
@@ -79,11 +77,10 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     int Vehicles_Count_FLAG = 0;
     TextView Verify_Phone_num_txt;
 
-    public static  String  TRAFFIC_FILE_NUMBER="";
-    public static  String  TRAFFIC_BIRTH_DATE="";
+    public static String TRAFFIC_FILE_NUMBER = "";
+    public static String TRAFFIC_BIRTH_DATE = "";
 
     back1 mobile_verify;
-
 
 
     int Driver_ID;
@@ -113,8 +110,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     ImageView Photo_Verified_id;
     TextView Account_Email;
     EditText Edit_Mobile_Verify_txt;
-    String VERIFICATION_CODE="";
-    public MobileAppTracker mobileAppTracker = null;
+    String VERIFICATION_CODE = "";
+    //public static MobileAppTracker mobileAppTracker = null;
 
     public static HomePage getInstance() {
         return HomaPageActivity;
@@ -165,12 +162,6 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         c = this;
 
 
-        mobileAppTracker = MobileAppTracker.init(getApplicationContext(),
-                "189698",
-                "172510cf81e7148e5a01851f65fb0c7e");
-//        mobileAppTracker.setDebugMode(true);
- //       mobileAppTracker.setAllowDuplicates(true);
-
 
 
 
@@ -199,11 +190,10 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         Saved_Search_txt_2 = (TextView) findViewById(R.id.txt_56);
         Edit_Profile_Im = (ImageView) findViewById(R.id.Edit_Profile_Im);
 
-        Verify_Phone_num_txt= (TextView) findViewById(R.id.Verify_Phone_num_txt);
-        Verified_Im= (ImageView) findViewById(R.id.Verified_Im);
-        Photo_Verified_id  = (ImageView) findViewById(R.id.Photo_Verified_id);
-        Account_Email= (TextView) findViewById(R.id.Account_Email);
-
+        Verify_Phone_num_txt = (TextView) findViewById(R.id.Verify_Phone_num_txt);
+        Verified_Im = (ImageView) findViewById(R.id.Verified_Im);
+        Photo_Verified_id = (ImageView) findViewById(R.id.Photo_Verified_id);
+        Account_Email = (TextView) findViewById(R.id.Account_Email);
 
 
         circularImageView = (CircularImageView) findViewById(R.id.profilepic);
@@ -302,8 +292,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
         new loading().execute();
 
-        mobile_verify =  new back1();
-
+        mobile_verify = new back1();
 
 
     }  // on create
@@ -318,11 +307,11 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
         @Override
         protected void onPostExecute(Object o) {
-            if(jsonArray != null) {
+            if (jsonArray != null) {
                 VehiclesCount_str = "";
                 VehiclesCount_str += "(";
                 try {
-                    All_Alerts = jsonArray.getInt("DriverMyAlertsCount") + jsonArray.getInt("PassengerMyAlertsCount");
+                    All_Alerts = jsonArray.getInt("DriverMyAlertsCount") + jsonArray.getInt("PassengerMyAlertsCount") + jsonArray.getInt("PendingRequestsCount");
 
                     Vehicles_Count_FLAG = jsonArray.getInt("VehiclesCount");
                     Log.d("vehicle count flag", String.valueOf(Vehicles_Count_FLAG));
@@ -406,9 +395,6 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     }
 
 
-
-
-
     private class back1 extends AsyncTask {
 
         ProgressDialog pDialog;
@@ -428,11 +414,11 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
             if (data.equals("\"1\"")) {
 
-                Toast.makeText(getBaseContext(),"Mobile Verification Code has been sent to your mobile .", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "Mobile Verification Code has been sent to your mobile .", Toast.LENGTH_LONG).show();
 
 //
 
- //               final Dialog dialog = new Dialog(c);
+                //               final Dialog dialog = new Dialog(c);
 ///                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 //                dialog.setContentView(R.layout.noroutesdialog);
 //                Button btn = (Button) dialog.findViewById(R.id.noroute_id);
@@ -448,7 +434,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 //                    }
 //                });
 
-            }else {
+            } else {
                 Toast.makeText(c, "Please Check Mobile Number", Toast.LENGTH_SHORT).show();
             }
 
@@ -493,7 +479,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 try {
 
 
-                    data=  j.SendMobileVerification(Integer.parseInt(ID));
+                    data = j.SendMobileVerification(Integer.parseInt(ID));
 
                 } catch (JSONException e) {
                     hidePDialog();
@@ -513,14 +499,6 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         }
 
     }
-
-
-
-
-
-
-
-
 
 
     private void CreateNotification(int y) {
@@ -638,9 +616,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         super.onResume();
 
         // Get source of open for app re-engagement
-        mobileAppTracker.setReferralSources(this);
+       Sharekni.mobileAppTracker.setReferralSources(this);
         // MAT will not function unless the measureSession call is included
-        mobileAppTracker.measureSession();
+       Sharekni.mobileAppTracker.measureSession();
 
 
     }
@@ -712,22 +690,22 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
                 Account_Email.setText(jsonArray.getString("Username"));
 
-                IsMobileVerified= jsonArray.getString("IsMobileVerified");
-                if (IsMobileVerified.equals("true")){
+                IsMobileVerified = jsonArray.getString("IsMobileVerified");
+                if (IsMobileVerified.equals("true")) {
                     Verify_Phone_num_txt.setVisibility(View.INVISIBLE);
                     Verified_Im.setVisibility(View.VISIBLE);
                 }
 
 
                 IsPhotoVerified = jsonArray.getString("IsPhotoVerified");
-                if (IsPhotoVerified.equals("true")){
+                if (IsPhotoVerified.equals("true")) {
                     Photo_Verified_id.setVisibility(View.VISIBLE);
                 }
 
 
                 if (!jsonArray.getString("Mobile").equals("null") && !jsonArray.getString("Mobile").equals("")) {
                     String Mob_txt = jsonArray.getString("Mobile");
-                    Log.d("Mobile",Mob_txt);
+                    Log.d("Mobile", Mob_txt);
                     Mob_txt = Mob_txt.substring(0, 4) + " " + Mob_txt.substring(4, 6) + " " + Mob_txt.substring(6, Mob_txt.length());
                     Account_PhoneNumber.setText(Mob_txt);
                 }
@@ -763,20 +741,18 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 rating.setText(jsonArray.getString("AccountRating"));
 
 
-                if (!jsonArray.getString("DriverTrafficFileNo").equals("") &&  !jsonArray.getString("DriverTrafficFileNo").equals("null")){
+                if (!jsonArray.getString("DriverTrafficFileNo").equals("") && !jsonArray.getString("DriverTrafficFileNo").equals("null")) {
                     TRAFFIC_FILE_NUMBER = jsonArray.getString("DriverTrafficFileNo");
 
-                    Log.d("traffic file num",TRAFFIC_FILE_NUMBER);
+                    Log.d("traffic file num", TRAFFIC_FILE_NUMBER);
                 }
-                if (!jsonArray.getString("BirthDate").equals("") &&  !jsonArray.getString("BirthDate").equals("null")){
+                if (!jsonArray.getString("BirthDate").equals("") && !jsonArray.getString("BirthDate").equals("null")) {
                     TRAFFIC_BIRTH_DATE = jsonArray.getString("BirthDate");
                     Log.d("traffic birthdate", TRAFFIC_BIRTH_DATE);
                 }
 
 
-
                 assert AccountType != null;
-
 
 
                 if (!AccountType.equals("D")) {
@@ -823,9 +799,6 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                     });
 
 
-
-
-
                     Home_Realtive_Vehicles.setVisibility(View.INVISIBLE);
                     driver_rides_Created.setVisibility(View.INVISIBLE);
                 } else {
@@ -840,8 +813,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                                 startActivity(intent);
                             } else {
                                 Intent in2 = new Intent(getBaseContext(), Display_My_Vehicles.class);
-                                in2.putExtra("TRAFFIC_FILE_NUMBER",TRAFFIC_FILE_NUMBER);
-                                in2.putExtra("TRAFFIC_BIRTH_DATE",TRAFFIC_BIRTH_DATE);
+                                in2.putExtra("TRAFFIC_FILE_NUMBER", TRAFFIC_FILE_NUMBER);
+                                in2.putExtra("TRAFFIC_BIRTH_DATE", TRAFFIC_BIRTH_DATE);
                                 Log.d("traffic birthdate 2", TRAFFIC_BIRTH_DATE);
                                 Log.d("traffic file num 2", TRAFFIC_FILE_NUMBER);
                                 startActivity(in2);
@@ -878,8 +851,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                                 startActivity(intent);
                             } else {
                                 Intent in2 = new Intent(getBaseContext(), Display_My_Vehicles.class);
-                                in2.putExtra("TRAFFIC_FILE_NUMBER",TRAFFIC_FILE_NUMBER);
-                                in2.putExtra("TRAFFIC_BIRTH_DATE",TRAFFIC_BIRTH_DATE);
+                                in2.putExtra("TRAFFIC_FILE_NUMBER", TRAFFIC_FILE_NUMBER);
+                                in2.putExtra("TRAFFIC_BIRTH_DATE", TRAFFIC_BIRTH_DATE);
                                 Log.d("traffic birthdate 2", TRAFFIC_BIRTH_DATE);
                                 Log.d("traffic file num 2", TRAFFIC_FILE_NUMBER);
                                 startActivity(in2);
@@ -963,7 +936,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                     mobile_verify = new back1();
                     mobile_verify.execute();
 
-                    VERIFICATION_CODE="";
+                    VERIFICATION_CODE = "";
                     final Dialog dialog = new Dialog(c);
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     dialog.setContentView(R.layout.mobile_verify_code_dailog);
@@ -1003,7 +976,6 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                     });
 
 
-
                     Mobile_Verify_Resend_Code.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -1012,7 +984,6 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
                         }
                     });
-
 
 
                 }
@@ -1101,7 +1072,6 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
             }
         }
     }
-
 
 
     private class rideJson extends AsyncTask {
@@ -1203,7 +1173,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
                                             json = jArray.getJSONObject(i);
                                             item.setFromEm(json.getString("CurrentPassengers"));
-                                               Driver_Current_Passnger =json.getString("CurrentPassengers");
+                                            Driver_Current_Passnger = json.getString("CurrentPassengers");
 
 //                                            if (json.getString("CurrentPassengers").equals("0")) {
 //                                                Toast.makeText(c, R.string.no_permits, Toast.LENGTH_SHORT).show();
@@ -1230,12 +1200,6 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
             return null;
         }
     }
-
-
-
-
-
-
 
 
     @Override

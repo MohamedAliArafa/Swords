@@ -385,6 +385,7 @@
     <string name="is_smoking_Str">Smokers</string>
     <string name="preferred_gender_Str">Preferred Gender</string>
     <string name="Review_updated">Review Updated</string>
+    <string name="delete_request_Str">Delete Request</string>
 
 
 </resources>

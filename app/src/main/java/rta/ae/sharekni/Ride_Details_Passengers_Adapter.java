@@ -25,8 +25,8 @@ import rta.ae.sharekni.Arafa.Classes.GetData;
 
 public class Ride_Details_Passengers_Adapter extends BaseAdapter {
 
-    Ride_Details_Passengers_DataModel m;
-    int NoOfStars;
+
+    int NoOfStars,New_Starts;
     private Activity activity;
     private LayoutInflater inflater;
     private List<Ride_Details_Passengers_DataModel> PassengersItems;
@@ -72,7 +72,7 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
         RatingBar ratingBar = (RatingBar) convertView.findViewById(R.id.ratingBar2);
         ratingBar.setStepSize(1);
 //        ratingBar.setRating(m.getRate());
-        m = PassengersItems.get(position);
+        final Ride_Details_Passengers_DataModel m = PassengersItems.get(position);
         final StringBuffer res = new StringBuffer();
         String[] strArr = m.getAccountName().split(" ");
         NoOfStars = m.getRate();
@@ -89,9 +89,9 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                NoOfStars = (int) rating;
-                int passengetId = PassengersItems.get(position).getPassengerId();
-                new ratePassenger(passengetId).execute();
+                New_Starts = (int) rating;
+                int passengetId = m.getPassengerId();
+                new ratePassenger(passengetId,New_Starts,m.getDriverId(),m.getRouteId()).execute();
             }
         });
 
@@ -173,9 +173,14 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
 
         String res;
         int passengerId;
+        int Stars,Driver_ID,Route_ID;
 
-        public ratePassenger(int passengetId) {
+        public ratePassenger(int passengetId,int Stars, int Driver_ID,int Route_ID) {
             this.passengerId = passengetId;
+            this.Stars=Stars;
+            this.Driver_ID=Driver_ID;
+            this.Route_ID=Route_ID;
+
         }
 
         @Override
@@ -193,7 +198,7 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
         protected Object doInBackground(Object[] params) {
             GetData gd = new GetData();
             try {
-                res = gd.Driver_RatePassenger(m.getDriverId(), passengerId, m.getRouteId(), NoOfStars);
+                res = gd.Driver_RatePassenger(Driver_ID, passengerId, Route_ID, Stars);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
