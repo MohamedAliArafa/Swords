@@ -63,7 +63,7 @@ public class Sharekni extends Activity {
                 "189698",
                 "172510cf81e7148e5a01851f65fb0c7e");
        // mobileAppTracker.setDebugMode(true);
-      //  mobileAppTracker.setAllowDuplicates(true);
+       // mobileAppTracker.setAllowDuplicates(true);
 
 
     } //  on create
