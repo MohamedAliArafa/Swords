@@ -543,6 +543,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
                                             Toast.makeText(RideDetailsPassenger.this, R.string.req_sent_succ, Toast.LENGTH_LONG).show();
                                             dialog.dismiss();
                                             Join_Ride_btn.setVisibility(View.INVISIBLE);
+                                            finish();
                                             break;
                                     }
                                 }
@@ -757,7 +758,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
                     position(new LatLng(StartLat, StartLng))
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor)).snippet(FromRegionEnName_Str).title(FromEmirateEnName_Str));
 
-             mMap.addMarker(new MarkerOptions().
+            mMap.addMarker(new MarkerOptions().
                     position(new LatLng(EndLat, EndLng))
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor)).snippet(ToRegionEnName_Str).title(ToEmirateEnName_Str));
             markerZero.showInfoWindow();

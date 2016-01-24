@@ -634,9 +634,15 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
         if (AccountType.equals("D")) {
             if (v == btn_create) {
-                Intent intent = new Intent(getBaseContext(), DriverCreateCarPool.class);
-                intent.putExtra("ID", Driver_ID);
-                startActivity(intent);
+                if (Vehicles_Count_FLAG!=0) {
+                    Intent intent = new Intent(getBaseContext(), DriverCreateCarPool.class);
+                    intent.putExtra("ID", Driver_ID);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(HomePage.this, "You Have to Register a Vehicle first", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getBaseContext(), RegisterVehicle.class);
+                    startActivity(intent);
+                }
             } else {
 
                 Intent intent = new Intent(getBaseContext(), PassengerMyApprovedRides.class);
@@ -1202,8 +1208,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     }
 
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
+
+
+
+
+
 }
