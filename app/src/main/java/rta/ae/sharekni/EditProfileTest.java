@@ -193,23 +193,23 @@ public class EditProfileTest extends AppCompatActivity {
         femalemale_txt = (TextView) findViewById(R.id.femalemale_txt_edit);
         malefemale = (ImageView) findViewById(R.id.malefemale_edit);
         femalemale = (ImageView) findViewById(R.id.femalemale_edit);
-//        btn_upload_image = (Button) findViewById(R.id.btnUploadPhotoEdt);
+        btn_upload_image = (Button) findViewById(R.id.btnUploadPhotoEdt);
         txt_country = (AutoCompleteTextView) findViewById(R.id.autocompletecountry_id);
         txt_lang = (TextView) findViewById(R.id.autocomplete_lang_id);
-        txt_year = (TextView) findViewById(R.id.txt_year);
-        txt_beforeCal = (TextView) findViewById(R.id.txt_beforeCal);
-        txt_comma = (TextView) findViewById(R.id.Register_comma_cal);
-        txt_dayOfWeek = (TextView) findViewById(R.id.txt_dayOfWeek);
+       // txt_year = (TextView) findViewById(R.id.txt_year);
+      //  txt_beforeCal = (TextView) findViewById(R.id.txt_beforeCal);
+      //  txt_comma = (TextView) findViewById(R.id.Register_comma_cal);
+      //  txt_dayOfWeek = (TextView) findViewById(R.id.txt_dayOfWeek);
         btn_Edit_Cancel= (Button) findViewById(R.id.btn_Edit_Cancel);
         edit_reg_mob = (EditText) findViewById(R.id.edit_reg_mob);
 
 //        cal.add(Calendar.YEAR, -18);
 
-        year_x = cal.get(Calendar.YEAR);
-        month_x = cal.get(Calendar.MONTH);
-        day_x = cal.get(Calendar.DAY_OF_MONTH);
+//        year_x = cal.get(Calendar.YEAR);
+//        month_x = cal.get(Calendar.MONTH);
+//        day_x = cal.get(Calendar.DAY_OF_MONTH);
 
-        showDialogOnButtonClick();
+      //  showDialogOnButtonClick();
 
         try {
             JSONObject j = new GetData().GetDriverById(MyID);
@@ -224,8 +224,11 @@ public class EditProfileTest extends AppCompatActivity {
             edit_reg_mob.setText(j.getString("Mobile").substring(4));
             edit_reg_mob.setTextColor(getResources().getColor(R.color.primaryColor));
             full_date = j.getString("BirthDate");
-            txt_year.setText(full_date);
-            txt_beforeCal.setVisibility(View.INVISIBLE);
+
+    //            txt_year.setText(full_date);
+    //
+    //            txt_beforeCal.setVisibility(View.INVISIBLE);
+    //
             txt_country.setText(j.getString(getString(R.string.nat_name2)));
             txt_country.setTextColor(getResources().getColor(R.color.primaryColor));
 
@@ -238,7 +241,12 @@ public class EditProfileTest extends AppCompatActivity {
 
             Language_ID = j.getInt("PrefferedLanguage");
 
-            uploadedImage = j.getString("PhotoPath");
+            if (j.getString("IsPhotoVerified").toLowerCase().equals("true") || j.getString("IsPhotoVerified").toLowerCase().equals("false")){
+                uploadedImage = j.getString("PhotoPath");
+            }else {
+                uploadedImage = "";
+            }
+
             if (j.getString("GenderEn").equals("Male")){
                 femalemale.setVisibility(View.INVISIBLE);
                 malefemale.setVisibility(View.VISIBLE);
@@ -284,30 +292,30 @@ public class EditProfileTest extends AppCompatActivity {
             }
         });
 
-//        btn_upload_image.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                final CharSequence[] items = { getString(R.string.take_photo), getString(R.string.choose_from_library), getString(R.string.cancel) };
-//                android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(EditProfileTest.this);
-//                builder.setTitle(getString(R.string.add_photo));
-//                builder.setItems(items, new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int item) {
-//                        if (items[item].equals(getString(R.string.take_photo))) {
-//                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                            startActivityForResult(intent, 0);
-//                        } else if (items[item].equals(getString(R.string.choose_from_library))) {
-//                            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                            intent.setType("image/*");
-//                            startActivityForResult(Intent.createChooser(intent, getString(R.string.select_file)), 1337);
-//                        } else if (items[item].equals(getString(R.string.cancel))) {
-//                            dialog.dismiss();
-//                        }
-//                    }
-//                });
-//                builder.show();
-//            }
-//        });
+        btn_upload_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final CharSequence[] items = { getString(R.string.take_photo), getString(R.string.choose_from_library), getString(R.string.cancel) };
+                android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(EditProfileTest.this);
+                builder.setTitle(getString(R.string.add_photo));
+                builder.setItems(items, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int item) {
+                        if (items[item].equals(getString(R.string.take_photo))) {
+                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            startActivityForResult(intent, 0);
+                        } else if (items[item].equals(getString(R.string.choose_from_library))) {
+                            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                            intent.setType("image/*");
+                            startActivityForResult(Intent.createChooser(intent, getString(R.string.select_file)), 1337);
+                        } else if (items[item].equals(getString(R.string.cancel))) {
+                            dialog.dismiss();
+                        }
+                    }
+                });
+                builder.show();
+            }
+        });
 
         txt_country.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             public void onFocusChange(View v, boolean hasFocus) {
@@ -386,7 +394,7 @@ public class EditProfileTest extends AppCompatActivity {
                             femalemale_txt.setTextColor(Color.RED);
                         }
                         char gender = i;
-                        String birthdate = full_date;
+                        String birthdate = "";
                         //String photoname = "testing.jpg";
                         String x = String.valueOf(Language_ID);
                         String y = String.valueOf(Nationality_ID);
@@ -484,15 +492,15 @@ public class EditProfileTest extends AppCompatActivity {
         return null;
     }
 
-    public void showDialogOnButtonClick() {
-        btn_datepicker_id = (RelativeLayout) findViewById(R.id.datepicker_id);
-        btn_datepicker_id.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDialog(DILOG_ID);
-            }
-        });
-    }
+//    public void showDialogOnButtonClick() {
+//        btn_datepicker_id = (RelativeLayout) findViewById(R.id.datepicker_id);
+//        btn_datepicker_id.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                showDialog(DILOG_ID);
+//            }
+//        });
+//    }
 
     public void parseXMLAndStoreIt(XmlPullParser myParser) {
         int event;
@@ -743,7 +751,7 @@ public class EditProfileTest extends AppCompatActivity {
             try {
                 SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
                 Socket sock = new Socket();
-                int timeoutMs = 2000;   // 2 seconds
+                int timeoutMs = 10000;   // 2 seconds
                 sock.connect(sockaddr, timeoutMs);
                 exists = true;
             } catch (final Exception e) {

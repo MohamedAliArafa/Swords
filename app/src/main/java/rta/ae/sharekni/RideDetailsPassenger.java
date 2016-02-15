@@ -279,6 +279,12 @@ public class RideDetailsPassenger extends AppCompatActivity {
                 Passenger_Review_Driver_Btn.setVisibility(View.VISIBLE);
 
             }
+            if (FLAG_HIDE_JOIN == 5) {
+
+
+                Join_Ride_btn.setVisibility(View.INVISIBLE);
+
+            }
 
             if (FLAG_REVIEW == 0) {
                 Relative_REviews.setVisibility(View.INVISIBLE);
@@ -670,8 +676,14 @@ public class RideDetailsPassenger extends AppCompatActivity {
 //                        item.setAccountPhoto(obj.getString("AccountPhoto"));
                         Log.d("Passenger id", String.valueOf(Passenger_ID));
                         Log.d("Pass list id", String.valueOf(obj.getInt("AccountId")));
-                        if (Passenger_ID == obj.getInt("AccountId")) {
+                        if (Passenger_ID == obj.getInt("AccountId") && obj.getString("RequestStatus").equals("true") )  {
                             FLAG_HIDE_JOIN = 2;
+                        }
+
+                        if (Passenger_ID == obj.getInt("AccountId")) {
+                            if (obj.getString("RequestStatus").equals("null") || obj.getString("RequestStatus").equals("false")){
+                                FLAG_HIDE_JOIN=5;
+                            }
                         }
 
                         item.setPassengerId(obj.getInt("ID"));

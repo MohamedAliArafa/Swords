@@ -44,7 +44,7 @@ public class ForgetPassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
-        edit_number = (EditText) findViewById(R.id.edit_Forgetpass_mobile);
+       // edit_number = (EditText) findViewById(R.id.edit_Forgetpass_mobile);
         edit_mail = (EditText) findViewById(R.id.edit_Forgetpass_email);
         btn_submit = (Button) findViewById(R.id.btn_Forgetpass_submit);
         txt_submit = (TextView) findViewById(R.id.txt_submit);
@@ -56,12 +56,12 @@ public class ForgetPassword extends AppCompatActivity {
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mobileNumber =edit_number.getText().toString();
+//                mobileNumber =edit_number.getText().toString();
                 Email =edit_mail.getText().toString();
 
-                if (Email.equals("")|| mobileNumber.length()< 9) {
-                    Toast.makeText(getBaseContext(), R.string.fill_all_error, Toast.LENGTH_SHORT).show();
-                }else if (!Email.equals("") && !mobileNumber.equals("") ){
+                if (Email.equals("")) {
+                    Toast.makeText(getBaseContext(), R.string.fill_Email, Toast.LENGTH_SHORT).show();
+                }else if (!Email.equals("") ){
 
                     new back().execute();
 
@@ -158,7 +158,7 @@ public class ForgetPassword extends AppCompatActivity {
                 try {
 
 
-                  data=  j.ForgetPasswordForm2(mobileNumber, Email);
+                  data=  j.ForgetPasswordForm2("", Email);
 
                 } catch (JSONException e) {
                     hidePDialog();

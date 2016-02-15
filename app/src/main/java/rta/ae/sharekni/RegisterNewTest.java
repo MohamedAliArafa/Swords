@@ -32,6 +32,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -127,7 +128,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
 
     TextView malefemale_txt, femalemale_txt;
     ImageView malefemale, femalemale;
-    String uploadedImage = "NoImage.jpg";
+    String uploadedImage = "";
     TextView Terms_And_Cond_txt;
 
     DatePicker d;
@@ -144,6 +145,8 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
     LinearLayout Language_Linear;
 
     RelativeLayout Date_Relative;
+
+    CheckBox AgeCheckBox;
 
 
     private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
@@ -165,13 +168,13 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                 String month_string = String.valueOf(month_x);
                 String day_string = String.valueOf(day_x);
                 full_date = day_string + "/" + month_string + "/" + year_string;
-                txt_year.setText(full_date);
+                txt_year.setText("0");
                 txt_comma.setVisibility(View.VISIBLE);
                 txt_dayOfWeek.setText(dayOfWeek);
-                Date_Relative.setBackgroundResource(R.drawable.user_register_border);
+                //Date_Relative.setBackgroundResource(R.drawable.user_register_border);
                 Log.d("Calendar test", full_date);
             } else {
-                Date_Relative.setBackgroundResource(R.drawable.user_register_border_error);
+               // Date_Relative.setBackgroundResource(R.drawable.user_register_border_error);
                 txt_dayOfWeek.setText(R.string.must_be_more_18);
                 Toast.makeText(RegisterNewTest.this, R.string.too_young, Toast.LENGTH_SHORT).show();
             }
@@ -213,7 +216,8 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        txt_year = (TextView) findViewById(R.id.txt_year);
+//        txt_year = (TextView) findViewById(R.id.txt_year);
+//        txt_year.setText("0");
         txt_beforeCal = (TextView) findViewById(R.id.txt_beforeCal);
         txt_dayOfWeek = (TextView) findViewById(R.id.txt_dayOfWeek);
         showDialogOnButtonClick();
@@ -256,9 +260,11 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         MobileNumber_Linear = (LinearLayout) findViewById(R.id.MobileNumber_Linear);
         UserName_Linear = (LinearLayout) findViewById(R.id.UserName_Linear);
         Password_Linear = (LinearLayout) findViewById(R.id.Password_Linear);
-        Nat_Linear = (LinearLayout) findViewById(R.id.Nat_Linear);
+     //   Nat_Linear = (LinearLayout) findViewById(R.id.Nat_Linear);
         Language_Linear = (LinearLayout) findViewById(R.id.Language_Linear);
         Date_Relative = (RelativeLayout) findViewById(R.id.datepicker_id);
+
+        AgeCheckBox = (CheckBox) findViewById(R.id.AgeCheckBox);
 
 
         initToolbar();
@@ -397,32 +403,32 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
             }
         });
 
-        txt_country.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            public void onFocusChange(View v, boolean hasFocus) {
-                Boolean result = false;
-                if (!hasFocus) {
-                    txt_country.setHint(getString(R.string.nationality));
-                    if (Country_List.size() != 0 && txt_country.getText() != null && !txt_country.getText().toString().equals(getString(R.string.nationality))) {
-                        for (int i = 0; i <= 193; i++) {
-                            String a = Country_List.get(i).get("NationalityEnName");
-                            String b = txt_country.getText().toString();
-                            if (a.equals(b)) {
-                                result = true;
-                            }
-                        }
-                    }
-                    if (!result) {
-                        txt_country.setBackgroundResource(R.drawable.user_register_border_error);
-                        Toast.makeText(RegisterNewTest.this, R.string.unknown_country, Toast.LENGTH_SHORT).show();
-                    } else {
-                        txt_country.setBackgroundResource(R.drawable.user_register_border);
-                    }
-                }
-                if (hasFocus) {
-                    txt_country.setHint("");
-                }
-            }
-        });
+//        txt_country.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                Boolean result = false;
+//                if (!hasFocus) {
+//                    txt_country.setHint(getString(R.string.nationality));
+//                    if (Country_List.size() != 0 && txt_country.getText() != null && !txt_country.getText().toString().equals(getString(R.string.nationality))) {
+//                        for (int i = 0; i <= 193; i++) {
+//                            String a = Country_List.get(i).get("NationalityEnName");
+//                            String b = txt_country.getText().toString();
+//                            if (a.equals(b)) {
+//                                result = true;
+//                            }
+//                        }
+//                    }
+//                    if (!result) {
+//                        txt_country.setBackgroundResource(R.drawable.user_register_border_error);
+//                        Toast.makeText(RegisterNewTest.this, R.string.unknown_country, Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        txt_country.setBackgroundResource(R.drawable.user_register_border);
+//                    }
+//                }
+//                if (hasFocus) {
+//                    txt_country.setHint("");
+//                }
+//            }
+//        });
 
         txt_lang.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             public void onFocusChange(View v, boolean hasFocus) {
@@ -463,7 +469,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         new lang().execute();
 
         // get nationals
-        new nat().execute();
+//        new nat().execute();
 
 
         btn_save.setOnClickListener(new View.OnClickListener() {
@@ -496,24 +502,24 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                     Password_Linear.setBackgroundResource(R.drawable.user_register_border_error);
                 }
 
-                if (txt_country.getText().length() != 0) {
-                    Nat_Linear.setBackgroundResource(R.drawable.user_register_border);
-                } else {
-                    Nat_Linear.setBackgroundResource(R.drawable.user_register_border_error);
-                }
+//                if (txt_country.getText().length() != 0) {
+//                    Nat_Linear.setBackgroundResource(R.drawable.user_register_border);
+//                } else {
+//                    Nat_Linear.setBackgroundResource(R.drawable.user_register_border_error);
+//                }
                 if (txt_lang.getText().length() != 0) {
                     Language_Linear.setBackgroundResource(R.drawable.user_register_border);
                 } else {
                     Language_Linear.setBackgroundResource(R.drawable.user_register_border_error);
                 }
-                if (full_date != null) {
-                    btn_datepicker_id.setBackgroundResource(R.drawable.user_register_border);
+                if (AgeCheckBox.isChecked()) {
+                    Date_Relative.setBackgroundResource(R.drawable.user_register_border);
                 }
-                if (full_date == null) {
+                if (!AgeCheckBox.isChecked()) {
                     Toast.makeText(RegisterNewTest.this, R.string.fill_all_error, Toast.LENGTH_SHORT).show();
                     Date_Relative.setBackgroundResource(R.drawable.user_register_border_error);
                 } else {
-                    if (edit_fname.getText() != null && !edit_fname.getText().toString().equals(getString(R.string.Reg_FirstN)) && edit_lname.getText() != null && !edit_lname.getText().toString().equals(getString(R.string.Reg_LastN)) && edit_phone.getText() != null && !edit_phone.getText().toString().equals(getString(R.string.REg_Mobile)) && edit_pass.getText() != null && !edit_pass.getText().toString().equals(getString(R.string.Reg_pass)) && edit_user.getText() != null && !edit_user.getText().toString().equals(getString(R.string.Reg_Email)) && txt_country.getText() != null && !edit_lname.getText().toString().equals(getString(R.string.Reg_Nat)) && Language_ID != -1 && Nationality_ID != -1 && full_date != null && vailedEmail == true) {
+                    if (edit_fname.getText() != null && !edit_fname.getText().toString().equals(getString(R.string.Reg_FirstN)) && edit_lname.getText() != null && !edit_lname.getText().toString().equals(getString(R.string.Reg_LastN)) && edit_phone.getText() != null && !edit_phone.getText().toString().equals(getString(R.string.REg_Mobile)) && edit_pass.getText() != null && !edit_pass.getText().toString().equals(getString(R.string.Reg_pass)) && edit_user.getText() != null && !edit_user.getText().toString().equals(getString(R.string.Reg_Email)) &&!edit_lname.getText().toString().equals(getString(R.string.Reg_Nat)) && Language_ID != -1 && vailedEmail == true) {
                         ArrayList codes = new ArrayList();
                         codes.add("50");
                         codes.add("52");
@@ -528,18 +534,19 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                             String phone = edit_phone.getText().toString();
                             String pass = edit_pass.getText().toString();
                             String user = edit_user.getText().toString();
-                            String country = txt_country.getText().toString();
+                           // String country = txt_country.getText().toString();
+                            String country ="0";
 //                        String lang = txt_lang.getText().toString();
                             char gender = i;
-                            String birthdate = full_date;
+                        //    String birthdate = full_date;
                             int x = Language_ID;
-                            int y = Nationality_ID;
+//                            int y = Nationality_ID;
                             RegisterJsonParse registerJsonParse = new RegisterJsonParse();
 
                             switch (usertype) {
                                 case "Passenger":
-                                    registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterPassenger?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + URLEncoder.encode(birthdate) + "&NationalityId=" + y + "&PreferredLanguageId=" + x + "&photoName=" + uploadedImage, getBaseContext(), country, "P");
-                                    Log.d("Registration :", GetData.DOMAIN + "RegisterPassenger?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + URLEncoder.encode(birthdate) + "&NationalityId=" + y + "&PreferredLanguageId=" + x + "&photoName=" + uploadedImage);
+                                    registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterPassenger?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + "&NationalityId=0" + "&PreferredLanguageId=" + x + "&photoName=" + uploadedImage, getBaseContext(), country, "P");
+                                    Log.d("Registration :", GetData.DOMAIN + "RegisterPassenger?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" +  "&NationalityId=0" + "&PreferredLanguageId=" + x + "&photoName=" + uploadedImage);
                                     break;
                                 case "1":
                                     Toast.makeText(RegisterNewTest.this, R.string.select_type_first_error, Toast.LENGTH_SHORT).show();
@@ -547,11 +554,11 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                                     break;
                                 case "Driver":
 
-                                    registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + URLEncoder.encode(birthdate) + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x, getBaseContext(), country, "D");
-                                    Log.d("Reg Driver", GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + URLEncoder.encode(birthdate) + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x);
+                                    registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" +  "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=0" + "&PreferredLanguageId=" + x, getBaseContext(), country, "D");
+                                    Log.d("Reg Driver", GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=0" +"&PreferredLanguageId=" + x);
                                     break;
                                 case "Both":
-                                    registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + URLEncoder.encode(birthdate) + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=" + y + "&PreferredLanguageId=" + x, getBaseContext(), country, "D");
+                                    registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" +"&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=0" +"&PreferredLanguageId=" + x, getBaseContext(), country, "D");
                                     break;
                             }
                         }
@@ -984,10 +991,11 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
 
     public void showDialogOnButtonClick() {
         btn_datepicker_id = (RelativeLayout) findViewById(R.id.datepicker_id);
+
         btn_datepicker_id.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialog(DILOG_ID);
+
             }
         });
     }
@@ -1077,77 +1085,79 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    private class nat extends AsyncTask {
-        @Override
-        protected void onPostExecute(Object o) {
-            SimpleAdapter adapterCountry = new SimpleAdapter(RegisterNewTest.this, Country_List
-                    , R.layout.autocomplete_row
-                    , new String[]{"ID", "NationalityEnName"}
-                    , new int[]{R.id.row_id, R.id.row_name});
-            txt_country.setAdapter(adapterCountry);
 
-            txt_country.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    TextView txt_lang_name = (TextView) view.findViewById(R.id.row_name);
-                    TextView txt_lang_id = (TextView) view.findViewById(R.id.row_id);
-                    Nationality_ID = Integer.parseInt(txt_lang_id.getText().toString());
-                    txt_country.setText(txt_lang_name.getText().toString());
-                    Log.d("id of lang", "" + Nationality_ID);
-                }
-            });
-        }
+//
+//    private class nat extends AsyncTask {
+//        @Override
+//        protected void onPostExecute(Object o) {
+//            SimpleAdapter adapterCountry = new SimpleAdapter(RegisterNewTest.this, Country_List
+//                    , R.layout.autocomplete_row
+//                    , new String[]{"ID", "NationalityEnName"}
+//                    , new int[]{R.id.row_id, R.id.row_name});
+//            txt_country.setAdapter(adapterCountry);
+//
+//            txt_country.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                @Override
+//                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                    TextView txt_lang_name = (TextView) view.findViewById(R.id.row_name);
+//                    TextView txt_lang_id = (TextView) view.findViewById(R.id.row_id);
+//                    Nationality_ID = Integer.parseInt(txt_lang_id.getText().toString());
+//                    txt_country.setText(txt_lang_name.getText().toString());
+//                    Log.d("id of lang", "" + Nationality_ID);
+//                }
+//            });
+//        }
 
-        @Override
-        protected Object doInBackground(Object[] params) {
-            boolean exists = false;
-            try {
-                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
-                Socket sock = new Socket();
-                int timeoutMs = 20000;   // 2 seconds
-                sock.connect(sockaddr, timeoutMs);
-                exists = true;
-            } catch (final Exception e) {
-                e.printStackTrace();
-                runOnUiThread(new Runnable() {
-                    public void run() {
-                        new AlertDialog.Builder(RegisterNewTest.this)
-                                .setTitle(getString(R.string.connection_problem))
-                                .setMessage(getString(R.string.con_problem_message))
-                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        finish();
-                                        startActivity(getIntent());
-                                    }
-                                })
-                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        finish();
-                                    }
-                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(RegisterNewTest.this, R.string.connection_problem, Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-            if (exists) {
-                try {
-                    JSONArray j = new GetData().GetNationalities();
-                    for (int i = 0; i < j.length(); i++) {
-                        TreeMap<String, String> valuePairs = new TreeMap<>();
-                        JSONObject jsonObject = j.getJSONObject(i);
-                        valuePairs.put("ID", jsonObject.getString("ID"));
-                        valuePairs.put("NationalityEnName", jsonObject.getString(getString(R.string.nat_name2)));
-                        Country_List.add(valuePairs);
-                    }
-                    Log.d("Nat :", Country_List.toString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                Log.d("Nat 2 :", Country_List.toString());
-            }
-            return null;
-        }
-    }
+//        @Override
+//        protected Object doInBackground(Object[] params) {
+//            boolean exists = false;
+//            try {
+//                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+//                Socket sock = new Socket();
+//                int timeoutMs = 20000;   // 2 seconds
+//                sock.connect(sockaddr, timeoutMs);
+//                exists = true;
+//            } catch (final Exception e) {
+//                e.printStackTrace();
+//                runOnUiThread(new Runnable() {
+//                    public void run() {
+//                        new AlertDialog.Builder(RegisterNewTest.this)
+//                                .setTitle(getString(R.string.connection_problem))
+//                                .setMessage(getString(R.string.con_problem_message))
+//                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
+//                                    public void onClick(DialogInterface dialog, int which) {
+//                                        finish();
+//                                        startActivity(getIntent());
+//                                    }
+//                                })
+//                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
+//                                    public void onClick(DialogInterface dialog, int which) {
+//                                        finish();
+//                                    }
+//                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+//                        Toast.makeText(RegisterNewTest.this, R.string.connection_problem, Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//            }
+//            if (exists) {
+//                try {
+//                    JSONArray j = new GetData().GetNationalities();
+//                    for (int i = 0; i < j.length(); i++) {
+//                        TreeMap<String, String> valuePairs = new TreeMap<>();
+//                        JSONObject jsonObject = j.getJSONObject(i);
+//                        valuePairs.put("ID", jsonObject.getString("ID"));
+//                        valuePairs.put("NationalityEnName", jsonObject.getString(getString(R.string.nat_name2)));
+//                        Country_List.add(valuePairs);
+//                    }
+//                    Log.d("Nat :", Country_List.toString());
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//                Log.d("Nat 2 :", Country_List.toString());
+//            }
+//            return null;
+//        }
+//    }
 
     public boolean isEmailValid(String email) {
         String regExpn =

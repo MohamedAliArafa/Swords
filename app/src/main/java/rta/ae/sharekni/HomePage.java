@@ -162,10 +162,6 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         c = this;
 
 
-
-
-
-
         name = (TextView) findViewById(R.id.tv_name_home);
         nat = (TextView) findViewById(R.id.nat_home);
         Account_PhoneNumber = (TextView) findViewById(R.id.Account_PhoneNumber);
@@ -616,9 +612,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         super.onResume();
 
         // Get source of open for app re-engagement
-       Sharekni.mobileAppTracker.setReferralSources(this);
+        Sharekni.mobileAppTracker.setReferralSources(this);
         // MAT will not function unless the measureSession call is included
-       Sharekni.mobileAppTracker.measureSession();
+        Sharekni.mobileAppTracker.measureSession();
 
 
     }
@@ -634,14 +630,37 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
         if (AccountType.equals("D")) {
             if (v == btn_create) {
-                if (Vehicles_Count_FLAG!=0) {
+                if (Vehicles_Count_FLAG != 0) {
                     Intent intent = new Intent(getBaseContext(), DriverCreateCarPool.class);
                     intent.putExtra("ID", Driver_ID);
                     startActivity(intent);
-                }else{
-                    Toast.makeText(HomePage.this, "You Have to Register a Vehicle first", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getBaseContext(), RegisterVehicle.class);
-                    startActivity(intent);
+                } else {
+                    final Dialog dialog = new Dialog(c);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setContentView(R.layout.novehiclesfound);
+                    Button RegisterVehicleBtn = (Button) dialog.findViewById(R.id.okButton);
+                    Button DismissBtn = (Button) dialog.findViewById(R.id.CancelButton);
+                    dialog.show();
+
+                    RegisterVehicleBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            Intent intent = new Intent(getBaseContext(), RegisterVehicle.class);
+                            startActivity(intent);
+                        }
+                    });
+
+
+                    DismissBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+
+                        }
+                    });
+
+
                 }
             } else {
 
@@ -852,9 +871,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                             Log.d("vehicle flag count", String.valueOf(Vehicles_Count_FLAG));
 
                             if (Vehicles_Count_FLAG == 0) {
-
                                 Intent intent = new Intent(getBaseContext(), RegisterVehicle.class);
                                 startActivity(intent);
+
                             } else {
                                 Intent in2 = new Intent(getBaseContext(), Display_My_Vehicles.class);
                                 in2.putExtra("TRAFFIC_FILE_NUMBER", TRAFFIC_FILE_NUMBER);
@@ -887,23 +906,57 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                     });
 
                 }
-                if (jsonArray.getString("GenderEn").equals("Female")) {
-                    circularImageView.setImageResource(R.drawable.defaultdriverfemale);
-                }
+
 //                GetData gd = new GetData();
 //                gd.SetImage(circularImageView,jsonArray.getString("PhotoPath"));
 //                circularImageView.setImageBitmap(gd.GetImage(jsonArray.getString("PhotoPath")));
 //                circularImageView.setImageURI(Uri.parse(GetData.PhotoURL));
-                ImageDecoder im = new ImageDecoder();
-                im.stringRequest(jsonArray.getString("PhotoPath"), circularImageView, HomePage.this);
-                im.stringRequest(jsonArray.getString("PhotoPath"), NavigationDrawerFragment.circularImageView, HomePage.this);
-                ImagePhotoPath = jsonArray.getString("PhotoPath");
+                if (jsonArray.getString("IsPhotoVerified").toLowerCase().equals("false")) {
+                    Locale locale = Locale.getDefault();
+                    Locale_Str = locale.toString();
+                    if (Locale_Str.contains("en")) {
+                        if (jsonArray.getString("GenderEn").equals("Male")) {
+                            circularImageView.setImageResource(R.drawable.imageafterediten);
+
+                        } else {
+                            circularImageView.setImageResource(R.drawable.imageaftereditfemale);
+
+                        }
+
+                    } else {
+
+                        if (jsonArray.getString("GenderEn").equals("Male")) {
+                            circularImageView.setImageResource(R.drawable.imageaftereditar);
+
+                        } else {
+                            circularImageView.setImageResource(R.drawable.imageaftereditfemalear);
+
+                        }
+
+                    }
+
+                } else if (jsonArray.getString("IsPhotoVerified").toLowerCase().equals("")) {
+                    if (jsonArray.getString("GenderEn").equals("Male")) {
+                        circularImageView.setImageResource(R.drawable.defaultdriver);
+
+                    } else {
+                        circularImageView.setImageResource(R.drawable.defaultdriverfemale);
+
+                    }
+                } else {
+                    ImageDecoder im = new ImageDecoder();
+                    im.stringRequest(jsonArray.getString("PhotoPath"), circularImageView, HomePage.this);
+                    im.stringRequest(jsonArray.getString("PhotoPath"), NavigationDrawerFragment.circularImageView, HomePage.this);
+                    ImagePhotoPath = jsonArray.getString("PhotoPath");
+                }
+
             } catch (JSONException e) {
                 hidePDialog();
                 e.printStackTrace();
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }
+
 
             btn_history.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -1206,11 +1259,6 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
             return null;
         }
     }
-
-
-
-
-
 
 
 }

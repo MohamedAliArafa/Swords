@@ -369,9 +369,10 @@
     <string name="Your_Code">الكود</string>
     <string name="code_is_wrong">الكود خطأ</string>
     <string name="Enter_code_again">إعادة ارسال الكود</string>
+    <string name="fill_Email">حقل البريد الألكتروني الزامي</string>
     <string name="Updating_vehicles_str">تحديث المركبات</string>
     <string name="plese_check_file_number_first">الرجاء التأكد من الرقم المروري</string>
-    <string name="check_mobile_and_email">الرجاء التاكد من رقم الهاتف والبريد الاكتروني</string>
+    <string name="check_mobile_and_email">الرجاء التأكد من البريد الالكتروني</string>
     <string name="select_start_point">الرجاء اختيار نقطة الانطلاق علي الاقل</string>
     <string name="region_identical">لا يمكن ان تكون نقطه الإنطلاق و نقطة الوصول متطابقة</string>
     <string name="choose_oneday">من فضلك إختر على الأقل يوم واحد</string>
@@ -388,5 +389,8 @@
     <string name="request_removed">لقد تم إلعاء الطلب بنجاح</string>
     <string name="please_confirm_to_cancel">اتريد حقا الغاء الطلب ؟</string>
     <string name="delete_request_Str">إلغاء الطلب</string>
+    <string name="noVehiclesFound">ليس لديك اي مركبه مسجله</string>
+    <string name="RegisterVehicle_Btn">تسجيل المركبة</string>
+    <string name="Dismiss_txt">إلغاء</string>
 
 </resources>

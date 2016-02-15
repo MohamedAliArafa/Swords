@@ -49,7 +49,7 @@ public class PickUpActivity extends AppCompatActivity {
     int To_Reg_Id;
     int FLAG_ID;
 
-    Double Start_Latitude,Start_Longitude,End_Latitude,End_Longitude;
+    Double Start_Latitude, Start_Longitude, End_Latitude, End_Longitude;
 
     TextView Emirates_txt, Emirates_txt_2;
 
@@ -72,8 +72,8 @@ public class PickUpActivity extends AppCompatActivity {
     Context mContext;
     Dialog Emirates_Dialog;
     ListView Emirates_lv;
-    ImageView selectarrow_im,selectarrow_im_2;
-    RelativeLayout Emirates_Reltive_1,Emirates_Reltive_2;
+    ImageView selectarrow_im, selectarrow_im_2;
+    RelativeLayout Emirates_Reltive_1, Emirates_Reltive_2;
 
     static PickUpActivity pickUpActivity;
     backTread back1;
@@ -85,7 +85,6 @@ public class PickUpActivity extends AppCompatActivity {
     public static PickUpActivity getInstance() {
         return pickUpActivity;
     }
-
 
 
     @Override
@@ -103,10 +102,10 @@ public class PickUpActivity extends AppCompatActivity {
 
         initToolbar();
         mContext = this;
-        selectarrow_im= (ImageView) findViewById(R.id.selectarrow_im);
-        selectarrow_im_2= (ImageView) findViewById(R.id.selectarrow_im_2);
-        Emirates_Reltive_1= (RelativeLayout) findViewById(R.id.Emirates_Reltive_1);
-        Emirates_Reltive_2= (RelativeLayout) findViewById(R.id.Emirates_Reltive_2);
+        selectarrow_im = (ImageView) findViewById(R.id.selectarrow_im);
+        selectarrow_im_2 = (ImageView) findViewById(R.id.selectarrow_im_2);
+        Emirates_Reltive_1 = (RelativeLayout) findViewById(R.id.Emirates_Reltive_1);
+        Emirates_Reltive_2 = (RelativeLayout) findViewById(R.id.Emirates_Reltive_2);
 
         dis_submit = (Button) findViewById(R.id.dis_submit);
         Emirates_txt = (TextView) findViewById(R.id.Emirates_spinner);
@@ -142,7 +141,7 @@ public class PickUpActivity extends AppCompatActivity {
                         back1.cancel(true);
                         back2.cancel(true);
                         finish();
-                    }else {
+                    } else {
                         Toast.makeText(PickUpActivity.this, "Please enter Emitrate and Region", Toast.LENGTH_SHORT).show();
                     }
                 }  // flag id
@@ -167,7 +166,7 @@ public class PickUpActivity extends AppCompatActivity {
                         back1.cancel(true);
                         back2.cancel(true);
                         finish();
-                    }else {
+                    } else {
                         Toast.makeText(PickUpActivity.this, "Please enter Emirate and Region", Toast.LENGTH_SHORT).show();
                     }
                 } //  else if 2
@@ -184,10 +183,10 @@ public class PickUpActivity extends AppCompatActivity {
                         in.putExtra("To_EmirateEnName", To_EmirateEnName);
                         in.putExtra("To_RegionEnName", To_RegionEnName);
                         in.putExtra("To_Reg_Id", To_Reg_Id);
-                        in.putExtra("Start_Latitude",Start_Latitude);
-                        in.putExtra("Start_Longitude",Start_Longitude);
-                        in.putExtra("End_Latitude",End_Latitude);
-                        in.putExtra("End_Longitude",End_Longitude);
+                        in.putExtra("Start_Latitude", Start_Latitude);
+                        in.putExtra("Start_Longitude", Start_Longitude);
+                        in.putExtra("End_Latitude", End_Latitude);
+                        in.putExtra("End_Longitude", End_Longitude);
 
                         Log.d("From_Em_Id_1", String.valueOf(From_Em_Id));
                         Log.d("From_Reg_Id_1", String.valueOf(From_Reg_Id));
@@ -200,7 +199,7 @@ public class PickUpActivity extends AppCompatActivity {
                         finish();
 
 
-                    }else {
+                    } else {
                         Toast.makeText(PickUpActivity.this, "Please enter Emitrate and Region", Toast.LENGTH_SHORT).show();
                     }
                 } //  else if 2
@@ -336,7 +335,7 @@ public class PickUpActivity extends AppCompatActivity {
 
                 if (hasFocus) {
                     arr_2.clear();
-                    if (!back2.getStatus().equals(AsyncTask.Status.RUNNING)){
+                    if (!back2.getStatus().equals(AsyncTask.Status.RUNNING)) {
                         back2 = new backTread2();
                         back2.execute();
                     }
@@ -346,18 +345,16 @@ public class PickUpActivity extends AppCompatActivity {
         });
 
 
-
         Create_CarPool_txt_regions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 arr.clear();
-                if (!back1.getStatus().equals(AsyncTask.Status.RUNNING)){
+                if (!back1.getStatus().equals(AsyncTask.Status.RUNNING)) {
                     back1 = new backTread();
                     back1.execute();
                 }
             }
         });
-
 
 
 //        Create_CarPool_txt_regions.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -368,9 +365,6 @@ public class PickUpActivity extends AppCompatActivity {
 //                }
 //            }
 //        });
-
-
-
 
 
     } // oncreate
@@ -451,8 +445,16 @@ public class PickUpActivity extends AppCompatActivity {
                         final RegionsDataModel regions = new RegionsDataModel(Parcel.obtain());
                         regions.setID(jsonObject.getInt("ID"));
                         regions.setRegionEnName(jsonObject.getString(getString(R.string.reg_name)));
-                        regions.setRegionLatitude(jsonObject.getDouble("RegionLatitude"));
-                        regions.setRegionLongitude(jsonObject.getDouble("RegionLongitude"));
+                        if (!jsonObject.getString("RegionLatitude").equals("null")) {
+                            regions.setRegionLatitude(jsonObject.getDouble("RegionLatitude"));
+                            regions.setRegionLongitude(jsonObject.getDouble("RegionLongitude"));
+                        } else {
+                            regions.setRegionLatitude(0.0);
+                            regions.setRegionLongitude(0.0);
+
+                        }
+
+
                         arr.add(regions);
                     }
                 }
@@ -491,8 +493,8 @@ public class PickUpActivity extends AppCompatActivity {
                     Create_CarPool_txt_regions_2.setText(arr_2.get(position).getRegionEnName());
                     To_Reg_Id = arr_2.get(position).getID();
                     To_RegionEnName = arr_2.get(position).getRegionEnName();
-                    End_Latitude=arr_2.get(position).getRegionLatitude();
-                    End_Longitude=arr_2.get(position).getRegionLongitude();
+                    End_Latitude = arr_2.get(position).getRegionLatitude();
+                    End_Longitude = arr_2.get(position).getRegionLongitude();
 
 
                     Log.d("Start lat", String.valueOf(End_Latitude));
@@ -608,8 +610,6 @@ public class PickUpActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-
-
 
 
 }  //  Class
