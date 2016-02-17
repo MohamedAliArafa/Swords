@@ -48,6 +48,9 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
 import java.net.URLEncoder;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 import rta.ae.sharekni.Arafa.Classes.AppController;
@@ -710,8 +713,12 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 Firstname = (jsonArray.getString("FirstName"));
                 Firstname = Firstname.substring(0, 1).toUpperCase() + Firstname.substring(1);
                 LastName = (jsonArray.getString("LastName"));
+                String LastSeen = (jsonArray.getString("LastSeen"));
+                long timestamp = Long.parseLong("1455743276943") * 1000;
+                DateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+                Date netDate = (new Date(timestamp));
                 LastName = LastName.substring(0, 1).toUpperCase() + LastName.substring(1);
-                name_str = Firstname + " " + LastName;
+                name_str = Firstname + " " + LastName + " " + sdf.format(netDate);
 
                 Account_Email.setText(jsonArray.getString("Username"));
 

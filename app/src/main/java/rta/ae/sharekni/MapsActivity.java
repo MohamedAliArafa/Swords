@@ -249,10 +249,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         item.setFromRegionId(jsonObject.getInt("FromRegionId"));
                         item.setFromEmirateArName(jsonObject.getString("FromEmirateNameAr"));
 
-
                         item.setNoOfRoutes(jsonObject.getInt("NoOfRoutes"));
                         item.setNoOFPassengers(jsonObject.getInt("NoOfPassengers"));
-
 
                         if (jsonObject.getString("FromLng").equals("null") && jsonObject.getString("FromLat").equals("null")) {
                             item.longitude = 0.0;
@@ -261,7 +259,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             item.setLongitude(jsonObject.getDouble("FromLng"));
                             item.setLatitude(jsonObject.getDouble("FromLat"));
                         }
-
 
                         if (item.latitude != 0.0 && item.longitude != 0.0) {
                             data[i] = item;
@@ -272,7 +269,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                             );
 
-
                             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
                                     (new LatLng(data[i].latitude, data[i].longitude), 12.0f));
 
@@ -281,7 +277,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                     } // for
-
 
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
                             (new LatLng(25.197197, 55.2743764), 8.25f));

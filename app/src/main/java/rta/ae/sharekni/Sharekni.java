@@ -1,28 +1,49 @@
 package rta.ae.sharekni;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcel;
+import android.util.Log;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.mobileapptracker.MobileAppTracker;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
+import java.net.URLEncoder;
 
 import rta.ae.sharekni.Arafa.Classes.GetData;
+import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
+import rta.ae.sharekni.Arafa.DataModel.BestDriverDataModel;
 import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
 
 public class Sharekni extends Activity {
     static Sharekni TestVedio;
+    protected static ProgressDialog pDialog;
+    String url = GetData.DOMAIN +"CheckLogin?";
+    String user,pass;
 
     public static Sharekni getInstance() {
         return TestVedio;
@@ -38,6 +59,16 @@ public class Sharekni extends Activity {
         setContentView(R.layout.vediotest);
         TestVedio = this;
         Splash_background = (ImageView) findViewById(R.id.Splash_background);
+        SharedPreferences myPrefs = getSharedPreferences("myPrefs", MODE_PRIVATE);
+        String ID = myPrefs.getString("account_id", null);
+        user = myPrefs.getString("account_user", null);
+        pass = myPrefs.getString("account_pass", null);
+
+        if (ID != null && user != null && pass != null){
+            Log.w("user",user);
+            Log.w("Pass",pass);
+            new loginProcces().execute();
+        }
         new backThread().execute();
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -68,6 +99,66 @@ public class Sharekni extends Activity {
 
     } //  on create
 
+    private class loginProcces extends AsyncTask {
+
+        @Override
+        protected Object doInBackground(Object[] params) {
+            boolean exists = false;
+            try {
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                Socket sock = new Socket();
+                int timeoutMs = 2000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                exists = true;
+            } catch (final Exception e) {
+                e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new AlertDialog.Builder(Sharekni.this)
+                                .setTitle(R.string.connection_problem)
+                                .setMessage(R.string.con_problem_message)
+                                .setPositiveButton(R.string.retry, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                        startActivity(getIntent());
+//                                        Intent intentToBeNewRoot = new Intent(LoginApproved.this, LoginApproved.class);
+//                                        ComponentName cn = intentToBeNewRoot.getComponent();
+//                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+//                                        startActivity(mainIntent);
+                                    }
+                                })
+                                .setNegativeButton(R.string.goBack, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+//                                        Intent intentToBeNewRoot = new Intent(LoginApproved.this, OnboardingActivity.class);
+//                                        ComponentName cn = intentToBeNewRoot.getComponent();
+//                                        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+//                                        startActivity(mainIntent);
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                        Toast.makeText(Sharekni.this, R.string.connection_problem, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            if (exists) {
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, url + "username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass),
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                Log.d("Login","Last Seen Updated");
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.w("Login","Last Seen Failed");
+                    }
+                });
+                VolleySingleton.getInstance(getBaseContext()).addToRequestQueue(stringRequest);
+            }
+            return null;
+        }
+    }
+
     private class backThread extends AsyncTask {
         JSONArray jsonArray;
         JSONArray Emirates;
@@ -79,6 +170,7 @@ public class Sharekni extends Activity {
 
         @Override
         protected Object doInBackground(Object[] params) {
+
             file = getFilesDir();
             try {
                 InputStream emirates = openFileInput("Emirates.txt");

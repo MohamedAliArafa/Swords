@@ -232,6 +232,8 @@ public class LoginApproved extends AppCompatActivity {
 
                                         editor.putString("account_id", String.valueOf(json.getInt("ID")));
                                         editor.putString("account_type", json.getString("AccountStatus"));
+                                        editor.putString("account_user", String.valueOf(user));
+                                        editor.putString("account_pass", String.valueOf(pass));
 
                                         editor.commit();
                                         item.setID(json.getInt("ID"));

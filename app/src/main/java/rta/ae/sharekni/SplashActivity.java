@@ -13,9 +13,6 @@ import rta.ae.sharekni.R;
 
 public class SplashActivity extends AppCompatActivity {
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,9 +25,7 @@ public class SplashActivity extends AppCompatActivity {
         mediaController.setAnchorView(videoView);
         videoView.setMediaController(mediaController);
 
-
         videoView.start();
-
 
 //        try {
 //

@@ -45,8 +45,6 @@ public class OnboardingActivity extends FragmentActivity {
         SharedPreferences myPrefs = this.getSharedPreferences("myPrefs", MODE_PRIVATE);
         String ID = myPrefs.getString("account_id", null);
 
-
-
         if (ID != null){
             Log.d("ID = :", ID);
             Intent in = new Intent(this, HomePage.class);
