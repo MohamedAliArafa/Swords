@@ -390,6 +390,10 @@
     <string name="noVehiclesFound">You Don\'t Have Any Vehcile Registered</string>
     <string name="RegisterVehicle_Btn">Register Vehicle</string>
     <string name="Dismiss_txt">Dismiss</string>
+    <string name="last_seen_textview">Last Seen :</string>
+    <string name="drivers_Str">Drivers</string>
+    <string name="passengers_Str">Passengers</string>
+    <string name="InvitePassenger">I\'d Like To Invite you to my Ride</string>
 
 
 </resources>

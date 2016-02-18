@@ -157,6 +157,7 @@ public class NavigationDrawerFragment extends Fragment {
                 SharedPreferences myPrefs = getContext().getSharedPreferences("myPrefs", 0);
                 SharedPreferences.Editor editor = myPrefs.edit();
                 editor.putString("account_id", null);
+                editor.putString("account_type","");
                 editor.commit();
                 Intent in = new Intent(getContext(), OnboardingActivity.class);
                 in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);

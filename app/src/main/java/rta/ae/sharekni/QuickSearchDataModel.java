@@ -15,12 +15,12 @@ public class QuickSearchDataModel extends ArrayList<Parcelable> implements Parce
             , From_RegionName_en, SDG_Route_Name_en, SDG_Route_PreferredGender
             , SDG_Route_Start_Date, SDG_Route_Start_FromTime, To_EmirateName_en
             , To_RegionName_en, VehicleDescription, Nationality_en, AccountEmail
-            , AccountMobile, AccountPhoto,SDG_RouteDays,Rating;
+            , AccountMobile, AccountPhoto,SDG_RouteDays,Rating,LastSeen,MapKey;
 
 
     int AvilableOrRequiredSeats, SDG_Route_FromEmirate_ID
             , SDG_Route_FromRegion_ID, SDG_Route_ID, SDG_Route_ToEmirate_ID
-            , SDG_Route_ToRegion_ID, DriverId, SDG_Route_NoOfSeats;
+            , SDG_Route_ToRegion_ID, DriverId, SDG_Route_NoOfSeats,AccountID;
 
     double SDG_Route_Coordinates_Start_Lat, SDG_Route_Coordinates_End_Lat
             , SDG_Route_Coordinates_Start_Lng, SDG_Route_Coordinates_End_Lng;
@@ -67,6 +67,11 @@ public class QuickSearchDataModel extends ArrayList<Parcelable> implements Parce
         SDG_Route_Coordinates_End_Lng = in.readDouble();
         Rating=in.readString();
         SDG_RouteDays=in.readString();
+        LastSeen=in.readString();
+        MapKey=in.readString();
+        AccountID=in.readInt();
+
+
     }
 
     public static final Creator<QuickSearchDataModel> CREATOR = new Creator<QuickSearchDataModel>() {
@@ -306,6 +311,14 @@ public class QuickSearchDataModel extends ArrayList<Parcelable> implements Parce
         this.SDG_Route_Coordinates_End_Lng = SDG_Route_Coordinates_End_Lng;
     }
 
+    public String getLastSeen() {
+        return LastSeen;
+    }
+
+    public void setLastSeen(String lastSeen) {
+        LastSeen = lastSeen;
+    }
+
     public void setRating(String rating) {
         Rating = rating;
     }
@@ -314,7 +327,21 @@ public class QuickSearchDataModel extends ArrayList<Parcelable> implements Parce
         return Rating;
     }
 
+    public String getMapKey() {
+        return MapKey;
+    }
 
+    public void setMapKey(String mapKey) {
+        MapKey = mapKey;
+    }
+
+    public int getAccountID() {
+        return AccountID;
+    }
+
+    public void setAccountID(int accountID) {
+        AccountID = accountID;
+    }
 
     @Override
     public int describeContents() {
@@ -352,6 +379,9 @@ public class QuickSearchDataModel extends ArrayList<Parcelable> implements Parce
         dest.writeDouble(SDG_Route_Coordinates_End_Lng);
         dest.writeString(SDG_RouteDays);
         dest.writeString(Rating);
+        dest.writeString(LastSeen);
+        dest.writeString(MapKey);
+        dest.writeInt(AccountID);
     }
 }
 

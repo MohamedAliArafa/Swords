@@ -394,6 +394,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
                     intent1.putExtra("To_RegionEnName", To_RegionEnName_str);
                     intent1.putExtra("SaveFind", savefind);
                     intent1.putExtra("Smokers",IS_Smoking);
+                    intent1.putExtra("MapKey","Driver");
                     Log.d("Test", From_EmirateEnName + From_RegionEnName + To_EmirateEnName + To_RegionEnName);
                     startActivity(intent1);
 

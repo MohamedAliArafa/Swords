@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,6 +15,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,11 +53,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     TextView N0_Of_Drivers;
 
+    char i = 'D';
+    SharedPreferences myPrefs;
+
+
     String To_EmirateEnName, From_EmirateEnName, To_RegionEnName, From_RegionEnName;
-
-
+    TextView malefemale_txt, femalemale_txt;
+    ImageView malefemale, femalemale;
+    RelativeLayout MapRelative;
     Double MyLat = 0.0;
     Double My_Lng = 0.0;
+    String AccountType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +72,114 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+
+        malefemale_txt = (TextView) findViewById(R.id.malefemale_txt);
+        femalemale_txt = (TextView) findViewById(R.id.femalemale_txt);
+
+        malefemale = (ImageView) findViewById(R.id.malefemale);
+        femalemale = (ImageView) findViewById(R.id.femalemale);
+
+        MapRelative = (RelativeLayout) findViewById(R.id.MapRelative);
+
+
+
+
+        myPrefs = this.getSharedPreferences("myPrefs", 0);
+        AccountType = myPrefs.getString("account_type", "");
+        Log.d("Account Type Map",AccountType);
+        assert AccountType != null;
+        if (AccountType.equals("D")) {
+
+            MapRelative.setVisibility(View.VISIBLE);
+
+
+            malefemale.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (i == 'D') {
+                        malefemale.setVisibility(View.INVISIBLE);
+                        femalemale.setVisibility(View.VISIBLE);
+                        malefemale_txt.setTextColor(Color.GRAY);
+                        femalemale_txt.setTextColor(Color.RED);
+                        i = 'P';
+
+
+                        mMap.clear();
+                        new backTread().execute();
+
+                    }
+
+
+                }
+            });
+
+
+            femalemale.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (i == 'P') {
+                        femalemale.setVisibility(View.INVISIBLE);
+                        malefemale.setVisibility(View.VISIBLE);
+                        malefemale_txt.setTextColor(Color.RED);
+                        femalemale_txt.setTextColor(Color.GRAY);
+                        i = 'D';
+
+
+                        mMap.clear();
+                        new backTread().execute();
+
+                    }
+
+                }
+            });
+
+
+            femalemale_txt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (i == 'D') {
+                        malefemale_txt.setTextColor(Color.GRAY);
+                        femalemale_txt.setTextColor(Color.RED);
+
+                        malefemale.setVisibility(View.INVISIBLE);
+                        femalemale.setVisibility(View.VISIBLE);
+                        i = 'P';
+
+
+                        mMap.clear();
+                        new backTread().execute();
+
+                    }
+
+
+                }
+            });
+
+
+            malefemale_txt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if (i == 'P') {
+                        i = 'D';
+                        malefemale_txt.setTextColor(Color.RED);
+                        femalemale_txt.setTextColor(Color.GRAY);
+
+                        malefemale.setVisibility(View.VISIBLE);
+                        femalemale.setVisibility(View.INVISIBLE);
+
+
+                        mMap.clear();
+                        new backTread().execute();
+                    }
+
+
+                }
+            });
+
+
+        }
+
 
         new backTread().execute();
         context = this;
@@ -113,11 +231,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                     //prompt user to enable gps
-                }else{
+                } else {
                     //gps is enabled
 
                 }
-
 
 
 //               Location myLocation =  mMap.getMyLocation();
@@ -232,155 +349,315 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             super.onPostExecute(o);
             if (exists) {
 
-                try {
-                    JSONArray j = new GetData().GetMapLookUp();
-                    data = new MapDataModel[j.length()];
-
-                    for (int i = 0; i < j.length(); i++) {
-
-                        MapDataModel item = new MapDataModel(Parcel.obtain());
-
-                        JSONObject jsonObject = j.getJSONObject(i);
-
-                        item.setFromRegionArName(jsonObject.getString("FromRegionNameAr"));
-                        item.setFromRegionEnName(jsonObject.getString("FromRegionNameEn"));
-                        item.setFromEmirateEnName(jsonObject.getString("FromEmirateNameEn"));
-                        item.setFromEmirateId(jsonObject.getInt("FromEmirateId"));
-                        item.setFromRegionId(jsonObject.getInt("FromRegionId"));
-                        item.setFromEmirateArName(jsonObject.getString("FromEmirateNameAr"));
-
-                        item.setNoOfRoutes(jsonObject.getInt("NoOfRoutes"));
-                        item.setNoOFPassengers(jsonObject.getInt("NoOfPassengers"));
-
-                        if (jsonObject.getString("FromLng").equals("null") && jsonObject.getString("FromLat").equals("null")) {
-                            item.longitude = 0.0;
-                            item.latitude = 0.0;
-                        } else {
-                            item.setLongitude(jsonObject.getDouble("FromLng"));
-                            item.setLatitude(jsonObject.getDouble("FromLat"));
-                        }
-
-                        if (item.latitude != 0.0 && item.longitude != 0.0) {
-                            data[i] = item;
-                            final Marker markerZero = mMap.addMarker(new MarkerOptions().
-                                            title(String.valueOf(i)).
-                                            position(new LatLng(item.latitude, item.longitude))
-                                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor))
-
-                            );
-
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
-                                    (new LatLng(data[i].latitude, data[i].longitude), 12.0f));
+                if (i == 'D') {
 
 
-                        }
+                    try {
+                        JSONArray j = new GetData().GetMapLookUp();
+                        data = new MapDataModel[j.length()];
+
+                        for (int i = 0; i < j.length(); i++) {
+
+                            MapDataModel item = new MapDataModel(Parcel.obtain());
+
+                            JSONObject jsonObject = j.getJSONObject(i);
+
+                            item.setFromRegionArName(jsonObject.getString("FromRegionNameAr"));
+                            item.setFromRegionEnName(jsonObject.getString("FromRegionNameEn"));
+                            item.setFromEmirateEnName(jsonObject.getString("FromEmirateNameEn"));
+                            item.setFromEmirateId(jsonObject.getInt("FromEmirateId"));
+                            item.setFromRegionId(jsonObject.getInt("FromRegionId"));
+                            item.setFromEmirateArName(jsonObject.getString("FromEmirateNameAr"));
+
+                            item.setNoOfRoutes(jsonObject.getInt("NoOfRoutes"));
+                            item.setNoOFPassengers(jsonObject.getInt("NoOfPassengers"));
+
+                            if (jsonObject.getString("FromLng").equals("null") && jsonObject.getString("FromLat").equals("null")) {
+                                item.longitude = 0.0;
+                                item.latitude = 0.0;
+                            } else {
+                                item.setLongitude(jsonObject.getDouble("FromLng"));
+                                item.setLatitude(jsonObject.getDouble("FromLat"));
+                            }
+
+                            if (item.latitude != 0.0 && item.longitude != 0.0) {
+                                data[i] = item;
+                                final Marker markerZero = mMap.addMarker(new MarkerOptions().
+                                        title(String.valueOf(i)).
+                                        position(new LatLng(item.latitude, item.longitude))
+                                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor))
+
+                                );
+
+                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
+                                        (new LatLng(data[i].latitude, data[i].longitude), 12.0f));
 
 
-                    } // for
-
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
-                            (new LatLng(25.197197, 55.2743764), 8.25f));
+                            }
 
 
+                        } // for
 
-                } // try
-                catch (JSONException e) {
-                    e.printStackTrace();
-                }  // cathch
-
-
-                mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-
-                    View v;
-
-                    @Override
-                    public View getInfoWindow(Marker marker) {
-
-                        v = getLayoutInflater().inflate(R.layout.info_window_approved, null);
-                        LatLng latLng = marker.getPosition();
-                        int i = Integer.parseInt(marker.getTitle());
-
-                        String snippet = data[i].getFromRegionArName();
-                        String title = data[i].getFromRegionEnName();
-                        int NoOfRoutes = data[i].getNoOfRoutes();
-                        int NoOfPassengers_Count = data[i].getNoOFPassengers();
-                        TextView emirateArName = (TextView) v.findViewById(R.id.emirateAr_name_id);
-                        TextView emirateEnName = (TextView) v.findViewById(R.id.emirateEn_name_id);
-                        TextView emirateLat = (TextView) v.findViewById(R.id.txt_map_lat);
-                        TextView emiratelong = (TextView) v.findViewById(R.id.txt_map_long);
-                        TextView NoOfRoutes_txt = (TextView) v.findViewById(R.id.NoOfRoutes);
-                        TextView NoOfPassengers = (TextView) v.findViewById(R.id.NoOfPassengers);
-                        TextView N0_Of_Drivers = (TextView) v.findViewById(R.id.N0_Of_Drivers);
-
-                        String lat = String.valueOf(latLng.latitude).substring(0, 7);
-                        String lon = String.valueOf(latLng.longitude).substring(0, 7);
-                        String NoOfRoutes_str = String.valueOf(NoOfRoutes);
-                        String NoOfPassengers_str = String.valueOf(NoOfPassengers_Count);
-                        emirateLat.setText(lat);
-                        emiratelong.setText(lon);
-                        emirateArName.setText(snippet);
-                        emirateEnName.setText(title);
-                        NoOfRoutes_txt.setText(NoOfRoutes_str);
-                        N0_Of_Drivers.setText(NoOfRoutes_str);
-                        NoOfPassengers.setText(NoOfPassengers_str);
-                        return v;
-
-                    }
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
+                                (new LatLng(25.197197, 55.2743764), 8.25f));
 
 
-                    @Override
-                    public View getInfoContents(Marker marker) {
+                    } // try
+                    catch (JSONException e) {
+                        e.printStackTrace();
+                    }  // cathch
 
 
-                        return v;
-                    }
-                });
+                    mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
 
+                        View v;
 
-                mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-                    @Override
-                    public void onInfoWindowClick(Marker marker) {
-                        int i = Integer.parseInt(marker.getTitle());
+                        @Override
+                        public View getInfoWindow(Marker marker) {
 
+                            v = getLayoutInflater().inflate(R.layout.info_window_approved, null);
+                            LatLng latLng = marker.getPosition();
+                            int i = Integer.parseInt(marker.getTitle());
 
-                        From_Em_Id = data[i].getFromEmirateId();
-                        From_Reg_Id = data[i].getFromRegionId();
+                            String snippet = data[i].getFromRegionArName();
+                            String title = data[i].getFromRegionEnName();
+                            int NoOfRoutes = data[i].getNoOfRoutes();
+                            int NoOfPassengers_Count = data[i].getNoOFPassengers();
+                            TextView emirateArName = (TextView) v.findViewById(R.id.emirateAr_name_id);
+                            TextView emirateEnName = (TextView) v.findViewById(R.id.emirateEn_name_id);
+                            TextView emirateLat = (TextView) v.findViewById(R.id.txt_map_lat);
+                            TextView emiratelong = (TextView) v.findViewById(R.id.txt_map_long);
+                            TextView NoOfRoutes_txt = (TextView) v.findViewById(R.id.NoOfRoutes);
+                            TextView NoOfPassengers = (TextView) v.findViewById(R.id.NoOfPassengers);
+                            TextView N0_Of_Drivers = (TextView) v.findViewById(R.id.N0_Of_Drivers);
 
+                            String lat = String.valueOf(latLng.latitude).substring(0, 7);
+                            String lon = String.valueOf(latLng.longitude).substring(0, 7);
+                            String NoOfRoutes_str = String.valueOf(NoOfRoutes);
+                            String NoOfPassengers_str = String.valueOf(NoOfPassengers_Count);
+                            emirateLat.setText(lat);
+                            emiratelong.setText(lon);
+                            emirateArName.setText(snippet);
+                            emirateEnName.setText(title);
+                            NoOfRoutes_txt.setText(NoOfRoutes_str);
+                            N0_Of_Drivers.setText(NoOfRoutes_str);
+                            NoOfPassengers.setText(NoOfPassengers_str);
+                            return v;
 
-                        Locale locale = Locale.getDefault();
-                        String loca = locale.toString();
-                        Log.d("locale", loca);
-                        if (loca.contains("en")) {
-                            From_EmirateEnName = data[i].getFromEmirateEnName();
-                            From_RegionEnName = data[i].getFromRegionEnName();
-                            Log.d("Maps em en",From_EmirateEnName);
-                            Log.d("Maps em en",From_RegionEnName);
-                        } else if (loca.equals("ar")) {
-                            From_EmirateEnName = data[i].getFromEmirateArName();
-                            From_RegionEnName = data[i].getFromRegionArName();
-                            Log.d("Maps em ar",From_EmirateEnName);
-                            Log.d("Maps em ar",From_RegionEnName);
                         }
 
 
-                        Intent intent1 = new Intent(getBaseContext(), QuickSearchResults.class);
-                        intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        intent1.putExtra("From_Em_Id", From_Em_Id);
-                        intent1.putExtra("To_Em_Id", To_Em_Id);
-                        intent1.putExtra("From_Reg_Id", From_Reg_Id);
-                        intent1.putExtra("To_Reg_Id", To_Reg_Id);
-                        intent1.putExtra("From_EmirateEnName", From_EmirateEnName);
-                        intent1.putExtra("From_RegionEnName", From_RegionEnName);
-                        intent1.putExtra("To_EmirateEnName", To_EmirateEnName);
-                        intent1.putExtra("To_RegionEnName", To_RegionEnName);
-                        startActivity(intent1);
+                        @Override
+                        public View getInfoContents(Marker marker) {
 
 
-                    }
-                });
+                            return v;
+                        }
+                    });
 
 
-            } //  if
+                    mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                        @Override
+                        public void onInfoWindowClick(Marker marker) {
+                            int i = Integer.parseInt(marker.getTitle());
+
+
+                            From_Em_Id = data[i].getFromEmirateId();
+                            From_Reg_Id = data[i].getFromRegionId();
+
+
+                            Locale locale = Locale.getDefault();
+                            String loca = locale.toString();
+                            Log.d("locale", loca);
+                            if (loca.contains("en")) {
+                                From_EmirateEnName = data[i].getFromEmirateEnName();
+                                From_RegionEnName = data[i].getFromRegionEnName();
+                                Log.d("Maps em en", From_EmirateEnName);
+                                Log.d("Maps em en", From_RegionEnName);
+                            } else if (loca.equals("ar")) {
+                                From_EmirateEnName = data[i].getFromEmirateArName();
+                                From_RegionEnName = data[i].getFromRegionArName();
+                                Log.d("Maps em ar", From_EmirateEnName);
+                                Log.d("Maps em ar", From_RegionEnName);
+                            }
+
+
+                            Intent intent1 = new Intent(getBaseContext(), QuickSearchResults.class);
+                            intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            intent1.putExtra("From_Em_Id", From_Em_Id);
+                            intent1.putExtra("To_Em_Id", To_Em_Id);
+                            intent1.putExtra("From_Reg_Id", From_Reg_Id);
+                            intent1.putExtra("To_Reg_Id", To_Reg_Id);
+                            intent1.putExtra("From_EmirateEnName", From_EmirateEnName);
+                            intent1.putExtra("From_RegionEnName", From_RegionEnName);
+                            intent1.putExtra("To_EmirateEnName", To_EmirateEnName);
+                            intent1.putExtra("To_RegionEnName", To_RegionEnName);
+                            intent1.putExtra("MapKey", "Driver");
+                            startActivity(intent1);
+
+
+                        }
+                    });
+
+
+                } //  if
+
+                else {
+                    mMap.clear();
+
+
+                    try {
+                        JSONArray j = new GetData().GetPassengersMapLookUp();
+                        data = new MapDataModel[j.length()];
+
+                        for (int i = 0; i < j.length(); i++) {
+
+                            MapDataModel item = new MapDataModel(Parcel.obtain());
+
+                            JSONObject jsonObject = j.getJSONObject(i);
+
+                            item.setFromRegionArName(jsonObject.getString("FromRegionNameAr"));
+                            item.setFromRegionEnName(jsonObject.getString("FromRegionNameEn"));
+                            item.setFromEmirateEnName(jsonObject.getString("FromEmirateNameEn"));
+                            item.setFromEmirateId(jsonObject.getInt("FromEmirateId"));
+                            item.setFromRegionId(jsonObject.getInt("FromRegionId"));
+                            item.setFromEmirateArName(jsonObject.getString("FromEmirateNameAr"));
+
+                            item.setNoOfRoutes(jsonObject.getInt("NoOfRoutes"));
+                            item.setNoOFPassengers(jsonObject.getInt("NoOfPassengers"));
+
+                            if (jsonObject.getString("FromLng").equals("null") && jsonObject.getString("FromLat").equals("null")) {
+                                item.longitude = 0.0;
+                                item.latitude = 0.0;
+                            } else {
+                                item.setLongitude(jsonObject.getDouble("FromLng"));
+                                item.setLatitude(jsonObject.getDouble("FromLat"));
+                            }
+
+                            if (item.latitude != 0.0 && item.longitude != 0.0) {
+                                data[i] = item;
+                                final Marker markerZero = mMap.addMarker(new MarkerOptions().
+                                        title(String.valueOf(i)).
+                                        position(new LatLng(item.latitude, item.longitude))
+                                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor))
+
+                                );
+
+                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
+                                        (new LatLng(data[i].latitude, data[i].longitude), 12.0f));
+
+
+                            }
+
+
+                        } // for
+
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
+                                (new LatLng(25.197197, 55.2743764), 8.25f));
+
+
+                    } // try
+                    catch (JSONException e) {
+                        e.printStackTrace();
+                    }  // cathch
+
+
+                    mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+
+                        View v;
+
+                        @Override
+                        public View getInfoWindow(Marker marker) {
+
+                            v = getLayoutInflater().inflate(R.layout.info_window_approved, null);
+                            LatLng latLng = marker.getPosition();
+                            int i = Integer.parseInt(marker.getTitle());
+
+                            String snippet = data[i].getFromRegionArName();
+                            String title = data[i].getFromRegionEnName();
+                            int NoOfRoutes = data[i].getNoOfRoutes();
+                            int NoOfPassengers_Count = data[i].getNoOFPassengers();
+                            TextView emirateArName = (TextView) v.findViewById(R.id.emirateAr_name_id);
+                            TextView emirateEnName = (TextView) v.findViewById(R.id.emirateEn_name_id);
+                            TextView emirateLat = (TextView) v.findViewById(R.id.txt_map_lat);
+                            TextView emiratelong = (TextView) v.findViewById(R.id.txt_map_long);
+                            TextView NoOfRoutes_txt = (TextView) v.findViewById(R.id.NoOfRoutes);
+                            TextView NoOfPassengers = (TextView) v.findViewById(R.id.NoOfPassengers);
+                            TextView N0_Of_Drivers = (TextView) v.findViewById(R.id.N0_Of_Drivers);
+
+                            String lat = String.valueOf(latLng.latitude).substring(0, 7);
+                            String lon = String.valueOf(latLng.longitude).substring(0, 7);
+                            String NoOfRoutes_str = String.valueOf(NoOfRoutes);
+                            String NoOfPassengers_str = String.valueOf(NoOfPassengers_Count);
+                            emirateLat.setText(lat);
+                            emiratelong.setText(lon);
+                            emirateArName.setText(snippet);
+                            emirateEnName.setText(title);
+                            NoOfRoutes_txt.setText(NoOfRoutes_str);
+                            N0_Of_Drivers.setText(NoOfRoutes_str);
+                            NoOfPassengers.setText(NoOfPassengers_str);
+                            return v;
+
+                        }
+
+
+                        @Override
+                        public View getInfoContents(Marker marker) {
+
+
+                            return v;
+                        }
+                    });
+
+
+                    mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                        @Override
+                        public void onInfoWindowClick(Marker marker) {
+                            int i = Integer.parseInt(marker.getTitle());
+
+
+                            From_Em_Id = data[i].getFromEmirateId();
+                            From_Reg_Id = data[i].getFromRegionId();
+
+
+                            Locale locale = Locale.getDefault();
+                            String loca = locale.toString();
+                            Log.d("locale", loca);
+                            if (loca.contains("en")) {
+                                From_EmirateEnName = data[i].getFromEmirateEnName();
+                                From_RegionEnName = data[i].getFromRegionEnName();
+                                Log.d("Maps em en", From_EmirateEnName);
+                                Log.d("Maps em en", From_RegionEnName);
+                            } else if (loca.equals("ar")) {
+                                From_EmirateEnName = data[i].getFromEmirateArName();
+                                From_RegionEnName = data[i].getFromRegionArName();
+                                Log.d("Maps em ar", From_EmirateEnName);
+                                Log.d("Maps em ar", From_RegionEnName);
+                            }
+
+
+                            Intent intent1 = new Intent(getBaseContext(), QuickSearchResults.class);
+                            intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            intent1.putExtra("From_Em_Id", From_Em_Id);
+                            intent1.putExtra("To_Em_Id", To_Em_Id);
+                            intent1.putExtra("From_Reg_Id", From_Reg_Id);
+                            intent1.putExtra("To_Reg_Id", To_Reg_Id);
+                            intent1.putExtra("From_EmirateEnName", From_EmirateEnName);
+                            intent1.putExtra("From_RegionEnName", From_RegionEnName);
+                            intent1.putExtra("To_EmirateEnName", To_EmirateEnName);
+                            intent1.putExtra("To_RegionEnName", To_RegionEnName);
+                            intent1.putExtra("MapKey", "Passenger");
+                            startActivity(intent1);
+
+
+                        }
+                    });
+
+
+                }
+
+
+            }// if Driver
 
 
         }

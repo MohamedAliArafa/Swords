@@ -392,5 +392,10 @@
     <string name="noVehiclesFound">ليس لديك اي مركبه مسجله</string>
     <string name="RegisterVehicle_Btn">تسجيل المركبة</string>
     <string name="Dismiss_txt">إلغاء</string>
+    <string name="last_seen_textview">أخر مشاهده : </string>
+    <string name="drivers_Str">السائقين</string>
+    <string name="passengers_Str">الركاب</string>
+    <string name="InvitePassenger">أود دعوتك للأنضمام الي رحلتي</string>
+
 
 </resources>

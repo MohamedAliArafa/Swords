@@ -5,44 +5,6 @@
     android:layout_marginTop="10dp"
     android:paddingBottom="10dp">
 
-
-    <TextView
-        android:id="@+id/Starting_Time_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/starting_time"
-        android:textSize="16sp"
-        android:textStyle="bold"
-
-        />
-
-    <TextView
-        android:id="@+id/SDG_Route_Start_FromTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_toEndOf="@+id/Starting_Time_txt"
-        android:layout_toRightOf="@+id/Starting_Time_txt"
-        android:text="06:30 Am"
-        android:textSize="16sp"
-        android:textStyle="bold" />
-
-
-    <TextView
-        android:id="@+id/search_results_days"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/SDG_Route_Start_FromTime"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        android:textSize="16sp" />
-
-
     <com.pkmmte.view.CircularImageView
         android:id="@+id/search_list_photo"
         android:layout_width="80dp"
@@ -167,42 +129,17 @@
         android:layout_below="@+id/Nationality_en"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="2dp"
-        android:text="Send Invitation"
+        android:text="Invite"
         android:textColor="@color/white"
         android:textAllCaps="false"
         android:background="@drawable/bordersbuttom"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:id="@+id/PassengerSendInvite"
         />
 
-    <ImageView
-
-        android:id="@+id/im1"
-        android:layout_width="50dp"
-        android:layout_height="40dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/DriverEnName"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:src="@drawable/msg"
-
-        />
 
 
-    <ImageView
-        android:id="@+id/im5"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignBottom="@+id/im1"
-        android:layout_toLeftOf="@+id/im1"
-        android:layout_toStartOf="@+id/im1"
-        android:paddingTop="10dp"
-        android:src="@drawable/call"
 
-        />
 
 
 </RelativeLayout>

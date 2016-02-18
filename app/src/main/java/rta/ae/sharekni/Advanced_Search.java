@@ -584,6 +584,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                     intent1.putExtra("Gender", i);
                     intent1.putExtra("SaveFind", savefind);
                     intent1.putExtra("Smokers",IS_Smoking);
+                    intent1.putExtra("MapKey","Driver");
 
                     networkCheck.cancel(true);
                     nat.cancel(true);

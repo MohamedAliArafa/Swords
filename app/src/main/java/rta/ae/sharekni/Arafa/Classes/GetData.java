@@ -159,6 +159,7 @@ public class GetData {
     String GetVehiclesUrl = DOMAIN + "GetByDriverId?id=";
 
     String GetMapLookUpUrl = DOMAIN + "GetFromOnlyMostDesiredRides";
+    String GetPassengersMapLookUpUrl = DOMAIN+"GetFromOnlyMostDesiredRidesForPassengers";
 
     String GetAllMostDesiredRidesURl = DOMAIN + "GetAllMostDesiredRides?";
 
@@ -697,6 +698,13 @@ public class GetData {
 
     public JSONArray GetMapLookUp() throws JSONException {
         HandleXML obj = new HandleXML(GetMapLookUpUrl);
+        obj.fetchXML();
+        while ((obj.parsingComplete && !obj.error)) ;
+        return new JSONArray(obj.getData());
+    }
+
+    public JSONArray GetPassengersMapLookUp() throws JSONException {
+        HandleXML obj = new HandleXML(GetPassengersMapLookUpUrl);
         obj.fetchXML();
         while ((obj.parsingComplete && !obj.error)) ;
         return new JSONArray(obj.getData());
