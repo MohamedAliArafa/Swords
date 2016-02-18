@@ -385,7 +385,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 final Marker markerZero = mMap.addMarker(new MarkerOptions().
                                         title(String.valueOf(i)).
                                         position(new LatLng(item.latitude, item.longitude))
-                                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor))
+                                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.pindriver))
 
                                 );
 
@@ -539,7 +539,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 final Marker markerZero = mMap.addMarker(new MarkerOptions().
                                         title(String.valueOf(i)).
                                         position(new LatLng(item.latitude, item.longitude))
-                                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor))
+                                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.pinpassenger))
 
                                 );
 

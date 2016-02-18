@@ -481,11 +481,11 @@ public class Route extends AppCompatActivity {
 
             final Marker markerZero = mMap.addMarker(new MarkerOptions().
                     position(new LatLng(StartLat, StartLng))
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor)).snippet(FromRegionEnName_Str).title(FromEmirateEnName_Str));
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.pindriver)).snippet(FromRegionEnName_Str).title(FromEmirateEnName_Str));
 
              mMap.addMarker(new MarkerOptions().
                     position(new LatLng(EndLat, EndLng))
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.anchor)).snippet(ToRegionEnName_Str).title(ToEmirateEnName_Str));
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.pindriver)).snippet(ToRegionEnName_Str).title(ToEmirateEnName_Str));
 
             markerZero.showInfoWindow();
         }

@@ -394,6 +394,7 @@
     <string name="drivers_Str">Drivers</string>
     <string name="passengers_Str">Passengers</string>
     <string name="InvitePassenger">I\'d Like To Invite you to my Ride</string>
+    <string name="select_ride">Select Ride</string>
 
 
 </resources>

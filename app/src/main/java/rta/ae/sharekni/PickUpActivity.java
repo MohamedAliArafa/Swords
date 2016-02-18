@@ -547,8 +547,21 @@ public class PickUpActivity extends AppCompatActivity {
                         final RegionsDataModel regions = new RegionsDataModel(Parcel.obtain());
                         regions.setID(jsonObject.getInt("ID"));
                         regions.setRegionEnName(jsonObject.getString(getString(R.string.reg_name)));
-                        regions.setRegionLatitude(jsonObject.getDouble("RegionLatitude"));
-                        regions.setRegionLongitude(jsonObject.getDouble("RegionLongitude"));
+
+                        if(jsonObject.getString("RegionLatitude").equals("null")){
+                            regions.setRegionLatitude(0.0);
+                        }else {
+                            regions.setRegionLatitude(jsonObject.getDouble("RegionLatitude"));
+                        }
+
+                        if(jsonObject.getString("RegionLongitude").equals("null")){
+                            regions.setRegionLongitude(0.0);
+                        }else {
+                            regions.setRegionLongitude(jsonObject.getDouble("RegionLongitude"));
+                        }
+
+
+
                         arr_2.add(regions);
                     }
                 }

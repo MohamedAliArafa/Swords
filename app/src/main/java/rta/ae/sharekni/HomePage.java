@@ -630,38 +630,42 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
         if (AccountType.equals("D")) {
             if (v == btn_create) {
-                if (Vehicles_Count_FLAG != 0) {
-                    Intent intent = new Intent(getBaseContext(), DriverCreateCarPool.class);
-                    intent.putExtra("ID", Driver_ID);
-                    startActivity(intent);
-                } else {
-                    final Dialog dialog = new Dialog(c);
-                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                    dialog.setContentView(R.layout.novehiclesfound);
-                    Button RegisterVehicleBtn = (Button) dialog.findViewById(R.id.okButton);
-                    Button DismissBtn = (Button) dialog.findViewById(R.id.CancelButton);
-                    dialog.show();
+                Intent intent = new Intent(getBaseContext(), DriverCreateCarPool.class);
+                intent.putExtra("ID", Driver_ID);
+                startActivity(intent);
 
-                    RegisterVehicleBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.dismiss();
-                            Intent intent = new Intent(getBaseContext(), RegisterVehicle.class);
-                            startActivity(intent);
-                        }
-                    });
-
-
-                    DismissBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.dismiss();
-
-                        }
-                    });
-
-
-                }
+//                if (Vehicles_Count_FLAG != 0) {
+//                    Intent intent = new Intent(getBaseContext(), DriverCreateCarPool.class);
+//                    intent.putExtra("ID", Driver_ID);
+//                    startActivity(intent);
+//                } else {
+//                    final Dialog dialog = new Dialog(c);
+//                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//                    dialog.setContentView(R.layout.novehiclesfound);
+//                    Button RegisterVehicleBtn = (Button) dialog.findViewById(R.id.okButton);
+//                    Button DismissBtn = (Button) dialog.findViewById(R.id.CancelButton);
+//                    dialog.show();
+//
+//                    RegisterVehicleBtn.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            dialog.dismiss();
+//                            Intent intent = new Intent(getBaseContext(), RegisterVehicle.class);
+//                            startActivity(intent);
+//                        }
+//                    });
+//
+//
+//                    DismissBtn.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            dialog.dismiss();
+//
+//                        }
+//                    });
+//
+//
+//                }
             } else {
 
                 Intent intent = new Intent(getBaseContext(), PassengerMyApprovedRides.class);

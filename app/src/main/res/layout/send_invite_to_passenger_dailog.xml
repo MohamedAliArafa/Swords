@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="280dp"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:paddingBottom="10dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/primaryColor">
+
+        <TextView
+            android:id="@+id/Lang_Dialog_txt_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/write_your_review"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+
+            />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/Review_text_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/your_review"
+        android:textColor="@color/primaryColor" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Routes_Lv"
+        />
+
+
+
+    <Button
+        android:id="@+id/Review_Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/borders_quicksearch_btn"
+        android:text="@string/Btn_Submit_txt"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF" />
+
+
+</LinearLayout>

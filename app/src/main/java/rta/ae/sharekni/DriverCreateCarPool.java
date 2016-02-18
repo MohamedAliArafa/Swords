@@ -66,7 +66,9 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     int year_x, month_x, day_x;
     int MyId = -1;
     String Nationality_ID="" ;
-    int Vehicle_Id = -1;
+//    int Vehicle_Id = -1;
+    int Vehicle_Id = 4;
+
     int Age_ID = 0;
     int Language_ID =0;
     char gender = 'N';
@@ -761,7 +763,9 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                     String Wednesday = String.valueOf(WED_FLAG);
                     String Thursday = String.valueOf(THU_FLAG);
                     String Friday = String.valueOf(FRI_FLAG);
-                    int Vehicle_ID = Vehicle_Id;
+                //    int Vehicle_ID = Vehicle_Id;
+                    int Vehicle_ID = 4;
+
                     int No_OF_Seats = Number_Of_Seats;
                     double Start_Lat = Start_Latitude;
                     double Start_Lng = Start_Longitude;

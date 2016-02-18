@@ -396,6 +396,7 @@
     <string name="drivers_Str">السائقين</string>
     <string name="passengers_Str">الركاب</string>
     <string name="InvitePassenger">أود دعوتك للأنضمام الي رحلتي</string>
+    <string name="select_ride">أختار رحله</string>
 
 
 </resources>
