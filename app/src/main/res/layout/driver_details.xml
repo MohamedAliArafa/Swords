@@ -64,21 +64,25 @@
                     android:layout_below="@+id/TopName"
                     android:layout_alignStart="@+id/TopName"
                     android:layout_alignLeft="@+id/TopName"
+
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="10dp"
                     android:id="@+id/NationalityEnName"
                     android:padding="5dp"
+                    android:visibility="invisible"
                     />
 
                 <TextView
                     android:id="@+id/Driver_profile_Item_rate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/NationalityEnName"
-                    android:layout_toEndOf="@+id/NationalityEnName"
-                    android:layout_toRightOf="@+id/NationalityEnName"
-                    android:padding="5dp"
+                    android:layout_below="@+id/TopName"
+                    android:layout_alignStart="@+id/TopName"
+                    android:layout_alignLeft="@+id/TopName"
                     android:text=""
+                    android:padding="2dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp"
                     android:textSize="16sp" />
 
 

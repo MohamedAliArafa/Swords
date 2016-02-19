@@ -130,6 +130,7 @@ public class GetData {
     String getDriverRideUrl = DOMAIN + "GetDriverDetailsByAccountId?AccountId=";
     String getRouteByRouteId = DOMAIN + "GetRouteByRouteId?RouteId=";
     String Passenger_SendAlert = DOMAIN + "Passenger_SendAlert?";
+    String Driver_SendInviteURL = DOMAIN + "Driver_SendInvitation?";
     String GetPassengersByRouteIDUrl = DOMAIN + "GetPassengersByRouteId?id=";
     String GetAcceptedRequestsURL = DOMAIN + "Route_GetAcceptedRequests?RouteId=";
     String Driver_RatePassenger = DOMAIN + "Driver_RatePassenger?";
@@ -459,6 +460,17 @@ public class GetData {
     public String Passenger_SendAlert(int Driver_ID, int Passenger_ID, int Route_ID, String Remarks) throws JSONException {
         String json;
         String Url = Passenger_SendAlert + "RouteID=" + Route_ID + "&PassengerID="
+                + Passenger_ID + "&DriverID=" + Driver_ID + "&s_Remarks=" + Remarks;
+        HandleXML obj = new HandleXML(Url);
+        obj.fetchXML();
+        while ((obj.parsingComplete && !obj.error)) ;
+        json = obj.getData().toString();
+        return json;
+
+    }
+    public String Driver_SendInvite(int Driver_ID, int Passenger_ID, int Route_ID, String Remarks) throws JSONException {
+        String json;
+        String Url = Driver_SendInviteURL + "RouteID=" + Route_ID + "&PassengerID="
                 + Passenger_ID + "&DriverID=" + Driver_ID + "&s_Remarks=" + Remarks;
         HandleXML obj = new HandleXML(Url);
         obj.fetchXML();

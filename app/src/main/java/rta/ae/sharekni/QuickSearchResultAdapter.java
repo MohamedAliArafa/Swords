@@ -69,7 +69,6 @@ public class QuickSearchResultAdapter extends BaseAdapter {
     String Route_Name_2;
 
 
-
     List<TreeMap<String, String>> arr_2 = new ArrayList<>();
 
     jsoning jsoning;
@@ -191,10 +190,6 @@ public class QuickSearchResultAdapter extends BaseAdapter {
                     } else {
 
 
-
-
-
-
                         arr_2.clear();
                         ProgressDialog pDialog = new ProgressDialog(activity);
                         pDialog.setMessage(activity.getString(R.string.loading) + "...");
@@ -204,11 +199,6 @@ public class QuickSearchResultAdapter extends BaseAdapter {
 
 
                         String ID = String.valueOf(item.getAccountID());
-
-
-
-
-
 
 
                     }
@@ -330,11 +320,9 @@ public class QuickSearchResultAdapter extends BaseAdapter {
             if (exists) {
 
                 DriverRidesAdapter = new SimpleAdapter(activity, arr_2
-                        , R.layout.dialog_pick_emirate_lv_row
+                        , R.layout.driver_send_invite_to_passenger
                         , new String[]{"EmirateId", "EmirateEnName"}
                         , new int[]{R.id.row_id_search, R.id.row_name_search});
-
-
 
 
                 final Dialog dialog = new Dialog(activity);
@@ -355,6 +343,33 @@ public class QuickSearchResultAdapter extends BaseAdapter {
                         Route_ID_2 = Integer.parseInt(txt_em_id.getText().toString());
                         Route_Name_2 = txt_em_name.getText().toString();
 
+                        String response = null;
+
+                        try {
+                            response = j.Driver_SendInvite(Driver_ID, Passenger_ID, Route_ID_2, URLEncoder.encode(activity.getString(R.string.InvitePassenger)));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        assert response != null;
+                        switch (response) {
+                            case "\"-1\"":
+                                Toast.makeText(activity, activity.getString(R.string.already_sent_request), Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                                break;
+                            case "\"0\"":
+                                Toast.makeText(activity, activity.getString(R.string.login_network_error), Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                                break;
+                            case "\"1\"":
+                                Toast.makeText(activity, R.string.req_sent_succ, Toast.LENGTH_LONG).show();
+                                dialog.dismiss();
+                                activity.finish();
+                                break;
+                            default:
+                                dialog.dismiss();
+                                activity.finish();
+                                break;
+                        }
 
 
                         Log.d("Send Invite" + "Route name 2", String.valueOf(Route_Name_2));
@@ -366,7 +381,6 @@ public class QuickSearchResultAdapter extends BaseAdapter {
 
                     }
                 });
-
 
 
             }
@@ -439,7 +453,7 @@ public class QuickSearchResultAdapter extends BaseAdapter {
 
                         TreeMap<String, String> valuePairs = new TreeMap<>();
                         valuePairs.put("EmirateId", json.getString("ID"));
-                        valuePairs.put("EmirateEnName",json.getString(con.getString(R.string.route_name)) );
+                        valuePairs.put("EmirateEnName", json.getString(con.getString(R.string.route_name)));
                         arr_2.add(valuePairs);
                         Log.d("test Routes ", arr_2.toString());
 

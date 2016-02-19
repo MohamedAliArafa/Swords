@@ -397,6 +397,9 @@
     <string name="passengers_Str">الركاب</string>
     <string name="InvitePassenger">أود دعوتك للأنضمام الي رحلتي</string>
     <string name="select_ride">أختار رحله</string>
+    <string name="send_invitation_str">إرسال دعوه</string>
+    <string name="choose_ride_to_send_invitation">إختار رحله لإرسال دعوه</string>
+    <string name="ride_name_str">إسم الرحلة : </string>
 
 
 </resources>
