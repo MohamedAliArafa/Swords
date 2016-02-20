@@ -156,12 +156,14 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="3dp"
                     android:text=""
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:visibility="invisible"
+                    />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/nat_home"
+                    android:layout_below="@+id/tv_name_home"
                     android:layout_marginTop="3dp"
                     android:id="@+id/Mobile_Number_Relative"
                     android:layout_centerHorizontal="true"
