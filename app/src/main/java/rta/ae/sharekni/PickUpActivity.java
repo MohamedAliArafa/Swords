@@ -95,6 +95,7 @@ public class PickUpActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         FLAG_ID = intent.getIntExtra("FALG_SEARCH", 0);
+        final Bundle b = intent.getBundleExtra("options");
         Log.d("Flag id", String.valueOf(FLAG_ID));
 
         back1 = new backTread();
@@ -119,9 +120,7 @@ public class PickUpActivity extends AppCompatActivity {
         dis_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (FLAG_ID == 1) {
-
                     Intent in = new Intent(PickUpActivity.this, QSearch.class);
                     if (From_Em_Id != -1 && From_Reg_Id != -1) {
                         in.putExtra("From_Em_Id", From_Em_Id);
@@ -132,7 +131,7 @@ public class PickUpActivity extends AppCompatActivity {
                         in.putExtra("To_EmirateEnName", To_EmirateEnName);
                         in.putExtra("To_RegionEnName", To_RegionEnName);
                         in.putExtra("To_Reg_Id", To_Reg_Id);
-
+                        in.putExtra("options",b);
                         Log.d("From_Em_Id_1", String.valueOf(From_Em_Id));
                         Log.d("From_Reg_Id_1", String.valueOf(From_Reg_Id));
                         Log.d("To_Em_Id_1", String.valueOf(To_Em_Id));
@@ -157,7 +156,7 @@ public class PickUpActivity extends AppCompatActivity {
                         in.putExtra("To_EmirateEnName", To_EmirateEnName);
                         in.putExtra("To_RegionEnName", To_RegionEnName);
                         in.putExtra("To_Reg_Id", To_Reg_Id);
-
+                        in.putExtra("options",b);
                         Log.d("From_Em_Id_1", String.valueOf(From_Em_Id));
                         Log.d("From_Reg_Id_1", String.valueOf(From_Reg_Id));
                         Log.d("To_Em_Id_1", String.valueOf(To_Em_Id));
@@ -172,7 +171,6 @@ public class PickUpActivity extends AppCompatActivity {
                 } //  else if 2
 
                 else if (FLAG_ID == 3) {
-
                     Intent in = new Intent(PickUpActivity.this, DriverCreateCarPool.class);
                     if (From_Em_Id != -1 && From_Reg_Id != -1) {
                         in.putExtra("From_Em_Id", From_Em_Id);
@@ -187,7 +185,6 @@ public class PickUpActivity extends AppCompatActivity {
                         in.putExtra("Start_Longitude", Start_Longitude);
                         in.putExtra("End_Latitude", End_Latitude);
                         in.putExtra("End_Longitude", End_Longitude);
-
                         Log.d("From_Em_Id_1", String.valueOf(From_Em_Id));
                         Log.d("From_Reg_Id_1", String.valueOf(From_Reg_Id));
                         Log.d("To_Em_Id_1", String.valueOf(To_Em_Id));
@@ -410,14 +407,10 @@ public class PickUpActivity extends AppCompatActivity {
             sweep_icon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     Create_CarPool_txt_regions.setText("");
                     Create_CarPool_txt_regions.setHint(getString(R.string.enter_region));
-
                 }
             });
-
-
         }
 
         @Override
@@ -453,8 +446,6 @@ public class PickUpActivity extends AppCompatActivity {
                             regions.setRegionLongitude(0.0);
 
                         }
-
-
                         arr.add(regions);
                     }
                 }
@@ -496,7 +487,6 @@ public class PickUpActivity extends AppCompatActivity {
                     End_Latitude = arr_2.get(position).getRegionLatitude();
                     End_Longitude = arr_2.get(position).getRegionLongitude();
 
-
                     Log.d("Start lat", String.valueOf(End_Latitude));
                     Log.d("Start lat", String.valueOf(End_Longitude));
                     Log.d("Em Name : ", To_EmirateEnName);
@@ -537,12 +527,8 @@ public class PickUpActivity extends AppCompatActivity {
                     inputStream.close();
                     ret = stringBuilder.toString();
                     Regions = new JSONArray(ret);
-
                     JSONArray jsonArray = Regions;
-
-
                     for (int i = 0; i < jsonArray.length(); i++) {
-
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         final RegionsDataModel regions = new RegionsDataModel(Parcel.obtain());
                         regions.setID(jsonObject.getInt("ID"));
@@ -559,9 +545,6 @@ public class PickUpActivity extends AppCompatActivity {
                         }else {
                             regions.setRegionLongitude(jsonObject.getDouble("RegionLongitude"));
                         }
-
-
-
                         arr_2.add(regions);
                     }
                 }
@@ -574,8 +557,6 @@ public class PickUpActivity extends AppCompatActivity {
             }
             return null;
         }
-
-
     }    // back thread classs
 
 
@@ -597,17 +578,18 @@ public class PickUpActivity extends AppCompatActivity {
             onBackPressed();
             return true;
         }
-
-
         return super.onOptionsItemSelected(item);
     }
-
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        back1.cancel(true);
-        back2.cancel(true);
+        if (back1 != null){
+            back1.cancel(true);
+        }
+        if (back2 != null){
+            back2.cancel(true);
+        }
         finish();
     }
 

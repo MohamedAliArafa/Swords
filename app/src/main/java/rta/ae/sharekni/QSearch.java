@@ -114,6 +114,29 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.activity_quick_search);
+
+        txt_year = (TextView) findViewById(R.id.search_txt_yaer);
+        txt_beforeCal = (TextView) findViewById(R.id.textview50);
+        pickup_relative = (RelativeLayout) findViewById(R.id.pickup_relative);
+        dropOff_relative = (RelativeLayout) findViewById(R.id.dropOff_relative);
+        txt_Selecet_Start_Point = (TextView) findViewById(R.id.txt_Selecet_Start_Point);
+
+        txt_Select_Dest = (TextView) findViewById(R.id.txt_Select_Dest);
+        txt_time_selected = (TextView) findViewById(R.id.txt_time_selected);
+        before_Time = (TextView) findViewById(R.id.textview51);
+        btn_search_page = (Button) findViewById(R.id.btn_search_page);
+        //   quickSearch_pickUp = (Button) findViewById(R.id.quickSearch_pickUp);
+        //      quickSearch_Dropoff = (Button) findViewById(R.id.quickSearch_Dropoff);
+
+        MostRides_Relative = (RelativeLayout) findViewById(R.id.search_top_rides_im);
+        MapLookUp_Relative = (RelativeLayout) findViewById(R.id.map_look_up);
+        Advanced_Search_Relative_2 = (RelativeLayout) findViewById(R.id.advanced_search);
+        quick_Destination = (Button) findViewById(R.id.quick_Destination);
+
+        save_off= (ImageView) findViewById(R.id.save_off);
+        save_on= (ImageView) findViewById(R.id.save_on);
+        save_search_txt= (TextView) findViewById(R.id.save_search_txt);
 
         i = 0;
 
@@ -135,6 +158,30 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
                 From_Reg_Id_2 = intent.getIntExtra("From_Reg_Id", 0);
                 To_Em_Id_2 = intent.getIntExtra("To_Em_Id", 0);
                 To_Reg_Id_2 = intent.getIntExtra("To_Reg_Id", 0);
+                Bundle b = intent.getBundleExtra("options");
+
+                savefind = b.getInt("savefind");
+                if (savefind == 1){
+                    save_off.setVisibility(View.INVISIBLE);
+                    save_on.setVisibility(View.VISIBLE);
+                    save_search_txt.setTextColor(Color.RED);
+                }
+                if (savefind == 0) {
+                    save_on.setVisibility(View.INVISIBLE);
+                    save_off.setVisibility(View.VISIBLE);
+                    save_search_txt.setTextColor(Color.GRAY);
+                }
+                if (b.getString("time") != null){
+                    txt_time_selected.setText(b.getString("time"));
+                    before_Time.setVisibility(View.INVISIBLE);
+
+                }
+                IS_Smoking = b.getString("IS_Smoking");
+                full_date = b.getString("full_date");
+                if (full_date != null){
+                    txt_beforeCal.setVisibility(View.INVISIBLE);
+                    txt_year.setText(full_date);
+                }
 
                 txt_PickUp = "";
                 From_EmirateEnName_str = intent.getStringExtra("From_EmirateEnName");
@@ -221,7 +268,6 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         month_x = cal.get(Calendar.MONTH);
         day_x = cal.get(Calendar.DAY_OF_MONTH);
 
-        setContentView(R.layout.activity_quick_search);
         showDialogOnButtonClick();
         showTimeDialogOnButtonClick();
 
@@ -233,37 +279,21 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         MyId = Integer.parseInt(myPrefs.getString("account_id", "0"));
 
 
-        txt_year = (TextView) findViewById(R.id.search_txt_yaer);
-        txt_beforeCal = (TextView) findViewById(R.id.textview50);
-        pickup_relative = (RelativeLayout) findViewById(R.id.pickup_relative);
-        dropOff_relative = (RelativeLayout) findViewById(R.id.dropOff_relative);
-        txt_Selecet_Start_Point = (TextView) findViewById(R.id.txt_Selecet_Start_Point);
 
-        txt_Select_Dest = (TextView) findViewById(R.id.txt_Select_Dest);
-        txt_time_selected = (TextView) findViewById(R.id.txt_time_selected);
-        before_Time = (TextView) findViewById(R.id.textview51);
-        btn_search_page = (Button) findViewById(R.id.btn_search_page);
-     //   quickSearch_pickUp = (Button) findViewById(R.id.quickSearch_pickUp);
-  //      quickSearch_Dropoff = (Button) findViewById(R.id.quickSearch_Dropoff);
-
-        MostRides_Relative = (RelativeLayout) findViewById(R.id.search_top_rides_im);
-        MapLookUp_Relative = (RelativeLayout) findViewById(R.id.map_look_up);
-        Advanced_Search_Relative_2 = (RelativeLayout) findViewById(R.id.advanced_search);
-        quick_Destination = (Button) findViewById(R.id.quick_Destination);
-
-        save_off= (ImageView) findViewById(R.id.save_off);
-        save_on= (ImageView) findViewById(R.id.save_on);
-        save_search_txt= (TextView) findViewById(R.id.save_search_txt);
 
 
 
         save_off.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                save_off.setVisibility(View.INVISIBLE);
-                save_on.setVisibility(View.VISIBLE);
-                save_search_txt.setTextColor(Color.RED);
-                savefind=1;
+                if (From_Em_Id_2 != -1 && From_Reg_Id_2 != -1 && To_Em_Id_2 != -1 && To_Reg_Id_2 != -1) {
+                    save_off.setVisibility(View.INVISIBLE);
+                    save_on.setVisibility(View.VISIBLE);
+                    save_search_txt.setTextColor(Color.RED);
+                    savefind = 1;
+                }else {
+                    Toast.makeText(QSearch.this, R.string.saveSearch_Error, Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -274,7 +304,6 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
                 save_off.setVisibility(View.VISIBLE);
                 save_search_txt.setTextColor(Color.GRAY);
                 savefind=0;
-
             }
         });
 
@@ -310,8 +339,17 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onClick(View v) {
 
+                Bundle b = new Bundle();
+                b.putInt("savefind", savefind);
+                b.putString("IS_Smoking", IS_Smoking);
+                b.putString("full_date",full_date);
+                if (txt_time_selected.getText().toString() != getString(R.string.start_time)){
+                    b.putString("time",txt_time_selected.getText().toString());
+                }
+
                 Intent intent = new Intent(getBaseContext(), PickUpActivity.class);
                 intent.putExtra("FALG_SEARCH",1);
+                intent.putExtra("options",b);
                 startActivity(intent);
                 finish();
             }
@@ -378,8 +416,6 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
             @Override
 
             public void onClick(View v) {
-
-
                 if (From_Em_Id_2 != -1  && From_Reg_Id_2!=-1 ) {
 
                     Intent intent1 = new Intent(getBaseContext(), QuickSearchResults.class);
@@ -397,9 +433,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
                     intent1.putExtra("MapKey","Driver");
                     Log.d("Test", From_EmirateEnName + From_RegionEnName + To_EmirateEnName + To_RegionEnName);
                     startActivity(intent1);
-
                     i = 1;
-
                 }else {
                     Toast.makeText(QSearch.this, R.string.select_start_point, Toast.LENGTH_SHORT).show();
                 }
@@ -970,6 +1004,12 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("message", "This is my message to be reloaded");
     }
 
     @Override

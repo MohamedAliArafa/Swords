@@ -398,6 +398,7 @@
     <string name="send_invitation_str">send invitation</string>
     <string name="choose_ride_to_send_invitation">Choose Ride to send Invitation</string>
     <string name="ride_name_str">Ride Name :</string>
+    <string name="saveSearch_Error">To save the search you must choose start point and also a distention</string>
 
 
 </resources>
