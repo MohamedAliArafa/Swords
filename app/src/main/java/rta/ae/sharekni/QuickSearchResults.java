@@ -217,8 +217,12 @@ public class QuickSearchResults extends AppCompatActivity {
                             item.setSDG_Route_Start_FromTime(json.getString("SDG_Route_Start_FromTime"));
                             item.setNationality_en(json.getString(getString(R.string.nat_en)));
                             item.setRating(json.getString("Rating"));
-                            item.setLastSeen(json.getString("LastSeen"));
+                            if(json.getString("LastSeen").equals("") || json.getString("LastSeen").equals("null")){
+                                item.setLastSeen("hide");
 
+                            }else {
+                                item.setLastSeen(json.getString("LastSeen"));
+                            }
 
                             days = "";
 
@@ -538,13 +542,13 @@ public class QuickSearchResults extends AppCompatActivity {
                                         mainIntent.putExtra("To_RegionEnName", To_RegionEnName);
                                         mainIntent.putExtra("From_RegionEnName", From_RegionEnName);
                                         mainIntent.putExtra("Gender", Gender);
-                                        backTread.cancel(true);
+                                        backTread2.cancel(true);
                                         startActivity(mainIntent);
                                     }
                                 })
                                 .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
-                                        backTread.cancel(true);
+                                        backTread2.cancel(true);
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();

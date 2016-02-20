@@ -56,6 +56,7 @@ import rta.ae.sharekni.DriverGetReviewAdapter;
 import rta.ae.sharekni.DriverGetReviewDataModel;
 import rta.ae.sharekni.HomePage;
 import rta.ae.sharekni.PermitJsonParse;
+import rta.ae.sharekni.QuickSearchResults;
 import rta.ae.sharekni.R;
 import rta.ae.sharekni.Ride_Details_Passengers_Adapter;
 import rta.ae.sharekni.Ride_Details_Passengers_DataModel;
@@ -97,7 +98,9 @@ public class Route extends AppCompatActivity {
     Activity c;
 
     String FromRegionEnName_Str, ToRegionEnName_Str, FromEmirateEnName_Str, ToEmirateEnName_Str;
+    int FromEmirateId,ToEmirateId,FromRegionId,ToRegionId;
 
+    Button Route_Driver_Send_invite;
 
     int Vehicle_Id_Permit;
     GetData j = new GetData();
@@ -159,6 +162,7 @@ public class Route extends AppCompatActivity {
 
         REaltive_Passengers_1 = (RelativeLayout) findViewById(R.id.REaltive_Passengers_1);
         passenger_relative_2 = (LinearLayout) findViewById(R.id.passenger_relative_2);
+        Route_Driver_Send_invite = (Button) findViewById(R.id.Route_Driver_Send_invite);
 
         loadingBasicInfo = new loadingBasicInfo();
         loadingReviews = new loadingReviews();
@@ -174,6 +178,8 @@ public class Route extends AppCompatActivity {
         Log.d("test Passenger id", String.valueOf(Passenger_ID));
         Log.d("test Route id", String.valueOf(Route_ID));
 
+
+
         loadingBasicInfo.execute();
 
 
@@ -182,6 +188,26 @@ public class Route extends AppCompatActivity {
 //        j.GetPassengersByRouteIdForm(Route_ID, ride_details_passengers, this);
 
         loadingReviews.execute();
+
+
+        Route_Driver_Send_invite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(getBaseContext(), QuickSearchResults.class);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent1.putExtra("From_Em_Id", FromEmirateId);
+                intent1.putExtra("To_Em_Id", ToEmirateId);
+                intent1.putExtra("From_Reg_Id", FromRegionId);
+                intent1.putExtra("To_Reg_Id", ToRegionId);
+                intent1.putExtra("From_EmirateEnName", FromEmirateEnName_Str);
+                intent1.putExtra("From_RegionEnName", FromRegionEnName_Str);
+                intent1.putExtra("To_EmirateEnName", ToEmirateEnName_Str);
+                intent1.putExtra("To_RegionEnName", ToRegionEnName_Str);
+                intent1.putExtra("MapKey","Passenger");
+                startActivity(intent1);
+
+            }
+        });
 
 
         Route_Delete_Btn.setOnClickListener(new View.OnClickListener() {
@@ -265,6 +291,12 @@ public class Route extends AppCompatActivity {
             if (exists) {
                 if (exception == null) {
                     try {
+                        // get all id's for Driver_Send_Invite Function
+                        FromEmirateId=json.getInt("FromEmirateId");
+                        FromRegionId=json.getInt("FromRegionId");
+                        ToRegionId=json.getInt("ToRegionId");
+                        ToEmirateId=json.getInt("ToEmirateId");
+
                         FromRegionEnName.setText(json.getString(getString(R.string.from_reg_en_name)));
                         ToRegionEnName.setText(json.getString(getString(R.string.to_reg_en_name)));
                         FromEmirateEnName.setText(json.getString(getString(R.string.from_em_en_name)));
@@ -576,7 +608,9 @@ public class Route extends AppCompatActivity {
                         }
 
                         item.setAccountNationalityEn(obj.getString(getString(R.string.acc_nat_name)));
-                        Passengers_arr.add(item);
+                        if (obj.getString("RequestStatus").equals("true")) {
+                            Passengers_arr.add(item);
+                        }
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -667,6 +701,10 @@ public class Route extends AppCompatActivity {
             return null;
         }
     }
+
+
+
+
 
 
     @Override

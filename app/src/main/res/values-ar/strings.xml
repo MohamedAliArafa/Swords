@@ -401,6 +401,6 @@
     <string name="choose_ride_to_send_invitation">إختار رحله لإرسال دعوه</string>
     <string name="ride_name_str">إسم الرحلة : </string>
     <string name="saveSearch_Error">من أجل حفظ البحث يجب تحديد نقطة الإنطلاق و الوجهه أيضا</string>
-
+    <string name="invite_">دعوه</string>
 
 </resources>

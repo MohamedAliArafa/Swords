@@ -118,6 +118,7 @@ public class QuickSearchResultAdapter extends BaseAdapter {
             // TextView SDG_RouteDays = (TextView) convertView.findViewById(R.id.search_results_days);
             TextView Best_Drivers_Item_rate = (TextView) convertView.findViewById(R.id.Best_Drivers_Item_rate);
             TextView LastSeenTvValue = (TextView) convertView.findViewById(R.id.LastSeenTvValue);
+            TextView LastSeenText = (TextView) convertView.findViewById(R.id.LastSeenText);
             final Button PassengerSendInvite = (Button) convertView.findViewById(R.id.PassengerSendInvite);
 
 
@@ -159,7 +160,15 @@ public class QuickSearchResultAdapter extends BaseAdapter {
             Nationality_en.setText(item.getNationality_en());
 
             Best_Drivers_Item_rate.setText(item.getRating());
-            LastSeenTvValue.setText(item.getLastSeen());
+
+            if (item.getLastSeen().equals("hide")) {
+                LastSeenTvValue.setVisibility(View.INVISIBLE);
+                LastSeenText.setVisibility(View.INVISIBLE);
+            } else {
+                LastSeenText.setVisibility(View.VISIBLE);
+                LastSeenTvValue.setVisibility(View.VISIBLE);
+                LastSeenTvValue.setText(item.getLastSeen());
+            }
 
             PassengerSendInvite.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -225,6 +234,7 @@ public class QuickSearchResultAdapter extends BaseAdapter {
             TextView Best_Drivers_Item_rate = (TextView) convertView.findViewById(R.id.Best_Drivers_Item_rate);
             TextView LastSeenTvValue = (TextView) convertView.findViewById(R.id.LastSeenTvValue);
             Button PassengerSendInvite = (Button) convertView.findViewById(R.id.PassengerSendInvite);
+            TextView LastSeenText = (TextView) convertView.findViewById(R.id.LastSeenText);
 
 
 //        Photo.sectImageUrl(URL + item.getAccountPhoto(), imageLoader);
@@ -264,7 +274,15 @@ public class QuickSearchResultAdapter extends BaseAdapter {
             Nationality_en.setText(item.getNationality_en());
             SDG_RouteDays.setText(item.getSDG_RouteDays());
             Best_Drivers_Item_rate.setText(item.getRating());
-            LastSeenTvValue.setText(item.getLastSeen());
+
+            if (item.getLastSeen().equals("hide")) {
+                LastSeenTvValue.setVisibility(View.INVISIBLE);
+                LastSeenText.setVisibility(View.INVISIBLE);
+            } else {
+                LastSeenText.setVisibility(View.VISIBLE);
+                LastSeenTvValue.setVisibility(View.VISIBLE);
+                LastSeenTvValue.setText(item.getLastSeen());
+            }
             ImageView Phone_Message = (ImageView) convertView.findViewById(R.id.im1);
             ImageView Phone_Call = (ImageView) convertView.findViewById(R.id.im5);
 

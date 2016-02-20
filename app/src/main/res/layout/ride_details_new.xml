@@ -306,6 +306,26 @@
                     android:visibility="invisible" />
 
 
+                <Button
+                    android:id="@+id/Route_Driver_Send_invite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/Route_Delete_Btn"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_toLeftOf="@+id/Route_Delete_Btn"
+                    android:layout_toStartOf="@+id/Route_Delete_Btn"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/driver_details_btn"
+                    android:text="@string/invite_"
+                    android:textAllCaps="false"
+                     />
+
+
+
+
+
+
             </RelativeLayout>
 
 
