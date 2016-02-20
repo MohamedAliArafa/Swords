@@ -106,7 +106,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
 
     String From_EmirateEnName_str, From_RegionEnName_str, To_EmirateEnName_str, To_RegionEnName_str;
-    int From_Em_Id_2=-1, From_Reg_Id_2=-1, To_Em_Id_2, To_Reg_Id_2;
+    int From_Em_Id_2=-1, From_Reg_Id_2=-1, To_Em_Id_2 = -1, To_Reg_Id_2 = -1;
     ImageView save_off,save_on;
     TextView save_search_txt;
 

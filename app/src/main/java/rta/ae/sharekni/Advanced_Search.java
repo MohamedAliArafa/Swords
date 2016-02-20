@@ -49,7 +49,6 @@ import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Objects;
 import java.util.TreeMap;
 
 import rta.ae.sharekni.Arafa.Classes.GetData;
@@ -120,7 +119,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
     int i2 = 0;
     String From_EmirateEnName_str, From_RegionEnName_str, To_EmirateEnName_str, To_RegionEnName_str;
-    int From_Em_Id_2 = -1, From_Reg_Id_2 = -1, To_Em_Id_2, To_Reg_Id_2;
+    int From_Em_Id_2 = -1, From_Reg_Id_2 = -1, To_Em_Id_2 = -1, To_Reg_Id_2= -1;
 
     ImageView save_off, save_on;
     TextView save_search_txt;
