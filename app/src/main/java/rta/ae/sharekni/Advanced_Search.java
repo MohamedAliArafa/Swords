@@ -120,7 +120,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
     int i2 = 0;
     String From_EmirateEnName_str, From_RegionEnName_str, To_EmirateEnName_str, To_RegionEnName_str;
-    int From_Em_Id_2 = -1, From_Reg_Id_2 = -1, To_Em_Id_2, To_Reg_Id_2;
+    int From_Em_Id_2 = -1, From_Reg_Id_2 = -1, To_Em_Id_2 = -1, To_Reg_Id_2 = -1;
 
     ImageView save_off, save_on;
     TextView save_search_txt;
@@ -260,7 +260,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                         Advanced_txt_beforeCal.setVisibility(View.INVISIBLE);
                         Advanced_txt_year.setText(b.getString("full_date"));
                     }
-                    if (b.getString("time") != null) {
+                    if (!b.getString("time").equals("")) {
                         Advanced_before_Time.setVisibility(View.INVISIBLE);
                         Advanced_txt_time_selected.setText(b.getString("time"));
                     }
@@ -606,7 +606,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
         save_off.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (From_Em_Id_2 != -1 && From_Reg_Id_2 != -1 && To_Em_Id_2 != -1 && To_Reg_Id_2 != -1) {
+                if ((From_Em_Id_2 != -1) && (From_Reg_Id_2 != -1) && (To_Em_Id_2 != -1) && (To_Reg_Id_2 != -1) && (From_Em_Id_2 != 0) && (From_Reg_Id_2 != 0) && (To_Em_Id_2 != 0) && (To_Reg_Id_2 != 0)) {
                     save_off.setVisibility(View.INVISIBLE);
                     save_on.setVisibility(View.VISIBLE);
                     save_search_txt.setTextColor(Color.RED);

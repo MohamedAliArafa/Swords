@@ -37,6 +37,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 import java.util.TreeMap;
 
 import rta.ae.sharekni.Arafa.Activities.BestRideBeforeLogin;
@@ -106,7 +107,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
 
     String From_EmirateEnName_str, From_RegionEnName_str, To_EmirateEnName_str, To_RegionEnName_str;
-    int From_Em_Id_2=-1, From_Reg_Id_2=-1, To_Em_Id_2, To_Reg_Id_2;
+    int From_Em_Id_2=-1, From_Reg_Id_2=-1, To_Em_Id_2 = -1, To_Reg_Id_2 = -1;
     ImageView save_off,save_on;
     TextView save_search_txt;
 
@@ -171,10 +172,9 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
                     save_off.setVisibility(View.VISIBLE);
                     save_search_txt.setTextColor(Color.GRAY);
                 }
-                if (b.getString("time") != null){
+                if (!b.getString("time").equals("")){
                     txt_time_selected.setText(b.getString("time"));
                     before_Time.setVisibility(View.INVISIBLE);
-
                 }
                 IS_Smoking = b.getString("IS_Smoking");
                 full_date = b.getString("full_date");
@@ -286,7 +286,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         save_off.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (From_Em_Id_2 != -1 && From_Reg_Id_2 != -1 && To_Em_Id_2 != -1 && To_Reg_Id_2 != -1) {
+                if ((From_Em_Id_2 != -1) && (From_Reg_Id_2 != -1) && (To_Em_Id_2 != -1) && (To_Reg_Id_2 != -1) && (From_Em_Id_2 != 0) && (From_Reg_Id_2 != 0) && (To_Em_Id_2 != 0) && (To_Reg_Id_2 != 0)) {
                     save_off.setVisibility(View.INVISIBLE);
                     save_on.setVisibility(View.VISIBLE);
                     save_search_txt.setTextColor(Color.RED);
@@ -343,10 +343,9 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
                 b.putInt("savefind", savefind);
                 b.putString("IS_Smoking", IS_Smoking);
                 b.putString("full_date",full_date);
-                if (txt_time_selected.getText().toString() != getString(R.string.start_time)){
+                if (txt_time_selected.getText() != getString(R.string.start_time)){
                     b.putString("time",txt_time_selected.getText().toString());
                 }
-
                 Intent intent = new Intent(getBaseContext(), PickUpActivity.class);
                 intent.putExtra("FALG_SEARCH",1);
                 intent.putExtra("options",b);
