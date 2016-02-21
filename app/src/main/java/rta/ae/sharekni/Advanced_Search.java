@@ -49,7 +49,6 @@ import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Objects;
 import java.util.TreeMap;
 
 import rta.ae.sharekni.Arafa.Classes.GetData;
@@ -101,8 +100,10 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
     TextView Advanced_txt_Selecet_Start_Point;
     TextView FemaleMaleTxt2;
     TextView advanced_search_Preferred_Lang_txt;
+    int Language_ID;
     TextView Advanced_txt_year;
     TextView advanced_search_Age_Range_txt;
+    int Advanced_Search_Age_Range_ID;
     TextView Advanced_txt_beforeCal;
     ImageView Periodic_SingleRide, singleRide_Periodic, Advanced_malefemale1, Advanced_femalemale2;
     ListView lang_lv;
@@ -680,7 +681,11 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                     intent1.putExtra("Gender", i);
                     intent1.putExtra("SaveFind", savefind);
                     intent1.putExtra("Smokers", IS_Smoking);
+                    intent1.putExtra("IsRounded",Single_Periodic_ID);
                     intent1.putExtra("MapKey", "Driver");
+                    intent1.putExtra("AgeRange",Advanced_Search_Age_Range_ID);
+                    intent1.putExtra("Nationality_ID",Nationality_ID);
+                    intent1.putExtra("Language_ID",Language_ID);
 
                     networkCheck.cancel(true);
                     nat.cancel(true);
@@ -861,9 +866,9 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                 TextView txt_lang_name = (TextView) view.findViewById(R.id.row_name);
                                 TextView txt_lang_id = (TextView) view.findViewById(R.id.row_id);
-                                //   Language_ID = Integer.parseInt(txt_lang_id.getText().toString());
+                                   Language_ID = Integer.parseInt(txt_lang_id.getText().toString());
                                 advanced_search_Preferred_Lang_txt.setText(txt_lang_name.getText().toString());
-                                // Log.d("id of lang", "" + Language_ID);
+                                 Log.d("id of lang", "" + Language_ID);
                                 Languages_Dilaog.dismiss();
                             }
                         });
@@ -970,9 +975,9 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                 TextView txt_lang_name = (TextView) view.findViewById(R.id.row_name);
                                 TextView txt_lang_id = (TextView) view.findViewById(R.id.row_id);
-                                //   Language_ID = Integer.parseInt(txt_lang_id.getText().toString());
+                                Advanced_Search_Age_Range_ID = Integer.parseInt(txt_lang_id.getText().toString());
                                 advanced_search_Age_Range_txt.setText(txt_lang_name.getText().toString());
-                                // Log.d("id of lang", "" + Language_ID);
+                                 Log.d("id of lang", "" + Advanced_Search_Age_Range_ID);
                                 Languages_Dilaog.dismiss();
                             }
                         });

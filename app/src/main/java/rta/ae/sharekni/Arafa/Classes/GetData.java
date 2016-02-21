@@ -57,15 +57,16 @@ public class GetData {
     // public static final String NonOpDomain = "http://sharekni.sdgstaff.com/_mobfiles/CLS_MobAndroid.asmx";
     // public static final String PhotoURL = "http://sharekni.sdgstaff.com/uploads/personalphoto/";
 
-    public static final String DOMAIN = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx/";
-    public static final String NonOpDomain = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx";
-    public static final String PhotoURL = "http://213.42.51.219/uploads/personalphoto/";
+  //  public static final String DOMAIN = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx/";
+   //  public static final String NonOpDomain = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx";
+    //  public static final String PhotoURL = "http://213.42.51.219/uploads/personalphoto/";
+
     final JSONArray[] myJsonArray = new JSONArray[1];
 
 
-    // public static final String DOMAIN = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx/";
-    // public static final String NonOpDomain = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx";
-    //  public static final String PhotoURL = "http://sharekni-web.sdg.ae/uploads/personalphoto/";
+    public static final String DOMAIN = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx/";
+     public static final String NonOpDomain = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx";
+    public static final String PhotoURL = "http://sharekni-web.sdg.ae/uploads/personalphoto/";
 
 
     //public static final String DOMAIN = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx/";
@@ -323,7 +324,7 @@ public class GetData {
     public JSONArray Search(int myId, char gender, String time
             , int fromEmId, int fromRegId, int toEmId, int toRegId
             , int pref_lnag, int pref_nat, int age_Ranged_id
-            , String startDate, int saveFind, String Smokers, final Activity activity) throws JSONException {
+            , String startDate, int saveFind, int Single_Periodic_ID ,String Smokers, final Activity activity) throws JSONException {
         HandleXML obj = new HandleXML(QuickSearchUrl
                 + "AccountID=" + myId
                 + "&PreferredGender=" + gender
@@ -337,7 +338,7 @@ public class GetData {
                 + "&AgeRangeId=" + age_Ranged_id
                 + "&StartDate="
                 + "&SaveFind=" + saveFind
-                + "&IsPeriodic="
+                + "&IsPeriodic=" + Single_Periodic_ID
                 + "&IsSmoking=" + Smokers);
         obj.fetchXML();
         while ((obj.parsingComplete && !obj.error)) ;

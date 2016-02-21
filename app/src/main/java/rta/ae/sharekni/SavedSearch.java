@@ -245,6 +245,7 @@ public class SavedSearch extends AppCompatActivity {
                                                     intent1.putExtra("From_RegionEnName", driver[i].FromReg);
                                                     intent1.putExtra("To_EmirateEnName", driver[i].ToEm);
                                                     intent1.putExtra("To_RegionEnName", driver[i].ToReg);
+                                                    intent1.putExtra("MapKey", "Driver");
                                                     startActivity(intent1);
 
 
