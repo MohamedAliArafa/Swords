@@ -12,11 +12,13 @@ import java.util.ArrayList;
 
 public class BestRouteDataModel extends ArrayList<Parcelable> implements Parcelable {
 
-    public String FromEm, FromReg, ToEm, ToReg,RouteName,StartFromTime,EndToTime_,driver_profile_dayWeek;
+    public String FromEm, FromReg, ToEm, ToReg,RouteName,StartFromTime,EndToTime_,driver_profile_dayWeek,IS_Smoking;
     public int FromEmId,ToEmId,FromRegid,ToRegId,Driver_ID;
     public int RoutePassengerId;
     public int Route_id;
     public  int Passenger_ID;
+    public int Language_ID,Age_Range_ID,Single_Periodic_ID;
+    public String Gender,Nationality_ID;
 
     public int getID() {
         return ID;
@@ -45,6 +47,12 @@ public class BestRouteDataModel extends ArrayList<Parcelable> implements Parcela
         RoutePassengerId = in.readInt();
         Route_id=in.readInt();
         Passenger_ID=in.readInt();
+        Nationality_ID=in.readString();
+        Age_Range_ID=in.readInt();
+        Language_ID=in.readInt();
+        Gender=in.readString();
+        Single_Periodic_ID=in.readInt();
+        IS_Smoking=in.readString();
     }
 
     public BestRouteDataModel() {
@@ -192,6 +200,54 @@ public class BestRouteDataModel extends ArrayList<Parcelable> implements Parcela
         Driver_ID = driver_ID;
     }
 
+    public String getNationality_ID() {
+        return Nationality_ID;
+    }
+
+    public void setNationality_ID(String nationality_ID) {
+        Nationality_ID = nationality_ID;
+    }
+
+    public int getLanguage_ID() {
+        return Language_ID;
+    }
+
+    public void setLanguage_ID(int language_ID) {
+        Language_ID = language_ID;
+    }
+
+    public int getAge_Range_ID() {
+        return Age_Range_ID;
+    }
+
+    public void setAge_Range_ID(int age_Range_ID) {
+        Age_Range_ID = age_Range_ID;
+    }
+
+    public String getIS_Smoking() {
+        return IS_Smoking;
+    }
+
+    public void setIS_Smoking(String IS_Smoking) {
+        this.IS_Smoking = IS_Smoking;
+    }
+
+    public int getSingle_Periodic_ID() {
+        return Single_Periodic_ID;
+    }
+
+    public void setSingle_Periodic_ID(int single_Periodic_ID) {
+        Single_Periodic_ID = single_Periodic_ID;
+    }
+
+    public String getGender() {
+        return Gender;
+    }
+
+    public void setGender(String gender) {
+        Gender = gender;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -215,5 +271,11 @@ public class BestRouteDataModel extends ArrayList<Parcelable> implements Parcela
         parcel.writeInt(RoutePassengerId);
         parcel.writeInt(Route_id);
         parcel.writeInt(Passenger_ID);
+        parcel.writeString(Nationality_ID);
+        parcel.writeInt(Language_ID);
+        parcel.writeInt(Age_Range_ID);
+        parcel.writeInt(Single_Periodic_ID);
+        parcel.writeString(IS_Smoking);
+        parcel.writeString(Gender);
     }
 }

@@ -402,5 +402,6 @@
     <string name="ride_name_str">إسم الرحلة : </string>
     <string name="saveSearch_Error">من أجل حفظ البحث يجب تحديد نقطة الإنطلاق و الوجهه أيضا</string>
     <string name="invite_">دعوه</string>
+    <string name="matched_search_results">نتائج البحث المطابقه</string>
 
 </resources>

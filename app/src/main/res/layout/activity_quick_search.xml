@@ -365,7 +365,7 @@
         <!--android:layout_marginTop="20dp"-->
         <!--android:id="@+id/MostRides_Relative"-->
 
-        <!-->-->
+        <!--&gt;-->
 
 
 
@@ -412,7 +412,7 @@
         <!--android:id="@+id/MapLookUp_Relative"-->
         <!--android:layout_centerHorizontal="true"-->
 
-        <!-->-->
+        <!--&gt;-->
 
         <!--<TextView-->
             <!--android:layout_width="wrap_content"-->
@@ -460,7 +460,7 @@
         <!--android:id="@+id/Advanced_Search_Relative_2"-->
         <!--android:layout_centerHorizontal="true"-->
         <!--android:paddingBottom="5dp"-->
-        <!-->-->
+        <!--&gt;-->
 
         <!--<TextView-->
             <!--android:layout_width="wrap_content"-->
@@ -490,10 +490,8 @@
 
         <LinearLayout
 
-
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@color/primaryColor"
+            android:layout_height="90dp"
             android:layout_alignParentBottom="true"
             android:orientation="vertical"
 
@@ -501,8 +499,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#FFFFFF" />
+                android:layout_height="10dp"
+                android:background="@drawable/separatorfeb" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -522,11 +520,14 @@
 
                     <ImageView
                         android:id="@+id/im13"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="20dp"
-                        android:src="@drawable/searchoptionmaplookup" />
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+
+                        android:src="@drawable/maplookupfeb" />
 
 
                     <TextView
@@ -536,8 +537,10 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="5dp"
                         android:text="@string/map_lookup"
-                        android:textColor="#FFFFFF"
-                        android:textSize="16sp" />
+                        android:textColor="@color/primaryColor"
+                        android:textSize="14sp"
+
+                        />
 
 
                 </RelativeLayout>
@@ -559,11 +562,13 @@
 
                     <ImageView
                         android:id="@+id/im10"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="20dp"
-                        android:src="@drawable/searchoptiontoprides" />
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:src="@drawable/mostridefeb" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -572,8 +577,8 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="5dp"
                         android:text="@string/most_rides"
-                        android:textColor="#FFFFFF"
-                        android:textSize="16sp" />
+                        android:textColor="@color/primaryColor"
+                        android:textSize="14sp" />
 
                 </RelativeLayout>
 
@@ -591,11 +596,13 @@
 
                     <ImageView
                         android:id="@+id/im11"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="20dp"
-                        android:src="@drawable/searchoptionadvanced" />
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:src="@drawable/advancedfeb" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -605,12 +612,15 @@
                         android:gravity="center_horizontal"
                         android:layout_marginTop="5dp"
                         android:text="@string/advanced_search"
-                        android:textColor="#FFFFFF"
-                        android:textSize="16sp" />
+                        android:textColor="@color/primaryColor"
+                        android:textSize="14sp" />
 
                 </RelativeLayout>
 
             </LinearLayout>
+
+
+
 
 
         </LinearLayout>

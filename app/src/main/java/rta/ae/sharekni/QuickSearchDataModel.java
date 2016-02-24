@@ -15,12 +15,12 @@ public class QuickSearchDataModel extends ArrayList<Parcelable> implements Parce
             , From_RegionName_en, SDG_Route_Name_en, SDG_Route_PreferredGender
             , SDG_Route_Start_Date, SDG_Route_Start_FromTime, To_EmirateName_en
             , To_RegionName_en, VehicleDescription, Nationality_en, AccountEmail
-            , AccountMobile, AccountPhoto,SDG_RouteDays,Rating,LastSeen,MapKey;
+            , AccountMobile, AccountPhoto,SDG_RouteDays,Rating,LastSeen,MapKey,InviteType;
 
 
     int AvilableOrRequiredSeats, SDG_Route_FromEmirate_ID
             , SDG_Route_FromRegion_ID, SDG_Route_ID, SDG_Route_ToEmirate_ID
-            , SDG_Route_ToRegion_ID, DriverId, SDG_Route_NoOfSeats,AccountID;
+            , SDG_Route_ToRegion_ID, DriverId, SDG_Route_NoOfSeats,AccountID,InviteStatus;
 
     double SDG_Route_Coordinates_Start_Lat, SDG_Route_Coordinates_End_Lat
             , SDG_Route_Coordinates_Start_Lng, SDG_Route_Coordinates_End_Lng;
@@ -70,6 +70,8 @@ public class QuickSearchDataModel extends ArrayList<Parcelable> implements Parce
         LastSeen=in.readString();
         MapKey=in.readString();
         AccountID=in.readInt();
+        InviteType=in.readString();
+        InviteStatus=in.readInt();
 
 
     }
@@ -343,6 +345,22 @@ public class QuickSearchDataModel extends ArrayList<Parcelable> implements Parce
         AccountID = accountID;
     }
 
+    public String getInviteType() {
+        return InviteType;
+    }
+
+    public void setInviteType(String inviteType) {
+        InviteType = inviteType;
+    }
+
+    public int getInviteStatus() {
+        return InviteStatus;
+    }
+
+    public void setInviteStatus(int inviteStatus) {
+        InviteStatus = inviteStatus;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -382,6 +400,8 @@ public class QuickSearchDataModel extends ArrayList<Parcelable> implements Parce
         dest.writeString(LastSeen);
         dest.writeString(MapKey);
         dest.writeInt(AccountID);
+        dest.writeString(InviteType);
+        dest.writeInt(InviteStatus);
     }
 }
 

@@ -40,6 +40,7 @@ import rta.ae.sharekni.DriverCreatedRides;
 import rta.ae.sharekni.HomePage;
 import rta.ae.sharekni.QuickSearchDataModel;
 import rta.ae.sharekni.QuickSearchResultAdapter;
+import rta.ae.sharekni.QuickSearchResults;
 import rta.ae.sharekni.R;
 import rta.ae.sharekni.Ride_Details_Passengers_Adapter;
 import rta.ae.sharekni.Ride_Details_Passengers_DataModel;
@@ -243,7 +244,7 @@ public class GetData {
             , String Time, String sat, String sun, String mon, String tue, String wed
             , String thu, String fri, char gender, int VehicleID, int NoOfSeats
             , double StartLat, double StartLng, double EndLat, double EndLng
-            , int Pref_Lang, String Nat, int AgeRangedId, String Start_Date, String IsSmoking, Activity context) {
+            , int Pref_Lang, String Nat, int AgeRangedId, String Start_Date, String IsSmoking, String From_EmirateEnName_str,String  From_RegionEnName_str,String To_EmirateEnName_str, String To_RegionEnName_str, Activity context) {
 
         DriverCreateCarPoolStringRequest(DriverCreateCarPoolUrl + "AccountID=" + myId
                         + "&EnName=" + URLEncoder.encode(En_Name)
@@ -272,7 +273,8 @@ public class GetData {
                         + "&AgeRangeId=" + AgeRangedId
                         + "&StartDate=" + Start_Date
                         + "&IsSmoking=" + IsSmoking
-                , context);
+                , context,From_EmID,From_RegId,To_EmID,To_RegId,myId,From_EmirateEnName_str,From_RegionEnName_str
+        ,To_EmirateEnName_str,To_RegionEnName_str);
     }
 
     public void ForgetPasswordForm(String mobileNumber, String email, Context context) {
@@ -323,7 +325,7 @@ public class GetData {
 
     public JSONArray Search(int myId, char gender, String time
             , int fromEmId, int fromRegId, int toEmId, int toRegId
-            , int pref_lnag, int pref_nat, int age_Ranged_id
+            , int pref_lnag, String pref_nat, int age_Ranged_id
             , String startDate, int saveFind, int Single_Periodic_ID ,String Smokers, final Activity activity) throws JSONException {
         HandleXML obj = new HandleXML(QuickSearchUrl
                 + "AccountID=" + myId
@@ -334,7 +336,7 @@ public class GetData {
                 + "&ToEmirateID=" + toEmId
                 + "&ToRegionID=" + toRegId
                 + "&PrefferedLanguageId=" + pref_lnag
-                + "&PrefferedNationlaities="
+                + "&PrefferedNationlaities="+pref_nat
                 + "&AgeRangeId=" + age_Ranged_id
                 + "&StartDate="
                 + "&SaveFind=" + saveFind
@@ -1130,7 +1132,12 @@ public class GetData {
         VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
     }
 
-    private void DriverCreateCarPoolStringRequest(final String url, final Activity context) {
+    private void DriverCreateCarPoolStringRequest(final String url, final Activity context
+
+            , final int From_EmID, final int  From_RegId, final int To_EmID, final int To_RegId, int myId,
+                                                  final String From_EmirateEnName_str, final String  From_RegionEnName_str
+            , final String To_EmirateEnName_str, final String To_RegionEnName_str
+    ) {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -1152,11 +1159,23 @@ public class GetData {
                                 in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 context.startActivity(in);
                                 break;
-                            default:
+                            default :
                                 Toast.makeText(context, context.getString(R.string.ride_created2), Toast.LENGTH_SHORT).show();
-                                Intent in2 = new Intent(context, DriverCreatedRides.class);
+                                Intent in2 = new Intent(context, QuickSearchResults.class);
                                 in2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                in2.putExtra("From_Em_Id", From_EmID);
+                                in2.putExtra("To_Em_Id", To_EmID);
+                                in2.putExtra("From_Reg_Id", From_RegId);
+                                in2.putExtra("To_Reg_Id", To_RegId);
+                                in2.putExtra("From_EmirateEnName", From_EmirateEnName_str);
+                                in2.putExtra("From_RegionEnName", From_RegionEnName_str);
+                                in2.putExtra("To_EmirateEnName", To_EmirateEnName_str);
+                                in2.putExtra("To_RegionEnName", To_RegionEnName_str);
+                                in2.putExtra("MapKey", "Passenger");
+                                in2.putExtra("RouteID", response);
+                                in2.putExtra("InviteType", "DriverRide");
                                 context.startActivity(in2);
+                                context.finish();
                                 break;
                         }
 

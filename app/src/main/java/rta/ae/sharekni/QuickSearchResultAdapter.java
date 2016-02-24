@@ -125,6 +125,17 @@ public class QuickSearchResultAdapter extends BaseAdapter {
 //        Photo.sectImageUrl(URL + item.getAccountPhoto(), imageLoader);
 
 
+            if (item.getInviteType().equals("MapLookUp")) {
+                PassengerSendInvite.setVisibility(View.INVISIBLE);
+            } else if (item.getInviteType().equals("DriverRide")) {
+                PassengerSendInvite.setVisibility(View.VISIBLE);
+            }
+
+
+            if (item.getInviteStatus() == 1) {
+                PassengerSendInvite.setVisibility(View.INVISIBLE);
+            }
+
             if (item.getDriverPhoto() != null) {
                 Photo.setImageBitmap(item.getDriverPhoto());
             } else {
@@ -155,13 +166,14 @@ public class QuickSearchResultAdapter extends BaseAdapter {
             // we collct data to be able to send invite to passnger so don't get cnfused
             Driver_ID = item.getAccountID();
             Passenger_ID = item.getDriverId();
+            Route_ID=item.getSDG_Route_ID();
 
 
             Nationality_en.setText(item.getNationality_en());
 
             Best_Drivers_Item_rate.setText(item.getRating());
 
-            if (item.getLastSeen().equals("hide")) {
+            if (item.getLastSeen().equals("hide") || item.getLastSeen().equals("0")) {
                 LastSeenTvValue.setVisibility(View.INVISIBLE);
                 LastSeenText.setVisibility(View.INVISIBLE);
             } else {
@@ -173,44 +185,15 @@ public class QuickSearchResultAdapter extends BaseAdapter {
             PassengerSendInvite.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (item.getAccountID() == 0) {
-                        final Dialog dialog = new Dialog(activity);
-                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                        dialog.setContentView(R.layout.please_log_in_dialog);
-                        Button btn = (Button) dialog.findViewById(R.id.noroute_id);
-                        TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
-                        Button No_Btn = (Button) dialog.findViewById(R.id.No_Btn);
-                        Text_3.setText(activity.getString(R.string.login_first));
-                        dialog.show();
-                        No_Btn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                dialog.dismiss();
-                            }
-                        });
-                        btn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                dialog.dismiss();
-                                Intent intent = new Intent(activity, LoginApproved.class);
-                                activity.startActivity(intent);
-                            }
-                        });
-                    } else {
 
 
-                        arr_2.clear();
-                        ProgressDialog pDialog = new ProgressDialog(activity);
-                        pDialog.setMessage(activity.getString(R.string.loading) + "...");
-                        pDialog.show();
-                        jsoning = new jsoning(pDialog, activity);
-                        jsoning.execute();
+                    ProgressDialog pDialog = new ProgressDialog(activity);
+                    pDialog.setMessage(activity.getString(R.string.loading) + "...");
+                    pDialog.show();
+                    jsoning = new jsoning(pDialog, activity);
+                    jsoning.execute();
 
 
-                        String ID = String.valueOf(item.getAccountID());
-
-
-                    }
                 }
             });
 
@@ -336,69 +319,37 @@ public class QuickSearchResultAdapter extends BaseAdapter {
 
 
             if (exists) {
+                String response = null;
 
-                DriverRidesAdapter = new SimpleAdapter(activity, arr_2
-                        , R.layout.driver_send_invite_to_passenger
-                        , new String[]{"EmirateId", "EmirateEnName"}
-                        , new int[]{R.id.row_id_search, R.id.row_name_search});
+                try {
+                    response = j.Driver_SendInvite(Driver_ID, Passenger_ID, Route_ID, URLEncoder.encode(activity.getString(R.string.InvitePassenger)));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                assert response != null;
+                switch (response) {
+                    case "\"-1\"":
+                        Toast.makeText(activity, activity.getString(R.string.already_sent_request), Toast.LENGTH_SHORT).show();
 
+                        break;
+                    case "\"0\"":
+                        Toast.makeText(activity, activity.getString(R.string.login_network_error), Toast.LENGTH_SHORT).show();
 
-                final Dialog dialog = new Dialog(activity);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.send_invite_to_passenger_dailog);
-                Routes_Lv = (ListView) dialog.findViewById(R.id.Routes_Lv);
-                Routes_Lv.setAdapter(DriverRidesAdapter);
+                        break;
+                    case "\"1\"":
+                        Toast.makeText(activity, R.string.req_sent_succ, Toast.LENGTH_LONG).show();
 
-                dialog.show();
+                        activity.finish();
+                        break;
+                    default:
 
-                Routes_Lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        activity.finish();
+                        break;
+                }
 
-                        TextView txt_em_name = (TextView) view.findViewById(R.id.row_name_search);
-                        TextView txt_em_id = (TextView) view.findViewById(R.id.row_id_search);
-
-                        Route_ID_2 = Integer.parseInt(txt_em_id.getText().toString());
-                        Route_Name_2 = txt_em_name.getText().toString();
-
-                        String response = null;
-
-                        try {
-                            response = j.Driver_SendInvite(Driver_ID, Passenger_ID, Route_ID_2, URLEncoder.encode(activity.getString(R.string.InvitePassenger)));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        assert response != null;
-                        switch (response) {
-                            case "\"-1\"":
-                                Toast.makeText(activity, activity.getString(R.string.already_sent_request), Toast.LENGTH_SHORT).show();
-                                dialog.dismiss();
-                                break;
-                            case "\"0\"":
-                                Toast.makeText(activity, activity.getString(R.string.login_network_error), Toast.LENGTH_SHORT).show();
-                                dialog.dismiss();
-                                break;
-                            case "\"1\"":
-                                Toast.makeText(activity, R.string.req_sent_succ, Toast.LENGTH_LONG).show();
-                                dialog.dismiss();
-                                activity.finish();
-                                break;
-                            default:
-                                dialog.dismiss();
-                                activity.finish();
-                                break;
-                        }
-
-
-                        Log.d("Send Invite" + "Route name 2", String.valueOf(Route_Name_2));
-                        Log.d("Send Invite" + "Route id 2", String.valueOf(Route_ID_2));
-
-                        Log.d("Send Invite" + "Driver id", String.valueOf(Driver_ID));
-                        Log.d("Send Invite" + "Route id", String.valueOf(Route_ID));
-                        Log.d("Send Invite" + "Passenger ID", String.valueOf(Passenger_ID));
-
-                    }
-                });
+                Log.d("Send Invite" + "Driver id", String.valueOf(Driver_ID));
+                Log.d("Send Invite" + "Route id", String.valueOf(Route_ID));
+                Log.d("Send Invite" + "Passenger ID", String.valueOf(Passenger_ID));
 
 
             }
@@ -443,48 +394,6 @@ public class QuickSearchResultAdapter extends BaseAdapter {
                         Toast.makeText(con, con.getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
-            }
-            if (exists) {
-                JSONArray response = null;
-                try {
-                    response = new GetData().GetDriverRides(Driver_ID);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                driver = new BestRouteDataModel[response.length()];
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        JSONObject json = response.getJSONObject(i);
-                        final RegionsDataModel regions = new RegionsDataModel(Parcel.obtain());
-                        BestRouteDataModel item = new BestRouteDataModel(Parcel.obtain());
-                        item.setRoute_id(json.getInt("ID"));
-                        item.setRouteName(json.getString(con.getString(R.string.route_name)));
-
-                        regions.setID(json.getInt("ID"));
-                        regions.setRegionEnName(json.getString(con.getString(R.string.route_name)));
-
-                        Route_ID = json.getInt("ID");
-                        Log.d("Route name", json.getString(con.getString(R.string.route_name)));
-                        driver[i] = item;
-                        Log.d("ID", String.valueOf(json.getInt("ID")));
-
-
-                        TreeMap<String, String> valuePairs = new TreeMap<>();
-                        valuePairs.put("EmirateId", json.getString("ID"));
-                        valuePairs.put("EmirateEnName", json.getString(con.getString(R.string.route_name)));
-                        arr_2.add(valuePairs);
-                        Log.d("test Routes ", arr_2.toString());
-
-
-//                        Log.d("FromEmlv", json.getString(getString(R.string.from_em_name)));
-//                        Log.d("FromReglv", json.getString(getString(R.string.from_reg_name)));
-//                        Log.d("TomEmlv", json.getString(getString(R.string.to_em_name)));
-//                        Log.d("ToReglv", json.getString(getString(R.string.to_reg_name)));
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
             }
             return null;
         }

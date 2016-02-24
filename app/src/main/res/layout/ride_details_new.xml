@@ -306,25 +306,6 @@
                     android:visibility="invisible" />
 
 
-                <Button
-                    android:id="@+id/Route_Driver_Send_invite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/Route_Delete_Btn"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_toLeftOf="@+id/Route_Delete_Btn"
-                    android:layout_toStartOf="@+id/Route_Delete_Btn"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/driver_details_btn"
-                    android:text="@string/invite_"
-                    android:textAllCaps="false"
-                     />
-
-
-
-
-
 
             </RelativeLayout>
 
@@ -489,6 +470,10 @@
                     </RelativeLayout>
 
 
+
+
+
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
@@ -506,17 +491,36 @@
 
 
 
+                    <Button
+                        android:id="@+id/Route_Driver_Send_invite"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/user_register_border_button"
+                        android:text="@string/matched_search_results"
+                        android:textAllCaps="false"
+                        android:textColor="#FFFFFF"
+                        android:layout_below="@id/Prefernces_Relative_id"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="20dp"
+                        android:textSize="18sp"
+                        />
+
+
 
                     <RelativeLayout
                         android:id="@+id/REaltive_Passengers_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/Prefernces_Relative_id"
-                        android:layout_marginTop="30dp"
+                        android:layout_below="@+id/Route_Driver_Send_invite"
+                        android:layout_marginTop="10dp"
                         android:layout_marginEnd="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginStart="10dp"
+                        android:visibility="invisible"
                         >
 
                         <TextView
@@ -571,7 +575,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginStart="10dp"
-
+                        android:visibility="invisible"
                         >
 
                         <ListView

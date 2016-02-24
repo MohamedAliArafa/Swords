@@ -647,6 +647,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             intent1.putExtra("To_EmirateEnName", To_EmirateEnName);
                             intent1.putExtra("To_RegionEnName", To_RegionEnName);
                             intent1.putExtra("MapKey", "Passenger");
+                            intent1.putExtra("RouteID",0);
+                            intent1.putExtra("InviteType","MapLookUp");
                             startActivity(intent1);
 
 

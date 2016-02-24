@@ -53,16 +53,18 @@ public class QuickSearchResults extends AppCompatActivity {
     TextView To_RegionEnName_txt;
     TextView From_RegionEnName_txt;
     SharedPreferences myPrefs;
-    char Gender;
+    char Gender = 'N';
     ListView lvResult;
     private Toolbar toolbar;
+    int RouteID;
     String ID;
     String Smokers;
-    int  Single_Periodic_ID ,Advanced_Search_Age_Range_ID,Nationality_ID,Language_ID;
+    int Single_Periodic_ID, Advanced_Search_Age_Range_ID, Nationality_ID, Language_ID;
+    String InviteType;
 
 
     int SaveFind = 0;
-
+    String Nat_ID;
     backTread backTread;
     backTread2 backTread2;
 
@@ -81,7 +83,7 @@ public class QuickSearchResults extends AppCompatActivity {
 //        Bundle in = getIntent().getExtras();
 //        Log.d("Intent Id :", String.valueOf(in.getInt("DriverID")));
 
-        initToolbar();
+
         Intent intent = getIntent();
         acivity = this;
 
@@ -97,16 +99,25 @@ public class QuickSearchResults extends AppCompatActivity {
 
 
         MapKey = intent.getStringExtra("MapKey");
-
-        Gender = intent.getCharExtra("Gender", ' ');
+        InviteType = intent.getStringExtra("InviteType");
+        Gender = intent.getCharExtra("Gender", 'N');
         SaveFind = intent.getIntExtra("SaveFind", 0);
         Smokers = intent.getStringExtra("Smokers");
-        Single_Periodic_ID =  intent.getIntExtra("IsRounded",0);
-        Advanced_Search_Age_Range_ID = intent.getIntExtra("AgeRange",0);
-        Nationality_ID = intent.getIntExtra("Nationality_ID",0);
-        Language_ID=intent.getIntExtra("Language_ID",0);
+        Single_Periodic_ID = intent.getIntExtra("IsRounded", 0);
+        Advanced_Search_Age_Range_ID = intent.getIntExtra("AgeRange", 0);
+        Nationality_ID = intent.getIntExtra("Nationality_ID", 0);
+        Language_ID = intent.getIntExtra("Language_ID", 0);
+        RouteID = intent.getIntExtra("RouteID", 0);
 
         Log.d("IS Rounded", String.valueOf(Single_Periodic_ID));
+        Log.d("Invite Type",InviteType);
+
+        if (Nationality_ID == 0) {
+            Nat_ID = "";
+        } else {
+            Nat_ID = String.valueOf(Nationality_ID);
+        }
+
 
 
         Log.d("save find one :", String.valueOf(SaveFind));
@@ -132,6 +143,8 @@ public class QuickSearchResults extends AppCompatActivity {
             comma5.setVisibility(View.INVISIBLE);
             to_txt_id.setVisibility(View.INVISIBLE);
         }
+
+        initToolbar();
 
         backTread = new backTread();
         backTread2 = new backTread2();
@@ -230,10 +243,10 @@ public class QuickSearchResults extends AppCompatActivity {
                             item.setSDG_Route_Start_FromTime(json.getString("SDG_Route_Start_FromTime"));
                             item.setNationality_en(json.getString(getString(R.string.nat_en)));
                             item.setRating(json.getString("Rating"));
-                            if(json.getString("LastSeen").equals("") || json.getString("LastSeen").equals("null")){
+                            if (json.getString("LastSeen").equals("") || json.getString("LastSeen").equals("null")) {
                                 item.setLastSeen("hide");
 
-                            }else {
+                            } else {
                                 item.setLastSeen(json.getString("LastSeen"));
                             }
 
@@ -298,7 +311,6 @@ public class QuickSearchResults extends AppCompatActivity {
         protected Object doInBackground(Object[] params) {
 
 
-
             String Time = "";
 //            int FromEmId = 2;
 //            int FromRegId = 4;
@@ -360,8 +372,8 @@ public class QuickSearchResults extends AppCompatActivity {
                     if (Gender != ' ') {
                         try {
                             jArray = j.Search(0, Gender, Time, From_Em_Id
-                                    , From_Reg_Id, To_Em_Id, To_Reg_Id, pref_lnag, pref_nat
-                                    , Advanced_Search_Age_Range_ID, StartDate, saveFind,Single_Periodic_ID ,Smokers, acivity);
+                                    , From_Reg_Id, To_Em_Id, To_Reg_Id, Language_ID, Nat_ID
+                                    , Advanced_Search_Age_Range_ID, StartDate, saveFind, Single_Periodic_ID, Smokers, acivity);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -369,8 +381,8 @@ public class QuickSearchResults extends AppCompatActivity {
 
                         try {
                             jArray = j.Search(0, Gender, Time, From_Em_Id
-                                    , From_Reg_Id, To_Em_Id, To_Reg_Id, pref_lnag, pref_nat
-                                    , Advanced_Search_Age_Range_ID, StartDate, saveFind, Single_Periodic_ID ,Smokers, acivity);
+                                    , From_Reg_Id, To_Em_Id, To_Reg_Id, Language_ID, Nat_ID
+                                    , Advanced_Search_Age_Range_ID, StartDate, saveFind, Single_Periodic_ID, Smokers, acivity);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -382,8 +394,8 @@ public class QuickSearchResults extends AppCompatActivity {
                     GetData j = new GetData();
                     try {
                         jArray = j.Search(Integer.parseInt(ID), Gender, Time, From_Em_Id
-                                , From_Reg_Id, To_Em_Id, To_Reg_Id, pref_lnag, pref_nat
-                                , Advanced_Search_Age_Range_ID, StartDate, saveFind ,Single_Periodic_ID , Smokers, acivity);
+                                , From_Reg_Id, To_Em_Id, To_Reg_Id, Language_ID, Nat_ID
+                                , Advanced_Search_Age_Range_ID, StartDate, saveFind, Single_Periodic_ID, Smokers, acivity);
                     } catch (JSONException e) {
                         error = true;
                         e.printStackTrace();
@@ -470,9 +482,26 @@ public class QuickSearchResults extends AppCompatActivity {
                             item.setMapKey("Passenger");
                             if (ID.equals("0")) {
                                 item.setAccountID(0);
-                            }else {
+                            } else {
                                 item.setAccountID(Integer.parseInt(ID));
                             }
+
+                            if (RouteID != 0) {
+                                item.setSDG_Route_ID(RouteID);
+                            }
+
+                            if (json.getInt("DriverInvitationStatus") == 1) {
+                                item.setInviteStatus(1);
+                            } else {
+                                item.setInviteStatus(0);
+                            }
+
+                            if (InviteType.equals("MapLookUp")) {
+                                item.setInviteType("MapLookUp");
+                            } else if (InviteType.equals("DriverRide")) {
+                                item.setInviteType("DriverRide");
+                            }
+
                             Log.d("test account email", json.getString("DriverName"));
                             item.setAccountName(json.getString("DriverName"));
                             item.setDriverId(json.getInt("AccountId"));
@@ -487,7 +516,7 @@ public class QuickSearchResults extends AppCompatActivity {
 //                    item.setTo_EmirateName_en(json.getString("To_EmirateName_en"));
 //                    item.setTo_RegionName_en(json.getString("To_RegionName_en"));
                             item.setAccountMobile(json.getString("DriverMobile"));
-                          //  item.setSDG_Route_Start_FromTime(json.getString("SDG_Route_Start_FromTime"));
+                            //  item.setSDG_Route_Start_FromTime(json.getString("SDG_Route_Start_FromTime"));
                             item.setSDG_Route_Start_FromTime("");
                             item.setNationality_en(json.getString(getString(R.string.nat_name)));
                             item.setRating(json.getString("Rating"));
@@ -498,22 +527,22 @@ public class QuickSearchResults extends AppCompatActivity {
                             days = "";
 
                             searchArray.add(item);
-                            lvResult.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                @Override
-                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                    Intent in = new Intent(QuickSearchResults.this, Profile.class);
-                                    in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                    in.putExtra("DriverID", searchArray.get(position).getDriverId());
-                                    in.putExtra("PassengerID", ID);
-                                    in.putExtra("RouteID", searchArray.get(position).getSDG_Route_ID());
-                                    Log.d("Array Id :", String.valueOf(searchArray.get(position).getDriverId()));
-                                    QuickSearchResults.this.startActivity(in);
-                                    Log.d("Array id : ", searchArray.get(position).getAccountName());
-                                    Log.d("on click id : ", String.valueOf(searchArray.get(position).getDriverId()));
-
-                                    backTread2.cancel(true);
-                                }
-                            });
+//                            lvResult.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                                @Override
+//                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                                    Intent in = new Intent(QuickSearchResults.this, Profile.class);
+//                                    in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//                                    in.putExtra("DriverID", searchArray.get(position).getDriverId());
+//                                    in.putExtra("PassengerID", ID);
+//                                    in.putExtra("RouteID", searchArray.get(position).getSDG_Route_ID());
+//                                    Log.d("Array Id :", String.valueOf(searchArray.get(position).getDriverId()));
+//                                    QuickSearchResults.this.startActivity(in);
+//                                    Log.d("Array id : ", searchArray.get(position).getAccountName());
+//                                    Log.d("on click id : ", String.valueOf(searchArray.get(position).getDriverId()));
+//
+//                                    backTread2.cancel(true);
+//                                }
+//                            });
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -591,7 +620,7 @@ public class QuickSearchResults extends AppCompatActivity {
                 if (ID.equals("0")) {
 
                     GetData j = new GetData();
-                    String url = GetData.DOMAIN + "GetMostDesiredRideDetailsForPassengers?AccountID=" + 0 + "&FromEmirateID=" + From_Em_Id + "&FromRegionID=" + From_Reg_Id + "&ToEmirateID=" + To_Em_Id + "&ToRegionID=" + To_Reg_Id;
+                    String url = GetData.DOMAIN + "GetMostDesiredRideDetailsForPassengers?AccountID=" + 0 + "&FromEmirateID=" + From_Em_Id + "&FromRegionID=" + From_Reg_Id + "&ToEmirateID=" + To_Em_Id + "&ToRegionID=" + To_Reg_Id + "&RouteId=" + RouteID;
                     Log.d("Url", url);
                     try {
                         jArray = j.MostRidesDetails(url);
@@ -603,12 +632,12 @@ public class QuickSearchResults extends AppCompatActivity {
 
                 } else {
                     GetData j = new GetData();
-                    String url = GetData.DOMAIN + "GetMostDesiredRideDetailsForPassengers?AccountID=" + Integer.parseInt(ID) + "&FromEmirateID=" + From_Em_Id + "&FromRegionID=" + From_Reg_Id + "&ToEmirateID=" + To_Em_Id + "&ToRegionID=" + To_Reg_Id;
+                    String url = GetData.DOMAIN + "GetMostDesiredRideDetailsForPassengers?AccountID=" + Integer.parseInt(ID) + "&FromEmirateID=" + From_Em_Id + "&FromRegionID=" + From_Reg_Id + "&ToEmirateID=" + To_Em_Id + "&ToRegionID=" + To_Reg_Id + "&RouteId=" + RouteID;
                     Log.d("Url", url);
                     try {
                         jArray = j.MostRidesDetails(url);
                     } catch (JSONException e) {
-                        error=true;
+                        error = true;
                         e.printStackTrace();
 
                     }
@@ -652,9 +681,11 @@ public class QuickSearchResults extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
-        textView.setText(R.string.search_results);
-//        toolbar.setElevation(10);
-
+        if (InviteType.equals("DriverRide")) {
+            textView.setText(R.string.matched_search_results);
+        } else {
+            textView.setText(R.string.search_results);
+        }
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setHomeButtonEnabled(true);

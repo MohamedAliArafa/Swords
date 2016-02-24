@@ -400,6 +400,7 @@
     <string name="ride_name_str">Ride Name :</string>
     <string name="saveSearch_Error">To save the search you must choose start point and also a distention</string>
     <string name="invite_">Invite</string>
+    <string name="matched_search_results">Matched Search Results</string>
 
 
 </resources>

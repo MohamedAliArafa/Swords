@@ -71,7 +71,7 @@ public class Route extends AppCompatActivity {
     int Route_ID;
     int Passenger_ID;
     int Driver_ID;
-    String Passengers_Ids="";
+    String Passengers_Ids = "";
     ListView ride_details_passengers;
     double StartLat, StartLng, EndLat, EndLng;
     Activity con;
@@ -86,7 +86,7 @@ public class Route extends AppCompatActivity {
     Button Route_Delete_Btn, Route_Edit_Btn;
     Button Route_permit_Btn;
     String Gender_ste;
-
+    int i = 0;
     RelativeLayout Relative_REviews;
     TextView Relative_REviews_Address;
 
@@ -98,7 +98,7 @@ public class Route extends AppCompatActivity {
     Activity c;
 
     String FromRegionEnName_Str, ToRegionEnName_Str, FromEmirateEnName_Str, ToEmirateEnName_Str;
-    int FromEmirateId,ToEmirateId,FromRegionId,ToRegionId;
+    int FromEmirateId, ToEmirateId, FromRegionId, ToRegionId;
 
     Button Route_Driver_Send_invite;
 
@@ -134,12 +134,12 @@ public class Route extends AppCompatActivity {
         initToolbar();
         con = this;
         ride_details_passengers = (ListView) findViewById(R.id.ride_details_passengers);
-        c=this;
+        c = this;
         FromRegionEnName = (TextView) findViewById(R.id.FromRegionEnName);
         ToRegionEnName = (TextView) findViewById(R.id.ToRegionEnName);
 
         StartFromTime = (TextView) findViewById(R.id.StartFromTime);
-      //  EndToTime_ = (TextView) findViewById(R.id.EndToTime_);
+        //  EndToTime_ = (TextView) findViewById(R.id.EndToTime_);
 
         FromEmirateEnName = (TextView) findViewById(R.id.FromEmirateEnName);
         ToEmirateEnName = (TextView) findViewById(R.id.ToEmirateEnName);
@@ -156,8 +156,8 @@ public class Route extends AppCompatActivity {
 
         Route_Delete_Btn = (Button) findViewById(R.id.Route_Delete_Btn);
         Route_Edit_Btn = (Button) findViewById(R.id.Route_Edit_Btn);
-        Route_permit_Btn= (Button) findViewById(R.id.Route_permit_Btn);
-        Relative_REviews= (RelativeLayout) findViewById(R.id.Relative_REviews);
+        Route_permit_Btn = (Button) findViewById(R.id.Route_permit_Btn);
+        Relative_REviews = (RelativeLayout) findViewById(R.id.Relative_REviews);
         Relative_REviews_Address = (TextView) findViewById(R.id.Relative_REviews_Address);
 
         REaltive_Passengers_1 = (RelativeLayout) findViewById(R.id.REaltive_Passengers_1);
@@ -179,9 +179,7 @@ public class Route extends AppCompatActivity {
         Log.d("test Route id", String.valueOf(Route_ID));
 
 
-
         loadingBasicInfo.execute();
-
 
 
 //        GetData j = new GetData();
@@ -203,7 +201,9 @@ public class Route extends AppCompatActivity {
                 intent1.putExtra("From_RegionEnName", FromRegionEnName_Str);
                 intent1.putExtra("To_EmirateEnName", ToEmirateEnName_Str);
                 intent1.putExtra("To_RegionEnName", ToRegionEnName_Str);
-                intent1.putExtra("MapKey","Passenger");
+                intent1.putExtra("MapKey", "Passenger");
+                intent1.putExtra("RouteID", Route_ID);
+                intent1.putExtra("InviteType", "DriverRide");
                 startActivity(intent1);
 
             }
@@ -228,8 +228,8 @@ public class Route extends AppCompatActivity {
                                     } else {
                                         Intent in = new Intent(Route.this, HomePage.class);
                                         in.putExtra("RouteID", Route_ID);
-                                        in.putExtra("DriverID",Driver_ID);
-                                        in.putExtra("RouteName",Route_name);
+                                        in.putExtra("DriverID", Driver_ID);
+                                        in.putExtra("RouteName", Route_name);
                                         startActivity(in);
                                         finish();
                                         Toast.makeText(Route.this, R.string.route_deleted, Toast.LENGTH_SHORT).show();
@@ -250,19 +250,13 @@ public class Route extends AppCompatActivity {
                         }).setIcon(android.R.drawable.ic_dialog_alert).show();
 
 
-
-
-
-
-
-
             }
         });
 
 
     }  // on create
 
-    private class loadingBasicInfo extends AsyncTask  implements OnMapReadyCallback {
+    private class loadingBasicInfo extends AsyncTask implements OnMapReadyCallback {
         JSONObject json;
         Exception exception;
         boolean exists = false;
@@ -292,10 +286,10 @@ public class Route extends AppCompatActivity {
                 if (exception == null) {
                     try {
                         // get all id's for Driver_Send_Invite Function
-                        FromEmirateId=json.getInt("FromEmirateId");
-                        FromRegionId=json.getInt("FromRegionId");
-                        ToRegionId=json.getInt("ToRegionId");
-                        ToEmirateId=json.getInt("ToEmirateId");
+                        FromEmirateId = json.getInt("FromEmirateId");
+                        FromRegionId = json.getInt("FromRegionId");
+                        ToRegionId = json.getInt("ToRegionId");
+                        ToEmirateId = json.getInt("ToEmirateId");
 
                         FromRegionEnName.setText(json.getString(getString(R.string.from_reg_en_name)));
                         ToRegionEnName.setText(json.getString(getString(R.string.to_reg_en_name)));
@@ -320,21 +314,22 @@ public class Route extends AppCompatActivity {
                         StartFromTime.setText(str_StartFromTime);
 
 
-                       // EndToTime_.setText(str_EndToTime_);
+                        // EndToTime_.setText(str_EndToTime_);
                         if (json.getString(getString(R.string.nat_name2)).equals("null")) {
                             NationalityEnName.setText(getString(R.string.not_set));
                         } else {
                             NationalityEnName.setText(json.getString(getString(R.string.nat_name2)));
-                        }if (json.getString("PrefLanguageId").equals("0")   ||  json.getString("PrefLanguageId").equals("null")  ){
+                        }
+                        if (json.getString("PrefLanguageId").equals("0") || json.getString("PrefLanguageId").equals("null")) {
                             PrefLanguageEnName.setText(getString(R.string.not_set));
-                        }else {
+                        } else {
                             PrefLanguageEnName.setText(json.getString(getString(R.string.pref_lang)));
                         }
 
 
-                        if (json.getString("AgeRangeID").equals("0") || json.getString("AgeRangeID").equals("null") ){
+                        if (json.getString("AgeRangeID").equals("0") || json.getString("AgeRangeID").equals("null")) {
                             AgeRange.setText(getString(R.string.not_set));
-                        }else {
+                        } else {
                             AgeRange.setText(json.getString("AgeRange"));
                         }
 
@@ -390,13 +385,10 @@ public class Route extends AppCompatActivity {
                         if (json.getString("Friday").equals("true")) {
                             days += getString(R.string.fri);
                         }
-                        if (!days.equals("")){
+                        if (!days.equals("")) {
                             ride_details_day_of_week.setText(days.substring(1));
                         }
                         days = "";
-
-
-
 
 
                     } catch (JSONException e) {
@@ -455,9 +447,9 @@ public class Route extends AppCompatActivity {
 //                                        Intent intentToBeNewRoot = new Intent(Route.this, Route.class);
 //                                        ComponentName cn = intentToBeNewRoot.getComponent();
                                         Intent mainIntent = getIntent();
-                                        mainIntent.putExtra("DriverID",Driver_ID);
-                                        mainIntent.putExtra("RouteID",Route_ID);
-                                        mainIntent.putExtra("RouteName",Route_name);
+                                        mainIntent.putExtra("DriverID", Driver_ID);
+                                        mainIntent.putExtra("RouteID", Route_ID);
+                                        mainIntent.putExtra("RouteName", Route_name);
                                         startActivity(mainIntent);
                                     }
                                 })
@@ -474,10 +466,6 @@ public class Route extends AppCompatActivity {
                 try {
                     days = "";
                     json = GD.GetRouteById(Route_ID);
-
-
-
-
 
 
                 } catch (Exception e) {
@@ -515,7 +503,7 @@ public class Route extends AppCompatActivity {
                     position(new LatLng(StartLat, StartLng))
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.pindriver)).snippet(FromRegionEnName_Str).title(FromEmirateEnName_Str));
 
-             mMap.addMarker(new MarkerOptions().
+            mMap.addMarker(new MarkerOptions().
                     position(new LatLng(EndLat, EndLng))
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.pindriver)).snippet(ToRegionEnName_Str).title(ToEmirateEnName_Str));
 
@@ -533,12 +521,12 @@ public class Route extends AppCompatActivity {
         protected void onPostExecute(Object o) {
 
 
-            if (response1.length()==0){
+            if (response1.length() == 0) {
 
                 Relative_REviews.setVisibility(View.INVISIBLE);
                 Relative_REviews_Address.setVisibility(View.INVISIBLE);
 
-            }else {
+            } else {
 
                 Relative_REviews.setVisibility(View.VISIBLE);
                 Relative_REviews_Address.setVisibility(View.VISIBLE);
@@ -552,14 +540,14 @@ public class Route extends AppCompatActivity {
                         review.setReviewID(obj.getInt("ReviewId"));
                         review.setAccountID(obj.getInt("AccountId"));
                         review.setAccountName(obj.getString("AccountName"));
-                        if (!obj.getString("AccountPhoto").equals("NoImage.png")&&!obj.getString("AccountPhoto").equals("null")){
+                        if (!obj.getString("AccountPhoto").equals("NoImage.png") && !obj.getString("AccountPhoto").equals("null")) {
                             GetData gd = new GetData();
                             review.setPhoto(gd.GetImage(obj.getString("AccountPhoto")));
                         }
                         review.setAccountNationalityEn(obj.getString(getString(R.string.acc_nat_name)));
-                        if (obj.getString("Review").equals("null")){
+                        if (obj.getString("Review").equals("null")) {
                             review.setReview("");
-                        }else {
+                        } else {
                             review.setReview(obj.getString("Review"));
                         }
 
@@ -578,16 +566,14 @@ public class Route extends AppCompatActivity {
             }
 
 
-
-            if (response2.length()==0){
+            if (response2.length() == 0) {
                 REaltive_Passengers_1.setVisibility(View.INVISIBLE);
                 passenger_relative_2.setVisibility(View.INVISIBLE);
 
 
-            }else {
+            } else {
 
-                REaltive_Passengers_1.setVisibility(View.VISIBLE);
-                passenger_relative_2.setVisibility(View.VISIBLE);
+
                 for (int y = 0; y < response2.length(); y++) {
 
                     try {
@@ -601,15 +587,19 @@ public class Route extends AppCompatActivity {
                         item.setDriverId(Driver_ID);
                         item.setRouteId(Route_ID);
                         item.setRate(obj.getInt("PassenegerRateByDriver"));
-                        if (obj.getString("AccountMobile").equals("null")){
+                        if (obj.getString("AccountMobile").equals("null")) {
                             item.setAccountMobile("");
-                        }else {
+                        } else {
                             item.setAccountMobile(obj.getString("AccountMobile"));
                         }
 
                         item.setAccountNationalityEn(obj.getString(getString(R.string.acc_nat_name)));
-                        if (obj.getString("RequestStatus").equals("true")) {
+                        if (obj.getString("RequestStatus").equals("true") && obj.getString("PassengerStatus").equals("true")) {
+                            i++;
                             Passengers_arr.add(item);
+                            REaltive_Passengers_1.setVisibility(View.VISIBLE);
+                            passenger_relative_2.setVisibility(View.VISIBLE);
+
                         }
 
                     } catch (JSONException e) {
@@ -626,18 +616,14 @@ public class Route extends AppCompatActivity {
                     JSONObject obj = response3.getJSONObject(x1);
                     final Route_Get_Accepted_Requests_DataModel item3 = new Route_Get_Accepted_Requests_DataModel(Parcel.obtain());
                     item3.setRoutePassengerId(obj.getInt("RoutePassengerId"));
-                    Passengers_Ids+=",";
-                    Passengers_Ids+=obj.getString("RoutePassengerId");
+                    Passengers_Ids += ",";
+                    Passengers_Ids += obj.getString("RoutePassengerId");
 
                     item3.setVehicleId(obj.getInt("VehicleId"));
                     Vehicle_Id_Permit = obj.getInt("VehicleId");
                     item3.setAccountId(Driver_ID);
                     item3.setRouteId(Route_ID);
                     Accepted_Requests.add(item3);
-
-
-
-
 
 
                 } catch (JSONException e) {
@@ -652,11 +638,9 @@ public class Route extends AppCompatActivity {
             Log.d("Vehicle Id", String.valueOf(Vehicle_Id_Permit));
 
 
-
             DriverGetReviewAdapter arrayAdapter = new DriverGetReviewAdapter(con, driverGetReviewDataModels_arr);
             Driver_get_Review_lv.setAdapter(arrayAdapter);
             setListViewHeightBasedOnChildren(Driver_get_Review_lv);
-
 
 
             Ride_Details_Passengers_Adapter adapter = new Ride_Details_Passengers_Adapter(con, Passengers_arr);
@@ -664,25 +648,20 @@ public class Route extends AppCompatActivity {
             setListViewHeightBasedOnChildren(ride_details_passengers);
 
 
-
-
-
-            if (response3.length()>0 && !Passengers_Ids.equals("")) {
+            if (response3.length() > 0 && !Passengers_Ids.equals("")) {
                 Route_permit_Btn.setVisibility(View.VISIBLE);
                 final PermitJsonParse permitJsonParse = new PermitJsonParse();
 
-                Passengers_Ids  =  Passengers_Ids.substring(1);
+                Passengers_Ids = Passengers_Ids.substring(1);
                 Log.d("pass ids array", Passengers_Ids);
                 Route_permit_Btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        permitJsonParse.stringRequest(GetData.DOMAIN + "Permit_Insert?AccountId="+Driver_ID+"&RouteId="+Route_ID+"&VehicleId="+Vehicle_Id_Permit+"&_passengerIDs="+Passengers_Ids,Route.this);
+                        permitJsonParse.stringRequest(GetData.DOMAIN + "Permit_Insert?AccountId=" + Driver_ID + "&RouteId=" + Route_ID + "&VehicleId=" + Vehicle_Id_Permit + "&_passengerIDs=" + Passengers_Ids, Route.this);
                     }
                 });
 
             }
-
-
 
 
         }
@@ -692,7 +671,7 @@ public class Route extends AppCompatActivity {
             try {
                 response1 = new GetData().Driver_GetReview(Driver_ID, Route_ID);
                 response2 = new GetData().GetPassengers_ByRouteID(Route_ID);
-                response3 =  new GetData().GetAcceptedRequests_ByRouteID(Route_ID);
+                response3 = new GetData().GetAcceptedRequests_ByRouteID(Route_ID);
 
 
             } catch (JSONException e) {
@@ -701,10 +680,6 @@ public class Route extends AppCompatActivity {
             return null;
         }
     }
-
-
-
-
 
 
     @Override
@@ -736,16 +711,14 @@ public class Route extends AppCompatActivity {
 //                    e.printStackTrace();
 //                }
 //        }
-               if (id==android.R.id.home){
+        if (id == android.R.id.home) {
             onBackPressed();
             return true;
         }
 
 
-
         return super.onOptionsItemSelected(item);
     }
-
 
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -764,13 +737,12 @@ public class Route extends AppCompatActivity {
     }
 
 
-
     @Override
     public void onBackPressed() {
-        if (loadingReviews.getStatus()== AsyncTask.Status.RUNNING) {
+        if (loadingReviews.getStatus() == AsyncTask.Status.RUNNING) {
             loadingReviews.cancel(true);
         }
-        if (loadingBasicInfo.getStatus() == AsyncTask.Status.RUNNING){
+        if (loadingBasicInfo.getStatus() == AsyncTask.Status.RUNNING) {
             loadingBasicInfo.cancel(true);
         }
         finish();

@@ -133,8 +133,9 @@
         android:textColor="@color/white"
         android:textAllCaps="false"
         android:background="@drawable/bordersbuttom"
-        android:visibility="visible"
+        android:visibility="invisible"
         android:id="@+id/PassengerSendInvite"
+
         />
 
 

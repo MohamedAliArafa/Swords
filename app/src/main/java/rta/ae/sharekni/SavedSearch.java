@@ -47,14 +47,19 @@ public class SavedSearch extends AppCompatActivity {
     Toolbar toolbar;
     int Driver_ID;
     String days;
-    String url = GetData.DOMAIN +  "Passenger_GetSavedSearch?AccountId=";
+    String url = GetData.DOMAIN + "Passenger_GetSavedSearch?AccountId=";
 
     ListView user_ride_created;
     int ID;
     SharedPreferences myPrefs;
     String AccountType;
 
-    String FromEmirateEnName_str,ToEmirateEnName_str,ToRegionEnName_str;
+    String FromEmirateEnName_str, ToEmirateEnName_str, ToRegionEnName_str;
+
+    int Advanced_Search_Age_Range_ID;
+    int Nationality_ID;
+    int Language_ID;
+    char Gender;
 
 
     @Override
@@ -63,16 +68,14 @@ public class SavedSearch extends AppCompatActivity {
         setContentView(R.layout.activity_history);
         user_ride_created = (ListView) findViewById(R.id.user_ride_created);
         initToolbar();
-        c=this;
+        c = this;
 
 
         myPrefs = this.getSharedPreferences("myPrefs", 0);
         ID = Integer.parseInt(myPrefs.getString("account_id", "0"));
         AccountType = myPrefs.getString("account_type", null);
-        Log.d("Account type his",AccountType);
+        Log.d("Account type his", AccountType);
         Log.d("id history", String.valueOf(ID));
-
-
 
 
         new rideJson().execute();
@@ -126,8 +129,8 @@ public class SavedSearch extends AppCompatActivity {
                                 try {
                                     JSONArray jArray = new JSONArray(data);
 
-                                    if (jArray.length()==0){
-                                        Log.d("Error 3 ","Error3");
+                                    if (jArray.length() == 0) {
+                                        Log.d("Error 3 ", "Error3");
 
                                         final Dialog dialog = new Dialog(c);
                                         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -158,23 +161,23 @@ public class SavedSearch extends AppCompatActivity {
                                             item.setID(json.getInt("RouteId"));
 
 
-                                            FromEmirateEnName_str=json.getString(getString(R.string.from_reg_en_name));
-                                            if (FromEmirateEnName_str.equals("null")){
+                                            FromEmirateEnName_str = json.getString(getString(R.string.from_reg_en_name));
+                                            if (FromEmirateEnName_str.equals("null")) {
                                                 item.setFromEm(getString(R.string.not_set));
                                                 item.setFromReg(getString(R.string.not_set));
                                                 item.setRouteName(getString(R.string.not_set));
-                                            }else {
+                                            } else {
                                                 item.setFromEm(json.getString(getString(R.string.from_em_en_name)));
                                                 item.setFromReg(json.getString(getString(R.string.from_reg_en_name)));
                                             }
 
 
-                                            ToEmirateEnName_str=json.getString(getString(R.string.to_reg_en_name));
-                                            if (ToEmirateEnName_str.equals("null")){
+                                            ToEmirateEnName_str = json.getString(getString(R.string.to_reg_en_name));
+                                            if (ToEmirateEnName_str.equals("null")) {
                                                 item.setToEm(getString(R.string.not_set));
                                                 item.setToReg(getString(R.string.not_set));
 //                                                item.setRouteName(json.getString(getString(R.string.from_em_en_name)));
-                                            }else{
+                                            } else {
                                                 item.setRouteName(json.getString(getString(R.string.from_em_en_name)) + " : " + json.getString(getString(R.string.to_em_en_name)));
                                                 item.setToEm(json.getString(getString(R.string.to_em_en_name)));
                                                 item.setToReg(json.getString(getString(R.string.to_reg_en_name)));
@@ -182,9 +185,37 @@ public class SavedSearch extends AppCompatActivity {
 
                                             }
 
+                                            if (json.getString("Nationalites") != null || !json.getString("Nationalites").equals("")) {
+                                                item.setNationality_ID(json.getString("Nationalites"));
+                                            }
 
 
 
+
+
+                                            item.setLanguage_ID(Integer.parseInt(json.getString("PrefLanguageId")));
+                                            item.setIS_Smoking("");
+                                            if (json.getString("IsSmoking").equals("true") && json.getString("IsSmoking") != null) {
+                                                item.setIS_Smoking("1");
+                                            } else {
+                                                item.setIS_Smoking("0");
+                                            }
+
+
+                                            if (json.getString("IsRounded").equals("true") && json.getString("IsRounded") != null) {
+                                                item.setSingle_Periodic_ID(1);
+                                            } else {
+                                                item.setSingle_Periodic_ID(0);
+                                            }
+
+                                            item.setGender("N");
+                                            if (json.getString("PreferredGender").equals("N")) {
+                                                item.setGender("N");
+                                            } else if (json.getString("PreferredGender").equals("M")) {
+                                                item.setGender("M");
+                                            } else if (json.getString("PreferredGender").equals("F")) {
+                                                item.setGender("F");
+                                            }
 
 
                                             item.setFromEmId(json.getInt("FromEmirateId"));
@@ -246,6 +277,12 @@ public class SavedSearch extends AppCompatActivity {
                                                     intent1.putExtra("To_EmirateEnName", driver[i].ToEm);
                                                     intent1.putExtra("To_RegionEnName", driver[i].ToReg);
                                                     intent1.putExtra("MapKey", "Driver");
+                                                    //  intent1.putExtra("AgeRange",Advanced_Search_Age_Range_ID);
+                                                    intent1.putExtra("Nationality_ID", driver[i].Nationality_ID);
+                                                    intent1.putExtra("Language_ID", driver[i].Language_ID);
+                                                    intent1.putExtra("Smokers", driver[i].IS_Smoking);
+                                                    intent1.putExtra("IsRounded", driver[i].Single_Periodic_ID);
+                                                    intent1.putExtra("Gender", driver[i].Gender);
                                                     startActivity(intent1);
 
 
