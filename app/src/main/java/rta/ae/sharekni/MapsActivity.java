@@ -493,6 +493,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             intent1.putExtra("To_EmirateEnName", To_EmirateEnName);
                             intent1.putExtra("To_RegionEnName", To_RegionEnName);
                             intent1.putExtra("MapKey", "Driver");
+                            intent1.putExtra("InviteType","MapLookUp");
                             startActivity(intent1);
 
 
@@ -584,6 +585,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             TextView NoOfRoutes_txt = (TextView) v.findViewById(R.id.NoOfRoutes);
                             TextView NoOfPassengers = (TextView) v.findViewById(R.id.NoOfPassengers);
                             TextView N0_Of_Drivers = (TextView) v.findViewById(R.id.N0_Of_Drivers);
+                            RelativeLayout ComingRideRelative = (RelativeLayout) v.findViewById(R.id.ComingRideRelative);
+                            ComingRideRelative.setVisibility(View.INVISIBLE);
 
                             String lat = String.valueOf(latLng.latitude).substring(0, 7);
                             String lon = String.valueOf(latLng.longitude).substring(0, 7);

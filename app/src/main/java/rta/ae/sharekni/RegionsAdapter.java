@@ -92,10 +92,10 @@ public class RegionsAdapter extends ArrayAdapter<RegionsDataModel> {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
 
-            if(constraint != null) {
+            if (constraint != null) {
                 suggestions.clear();
                 for (RegionsDataModel customer : itemsAll) {
-                    if(customer.RegionEnName.toLowerCase().contains(constraint.toString().toLowerCase())){
+                    if (customer.RegionEnName.toLowerCase().contains(constraint.toString().toLowerCase())) {
                         suggestions.add(customer);
                     }
                 }
@@ -111,16 +111,15 @@ public class RegionsAdapter extends ArrayAdapter<RegionsDataModel> {
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-
+// Throug an error Here ConcurrentModificationException
             ArrayList<RegionsDataModel> filteredList = (ArrayList<RegionsDataModel>) results.values;
-            if(results != null && results.count > 0) {
+            if (results != null && results.count > 0) {
                 clear();
                 for (RegionsDataModel c : filteredList) {
                     add(c);
                 }
                 notifyDataSetChanged();
             }
-
 
 
         }

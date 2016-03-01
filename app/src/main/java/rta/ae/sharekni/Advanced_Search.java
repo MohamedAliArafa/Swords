@@ -224,6 +224,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
             if (PickUpActivity.getInstance() != null) {
 
                 Intent intent = getIntent();
+
                 Bundle b = intent.getBundleExtra("options");
                 Log.d("bundle", String.valueOf(b));
                 From_Em_Id_2 = intent.getIntExtra("From_Em_Id", 0);
@@ -237,70 +238,70 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                 To_EmirateEnName_str = intent.getStringExtra("To_EmirateEnName");
                 To_RegionEnName_str = intent.getStringExtra("To_RegionEnName");
                 i2 = 1;
-                if (b != null) {
-                    savefind = b.getInt("savefind");
-                    if (savefind == 1) {
-                        save_off.setVisibility(View.INVISIBLE);
-                        save_on.setVisibility(View.VISIBLE);
-                        save_search_txt.setTextColor(Color.RED);
-                    }
-                    if (savefind == 0) {
-                        save_on.setVisibility(View.INVISIBLE);
-                        save_off.setVisibility(View.VISIBLE);
-                        save_search_txt.setTextColor(Color.GRAY);
-                    }
-                    IS_Smoking = b.getString("IS_Smoking");
-                    if (IS_Smoking != null && IS_Smoking.equals("1")) {
-                        Check_NotSmoking.setChecked(false);
-                        Check_Smoking.setChecked(true);
-                    } else if (IS_Smoking != null && IS_Smoking.equals("0")) {
-                        Check_NotSmoking.setChecked(true);
-                        Check_Smoking.setChecked(false);
-                    }
-                    if (b.getString("full_date") != null) {
-                        Advanced_txt_beforeCal.setVisibility(View.INVISIBLE);
-                        Advanced_txt_year.setText(b.getString("full_date"));
-                    }
-                    if (!b.getString("time").equals("")) {
-                        Advanced_before_Time.setVisibility(View.INVISIBLE);
-                        Advanced_txt_time_selected.setText(b.getString("time"));
-                    }
-                    Single_Periodic_ID = b.getInt("Single_Periodic_ID");
-                    if (Single_Periodic_ID == 1) {
-                        singleRide_Periodic.setVisibility(View.INVISIBLE);
-                        Periodic_SingleRide.setVisibility(View.VISIBLE);
-                        maleFemaleTxt2.setTextColor(Color.GRAY);
-                        FemaleMaleTxt2.setTextColor(Color.RED);
-                    } else if (Single_Periodic_ID == 0) {
-                        Periodic_SingleRide.setVisibility(View.INVISIBLE);
-                        singleRide_Periodic.setVisibility(View.VISIBLE);
-                        Single_Periodic_ID = 0;
-                        maleFemaleTxt2.setTextColor(Color.RED);
-                        FemaleMaleTxt2.setTextColor(Color.GRAY);
-                    }
-                    if (b.getString("advanced_search_Nat") != null) {
-                        advanced_search_Nat.setText(b.getString("advanced_search_Nat"));
-                        Nationality_ID = b.getInt("Nationality_ID");
-                    }
-                    if (b.getString("advanced_search_Preferred_Lang_txt") != null) {
-                        advanced_search_Preferred_Lang_txt.setText(b.getString("advanced_search_Preferred_Lang_txt"));
-                        Nationality_ID = b.getInt("Nationality_ID");
-                    }
-                    if (b.getString("advanced_search_Age_Range_txt") != null){
-                        advanced_search_Age_Range_txt.setText(b.getString("advanced_search_Age_Range_txt"));
-                    }
-                    i = b.getChar("Gender");
-                    if (i == 'N') {
-                        Check_Male.setChecked(false);
-                        Check_Female.setChecked(false);
-                    } else if (i == 'M') {
-                        Check_Male.setChecked(true);
-                        Check_Female.setChecked(false);
-                    } else if (i == 'F') {
-                        Check_Male.setChecked(false);
-                        Check_Female.setChecked(true);
-                    }
-                }
+//                if (b != null) {
+//                    savefind = b.getInt("savefind");
+//                    if (savefind == 1) {
+//                        save_off.setVisibility(View.INVISIBLE);
+//                        save_on.setVisibility(View.VISIBLE);
+//                        save_search_txt.setTextColor(Color.RED);
+//                    }
+//                    if (savefind == 0) {
+//                        save_on.setVisibility(View.INVISIBLE);
+//                        save_off.setVisibility(View.VISIBLE);
+//                        save_search_txt.setTextColor(Color.GRAY);
+//                    }
+//                    IS_Smoking = b.getString("IS_Smoking");
+//                    if (IS_Smoking != null && IS_Smoking.equals("1")) {
+//                        Check_NotSmoking.setChecked(false);
+//                        Check_Smoking.setChecked(true);
+//                    } else if (IS_Smoking != null && IS_Smoking.equals("0")) {
+//                        Check_NotSmoking.setChecked(true);
+//                        Check_Smoking.setChecked(false);
+//                    }
+//                    if (b.getString("full_date") != null) {
+//                        Advanced_txt_beforeCal.setVisibility(View.INVISIBLE);
+//                        Advanced_txt_year.setText(b.getString("full_date"));
+//                    }
+//                    if (!b.getString("time").equals("")) {
+//                        Advanced_before_Time.setVisibility(View.INVISIBLE);
+//                        Advanced_txt_time_selected.setText(b.getString("time"));
+//                    }
+//                    Single_Periodic_ID = b.getInt("Single_Periodic_ID");
+//                    if (Single_Periodic_ID == 1) {
+//                        singleRide_Periodic.setVisibility(View.INVISIBLE);
+//                        Periodic_SingleRide.setVisibility(View.VISIBLE);
+//                        maleFemaleTxt2.setTextColor(Color.GRAY);
+//                        FemaleMaleTxt2.setTextColor(Color.RED);
+//                    } else if (Single_Periodic_ID == 0) {
+//                        Periodic_SingleRide.setVisibility(View.INVISIBLE);
+//                        singleRide_Periodic.setVisibility(View.VISIBLE);
+//                        Single_Periodic_ID = 0;
+//                        maleFemaleTxt2.setTextColor(Color.RED);
+//                        FemaleMaleTxt2.setTextColor(Color.GRAY);
+//                    }
+//                    if (b.getString("advanced_search_Nat") != null) {
+//                        advanced_search_Nat.setText(b.getString("advanced_search_Nat"));
+//                        Nationality_ID = b.getInt("Nationality_ID");
+//                    }
+//                    if (b.getString("advanced_search_Preferred_Lang_txt") != null) {
+//                        advanced_search_Preferred_Lang_txt.setText(b.getString("advanced_search_Preferred_Lang_txt"));
+//                        Nationality_ID = b.getInt("Nationality_ID");
+//                    }
+//                    if (b.getString("advanced_search_Age_Range_txt") != null){
+//                        advanced_search_Age_Range_txt.setText(b.getString("advanced_search_Age_Range_txt"));
+//                    }
+//                    i = b.getChar("Gender");
+//                    if (i == 'N') {
+//                        Check_Male.setChecked(false);
+//                        Check_Female.setChecked(false);
+//                    } else if (i == 'M') {
+//                        Check_Male.setChecked(true);
+//                        Check_Female.setChecked(false);
+//                    } else if (i == 'F') {
+//                        Check_Male.setChecked(false);
+//                        Check_Female.setChecked(true);
+//                    }
+//                }
                 try {
 
                     if (From_EmirateEnName_str.equals("null") || From_EmirateEnName_str.equals("")) {
@@ -488,8 +489,9 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                     b.putString("advanced_search_Preferred_Lang_txt", advanced_search_Preferred_Lang_txt.getText().toString());
                     b.putInt("Nationality_ID",Nationality_ID);
                 }
-                if (advanced_search_Age_Range_txt.getText().toString().equals(getString(R.string.choose_age))) {
+                if (!advanced_search_Age_Range_txt.getText().toString().equals(getString(R.string.choose_age))) {
                     b.putString("advanced_search_Age_Range_txt", advanced_search_Age_Range_txt.getText().toString());
+                    b.putInt("Advanced_Search_Age_Range_ID",Advanced_Search_Age_Range_ID);
                 }
                 b.putChar("Gender", i);
 
@@ -686,6 +688,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                     intent1.putExtra("AgeRange",Advanced_Search_Age_Range_ID);
                     intent1.putExtra("Nationality_ID",Nationality_ID);
                     intent1.putExtra("Language_ID",Language_ID);
+                    intent1.putExtra("InviteType","");
 
                     networkCheck.cancel(true);
                     nat.cancel(true);

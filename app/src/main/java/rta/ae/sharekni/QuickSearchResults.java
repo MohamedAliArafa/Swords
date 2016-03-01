@@ -60,7 +60,7 @@ public class QuickSearchResults extends AppCompatActivity {
     String ID;
     String Smokers;
     int Single_Periodic_ID, Advanced_Search_Age_Range_ID, Nationality_ID, Language_ID;
-    String InviteType;
+    String InviteType = "";
 
 
     int SaveFind = 0;
@@ -71,6 +71,7 @@ public class QuickSearchResults extends AppCompatActivity {
     TextView to_txt_id, comma5;
     String Str_To_EmirateEnName_txt, Str_To_RegionEnName_txt;
     Activity acivity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,15 +110,12 @@ public class QuickSearchResults extends AppCompatActivity {
         Language_ID = intent.getIntExtra("Language_ID", 0);
         RouteID = intent.getIntExtra("RouteID", 0);
 
-        Log.d("IS Rounded", String.valueOf(Single_Periodic_ID));
-        Log.d("Invite Type",InviteType);
 
         if (Nationality_ID == 0) {
             Nat_ID = "";
         } else {
             Nat_ID = String.valueOf(Nationality_ID);
         }
-
 
 
         Log.d("save find one :", String.valueOf(SaveFind));
@@ -467,11 +465,15 @@ public class QuickSearchResults extends AppCompatActivity {
                 Toast.makeText(QuickSearchResults.this, R.string.no_routes_available, Toast.LENGTH_SHORT).show();
 
             } else {
+
                 String days = "";
                 final List<QuickSearchDataModel> searchArray = new ArrayList<>();
-                QuickSearchResultAdapter adapter;
-                adapter = new QuickSearchResultAdapter(QuickSearchResults.this, searchArray);
+                QuickSearchResultAdapterPassnger adapter;
+                Log.d("Array Length", String.valueOf(searchArray.size()));
+                adapter = new QuickSearchResultAdapterPassnger(QuickSearchResults.this, searchArray);
                 lvResult.setAdapter(adapter);
+
+
                 try {
                     JSONObject json;
                     for (int i = 0; i < jArray.length(); i++) {
@@ -504,29 +506,31 @@ public class QuickSearchResults extends AppCompatActivity {
 
                             Log.d("test account email", json.getString("DriverName"));
                             item.setAccountName(json.getString("DriverName"));
-                            item.setDriverId(json.getInt("AccountId"));
+                            item.setPassenger_ID(json.getInt("AccountId"));
+                            Log.d("PAssenger iD in Array:", String.valueOf(item.getPassenger_ID()));
                             item.setAccountPhoto(json.getString("DriverPhoto"));
                             if (!json.getString("DriverPhoto").equals("NoImage.png")) {
                                 GetData gd = new GetData();
                                 item.setDriverPhoto(gd.GetImage(json.getString("DriverPhoto")));
                             }
                             item.setDriverEnName(json.getString("DriverName"));
-//                    item.setFrom_EmirateName_en(json.getString("From_EmirateName_en"));
-//                    item.setFrom_RegionName_en(json.getString("From_RegionName_en"));
-//                    item.setTo_EmirateName_en(json.getString("To_EmirateName_en"));
-//                    item.setTo_RegionName_en(json.getString("To_RegionName_en"));
                             item.setAccountMobile(json.getString("DriverMobile"));
                             //  item.setSDG_Route_Start_FromTime(json.getString("SDG_Route_Start_FromTime"));
                             item.setSDG_Route_Start_FromTime("");
                             item.setNationality_en(json.getString(getString(R.string.nat_name)));
                             item.setRating(json.getString("Rating"));
-//                            item.setLastSeen(json.getString("LastSeen"));
                             item.setLastSeen("0");
 
+                            if (!json.getString("DriverName").equals("null")) {
 
-                            days = "";
+                                searchArray.add(item);
 
-                            searchArray.add(item);
+
+                            }else {
+                                item.clear();
+                            }
+
+
 //                            lvResult.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //                                @Override
 //                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -548,9 +552,13 @@ public class QuickSearchResults extends AppCompatActivity {
                         }
                     }
 
+
+
                 } catch (NullPointerException e) {
                     e.printStackTrace();
                 }
+
+
             }
 
 

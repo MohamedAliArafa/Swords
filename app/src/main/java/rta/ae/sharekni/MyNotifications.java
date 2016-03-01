@@ -10,13 +10,11 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import rta.ae.sharekni.Arafa.Classes.GetData;
-
-import rta.ae.sharekni.R;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import rta.ae.sharekni.Arafa.Classes.GetData;
 
 /**
  * Created by Nezar Saleh on 10/19/2015.
@@ -111,6 +109,27 @@ public class MyNotifications extends Service {
                 Notification.Builder builder = new Notification.Builder(this);
                 builder.setContentTitle(getString(R.string.route) + j.getString("RouteName"));
                 builder.setContentText(j.getString("DriverName") + getString(R.string.accept_your_request));
+                builder.setSmallIcon(R.drawable.notificationlogo);
+                builder.setContentIntent(pendingIntent);
+                Notification notification = builder.build();
+                NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                manager.notify(y, notification);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        try {
+            JSONArray jsonArray = gd.Passenger_AlertsForInvitation(Integer.parseInt(ID));
+            for (int i = 0;i< jsonArray.length();i++){
+                JSONObject j = jsonArray.getJSONObject(i);
+                Intent intent = new Intent(this, DriverAlertsForRequest.class);
+                PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+                Notification.Builder builder = new Notification.Builder(this);
+                builder.setContentTitle(getString(R.string.route) + j.getString("RouteName"));
+                builder.setContentText(j.getString("DriverName") + getString(R.string.Sent_Invite));
                 builder.setSmallIcon(R.drawable.notificationlogo);
                 builder.setContentIntent(pendingIntent);
                 Notification notification = builder.build();

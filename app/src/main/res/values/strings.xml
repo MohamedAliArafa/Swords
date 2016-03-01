@@ -202,6 +202,7 @@
     <string name="i_like_join_ride">I\'d like to join your Ride</string>
     <string name="already_sent_request">You already sent request</string>
     <string name="req_sent_succ">Request had been sent Successfully , Wait for driver Approval.</string>
+    <string name="req_sent_succ2">Request had been sent Successfully , Wait for Passenger Approval.</string>
     <string name="acc_nat_name">AccountNationalityEn</string>
     <string name="from_reg_en_name">FromRegionEnName</string>
     <string name="to_reg_en_name">ToRegionEnName</string>
@@ -315,6 +316,7 @@
     <string name="No_History">No History Found</string>
     <string name="No_Saved_Search">No Saved Search</string>
     <string name="driver_nat_en_name">DriverNationalityEnName</string>
+    <string name="nat_rn_name">NationalityEnName</string>
     <string name="Register_vehicle_update">Details Updated</string>
     <string name="Account_Approved_rides_Details">Details</string>
     <string name="Account_Approved_rides_Driver">Driver</string>
@@ -401,6 +403,8 @@
     <string name="saveSearch_Error">To save the search you must choose start point and also a distention</string>
     <string name="invite_">Invite</string>
     <string name="matched_search_results">Matched Search Results</string>
+    <string name="Sent_Invite">Has Sent you an Invitation</string>
+    <string name="_18_years">+18 years</string>
 
 
 </resources>

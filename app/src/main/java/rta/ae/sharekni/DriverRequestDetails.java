@@ -35,15 +35,15 @@ public class DriverRequestDetails extends AppCompatActivity {
 
     List<DriverAlertsForRequestDataModel> arr = new ArrayList<>();
     private Toolbar toolbar;
-    String PassengerName;
+    String PassengerName, InviteState;
     String RouteName, NationalityEnName, PassengerMobile, Remarks, RequestDate;
     Bitmap AccountPhoto;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     int RequestId;
-    String URL =GetData.PhotoURL;
+    String URL = GetData.PhotoURL;
     TextView RouteName_txt, NationalityEnName_txt, AccountPhoto_txt, PassengerMobile_txt, Remarks_txt, RequestDate_txt, PassengerName_txt;
 
-    Button Alert_Decline,Alert_Accept;
+    Button Alert_Decline, Alert_Accept;
 
 
     @Override
@@ -55,14 +55,15 @@ public class DriverRequestDetails extends AppCompatActivity {
         PassengerName = intent.getStringExtra("PassengerName");
         RouteName = intent.getStringExtra("RouteName");
         NationalityEnName = intent.getStringExtra("NationalityEnName");
-      //  AccountPhoto = intent.getParcelableExtra("AccountPhoto");
+        //  AccountPhoto = intent.getParcelableExtra("AccountPhoto");
         PassengerMobile = intent.getStringExtra("PassengerMobile");
         Remarks = intent.getStringExtra("Remarks");
         RequestDate = intent.getStringExtra("RequestDate");
         RequestId = intent.getIntExtra("RequestId", 0);
-
+        InviteState = intent.getStringExtra("InviteState");
         Log.d("RouteName", RouteName);
         Log.d("PassengerName", PassengerName);
+        Log.d("Invite Status " , InviteState);
 
 
         RouteName_txt = (TextView) findViewById(R.id.RouteName);
@@ -71,8 +72,8 @@ public class DriverRequestDetails extends AppCompatActivity {
         PassengerMobile_txt = (TextView) findViewById(R.id.PassengerMobile);
         Remarks_txt = (TextView) findViewById(R.id.Remarks);
         RequestDate_txt = (TextView) findViewById(R.id.RequestDate);
-        Alert_Decline= (Button) findViewById(R.id.Alert_Decline);
-        Alert_Accept= (Button) findViewById(R.id.Alert_Accept);
+        Alert_Decline = (Button) findViewById(R.id.Alert_Decline);
+        Alert_Accept = (Button) findViewById(R.id.Alert_Accept);
 
 
         RouteName_txt.setText(RouteName);
@@ -85,18 +86,22 @@ public class DriverRequestDetails extends AppCompatActivity {
         if (imageLoader == null) imageLoader = AppController.getInstance().getImageLoader();
         CircularImageView Photo = (CircularImageView) findViewById(R.id.AccountPhoto);
 
-        if (AccountPhoto != null){
+        if (AccountPhoto != null) {
             Photo.setImageBitmap(AccountPhoto);
-        }else {
+        } else {
             Photo.setImageResource(R.drawable.defaultdriver);
         }
-
 
 
         Alert_Accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new accept().execute();
+                if (InviteState.equals("DriverToPassenger")) {
+
+                    new accept2().execute();
+                } else {
+                    new accept().execute();
+                }
             }
         });
 
@@ -104,14 +109,22 @@ public class DriverRequestDetails extends AppCompatActivity {
         Alert_Decline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new decline().execute();
+
+                if (InviteState.equals("DriverToPassenger")) {
+
+                    new decline2().execute();
+                } else {
+                    new decline().execute();
+                }
+
+
             }
         });
 
     }
 
 
-    private class decline extends AsyncTask{
+    private class decline extends AsyncTask {
 
         @Override
         protected Object doInBackground(Object[] params) {
@@ -133,13 +146,13 @@ public class DriverRequestDetails extends AppCompatActivity {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                         Intent mainIntent = getIntent();
-                                        mainIntent.putExtra("PassengerName",PassengerName);
-                                        mainIntent.putExtra("RouteName",RouteName);
-                                        mainIntent.putExtra("NationalityEnName",NationalityEnName);
-                                      //  mainIntent.putExtra("AccountPhoto",AccountPhoto);
-                                        mainIntent.putExtra("PassengerMobile",PassengerMobile);
-                                        mainIntent.putExtra("Remarks",Remarks);
-                                        mainIntent.putExtra("RequestDate",RequestDate);
+                                        mainIntent.putExtra("PassengerName", PassengerName);
+                                        mainIntent.putExtra("RouteName", RouteName);
+                                        mainIntent.putExtra("NationalityEnName", NationalityEnName);
+                                        //  mainIntent.putExtra("AccountPhoto",AccountPhoto);
+                                        mainIntent.putExtra("PassengerMobile", PassengerMobile);
+                                        mainIntent.putExtra("Remarks", Remarks);
+                                        mainIntent.putExtra("RequestDate", RequestDate);
                                         mainIntent.putExtra("RequestId", RequestId);
                                         startActivity(mainIntent);
                                     }
@@ -157,8 +170,8 @@ public class DriverRequestDetails extends AppCompatActivity {
                 GetData j = new GetData();
                 try {
                     String n = j.DriverAcceptPassenger(RequestId, 0);
-                    if (n.equals("1")){
-                        Intent in = new Intent(DriverRequestDetails.this,DriverAlertsForRequest.class);
+                    if (n.equals("1")) {
+                        Intent in = new Intent(DriverRequestDetails.this, DriverAlertsForRequest.class);
                         in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(in);
                     }
@@ -171,7 +184,7 @@ public class DriverRequestDetails extends AppCompatActivity {
         }
     }
 
-    private class accept extends AsyncTask{
+    private class accept extends AsyncTask {
 
         @Override
         protected Object doInBackground(Object[] params) {
@@ -193,13 +206,13 @@ public class DriverRequestDetails extends AppCompatActivity {
                                     public void onClick(DialogInterface dialog, int which) {
                                         finish();
                                         Intent mainIntent = getIntent();
-                                        mainIntent.putExtra("PassengerName",PassengerName);
-                                        mainIntent.putExtra("RouteName",RouteName);
-                                        mainIntent.putExtra("NationalityEnName",NationalityEnName);
-                                      //  mainIntent.putExtra("AccountPhoto",AccountPhoto);
-                                        mainIntent.putExtra("PassengerMobile",PassengerMobile);
-                                        mainIntent.putExtra("Remarks",Remarks);
-                                        mainIntent.putExtra("RequestDate",RequestDate);
+                                        mainIntent.putExtra("PassengerName", PassengerName);
+                                        mainIntent.putExtra("RouteName", RouteName);
+                                        mainIntent.putExtra("NationalityEnName", NationalityEnName);
+                                        //  mainIntent.putExtra("AccountPhoto",AccountPhoto);
+                                        mainIntent.putExtra("PassengerMobile", PassengerMobile);
+                                        mainIntent.putExtra("Remarks", Remarks);
+                                        mainIntent.putExtra("RequestDate", RequestDate);
                                         mainIntent.putExtra("RequestId", RequestId);
                                         startActivity(mainIntent);
                                     }
@@ -217,8 +230,8 @@ public class DriverRequestDetails extends AppCompatActivity {
                 GetData j = new GetData();
                 try {
                     String n = j.DriverAcceptPassenger(RequestId, 1);
-                    if (n.equals("1")){
-                        Intent in = new Intent(DriverRequestDetails.this,DriverAlertsForRequest.class);
+                    if (n.equals("1")) {
+                        Intent in = new Intent(DriverRequestDetails.this, DriverAlertsForRequest.class);
                         in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(in);
                     }
@@ -231,6 +244,135 @@ public class DriverRequestDetails extends AppCompatActivity {
             return null;
         }
     }
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+    private class decline2 extends AsyncTask {
+
+        @Override
+        protected Object doInBackground(Object[] params) {
+            boolean exists = false;
+            try {
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                Socket sock = new Socket();
+                int timeoutMs = 20000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                exists = true;
+            } catch (final Exception e) {
+                e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new AlertDialog.Builder(DriverRequestDetails.this)
+                                .setTitle(getString(R.string.connection_problem))
+                                .setMessage(getString(R.string.con_problem_message))
+                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                        Intent mainIntent = getIntent();
+                                        mainIntent.putExtra("PassengerName", PassengerName);
+                                        mainIntent.putExtra("RouteName", RouteName);
+                                        mainIntent.putExtra("NationalityEnName", NationalityEnName);
+                                        //  mainIntent.putExtra("AccountPhoto",AccountPhoto);
+                                        mainIntent.putExtra("PassengerMobile", PassengerMobile);
+                                        mainIntent.putExtra("Remarks", Remarks);
+                                        mainIntent.putExtra("RequestDate", RequestDate);
+                                        mainIntent.putExtra("RequestId", RequestId);
+                                        startActivity(mainIntent);
+                                    }
+                                })
+                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                        Toast.makeText(DriverRequestDetails.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            if (exists) {
+                GetData j = new GetData();
+                try {
+                    String n = j.Passenger_AcceptInvitation(RequestId, 0);
+                    if (n.equals("1")) {
+                        Intent in = new Intent(DriverRequestDetails.this, DriverAlertsForRequest.class);
+                        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(in);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            finish();
+            return null;
+        }
+    }
+
+    private class accept2 extends AsyncTask {
+
+        @Override
+        protected Object doInBackground(Object[] params) {
+            boolean exists = false;
+            try {
+                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
+                Socket sock = new Socket();
+                int timeoutMs = 20000;   // 2 seconds
+                sock.connect(sockaddr, timeoutMs);
+                exists = true;
+            } catch (final Exception e) {
+                e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        new AlertDialog.Builder(DriverRequestDetails.this)
+                                .setTitle(getString(R.string.connection_problem))
+                                .setMessage(getString(R.string.con_problem_message))
+                                .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                        Intent mainIntent = getIntent();
+                                        mainIntent.putExtra("PassengerName", PassengerName);
+                                        mainIntent.putExtra("RouteName", RouteName);
+                                        mainIntent.putExtra("NationalityEnName", NationalityEnName);
+                                        //  mainIntent.putExtra("AccountPhoto",AccountPhoto);
+                                        mainIntent.putExtra("PassengerMobile", PassengerMobile);
+                                        mainIntent.putExtra("Remarks", Remarks);
+                                        mainIntent.putExtra("RequestDate", RequestDate);
+                                        mainIntent.putExtra("RequestId", RequestId);
+                                        startActivity(mainIntent);
+                                    }
+                                })
+                                .setNegativeButton(getString(R.string.goBack), new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        finish();
+                                    }
+                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                        Toast.makeText(DriverRequestDetails.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            if (exists) {
+                GetData j = new GetData();
+                try {
+                    String n = j.Passenger_AcceptInvitation(RequestId, 1);
+                    if (n.equals("1")) {
+                        Intent in = new Intent(DriverRequestDetails.this, DriverAlertsForRequest.class);
+                        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(in);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            finish();
+            return null;
+        }
+    }
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 

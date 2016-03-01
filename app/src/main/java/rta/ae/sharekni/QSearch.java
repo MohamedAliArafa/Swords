@@ -37,7 +37,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Objects;
 import java.util.TreeMap;
 
 import rta.ae.sharekni.Arafa.Activities.BestRideBeforeLogin;
@@ -159,29 +158,30 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
                 From_Reg_Id_2 = intent.getIntExtra("From_Reg_Id", 0);
                 To_Em_Id_2 = intent.getIntExtra("To_Em_Id", 0);
                 To_Reg_Id_2 = intent.getIntExtra("To_Reg_Id", 0);
-                Bundle b = intent.getBundleExtra("options");
-
-                savefind = b.getInt("savefind");
-                if (savefind == 1){
-                    save_off.setVisibility(View.INVISIBLE);
-                    save_on.setVisibility(View.VISIBLE);
-                    save_search_txt.setTextColor(Color.RED);
-                }
-                if (savefind == 0) {
-                    save_on.setVisibility(View.INVISIBLE);
-                    save_off.setVisibility(View.VISIBLE);
-                    save_search_txt.setTextColor(Color.GRAY);
-                }
-                if (!b.getString("time").equals("")){
-                    txt_time_selected.setText(b.getString("time"));
-                    before_Time.setVisibility(View.INVISIBLE);
-                }
-                IS_Smoking = b.getString("IS_Smoking");
-                full_date = b.getString("full_date");
-                if (full_date != null){
-                    txt_beforeCal.setVisibility(View.INVISIBLE);
-                    txt_year.setText(full_date);
-                }
+//                Bundle b = intent.getBundleExtra("options");
+//
+//                savefind = b.getInt("savefind");
+//                if (savefind == 1){
+//                    save_off.setVisibility(View.INVISIBLE);
+//                    save_on.setVisibility(View.VISIBLE);
+//                    save_search_txt.setTextColor(Color.RED);
+//                }
+//                if (savefind == 0) {
+//                    save_on.setVisibility(View.INVISIBLE);
+//                    save_off.setVisibility(View.VISIBLE);
+//                    save_search_txt.setTextColor(Color.GRAY);
+//                }
+//                if (!b.getString("time").equals("")){
+//                    txt_time_select
+// ed.setText(b.getString("time"));
+//                    before_Time.setVisibility(View.INVISIBLE);
+//                }
+//                IS_Smoking = b.getString("IS_Smoking");
+//                full_date = b.getString("full_date");
+//                if (full_date != null){
+//                    txt_beforeCal.setVisibility(View.INVISIBLE);
+//                    txt_year.setText(full_date);
+//                }
 
                 txt_PickUp = "";
                 From_EmirateEnName_str = intent.getStringExtra("From_EmirateEnName");
@@ -430,6 +430,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
                     intent1.putExtra("SaveFind", savefind);
                     intent1.putExtra("Smokers",IS_Smoking);
                     intent1.putExtra("MapKey","Driver");
+                    intent1.putExtra("InviteType","");
                     Log.d("Test", From_EmirateEnName + From_RegionEnName + To_EmirateEnName + To_RegionEnName);
                     startActivity(intent1);
                     i = 1;

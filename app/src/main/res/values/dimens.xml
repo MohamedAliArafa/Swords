@@ -33,8 +33,8 @@
     <dimen name="statusBarElevation">20dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 
-    <dimen name="Register_UserType_Image_Height">70dp</dimen>
-    <dimen name="Register_UserTypre_Image_Width">70dp</dimen>
+    <dimen name="Register_UserType_Image_Height">60dp</dimen>
+    <dimen name="Register_UserTypre_Image_Width">60dp</dimen>
     <dimen name="Register_Input_Fields_Height">40dp</dimen>
     <dimen name="Register_InputField_textSize">15sp</dimen>
 

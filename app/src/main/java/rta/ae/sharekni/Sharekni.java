@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Parcel;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -22,7 +21,6 @@ import com.mobileapptracker.MobileAppTracker;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -36,17 +34,17 @@ import java.net.URLEncoder;
 
 import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
-import rta.ae.sharekni.Arafa.DataModel.BestDriverDataModel;
 import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
 
 public class Sharekni extends Activity {
-    static Sharekni TestVedio;
+    static Sharekni SharekniActivity;
     protected static ProgressDialog pDialog;
     String url = GetData.DOMAIN +"CheckLogin?";
     String user,pass;
 
+
     public static Sharekni getInstance() {
-        return TestVedio;
+        return SharekniActivity;
     }
 
     public static MobileAppTracker mobileAppTracker = null;
@@ -56,8 +54,8 @@ public class Sharekni extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vediotest);
-        TestVedio = this;
+        setContentView(R.layout.splash_screens);
+        SharekniActivity = this;
         Splash_background = (ImageView) findViewById(R.id.Splash_background);
         SharedPreferences myPrefs = getSharedPreferences("myPrefs", MODE_PRIVATE);
         String ID = myPrefs.getString("account_id", null);
@@ -70,6 +68,7 @@ public class Sharekni extends Activity {
             new loginProcces().execute();
         }
         new backThread().execute();
+
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

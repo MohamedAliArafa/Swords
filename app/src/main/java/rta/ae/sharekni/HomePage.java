@@ -558,6 +558,30 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+
+
+        try {
+            JSONArray jsonArray = gd.Passenger_AlertsForInvitation(Integer.parseInt(ID));
+            for (int i = 0;i< jsonArray.length();i++){
+                JSONObject j = jsonArray.getJSONObject(i);
+                Intent intent = new Intent(this, DriverAlertsForRequest.class);
+                PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+                Notification.Builder builder = new Notification.Builder(this);
+                builder.setContentTitle(getString(R.string.route) + j.getString("RouteName"));
+                builder.setContentText(j.getString("DriverName") + getString(R.string.Sent_Invite));
+                builder.setSmallIcon(R.drawable.notificationlogo);
+                builder.setContentIntent(pendingIntent);
+                Notification notification = builder.build();
+                NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                manager.notify(y, notification);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     @Override

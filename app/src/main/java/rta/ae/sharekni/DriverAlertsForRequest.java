@@ -109,7 +109,7 @@ public class DriverAlertsForRequest extends AppCompatActivity {
 //                    in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                    con.startActivity(in);
 
-                    if (arr.get(i).getDriverAccept() == null) {
+                    if (arr.get(i).getDriverAccept().equals("DriverToPassenger") ){
                         Intent in = new Intent(con, DriverRequestDetails.class);
                         in.putExtra("PassengerName", arr.get(i).getPassengerName());
                         in.putExtra("RouteName", arr.get(i).getRouteName());
@@ -119,9 +119,23 @@ public class DriverAlertsForRequest extends AppCompatActivity {
                         in.putExtra("Remarks", arr.get(i).getRemarks());
                         in.putExtra("RequestId", arr.get(i).getRequestId());
                         in.putExtra("RequestDate", arr.get(i).getRequestDate());
+                        in.putExtra("InviteState","DriverToPassenger");
                         jsoning.cancel(true);
                         con.startActivity(in);
-                    }else if (arr.get(i).getDriverAccept().equals("null")){
+                    } else if (arr.get(i).getDriverAccept().equals("PassengerToDriver") ){
+                        Intent in = new Intent(con, DriverRequestDetails.class);
+                        in.putExtra("PassengerName", arr.get(i).getPassengerName());
+                        in.putExtra("RouteName", arr.get(i).getRouteName());
+                        in.putExtra("NationalityEnName", arr.get(i).getNationalityEnName());
+                        //in.putExtra("AccountPhoto", arr.get(i).getPhoto());
+                        in.putExtra("PassengerMobile", arr.get(i).getPassengerMobile());
+                        in.putExtra("Remarks", arr.get(i).getRemarks());
+                        in.putExtra("RequestId", arr.get(i).getRequestId());
+                        in.putExtra("RequestDate", arr.get(i).getRequestDate());
+                        in.putExtra("InviteState","PassengerToDriver");
+                        jsoning.cancel(true);
+                        con.startActivity(in);
+                    }else if (arr.get(i).getDriverAccept().equals("null")  ){
 
                         Intent in = new Intent(con, PendingRequestDetails.class);
                         in.putExtra("PassengerName", arr.get(i).getPassengerName());
@@ -229,6 +243,7 @@ public class DriverAlertsForRequest extends AppCompatActivity {
                         Alert.setRemarks(obj.getString("Remarks"));
                         Alert.setRequestId(obj.getInt("RequestId"));
                         Alert.setRequestDate(obj.getString("RequestDate"));
+                        Alert.setDriverAccept("PassengerToDriver");
                         if (!obj.getString("AccountPhoto").equals("NoImage.png")) {
                             GetData gd = new GetData();
                             Alert.setPhoto(gd.GetImage(obj.getString("AccountPhoto")));
@@ -300,6 +315,40 @@ public class DriverAlertsForRequest extends AppCompatActivity {
                     }
                     //hidePDialog();
                 }
+
+
+                try {
+                    response = new GetData().Passenger_AlertsForInvitation(Driver_Id);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        obj = response.getJSONObject(i);
+                        final DriverAlertsForRequestDataModel Alert = new DriverAlertsForRequestDataModel(Parcel.obtain());
+                        Alert.setPassengerName(obj.getString("DriverName"));
+                        Alert.setNationalityEnName(obj.getString(getString(R.string.nat_rn_name)));
+                        Alert.setAccountPhoto(obj.getString("AccountPhoto"));
+                        Alert.setRouteName(obj.getString("RouteName"));
+                        Alert.setPassengerMobile(obj.getString("PassengerMobile"));
+                        Alert.setRemarks(obj.getString("Remarks"));
+                        Alert.setRequestId(obj.getInt("RequestId"));
+                        Alert.setRequestDate(obj.getString("RequestDate"));
+                        Alert.setDriverAccept("DriverToPassenger");
+                        if (!obj.getString("AccountPhoto").equals("NoImage.png")) {
+                            GetData gd = new GetData();
+                            Alert.setPhoto(gd.GetImage(obj.getString("AccountPhoto")));
+                        }
+                        //driver.setRating(obj.getInt("Rating")
+                        arr.add(Alert);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    //hidePDialog();
+                }
+
+
+
             }
 
             return null;

@@ -110,20 +110,5 @@ public class OnboardingFragment2 extends Fragment {
         });
 
 
-// im_register.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent =  new Intent(getActivity(), RegisterNewTest.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        im_login.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent =  new Intent(getActivity(), LoginApproved.class);
-//                startActivity(intent);
-//            }
-//        });
     }
 }

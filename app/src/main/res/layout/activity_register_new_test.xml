@@ -16,7 +16,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="70dp"
             android:layout_marginTop="10dp">
 
 
@@ -92,10 +92,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="3dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -105,8 +105,8 @@
                 android:background="@drawable/user_register_border"
                 android:orientation="horizontal"
                 android:layout_weight="1"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
                 >
 
 
@@ -141,8 +141,8 @@
                 android:layout_height="@dimen/Register_Input_Fields_Height"
                 android:background="@drawable/user_register_border"
                 android:layout_weight="1"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
                 >
 
 
@@ -180,7 +180,7 @@
             android:id="@+id/MobileNumber_Linear"
             android:layout_width="match_parent"
             android:layout_height="@dimen/Register_Input_Fields_Height"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="5dp"
@@ -223,7 +223,7 @@
             android:id="@+id/UserName_Linear"
             android:layout_width="match_parent"
             android:layout_height="@dimen/Register_Input_Fields_Height"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="5dp"
@@ -255,7 +255,7 @@
             android:id="@+id/Password_Linear"
             android:layout_width="match_parent"
             android:layout_height="@dimen/Register_Input_Fields_Height"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="5dp"
@@ -317,15 +317,27 @@
 
         <!--</LinearLayout>-->
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
         <LinearLayout
             android:id="@+id/Language_Linear"
             android:layout_width="match_parent"
             android:layout_height="@dimen/Register_Input_Fields_Height"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_marginTop="5dp"
+            android:layout_weight="1"
             android:background="@drawable/user_register_border">
+
 
             <TextView
                 android:id="@+id/autocomplete_lang_id"
@@ -343,7 +355,7 @@
                 android:singleLine="true"
                 android:textColor="@color/primaryColor"
                 android:textColorHint="@color/primaryColor"
-                android:textSize="@dimen/Register_InputField_textSize" />
+                android:textSize="14sp" />
 
 
         </LinearLayout>
@@ -353,10 +365,12 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/Register_Input_Fields_Height"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/user_register_border">
+            android:background="@drawable/user_register_border"
+            android:layout_weight="1"
+            >
 
             <CheckBox
                 android:id="@+id/AgeCheckBox"
@@ -378,7 +392,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_toEndOf="@id/AgeCheckBox"
                 android:layout_toRightOf="@id/AgeCheckBox"
-                android:text="i'm over 18 years old."
+                android:text="+18 years"
                 android:textColor="@color/primaryColor"
                 android:textSize="15sp" />
 
@@ -456,10 +470,15 @@
         </RelativeLayout>
 
 
+
+    </LinearLayout>
+
+
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/Register_Input_Fields_Height"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="5dp"
@@ -518,8 +537,8 @@
         <Button
             android:id="@+id/btnUploadPhotoReg"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginBottom="10dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="5dp"
@@ -531,7 +550,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
@@ -583,8 +602,8 @@
 
             <Button
                 android:id="@+id/btn_register_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
                 android:layout_below="@+id/terms_relative"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"

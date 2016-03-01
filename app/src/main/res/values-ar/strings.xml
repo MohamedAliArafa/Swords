@@ -200,6 +200,7 @@
     <string name="i_like_join_ride">  طلب الانضمام  الى رحلتك</string>
     <string name="already_sent_request">لقد أرسلت طلب بالفعل</string>
     <string name="req_sent_succ">تم إرسال الطلب بنجاح و انتظر موافقة السائق</string>
+    <string name="req_sent_succ2">تم إرسال الطلب بنجاح و انتظر موافقة الراكب</string>
     <string name="acc_nat_name">AccountNationalityAr</string>
     <string name="from_reg_en_name">FromRegionArName</string>
     <string name="from_em_en_name">FromEmirateArName</string>
@@ -403,5 +404,9 @@
     <string name="saveSearch_Error">من أجل حفظ البحث يجب تحديد نقطة الإنطلاق و الوجهه أيضا</string>
     <string name="invite_">دعوه</string>
     <string name="matched_search_results">نتائج البحث المطابقه</string>
+    <string name="Sent_Invite">أرسل لك دعوه</string>
+    <string name="nat_rn_name">NationalityArName</string>
+    <string name="_18_years">+18 سنه</string>
+
 
 </resources>

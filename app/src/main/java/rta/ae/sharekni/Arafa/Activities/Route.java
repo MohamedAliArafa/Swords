@@ -178,6 +178,9 @@ public class Route extends AppCompatActivity {
         Log.d("test Passenger id", String.valueOf(Passenger_ID));
         Log.d("test Route id", String.valueOf(Route_ID));
 
+        Relative_REviews.setVisibility(View.INVISIBLE);
+        Relative_REviews_Address.setVisibility(View.INVISIBLE);
+
 
         loadingBasicInfo.execute();
 
@@ -528,10 +531,6 @@ public class Route extends AppCompatActivity {
 
             } else {
 
-                Relative_REviews.setVisibility(View.VISIBLE);
-                Relative_REviews_Address.setVisibility(View.VISIBLE);
-
-
                 for (int i = 0; i < response1.length(); i++) {
                     try {
                         JSONObject obj = response1.getJSONObject(i);
@@ -553,6 +552,8 @@ public class Route extends AppCompatActivity {
 
                         if (!review.getReview().equals("") && !review.getReview().equals("null")) {
                             driverGetReviewDataModels_arr.add(review);
+                            Relative_REviews.setVisibility(View.VISIBLE);
+                            Relative_REviews_Address.setVisibility(View.VISIBLE);
                         }
 
 

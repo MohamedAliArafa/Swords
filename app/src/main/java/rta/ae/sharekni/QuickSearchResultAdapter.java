@@ -71,8 +71,6 @@ public class QuickSearchResultAdapter extends BaseAdapter {
 
     List<TreeMap<String, String>> arr_2 = new ArrayList<>();
 
-    jsoning jsoning;
-
     public QuickSearchResultAdapter(Activity activity, List<QuickSearchDataModel> searchItems) {
         this.activity = activity;
         this.searchItems = searchItems;
@@ -100,195 +98,92 @@ public class QuickSearchResultAdapter extends BaseAdapter {
         final QuickSearchDataModel item = searchItems.get(position);
 
 
-        if (item.getMapKey().equals("Passenger")) {
-
-            if (inflater == null)
-                inflater = (LayoutInflater) activity
-                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            if (convertView == null)
-                convertView = inflater.inflate(R.layout.passenger_list_search, null);
+        if (inflater == null)
+            inflater = (LayoutInflater) activity
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        if (convertView == null)
+            convertView = inflater.inflate(R.layout.quick_search_list_item_2, null);
 
 
-            if (imageLoader == null) imageLoader = AppController.getInstance().getImageLoader();
+        if (imageLoader == null) imageLoader = AppController.getInstance().getImageLoader();
 
-            CircularImageView Photo = (CircularImageView) convertView.findViewById(R.id.search_list_photo);
-            //   TextView SDG_Route_Start_FromTime = (TextView) convertView.findViewById(R.id.SDG_Route_Start_FromTime);
-            TextView DriverEnName = (TextView) convertView.findViewById(R.id.DriverEnName);
-            TextView Nationality_en = (TextView) convertView.findViewById(R.id.Nationality_en);
-            // TextView SDG_RouteDays = (TextView) convertView.findViewById(R.id.search_results_days);
-            TextView Best_Drivers_Item_rate = (TextView) convertView.findViewById(R.id.Best_Drivers_Item_rate);
-            TextView LastSeenTvValue = (TextView) convertView.findViewById(R.id.LastSeenTvValue);
-            TextView LastSeenText = (TextView) convertView.findViewById(R.id.LastSeenText);
-            final Button PassengerSendInvite = (Button) convertView.findViewById(R.id.PassengerSendInvite);
+        CircularImageView Photo = (CircularImageView) convertView.findViewById(R.id.search_list_photo);
+        TextView SDG_Route_Start_FromTime = (TextView) convertView.findViewById(R.id.SDG_Route_Start_FromTime);
+        TextView DriverEnName = (TextView) convertView.findViewById(R.id.DriverEnName);
+        TextView Nationality_en = (TextView) convertView.findViewById(R.id.Nationality_en);
+        TextView SDG_RouteDays = (TextView) convertView.findViewById(R.id.search_results_days);
+        TextView Best_Drivers_Item_rate = (TextView) convertView.findViewById(R.id.Best_Drivers_Item_rate);
+        TextView LastSeenTvValue = (TextView) convertView.findViewById(R.id.LastSeenTvValue);
+        Button PassengerSendInvite = (Button) convertView.findViewById(R.id.PassengerSendInvite);
+        TextView LastSeenText = (TextView) convertView.findViewById(R.id.LastSeenText);
 
 
 //        Photo.sectImageUrl(URL + item.getAccountPhoto(), imageLoader);
 
 
-            if (item.getInviteType().equals("MapLookUp")) {
-                PassengerSendInvite.setVisibility(View.INVISIBLE);
-            } else if (item.getInviteType().equals("DriverRide")) {
-                PassengerSendInvite.setVisibility(View.VISIBLE);
-            }
+        if (item.getDriverPhoto() != null) {
+            Photo.setImageBitmap(item.getDriverPhoto());
+        } else {
+            Photo.setImageResource(R.drawable.defaultdriver);
+        }
+        SDG_Route_Start_FromTime.setText(item.getSDG_Route_Start_FromTime());
 
 
-            if (item.getInviteStatus() == 1) {
-                PassengerSendInvite.setVisibility(View.INVISIBLE);
-            }
+        StringBuffer res = new StringBuffer();
 
-            if (item.getDriverPhoto() != null) {
-                Photo.setImageBitmap(item.getDriverPhoto());
-            } else {
-                Photo.setImageResource(R.drawable.defaultdriver);
-            }
+        String[] strArr = item.getAccountName().split(" ");
+
+        for (String str : strArr) {
+            char[] stringArray = str.trim().toCharArray();
+            if (stringArray.length != 0) {
 
 
-            StringBuffer res = new StringBuffer();
+                stringArray[0] = Character.toUpperCase(stringArray[0]);
+                str = new String(stringArray);
 
-            String[] strArr = item.getAccountName().split(" ");
-
-            for (String str : strArr) {
-                char[] stringArray = str.trim().toCharArray();
-                if (stringArray.length != 0) {
-
-
-                    stringArray[0] = Character.toUpperCase(stringArray[0]);
-                    str = new String(stringArray);
-
-                    res.append(str).append(" ");
-
-                }
+                res.append(str).append(" ");
 
             }
 
-            DriverEnName.setText(res);
+        }
 
-            // we collct data to be able to send invite to passnger so don't get cnfused
-            Driver_ID = item.getAccountID();
-            Passenger_ID = item.getDriverId();
-            Route_ID=item.getSDG_Route_ID();
-
-
-            Nationality_en.setText(item.getNationality_en());
-
-            Best_Drivers_Item_rate.setText(item.getRating());
-
-            if (item.getLastSeen().equals("hide") || item.getLastSeen().equals("0")) {
-                LastSeenTvValue.setVisibility(View.INVISIBLE);
-                LastSeenText.setVisibility(View.INVISIBLE);
-            } else {
-                LastSeenText.setVisibility(View.VISIBLE);
-                LastSeenTvValue.setVisibility(View.VISIBLE);
-                LastSeenTvValue.setText(item.getLastSeen());
-            }
-
-            PassengerSendInvite.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-
-                    ProgressDialog pDialog = new ProgressDialog(activity);
-                    pDialog.setMessage(activity.getString(R.string.loading) + "...");
-                    pDialog.show();
-                    jsoning = new jsoning(pDialog, activity);
-                    jsoning.execute();
-
-
-                }
-            });
-
-
-        } else if (item.getMapKey().equals("Driver")) {
-
-            if (inflater == null)
-                inflater = (LayoutInflater) activity
-                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            if (convertView == null)
-                convertView = inflater.inflate(R.layout.quick_search_list_item_2, null);
-
-
-            if (imageLoader == null) imageLoader = AppController.getInstance().getImageLoader();
-
-            CircularImageView Photo = (CircularImageView) convertView.findViewById(R.id.search_list_photo);
-            TextView SDG_Route_Start_FromTime = (TextView) convertView.findViewById(R.id.SDG_Route_Start_FromTime);
-            TextView DriverEnName = (TextView) convertView.findViewById(R.id.DriverEnName);
-            TextView Nationality_en = (TextView) convertView.findViewById(R.id.Nationality_en);
-            TextView SDG_RouteDays = (TextView) convertView.findViewById(R.id.search_results_days);
-            TextView Best_Drivers_Item_rate = (TextView) convertView.findViewById(R.id.Best_Drivers_Item_rate);
-            TextView LastSeenTvValue = (TextView) convertView.findViewById(R.id.LastSeenTvValue);
-            Button PassengerSendInvite = (Button) convertView.findViewById(R.id.PassengerSendInvite);
-            TextView LastSeenText = (TextView) convertView.findViewById(R.id.LastSeenText);
-
-
-//        Photo.sectImageUrl(URL + item.getAccountPhoto(), imageLoader);
-
-
-            if (item.getDriverPhoto() != null) {
-                Photo.setImageBitmap(item.getDriverPhoto());
-            } else {
-                Photo.setImageResource(R.drawable.defaultdriver);
-            }
-            SDG_Route_Start_FromTime.setText(item.getSDG_Route_Start_FromTime());
-
-
-            StringBuffer res = new StringBuffer();
-
-            String[] strArr = item.getAccountName().split(" ");
-
-            for (String str : strArr) {
-                char[] stringArray = str.trim().toCharArray();
-                if (stringArray.length != 0) {
-
-
-                    stringArray[0] = Character.toUpperCase(stringArray[0]);
-                    str = new String(stringArray);
-
-                    res.append(str).append(" ");
-
-                }
-
-            }
-
-            DriverEnName.setText(res);
+        DriverEnName.setText(res);
 
 
 //        DriverEnName.setText(item.getAccountName());
 
-            Nationality_en.setText(item.getNationality_en());
-            SDG_RouteDays.setText(item.getSDG_RouteDays());
-            Best_Drivers_Item_rate.setText(item.getRating());
+        Nationality_en.setText(item.getNationality_en());
+        SDG_RouteDays.setText(item.getSDG_RouteDays());
+        Best_Drivers_Item_rate.setText(item.getRating());
 
-            if (item.getLastSeen().equals("hide")) {
-                LastSeenTvValue.setVisibility(View.INVISIBLE);
-                LastSeenText.setVisibility(View.INVISIBLE);
-            } else {
-                LastSeenText.setVisibility(View.VISIBLE);
-                LastSeenTvValue.setVisibility(View.VISIBLE);
-                LastSeenTvValue.setText(item.getLastSeen());
-            }
-            ImageView Phone_Message = (ImageView) convertView.findViewById(R.id.im1);
-            ImageView Phone_Call = (ImageView) convertView.findViewById(R.id.im5);
-
-
-            Phone_Call.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + item.getAccountMobile()));
-                    activity.startActivity(intent);
-                }
-            });
-
-            Phone_Message.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + item.getAccountMobile()));
-                    intent.putExtra("sms_body", "Hello " + item.getAccountName());
-                    activity.startActivity(intent);
-                }
-            });
-
-
+        if (item.getLastSeen().equals("hide")) {
+            LastSeenTvValue.setVisibility(View.INVISIBLE);
+            LastSeenText.setVisibility(View.INVISIBLE);
+        } else {
+            LastSeenText.setVisibility(View.VISIBLE);
+            LastSeenTvValue.setVisibility(View.VISIBLE);
+            LastSeenTvValue.setText(item.getLastSeen());
         }
+        ImageView Phone_Message = (ImageView) convertView.findViewById(R.id.im1);
+        ImageView Phone_Call = (ImageView) convertView.findViewById(R.id.im5);
+
+
+        Phone_Call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + item.getAccountMobile()));
+                activity.startActivity(intent);
+            }
+        });
+
+        Phone_Message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + item.getAccountMobile()));
+                intent.putExtra("sms_body", "Hello " + item.getAccountName());
+                activity.startActivity(intent);
+            }
+        });
 
 
         return convertView;
@@ -296,107 +191,5 @@ public class QuickSearchResultAdapter extends BaseAdapter {
 
     }
 
-
-    public class jsoning extends AsyncTask {
-
-        ListView lv;
-        Activity con;
-        BestRouteDataModel[] driver;
-        private ProgressDialog pDialog;
-        private List<BestDriverDataModel> arr = new ArrayList<>();
-        boolean exists = false;
-
-        public jsoning(ProgressDialog pDialog, final Activity con) {
-
-            this.lv = lv;
-            this.con = con;
-            this.pDialog = pDialog;
-
-        }
-
-        @Override
-        protected void onPostExecute(Object o) {
-
-
-            if (exists) {
-                String response = null;
-
-                try {
-                    response = j.Driver_SendInvite(Driver_ID, Passenger_ID, Route_ID, URLEncoder.encode(activity.getString(R.string.InvitePassenger)));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                assert response != null;
-                switch (response) {
-                    case "\"-1\"":
-                        Toast.makeText(activity, activity.getString(R.string.already_sent_request), Toast.LENGTH_SHORT).show();
-
-                        break;
-                    case "\"0\"":
-                        Toast.makeText(activity, activity.getString(R.string.login_network_error), Toast.LENGTH_SHORT).show();
-
-                        break;
-                    case "\"1\"":
-                        Toast.makeText(activity, R.string.req_sent_succ, Toast.LENGTH_LONG).show();
-
-                        activity.finish();
-                        break;
-                    default:
-
-                        activity.finish();
-                        break;
-                }
-
-                Log.d("Send Invite" + "Driver id", String.valueOf(Driver_ID));
-                Log.d("Send Invite" + "Route id", String.valueOf(Route_ID));
-                Log.d("Send Invite" + "Passenger ID", String.valueOf(Passenger_ID));
-
-
-            }
-            hidePDialog();
-        }
-
-        private void hidePDialog() {
-            if (pDialog != null) {
-                pDialog.dismiss();
-                pDialog = null;
-            }
-        }
-
-        @Override
-        protected Object doInBackground(Object[] params) {
-            try {
-                SocketAddress sockaddr = new InetSocketAddress("www.google.com", 80);
-                Socket sock = new Socket();
-                int timeoutMs = 2000;   // 2 seconds
-                sock.connect(sockaddr, timeoutMs);
-                exists = true;
-            } catch (final Exception e) {
-                e.printStackTrace();
-                con.runOnUiThread(new Runnable() {
-                    public void run() {
-                        new AlertDialog.Builder(con)
-                                .setTitle(con.getString(R.string.connection_problem))
-                                .setMessage(con.getString(R.string.con_problem_message))
-                                .setPositiveButton(con.getString(R.string.retry), new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        con.finish();
-                                        Intent in = con.getIntent();
-                                        in.putExtra("DriverID", Driver_ID);
-                                        con.startActivity(con.getIntent());
-                                    }
-                                })
-                                .setNegativeButton(con.getString(R.string.goBack), new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        con.finish();
-                                    }
-                                }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(con, con.getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-            return null;
-        }
-    }
 
 }

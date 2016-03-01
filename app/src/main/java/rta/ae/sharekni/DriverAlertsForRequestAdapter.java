@@ -11,13 +11,10 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.pkmmte.view.CircularImageView;
 
-import rta.ae.sharekni.Arafa.Classes.AppController;
-import rta.ae.sharekni.Arafa.Classes.CircularNetworkImageView;
-import rta.ae.sharekni.Arafa.Classes.GetData;
-
-import rta.ae.sharekni.R;
-
 import java.util.List;
+
+import rta.ae.sharekni.Arafa.Classes.AppController;
+import rta.ae.sharekni.Arafa.Classes.GetData;
 
 /**
  * Created by Nezar Saleh on 10/10/2015.
@@ -100,6 +97,12 @@ public class DriverAlertsForRequestAdapter extends BaseAdapter {
                     break;
                 case "null":
                     txt_Accepted_or_Rejected.setText(R.string.pending_request);
+                    break;
+                case "DriverToPassenger":
+                    txt_Accepted_or_Rejected.setText(R.string.Sent_Invite);
+                    break;
+                case "PassengerToDriver":
+                    txt_Accepted_or_Rejected.setText(R.string.join_request);
                     break;
             }
 
