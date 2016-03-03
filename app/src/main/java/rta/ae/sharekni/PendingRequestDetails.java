@@ -31,7 +31,7 @@ public class PendingRequestDetails extends AppCompatActivity {
 
     List<DriverAlertsForRequestDataModel> arr = new ArrayList<>();
     private Toolbar toolbar;
-    String PassengerName;
+    String PassengerName,Driver_Pending;
     String RouteName, NationalityEnName, PassengerMobile, Remarks, RequestDate;
     Bitmap AccountPhoto;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
@@ -56,9 +56,11 @@ public class PendingRequestDetails extends AppCompatActivity {
         Remarks = intent.getStringExtra("Remarks");
         RequestDate = intent.getStringExtra("RequestDate");
         RequestId = intent.getIntExtra("RequestId", 0);
+        Driver_Pending= intent.getStringExtra("Driver_Pending_Request");
 
         Log.d("RouteName", RouteName);
         Log.d("PassengerName", PassengerName);
+        Log.d("Driver Pending Request is ",Driver_Pending);
 
 
         RouteName_txt = (TextView) findViewById(R.id.RouteName);
@@ -91,45 +93,76 @@ public class PendingRequestDetails extends AppCompatActivity {
         Alert_Accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // new accept().execute();
-                final String[] res = new String[1];
-                new AlertDialog.Builder(PendingRequestDetails.this)
-                        .setTitle(R.string.yes)
-                        .setMessage(R.string.please_confirm_to_cancel)
-                        .setPositiveButton(R.string.Cancel_msg, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                try {
-                                    res[0] = new GetData().Passenger_RemoveRequest(RequestId);
-                                    if (res[0].equals("\"1\"")) {
-                                        Toast.makeText(getBaseContext(), getString(R.string.request_removed), Toast.LENGTH_SHORT).show();
+
+                if (Driver_Pending.equals("Driver_Pending_Request")){
+
+
+                    final String[] res = new String[1];
+                    new AlertDialog.Builder(PendingRequestDetails.this)
+                            .setTitle(R.string.yes)
+                            .setMessage(R.string.please_confirm_to_cancel)
+                            .setPositiveButton(R.string.Cancel_msg, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    try {
+                                        res[0] = new GetData().Driver_RemoveInvitation(RequestId);
+                                        if (res[0].equals("\"1\"")) {
+                                            Toast.makeText(getBaseContext(), getString(R.string.request_removed), Toast.LENGTH_SHORT).show();
 //                                                finish();
-                                        Intent in = new Intent(PendingRequestDetails.this, DriverAlertsForRequest.class);
-                                        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                        startActivity(in);
-                                        finish();
-                                    } else {
-                                        Toast.makeText(getBaseContext(), getString(R.string.error), Toast.LENGTH_SHORT).show();
+                                            Intent in = new Intent(PendingRequestDetails.this, DriverAlertsForRequest.class);
+                                            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                            startActivity(in);
+                                            finish();
+                                        } else {
+                                            Toast.makeText(getBaseContext(), getString(R.string.error), Toast.LENGTH_SHORT).show();
+                                        }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
                                     }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
                                 }
-                            }
-                        })
-                        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        }).setIcon(android.R.drawable.ic_dialog_alert).show();
+                            })
+                            .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            }).setIcon(android.R.drawable.ic_dialog_alert).show();
+
+
+                }else {
+                    final String[] res = new String[1];
+                    new AlertDialog.Builder(PendingRequestDetails.this)
+                            .setTitle(R.string.yes)
+                            .setMessage(R.string.please_confirm_to_cancel)
+                            .setPositiveButton(R.string.Cancel_msg, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    try {
+                                            res[0] = new GetData().Passenger_RemoveRequest(RequestId);
+                                        if (res[0].equals("\"1\"")) {
+                                            Toast.makeText(getBaseContext(), getString(R.string.request_removed), Toast.LENGTH_SHORT).show();
+//                                                finish();
+                                            Intent in = new Intent(PendingRequestDetails.this, DriverAlertsForRequest.class);
+                                            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                            startActivity(in);
+                                            finish();
+                                        } else {
+                                            Toast.makeText(getBaseContext(), getString(R.string.error), Toast.LENGTH_SHORT).show();
+                                        }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            })
+                            .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            }).setIcon(android.R.drawable.ic_dialog_alert).show();
+
+                }
+
+
             }
         });
 
-
-//        Alert_Decline.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//            //    new decline().execute();
-//            }
-//        });
 
 
     }

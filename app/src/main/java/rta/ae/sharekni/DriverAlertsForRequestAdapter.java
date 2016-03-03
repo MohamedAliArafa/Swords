@@ -96,7 +96,12 @@ public class DriverAlertsForRequestAdapter extends BaseAdapter {
                     txt_Accepted_or_Rejected.setText(R.string.accept_request);
                     break;
                 case "null":
-                    txt_Accepted_or_Rejected.setText(R.string.pending_request);
+                    if (model.getDriverPending().equals("Driver_Pending_Request")){
+                        txt_Accepted_or_Rejected.setText(R.string.Driver_pending_request);
+                    }else {
+                        txt_Accepted_or_Rejected.setText(R.string.pending_request);
+                    }
+
                     break;
                 case "DriverToPassenger":
                     txt_Accepted_or_Rejected.setText(R.string.Sent_Invite);
@@ -104,6 +109,7 @@ public class DriverAlertsForRequestAdapter extends BaseAdapter {
                 case "PassengerToDriver":
                     txt_Accepted_or_Rejected.setText(R.string.join_request);
                     break;
+
             }
 
         } //  IF  * 1

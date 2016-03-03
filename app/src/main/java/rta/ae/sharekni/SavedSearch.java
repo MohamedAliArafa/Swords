@@ -185,8 +185,10 @@ public class SavedSearch extends AppCompatActivity {
 
                                             }
 
-                                            if (json.getString("Nationalites") != null || !json.getString("Nationalites").equals("")) {
+                                            if (json.getString("Nationalites") != null && !json.getString("Nationalites").equals("")) {
                                                 item.setNationality_ID(json.getString("Nationalites"));
+                                            }else {
+                                                item.setNationality_ID("0");
                                             }
 
 
@@ -198,7 +200,7 @@ public class SavedSearch extends AppCompatActivity {
                                             if (json.getString("IsSmoking").equals("true") && json.getString("IsSmoking") != null) {
                                                 item.setIS_Smoking("1");
                                             } else {
-                                                item.setIS_Smoking("0");
+                                                item.setIS_Smoking("");
                                             }
 
 
@@ -278,11 +280,12 @@ public class SavedSearch extends AppCompatActivity {
                                                     intent1.putExtra("To_RegionEnName", driver[i].ToReg);
                                                     intent1.putExtra("MapKey", "Driver");
                                                     //  intent1.putExtra("AgeRange",Advanced_Search_Age_Range_ID);
-                                                    intent1.putExtra("Nationality_ID", driver[i].Nationality_ID);
+                                                    intent1.putExtra("Nationality_ID", Integer.parseInt(driver[i].Nationality_ID));
                                                     intent1.putExtra("Language_ID", driver[i].Language_ID);
                                                     intent1.putExtra("Smokers", driver[i].IS_Smoking);
                                                     intent1.putExtra("IsRounded", driver[i].Single_Periodic_ID);
-                                                    intent1.putExtra("Gender", driver[i].Gender);
+                                                    intent1.putExtra("Gender", driver[i].Gender.charAt(0));
+                                                    intent1.putExtra("InviteType", "Search");;
                                                     startActivity(intent1);
 
 

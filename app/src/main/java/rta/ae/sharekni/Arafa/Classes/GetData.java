@@ -58,15 +58,15 @@ public class GetData {
     // public static final String NonOpDomain = "http://sharekni.sdgstaff.com/_mobfiles/CLS_MobAndroid.asmx";
     // public static final String PhotoURL = "http://sharekni.sdgstaff.com/uploads/personalphoto/";
 
-   public static final String DOMAIN = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx/";
-    public static final String NonOpDomain = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx";
-    public static final String PhotoURL = "http://213.42.51.219/uploads/personalphoto/";
+    //  public static final String DOMAIN = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx/";
+    //  public static final String NonOpDomain = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx";
+    //  public static final String PhotoURL = "http://213.42.51.219/uploads/personalphoto/";
 
     final JSONArray[] myJsonArray = new JSONArray[1];
 
-  //  public static final String DOMAIN = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx/";
-   // public static final String NonOpDomain = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx";
-   // public static final String PhotoURL = "http://sharekni-web.sdg.ae/uploads/personalphoto/";
+    public static final String DOMAIN = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx/";
+    public static final String NonOpDomain = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx";
+    public static final String PhotoURL = "http://sharekni-web.sdg.ae/uploads/personalphoto/";
 
 
     //public static final String DOMAIN = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx/";
@@ -142,7 +142,9 @@ public class GetData {
     String Confrim_Mobile_URl = DOMAIN + "Confirm_Mobile?AccountID=";
     String Driver_RemoveReview = DOMAIN + "Driver_RemoveReview?";
     String Passenger_RemoveRequest = DOMAIN + "Passenger_RemoveRequest?RoutePassengerId=";
+    String Driver_RemoveInvitationURI = DOMAIN + "Driver_RemoveInvitation?RoutePassengerId=";
     String Passenger_GetPendingRequestsFromDriver = DOMAIN + "Passenger_GetPendingRequestsFromDriver?accountId=";
+    String Driver_GetPendingInvitationsFromPassengerURI = DOMAIN + "Driver_GetPendingInvitationsFromPassenger?accountId=";
     String DriverAlertsForRequestUrl = DOMAIN + "Driver_AlertsForRequest?d_AccountId=";
     String Passenger_AlertsForInvitationUrl = DOMAIN + "Passenger_AlertsForInvitation?d_AccountId=";
     String DriverAcceptPassengerUrl = DOMAIN + "Driver_AcceptRequest?RequestId=";
@@ -150,6 +152,7 @@ public class GetData {
     String DriverRegisterVehicleUrl = DOMAIN + "Driver_RegisterVehicleWithETService?";
     String Driver_DeleteRouteUrl = DOMAIN + "Route_Delete?RouteId=";
     String Passenger_Rqs_From_Driver = DOMAIN + "Passenger_GetAcceptedRequestsFromDriver?accountId=";
+    String Driver_GetAcceptedInvitationsFromPassengerURI = DOMAIN + "Driver_GetAcceptedInvitationsFromPassenger?accountId=";
     String Passenger_GetDriverRate = DOMAIN + "Passenger_GetDriverRate?";
     String Driver_RemovePassenger = DOMAIN + "Driver_RemovePassenger?";
     String Passenger_LeaveRideUrl = DOMAIN + "Passenger_RemovePassenger?RoutePassengerId=";
@@ -381,6 +384,18 @@ public class GetData {
         return json;
     }
 
+
+    public JSONArray Driver_GetPendingInvitationsFromPassenger(int id) throws JSONException {
+
+        HandleXML obj = new HandleXML(Driver_GetPendingInvitationsFromPassengerURI + id);
+        obj.fetchXML();
+        while ((obj.parsingComplete && !obj.error)) ;
+        JSONArray json = new JSONArray(obj.getData());
+        return json;
+    }
+
+
+
     public String Passenger_RemoveRequest(int id) throws JSONException {
 
         HandleXML obj = new HandleXML(Passenger_RemoveRequest + id);
@@ -388,6 +403,16 @@ public class GetData {
         while ((obj.parsingComplete && !obj.error)) ;
         return obj.getData();
     }
+
+
+    public String Driver_RemoveInvitation(int id) throws JSONException {
+
+        HandleXML obj = new HandleXML(Driver_RemoveInvitationURI + id);
+        obj.fetchXML();
+        while ((obj.parsingComplete && !obj.error)) ;
+        return obj.getData();
+    }
+
 
     public JSONArray GetDriverAlertsForRequest(int id) throws JSONException {
 
@@ -416,6 +441,18 @@ public class GetData {
         JSONArray json = new JSONArray(obj.getData());
         return json;
     }
+
+
+
+    public JSONArray Driver_GetAcceptedInvitationsFromPassenger(int id) throws JSONException {
+
+        HandleXML obj = new HandleXML(Driver_GetAcceptedInvitationsFromPassengerURI + id);
+        obj.fetchXML();
+        while ((obj.parsingComplete && !obj.error)) ;
+        JSONArray json = new JSONArray(obj.getData());
+        return json;
+    }
+
 
     public String RegisterVehicle(int Driver_ID, String FileNo, String Birth_Date) throws JSONException {
         HandleXML obj = new HandleXML(DriverRegisterVehicleUrl + "AccountId=" + Driver_ID + "&TrafficFileNo=" + FileNo + "&BirthDate=" + Birth_Date);

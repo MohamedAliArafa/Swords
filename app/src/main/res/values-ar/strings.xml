@@ -407,6 +407,8 @@
     <string name="Sent_Invite">أرسل لك دعوه</string>
     <string name="nat_rn_name">NationalityArName</string>
     <string name="_18_years">+18 سنه</string>
+    <string name="passenger_nat_en_name">PassengerNationalityArName</string>
+    <string name="Driver_pending_request">إستلم دعوتك وفي انتظار موافقته</string>
 
 
 </resources>

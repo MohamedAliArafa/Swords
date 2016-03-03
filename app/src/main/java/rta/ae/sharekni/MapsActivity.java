@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.location.Criteria;
+import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -20,6 +22,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderApi;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -55,6 +59,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     char i = 'D';
     SharedPreferences myPrefs;
+    Boolean enableGPS = false;
 
 
     String To_EmirateEnName, From_EmirateEnName, To_RegionEnName, From_RegionEnName;
@@ -64,6 +69,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Double MyLat = 0.0;
     Double My_Lng = 0.0;
     String AccountType;
+    private FusedLocationProviderApi fusedLocationProviderApi = LocationServices.FusedLocationApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,11 +88,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         MapRelative = (RelativeLayout) findViewById(R.id.MapRelative);
 
 
-
-
         myPrefs = this.getSharedPreferences("myPrefs", 0);
         AccountType = myPrefs.getString("account_type", "");
-        Log.d("Account Type Map",AccountType);
+        Log.d("Account Type Map", AccountType);
         assert AccountType != null;
         if (AccountType.equals("D")) {
 
@@ -229,11 +233,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                     startActivity(gpsOptionsIntent);
 
-
                     //prompt user to enable gps
                 } else {
                     //gps is enabled
-
                 }
 
 
@@ -248,7 +250,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 return false;
             }
+
         });
+
+
+        if (!((LocationManager) context.getSystemService(Context.LOCATION_SERVICE))
+                .isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+
+            new AlertDialog.Builder(MapsActivity.this)
+                    .setTitle("Location is not Enabled")
+                    .setMessage("PLease Turn on Gps First")
+                    .setPositiveButton("Turn On", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            enableGPS=true;
+                            Intent gpsOptionsIntent = new Intent(
+                                    android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                            startActivity(gpsOptionsIntent);
+                        }
+                    })
+                    .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }).setIcon(android.R.drawable.ic_dialog_alert).show();
+
+
+        }
+
 
 //
 //         GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
@@ -261,6 +289,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //                }
 //            }
 //        };
+
 //
 //
 //
@@ -269,15 +298,44 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 //
 //
-//        LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
-//        Criteria criteria = new Criteria();
-//        String provider = service.getBestProvider(criteria, false);
-//        Location location = service.getLastKnownLocation(provider);
-//        LatLng userLocation = new LatLng(location.getLatitude(),location.getLongitude());
+
+
+
+
+        if (((LocationManager) context.getSystemService(Context.LOCATION_SERVICE))
+                .isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+
+
+            LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
+            Criteria criteria = new Criteria();
+            String provider = service.getBestProvider(criteria, false);
+            Location location = service.getLastKnownLocation(provider);
+            LatLng userLocation = new LatLng(location.getLatitude(), location.getLongitude());
+
+            Log.d("My Lat Lng", String.valueOf(userLocation.latitude));
+            Log.d("My Lat Lng", String.valueOf(userLocation.longitude));
+
+            MyLat = userLocation.latitude;
+            My_Lng = userLocation.longitude;
+
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
+                    (new LatLng(userLocation.latitude, userLocation.longitude), 8.25f));
+
+
+//            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
+//                    (new LatLng(MyLat, My_Lng), 8.25f));
+
+
+        }
+
+
+
 //
-//        Log.d("My Lat Lng", String.valueOf(userLocation.latitude));
+//
 
 
+//
+//
 //
 //        MyLat =   mMap.getMyLocation().getLatitude();
 //        My_Lng = mMap.getMyLocation().getLongitude();
@@ -389,8 +447,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                 );
 
-                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
-                                        (new LatLng(data[i].latitude, data[i].longitude), 12.0f));
+//                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
+//                                        (new LatLng(data[i].latitude, data[i].longitude), 12.0f));
 
 
                             }
@@ -398,8 +456,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                         } // for
 
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
-                                (new LatLng(25.197197, 55.2743764), 8.25f));
+//                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
+//                                (new LatLng(25.197197, 55.2743764), 8.25f));
 
 
                     } // try
@@ -493,7 +551,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             intent1.putExtra("To_EmirateEnName", To_EmirateEnName);
                             intent1.putExtra("To_RegionEnName", To_RegionEnName);
                             intent1.putExtra("MapKey", "Driver");
-                            intent1.putExtra("InviteType","MapLookUp");
+                            intent1.putExtra("InviteType", "MapLookUp");
                             startActivity(intent1);
 
 
@@ -544,8 +602,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                 );
 
-                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
-                                        (new LatLng(data[i].latitude, data[i].longitude), 12.0f));
+//                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
+//                                        (new LatLng(data[i].latitude, data[i].longitude), 12.0f));
 
 
                             }
@@ -553,8 +611,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                         } // for
 
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
-                                (new LatLng(25.197197, 55.2743764), 8.25f));
+//                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
+//                                (new LatLng(25.197197, 55.2743764), 8.25f));
 
 
                     } // try
@@ -650,8 +708,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             intent1.putExtra("To_EmirateEnName", To_EmirateEnName);
                             intent1.putExtra("To_RegionEnName", To_RegionEnName);
                             intent1.putExtra("MapKey", "Passenger");
-                            intent1.putExtra("RouteID",0);
-                            intent1.putExtra("InviteType","MapLookUp");
+                            intent1.putExtra("RouteID", 0);
+                            intent1.putExtra("InviteType", "MapLookUp");
                             startActivity(intent1);
 
 
@@ -663,6 +721,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
             }// if Driver
+
+
+            Log.d("GPs Enabled", String.valueOf(enableGPS));
+            if (enableGPS) {
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
+                        (new LatLng(MyLat, My_Lng), 8.25f));
+            }
 
 
         }
@@ -732,4 +797,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }    // back thread classs
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("On Resume", "Resume");
+
+    }
+
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("on Restart", "Restart");
+    }
 }  //  classs

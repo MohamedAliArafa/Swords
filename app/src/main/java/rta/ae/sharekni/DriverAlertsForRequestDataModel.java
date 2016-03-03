@@ -13,7 +13,7 @@ public class DriverAlertsForRequestDataModel extends ArrayList<Parcelable> imple
 
 
 public  int RequestId;
-    public  String PassengerName,RouteName,Remarks,RequestDate,PassengerMobile,AccountPhoto,AccountGender,NationalityEnName,DriverAccept;
+    public  String PassengerName,RouteName,Remarks,RequestDate,PassengerMobile,AccountPhoto,AccountGender,NationalityEnName,DriverAccept,DriverPending;
 
     public Bitmap getPhoto() {
         return Photo;
@@ -43,6 +43,7 @@ public  int RequestId;
         AccountPhoto = in.readString();
         AccountGender = in.readString();
         NationalityEnName = in.readString();
+        DriverPending=in.readString();
     }
 
     public static final Creator<DriverAlertsForRequestDataModel> CREATOR = new Creator<DriverAlertsForRequestDataModel>() {
@@ -119,6 +120,14 @@ public  int RequestId;
         AccountPhoto = accountPhoto;
     }
 
+    public String getDriverPending() {
+        return DriverPending;
+    }
+
+    public void setDriverPending(String driverPending) {
+        DriverPending = driverPending;
+    }
+
     public String getAccountGender() {
         return AccountGender;
     }
@@ -146,5 +155,6 @@ public  int RequestId;
         dest.writeString(AccountPhoto);
         dest.writeString(AccountGender);
         dest.writeString(NationalityEnName);
+        dest.writeString(DriverPending);
     }
 }
