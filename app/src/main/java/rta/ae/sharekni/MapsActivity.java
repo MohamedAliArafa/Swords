@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
@@ -22,7 +21,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.location.FusedLocationProviderApi;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -45,7 +45,7 @@ import java.util.Locale;
 import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.Map.MapDataModel;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private GoogleMap mMap;
     SupportMapFragment mapFragment;
@@ -69,8 +69,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Double MyLat = 0.0;
     Double My_Lng = 0.0;
     String AccountType;
-    private FusedLocationProviderApi fusedLocationProviderApi = LocationServices.FusedLocationApi;
+    ImageView pass_icon_trigger_btn,driver_icon_trigger_btn;
 
+
+    protected GoogleApiClient mGoogleApiClient;
+
+    /**
+     * Represents a geographical location.
+     */
+    protected Location mLastLocation;
+
+    protected String mLatitudeLabel;
+    protected String mLongitudeLabel;
+
+    protected static final String TAG = "Maps Activity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +98,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         femalemale = (ImageView) findViewById(R.id.femalemale);
 
         MapRelative = (RelativeLayout) findViewById(R.id.MapRelative);
+        driver_icon_trigger_btn= (ImageView) findViewById(R.id.driver_icon_trigger_btn);
+        pass_icon_trigger_btn= (ImageView) findViewById(R.id.pass_icon_trigger_btn);
+
+
+
+        buildGoogleApiClient();
 
 
         myPrefs = this.getSharedPreferences("myPrefs", 0);
@@ -94,17 +112,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         assert AccountType != null;
         if (AccountType.equals("D")) {
 
-            MapRelative.setVisibility(View.VISIBLE);
+          //  MapRelative.setVisibility(View.VISIBLE);
+            pass_icon_trigger_btn.setVisibility(View.VISIBLE);
+            driver_icon_trigger_btn.setVisibility(View.INVISIBLE);
 
 
-            malefemale.setOnClickListener(new View.OnClickListener() {
+            pass_icon_trigger_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (i == 'D') {
-                        malefemale.setVisibility(View.INVISIBLE);
-                        femalemale.setVisibility(View.VISIBLE);
-                        malefemale_txt.setTextColor(Color.GRAY);
-                        femalemale_txt.setTextColor(Color.RED);
+                        pass_icon_trigger_btn.setVisibility(View.INVISIBLE);
+                        driver_icon_trigger_btn.setVisibility(View.VISIBLE);
+//                        malefemale.setVisibility(View.INVISIBLE);
+//                        femalemale.setVisibility(View.VISIBLE);
+//                        malefemale_txt.setTextColor(Color.GRAY);
+//                        femalemale_txt.setTextColor(Color.RED);
                         i = 'P';
 
 
@@ -118,14 +140,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             });
 
 
-            femalemale.setOnClickListener(new View.OnClickListener() {
+            driver_icon_trigger_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (i == 'P') {
-                        femalemale.setVisibility(View.INVISIBLE);
-                        malefemale.setVisibility(View.VISIBLE);
-                        malefemale_txt.setTextColor(Color.RED);
-                        femalemale_txt.setTextColor(Color.GRAY);
+                        pass_icon_trigger_btn.setVisibility(View.VISIBLE);
+                        driver_icon_trigger_btn.setVisibility(View.INVISIBLE);
+//                        malefemale.setVisibility(View.INVISIBLE);
+//                        femalemale.setVisibility(View.VISIBLE);
+//                        malefemale_txt.setTextColor(Color.GRAY);
+//                        femalemale_txt.setTextColor(Color.RED);
                         i = 'D';
 
 
@@ -134,30 +158,52 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                     }
 
-                }
-            });
-
-
-            femalemale_txt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (i == 'D') {
-                        malefemale_txt.setTextColor(Color.GRAY);
-                        femalemale_txt.setTextColor(Color.RED);
-
-                        malefemale.setVisibility(View.INVISIBLE);
-                        femalemale.setVisibility(View.VISIBLE);
-                        i = 'P';
-
-
-                        mMap.clear();
-                        new backTread().execute();
-
-                    }
-
 
                 }
             });
+
+
+
+//            femalemale.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    if (i == 'P') {
+//                        femalemale.setVisibility(View.INVISIBLE);
+//                        malefemale.setVisibility(View.VISIBLE);
+//                        malefemale_txt.setTextColor(Color.RED);
+//                        femalemale_txt.setTextColor(Color.GRAY);
+//                        i = 'D';
+//
+//
+//                        mMap.clear();
+//                        new backTread().execute();
+//
+//                    }
+//
+//                }
+//            });
+
+
+//            femalemale_txt.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    if (i == 'D') {
+//                        malefemale_txt.setTextColor(Color.GRAY);
+//                        femalemale_txt.setTextColor(Color.RED);
+//
+//                        malefemale.setVisibility(View.INVISIBLE);
+//                        femalemale.setVisibility(View.VISIBLE);
+//                        i = 'P';
+//
+//
+//                        mMap.clear();
+//                        new backTread().execute();
+//
+//                    }
+
+
+              //  }
+        //    });
 
 
             malefemale_txt.setOnClickListener(new View.OnClickListener() {
@@ -190,6 +236,76 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
 
 
+    }
+
+
+    /**
+     * Builds a GoogleApiClient. Uses the addApi() method to request the LocationServices API.
+     */
+    protected synchronized void buildGoogleApiClient() {
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+    }
+
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mGoogleApiClient.connect();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.disconnect();
+        }
+    }
+
+
+    @Override
+    public void onConnected(Bundle connectionHint) {
+        // Provides a simple way of getting a device's location and is well suited for
+        // applications that do not require a fine-grained location and that do not need location
+        // updates. Gets the best and most recent location currently available, which may be null
+        // in rare cases when a location is not available.
+        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+
+        if (mLastLocation != null) {
+//            mLatitudeText.setText(String.format("%s: %f", mLatitudeLabel,
+//                    mLastLocation.getLatitude()));
+//            mLongitudeText.setText(String.format("%s: %f", mLongitudeLabel,
+//                    mLastLocation.getLongitude()));
+            Log.d("User Lat ", String.valueOf(mLastLocation.getLatitude()));
+            Log.d("User Lat ", String.valueOf(mLastLocation.getLongitude()));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
+                    (new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude()), 8.25f));
+
+
+
+        } else {
+            Toast.makeText(this, "No Location Detected", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult result) {
+        // Refer to the javadoc for ConnectionResult to see what error codes might be returned in
+        // onConnectionFailed.
+        Log.i(TAG, "Connection failed: ConnectionResult.getErrorCode() = " + result.getErrorCode());
+    }
+
+
+    @Override
+    public void onConnectionSuspended(int cause) {
+        // The connection to Google Play services was lost for some reason. We call connect() to
+        // attempt to re-establish the connection.
+        Log.i(TAG, "Connection suspended");
+        mGoogleApiClient.connect();
     }
 
 
@@ -262,7 +378,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     .setMessage("PLease Turn on Gps First")
                     .setPositiveButton("Turn On", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            enableGPS=true;
+                            enableGPS = true;
                             Intent gpsOptionsIntent = new Intent(
                                     android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                             startActivity(gpsOptionsIntent);
@@ -300,34 +416,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //
 
 
-
-
-        if (((LocationManager) context.getSystemService(Context.LOCATION_SERVICE))
-                .isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-
-
-            LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
-            Criteria criteria = new Criteria();
-            String provider = service.getBestProvider(criteria, false);
-            Location location = service.getLastKnownLocation(provider);
-            LatLng userLocation = new LatLng(location.getLatitude(), location.getLongitude());
-
-            Log.d("My Lat Lng", String.valueOf(userLocation.latitude));
-            Log.d("My Lat Lng", String.valueOf(userLocation.longitude));
-
-            MyLat = userLocation.latitude;
-            My_Lng = userLocation.longitude;
-
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
-                    (new LatLng(userLocation.latitude, userLocation.longitude), 8.25f));
-
-
+//        if (((LocationManager) context.getSystemService(Context.LOCATION_SERVICE))
+//                .isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+//
+//
+//            LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
+//            Criteria criteria = new Criteria();
+//            String provider = service.getBestProvider(criteria, false);
+//            Location location = service.getLastKnownLocation(provider);
+//            LatLng userLocation = new LatLng(location.getLatitude(), location.getLongitude());
+//
+//            Log.d("My Lat Lng", String.valueOf(userLocation.latitude));
+//            Log.d("My Lat Lng", String.valueOf(userLocation.longitude));
+//
+//            MyLat = userLocation.latitude;
+//            My_Lng = userLocation.longitude;
+//
 //            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
-//                    (new LatLng(MyLat, My_Lng), 8.25f));
-
-
-        }
-
+//                    (new LatLng(userLocation.latitude, userLocation.longitude), 8.25f));
+//
+//
+////            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
+////                    (new LatLng(MyLat, My_Lng), 8.25f));
+//
+//
+//        }
 
 
 //
@@ -723,11 +836,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }// if Driver
 
 
-            Log.d("GPs Enabled", String.valueOf(enableGPS));
-            if (enableGPS) {
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
-                        (new LatLng(MyLat, My_Lng), 8.25f));
-            }
+//            Log.d("GPs Enabled", String.valueOf(enableGPS));
+//
+//
+//            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
+//                    (new LatLng(MyLat, My_Lng), 8.25f));
+//
+//
+//            }
+//
+//
+//            if (enableGPS) {
+//                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
+//                        (new LatLng(MyLat, My_Lng), 8.25f));
+//            }
 
 
         }

@@ -327,7 +327,7 @@
     <string name="Registered_Vehicles_str">المركبات المسجله</string>
     <string name="Emirate_Dubai">دبي</string>
     <string name="No_Vehicles">لا توجد مركبات</string>
-    <string name="taken_mobile">لا يمكن التسجيل , برجاء التأكد من رقم الجوال</string>
+    <string name="taken_mobile">لا يمكن التسجيل , رقم الهاتف مسجل بالفعل</string>
     <string name="taken_username">لا يمكن التسجيل , هذا البريد الألكترونى مسجل بالفعل</string>
     <string name="choose_birth_date">إختر تاريخ الميلاد</string>
     <string name="Delete_Passenger_dialog_str">حذف راكب</string>
@@ -409,6 +409,7 @@
     <string name="_18_years">+18 سنه</string>
     <string name="passenger_nat_en_name">PassengerNationalityArName</string>
     <string name="Driver_pending_request">إستلم دعوتك وفي انتظار موافقته</string>
+    <string name="Max_Routes_Reached">لقد وصلت للحد الأقصي من رحلات</string>
 
 
 </resources>

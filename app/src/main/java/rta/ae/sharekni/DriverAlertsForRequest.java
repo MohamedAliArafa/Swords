@@ -52,6 +52,18 @@ public class DriverAlertsForRequest extends AppCompatActivity {
     Toolbar toolbar;
 
     @Override
+    protected void onResume() {
+        if (jsoning.getStatus()!= AsyncTask.Status.RUNNING || jsoning.getStatus()!= AsyncTask.Status.PENDING) {
+            ProgressDialog pDialog = new ProgressDialog(this);
+            pDialog.setMessage(getString(R.string.loading) + "...");
+            pDialog.show();
+            jsoning = new jsoning(Alerts_For_Request, pDialog, this);
+            jsoning.execute();
+        }
+        super.onResume();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_alerts_for_request);

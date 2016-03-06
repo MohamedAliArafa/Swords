@@ -313,6 +313,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
         edit_route_name = (EditText) findViewById(R.id.createCarPool_EnName);
 
+
         Create_CarPool_txt_year = (TextView) findViewById(R.id.createCarPool_search_txt_yaer);
         Create_CarPool_txt_beforeCal = (TextView) findViewById(R.id.createCarPool_textview50);
         Create_CarPool_pickup_relative = (RelativeLayout) findViewById(R.id.createCarPool_pickup_relative);
@@ -736,7 +737,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         if (v == create) {
 
 
-            if (!CHECK_TIME.equals("b") && Create_CarPool_full_date != null && !Create_CarPool_full_date.equals("a") && edit_route_name.getText() != null && edit_route_name.getText().toString() != getString(R.string.ride_name) && From_Em_Id_2 != 0 && To_Em_Id_2 != 0 && From_Reg_Id_2 != 0 && To_Reg_Id_2 != 0 && Single_Periodic_ID != -1 && Vehicle_Id != -1 && id != -1 && Create_CarPool_txt_beforeCal.getText() != getString(R.string.click_to_select) && Create_CarPool_txt_time_selected.getText() != null && Create_CarPool_txt_time_selected.getText().toString() != getString(R.string.click_to_select) && Start_Latitude != 1.0 && Start_Longitude != 1.0 && End_Latitude != 1.0 && End_Longitude != 1.0 && Number_Of_Seats != 0) {
+            if (!CHECK_TIME.equals("b") && Create_CarPool_full_date != null && !Create_CarPool_full_date.equals("a") && edit_route_name.getText() != null && !edit_route_name.getText().toString().equals("") && !edit_route_name.getText().toString().equals(getString(R.string.ride_name)) &&  From_Em_Id_2 != 0 && To_Em_Id_2 != 0 && From_Reg_Id_2 != 0 && To_Reg_Id_2 != 0 && Single_Periodic_ID != -1 && Vehicle_Id != -1 && id != -1 && Create_CarPool_txt_beforeCal.getText() != getString(R.string.click_to_select) && Create_CarPool_txt_time_selected.getText() != null && Create_CarPool_txt_time_selected.getText().toString() != getString(R.string.click_to_select) && Start_Latitude != 1.0 && Start_Longitude != 1.0 && End_Latitude != 1.0 && End_Longitude != 1.0 && Number_Of_Seats != 0) {
                 if (From_Em_Id_2 == To_Em_Id_2 && From_Reg_Id_2 == To_Reg_Id_2) {
                     Toast.makeText(DriverCreateCarPool.this, R.string.region_identical, Toast.LENGTH_SHORT).show();
                 } else if (FLAG_WEEK_DAYS == 1) {
@@ -744,6 +745,10 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                 } else {
                     String is_Rounded;
                     String EnName = edit_route_name.getText().toString();
+
+                    Log.d("Route Name",EnName);
+                    Log.d("Route Hint",edit_route_name.getHint().toString());
+
                     int FromEmId = From_Em_Id_2;   // dubai
                     int ToEmId = To_Em_Id_2;   // 3agman
                     int FromRegId = From_Reg_Id_2;//

@@ -40,6 +40,7 @@
         android:layout_alignLeft="@+id/Driver_Get_Review_AccountName"
         android:layout_marginTop="5dp"
         android:maxLength="17"
+        android:visibility="invisible"
         android:id="@+id/Driver_Get_Review_Nat"
         />
 

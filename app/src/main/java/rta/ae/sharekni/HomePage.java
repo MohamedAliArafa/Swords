@@ -62,6 +62,7 @@ import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
 public class HomePage extends AppCompatActivity implements View.OnClickListener {
 
 
+    int Driver_Rides_Count = 0;
     String urlPermit = GetData.DOMAIN + "GetPermitByDriverId?id=";
     public String Driver_Current_Passnger = "";
     rideJson rideJson;
@@ -177,7 +178,6 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         DriverMyAlertsCount = (TextView) findViewById(R.id.DriverMyAlertsCount);
         Relative_quickSearch = (RelativeLayout) findViewById(R.id.Relative_quickSearch);
         Home_Relative_Notify = (RelativeLayout) findViewById(R.id.Home_Relative_Notify);
-        driver_rides_Created = (RelativeLayout) findViewById(R.id.driver_rides_Created);
         Rides_joined_Relative = (RelativeLayout) findViewById(R.id.Rides_joined_Relative);
         btn_history = (RelativeLayout) findViewById(R.id.home_history);
         Rides_joined_txt_1 = (TextView) findViewById(R.id.txt_55);
@@ -307,7 +307,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 VehiclesCount_str = "";
                 VehiclesCount_str += "(";
                 try {
-                    All_Alerts = jsonArray.getInt("DriverMyAlertsCount") + jsonArray.getInt("PassengerMyAlertsCount") + jsonArray.getInt("PendingRequestsCount");
+                    All_Alerts = jsonArray.getInt("DriverMyAlertsCount") + jsonArray.getInt("PassengerMyAlertsCount") + jsonArray.getInt("PendingRequestsCount")+ jsonArray.getInt("PendingInvitationCount") + jsonArray.getInt("Passenger_Invitation_Count");
 
                     Vehicles_Count_FLAG = jsonArray.getInt("VehiclesCount");
                     Log.d("vehicle count flag", String.valueOf(Vehicles_Count_FLAG));
@@ -560,10 +560,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         }
 
 
-
         try {
             JSONArray jsonArray = gd.Passenger_AlertsForInvitation(Integer.parseInt(ID));
-            for (int i = 0;i< jsonArray.length();i++){
+            for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject j = jsonArray.getJSONObject(i);
                 Intent intent = new Intent(this, DriverAlertsForRequest.class);
                 PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
@@ -654,47 +653,68 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
         if (AccountType.equals("D")) {
             if (v == btn_create) {
-                Intent intent = new Intent(getBaseContext(), DriverCreateCarPool.class);
-                intent.putExtra("ID", Driver_ID);
-                startActivity(intent);
 
-//                if (Vehicles_Count_FLAG != 0) {
-//                    Intent intent = new Intent(getBaseContext(), DriverCreateCarPool.class);
-//                    intent.putExtra("ID", Driver_ID);
-//                    startActivity(intent);
-//                } else {
-//                    final Dialog dialog = new Dialog(c);
-//                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//                    dialog.setContentView(R.layout.novehiclesfound);
-//                    Button RegisterVehicleBtn = (Button) dialog.findViewById(R.id.okButton);
-//                    Button DismissBtn = (Button) dialog.findViewById(R.id.CancelButton);
-//                    dialog.show();
-//
-//                    RegisterVehicleBtn.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            dialog.dismiss();
-//                            Intent intent = new Intent(getBaseContext(), RegisterVehicle.class);
-//                            startActivity(intent);
-//                        }
-//                    });
-//
-//
-//                    DismissBtn.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            dialog.dismiss();
-//
-//                        }
-//                    });
-//
-//
-//                }
-            } else {
+                Log.d("Driver Rides Count", String.valueOf(Driver_Rides_Count));
 
-                Intent intent = new Intent(getBaseContext(), PassengerMyApprovedRides.class);
-                startActivity(intent);
+
+                if (Vehicles_Count_FLAG != 0) {
+
+                    if (Driver_Rides_Count < 2) {
+
+                        Intent intent = new Intent(getBaseContext(), DriverCreateCarPool.class);
+                        intent.putExtra("ID", Driver_ID);
+                        startActivity(intent);
+
+                    }else {
+                        final Dialog dialog = new Dialog(c);
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.noroutesdialog);
+                        Button btn = (Button) dialog.findViewById(R.id.noroute_id);
+                        TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
+                        dialog.show();
+                        Text_3.setText(R.string.Max_Routes_Reached);
+
+                        btn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+                    }
+
+                } else {
+                    final Dialog dialog = new Dialog(c);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setContentView(R.layout.novehiclesfound);
+                    Button RegisterVehicleBtn = (Button) dialog.findViewById(R.id.okButton);
+                    Button DismissBtn = (Button) dialog.findViewById(R.id.CancelButton);
+                    dialog.show();
+
+                    RegisterVehicleBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                           dialog.dismiss();
+                           Intent intent = new Intent(getBaseContext(), RegisterVehicle.class);
+                           startActivity(intent);
+                       }
+                   });
+
+                  DismissBtn.setOnClickListener(new View.OnClickListener() {
+                     @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+
+                       }
+                   });
+
+
+                }
             }
+//            else {
+//
+//                Intent intent = new Intent(getBaseContext(), PassengerMyApprovedRides.class);
+//                startActivity(intent);
+//            }
         }
     }
 
@@ -730,7 +750,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         @Override
         protected void onPostExecute(Object o) {
             try {
-                All_Alerts = jsonArray.getInt("DriverMyAlertsCount") + jsonArray.getInt("PassengerMyAlertsCount");
+                All_Alerts = jsonArray.getInt("DriverMyAlertsCount") + jsonArray.getInt("PassengerMyAlertsCount")+ jsonArray.getInt("PendingRequestsCount")+ jsonArray.getInt("PendingInvitationCount")+ jsonArray.getInt("Passenger_Invitation_Count");
                 name_str = "";
                 nat_str = "";
                 Firstname = "";
@@ -795,6 +815,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 DriverMyRidesCount_str += (jsonArray.getString("DriverMyRidesCount"));
                 DriverMyRidesCount_str += ")";
                 DriverMyRidesCount.setText(DriverMyRidesCount_str);
+                Driver_Rides_Count = jsonArray.getInt("DriverMyRidesCount");
+                Log.d("Driver_Rides_Count", String.valueOf(Driver_Rides_Count));
+
                 DriverMyAlertsCount.setText(String.valueOf(All_Alerts));
                 rating.setText(jsonArray.getString("AccountRating"));
 
@@ -1085,7 +1108,6 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
             Relative_quickSearch.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     Intent intent = new Intent(getBaseContext(), QSearch.class);
                     intent.putExtra("PassengerId", ID);
                     startActivity(intent);
@@ -1096,9 +1118,11 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
             driver_rides_Created.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(getBaseContext(), DriverCreatedRides.class);
-                    intent.putExtra("DriverID", Driver_ID);
-                    startActivity(intent);
+                        Log.d("Driver Rides Count", String.valueOf(Driver_Rides_Count));
+                        Intent intent = new Intent(getBaseContext(), DriverCreatedRides.class);
+                        intent.putExtra("DriverID", Driver_ID);
+                        startActivity(intent);
+
                 }
             });
 

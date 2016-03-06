@@ -253,12 +253,14 @@ public class EditProfileTest extends AppCompatActivity {
                 malefemale_txt.setTextColor(Color.RED);
                 femalemale_txt.setTextColor(Color.GRAY);
                 i = 'M';
+                Log.d("Account_Gender_1", String.valueOf(i));
             }else {
                 malefemale.setVisibility(View.INVISIBLE);
                 femalemale.setVisibility(View.VISIBLE);
                 malefemale_txt.setTextColor(Color.GRAY);
                 femalemale_txt.setTextColor(Color.RED);
                 i = 'F';
+                Log.d("Account_Gender_1", String.valueOf(i));
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -382,20 +384,23 @@ public class EditProfileTest extends AppCompatActivity {
                         String mobile = edit_reg_mob.getText().toString();
 //                        String country = txt_country.getText().toString();
 //                        String lang = txt_lang.getText().toString();
-                        if (i == 'M'){
-                            femalemale.setVisibility(View.INVISIBLE);
-                            malefemale.setVisibility(View.VISIBLE);
-                            malefemale_txt.setTextColor(Color.RED);
-                            femalemale_txt.setTextColor(Color.GRAY);
-                        }else {
-                            malefemale.setVisibility(View.INVISIBLE);
-                            femalemale.setVisibility(View.VISIBLE);
-                            malefemale_txt.setTextColor(Color.GRAY);
-                            femalemale_txt.setTextColor(Color.RED);
-                        }
+//                        if (i == 'M'){
+//                            femalemale.setVisibility(View.INVISIBLE);
+//                            malefemale.setVisibility(View.VISIBLE);
+//                            malefemale_txt.setTextColor(Color.RED);
+//                            femalemale_txt.setTextColor(Color.GRAY);
+//                            Log.d("Account_Gender", String.valueOf(i));
+//                        }else {
+//                            malefemale.setVisibility(View.INVISIBLE);
+//                            femalemale.setVisibility(View.VISIBLE);
+//                            malefemale_txt.setTextColor(Color.GRAY);
+//                            femalemale_txt.setTextColor(Color.RED);
+//                            Log.d("Account_Gender", String.valueOf(i));
+//                        }
                         char gender = i;
                         String birthdate = "";
                         //String photoname = "testing.jpg";
+                        Log.d("Account_Gender_Submit", String.valueOf(gender));
                         String x = String.valueOf(Language_ID);
                         String y = String.valueOf(Nationality_ID);
                         GetData gd = new GetData();
@@ -415,6 +420,8 @@ public class EditProfileTest extends AppCompatActivity {
                 malefemale_txt.setTextColor(Color.GRAY);
                 femalemale_txt.setTextColor(Color.RED);
                 i = 'F';
+                Log.d("Account_Gender_2", String.valueOf(i));
+
 
             }
         });
@@ -428,6 +435,7 @@ public class EditProfileTest extends AppCompatActivity {
                 malefemale_txt.setTextColor(Color.RED);
                 femalemale_txt.setTextColor(Color.GRAY);
                 i = 'M';
+                Log.d("Account_Gender_2", String.valueOf(i));
             }
         });
 
@@ -441,6 +449,7 @@ public class EditProfileTest extends AppCompatActivity {
                 malefemale.setVisibility(View.INVISIBLE);
                 femalemale.setVisibility(View.VISIBLE);
                 i = 'M';
+                Log.d("Account_Gender_2", String.valueOf(i));
 
             }
         });
@@ -455,6 +464,7 @@ public class EditProfileTest extends AppCompatActivity {
 
                 malefemale.setVisibility(View.VISIBLE);
                 femalemale.setVisibility(View.INVISIBLE);
+                Log.d("Account_Gender_2", String.valueOf(i));
             }
         });
 

@@ -76,7 +76,7 @@
     <string name="navy_List_image_content_Desc">navy_image_icon</string>
 
     <string name="Reg_appBar_name">Registration</string>
-    <string name="fill_all_error">Fill Al Required fields</string>
+    <string name="fill_all_error">Fill All Required fields</string>
     <string name="fill_Email">Fill Email please</string>
     <string name="Reg_FirstN">First Name</string>
     <string name="Reg_LastN">Last Name</string>
@@ -340,8 +340,8 @@
     <string name="passenger_deleted_successfully">Passenger deleted successfully</string>
     <string name="Delete_Ride">Delete Ride</string>
     <string name="choose_birth_date">Choose your Birth Date</string>
-    <string name="taken_username">Cannot Register , Please choose another username</string>
-    <string name="taken_mobile">Cannot Register , Check your Mobile Number</string>
+    <string name="taken_username">Cannot Register ,Email Already Exist</string>
+    <string name="taken_mobile">Cannot Register , Mobile Number Already Exist</string>
     <string name="Write_review_first">Please write a review first</string>
     <string name="Delete_Review_Str">Delete Review</string>
     <string name="Leave_Ride_Str">Leave Ride</string>
@@ -381,7 +381,7 @@
     <string name="check_mobile_and_email">Please check Email</string>
     <string name="select_start_point">PLease Select Start Point at least</string>
     <string name="region_identical">From and To Regions Can\'t Be Identical!</string>
-    <string name="choose_oneday">Please Choose at least 1 Day</string>
+    <string name="choose_oneday">Please Choose at least one Day</string>
     <string name="reg_gender_both">Both</string>
     <string name="accept_smoking_Str">Accept Smoking</string>
     <string name="accept_smokers_str">Accept</string>
@@ -407,6 +407,7 @@
     <string name="Sent_Invite">Has Sent you an Invitation</string>
     <string name="_18_years">+18 years</string>
     <string name="Driver_pending_request">Received Your invitation And Waiting For Approval</string>
+    <string name="Max_Routes_Reached">Maximum Routes Reached</string>
 
 
 </resources>

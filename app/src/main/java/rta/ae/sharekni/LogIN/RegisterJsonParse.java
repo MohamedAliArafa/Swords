@@ -8,20 +8,21 @@ import android.os.Parcel;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
 import rta.ae.sharekni.Arafa.DataModel.BestDriverDataModel;
 import rta.ae.sharekni.HomePage;
 import rta.ae.sharekni.R;
-
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * Created by nezar on 9/6/2015.
@@ -82,6 +83,9 @@ public class RegisterJsonParse {
                 Log.d("Error : ", error.toString());
             }
         });
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS , DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+
 //      Add a request (in this example, called stringRequest) to your RequestQueue.
         VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
 

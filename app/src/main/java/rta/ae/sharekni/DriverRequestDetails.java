@@ -174,6 +174,7 @@ public class DriverRequestDetails extends AppCompatActivity {
                         Intent in = new Intent(DriverRequestDetails.this, DriverAlertsForRequest.class);
                         in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(in);
+                        finish();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -234,6 +235,7 @@ public class DriverRequestDetails extends AppCompatActivity {
                         Intent in = new Intent(DriverRequestDetails.this, DriverAlertsForRequest.class);
                         in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(in);
+                        finish();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -300,6 +302,7 @@ public class DriverRequestDetails extends AppCompatActivity {
                         Intent in = new Intent(DriverRequestDetails.this, DriverAlertsForRequest.class);
                         in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(in);
+                        finish();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -360,6 +363,7 @@ public class DriverRequestDetails extends AppCompatActivity {
                         Intent in = new Intent(DriverRequestDetails.this, DriverAlertsForRequest.class);
                         in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(in);
+                        finish();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
