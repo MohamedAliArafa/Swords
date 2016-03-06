@@ -1,5 +1,6 @@
 package rta.ae.sharekni.LogIN;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -35,11 +36,16 @@ public class RegisterJsonParse {
     String Nat = null;
     String Lang = null;
     String datatest = null;
-
-
+    ProgressDialog pDialog;
     public void stringRequest(String url, final Context context, String nat, final String lang) {
         this.Nat = nat;
         this.Lang = lang;
+
+        pDialog = new ProgressDialog(context);
+        pDialog.setMessage(context.getString(R.string.loading) + "...");
+        pDialog.setIndeterminate(false);
+        pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        pDialog.show();
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -51,7 +57,7 @@ public class RegisterJsonParse {
                         // Display the first 500 characters of the response string.
                         String data = response.substring(40);
                         Log.d("Data:",data);
-
+                        pDialog.hide();
                         if (!data.equals("-2")   && !data.equals("-1") )  {
                             SharedPreferences myPrefs = context.getSharedPreferences("myPrefs", 0);
                             SharedPreferences.Editor editor = myPrefs.edit();
@@ -69,18 +75,12 @@ public class RegisterJsonParse {
 
                         }
 
-
-
-
-
-
-
-
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("Error : ", error.toString());
+                pDialog.hide();
             }
         });
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS , DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));

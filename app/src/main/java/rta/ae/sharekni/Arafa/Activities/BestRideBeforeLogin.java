@@ -63,7 +63,7 @@ public class BestRideBeforeLogin extends AppCompatActivity {
             pDialog = new ProgressDialog(BestRideBeforeLogin.this);
             pDialog.setMessage(getString(R.string.loading) + "...");
             pDialog.setIndeterminate(false);
-            pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             pDialog.show();
         }
 

@@ -74,7 +74,7 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
             pDialog = new ProgressDialog(BestDriversBeforeLogin.this);
             pDialog.setMessage(getString(R.string.loading) + "...");
             pDialog.setIndeterminate(false);
-            pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             pDialog.show();
         }
 

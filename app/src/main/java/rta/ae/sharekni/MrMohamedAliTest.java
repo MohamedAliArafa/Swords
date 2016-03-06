@@ -65,7 +65,7 @@ public class MrMohamedAliTest extends AppCompatActivity {
             pDialog = new ProgressDialog(MrMohamedAliTest.this);
             pDialog.setMessage(getString(R.string.loading) + "...");
             pDialog.setIndeterminate(false);
-            pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             pDialog.show();
         }
 
