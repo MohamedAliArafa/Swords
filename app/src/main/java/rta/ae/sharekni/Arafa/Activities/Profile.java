@@ -1,5 +1,6 @@
 package rta.ae.sharekni.Arafa.Activities;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -7,12 +8,14 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -49,6 +52,7 @@ import rta.ae.sharekni.R;
 import rta.ae.sharekni.RideDetailsPassenger;
 
 public class Profile extends AppCompatActivity {
+    public static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 2;
 
     TextView TopName, NationalityEnName;
     ImageView profile_msg, profile_call;
@@ -167,17 +171,32 @@ public class Profile extends AppCompatActivity {
                 public void onClick(View v) {
 
                     if (IsMobileVerified.equals("false")) {
-                        Toast.makeText(getBaseContext(), "No Phone Number" , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), "No Phone Number", Toast.LENGTH_SHORT).show();
 
                     } else if (IsMobileVerified.equals("true")) {
 
-                        Intent intent = null;
-                        try {
-                            intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + json.getString("Mobile")));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        if (ActivityCompat.checkSelfPermission(Profile.this, Manifest.permission.CALL_PHONE)
+                                != PackageManager.PERMISSION_GRANTED) {
+                            // Request missing location permission.
+                            ActivityCompat.requestPermissions(Profile.this,
+                                    new String[]{Manifest.permission.CALL_PHONE},
+                                    MY_PERMISSIONS_REQUEST_CALL_PHONE
+                            );
+                        } else {
+
+                            Intent intent = null;
+                            try {
+
+                                intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + json.getString("Mobile")));
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            startActivity(intent);
+
+
                         }
-                        startActivity(intent);
+
 
                     }
                 }
@@ -188,7 +207,7 @@ public class Profile extends AppCompatActivity {
                 public void onClick(View v) {
 
                     if (IsMobileVerified.equals("false")) {
-                        Toast.makeText(getBaseContext(), "No Phone Number" , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), "No Phone Number", Toast.LENGTH_SHORT).show();
 
                     } else if (IsMobileVerified.equals("true")) {
 
@@ -420,6 +439,44 @@ public class Profile extends AppCompatActivity {
             jsoning.cancel(true);
         }
         finish();
+    }
+
+
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_CALL_PHONE: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+
+                    if (ActivityCompat.checkSelfPermission(Profile.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        return;
+                    }
+
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+
+
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
     }
 
 

@@ -1,16 +1,19 @@
 package rta.ae.sharekni;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcel;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -47,6 +50,9 @@ import rta.ae.sharekni.Map.MapDataModel;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
+
+    public static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 2;
+    //    int MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION;
     private GoogleMap mMap;
     SupportMapFragment mapFragment;
     MapsActivity context;
@@ -69,7 +75,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Double MyLat = 0.0;
     Double My_Lng = 0.0;
     String AccountType;
-    ImageView pass_icon_trigger_btn,driver_icon_trigger_btn;
+    ImageView pass_icon_trigger_btn, driver_icon_trigger_btn;
 
 
     protected GoogleApiClient mGoogleApiClient;
@@ -83,6 +89,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected String mLongitudeLabel;
 
     protected static final String TAG = "Maps Activity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,9 +105,41 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         femalemale = (ImageView) findViewById(R.id.femalemale);
 
         MapRelative = (RelativeLayout) findViewById(R.id.MapRelative);
-        driver_icon_trigger_btn= (ImageView) findViewById(R.id.driver_icon_trigger_btn);
-        pass_icon_trigger_btn= (ImageView) findViewById(R.id.pass_icon_trigger_btn);
+        driver_icon_trigger_btn = (ImageView) findViewById(R.id.driver_icon_trigger_btn);
+        pass_icon_trigger_btn = (ImageView) findViewById(R.id.pass_icon_trigger_btn);
+        context = this;
 
+//
+//        if (ContextCompat.checkSelfPermission(context,
+//                Manifest.permission.ACCESS_FINE_LOCATION)
+//                != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(context,
+//                Manifest.permission.ACCESS_COARSE_LOCATION)
+//                != PackageManager.PERMISSION_GRANTED) {
+//
+//            // Should we show an explanation?
+//            if (ActivityCompat.shouldShowRequestPermissionRationale(context,
+//                    Manifest.permission.ACCESS_FINE_LOCATION) &&
+//                    ActivityCompat.shouldShowRequestPermissionRationale(context,
+//                            Manifest.permission.ACCESS_COARSE_LOCATION)) {
+//
+//                // Show an expanation to the user *asynchronously* -- don't block
+//                // this thread waiting for the user's response! After the user
+//                // sees the explanation, try again to request the permission.
+//
+//            } else {
+//
+//                // No explanation needed, we can request the permission.
+//
+//                ActivityCompat.requestPermissions(context,
+//                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+//                        MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+//
+//
+//                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+//                // app-defined int constant. The callback method gets the
+//                // result of the request.
+//            }
+//        }
 
 
         buildGoogleApiClient();
@@ -112,7 +151,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         assert AccountType != null;
         if (AccountType.equals("D")) {
 
-          //  MapRelative.setVisibility(View.VISIBLE);
+            //  MapRelative.setVisibility(View.VISIBLE);
             pass_icon_trigger_btn.setVisibility(View.VISIBLE);
             driver_icon_trigger_btn.setVisibility(View.INVISIBLE);
 
@@ -163,7 +202,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             });
 
 
-
 //            femalemale.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -202,8 +240,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //                    }
 
 
-              //  }
-        //    });
+            //  }
+            //    });
 
 
             malefemale_txt.setOnClickListener(new View.OnClickListener() {
@@ -232,9 +270,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         new backTread().execute();
-        context = this;
-        mapFragment.getMapAsync(this);
 
+
+        mapFragment.getMapAsync(this);
 
     }
 
@@ -249,7 +287,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .addApi(LocationServices.API)
                 .build();
     }
-
 
 
     @Override
@@ -273,23 +310,53 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // applications that do not require a fine-grained location and that do not need location
         // updates. Gets the best and most recent location currently available, which may be null
         // in rare cases when a location is not available.
-        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            // TODO: Consider calling
+//            //    ActivityCompat#requestPermissions
+//            // here to request the missing permissions, and then overriding
+//            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//            //                                          int[] grantResults)
+//            // to handle the case where the user grants the permission. See the documentation
+//            // for ActivityCompat#requestPermissions for more details.
+//            return;
+//        }
 
-        if (mLastLocation != null) {
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Request missing location permission.
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION
+            );
+        } else {
+            // Location permission has been granted, continue as usual.
+
+
+            mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+            mMap.setMyLocationEnabled(true);
+
+            if (mLastLocation != null) {
 //            mLatitudeText.setText(String.format("%s: %f", mLatitudeLabel,
 //                    mLastLocation.getLatitude()));
 //            mLongitudeText.setText(String.format("%s: %f", mLongitudeLabel,
 //                    mLastLocation.getLongitude()));
-            Log.d("User Lat ", String.valueOf(mLastLocation.getLatitude()));
-            Log.d("User Lat ", String.valueOf(mLastLocation.getLongitude()));
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
-                    (new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude()), 8.25f));
+                Log.d("User Lat ", String.valueOf(mLastLocation.getLatitude()));
+                Log.d("User Lat ", String.valueOf(mLastLocation.getLongitude()));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
+                        (new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude()), 8.25f));
 
 
+            } else {
+                Toast.makeText(this, "No Location Detected", Toast.LENGTH_LONG).show();
+            }
 
-        } else {
-            Toast.makeText(this, "No Location Detected", Toast.LENGTH_LONG).show();
+
         }
+
+        //  mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+
+
     }
 
     @Override
@@ -322,6 +389,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
         mMap = googleMap;
 
 
@@ -336,7 +404,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.getUiSettings().setMapToolbarEnabled(false);
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setZoomGesturesEnabled(true);
-        mMap.setMyLocationEnabled(true);
+
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Request missing location permission.
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+        } else {
+            // Location permission has been granted, continue as usual.
+
+            mMap.setMyLocationEnabled(true);
+
+
+        }
 
         mMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
             @Override
@@ -459,6 +541,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //            Log.d("My Lng", String.valueOf(My_Lng));
 //
 //        }
+
+
+        // else
+        // }
 
 
     }
@@ -601,6 +687,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             TextView NoOfRoutes_txt = (TextView) v.findViewById(R.id.NoOfRoutes);
                             TextView NoOfPassengers = (TextView) v.findViewById(R.id.NoOfPassengers);
                             TextView N0_Of_Drivers = (TextView) v.findViewById(R.id.N0_Of_Drivers);
+                            RelativeLayout ComingRideRelative = (RelativeLayout) v.findViewById(R.id.ComingRideRelative);
+                            ComingRideRelative.setVisibility(View.GONE);
 
                             String lat = String.valueOf(latLng.latitude).substring(0, 7);
                             String lon = String.valueOf(latLng.longitude).substring(0, 7);
@@ -757,7 +845,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             TextView NoOfPassengers = (TextView) v.findViewById(R.id.NoOfPassengers);
                             TextView N0_Of_Drivers = (TextView) v.findViewById(R.id.N0_Of_Drivers);
                             RelativeLayout ComingRideRelative = (RelativeLayout) v.findViewById(R.id.ComingRideRelative);
-                            ComingRideRelative.setVisibility(View.INVISIBLE);
+                            ComingRideRelative.setVisibility(View.GONE);
 
                             String lat = String.valueOf(latLng.latitude).substring(0, 7);
                             String lon = String.valueOf(latLng.longitude).substring(0, 7);
@@ -932,4 +1020,47 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onRestart();
         Log.d("on Restart", "Restart");
     }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+
+                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        return;
+                    }
+                    mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+                    mMap.setMyLocationEnabled(true);
+
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+
+
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
+    }
+
+
 }  //  classs

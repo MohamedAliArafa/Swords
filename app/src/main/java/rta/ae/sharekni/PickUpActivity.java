@@ -440,8 +440,8 @@ public class PickUpActivity extends AppCompatActivity {
                         regions.setRegionEnName(jsonObject.getString(getString(R.string.reg_name)));
                         if (!jsonObject.getString("RegionLatitude").equals("null") && !jsonObject.getString("RegionLatitude").equals("")) {
                             regions.setRegionLatitude(jsonObject.getDouble("RegionLatitude"));
-                          //  regions.setRegionLongitude(jsonObject.getDouble("RegionLongitude"));
-                           regions.setRegionLongitude(Double.valueOf(jsonObject.getString("RegionLongitude").split(",")[0]));
+                           // regions.setRegionLongitude(jsonObject.getDouble("RegionLongitude"));
+                          regions.setRegionLongitude(Double.valueOf(jsonObject.getString("RegionLongitude").split(",")[0]));
                         } else {
                             regions.setRegionLatitude(0.0);
                             regions.setRegionLongitude(0.0);
@@ -544,7 +544,9 @@ public class PickUpActivity extends AppCompatActivity {
                         if(jsonObject.getString("RegionLongitude").equals("null")){
                             regions.setRegionLongitude(0.0);
                         }else {
+                           //Testing Line
                             //regions.setRegionLongitude(jsonObject.getDouble("RegionLongitude"));
+                            //Production Line
                            regions.setRegionLongitude(Double.valueOf(jsonObject.getString("RegionLongitude").split(",")[0]));
                         }
                         arr_2.add(regions);

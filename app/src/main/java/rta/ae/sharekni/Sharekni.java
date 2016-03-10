@@ -17,7 +17,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.mobileapptracker.MobileAppTracker;
+import com.tune.Tune;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,6 +36,9 @@ import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
 import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
 
+//import com.mobileapptracker.MobileAppTracker;
+// Tune Tracker
+
 public class Sharekni extends Activity {
     static Sharekni SharekniActivity;
     protected static ProgressDialog pDialog;
@@ -47,7 +50,7 @@ public class Sharekni extends Activity {
         return SharekniActivity;
     }
 
-    public static MobileAppTracker mobileAppTracker = null;
+    public static Tune tune = null;
 
     ImageView Splash_background;
 
@@ -89,11 +92,16 @@ public class Sharekni extends Activity {
         }, 8000);
 
 
-        mobileAppTracker = MobileAppTracker.init(getApplicationContext(),
+        tune = Tune.init(getApplicationContext(),
                 "189698",
                 "172510cf81e7148e5a01851f65fb0c7e");
-       // mobileAppTracker.setDebugMode(true);
-       // mobileAppTracker.setAllowDuplicates(true);
+
+
+       // tune.setDebugMode(true);
+       // tune.setAllowDuplicates(true);
+
+//        mobileAppTracker.setDebugMode(true);
+//        mobileAppTracker.setAllowDuplicates(true);
 
 
     } //  on create
@@ -232,10 +240,15 @@ public class Sharekni extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        // Get source of open for app re-engagement
-        mobileAppTracker.setReferralSources(this);
-        // MAT will not function unless the measureSession call is included
-        mobileAppTracker.measureSession();
+//        // Get source of open for app re-engagement
+//        mobileAppTracker.setReferralSources(this);
+//        // MAT will not function unless the measureSession call is included
+//        mobileAppTracker.measureSession();
+
+        tune.setReferralSources(this);
+        tune.measureSession();
+
+
     }
 } //  class
 

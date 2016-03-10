@@ -1,21 +1,15 @@
 package rta.ae.sharekni;
 
+import android.Manifest;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Parcel;
-import android.util.Log;
+import android.support.v4.app.ActivityCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,29 +17,16 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.pkmmte.view.CircularImageView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.net.SocketAddress;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
-import rta.ae.sharekni.Arafa.Activities.Route;
 import rta.ae.sharekni.Arafa.Classes.AppController;
 import rta.ae.sharekni.Arafa.Classes.GetData;
-import rta.ae.sharekni.Arafa.DataModel.BestDriverDataModel;
-import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
-import rta.ae.sharekni.Arafa.DataModelAdapter.ProfileRideAdapter;
 
 /**
  * Created by nezar on 9/20/2015.
@@ -67,6 +48,8 @@ public class QuickSearchResultAdapter extends BaseAdapter {
 
     int Route_ID_2;
     String Route_Name_2;
+
+    public static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 2;
 
 
     List<TreeMap<String, String>> arr_2 = new ArrayList<>();
@@ -171,17 +154,41 @@ public class QuickSearchResultAdapter extends BaseAdapter {
         Phone_Call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + item.getAccountMobile()));
-                activity.startActivity(intent);
-            }
+
+
+
+                if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.CALL_PHONE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    // Request missing location permission.
+                    ActivityCompat.requestPermissions(activity,
+                            new String[]{Manifest.permission.CALL_PHONE},
+                            MY_PERMISSIONS_REQUEST_CALL_PHONE
+                    );
+                } else {
+
+
+                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + item.getAccountMobile()));
+                    activity.startActivity(intent);
+
+                }
+
+
+                }
+
+
+
+
         });
 
         Phone_Message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + item.getAccountMobile()));
                 intent.putExtra("sms_body", "Hello " + item.getAccountName());
                 activity.startActivity(intent);
+
+
             }
         });
 
@@ -189,6 +196,47 @@ public class QuickSearchResultAdapter extends BaseAdapter {
         return convertView;
 
 
+    }
+
+
+
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_CALL_PHONE: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+
+                    if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED  ) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        return;
+                    }
+
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+
+
+
+
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
     }
 
 

@@ -58,20 +58,20 @@ public class GetData {
     // public static final String NonOpDomain = "http://sharekni.sdgstaff.com/_mobfiles/CLS_MobAndroid.asmx";
     // public static final String PhotoURL = "http://sharekni.sdgstaff.com/uploads/personalphoto/";
 
-   // public static final String DOMAIN = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx/";
-  //  public static final String NonOpDomain = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx";
-   // public static final String PhotoURL = "http://213.42.51.219/uploads/personalphoto/";
+    // public static final String DOMAIN = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx/";
+    //  public static final String NonOpDomain = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx";
+    // public static final String PhotoURL = "http://213.42.51.219/uploads/personalphoto/";
 
     final JSONArray[] myJsonArray = new JSONArray[1];
 
-    //  public static final String DOMAIN = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx/";
-   //  public static final String NonOpDomain = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx";
+    //   public static final String DOMAIN = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx/";
+    //  public static final String NonOpDomain = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx";
     //  public static final String PhotoURL = "http://sharekni-web.sdg.ae/uploads/personalphoto/";
 
 
     public static final String DOMAIN = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx/";
-     public static final String NonOpDomain = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx";
-     public static final String PhotoURL = "https://www.sharekni.ae/uploads/personalphoto/";
+    public static final String NonOpDomain = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx";
+    public static final String PhotoURL = "https://www.sharekni.ae/uploads/personalphoto/";
 
 
     //    String data;
@@ -899,7 +899,7 @@ public class GetData {
         }
     }
 
-    public void bestRouteStringRequestDetails(String url, final ListView lv, final int Passenger_ID, final Context context) {
+    public void bestRouteStringRequestDetails(String url, final ListView lv, final int Passenger_ID, final Activity context) {
         // Get a RequestQueue
         RequestQueue queue = VolleySingleton.getInstance(context.getApplicationContext()).getRequestQueue();
         // Request a string response from the provided URL.
@@ -932,7 +932,7 @@ public class GetData {
         VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
     }
 
-    private void bestRouteJsonParseMostDetails(JSONArray jArray, ListView lv, final int Passenger_ID, final Context context) {
+    private void bestRouteJsonParseMostDetails(JSONArray jArray, ListView lv, final int Passenger_ID, final Activity context) {
         String days = "";
         final BestRouteDataModelDetails[] driver = new BestRouteDataModelDetails[jArray.length()];
         final ArrayList<BestRouteDataModelDetails> ar = new ArrayList<>();

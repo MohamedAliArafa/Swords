@@ -1,9 +1,12 @@
 package rta.ae.sharekni.Arafa.DataModelAdapter;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,21 +18,18 @@ import android.widget.Toast;
 import com.android.volley.toolbox.ImageLoader;
 import com.pkmmte.view.CircularImageView;
 
-import rta.ae.sharekni.Arafa.Classes.AppController;
-import rta.ae.sharekni.Arafa.Classes.CircularNetworkImageView;
-import rta.ae.sharekni.Arafa.Classes.GetData;
-import rta.ae.sharekni.Arafa.Classes.ImageDecoder;
-import rta.ae.sharekni.Arafa.DataModel.BestDriverDataModel;
-
-import rta.ae.sharekni.R;
-
-
 import java.util.List;
+
+import rta.ae.sharekni.Arafa.Classes.AppController;
+import rta.ae.sharekni.Arafa.Classes.GetData;
+import rta.ae.sharekni.Arafa.DataModel.BestDriverDataModel;
+import rta.ae.sharekni.R;
 
 public class BestDriverDataModelAdapter extends BaseAdapter {
 
 
     private Activity activity;
+    public static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 2;
     private LayoutInflater inflater;
     private List<BestDriverDataModel> driverItems;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
@@ -124,8 +124,24 @@ public class BestDriverDataModelAdapter extends BaseAdapter {
 
                     Toast.makeText(activity, "No Phone Number" , Toast.LENGTH_SHORT).show();
                 } else {
-                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + m.getPhoneNumber()));
-                    activity.startActivity(intent);
+
+                    if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.CALL_PHONE)
+                            != PackageManager.PERMISSION_GRANTED) {
+                        // Request missing location permission.
+                        ActivityCompat.requestPermissions(activity,
+                                new String[]{Manifest.permission.CALL_PHONE},
+                                MY_PERMISSIONS_REQUEST_CALL_PHONE
+                        );
+
+                    } else {
+
+
+                        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + m.getPhoneNumber()));
+                        activity.startActivity(intent);
+
+                    }
+
+
                 }
             }
         });
@@ -147,6 +163,47 @@ public class BestDriverDataModelAdapter extends BaseAdapter {
 
         return convertView;
     }
+
+
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_CALL_PHONE: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+
+                    if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED  ) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        return;
+                    }
+
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+
+
+
+
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
+    }
+
 
 
 }

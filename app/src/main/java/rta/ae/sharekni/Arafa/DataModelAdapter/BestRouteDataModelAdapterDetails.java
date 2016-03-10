@@ -1,9 +1,13 @@
 package rta.ae.sharekni.Arafa.DataModelAdapter;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,18 +22,16 @@ import com.android.volley.toolbox.ImageLoader;
 import com.pkmmte.view.CircularImageView;
 
 import rta.ae.sharekni.Arafa.Classes.AppController;
-import rta.ae.sharekni.Arafa.Classes.CircularNetworkImageView;
 import rta.ae.sharekni.Arafa.Classes.GetData;
-import rta.ae.sharekni.Arafa.Classes.ImageDecoder;
 import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModelDetails;
-
 import rta.ae.sharekni.R;
 
 
 public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteDataModelDetails> {
 
+    public static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 2;
     int resourse;
-    Context context;
+    Activity context;
     BestRouteDataModelDetails[] BestrouteArray;
     LayoutInflater layoutInflater;
     SharedPreferences myPrefs;
@@ -41,7 +43,7 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
     String URL = GetData.PhotoURL;
 
 
-    public BestRouteDataModelAdapterDetails(Context context, int resource, BestRouteDataModelDetails[] objects) {
+    public BestRouteDataModelAdapterDetails(Activity context, int resource, BestRouteDataModelDetails[] objects) {
         super(context, resource, objects);
         this.context=context;
         this.resourse=resource;
@@ -99,7 +101,7 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
         vh.Nationality_en.setText(bestRouteDataModel.getNationality_en());
         vh.SDG_RouteDays.setText(bestRouteDataModel.getSDG_RouteDays());
         vh.Rating.setText(bestRouteDataModel.getDriverRating());
-        vh.LastSeenText.setVisibility(View.INVISIBLE);
+        vh.LastSeenText.setVisibility(View.GONE);
 //        vh.Photo.setImageUrl(URL + bestRouteDataModel.getPhotoURl() , imageLoader);
         if (bestRouteDataModel.getDriverPhoto() != null){
             vh.Photo.setImageBitmap(bestRouteDataModel.getDriverPhoto());
@@ -117,8 +119,27 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
                 if (bestRouteDataModel.getDriverMobile()==null || bestRouteDataModel.getDriverMobile().equals("")) {
                     Toast.makeText(context, "No Phone Number" , Toast.LENGTH_SHORT).show();
                 }else {
-                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + bestRouteDataModel.getDriverMobile()));
-                    context.startActivity(intent);
+
+                    if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE)
+                            != PackageManager.PERMISSION_GRANTED) {
+                        // Request missing location permission.
+                        ActivityCompat.requestPermissions(context,
+                                new String[]{Manifest.permission.CALL_PHONE},
+                                MY_PERMISSIONS_REQUEST_CALL_PHONE
+                        );
+                    } else {
+
+
+                        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + bestRouteDataModel.getDriverMobile()));
+                        context.startActivity(intent);
+
+                    }
+
+
+
+
+
+
                 }
 
 
@@ -229,5 +250,49 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
 
 
     }
+
+
+
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_CALL_PHONE: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+
+                    if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED  ) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        return;
+                    }
+
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+
+
+
+
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
+    }
+
+
+
 
 }

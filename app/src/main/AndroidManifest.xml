@@ -90,10 +90,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="rta.ae.sharekni.SharekniOld" />
         </activity>
-        <activity
-            android:name=".ViewProfileActivity"
-            android:label="@string/title_activity_view_profile"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".Arafa.Activities.ImageUp"
             android:label="@string/title_activity_home_page_test"
@@ -367,10 +364,11 @@
             android:name=".ViewPermit"
             android:screenOrientation="landscape" />
         <activity android:name=".Privacy_Policy" />
-        <activity android:name=".Destination_Activity" />
         <activity android:name=".Display_My_Vehicles" />
 
-        <receiver android:name=".SmsReceiver">
+        <receiver
+            android:name=".SmsReceiver"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
@@ -383,13 +381,20 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <receiver android:name=".MyMobileAppTrackerReceiver">
+        <!--<receiver android:name=".MyMobileAppTrackerReceiver"-->
+        <!--android:exported="false">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="com.android.vending.INSTALL_REFERRER" />-->
+        <!--</intent-filter>-->
+        <!--</receiver>-->
+
+        <receiver
+            android:name="com.tune.TuneTracker"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
         </receiver>
-
-        <activity android:name=".MrMohamedAliTest" />
 
         <activity
             android:name=".PendingRequestDetails"

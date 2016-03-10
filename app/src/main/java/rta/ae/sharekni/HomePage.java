@@ -307,7 +307,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 VehiclesCount_str = "";
                 VehiclesCount_str += "(";
                 try {
-                    All_Alerts = jsonArray.getInt("DriverMyAlertsCount") + jsonArray.getInt("PassengerMyAlertsCount") + jsonArray.getInt("PendingRequestsCount")+ jsonArray.getInt("PendingInvitationCount") + jsonArray.getInt("Passenger_Invitation_Count");
+                    All_Alerts = jsonArray.getInt("DriverMyAlertsCount") + jsonArray.getInt("PassengerMyAlertsCount") + jsonArray.getInt("PendingRequestsCount") + jsonArray.getInt("PendingInvitationCount") + jsonArray.getInt("Passenger_Invitation_Count");
 
                     Vehicles_Count_FLAG = jsonArray.getInt("VehiclesCount");
                     Log.d("vehicle count flag", String.valueOf(Vehicles_Count_FLAG));
@@ -634,10 +634,13 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     protected void onResume() {
         super.onResume();
 
-        // Get source of open for app re-engagement
-        Sharekni.mobileAppTracker.setReferralSources(this);
-        // MAT will not function unless the measureSession call is included
-        Sharekni.mobileAppTracker.measureSession();
+        if (Sharekni.tune != null) {
+            // Get source of open for app re-engagement
+            Sharekni.tune.setReferralSources(this);
+            // MAT will not function unless the measureSession call is included
+            Sharekni.tune.measureSession();
+
+        }
 
 
     }
@@ -657,7 +660,13 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 Log.d("Driver Rides Count", String.valueOf(Driver_Rides_Count));
 
 
+                // For Testing Purpose
+//                if (true) {
+
+
+                //  For Prodution
                 if (Vehicles_Count_FLAG != 0) {
+
 
                     if (Driver_Rides_Count < 2) {
 
@@ -665,7 +674,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                         intent.putExtra("ID", Driver_ID);
                         startActivity(intent);
 
-                    }else {
+                    } else {
                         final Dialog dialog = new Dialog(c);
                         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                         dialog.setContentView(R.layout.noroutesdialog);
@@ -693,19 +702,19 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                     RegisterVehicleBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                           dialog.dismiss();
-                           Intent intent = new Intent(getBaseContext(), RegisterVehicle.class);
-                           startActivity(intent);
-                       }
-                   });
+                            dialog.dismiss();
+                            Intent intent = new Intent(getBaseContext(), RegisterVehicle.class);
+                            startActivity(intent);
+                        }
+                    });
 
-                  DismissBtn.setOnClickListener(new View.OnClickListener() {
-                     @Override
+                    DismissBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
                         public void onClick(View v) {
                             dialog.dismiss();
 
-                       }
-                   });
+                        }
+                    });
 
 
                 }
@@ -750,7 +759,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         @Override
         protected void onPostExecute(Object o) {
             try {
-                All_Alerts = jsonArray.getInt("DriverMyAlertsCount") + jsonArray.getInt("PassengerMyAlertsCount")+ jsonArray.getInt("PendingRequestsCount")+ jsonArray.getInt("PendingInvitationCount")+ jsonArray.getInt("Passenger_Invitation_Count");
+                All_Alerts = jsonArray.getInt("DriverMyAlertsCount") + jsonArray.getInt("PassengerMyAlertsCount") + jsonArray.getInt("PendingRequestsCount") + jsonArray.getInt("PendingInvitationCount") + jsonArray.getInt("Passenger_Invitation_Count");
                 name_str = "";
                 nat_str = "";
                 Firstname = "";
@@ -1118,10 +1127,10 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
             driver_rides_Created.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                        Log.d("Driver Rides Count", String.valueOf(Driver_Rides_Count));
-                        Intent intent = new Intent(getBaseContext(), DriverCreatedRides.class);
-                        intent.putExtra("DriverID", Driver_ID);
-                        startActivity(intent);
+                    Log.d("Driver Rides Count", String.valueOf(Driver_Rides_Count));
+                    Intent intent = new Intent(getBaseContext(), DriverCreatedRides.class);
+                    intent.putExtra("DriverID", Driver_ID);
+                    startActivity(intent);
 
                 }
             });
