@@ -682,6 +682,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                         Button btn = (Button) dialog.findViewById(R.id.noroute_id);
                         TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
                         dialog.show();
+                        btn.setText(R.string.ok_2);
                         Text_3.setText(R.string.Max_Routes_Reached);
 
                         btn.setOnClickListener(new View.OnClickListener() {

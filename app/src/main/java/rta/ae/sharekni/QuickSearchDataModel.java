@@ -18,6 +18,8 @@ public class QuickSearchDataModel extends ArrayList<Parcelable> implements Parce
             , AccountMobile, AccountPhoto,SDG_RouteDays,Rating,LastSeen,MapKey,InviteType;
     int Passenger_ID;
 
+    String GreenPoints,GreenCo2Saving;
+
 
     int AvilableOrRequiredSeats, SDG_Route_FromEmirate_ID
             , SDG_Route_FromRegion_ID, SDG_Route_ID, SDG_Route_ToEmirate_ID
@@ -74,6 +76,9 @@ public class QuickSearchDataModel extends ArrayList<Parcelable> implements Parce
         InviteType=in.readString();
         InviteStatus=in.readInt();
         Passenger_ID=in.readInt();
+
+        GreenPoints=in.readString();
+        GreenCo2Saving=in.readString();
 
 
     }
@@ -259,6 +264,22 @@ public class QuickSearchDataModel extends ArrayList<Parcelable> implements Parce
         this.SDG_Route_ToEmirate_ID = SDG_Route_ToEmirate_ID;
     }
 
+    public String getGreenPoints() {
+        return GreenPoints;
+    }
+
+    public void setGreenPoints(String greenPoints) {
+        GreenPoints = greenPoints;
+    }
+
+    public String getGreenCo2Saving() {
+        return GreenCo2Saving;
+    }
+
+    public void setGreenCo2Saving(String greenCo2Saving) {
+        GreenCo2Saving = greenCo2Saving;
+    }
+
     public int getSDG_Route_ToRegion_ID() {
         return SDG_Route_ToRegion_ID;
     }
@@ -413,6 +434,9 @@ public class QuickSearchDataModel extends ArrayList<Parcelable> implements Parce
         dest.writeString(InviteType);
         dest.writeInt(InviteStatus);
         dest.writeInt(Passenger_ID);
+
+        dest.writeString(GreenPoints);
+        dest.writeString(GreenCo2Saving);
     }
 }
 

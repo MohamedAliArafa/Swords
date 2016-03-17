@@ -99,10 +99,15 @@ public class QuickSearchResultAdapter extends BaseAdapter {
         TextView LastSeenTvValue = (TextView) convertView.findViewById(R.id.LastSeenTvValue);
         Button PassengerSendInvite = (Button) convertView.findViewById(R.id.PassengerSendInvite);
         TextView LastSeenText = (TextView) convertView.findViewById(R.id.LastSeenText);
+        TextView GreenPoints = (TextView) convertView.findViewById(R.id.Green_Points_txt);
+        TextView Green_Co2Saving = (TextView) convertView.findViewById(R.id.Green_co2_saving_txt);
 
 
 //        Photo.sectImageUrl(URL + item.getAccountPhoto(), imageLoader);
 
+
+        GreenPoints.setText(item.getGreenPoints());
+        Green_Co2Saving.setText(item.getGreenCo2Saving());
 
         if (item.getDriverPhoto() != null) {
             Photo.setImageBitmap(item.getDriverPhoto());

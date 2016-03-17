@@ -408,7 +408,7 @@
     <string name="Sent_Invite">Has Sent you an Invitation</string>
     <string name="_18_years">+18 years</string>
     <string name="Driver_pending_request">Received Your invitation And Waiting For Approval</string>
-    <string name="Max_Routes_Reached">Maximum Routes Reached</string>
+    <string name="Max_Routes_Reached">Maximum Rides Reached</string>
     <string name="Location_Not_Enabled">Location is not Enabled</string>
     <string name="Please_turn_on_gps_first">Please Turn on Gps First</string>
     <string name="Turn_On">Turn On</string>
@@ -423,6 +423,13 @@
     <string name="Send_Invite_Str">Send</string>
     <string name="invite_yes">Yes</string>
     <string name="No_Phone_number">No Phone Number</string>
+    <string name="points_str">Points</string>
+    <string name="km_str">Km</string>
+    <string name="routes_str">Routes</string>
+    <string name="vehicles_str">Vehicles</string>
+    <string name="kg_str">Kg</string>
+    <string name="co2_saving">CO2 Saving</string>
+    <string name="ok_2">Ok</string>
 
 
 </resources>

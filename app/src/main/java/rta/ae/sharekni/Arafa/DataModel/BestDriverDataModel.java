@@ -19,7 +19,7 @@ public class BestDriverDataModel extends ArrayList<Parcelable> implements Parcel
         this.phoneNumber = phoneNumber;
     }
 
-    public String Name,PhotoURL,Nationality,Language,phoneNumber,LastSeen;
+    public String Name,PhotoURL,Nationality,Language,phoneNumber,LastSeen,GreenPoints,CO2Saved;
     public int ID,Rating;
 
     public Bitmap getPhoto() {
@@ -33,6 +33,8 @@ public class BestDriverDataModel extends ArrayList<Parcelable> implements Parcel
     public Bitmap photo;
 
 
+
+
     public BestDriverDataModel(Parcel in) {
         Name = in.readString();
         PhotoURL = in.readString();
@@ -41,6 +43,8 @@ public class BestDriverDataModel extends ArrayList<Parcelable> implements Parcel
         Rating = in.readInt();
         Language=in.readString();
         LastSeen=in.readString();
+        CO2Saved=in.readString();
+        GreenPoints=in.readString();
     }
 
     public static final Creator<BestDriverDataModel> CREATOR = new Creator<BestDriverDataModel>() {
@@ -55,6 +59,21 @@ public class BestDriverDataModel extends ArrayList<Parcelable> implements Parcel
         }
     };
 
+    public String getGreenPoints() {
+        return GreenPoints;
+    }
+
+    public void setGreenPoints(String greenPoints) {
+        GreenPoints = greenPoints;
+    }
+
+    public String getCO2Saved() {
+        return CO2Saved;
+    }
+
+    public void setCO2Saved(String CO2Saved) {
+        this.CO2Saved = CO2Saved;
+    }
 
     public void setLanguage(String language) {
         Language = language;
@@ -126,5 +145,7 @@ public class BestDriverDataModel extends ArrayList<Parcelable> implements Parcel
         parcel.writeInt(Rating);
         parcel.writeString(Language);
         parcel.writeString(LastSeen);
+        parcel.writeString(GreenPoints);
+        parcel.writeString(CO2Saved);
     }
 }

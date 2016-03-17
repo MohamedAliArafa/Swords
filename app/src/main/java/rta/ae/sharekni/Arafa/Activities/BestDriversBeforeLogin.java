@@ -156,6 +156,9 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
                         driver.setNationality(obj.getString(getString(R.string.nat_name2)));
                         driver.setRating(obj.getInt("Rating"));
                         driver.setPhoneNumber(obj.getString("AccountMobile"));
+                        driver.setGreenPoints(obj.getString("GreenPoints"));
+                        driver.setCO2Saved(obj.getString("CO2Saved"));
+
                         if (!obj.getString("AccountPhoto").equals("NoImage.png")){
                             GetData gd = new GetData();
                             driver.setPhoto(gd.GetImage(obj.getString("AccountPhoto")));

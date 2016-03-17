@@ -349,7 +349,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Log.d("User Lat ", String.valueOf(mLastLocation.getLatitude()));
                 Log.d("User Lat ", String.valueOf(mLastLocation.getLongitude()));
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
-                        (new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude()), 8.25f));
+                        (new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude()), 12.25f));
 
 
             } else {
@@ -629,8 +629,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             item.setFromEmirateEnName(jsonObject.getString("FromEmirateNameEn"));
                             item.setFromEmirateId(jsonObject.getInt("FromEmirateId"));
                             item.setFromRegionId(jsonObject.getInt("FromRegionId"));
-                          //  item.setToEmirateId(jsonObject.getInt("ToEmirateId"));
-                           // item.setToRegionId(jsonObject.getInt("ToRegionId"));
+                            //  item.setToEmirateId(jsonObject.getInt("ToEmirateId"));
+                            // item.setToRegionId(jsonObject.getInt("ToRegionId"));
                             item.setFromEmirateArName(jsonObject.getString("FromEmirateNameAr"));
 
                             item.setNoOfRoutes(jsonObject.getInt("NoOfRoutes"));
@@ -774,13 +774,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                     try {
-                          JSONArray j = new GetData().GetMatchedRoutesForPassengers(Integer.parseInt(ID));
-                       // JSONArray j = new GetData().GetPassengersMapLookUp();
+                        JSONArray j = new GetData().GetMatchedRoutesForPassengers(Integer.parseInt(ID));
+                        // JSONArray j = new GetData().GetPassengersMapLookUp();
                         data = new MapDataModel[j.length()];
 
-                        if (j.length()==0){
+                        if (j.length() == 0) {
                             Toast.makeText(context, R.string.No_passengers_Found, Toast.LENGTH_LONG).show();
-                           // context.finish();
+                            // context.finish();
                         }
 
                         for (int i = 0; i < j.length(); i++) {
@@ -802,15 +802,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             //  item.setFromEmirateArName(jsonObject.getString("FromEmirateNameAr"));
 
 
-
                             item.setFromEmirateId(jsonObject.getInt("FromEmirateId"));
                             item.setFromRegionId(jsonObject.getInt("FromRegionId"));
                             item.setToEmirateId(jsonObject.getInt("ToEmirateId"));
                             item.setToRegionId(jsonObject.getInt("ToRegionId"));
 
 
-
-                          //  item.setNoOfRoutes(jsonObject.getInt("NoOfRoutes"));
+                            //  item.setNoOfRoutes(jsonObject.getInt("NoOfRoutes"));
                             item.setNoOFPassengers(jsonObject.getInt("PassengersCount"));
                             item.setDriverRouteID(jsonObject.getInt("DriverRouteId"));
 
@@ -873,7 +871,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             TextView NoOfPassengers = (TextView) v.findViewById(R.id.NoOfPassengers);
 
 
-
                             String lat = String.valueOf(latLng.latitude).substring(0, 7);
                             String lon = String.valueOf(latLng.longitude).substring(0, 7);
                             String NoOfRoutes_str = String.valueOf(NoOfRoutes);
@@ -905,9 +902,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                             From_Em_Id = data[i].getFromEmirateId();
                             From_Reg_Id = data[i].getFromRegionId();
-                            To_Em_Id=data[i].getToEmirateId();
-                            To_Reg_Id=data[i].getToRegionId();
-                            Driver_Route_ID =data[i].getDriverRouteID();
+                            To_Em_Id = data[i].getToEmirateId();
+                            To_Reg_Id = data[i].getToRegionId();
+                            Driver_Route_ID = data[i].getDriverRouteID();
 
 
                             Locale locale = Locale.getDefault();

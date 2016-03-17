@@ -166,6 +166,9 @@ public class MostRidesDetails extends AppCompatActivity {
                             }
                             days = "";
 
+                            item.setGreenPoints(json.getString("GreenPoints"));
+                            item.setGreenCo2Saving(json.getString("CO2Saved"));
+
                             if (json.getString("Saturday").equals("true")) {
                                 days += getString(R.string.sat);
                             }

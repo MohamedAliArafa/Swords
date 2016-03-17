@@ -75,6 +75,8 @@ public class BestDriverDataModelAdapter extends BaseAdapter {
         TextView Rat = (TextView) convertView.findViewById(R.id.Best_Drivers_Item_rate);
         TextView   LastSeenText= (TextView) convertView.findViewById(R.id.LastSeenText);
         TextView LastSeenTvValue = (TextView) convertView.findViewById(R.id.LastSeenTvValue);
+        TextView Green_Points_txt = (TextView) convertView.findViewById(R.id.Green_Points_txt);
+        TextView Green_co2_saving_txt = (TextView) convertView.findViewById(R.id.Green_co2_saving_txt);
 
         //RatingBar rating = (RatingBar) convertView.findViewById(R.id.ratingBar);
 
@@ -109,13 +111,18 @@ public class BestDriverDataModelAdapter extends BaseAdapter {
         Nat.setText(m.getNationality());
         Rat.setText(Integer.toString(m.getRating()));
 
+        Green_Points_txt.setText(m.getGreenPoints());
+        Green_co2_saving_txt.setText(m.getCO2Saved());
 
-        LastSeenText.setVisibility(View.GONE);
-        LastSeenTvValue.setVisibility(View.GONE);
+
+
+
+        LastSeenText.setVisibility(View.INVISIBLE);
+        LastSeenTvValue.setVisibility(View.INVISIBLE);
 
         if(m.getLastSeen().equals("null")){
-            LastSeenText.setVisibility(View.GONE);
-            LastSeenTvValue.setVisibility(View.GONE);
+            LastSeenText.setVisibility(View.INVISIBLE);
+            LastSeenTvValue.setVisibility(View.INVISIBLE);
         }else {
             LastSeenText.setVisibility(View.VISIBLE);
             LastSeenTvValue.setVisibility(View.VISIBLE);

@@ -77,6 +77,9 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
             vh.Rating = (TextView) v.findViewById(R.id.Best_Drivers_Item_rate);
             vh.LastSeenText= (TextView) v.findViewById(R.id.LastSeenText);
             vh.LastSeenTvValue = (TextView) v.findViewById(R.id.LastSeenTvValue);
+            vh.Green_Points_txt= (TextView) v.findViewById(R.id.Green_Points_txt);
+            vh.Green_co2_saving_txt= (TextView) v.findViewById(R.id.Green_co2_saving_txt);
+
 
             // Testing Line
             vh.LastSeenText.setVisibility(View.GONE);
@@ -106,6 +109,10 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
         vh.Nationality_en.setText(bestRouteDataModel.getNationality_en());
         vh.SDG_RouteDays.setText(bestRouteDataModel.getSDG_RouteDays());
         vh.Rating.setText(bestRouteDataModel.getDriverRating());
+
+        vh.Green_co2_saving_txt.setText(bestRouteDataModel.getGreenCo2Saving());
+        vh.Green_Points_txt.setText(bestRouteDataModel.getGreenPoints());
+
 
 
             // Producation Line
@@ -267,6 +274,8 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
         CircularImageView Photo;
         TextView LastSeenText;
         TextView LastSeenTvValue;
+        TextView Green_Points_txt;
+        TextView Green_co2_saving_txt;
 
 
     }

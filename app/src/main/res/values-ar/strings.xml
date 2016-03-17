@@ -231,7 +231,7 @@
     <string name="notification">التنبيهات</string>
     <string name="old_password">كلمة المرور القديمة</string>
     <string name="reject_request">رفضل طلبك للإنضمام</string>
-    <string name="route_deleted">تم ألغاء الطريق بنجاح</string>
+    <string name="route_deleted">تم إلغاء الطريق بنجاح</string>
     <string name="some_thing_is_wrong">حدث خطأ ما</string>
     <string name="verified">موثقة</string>
     <string name="Fri">الجمعة</string>
@@ -409,7 +409,7 @@
     <string name="_18_years">+18 سنه</string>
     <string name="passenger_nat_en_name">PassengerNationalityArName</string>
     <string name="Driver_pending_request">إستلم دعوتك وفي انتظار موافقته</string>
-    <string name="Max_Routes_Reached">لقد وصلت للحد الأقصي من رحلات</string>
+    <string name="Max_Routes_Reached">لا يمكن إضافة المزيد من الرحلات</string>
     <string name="Location_Not_Enabled">موقعك غير متاح </string>
     <string name="Please_turn_on_gps_first">الرجاء تشغيل نظام تحديد المواقع أولا</string>
     <string name="Turn_On">تشغيل</string>
@@ -424,6 +424,13 @@
     <string name="Send_Invite_Str">إرسال</string>
     <string name="invite_yes">نعم</string>
     <string name="No_Phone_number">لا يوجد رقم هاتف</string>
+    <string name="points_str">نقاط</string>
+    <string name="km_str">كم</string>
+    <string name="routes_str">طرق</string>
+    <string name="vehicles_str">مركبات</string>
+    <string name="kg_str">كج</string>
+    <string name="co2_saving">CO2 حفظ</string>
+    <string name="ok_2">موافق</string>
 
 
 </resources>

@@ -70,6 +70,7 @@ public class Profile extends AppCompatActivity {
     jsoning jsoning;
     TextView Driver_profile_Item_rate;
     String IsMobileVerified, IsPhotoVerified;
+    TextView Green_Points_txt,Green_Km_txt,Green_Routes_txt,Green_Vehicles_txt,Green_co2_saving_txt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +95,15 @@ public class Profile extends AppCompatActivity {
         profile_msg = (ImageView) findViewById(R.id.profile_msg);
         profile_call = (ImageView) findViewById(R.id.profile_call);
         Driver_profile_Item_rate = (TextView) findViewById(R.id.Driver_profile_Item_rate);
+
+        Green_Points_txt= (TextView) findViewById(R.id.Green_Points_txt);
+        Green_Km_txt= (TextView) findViewById(R.id.Green_Km_txt);
+        Green_Routes_txt = (TextView) findViewById(R.id.Green_Routes_txt);
+        Green_Vehicles_txt = (TextView) findViewById(R.id.Green_Vehicles_txt);
+        Green_co2_saving_txt = (TextView) findViewById(R.id.Green_co2_saving_txt);
+
+
+
 
         myPrefs = this.getSharedPreferences("myPrefs", 0);
         Passenger_ID = Integer.parseInt(myPrefs.getString("account_id", "0"));
@@ -164,6 +174,16 @@ public class Profile extends AppCompatActivity {
 
             IsMobileVerified = json.getString("IsMobileVerified");
             IsPhotoVerified = json.getString("IsPhotoVerified");
+
+            Green_Points_txt.setText(json.getString("GreenPoints"));
+            Green_Km_txt.setText(json.getString("TotalDistance"));
+            Green_Routes_txt.setText(json.getString("DriverMyRidesCount"));
+            Green_Vehicles_txt.setText(json.getString("VehiclesCount"));
+            Green_co2_saving_txt.setText(json.getString("CO2Saved"));
+
+
+
+
 
 
             profile_call.setOnClickListener(new View.OnClickListener() {

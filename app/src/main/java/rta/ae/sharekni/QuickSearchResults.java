@@ -148,7 +148,7 @@ public class QuickSearchResults extends AppCompatActivity {
 
         backTread = new backTread();
         backTread2 = new backTread2();
-        Backthread3 =  new backTread3();
+        Backthread3 = new backTread3();
 
 
 //        if (To_EmirateEnName.equals("null")){
@@ -171,7 +171,7 @@ public class QuickSearchResults extends AppCompatActivity {
             backTread2.execute();
 
 
-        }else {
+        } else {
             Backthread3.execute();
         }
     }
@@ -253,6 +253,12 @@ public class QuickSearchResults extends AppCompatActivity {
                             item.setAccountName(json.getString("AccountName"));
                             item.setDriverId(json.getInt("DriverId"));
                             item.setAccountPhoto(json.getString("AccountPhoto"));
+
+                            // Production
+
+                            item.setGreenPoints(json.getString("GreenPoints"));
+                            item.setGreenCo2Saving(json.getString("CO2Saved"));
+
                             if (!json.getString("AccountPhoto").equals("NoImage.png")) {
                                 GetData gd = new GetData();
                                 item.setDriverPhoto(gd.GetImage(json.getString("AccountPhoto")));
@@ -396,8 +402,7 @@ public class QuickSearchResults extends AppCompatActivity {
                     GetData j = new GetData();
 
 
-
-                    String url2 = GetData.DOMAIN + "GetFromOnlyMostDesiredRidesDetails?FromEmirateId=" + From_Em_Id +  "&FromRegionId="  + From_Reg_Id;
+                    String url2 = GetData.DOMAIN + "GetFromOnlyMostDesiredRidesDetails?FromEmirateId=" + From_Em_Id + "&FromRegionId=" + From_Reg_Id;
 
                     Log.d("Url", url2);
                     try {
@@ -431,7 +436,7 @@ public class QuickSearchResults extends AppCompatActivity {
                 } else {
 
                     GetData j = new GetData();
-                    String url2 = GetData.DOMAIN + "GetFromOnlyMostDesiredRidesDetails?FromEmirateId=" + From_Em_Id +  "&FromRegionId="  + From_Reg_Id;
+                    String url2 = GetData.DOMAIN + "GetFromOnlyMostDesiredRidesDetails?FromEmirateId=" + From_Em_Id + "&FromRegionId=" + From_Reg_Id;
 
                     Log.d("Url", url2);
                     try {
@@ -564,7 +569,6 @@ public class QuickSearchResults extends AppCompatActivity {
                             }
 
 
-
                             if (json.getInt("DriverInvitationStatus") == 1) {
                                 item.setInviteStatus(1);
                             } else {
@@ -587,12 +591,12 @@ public class QuickSearchResults extends AppCompatActivity {
                                 item.setDriverPhoto(gd.GetImage(json.getString("PassengerPhoto")));
                             }
                             item.setDriverEnName(json.getString("PassengerName"));
-                         //   item.setAccountMobile(json.getString("DriverMobile"));
+                            //   item.setAccountMobile(json.getString("DriverMobile"));
                             //  item.setSDG_Route_Start_FromTime(json.getString("SDG_Route_Start_FromTime"));
                             item.setSDG_Route_Start_FromTime("");
                             item.setNationality_en(json.getString(getString(R.string.nat_name)));
                             item.setLastSeen(json.getString("LastSeen"));
-                           // item.setRating(json.getString("Rating"));
+                            // item.setRating(json.getString("Rating"));
 
 
                             if (!json.getString("PassengerName").equals("null")) {
@@ -600,7 +604,7 @@ public class QuickSearchResults extends AppCompatActivity {
                                 searchArray.add(item);
 
 
-                            }else {
+                            } else {
                                 item.clear();
                             }
 
@@ -625,7 +629,6 @@ public class QuickSearchResults extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
-
 
 
                 } catch (NullPointerException e) {
@@ -704,8 +707,8 @@ public class QuickSearchResults extends AppCompatActivity {
                 if (ID.equals("0")) {
 
                     GetData j = new GetData();
-                 //   String url = GetData.DOMAIN + "GetMostDesiredRideDetailsForPassengers?AccountID=" + 0 + "&FromEmirateID=" + From_Em_Id + "&FromRegionID=" + From_Reg_Id + "&ToEmirateID=" + To_Em_Id + "&ToRegionID=" + To_Reg_Id + "&RouteId=" + RouteID;
-                    String url2 = GetData.DOMAIN + "GetMatchedRoutesDetailsForPassengers?driverAccountId=" + 0 +  "&DriverRouteId="  + RouteID +"&FromEmirateId=" + From_Em_Id + "&FromRegionId=" + From_Reg_Id + "&ToEmirateId=" + To_Em_Id + "&ToRegionId=" + To_Reg_Id;
+                    //   String url = GetData.DOMAIN + "GetMostDesiredRideDetailsForPassengers?AccountID=" + 0 + "&FromEmirateID=" + From_Em_Id + "&FromRegionID=" + From_Reg_Id + "&ToEmirateID=" + To_Em_Id + "&ToRegionID=" + To_Reg_Id + "&RouteId=" + RouteID;
+                    String url2 = GetData.DOMAIN + "GetMatchedRoutesDetailsForPassengers?driverAccountId=" + 0 + "&DriverRouteId=" + RouteID + "&FromEmirateId=" + From_Em_Id + "&FromRegionId=" + From_Reg_Id + "&ToEmirateId=" + To_Em_Id + "&ToRegionId=" + To_Reg_Id;
 
                     Log.d("Url", url2);
                     try {
@@ -718,8 +721,8 @@ public class QuickSearchResults extends AppCompatActivity {
 
                 } else {
                     GetData j = new GetData();
-                   // String url = GetData.DOMAIN + "GetMostDesiredRideDetailsForPassengers?AccountID=" + Integer.parseInt(ID) + "&FromEmirateID=" + From_Em_Id + "&FromRegionID=" + From_Reg_Id + "&ToEmirateID=" + To_Em_Id + "&ToRegionID=" + To_Reg_Id + "&RouteId=" + RouteID;
-                    String url2 = GetData.DOMAIN + "GetMatchedRoutesDetailsForPassengers?driverAccountId=" + Integer.parseInt(ID) +  "&DriverRouteId="  + RouteID +"&FromEmirateId=" + From_Em_Id + "&FromRegionId=" + From_Reg_Id + "&ToEmirateId=" + To_Em_Id + "&ToRegionId=" + To_Reg_Id;
+                    // String url = GetData.DOMAIN + "GetMostDesiredRideDetailsForPassengers?AccountID=" + Integer.parseInt(ID) + "&FromEmirateID=" + From_Em_Id + "&FromRegionID=" + From_Reg_Id + "&ToEmirateID=" + To_Em_Id + "&ToRegionID=" + To_Reg_Id + "&RouteId=" + RouteID;
+                    String url2 = GetData.DOMAIN + "GetMatchedRoutesDetailsForPassengers?driverAccountId=" + Integer.parseInt(ID) + "&DriverRouteId=" + RouteID + "&FromEmirateId=" + From_Em_Id + "&FromRegionId=" + From_Reg_Id + "&ToEmirateId=" + To_Em_Id + "&ToRegionId=" + To_Reg_Id;
 
                     Log.d("Url", url2);
                     try {
@@ -787,8 +790,6 @@ public class QuickSearchResults extends AppCompatActivity {
         finish();
 
     }
-
-
 
 
     private class backTread3 extends AsyncTask {
@@ -887,6 +888,9 @@ public class QuickSearchResults extends AppCompatActivity {
                             } else {
                                 item.setLastSeen(json.getString("LastSeen"));
                             }
+
+                            item.setGreenPoints(json.getString("GreenPoints"));
+                            item.setGreenCo2Saving(json.getString("CO2Saved"));
 
                             days = "";
 
@@ -1044,7 +1048,6 @@ public class QuickSearchResults extends AppCompatActivity {
             return null;
         }
     }
-
 
 
 }
