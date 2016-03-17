@@ -131,6 +131,7 @@ public class Route extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ride_details_new);
+     //   setContentView(R.layout.ride_details_2);
 
         initToolbar();
         con = this;

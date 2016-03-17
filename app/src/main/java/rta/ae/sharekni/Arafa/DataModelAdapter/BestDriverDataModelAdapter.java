@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import com.android.volley.toolbox.ImageLoader;
 import com.pkmmte.view.CircularImageView;
 
 import java.util.List;
+import java.util.Locale;
 
 import rta.ae.sharekni.Arafa.Classes.AppController;
 import rta.ae.sharekni.Arafa.Classes.GetData;
@@ -34,6 +36,7 @@ public class BestDriverDataModelAdapter extends BaseAdapter {
     private List<BestDriverDataModel> driverItems;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     String URL = GetData.PhotoURL;
+    String Locale_Str;
 
     public BestDriverDataModelAdapter(Activity activity, List<BestDriverDataModel> driverItems) {
         this.activity = activity;
@@ -77,6 +80,8 @@ public class BestDriverDataModelAdapter extends BaseAdapter {
         TextView LastSeenTvValue = (TextView) convertView.findViewById(R.id.LastSeenTvValue);
         TextView Green_Points_txt = (TextView) convertView.findViewById(R.id.Green_Points_txt);
         TextView Green_co2_saving_txt = (TextView) convertView.findViewById(R.id.Green_co2_saving_txt);
+        ImageView GreenPointCar_im = (ImageView) convertView.findViewById(R.id.GreenPointCar_im);
+
 
         //RatingBar rating = (RatingBar) convertView.findViewById(R.id.ratingBar);
 
@@ -91,6 +96,25 @@ public class BestDriverDataModelAdapter extends BaseAdapter {
         }else {
             Photo.setImageResource(R.drawable.defaultdriver);
         }
+
+
+        Locale locale = Locale.getDefault();
+        Locale_Str = locale.toString();
+
+        Log.d("test locale", Locale_Str);
+
+
+        if (Locale_Str.contains("en")) {
+
+
+            GreenPointCar_im.setImageResource(R.drawable.greenpointcar);
+
+        } else {
+
+            GreenPointCar_im.setImageResource(R.drawable.greencarar);
+
+        }
+
 
         StringBuffer res = new StringBuffer();
 

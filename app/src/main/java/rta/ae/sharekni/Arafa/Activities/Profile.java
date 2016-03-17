@@ -40,6 +40,7 @@ import java.net.Socket;
 import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import rta.ae.sharekni.Arafa.Classes.AppController;
 import rta.ae.sharekni.Arafa.Classes.GetData;
@@ -70,7 +71,10 @@ public class Profile extends AppCompatActivity {
     jsoning jsoning;
     TextView Driver_profile_Item_rate;
     String IsMobileVerified, IsPhotoVerified;
+    ImageView GreenPointCar_im;
     TextView Green_Points_txt,Green_Km_txt,Green_Routes_txt,Green_Vehicles_txt,Green_co2_saving_txt;
+
+    String Locale_Str;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +105,27 @@ public class Profile extends AppCompatActivity {
         Green_Routes_txt = (TextView) findViewById(R.id.Green_Routes_txt);
         Green_Vehicles_txt = (TextView) findViewById(R.id.Green_Vehicles_txt);
         Green_co2_saving_txt = (TextView) findViewById(R.id.Green_co2_saving_txt);
+        GreenPointCar_im = (ImageView) findViewById(R.id.GreenPointCar_im);
 
+
+
+
+        Locale locale = Locale.getDefault();
+        Locale_Str = locale.toString();
+
+        Log.d("test locale", Locale_Str);
+
+
+        if (Locale_Str.contains("en")) {
+
+
+            GreenPointCar_im.setImageResource(R.drawable.greenpointcar);
+
+        } else {
+
+            GreenPointCar_im.setImageResource(R.drawable.greencarar);
+
+        }
 
 
 

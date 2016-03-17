@@ -206,12 +206,12 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
                 Locale locale = Locale.getDefault();
                 Locale_Str = locale.toString();
-                Log.d("test locale", Locale_Str);
+                Log.d("Home locale", Locale_Str);
 
 
                 if (Locale_Str.contains("en")) {
 
-                    Locale locale2 = new Locale("ar");
+                    Locale locale2 = new Locale("ar_EG");
                     Locale.setDefault(locale2);
                     Configuration config2 = new Configuration();
                     config2.locale = locale2;
@@ -219,11 +219,10 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                     finish();
                     startActivity(getIntent());
 
-
                 } else {
 
 
-                    Locale locale3 = new Locale("en");
+                    Locale locale3 = new Locale("en_US");
                     Locale.setDefault(locale3);
                     Configuration config3 = new Configuration();
                     config3.locale = locale3;
@@ -662,11 +661,11 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
 
                 // For Testing Purpose
-                if (true) {
+//                if (true) {
 
 
                 //  For Prodution
-          //      if (Vehicles_Count_FLAG != 0) {
+                if (Vehicles_Count_FLAG != 0) {
 
 
                     if (Driver_Rides_Count < 2) {

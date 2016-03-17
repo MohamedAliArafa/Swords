@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import com.pkmmte.view.CircularImageView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.TreeMap;
 
 import rta.ae.sharekni.Arafa.Classes.AppController;
@@ -34,6 +36,7 @@ import rta.ae.sharekni.Arafa.Classes.GetData;
 public class QuickSearchResultAdapter extends BaseAdapter {
 
 
+    String Locale_Str;
     private Activity activity;
     private LayoutInflater inflater;
     private List<QuickSearchDataModel> searchItems;
@@ -101,9 +104,32 @@ public class QuickSearchResultAdapter extends BaseAdapter {
         TextView LastSeenText = (TextView) convertView.findViewById(R.id.LastSeenText);
         TextView GreenPoints = (TextView) convertView.findViewById(R.id.Green_Points_txt);
         TextView Green_Co2Saving = (TextView) convertView.findViewById(R.id.Green_co2_saving_txt);
+        ImageView GreenPointCar_im = (ImageView) convertView.findViewById(R.id.GreenPointCar_im);
+
 
 
 //        Photo.sectImageUrl(URL + item.getAccountPhoto(), imageLoader);
+
+
+
+
+        Locale locale = Locale.getDefault();
+        Locale_Str = locale.toString();
+
+        Log.d("test locale", Locale_Str);
+
+
+        if (Locale_Str.contains("en")) {
+
+
+            GreenPointCar_im.setImageResource(R.drawable.greenpointcar);
+
+        } else {
+
+            GreenPointCar_im.setImageResource(R.drawable.greencarar);
+
+        }
+
 
 
         GreenPoints.setText(item.getGreenPoints());

@@ -54,7 +54,7 @@ import rta.ae.sharekni.Arafa.Classes.GetData;
 public class DriverCreateCarPool extends AppCompatActivity implements View.OnClickListener {
 
 
-    Double Start_Latitude=1.0,Start_Longitude=1.0,End_Latitude=1.0,End_Longitude=1.0;
+    Double Start_Latitude = 1.0, Start_Longitude = 1.0, End_Latitude = 1.0, End_Longitude = 1.0;
     static final int DILOG_ID = 0;
     static final int TIME_DIALOG_ID = 999;
     int id = 1;
@@ -65,18 +65,18 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     int To_Reg_Id = -1;
     int year_x, month_x, day_x;
     int MyId = -1;
-    String Nationality_ID="" ;
-// For Prodution Purpose
- //   int Vehicle_Id = -1;
+    String Nationality_ID = "";
+    // For Prodution Purpose
+    int Vehicle_Id = -1;
 
     // For Testing Purpose
-    int Vehicle_Id = 4;
+    //int Vehicle_Id = 4;
 
     int Age_ID = 0;
-    int Language_ID =0;
+    int Language_ID = 0;
     char gender = 'N';
-    int Number_Of_Seats=0;
-    String CHECK_TIME="b";
+    int Number_Of_Seats = 0;
+    String CHECK_TIME = "b";
     String To_EmirateEnName, From_EmirateEnName, To_RegionEnName, From_RegionEnName;
     List<TreeMap<String, String>> Create_CarPool_Emirates_List = new ArrayList<>();
     List<TreeMap<String, String>> Create_CarPool_Regions_List = new ArrayList<>();
@@ -107,7 +107,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     int WED_FLAG = 0;
     int THU_FLAG = 0;
     int FRI_FLAG = 0;
-    int FLAG_WEEK_DAYS=1;
+    int FLAG_WEEK_DAYS = 1;
     SimpleAdapter Create_CarPool_EmAdapter;
     Button Create_CarPool_btn_submit_pickUp;
     TextView Create_CarPool_pickUp;
@@ -150,8 +150,8 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     getNationalities nationalities;
     getVehicles vehicles;
     CheckBox check_Both, Check_Male, Check_Female;
-    CheckBox Check_Smoking,Check_NotSmoking;
-    String IS_Smoking ="";
+    CheckBox Check_Smoking, Check_NotSmoking;
+    String IS_Smoking = "";
 
     private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
         @Override
@@ -178,7 +178,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                     Create_CarPool_before_Time.setVisibility(View.INVISIBLE);
                     // set current time into textview
                     CHECK_TIME = String.valueOf(new StringBuilder().append(pad(hour)).append(":").append(pad(minute)));
-                    Log.d("check time",CHECK_TIME);
+                    Log.d("check time", CHECK_TIME);
                     Create_CarPool_txt_time_selected.setText(CHECK_TIME);
 
                 }
@@ -196,7 +196,6 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
 
 
-
         i2 = 0;
         try {
             if (PickUpActivity.getInstance() != null) {
@@ -205,10 +204,10 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                 From_Reg_Id_2 = intent.getIntExtra("From_Reg_Id", 0);
                 To_Em_Id_2 = intent.getIntExtra("To_Em_Id", 0);
                 To_Reg_Id_2 = intent.getIntExtra("To_Reg_Id", 0);
-                Start_Latitude=intent.getDoubleExtra("Start_Latitude", 0);
-                Start_Longitude=intent.getDoubleExtra("Start_Longitude", 0);
-                End_Latitude=intent.getDoubleExtra("End_Latitude",0);
-                End_Longitude=intent.getDoubleExtra("End_Longitude",0);
+                Start_Latitude = intent.getDoubleExtra("Start_Latitude", 0);
+                Start_Longitude = intent.getDoubleExtra("Start_Longitude", 0);
+                End_Latitude = intent.getDoubleExtra("End_Latitude", 0);
+                End_Longitude = intent.getDoubleExtra("End_Longitude", 0);
 
                 Log.d("Start lat", String.valueOf(End_Latitude));
                 Log.d("Start lat", String.valueOf(End_Longitude));
@@ -330,12 +329,12 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
         Periodic_SingleRide = (ImageView) findViewById(R.id.createCarPool_Periodic_SingleRide);
         singleRide_Periodic = (ImageView) findViewById(R.id.createCarPool_singleRide_Periodic);
-       // Create_CarPool_malefemale1 = (ImageView) findViewById(R.id.createCarPool_malefemale1);
-       // Create_CarPool_femalemale2 = (ImageView) findViewById(R.id.createCarPool_femalemale2);
+        // Create_CarPool_malefemale1 = (ImageView) findViewById(R.id.createCarPool_malefemale1);
+        // Create_CarPool_femalemale2 = (ImageView) findViewById(R.id.createCarPool_femalemale2);
         Create_CarPool_search_Nat = (AutoCompleteTextView) findViewById(R.id.createCarPool_search_Nat);
 
-       // maleFemaleTxt = (TextView) findViewById(R.id.createCarPool_malefemale_txt);
-      //  FemaleMaleTxt = (TextView) findViewById(R.id.createCarPool_femalemale_txt);
+        // maleFemaleTxt = (TextView) findViewById(R.id.createCarPool_malefemale_txt);
+        //  FemaleMaleTxt = (TextView) findViewById(R.id.createCarPool_femalemale_txt);
         maleFemaleTxt2 = (TextView) findViewById(R.id.createCarPool_malefemale_txt2);
         FemaleMaleTxt2 = (TextView) findViewById(R.id.createCarPool_femalemale_txt2);
 
@@ -364,7 +363,6 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         createCarPool_Fri_Day = (RelativeLayout) findViewById(R.id.createCarPool_Fri_Day);
 
 
-
         createCarPool_Sat_Day.setOnClickListener(this);
         createCarPool_Sun_Day.setOnClickListener(this);
         createCarPool_Mon_Day.setOnClickListener(this);
@@ -374,20 +372,18 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         createCarPool_Fri_Day.setOnClickListener(this);
 
 
-
-
         check_Both = (CheckBox) findViewById(R.id.check_Both);
         Check_Male = (CheckBox) findViewById(R.id.Check_Male);
         Check_Female = (CheckBox) findViewById(R.id.Check_Female);
 
         Check_Smoking = (CheckBox) findViewById(R.id.Check_Smoking);
-        Check_NotSmoking= (CheckBox) findViewById(R.id.Check_NotSmoking);
+        Check_NotSmoking = (CheckBox) findViewById(R.id.Check_NotSmoking);
 
         Check_Smoking.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    IS_Smoking="1";
+                if (isChecked) {
+                    IS_Smoking = "1";
                     Check_NotSmoking.setChecked(false);
                 }
             }
@@ -397,13 +393,12 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         Check_NotSmoking.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    IS_Smoking="0";
+                if (isChecked) {
+                    IS_Smoking = "0";
                     Check_Smoking.setChecked(false);
                 }
             }
         });
-
 
 
         check_Both.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -442,23 +437,12 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         });
 
 
-
-
-
-
-
-
-
-
-
-
-
         createCarPool_Vehicles = (TextView) findViewById(R.id.createCarPool_Vehicles);
-     //   Create_CarPool_pickUp.setOnClickListener(this);
+        //   Create_CarPool_pickUp.setOnClickListener(this);
         create.setOnClickListener(this);
         //Create_CarPool_pickup_relative.setOnClickListener(this);
-      //  Create_CarPool_Dropoff.setOnClickListener(this);
-      //  Create_CarPool_dropOff_relative.setOnClickListener(this);
+        //  Create_CarPool_Dropoff.setOnClickListener(this);
+        //  Create_CarPool_dropOff_relative.setOnClickListener(this);
 
         if (i2 == 0) {
             Create_CarPool_txt_Selecet_Start_Point.setText(getString(R.string.start_point));
@@ -478,8 +462,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         }
 
 
-
-        createCarPool_Destination= (Button) findViewById(R.id.createCarPool_Destination);
+        createCarPool_Destination = (Button) findViewById(R.id.createCarPool_Destination);
         createCarPool_Destination.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -489,10 +472,6 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                 finish();
             }
         });
-
-
-
-
 
 
         singleRide_Periodic.setOnClickListener(new View.OnClickListener() {
@@ -653,7 +632,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id==android.R.id.home){
+        if (id == android.R.id.home) {
             onBackPressed();
             return true;
         }
@@ -665,23 +644,20 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
     Calendar cal = Calendar.getInstance();
     DatePicker d;
 
-    protected void onPrepareDialog (int id, Dialog dialog)
-    {
-        if (id==DILOG_ID) {
+    protected void onPrepareDialog(int id, Dialog dialog) {
+        if (id == DILOG_ID) {
             DatePickerDialog datePickerDialog = (DatePickerDialog) dialog;
             // Get the current date
             datePickerDialog.updateDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
-        }else if (id==TIME_DIALOG_ID){
+        } else if (id == TIME_DIALOG_ID) {
 
             TimePickerDialog timePickerDialog = (TimePickerDialog) dialog;
-            timePickerDialog.updateTime(cal.get(Calendar.HOUR_OF_DAY),cal.get(Calendar.MINUTE) );
+            timePickerDialog.updateTime(cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE));
 
         }
 
 
-
     }
-
 
 
     @Override
@@ -691,8 +667,9 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
             d = dp.getDatePicker();
             d.updateDate(year_x, month_x, day_x);
             d.setMinDate(cal.getTimeInMillis());
-           // d.setMaxDate(cal.getTimeInMillis());
-            return dp;        }
+            // d.setMaxDate(cal.getTimeInMillis());
+            return dp;
+        }
         if (id == TIME_DIALOG_ID) {
             return new TimePickerDialog(this,
                     timePickerListener, hour, minute, false);
@@ -740,7 +717,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         if (v == create) {
 
 
-            if (!CHECK_TIME.equals("b") && Create_CarPool_full_date != null && !Create_CarPool_full_date.equals("a") && edit_route_name.getText() != null && !edit_route_name.getText().toString().equals("") && !edit_route_name.getText().toString().equals(getString(R.string.ride_name)) &&  From_Em_Id_2 != 0 && To_Em_Id_2 != 0 && From_Reg_Id_2 != 0 && To_Reg_Id_2 != 0 && Single_Periodic_ID != -1 && Vehicle_Id != -1 && id != -1 && Create_CarPool_txt_beforeCal.getText() != getString(R.string.click_to_select) && Create_CarPool_txt_time_selected.getText() != null && Create_CarPool_txt_time_selected.getText().toString() != getString(R.string.click_to_select) && Start_Latitude != 1.0 && Start_Longitude != 1.0 && End_Latitude != 1.0 && End_Longitude != 1.0 && Number_Of_Seats != 0) {
+            if (!CHECK_TIME.equals("b") && Create_CarPool_full_date != null && !Create_CarPool_full_date.equals("a") && edit_route_name.getText() != null && !edit_route_name.getText().toString().equals("") && !edit_route_name.getText().toString().equals(getString(R.string.ride_name)) && From_Em_Id_2 != 0 && To_Em_Id_2 != 0 && From_Reg_Id_2 != 0 && To_Reg_Id_2 != 0 && Single_Periodic_ID != -1 && Vehicle_Id != -1 && id != -1 && Create_CarPool_txt_beforeCal.getText() != getString(R.string.click_to_select) && Create_CarPool_txt_time_selected.getText() != null && Create_CarPool_txt_time_selected.getText().toString() != getString(R.string.click_to_select) && Start_Latitude != 1.0 && Start_Longitude != 1.0 && End_Latitude != 1.0 && End_Longitude != 1.0 && Number_Of_Seats != 0) {
                 if (From_Em_Id_2 == To_Em_Id_2 && From_Reg_Id_2 == To_Reg_Id_2) {
                     Toast.makeText(DriverCreateCarPool.this, R.string.region_identical, Toast.LENGTH_SHORT).show();
                 } else if (FLAG_WEEK_DAYS == 1) {
@@ -749,8 +726,8 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                     String is_Rounded;
                     String EnName = edit_route_name.getText().toString();
 
-                    Log.d("Route Name",EnName);
-                    Log.d("Route Hint",edit_route_name.getHint().toString());
+                    Log.d("Route Name", EnName);
+                    Log.d("Route Hint", edit_route_name.getHint().toString());
 
                     int FromEmId = From_Em_Id_2;   // dubai
                     int ToEmId = To_Em_Id_2;   // 3agman
@@ -773,10 +750,10 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                     String Friday = String.valueOf(FRI_FLAG);
 
                     // For Production
-                  //  int Vehicle_ID = Vehicle_Id;
+                    int Vehicle_ID = Vehicle_Id;
 
                     //  For Testing
-                       int Vehicle_ID = 4;
+                    //   int Vehicle_ID = 4;
 
                     int No_OF_Seats = Number_Of_Seats;
                     double Start_Lat = Start_Latitude;
@@ -792,7 +769,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                     j.DriverCreateCarPoolFrom(MyId, EnName, FromEmId, ToEmId, FromRegId, ToRegId
                             , is_Rounded, Time, Saturday, Sunday, Monday, Tuesday, Wednesday, Thursday, Friday
                             , gender, Vehicle_ID, No_OF_Seats, Start_Lat, Start_Lng, End_Lat, End_Lng
-                            , pref_lnag, pref_nat, Age_Ranged_id, StartDate,IS_Smoking,From_EmirateEnName_str,From_RegionEnName_str,To_EmirateEnName_str,To_RegionEnName_str, this);
+                            , pref_lnag, pref_nat, Age_Ranged_id, StartDate, IS_Smoking, From_EmirateEnName_str, From_RegionEnName_str, To_EmirateEnName_str, To_RegionEnName_str, this);
                     i2 = 1;
                 }
             } else {
@@ -1018,51 +995,51 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
             seat1_on.setVisibility(View.VISIBLE);
             seat1_off.setVisibility(View.INVISIBLE);
             id = 2;
-            Number_Of_Seats=1;
+            Number_Of_Seats = 1;
 
         }
         if (v == seat1_on && id == 2) {
             seat1_on.setVisibility(View.INVISIBLE);
             seat1_off.setVisibility(View.VISIBLE);
             id = 1;
-            Number_Of_Seats=0;
+            Number_Of_Seats = 0;
         }
         if (v == seat2_off && id == 2) {
             seat2_off.setVisibility(View.INVISIBLE);
             seat2_on.setVisibility(View.VISIBLE);
             id = 3;
-            Number_Of_Seats=2;
+            Number_Of_Seats = 2;
         }
         if (v == seat2_on && id == 3) {
             seat2_off.setVisibility(View.VISIBLE);
             seat2_on.setVisibility(View.INVISIBLE);
             id = 2;
-            Number_Of_Seats=1;
+            Number_Of_Seats = 1;
         }
         if (v == seat3_off && id == 3) {
             seat3_off.setVisibility(View.INVISIBLE);
             seat3_on.setVisibility(View.VISIBLE);
             id = 4;
-            Number_Of_Seats=3;
+            Number_Of_Seats = 3;
         }
         if (v == seat3_on && id == 4) {
             seat3_on.setVisibility(View.INVISIBLE);
             seat3_off.setVisibility(View.VISIBLE);
             id = 3;
-            Number_Of_Seats=2;
+            Number_Of_Seats = 2;
         }
         if (v == seat4_off && id == 4) {
             seat4_off.setVisibility(View.INVISIBLE);
             seat4_on.setVisibility(View.VISIBLE);
             id = 5;
-            Number_Of_Seats=4;
+            Number_Of_Seats = 4;
         }
 
         if (v == seat4_on && id == 5) {
             seat4_on.setVisibility(View.INVISIBLE);
             seat4_off.setVisibility(View.VISIBLE);
             id = 4;
-            Number_Of_Seats=3;
+            Number_Of_Seats = 3;
         }
 
 
@@ -1070,12 +1047,12 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
             createCarPool_Sat_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
             SAT_FLAG = 1;
-            FLAG_WEEK_DAYS=2;
+            FLAG_WEEK_DAYS = 2;
         } else if (v == createCarPool_Sat_Day && SAT_FLAG == 1) {
 
             createCarPool_Sat_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
             SAT_FLAG = 0;
-            FLAG_WEEK_DAYS=1;
+            FLAG_WEEK_DAYS = 1;
         }
 
 
@@ -1083,12 +1060,12 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
             createCarPool_Sun_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
             SUN_FLAG = 1;
-            FLAG_WEEK_DAYS=2;
+            FLAG_WEEK_DAYS = 2;
         } else if (v == createCarPool_Sun_Day && SUN_FLAG == 1) {
 
             createCarPool_Sun_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
             SUN_FLAG = 0;
-            FLAG_WEEK_DAYS=1;
+            FLAG_WEEK_DAYS = 1;
         }
 
 
@@ -1096,12 +1073,12 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
             createCarPool_Mon_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
             MON_FLAG = 1;
-            FLAG_WEEK_DAYS=2;
+            FLAG_WEEK_DAYS = 2;
         } else if (v == createCarPool_Mon_Day && MON_FLAG == 1) {
 
             createCarPool_Mon_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
             MON_FLAG = 0;
-            FLAG_WEEK_DAYS=1;
+            FLAG_WEEK_DAYS = 1;
         }
 
 
@@ -1109,24 +1086,24 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
             createCarPool_Tues_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
             TUES_FLAG = 1;
-            FLAG_WEEK_DAYS=2;
+            FLAG_WEEK_DAYS = 2;
         } else if (v == createCarPool_Tues_Day && TUES_FLAG == 1) {
 
             createCarPool_Tues_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
             TUES_FLAG = 0;
-            FLAG_WEEK_DAYS=1;
+            FLAG_WEEK_DAYS = 1;
         }
 
         if (v == createCarPool_Wed_Day && WED_FLAG == 0) {
 
             createCarPool_Wed_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
             WED_FLAG = 1;
-            FLAG_WEEK_DAYS=2;
+            FLAG_WEEK_DAYS = 2;
         } else if (v == createCarPool_Wed_Day && WED_FLAG == 1) {
 
             createCarPool_Wed_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
             WED_FLAG = 0;
-            FLAG_WEEK_DAYS=1;
+            FLAG_WEEK_DAYS = 1;
         }
 
 
@@ -1134,12 +1111,12 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
             createCarPool_Thu_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
             THU_FLAG = 1;
-            FLAG_WEEK_DAYS=2;
+            FLAG_WEEK_DAYS = 2;
         } else if (v == createCarPool_Thu_Day && THU_FLAG == 1) {
 
             createCarPool_Thu_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
             THU_FLAG = 0;
-            FLAG_WEEK_DAYS=1;
+            FLAG_WEEK_DAYS = 1;
         }
 
 
@@ -1147,15 +1124,13 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
             createCarPool_Fri_Day.setBackgroundResource(R.drawable.days_of_week_circular_on);
             FRI_FLAG = 1;
-            FLAG_WEEK_DAYS=2;
+            FLAG_WEEK_DAYS = 2;
         } else if (v == createCarPool_Fri_Day && FRI_FLAG == 1) {
 
             createCarPool_Fri_Day.setBackgroundResource(R.drawable.days_of_week_circular_off);
             FRI_FLAG = 0;
-            FLAG_WEEK_DAYS=1;
+            FLAG_WEEK_DAYS = 1;
         }
-
-
 
 
     }  // on click
@@ -1211,7 +1186,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(DriverCreateCarPool.this,getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DriverCreateCarPool.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -1505,19 +1480,20 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
             return null;
         }
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if (nationalities.getStatus()== AsyncTask.Status.RUNNING) {
+        if (nationalities.getStatus() == AsyncTask.Status.RUNNING) {
             nationalities.cancel(true);
         }
-        if (languages.getStatus()== AsyncTask.Status.RUNNING) {
+        if (languages.getStatus() == AsyncTask.Status.RUNNING) {
             languages.cancel(true);
         }
-        if (ageRanges.getStatus()== AsyncTask.Status.RUNNING) {
+        if (ageRanges.getStatus() == AsyncTask.Status.RUNNING) {
             ageRanges.cancel(true);
         }
-        if (vehicles.getStatus()== AsyncTask.Status.RUNNING) {
+        if (vehicles.getStatus() == AsyncTask.Status.RUNNING) {
             vehicles.cancel(true);
         }
         finish();

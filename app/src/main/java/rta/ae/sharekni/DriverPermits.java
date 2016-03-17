@@ -68,7 +68,6 @@ public class DriverPermits extends AppCompatActivity {
         myPrefs = this.getSharedPreferences("myPrefs", 0);
         String ID = myPrefs.getString("account_id", null);
 //        Bundle in = getIntent().getExtras();
-//        Log.d("Intent Id :", String.valueOf(in.getInt("DriverID")));
         Driver_ID = Integer.parseInt(ID);
         Log.d("Driver Id", String.valueOf(Driver_ID));
 

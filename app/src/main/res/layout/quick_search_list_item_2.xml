@@ -225,6 +225,7 @@
             >
 
             <ImageView
+                android:id="@+id/GreenPointCar_im"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="bottom"

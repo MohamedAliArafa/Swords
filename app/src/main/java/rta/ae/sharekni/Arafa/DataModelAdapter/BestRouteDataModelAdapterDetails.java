@@ -21,6 +21,8 @@ import android.widget.Toast;
 import com.android.volley.toolbox.ImageLoader;
 import com.pkmmte.view.CircularImageView;
 
+import java.util.Locale;
+
 import rta.ae.sharekni.Arafa.Classes.AppController;
 import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModelDetails;
@@ -38,7 +40,7 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
     int Passenger_ID;
     String Review_str;
     EditText Edit_Review_txt;
-
+    String Locale_Str;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     String URL = GetData.PhotoURL;
 
@@ -79,6 +81,7 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
             vh.LastSeenTvValue = (TextView) v.findViewById(R.id.LastSeenTvValue);
             vh.Green_Points_txt= (TextView) v.findViewById(R.id.Green_Points_txt);
             vh.Green_co2_saving_txt= (TextView) v.findViewById(R.id.Green_co2_saving_txt);
+            vh.GreenPointCar_im = (ImageView) v.findViewById(R.id.GreenPointCar_im);
 
 
             // Testing Line
@@ -115,7 +118,27 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
 
 
 
-            // Producation Line
+        Locale locale = Locale.getDefault();
+        Locale_Str = locale.toString();
+
+        Log.d("test locale", Locale_Str);
+
+
+        if (Locale_Str.contains("en")) {
+
+
+            vh.GreenPointCar_im.setImageResource(R.drawable.greenpointcar);
+
+        } else {
+
+            vh.GreenPointCar_im.setImageResource(R.drawable.greencarar);
+
+        }
+
+
+
+
+        // Producation Line
        if(bestRouteDataModel.getLastSeen().equals("null")){
             vh.LastSeenText.setVisibility(View.GONE);
             vh.LastSeenTvValue.setVisibility(View.GONE);
@@ -276,6 +299,7 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
         TextView LastSeenTvValue;
         TextView Green_Points_txt;
         TextView Green_co2_saving_txt;
+        ImageView GreenPointCar_im;
 
 
     }

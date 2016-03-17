@@ -50,15 +50,14 @@
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".HomePage"
             android:label="@string/title_activity_sub_navigate"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:configChanges="locale">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="rta.ae.sharekni.SharekniOld" />
@@ -362,7 +361,8 @@
         </activity>
         <activity
             android:name=".ViewPermit"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:configChanges="locale"/>
         <activity android:name=".Privacy_Policy" />
         <activity android:name=".Display_My_Vehicles" />
 
