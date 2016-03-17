@@ -149,8 +149,8 @@ public class RideDetailsPassenger extends AppCompatActivity {
 
         Join_Ride_btn.setVisibility(View.INVISIBLE);
         //Pass_rate_Driver_btn.setVisibility(View.INVISIBLE);
-        ratingBar.setVisibility(View.INVISIBLE);
-        Passenger_Review_Driver_Btn.setVisibility(View.INVISIBLE);
+        ratingBar.setVisibility(View.GONE);
+        Passenger_Review_Driver_Btn.setVisibility(View.GONE);
 
         // setListViewHeightBasedOnChildren(Driver_get_Review_lv);
         //setSupportActionBar(toolbar);
@@ -193,7 +193,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
 
             } else {
                 Join_Ride_btn.setVisibility(View.VISIBLE);
-                Passenger_Review_Driver_Btn.setVisibility(View.INVISIBLE);
+                Passenger_Review_Driver_Btn.setVisibility(View.GONE);
             }
         } catch (NullPointerException e) {
 
@@ -446,7 +446,10 @@ public class RideDetailsPassenger extends AppCompatActivity {
                         Smokers_str = getString(R.string.Accept_Smokers_txt);
                     } else if (Smokers_str.equals("false")) {
                         Smokers_str = getString(R.string.not_set);
+                    }else {
+                        Smokers_str = getString(R.string.not_set);
                     }
+
                     IsSmoking.setText(Smokers_str);
                     StartLat = json.getDouble("StartLat");
                     StartLng = json.getDouble("StartLng");

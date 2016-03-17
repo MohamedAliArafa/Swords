@@ -13,6 +13,7 @@ import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcel;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -60,6 +61,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     int From_Reg_Id;
     int To_Em_Id;
     int To_Reg_Id;
+    String ID;
+
+    int Driver_Route_ID;
 
     TextView N0_Of_Drivers;
 
@@ -146,6 +150,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         myPrefs = this.getSharedPreferences("myPrefs", 0);
+        ID = myPrefs.getString("account_id", "0");
         AccountType = myPrefs.getString("account_type", "");
         Log.d("Account Type Map", AccountType);
         assert AccountType != null;
@@ -348,7 +353,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
             } else {
-                Toast.makeText(this, "No Location Detected", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.No_Location_Detected, Toast.LENGTH_LONG).show();
             }
 
 
@@ -456,17 +461,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 
             new AlertDialog.Builder(MapsActivity.this)
-                    .setTitle("Location is not Enabled")
-                    .setMessage("PLease Turn on Gps First")
-                    .setPositiveButton("Turn On", new DialogInterface.OnClickListener() {
+                    .setTitle(R.string.Location_Not_Enabled)
+                    .setMessage(R.string.Please_turn_on_gps_first)
+                    .setPositiveButton(R.string.Turn_On, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             enableGPS = true;
                             Intent gpsOptionsIntent = new Intent(
-                                    android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                                    Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                             startActivity(gpsOptionsIntent);
                         }
                     })
-                    .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    .setNegativeButton(R.string.No_Map, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
                         }
@@ -624,6 +629,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             item.setFromEmirateEnName(jsonObject.getString("FromEmirateNameEn"));
                             item.setFromEmirateId(jsonObject.getInt("FromEmirateId"));
                             item.setFromRegionId(jsonObject.getInt("FromRegionId"));
+                          //  item.setToEmirateId(jsonObject.getInt("ToEmirateId"));
+                           // item.setToRegionId(jsonObject.getInt("ToRegionId"));
                             item.setFromEmirateArName(jsonObject.getString("FromEmirateNameAr"));
 
                             item.setNoOfRoutes(jsonObject.getInt("NoOfRoutes"));
@@ -767,8 +774,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                     try {
-                        JSONArray j = new GetData().GetPassengersMapLookUp();
+                          JSONArray j = new GetData().GetMatchedRoutesForPassengers(Integer.parseInt(ID));
+                       // JSONArray j = new GetData().GetPassengersMapLookUp();
                         data = new MapDataModel[j.length()];
+
+                        if (j.length()==0){
+                            Toast.makeText(context, R.string.No_passengers_Found, Toast.LENGTH_LONG).show();
+                           // context.finish();
+                        }
 
                         for (int i = 0; i < j.length(); i++) {
 
@@ -776,15 +789,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                             JSONObject jsonObject = j.getJSONObject(i);
 
-                            item.setFromRegionArName(jsonObject.getString("FromRegionNameAr"));
-                            item.setFromRegionEnName(jsonObject.getString("FromRegionNameEn"));
-                            item.setFromEmirateEnName(jsonObject.getString("FromEmirateNameEn"));
+                            // Testing New Service
+                            item.setFromRegionArName(jsonObject.getString("FromRegionArName"));
+                            item.setFromRegionEnName(jsonObject.getString("FromRegionEnName"));
+                            item.setFromEmirateEnName(jsonObject.getString("FromEmirateEnName"));
+                            item.setFromEmirateArName(jsonObject.getString("FromEmirateArName"));
+
+                            // Testing Old
+                            //   item.setFromRegionArName(jsonObject.getString("FromRegionNameAr"));
+                            //   item.setFromRegionEnName(jsonObject.getString("FromRegionNameEn"));
+                            //   item.setFromEmirateEnName(jsonObject.getString("FromEmirateNameEn"));
+                            //  item.setFromEmirateArName(jsonObject.getString("FromEmirateNameAr"));
+
+
+
                             item.setFromEmirateId(jsonObject.getInt("FromEmirateId"));
                             item.setFromRegionId(jsonObject.getInt("FromRegionId"));
-                            item.setFromEmirateArName(jsonObject.getString("FromEmirateNameAr"));
+                            item.setToEmirateId(jsonObject.getInt("ToEmirateId"));
+                            item.setToRegionId(jsonObject.getInt("ToRegionId"));
 
-                            item.setNoOfRoutes(jsonObject.getInt("NoOfRoutes"));
-                            item.setNoOFPassengers(jsonObject.getInt("NoOfPassengers"));
+
+
+                          //  item.setNoOfRoutes(jsonObject.getInt("NoOfRoutes"));
+                            item.setNoOFPassengers(jsonObject.getInt("PassengersCount"));
+                            item.setDriverRouteID(jsonObject.getInt("DriverRouteId"));
 
                             if (jsonObject.getString("FromLng").equals("null") && jsonObject.getString("FromLat").equals("null")) {
                                 item.longitude = 0.0;
@@ -802,6 +830,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.pinpassenger))
 
                                 );
+
 
 //                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
 //                                        (new LatLng(data[i].latitude, data[i].longitude), 12.0f));
@@ -829,7 +858,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         @Override
                         public View getInfoWindow(Marker marker) {
 
-                            v = getLayoutInflater().inflate(R.layout.info_window_approved, null);
+                            v = getLayoutInflater().inflate(R.layout.info_window_approved_2, null);
                             LatLng latLng = marker.getPosition();
                             int i = Integer.parseInt(marker.getTitle());
 
@@ -841,11 +870,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             TextView emirateEnName = (TextView) v.findViewById(R.id.emirateEn_name_id);
                             TextView emirateLat = (TextView) v.findViewById(R.id.txt_map_lat);
                             TextView emiratelong = (TextView) v.findViewById(R.id.txt_map_long);
-                            TextView NoOfRoutes_txt = (TextView) v.findViewById(R.id.NoOfRoutes);
                             TextView NoOfPassengers = (TextView) v.findViewById(R.id.NoOfPassengers);
-                            TextView N0_Of_Drivers = (TextView) v.findViewById(R.id.N0_Of_Drivers);
-                            RelativeLayout ComingRideRelative = (RelativeLayout) v.findViewById(R.id.ComingRideRelative);
-                            ComingRideRelative.setVisibility(View.GONE);
+
+
 
                             String lat = String.valueOf(latLng.latitude).substring(0, 7);
                             String lon = String.valueOf(latLng.longitude).substring(0, 7);
@@ -855,8 +882,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             emiratelong.setText(lon);
                             emirateArName.setText(snippet);
                             emirateEnName.setText(title);
-                            NoOfRoutes_txt.setText(NoOfRoutes_str);
-                            N0_Of_Drivers.setText(NoOfRoutes_str);
                             NoOfPassengers.setText(NoOfPassengers_str);
                             return v;
 
@@ -880,6 +905,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                             From_Em_Id = data[i].getFromEmirateId();
                             From_Reg_Id = data[i].getFromRegionId();
+                            To_Em_Id=data[i].getToEmirateId();
+                            To_Reg_Id=data[i].getToRegionId();
+                            Driver_Route_ID =data[i].getDriverRouteID();
 
 
                             Locale locale = Locale.getDefault();
@@ -909,9 +937,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             intent1.putExtra("To_EmirateEnName", To_EmirateEnName);
                             intent1.putExtra("To_RegionEnName", To_RegionEnName);
                             intent1.putExtra("MapKey", "Passenger");
-                            intent1.putExtra("RouteID", 0);
+                            intent1.putExtra("RouteID", Driver_Route_ID);
                             intent1.putExtra("InviteType", "MapLookUp");
                             startActivity(intent1);
+
+                            // TO DO Tip
+                            //  intent1.putExtra("InviteType", "DriverRide");
 
 
                         }

@@ -1,15 +1,22 @@
 package rta.ae.sharekni;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
 import com.pkmmte.view.CircularImageView;
+
+import org.json.JSONException;
 
 import java.util.List;
 
@@ -71,6 +78,7 @@ public class DriverAlertsForRequestAdapter extends BaseAdapter {
         TextView PassengerName= (TextView) convertView.findViewById(R.id.PassengerName);
         TextView NationalityEnName= (TextView) convertView.findViewById(R.id.NationalityEnName);
         TextView txt_Accepted_or_Rejected = (TextView) convertView.findViewById(R.id.txt_Accepted_or_Rejected);
+        ImageView Delete_Notification_im = (ImageView) convertView.findViewById(R.id.Delete_Notification_im);
 
         final DriverAlertsForRequestDataModel model = AlertsItem.get(position);
 //        Photo.setImageUrl(URL + model.getAccountPhoto(), imageLoader);
@@ -91,23 +99,29 @@ public class DriverAlertsForRequestAdapter extends BaseAdapter {
             switch (model.getDriverAccept()) {
                 case "false":
                     txt_Accepted_or_Rejected.setText(R.string.reject_request);
+                    Delete_Notification_im.setVisibility(View.VISIBLE);
                     break;
                 case "true":
                     txt_Accepted_or_Rejected.setText(R.string.accept_request);
+                    Delete_Notification_im.setVisibility(View.VISIBLE);
                     break;
                 case "null":
                     if (model.getDriverPending().equals("Driver_Pending_Request")){
                         txt_Accepted_or_Rejected.setText(R.string.Driver_pending_request);
+                        Delete_Notification_im.setVisibility(View.INVISIBLE);
                     }else {
                         txt_Accepted_or_Rejected.setText(R.string.pending_request);
+                        Delete_Notification_im.setVisibility(View.INVISIBLE);
                     }
 
                     break;
                 case "DriverToPassenger":
                     txt_Accepted_or_Rejected.setText(R.string.Sent_Invite);
+                    Delete_Notification_im.setVisibility(View.INVISIBLE);
                     break;
                 case "PassengerToDriver":
                     txt_Accepted_or_Rejected.setText(R.string.join_request);
+                    Delete_Notification_im.setVisibility(View.INVISIBLE);
                     break;
 
             }
@@ -115,7 +129,53 @@ public class DriverAlertsForRequestAdapter extends BaseAdapter {
         } //  IF  * 1
         else {
             txt_Accepted_or_Rejected.setText(R.string.join_request);
+            Delete_Notification_im.setVisibility(View.INVISIBLE);
         }
+
+
+
+
+        Delete_Notification_im.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final String[] res = new String[1];
+                new AlertDialog.Builder(activity)
+                        .setTitle(R.string.Delete_Request)
+                        .setMessage(R.string.please_confirm_to_cancel)
+                        .setPositiveButton(R.string.invite_yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                try {
+                                    res[0] = new GetData().Passenger_RemoveRequest(model.RequestId);
+                                    if (res[0].equals("\"1\"")) {
+                                        Toast.makeText(activity, activity.getString(R.string.request_removed), Toast.LENGTH_SHORT).show();
+//                                                finish();
+                                        Intent in = new Intent(activity, DriverAlertsForRequest.class);
+                                        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        activity.startActivity(in);
+                                        activity.finish();
+                                    } else {
+                                        Toast.makeText(activity, activity.getString(R.string.error), Toast.LENGTH_SHORT).show();
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        })
+                        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }).setIcon(android.R.drawable.ic_dialog_alert).show();
+
+
+            }
+        });
+
+
+
+
+
         return convertView;
     }
 }

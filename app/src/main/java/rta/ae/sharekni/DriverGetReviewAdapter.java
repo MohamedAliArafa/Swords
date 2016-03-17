@@ -173,7 +173,7 @@ public class DriverGetReviewAdapter extends BaseAdapter {
 
                                 }
                             })
-                            .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                            .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
 
                                     dialog.dismiss();
@@ -220,7 +220,7 @@ public class DriverGetReviewAdapter extends BaseAdapter {
 
                                 }
                             })
-                            .setNegativeButton(R.string.Cancel_msg, new DialogInterface.OnClickListener() {
+                            .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
 
                                     dialog.dismiss();

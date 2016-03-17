@@ -278,13 +278,14 @@ public class SavedSearch extends AppCompatActivity {
                                                     intent1.putExtra("From_RegionEnName", driver[i].FromReg);
                                                     intent1.putExtra("To_EmirateEnName", driver[i].ToEm);
                                                     intent1.putExtra("To_RegionEnName", driver[i].ToReg);
-                                                    intent1.putExtra("MapKey", "Driver");
+                                                    intent1.putExtra("MapKey", "SavedSearch");
                                                     //  intent1.putExtra("AgeRange",Advanced_Search_Age_Range_ID);
                                                     intent1.putExtra("Nationality_ID", Integer.parseInt(driver[i].Nationality_ID));
                                                     intent1.putExtra("Language_ID", driver[i].Language_ID);
                                                     intent1.putExtra("Smokers", driver[i].IS_Smoking);
                                                     intent1.putExtra("IsRounded", driver[i].Single_Periodic_ID);
-                                                    intent1.putExtra("Gender", driver[i].Gender.charAt(0));
+                                                    intent1.putExtra("Gende" +
+                                                            "r", driver[i].Gender.charAt(0));
                                                     intent1.putExtra("InviteType", "Search");;
                                                     startActivity(intent1);
 

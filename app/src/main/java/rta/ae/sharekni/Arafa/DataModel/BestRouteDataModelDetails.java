@@ -18,6 +18,7 @@ public class BestRouteDataModelDetails extends ArrayList<Parcelable> implements 
     public String ToEm;
     public String ToReg;
     public String PhotoURl;
+    public String LastSeen;
 
     public Bitmap getDriverPhoto() {
         return DriverPhoto;
@@ -75,6 +76,13 @@ public class BestRouteDataModelDetails extends ArrayList<Parcelable> implements 
     public String RouteEnName,DriverName;
     public  String SDG_Route_Start_FromTime,Nationality_en,SDG_RouteDays;
 
+    public String getLastSeen() {
+        return LastSeen;
+    }
+
+    public void setLastSeen(String lastSeen) {
+        LastSeen = lastSeen;
+    }
 
     public String getPhotoURl() {
         return PhotoURl;
@@ -109,6 +117,7 @@ public class BestRouteDataModelDetails extends ArrayList<Parcelable> implements 
         SDG_Route_Start_FromTime=in.readString();
         Nationality_en=in.readString();
         SDG_RouteDays=in.readString();
+        LastSeen=in.readString();
 
     }
 
@@ -263,6 +272,7 @@ public class BestRouteDataModelDetails extends ArrayList<Parcelable> implements 
         parcel.writeString(Nationality_en);
         parcel.writeString(SDG_RouteDays);
         parcel.writeString(DriverRating);
+        parcel.writeString(LastSeen);
 
     }
 }

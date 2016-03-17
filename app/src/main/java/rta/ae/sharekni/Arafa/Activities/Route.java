@@ -101,6 +101,7 @@ public class Route extends AppCompatActivity {
     int FromEmirateId, ToEmirateId, FromRegionId, ToRegionId;
 
     Button Route_Driver_Send_invite;
+    int No_OF_Seats;
 
     int Vehicle_Id_Permit;
     GetData j = new GetData();
@@ -191,23 +192,36 @@ public class Route extends AppCompatActivity {
         loadingReviews.execute();
 
 
+        Log.d("Seats count", String.valueOf(No_OF_Seats));
+        Log.d("passengers cunt", String.valueOf(Passengers_arr.size()));
+
+
         Route_Driver_Send_invite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(getBaseContext(), QuickSearchResults.class);
-                intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent1.putExtra("From_Em_Id", FromEmirateId);
-                intent1.putExtra("To_Em_Id", ToEmirateId);
-                intent1.putExtra("From_Reg_Id", FromRegionId);
-                intent1.putExtra("To_Reg_Id", ToRegionId);
-                intent1.putExtra("From_EmirateEnName", FromEmirateEnName_Str);
-                intent1.putExtra("From_RegionEnName", FromRegionEnName_Str);
-                intent1.putExtra("To_EmirateEnName", ToEmirateEnName_Str);
-                intent1.putExtra("To_RegionEnName", ToRegionEnName_Str);
-                intent1.putExtra("MapKey", "Passenger");
-                intent1.putExtra("RouteID", Route_ID);
-                intent1.putExtra("InviteType", "DriverRide");
-                startActivity(intent1);
+                if (No_OF_Seats > Passengers_arr.size()) {
+                    Log.d("Seats count", String.valueOf(No_OF_Seats));
+                    Log.d("passengers cunt", String.valueOf(Passengers_arr.size()));
+
+                    Intent intent1 = new Intent(getBaseContext(), QuickSearchResults.class);
+                    intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent1.putExtra("From_Em_Id", FromEmirateId);
+                    intent1.putExtra("To_Em_Id", ToEmirateId);
+                    intent1.putExtra("From_Reg_Id", FromRegionId);
+                    intent1.putExtra("To_Reg_Id", ToRegionId);
+                    intent1.putExtra("From_EmirateEnName", FromEmirateEnName_Str);
+                    intent1.putExtra("From_RegionEnName", FromRegionEnName_Str);
+                    intent1.putExtra("To_EmirateEnName", ToEmirateEnName_Str);
+                    intent1.putExtra("To_RegionEnName", ToRegionEnName_Str);
+                    intent1.putExtra("MapKey", "Passenger");
+                    intent1.putExtra("RouteID", Route_ID);
+                    intent1.putExtra("InviteType", "DriverRide");
+                    startActivity(intent1);
+
+
+                }else {
+                    Toast.makeText(Route.this, R.string.no_available_seats, Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -244,7 +258,7 @@ public class Route extends AppCompatActivity {
 
                             }
                         })
-                        .setNegativeButton(R.string.Cancel_msg, new DialogInterface.OnClickListener() {
+                        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
 
                                 dialog.dismiss();
@@ -303,7 +317,7 @@ public class Route extends AppCompatActivity {
                         ToRegionEnName_Str = (json.getString(getString(R.string.fto_reg_en_name)));
                         FromEmirateEnName_Str = (json.getString(getString(R.string.from_em_en_name)));
                         ToEmirateEnName_Str = (json.getString(getString(R.string.to_em_en_name)));
-
+                        No_OF_Seats = json.getInt("NoOfSeats");
 
                         str_StartFromTime = json.getString("StartFromTime");
 
@@ -359,6 +373,8 @@ public class Route extends AppCompatActivity {
                             Smokers_str = getString(R.string.Accept_Smokers_txt);
                         } else if (Smokers_str.equals("false")) {
                             Smokers_str = getString(R.string.not_set);
+                        }else  {
+                            Smokers_str=getString(R.string.not_set);
                         }
                         IsSmoking.setText(Smokers_str);
                         StartLat = json.getDouble("StartLat");
@@ -522,6 +538,10 @@ public class Route extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Object o) {
+
+
+            Log.d("Seats count 2", String.valueOf(No_OF_Seats));
+            Log.d("passengers cunt 2", String.valueOf(Passengers_arr.size()));
 
 
             if (response1.length() == 0) {

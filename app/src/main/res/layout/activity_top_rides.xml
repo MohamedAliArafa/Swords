@@ -24,6 +24,7 @@
         layout="@layout/app_bar" />
 
         <ListView
+            android:fadeScrollbars="false"
             android:id="@+id/lv_top_rides"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

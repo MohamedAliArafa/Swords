@@ -684,7 +684,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                     intent1.putExtra("SaveFind", savefind);
                     intent1.putExtra("Smokers", IS_Smoking);
                     intent1.putExtra("IsRounded",Single_Periodic_ID);
-                    intent1.putExtra("MapKey", "Driver");
+                    intent1.putExtra("MapKey", "Advanced_Search");
                     intent1.putExtra("AgeRange",Advanced_Search_Age_Range_ID);
                     intent1.putExtra("Nationality_ID",Nationality_ID);
                     intent1.putExtra("Language_ID",Language_ID);

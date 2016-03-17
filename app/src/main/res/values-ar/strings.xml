@@ -76,7 +76,7 @@
     <string name="navy_List_image_content_Desc">navy_image_icon</string>
 
     <string name="Reg_appBar_name">التسجيل</string>
-    <string name="fill_all_error">جميع الحقول الزاميه</string>
+    <string name="fill_all_error">يرجى تبعئة جميع الحقول الالزامية</string>
     <string name="Reg_FirstN">الإسم الأول</string>
     <string name="Reg_LastN">الإسم الأخير</string>
     <string name="REg_Mobile">رقم الجوال</string>
@@ -126,7 +126,7 @@
     <string name="add_photo">إضافة صورة!</string>
     <string name="unknown_country">بلد غير صحيح (فضلا إختر من القائمة)</string>
     <string name="unknown_language">لغة غير معروفه (فضلا إختر من القائمة)</string>
-    <string name="short_mobile">أدخل رقم جوال صحيح</string>
+    <string name="short_mobile">الرجاء إدخال رقم جوال صحيح</string>
     <string name="select_image_first_error">إحتر صورة شخصية اولا</string>
     <string name="select_type_first_error">يرجي اختيار نوع التسجيل</string>
     <string name="connection_problem">خطأ بالإتصال!</string>
@@ -166,7 +166,7 @@
     <string name="from_em_name_en">FromEmirateNameAr</string>
     <string name="to_em_name_en">ToEmirateNameAr</string>
     <string name="drivers">السائقين</string>
-    <string name="email_valid_form">من فضلك ادخل بريد إلكترونى صحيح</string>
+    <string name="email_valid_form">الرجاء إدخال بريد إلكتروني صحيح</string>
     <string name="ride_details">تفاصيل الرحلة</string>
     <string name="starting_time">وقت البدء</string>
     <string name="sat">, السبت</string>
@@ -199,8 +199,8 @@
     <string name="your_remarks">تعليقاتك</string>
     <string name="i_like_join_ride">  طلب الانضمام  الى رحلتك</string>
     <string name="already_sent_request">لقد أرسلت طلب بالفعل</string>
-    <string name="req_sent_succ">تم إرسال الطلب بنجاح و انتظر موافقة السائق</string>
-    <string name="req_sent_succ2">تم إرسال الطلب بنجاح و انتظر موافقة الراكب</string>
+    <string name="req_sent_succ">تم إرسال الطلب بنجاح وفي انتظار موافقة السائق</string>
+    <string name="req_sent_succ2">تم إرسال الطلب بنجاح وفي انتظار موافقة الراكب</string>
     <string name="acc_nat_name">AccountNationalityAr</string>
     <string name="from_reg_en_name">FromRegionArName</string>
     <string name="from_em_en_name">FromEmirateArName</string>
@@ -278,17 +278,17 @@
     <string name="edit">تعديل</string>
     <string name="choose_language">إختر اللغة</string>
     <string name="choose_language_mss">ما هي لغتك المفضلة ؟</string>
-    <string name="navy_change_language">English Language</string>
+    <string name="navy_change_language">English</string>
     <string name="no_review_statement">لا توجد تعليقات مضافه</string>
     <string name="cannot_grat_permit">لا يمكن الحصول على تصريح</string>
-    <string name="permit_granted">تم الحصول على التصريح بنجاح</string>
+    <string name="permit_granted">تم إنشاء التصريح بنجاح</string>
     <string name="expite_date">تاريخ الإنتهاء :</string>
     <string name="issue_date">تاريخ الإنشاء :</string>
     <string name="agree">أوافق</string>
     <string name="close">إغلاق</string>
     <string name="policy">سياسة الأمن و الخصوصية</string>
     <string name="terms_con">الشروط و الإحكام</string>
-    <string name="decline">رفض</string>
+    <string name="decline">أرفض</string>
     <string name="remarks">التعليقات</string>
     <string name="request_date">تاريخ الطلب</string>
     <string name="route">الطريق :</string>
@@ -316,7 +316,7 @@
     <string name="enter_file_no">من فضلك أدخل الرقم المرورى</string>
     <string name="enter_DOB">من فضلك أدخل تاريخ الميلاد</string>
     <string name="enter_file_DOB">من فضلك أدخل الرقم المرورى و تاريخ الميلاد</string>
-    <string name="ride_updated">تم تحديث الرحلة</string>
+    <string name="ride_updated">تم تحديث بيانات الرحلة</string>
     <string name="route_name_exist">إسم الطريق موجود بالفعل</string>
     <string name="cant_user_file_number">لا يمكنك استخدام هذا الرقم المروري</string>
     <string name="ride_created2">تم إنشاء الرحلة</string>
@@ -333,7 +333,7 @@
     <string name="Delete_Passenger_dialog_str">حذف راكب</string>
     <string name="Are_You_Sure_msg_dilog">هل تريد حذف هذا الراكب بالفعل ؟</string>
     <string name="passenger_deleted_successfully">تم حذف الراكب</string>
-    <string name="no">كلا</string>
+    <string name="no">لا</string>
     <string name="Delete_Ride">حذف رحلة</string>
     <string name="Write_review_first">يرجي ادخال التعليق أولا</string>
     <string name="Delete_Review_Str">حذف تعليق</string>
@@ -382,13 +382,13 @@
     <string name="accept_smokers_str">أقبل</string>
     <string name="not_accept_smokers_str">لا أقبل</string>
     <string name="is_smoking_Str">مدخنين</string>
-    <string name="preferred_gender_Str">الجنسيه المفضلة</string>
+    <string name="preferred_gender_Str">الجنس المفضل</string>
     <string name="Review_updated">تم تحديث التعليق</string>
     <string name="pending_request">إستلم طلبك و فى انتظار موافقته</string>
     <string name="google_app_id">1:780076415361:android:c101984c52985d9b</string>
     <string name="ga_trackingId">UA-70176053-1</string>
-    <string name="request_removed">لقد تم إلعاء الطلب بنجاح</string>
-    <string name="please_confirm_to_cancel">اتريد حقا الغاء الطلب ؟</string>
+    <string name="request_removed">لقد تم إلغاء الطلب بنجاح</string>
+    <string name="please_confirm_to_cancel">هل تريد حذف الطلب؟ </string>
     <string name="delete_request_Str">إلغاء الطلب</string>
     <string name="noVehiclesFound">ليس لديك اي مركبه مسجله</string>
     <string name="RegisterVehicle_Btn">تسجيل المركبة</string>
@@ -396,7 +396,7 @@
     <string name="last_seen_textview">أخر مشاهده : </string>
     <string name="drivers_Str">السائقين</string>
     <string name="passengers_Str">الركاب</string>
-    <string name="InvitePassenger">أود دعوتك للأنضمام الي رحلتي</string>
+    <string name="InvitePassenger">ادعوك للإنضمام إلى رحلتي</string>
     <string name="select_ride">أختار رحله</string>
     <string name="send_invitation_str">إرسال دعوه</string>
     <string name="choose_ride_to_send_invitation">إختار رحله لإرسال دعوه</string>
@@ -410,6 +410,20 @@
     <string name="passenger_nat_en_name">PassengerNationalityArName</string>
     <string name="Driver_pending_request">إستلم دعوتك وفي انتظار موافقته</string>
     <string name="Max_Routes_Reached">لقد وصلت للحد الأقصي من رحلات</string>
+    <string name="Location_Not_Enabled">موقعك غير متاح </string>
+    <string name="Please_turn_on_gps_first">الرجاء تشغيل نظام تحديد المواقع أولا</string>
+    <string name="Turn_On">تشغيل</string>
+    <string name="No_Map">لا</string>
+    <string name="Please_enter_emiate_and_region">من فضلك ادخل اسم الاماره و المنطقه</string>
+    <string name="No_passengers_Found">لا يوجد ركاب</string>
+    <string name="No_Location_Detected">لم يتم تحديد الموقع</string>
+    <string name="Password_sould_be_more_than_five_chars">كلمة المرور يجب ان تكون أكثر من  خمس حروف</string>
+    <string name="choose_Pick_Up_And_Drop_Off">من فضلك اختار مكان الانطلاق ومكان الوصول</string>
+    <string name="Delete_Request">حذف طلب</string>
+    <string name="no_available_seats">لا يوجد مقاعد متاحه</string>
+    <string name="Send_Invite_Str">إرسال</string>
+    <string name="invite_yes">نعم</string>
+    <string name="No_Phone_number">لا يوجد رقم هاتف</string>
 
 
 </resources>

@@ -131,7 +131,7 @@
     <string name="short_pass">Password must be at least 5 Character</string>
     <string name="short_mobile">Enter Valid Mobile Number</string>
     <string name="select_image_first_error">Select Profile Image!!</string>
-    <string name="select_type_first_error">please Choose a user Type</string>
+    <string name="select_type_first_error">Please Choose Registration type</string>
     <string name="connection_problem">Connection Problem!</string>
     <string name="con_problem_message">Make sure you have internet connection</string>
     <string name="retry">Retry</string>
@@ -197,6 +197,7 @@
     <string name="pref_lang">PrefLanguageEnName</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+
     <string name="write_remark">Write Your remarks</string>
     <string name="your_remarks">Your remarks</string>
     <string name="i_like_join_ride">I\'d like to join your Ride</string>
@@ -340,8 +341,8 @@
     <string name="passenger_deleted_successfully">Passenger deleted successfully</string>
     <string name="Delete_Ride">Delete Ride</string>
     <string name="choose_birth_date">Choose your Birth Date</string>
-    <string name="taken_username">Cannot Register ,Email Already Exist</string>
-    <string name="taken_mobile">Cannot Register , Mobile Number Already Exist</string>
+    <string name="taken_username">Email Already Exist, Please choose another</string>
+    <string name="taken_mobile">Mobile No. already exist, Please choose another</string>
     <string name="Write_review_first">Please write a review first</string>
     <string name="Delete_Review_Str">Delete Review</string>
     <string name="Leave_Ride_Str">Leave Ride</string>
@@ -396,7 +397,7 @@
     <string name="last_seen_textview">Last Seen :</string>
     <string name="drivers_Str">Drivers</string>
     <string name="passengers_Str">Passengers</string>
-    <string name="InvitePassenger">I\'d Like To Invite you to my Ride</string>
+    <string name="InvitePassenger">I\'d like to invite you to my ride</string>
     <string name="select_ride">Select Ride</string>
     <string name="send_invitation_str">send invitation</string>
     <string name="choose_ride_to_send_invitation">Choose Ride to send Invitation</string>
@@ -408,6 +409,20 @@
     <string name="_18_years">+18 years</string>
     <string name="Driver_pending_request">Received Your invitation And Waiting For Approval</string>
     <string name="Max_Routes_Reached">Maximum Routes Reached</string>
+    <string name="Location_Not_Enabled">Location is not Enabled</string>
+    <string name="Please_turn_on_gps_first">Please Turn on Gps First</string>
+    <string name="Turn_On">Turn On</string>
+    <string name="No_Map">No</string>
+    <string name="Please_enter_emiate_and_region">Please enter Emirate and Region</string>
+    <string name="No_passengers_Found">No Passengers Found</string>
+    <string name="No_Location_Detected">No Location Detected</string>
+    <string name="Password_sould_be_more_than_five_chars">Password Should be More than 5 characters</string>
+    <string name="choose_Pick_Up_And_Drop_Off">Please Choose Pick Up and Drop off</string>
+    <string name="Delete_Request">Delete Request</string>
+    <string name="no_available_seats">Not available seats</string>
+    <string name="Send_Invite_Str">Send</string>
+    <string name="invite_yes">Yes</string>
+    <string name="No_Phone_number">No Phone Number</string>
 
 
 </resources>

@@ -165,6 +165,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
         name = (TextView) findViewById(R.id.tv_name_home);
         nat = (TextView) findViewById(R.id.nat_home);
+        nat.setVisibility(View.GONE);
         Account_PhoneNumber = (TextView) findViewById(R.id.Account_PhoneNumber);
         rating = (TextView) findViewById(R.id.textView);
         btn_create = (RelativeLayout) findViewById(R.id.btn_createCarPool);
@@ -661,11 +662,11 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
 
                 // For Testing Purpose
-//                if (true) {
+                if (true) {
 
 
                 //  For Prodution
-                if (Vehicles_Count_FLAG != 0) {
+          //      if (Vehicles_Count_FLAG != 0) {
 
 
                     if (Driver_Rides_Count < 2) {
@@ -982,9 +983,12 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                     if (Locale_Str.contains("en")) {
                         if (jsonArray.getString("GenderEn").equals("Male")) {
                             circularImageView.setImageResource(R.drawable.imageafterediten);
+                            NavigationDrawerFragment.circularImageView.setImageResource(R.drawable.imageafterediten);
+
 
                         } else {
                             circularImageView.setImageResource(R.drawable.imageaftereditfemale);
+                            NavigationDrawerFragment.circularImageView.setImageResource(R.drawable.imageaftereditfemale);
 
                         }
 
@@ -992,9 +996,11 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
                         if (jsonArray.getString("GenderEn").equals("Male")) {
                             circularImageView.setImageResource(R.drawable.imageaftereditar);
+                            NavigationDrawerFragment.circularImageView.setImageResource(R.drawable.imageaftereditar);
 
                         } else {
                             circularImageView.setImageResource(R.drawable.imageaftereditfemalear);
+                            NavigationDrawerFragment.circularImageView.setImageResource(R.drawable.imageaftereditfemalear);
 
                         }
 
@@ -1003,9 +1009,11 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 } else if (jsonArray.getString("IsPhotoVerified").toLowerCase().equals("")) {
                     if (jsonArray.getString("GenderEn").equals("Male")) {
                         circularImageView.setImageResource(R.drawable.defaultdriver);
+                        NavigationDrawerFragment.circularImageView.setImageResource(R.drawable.defaultdriver);
 
                     } else {
                         circularImageView.setImageResource(R.drawable.defaultdriverfemale);
+                        NavigationDrawerFragment.circularImageView.setImageResource(R.drawable.defaultdriverfemale);
 
                     }
                 } else {

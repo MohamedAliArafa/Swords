@@ -123,7 +123,7 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
 
                             }
                         })
-                        .setNegativeButton(R.string.Cancel_msg, new DialogInterface.OnClickListener() {
+                        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
 
                                 dialog.dismiss();
@@ -169,7 +169,7 @@ public class Ride_Details_Passengers_Adapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 if (m.getAccountMobile() == null || m.getAccountMobile().equals("") || m.getAccountMobile().equals("null")) {
-                    Toast.makeText(activity, "No Phone Number", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, R.string.No_Phone_Number_msg, Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + PassengersItems.get(position).getAccountMobile()));
                     intent.putExtra("sms_body", "Hello " + m.getAccountMobile());

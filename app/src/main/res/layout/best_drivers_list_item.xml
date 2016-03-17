@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="120dp"
+    android:layout_height="130dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.pkmmte.view.CircularImageView
@@ -39,13 +39,43 @@
         android:layout_alignLeft="@+id/tvName"
         android:layout_alignStart="@+id/tvName"
         android:layout_below="@+id/tvName"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="5dp"
         android:layout_toEndOf="@+id/ivProfile"
         android:layout_toRightOf="@+id/ivProfile"
         android:padding="5dp"
         android:text="Nationality"
         android:textSize="15sp" />
 
+
+    <TextView
+        android:id="@+id/LastSeenText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvNat"
+        android:layout_alignLeft="@+id/tvNat"
+        android:layout_alignStart="@+id/tvNat"
+        android:text="@string/last_seen_textview"
+        android:layout_marginTop="0dp"
+        android:textSize="15sp"
+        android:padding="5dp"
+
+        />
+
+    <TextView
+        android:id="@+id/LastSeenTvValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/LastSeenText"
+        android:layout_toEndOf="@+id/LastSeenText"
+        android:layout_alignBottom="@+id/LastSeenText"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:text=""
+        android:layout_marginTop="0dp"
+        android:padding="5dp"
+        android:textSize="15sp"
+
+        />
     <TextView
         android:id="@+id/Best_Drivers_Item_rate"
         android:layout_width="wrap_content"

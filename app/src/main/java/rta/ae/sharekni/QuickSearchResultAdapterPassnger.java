@@ -16,6 +16,7 @@ import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -87,123 +88,130 @@ public class QuickSearchResultAdapterPassnger extends BaseAdapter {
         final QuickSearchDataModel item = searchItems.get(position);
 
 
-            if (inflater == null)
-                inflater = (LayoutInflater) activity
-                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            if (convertView == null)
-                convertView = inflater.inflate(R.layout.passenger_list_search, null);
+        if (inflater == null)
+            inflater = (LayoutInflater) activity
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        if (convertView == null)
+            convertView = inflater.inflate(R.layout.passenger_list_search, null);
 
 
-            if (imageLoader == null) imageLoader = AppController.getInstance().getImageLoader();
+        if (imageLoader == null) imageLoader = AppController.getInstance().getImageLoader();
 
-            CircularImageView Photo = (CircularImageView) convertView.findViewById(R.id.search_list_photo);
-            //   TextView SDG_Route_Start_FromTime = (TextView) convertView.findViewById(R.id.SDG_Route_Start_FromTime);
-            TextView DriverEnName = (TextView) convertView.findViewById(R.id.DriverEnName);
-            TextView Nationality_en = (TextView) convertView.findViewById(R.id.Nationality_en);
-            // TextView SDG_RouteDays = (TextView) convertView.findViewById(R.id.search_results_days);
-            TextView Best_Drivers_Item_rate = (TextView) convertView.findViewById(R.id.Best_Drivers_Item_rate);
-            TextView LastSeenTvValue = (TextView) convertView.findViewById(R.id.LastSeenTvValue);
-            TextView LastSeenText = (TextView) convertView.findViewById(R.id.LastSeenText);
-            final Button PassengerSendInvite = (Button) convertView.findViewById(R.id.PassengerSendInvite);
-
-
-//        Photo.sectImageUrl(URL + item.getAccountPhoto(), imageLoader);
+        CircularImageView Photo = (CircularImageView) convertView.findViewById(R.id.search_list_photo);
+        //   TextView SDG_Route_Start_FromTime = (TextView) convertView.findViewById(R.id.SDG_Route_Start_FromTime);
+        TextView DriverEnName = (TextView) convertView.findViewById(R.id.DriverEnName);
+        TextView Nationality_en = (TextView) convertView.findViewById(R.id.Nationality_en);
+        // TextView SDG_RouteDays = (TextView) convertView.findViewById(R.id.search_results_days);
+        TextView Best_Drivers_Item_rate = (TextView) convertView.findViewById(R.id.Best_Drivers_Item_rate);
+        TextView LastSeenTvValue = (TextView) convertView.findViewById(R.id.LastSeenTvValue);
+        TextView LastSeenText = (TextView) convertView.findViewById(R.id.LastSeenText);
+        ImageView rate_pic = (ImageView) convertView.findViewById(R.id.rate_pic);
+        final Button PassengerSendInvite = (Button) convertView.findViewById(R.id.PassengerSendInvite);
 
 
-            if (item.getInviteType().equals("MapLookUp")) {
-                PassengerSendInvite.setVisibility(View.INVISIBLE);
-            } else if (item.getInviteType().equals("DriverRide")) {
-                PassengerSendInvite.setVisibility(View.VISIBLE);
-            }
+//        Photo.sectImageUrl(URL + item.getAccountPhoto(), imageLoader
 
+        PassengerSendInvite.setVisibility(View.VISIBLE);
 
-            if (item.getInviteStatus() == 1) {
-                PassengerSendInvite.setVisibility(View.INVISIBLE);
-            }
+//        if (item.getInviteType().equals("MapLookUp")) {
+//            PassengerSendInvite.setVisibility(View.INVISIBLE);
+//        } else if (item.getInviteType().equals("DriverRide")) {
+//            PassengerSendInvite.setVisibility(View.VISIBLE);
+//        }
 
-            if (item.getDriverPhoto() != null) {
-                Photo.setImageBitmap(item.getDriverPhoto());
-            } else {
-                Photo.setImageResource(R.drawable.defaultdriver);
-            }
-
-
-            StringBuffer res = new StringBuffer();
-
-            String[] strArr = item.getAccountName().split(" ");
-
-            for (String str : strArr) {
-                char[] stringArray = str.trim().toCharArray();
-                if (stringArray.length != 0) {
-
-
-                    stringArray[0] = Character.toUpperCase(stringArray[0]);
-                    str = new String(stringArray);
-
-                    res.append(str).append(" ");
-
-                }
-
-            }
-
-            DriverEnName.setText(res);
-
-
-
-
+        Log.d("nat Search", item.getNationality_en());
+        if (item.getNationality_en().equals("Not Specified")) {
+            Nationality_en.setVisibility(View.GONE);
+        } else {
             Nationality_en.setText(item.getNationality_en());
+        }
 
-            Best_Drivers_Item_rate.setText(item.getRating());
 
-            if (item.getLastSeen().equals("hide") || item.getLastSeen().equals("0")) {
-                LastSeenTvValue.setVisibility(View.INVISIBLE);
-                LastSeenText.setVisibility(View.INVISIBLE);
-            } else {
-                LastSeenText.setVisibility(View.VISIBLE);
-                LastSeenTvValue.setVisibility(View.VISIBLE);
-                LastSeenTvValue.setText(item.getLastSeen());
+        if (item.getInviteStatus() == 1) {
+            PassengerSendInvite.setVisibility(View.INVISIBLE);
+        }
+
+        if (item.getDriverPhoto() != null) {
+            Photo.setImageBitmap(item.getDriverPhoto());
+        } else {
+            Photo.setImageResource(R.drawable.defaultdriver);
+        }
+
+
+        StringBuffer res = new StringBuffer();
+
+        String[] strArr = item.getAccountName().split(" ");
+
+        for (String str : strArr) {
+            char[] stringArray = str.trim().toCharArray();
+            if (stringArray.length != 0) {
+
+
+                stringArray[0] = Character.toUpperCase(stringArray[0]);
+                str = new String(stringArray);
+
+                res.append(str).append(" ");
+
             }
 
-            PassengerSendInvite.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        }
 
-
-                    Log.d("Driver_ID", String.valueOf(item.getAccountID()));
-                    Log.d("Passenger_ID", String.valueOf(item.getPassenger_ID()));
-                    Log.d("Route_ID", String.valueOf(item.getSDG_Route_ID()));
-
-                    final Dialog dialog = new Dialog(activity);
-                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                    dialog.setContentView(R.layout.review_dialog);
-                    Button btn = (Button) dialog.findViewById(R.id.Review_Btn);
-                    TextView Lang_Dialog_txt_id = (TextView) dialog.findViewById(R.id.Lang_Dialog_txt_id);
-                    TextView Review_text_address = (TextView) dialog.findViewById(R.id.Review_text_address);
-                    Edit_Review_txt = (EditText) dialog.findViewById(R.id.Edit_Review_txt);
-                    Lang_Dialog_txt_id.setText(R.string.write_remark);
-                    Review_text_address.setText(R.string.your_remarks);
-                    Edit_Review_txt.setText(R.string.InvitePassenger);
-                    dialog.show();
-                    btn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            str_Remarks = Edit_Review_txt.getText().toString();
-                            dialog.dismiss();
-                            ProgressDialog pDialog = new ProgressDialog(activity);
-                            pDialog.setMessage(activity.getString(R.string.loading) + "...");
-                            pDialog.show();
-                            jsoning = new jsoning(pDialog, activity,item.getAccountID(),item.getPassenger_ID(),item.getSDG_Route_ID(),str_Remarks);
-                            jsoning.execute();
-
-
-                        }
-                    });
-
-                }
-            });
+        DriverEnName.setText(res);
 
 
 
+
+        //   Best_Drivers_Item_rate.setText(item.getRating());
+        Best_Drivers_Item_rate.setVisibility(View.INVISIBLE);
+        rate_pic.setVisibility(View.INVISIBLE);
+
+        if (item.getLastSeen().equals("hide") || item.getLastSeen().equals("0")) {
+            LastSeenTvValue.setVisibility(View.INVISIBLE);
+            LastSeenText.setVisibility(View.INVISIBLE);
+        } else {
+            LastSeenText.setVisibility(View.VISIBLE);
+            LastSeenTvValue.setVisibility(View.VISIBLE);
+            LastSeenTvValue.setText(item.getLastSeen());
+        }
+
+        PassengerSendInvite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Log.d("Driver_ID", String.valueOf(item.getAccountID()));
+                Log.d("Passenger_ID", String.valueOf(item.getPassenger_ID()));
+                Log.d("Route_ID", String.valueOf(item.getSDG_Route_ID()));
+
+                final Dialog dialog = new Dialog(activity);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.review_dialog);
+                Button btn = (Button) dialog.findViewById(R.id.Review_Btn);
+                TextView Lang_Dialog_txt_id = (TextView) dialog.findViewById(R.id.Lang_Dialog_txt_id);
+                TextView Review_text_address = (TextView) dialog.findViewById(R.id.Review_text_address);
+                Edit_Review_txt = (EditText) dialog.findViewById(R.id.Edit_Review_txt);
+                Lang_Dialog_txt_id.setText(R.string.write_remark);
+                Review_text_address.setText(R.string.your_remarks);
+                Edit_Review_txt.setText(R.string.InvitePassenger);
+                btn.setText(R.string.Send_Invite_Str);
+                dialog.show();
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        str_Remarks = Edit_Review_txt.getText().toString();
+                        dialog.dismiss();
+                        ProgressDialog pDialog = new ProgressDialog(activity);
+                        pDialog.setMessage(activity.getString(R.string.loading) + "...");
+                        pDialog.show();
+                        jsoning = new jsoning(pDialog, activity, item.getAccountID(), item.getPassenger_ID(), item.getSDG_Route_ID(), str_Remarks);
+                        jsoning.execute();
+
+
+                    }
+                });
+
+            }
+        });
 
 
         return convertView;
@@ -224,15 +232,15 @@ public class QuickSearchResultAdapterPassnger extends BaseAdapter {
         String Remarks;
 
 
-        public jsoning(ProgressDialog pDialog, final Activity con,int Driver_ID,int Passenger_ID,int Route_ID ,String remarks) {
+        public jsoning(ProgressDialog pDialog, final Activity con, int Driver_ID, int Passenger_ID, int Route_ID, String remarks) {
 
             this.lv = lv;
             this.con = con;
             this.pDialog = pDialog;
-            this.Route_ID=Route_ID;
-            this.Passenger_ID=Passenger_ID;
-            this.Driver_ID=Driver_ID;
-            this.Remarks=remarks;
+            this.Route_ID = Route_ID;
+            this.Passenger_ID = Passenger_ID;
+            this.Driver_ID = Driver_ID;
+            this.Remarks = remarks;
 
 
         }

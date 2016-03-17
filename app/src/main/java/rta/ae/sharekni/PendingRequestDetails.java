@@ -60,7 +60,7 @@ public class PendingRequestDetails extends AppCompatActivity {
 
         Log.d("RouteName", RouteName);
         Log.d("PassengerName", PassengerName);
-        Log.d("Driver Pending Request is ",Driver_Pending);
+        Log.d("Driver Pending Request",Driver_Pending);
 
 
         RouteName_txt = (TextView) findViewById(R.id.RouteName);
@@ -99,9 +99,9 @@ public class PendingRequestDetails extends AppCompatActivity {
 
                     final String[] res = new String[1];
                     new AlertDialog.Builder(PendingRequestDetails.this)
-                            .setTitle(R.string.yes)
+                            .setTitle(R.string.Delete_Request)
                             .setMessage(R.string.please_confirm_to_cancel)
-                            .setPositiveButton(R.string.Cancel_msg, new DialogInterface.OnClickListener() {
+                            .setPositiveButton(R.string.invite_yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     try {
                                         res[0] = new GetData().Driver_RemoveInvitation(RequestId);
@@ -130,9 +130,9 @@ public class PendingRequestDetails extends AppCompatActivity {
                 }else {
                     final String[] res = new String[1];
                     new AlertDialog.Builder(PendingRequestDetails.this)
-                            .setTitle(R.string.yes)
+                            .setTitle(R.string.Delete_Request)
                             .setMessage(R.string.please_confirm_to_cancel)
-                            .setPositiveButton(R.string.Cancel_msg, new DialogInterface.OnClickListener() {
+                            .setPositiveButton(R.string.invite_yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     try {
                                             res[0] = new GetData().Passenger_RemoveRequest(RequestId);

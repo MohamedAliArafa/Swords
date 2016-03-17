@@ -160,6 +160,9 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
                             GetData gd = new GetData();
                             driver.setPhoto(gd.GetImage(obj.getString("AccountPhoto")));
                         }
+                        driver.setLastSeen(obj.getString("LastSeen"));
+
+
                         arr.add(driver);
                         publishProgress((int)(i*100/response.length()));
                     } catch (JSONException e) {

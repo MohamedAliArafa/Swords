@@ -550,7 +550,9 @@
                             android:text="@string/nationality"
                             android:textColor="@color/primaryColor"
                             android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:visibility="invisible"
+                            />
 
 
                         <View

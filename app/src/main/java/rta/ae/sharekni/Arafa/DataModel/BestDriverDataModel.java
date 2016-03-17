@@ -19,7 +19,7 @@ public class BestDriverDataModel extends ArrayList<Parcelable> implements Parcel
         this.phoneNumber = phoneNumber;
     }
 
-    public String Name,PhotoURL,Nationality,Language,phoneNumber;
+    public String Name,PhotoURL,Nationality,Language,phoneNumber,LastSeen;
     public int ID,Rating;
 
     public Bitmap getPhoto() {
@@ -32,6 +32,7 @@ public class BestDriverDataModel extends ArrayList<Parcelable> implements Parcel
 
     public Bitmap photo;
 
+
     public BestDriverDataModel(Parcel in) {
         Name = in.readString();
         PhotoURL = in.readString();
@@ -39,6 +40,7 @@ public class BestDriverDataModel extends ArrayList<Parcelable> implements Parcel
         ID = in.readInt();
         Rating = in.readInt();
         Language=in.readString();
+        LastSeen=in.readString();
     }
 
     public static final Creator<BestDriverDataModel> CREATOR = new Creator<BestDriverDataModel>() {
@@ -107,6 +109,14 @@ public class BestDriverDataModel extends ArrayList<Parcelable> implements Parcel
         return 0;
     }
 
+    public String getLastSeen() {
+        return LastSeen;
+    }
+
+    public void setLastSeen(String lastSeen) {
+        LastSeen = lastSeen;
+    }
+
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(Name);
@@ -115,5 +125,6 @@ public class BestDriverDataModel extends ArrayList<Parcelable> implements Parcel
         parcel.writeInt(ID);
         parcel.writeInt(Rating);
         parcel.writeString(Language);
+        parcel.writeString(LastSeen);
     }
 }

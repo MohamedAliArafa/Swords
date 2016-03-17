@@ -15,6 +15,8 @@
         android:padding="3dp"
         android:src="@android:drawable/ic_menu_camera" />
 
+
+
     <TextView
         android:id="@+id/PassengerName"
         android:layout_width="wrap_content"
@@ -44,5 +46,19 @@
         android:layout_below="@+id/txt_Accepted_or_Rejected"
         android:layout_toRightOf="@+id/AccountPhoto"
         android:layout_toEndOf="@+id/AccountPhoto" />
+
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/deletered"
+        android:visibility="invisible"
+        android:id="@+id/Delete_Notification_im"
+        />
 
 </RelativeLayout>

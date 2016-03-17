@@ -171,7 +171,7 @@ public class Profile extends AppCompatActivity {
                 public void onClick(View v) {
 
                     if (IsMobileVerified.equals("false")) {
-                        Toast.makeText(getBaseContext(), "No Phone Number", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), R.string.No_Phone_number , Toast.LENGTH_SHORT).show();
 
                     } else if (IsMobileVerified.equals("true")) {
 
@@ -207,7 +207,7 @@ public class Profile extends AppCompatActivity {
                 public void onClick(View v) {
 
                     if (IsMobileVerified.equals("false")) {
-                        Toast.makeText(getBaseContext(), "No Phone Number", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), R.string.No_Phone_number , Toast.LENGTH_SHORT).show();
 
                     } else if (IsMobileVerified.equals("true")) {
 

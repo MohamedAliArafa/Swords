@@ -96,6 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:id="@+id/Driver_Car_Relative"
 
             >
 
@@ -182,7 +183,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="5dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:id="@+id/Driver_Rides_Relative"
+            >
 
             <TextView
                 android:id="@+id/txt_ride_word_2"

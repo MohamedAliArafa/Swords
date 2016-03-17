@@ -18,7 +18,7 @@ public class BestRouteDataModel extends ArrayList<Parcelable> implements Parcela
     public int Route_id;
     public  int Passenger_ID;
     public int Language_ID,Age_Range_ID,Single_Periodic_ID;
-    public String Gender,Nationality_ID;
+    public String Gender,Nationality_ID,Last_Seen;
 
     public int getID() {
         return ID;
@@ -53,6 +53,7 @@ public class BestRouteDataModel extends ArrayList<Parcelable> implements Parcela
         Gender=in.readString();
         Single_Periodic_ID=in.readInt();
         IS_Smoking=in.readString();
+        Last_Seen=in.readString();
     }
 
     public BestRouteDataModel() {
@@ -98,6 +99,14 @@ public class BestRouteDataModel extends ArrayList<Parcelable> implements Parcela
 
     public void setDriver_profile_dayWeek(String driver_profile_dayWeek) {
         this.driver_profile_dayWeek = driver_profile_dayWeek;
+    }
+
+    public String getLast_Seen() {
+        return Last_Seen;
+    }
+
+    public void setLast_Seen(String last_Seen) {
+        Last_Seen = last_Seen;
     }
 
     public String getDriver_profile_dayWeek() {
@@ -277,5 +286,6 @@ public class BestRouteDataModel extends ArrayList<Parcelable> implements Parcela
         parcel.writeInt(Single_Periodic_ID);
         parcel.writeString(IS_Smoking);
         parcel.writeString(Gender);
+        parcel.writeString(Last_Seen);
     }
 }

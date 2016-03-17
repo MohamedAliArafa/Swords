@@ -158,6 +158,8 @@ public class MostRidesDetails extends AppCompatActivity {
                             item.setDriverId(json.getInt("AccountId"));
                             item.setRouteId(json.getInt("RouteId"));
                             item.setPhotoURl(json.getString("DriverPhoto"));
+                            // Testing Line
+                            item.setLastSeen(json.getString("LastSeen"));
                             if (!json.getString("DriverPhoto").equals("NoImage.png")){
                                 GetData gd = new GetData();
                                 item.setDriverPhoto(gd.GetImage(json.getString("DriverPhoto").replaceAll(" ","")));

@@ -73,6 +73,8 @@ public class BestDriverDataModelAdapter extends BaseAdapter {
         TextView Name = (TextView) convertView.findViewById(R.id.tvName);
         TextView Nat = (TextView) convertView.findViewById(R.id.tvNat);
         TextView Rat = (TextView) convertView.findViewById(R.id.Best_Drivers_Item_rate);
+        TextView   LastSeenText= (TextView) convertView.findViewById(R.id.LastSeenText);
+        TextView LastSeenTvValue = (TextView) convertView.findViewById(R.id.LastSeenTvValue);
 
         //RatingBar rating = (RatingBar) convertView.findViewById(R.id.ratingBar);
 
@@ -106,6 +108,20 @@ public class BestDriverDataModelAdapter extends BaseAdapter {
 
         Nat.setText(m.getNationality());
         Rat.setText(Integer.toString(m.getRating()));
+
+
+        LastSeenText.setVisibility(View.GONE);
+        LastSeenTvValue.setVisibility(View.GONE);
+
+        if(m.getLastSeen().equals("null")){
+            LastSeenText.setVisibility(View.GONE);
+            LastSeenTvValue.setVisibility(View.GONE);
+        }else {
+            LastSeenText.setVisibility(View.VISIBLE);
+            LastSeenTvValue.setVisibility(View.VISIBLE);
+            LastSeenTvValue.setText(m.getLastSeen());
+
+        }
 
 //        Best_Drivers_Item_Details.setOnClickListener(new View.OnClickListener() {
 //            @Override

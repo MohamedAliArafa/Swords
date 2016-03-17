@@ -9,7 +9,7 @@ import android.os.Parcelable;
 public class MapDataModel implements Parcelable {
     String FromEmirateEnName,ToEmirateEnName,FromRegionEnName,ToRegionEnName;
     String FromEmirateArName,FromRegionArName,ToRegionArName,ToEmirateArName;
-    int NoOFPassengers;
+    int NoOFPassengers,DriverRouteID;
 
     public int getNoOFPassengers() {
         return NoOFPassengers;
@@ -18,6 +18,7 @@ public class MapDataModel implements Parcelable {
     public void setNoOFPassengers(int noOFPassengers) {
         NoOFPassengers = noOFPassengers;
     }
+
 
     int NoOfRoutes;
 
@@ -43,6 +44,7 @@ public class MapDataModel implements Parcelable {
         FromRegionId = in.readInt();
         ToRegionId = in.readInt();
         NoOfRoutes=in.readInt();
+        DriverRouteID=in.readInt();
     }
 
     public static final Creator<MapDataModel> CREATOR = new Creator<MapDataModel>() {
@@ -146,6 +148,13 @@ public class MapDataModel implements Parcelable {
         ToRegionId = toRegionId;
     }
 
+    public int getDriverRouteID() {
+        return DriverRouteID;
+    }
+
+    public void setDriverRouteID(int driverRouteID) {
+        DriverRouteID = driverRouteID;
+    }
 
     public String getFromEmirateArName() {
         return FromEmirateArName;
@@ -199,5 +208,6 @@ public class MapDataModel implements Parcelable {
         dest.writeInt(FromRegionId);
         dest.writeInt(ToRegionId);
         dest.writeInt(NoOfRoutes);
+        dest.writeInt(DriverRouteID);
     }
 }

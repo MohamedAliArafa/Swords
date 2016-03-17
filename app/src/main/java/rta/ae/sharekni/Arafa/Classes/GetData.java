@@ -64,14 +64,14 @@ public class GetData {
 
     final JSONArray[] myJsonArray = new JSONArray[1];
 
-    //   public static final String DOMAIN = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx/";
-    //  public static final String NonOpDomain = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx";
-    //  public static final String PhotoURL = "http://sharekni-web.sdg.ae/uploads/personalphoto/";
+    public static final String DOMAIN = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx/";
+    public static final String NonOpDomain = "http://sharekni-web.sdg.ae/_mobfiles/CLS_MobAndroid.asmx";
+    public static final String PhotoURL = "http://sharekni-web.sdg.ae/uploads/personalphoto/";
 
 
-    public static final String DOMAIN = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx/";
-    public static final String NonOpDomain = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx";
-    public static final String PhotoURL = "https://www.sharekni.ae/uploads/personalphoto/";
+    // public static final String DOMAIN = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx/";
+    // public static final String NonOpDomain = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx";
+    // public static final String PhotoURL = "https://www.sharekni.ae/uploads/personalphoto/";
 
 
     //    String data;
@@ -128,6 +128,7 @@ public class GetData {
     String QuickSearchUrl = DOMAIN + "Passenger_FindRide?";
 
     String getBestRouteUrl = DOMAIN + "GetMostDesiredRides";
+    String GetMatchedRoutesForPassengersUrl = DOMAIN + "GetMatchedRoutesForPassengers?driverAccountId=";
     String getDriverRideUrl = DOMAIN + "GetDriverDetailsByAccountId?AccountId=";
     String getRouteByRouteId = DOMAIN + "GetRouteByRouteId?RouteId=";
     String Passenger_SendAlert = DOMAIN + "Passenger_SendAlert?";
@@ -777,6 +778,14 @@ public class GetData {
         return new JSONArray(obj.getData());
     }
 
+    public JSONArray GetMatchedRoutesForPassengers(int Driver_ID) throws JSONException {
+        String url = GetMatchedRoutesForPassengersUrl + Driver_ID;
+        HandleXML obj = new HandleXML(url);
+        obj.fetchXML();
+        while ((obj.parsingComplete && !obj.error)) ;
+        return new JSONArray(obj.getData());
+    }
+
 
     public void GetPassengersByRouteIDJsonParse(JSONArray jArray, ListView listView, final Activity context) {
 
@@ -1225,7 +1234,7 @@ public class GetData {
                                 in2.putExtra("To_RegionEnName", To_RegionEnName_str);
                                 in2.putExtra("MapKey", "Passenger");
                                 Log.d("Route_ID", response);
-                                in2.putExtra("RouteID", response);
+                                in2.putExtra("RouteID", Integer.parseInt(response));
                                 in2.putExtra("InviteType", "DriverRide");
                                 context.startActivity(in2);
                                 context.finish();

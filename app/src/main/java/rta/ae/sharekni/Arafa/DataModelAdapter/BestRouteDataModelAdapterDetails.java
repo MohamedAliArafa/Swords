@@ -76,6 +76,11 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
             vh.Phone_Call = (ImageView) v.findViewById(R.id.im5);
             vh.Rating = (TextView) v.findViewById(R.id.Best_Drivers_Item_rate);
             vh.LastSeenText= (TextView) v.findViewById(R.id.LastSeenText);
+            vh.LastSeenTvValue = (TextView) v.findViewById(R.id.LastSeenTvValue);
+
+            // Testing Line
+            vh.LastSeenText.setVisibility(View.GONE);
+            vh.LastSeenTvValue.setVisibility(View.GONE);
 
            // vh.Route_Join = (ImageView) v.findViewById(R.id.driver_add_pic);
            // vh.Route_Review = (ImageView) v.findViewById(R.id.driver_review);
@@ -101,7 +106,21 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
         vh.Nationality_en.setText(bestRouteDataModel.getNationality_en());
         vh.SDG_RouteDays.setText(bestRouteDataModel.getSDG_RouteDays());
         vh.Rating.setText(bestRouteDataModel.getDriverRating());
-        vh.LastSeenText.setVisibility(View.GONE);
+
+
+            // Producation Line
+       if(bestRouteDataModel.getLastSeen().equals("null")){
+            vh.LastSeenText.setVisibility(View.GONE);
+            vh.LastSeenTvValue.setVisibility(View.GONE);
+        }else {
+            vh.LastSeenText.setVisibility(View.VISIBLE);
+            vh.LastSeenTvValue.setVisibility(View.VISIBLE);
+            vh.LastSeenTvValue.setText(bestRouteDataModel.getLastSeen());
+
+        }
+
+
+       // vh.LastSeenText.setVisibility(View.GONE);
 //        vh.Photo.setImageUrl(URL + bestRouteDataModel.getPhotoURl() , imageLoader);
         if (bestRouteDataModel.getDriverPhoto() != null){
             vh.Photo.setImageBitmap(bestRouteDataModel.getDriverPhoto());
@@ -117,7 +136,7 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
                 Log.d("tel:", bestRouteDataModel.getDriverMobile());
 
                 if (bestRouteDataModel.getDriverMobile()==null || bestRouteDataModel.getDriverMobile().equals("")) {
-                    Toast.makeText(context, "No Phone Number" , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.No_Phone_number , Toast.LENGTH_SHORT).show();
                 }else {
 
                     if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE)
@@ -152,7 +171,7 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
             public void onClick(View v) {
 
                 if (bestRouteDataModel.getDriverMobile() == null || bestRouteDataModel.getDriverMobile().equals("")) {
-                    Toast.makeText(context, "No Phone Number" , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.No_Phone_number , Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + bestRouteDataModel.getDriverMobile()));
                     intent.putExtra("sms_body", "Hello " + bestRouteDataModel.getDriverName());
@@ -247,6 +266,7 @@ public class BestRouteDataModelAdapterDetails extends ArrayAdapter<BestRouteData
         TextView Rating;
         CircularImageView Photo;
         TextView LastSeenText;
+        TextView LastSeenTvValue;
 
 
     }
