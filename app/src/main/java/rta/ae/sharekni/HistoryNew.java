@@ -172,8 +172,8 @@ public class HistoryNew extends AppCompatActivity {
             }
 
 
-        Log.d("create flag", String.valueOf(FLAG_DRIVER_CREATED));
-        Log.d("join flag", String.valueOf(FLAG_DRIVER_JOINED));
+        Log.d("create flag 1", String.valueOf(FLAG_DRIVER_CREATED));
+        Log.d("join flag 1", String.valueOf(FLAG_DRIVER_JOINED));
 
 
     }
@@ -407,6 +407,8 @@ public class HistoryNew extends AppCompatActivity {
             Log.d("create flag", String.valueOf(FLAG_DRIVER_CREATED));
             Log.d("join flag", String.valueOf(FLAG_DRIVER_JOINED));
             hidePDialog();
+
+
             if (FLAG_DRIVER_JOINED == 1 && FLAG_DRIVER_CREATED == 1) {
 
                 CREATED=false;
@@ -500,10 +502,35 @@ public class HistoryNew extends AppCompatActivity {
                                     if (jArray.length()==0){
                                         Log.d("Error 3 ","Error3");
 
+
                                         FLAG_DRIVER_JOINED=1;
                                         Passenger_Approved_Rides_Lv.setVisibility(View.INVISIBLE);
                                         history_joined_rides_realtive.setVisibility(View.INVISIBLE);
                                         driver_profile_RouteEnName2.setVisibility(View.INVISIBLE);
+
+
+                                        if (FLAG_DRIVER_JOINED == 1 && FLAG_DRIVER_CREATED == 1) {
+
+                                            CREATED=false;
+                                            JOINED=false;
+
+                                            final Dialog dialog = new Dialog(c);
+                                            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                                            dialog.setContentView(R.layout.noroutesdialog);
+                                            Button btn = (Button) dialog.findViewById(R.id.noroute_id);
+                                            TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
+                                            dialog.show();
+                                            Text_3.setText(R.string.No_History);
+
+                                            btn.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    dialog.dismiss();
+                                                    c.finish();
+                                                }
+                                            });
+
+                                        }
 
 //                                        final Dialog dialog = new Dialog(c);
 //                                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

@@ -391,7 +391,7 @@
     <string name="preferred_gender_Str">Preferred Gender</string>
     <string name="Review_updated">Review Updated</string>
     <string name="delete_request_Str">Delete Request</string>
-    <string name="noVehiclesFound">You Don\'t Have Any Vehcile Registered</string>
+    <string name="noVehiclesFound">You don\'t have any vehicle registered</string>
     <string name="RegisterVehicle_Btn">Register Vehicle</string>
     <string name="Dismiss_txt">Dismiss</string>
     <string name="last_seen_textview">Last Seen :</string>

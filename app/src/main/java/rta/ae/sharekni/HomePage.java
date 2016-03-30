@@ -199,6 +199,14 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         circularImageView.addShadow();
 
 
+
+
+        Locale locale = Locale.getDefault();
+        Locale_Str = locale.toString();
+        Log.d("Main  Home locale", Locale_Str);
+
+
+
         NavigationDrawerFragment.navy_Change_lang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -211,7 +219,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
                 if (Locale_Str.contains("en")) {
 
-                    Locale locale2 = new Locale("ar_EG");
+                    Locale locale2 = new Locale("ar");
                     Locale.setDefault(locale2);
                     Configuration config2 = new Configuration();
                     config2.locale = locale2;
@@ -659,10 +667,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
                 Log.d("Driver Rides Count", String.valueOf(Driver_Rides_Count));
 
-
                 // For Testing Purpose
 //                if (true) {
-
 
                 //  For Prodution
                 if (Vehicles_Count_FLAG != 0) {

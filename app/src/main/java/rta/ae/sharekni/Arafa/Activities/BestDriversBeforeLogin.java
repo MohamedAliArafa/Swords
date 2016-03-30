@@ -156,8 +156,19 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
                         driver.setNationality(obj.getString(getString(R.string.nat_name2)));
                         driver.setRating(obj.getInt("Rating"));
                         driver.setPhoneNumber(obj.getString("AccountMobile"));
-                        driver.setGreenPoints(obj.getString("GreenPoints"));
-                        driver.setCO2Saved(obj.getString("CO2Saved"));
+
+                        int x1 = obj.getInt("GreenPoints");
+                        int x3 = obj.getInt("CO2Saved");
+                        x3 = x3/1000;
+
+                        driver.setGreenPoints(String.valueOf(x1));
+                        driver.setCO2Saved(String.valueOf(x3));
+
+
+
+                       // driver.setGreenPoints(obj.getString("GreenPoints"));
+                     //   driver.setCO2Saved(obj.getString("CO2Saved"));
+
 
                         if (!obj.getString("AccountPhoto").equals("NoImage.png")){
                             GetData gd = new GetData();

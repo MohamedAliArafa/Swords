@@ -99,11 +99,13 @@ public class DriverAlertsForRequestAdapter extends BaseAdapter {
             switch (model.getDriverAccept()) {
                 case "false":
                     txt_Accepted_or_Rejected.setText(R.string.reject_request);
-                    Delete_Notification_im.setVisibility(View.VISIBLE);
+                    // Next Production
+                    //  Delete_Notification_im.setVisibility(View.VISIBLE);
                     break;
                 case "true":
                     txt_Accepted_or_Rejected.setText(R.string.accept_request);
-                    Delete_Notification_im.setVisibility(View.VISIBLE);
+                    // next Production
+                  //  Delete_Notification_im.setVisibility(View.VISIBLE);
                     break;
                 case "null":
                     if (model.getDriverPending().equals("Driver_Pending_Request")){

@@ -43,8 +43,8 @@ import rta.ae.sharekni.Arafa.Activities.BestRideBeforeLogin;
 
 public class QSearch extends AppCompatActivity implements View.OnClickListener {
 
-    int From_Em_Id;
-    int From_Reg_Id;
+    int From_Em_Id=-1;
+    int From_Reg_Id=-1;
     int To_Em_Id;
     int To_Reg_Id;
     String IS_Smoking ="";
@@ -415,7 +415,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
             @Override
 
             public void onClick(View v) {
-                if (From_Em_Id_2 != -1  && From_Reg_Id_2!=-1 ) {
+                if (From_Em_Id_2 != -1  && From_Reg_Id_2!=-1 && From_Em_Id_2 != 0  && From_Reg_Id_2!=0 ) {
 
                     Intent intent1 = new Intent(getBaseContext(), QuickSearchResults.class);
                     intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);

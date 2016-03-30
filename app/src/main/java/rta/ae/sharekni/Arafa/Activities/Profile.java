@@ -22,9 +22,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -75,6 +78,28 @@ public class Profile extends AppCompatActivity {
     TextView Green_Points_txt,Green_Km_txt,Green_Routes_txt,Green_Vehicles_txt,Green_co2_saving_txt;
 
     String Locale_Str;
+
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null)
+            return;
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+        int totalHeight = 0;
+        View view = null;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            view = listAdapter.getView(i, view, listView);
+            if (i == 0)
+                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, RadioGroup.LayoutParams.WRAP_CONTENT));
+
+            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += view.getMeasuredHeight();
+        }
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -199,11 +224,29 @@ public class Profile extends AppCompatActivity {
             IsMobileVerified = json.getString("IsMobileVerified");
             IsPhotoVerified = json.getString("IsPhotoVerified");
 
-            Green_Points_txt.setText(json.getString("GreenPoints"));
-            Green_Km_txt.setText(json.getString("TotalDistance"));
-            Green_Routes_txt.setText(json.getString("DriverMyRidesCount"));
+            int x1 = json.getInt("GreenPoints");
+            int x2 = json.getInt("TotalDistance");
+
+            int x3 = json.getInt("CO2Saved");
+            x3 = x3/1000;
+
+            Green_co2_saving_txt.setText(String.valueOf(x3));
+            Green_Points_txt.setText(String.valueOf(x1));
+            Green_Km_txt.setText(String.valueOf(x2));
+
+
+            if (json.getInt("DriverMyRidesCount")>2) {
+
+                Green_Routes_txt.setText("2");
+            }else {
+                Green_Routes_txt.setText(json.getString("DriverMyRidesCount"));
+            }
+
+
+
             Green_Vehicles_txt.setText(json.getString("VehiclesCount"));
-            Green_co2_saving_txt.setText(json.getString("CO2Saved"));
+
+           // Green_co2_saving_txt.setText(json.getString("CO2Saved"));
 
 
 
@@ -313,6 +356,7 @@ public class Profile extends AppCompatActivity {
             if (exists) {
                 ProfileRideAdapter arrayAdapter = new ProfileRideAdapter(Profile.this, R.layout.driver_profile_rides, driver);
                 lv.setAdapter(arrayAdapter);
+                setListViewHeightBasedOnChildren(lv);
                 lv.requestLayout();
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 

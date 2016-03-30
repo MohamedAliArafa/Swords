@@ -127,7 +127,9 @@ public class BestDriverDataModelAdapter extends BaseAdapter {
                 str = new String(stringArray);
 
                 res.append(str).append(" ");
+                notifyDataSetChanged();
             }
+
 
         }
         Name.setText(res);
@@ -169,7 +171,7 @@ public class BestDriverDataModelAdapter extends BaseAdapter {
             public void onClick(View v) {
                 if (m.getPhoneNumber() == null || m.getPhoneNumber().equals("")) {
 
-                    Toast.makeText(activity, "No Phone Number" , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, R.string.No_Phone_number , Toast.LENGTH_SHORT).show();
                 } else {
 
                     if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.CALL_PHONE)
@@ -197,7 +199,7 @@ public class BestDriverDataModelAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 if (m.getPhoneNumber()==null || m.getPhoneNumber().equals("")){
-                    Toast.makeText(activity, "No Phone Number" , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity,R.string.No_Phone_number, Toast.LENGTH_SHORT).show();
                 }else {
 
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + m.getPhoneNumber()));

@@ -1,439 +1,473 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:orientation="vertical">
+    android:fadeScrollbars="false">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
     <include
         android:id="@+id/app_bar"
         layout="@layout/app_bar" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:orientation="vertical"
 
-        >
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingStart="10dp">
+            android:background="#FFFFFF"
+            android:orientation="vertical"
 
+            >
 
-            <com.pkmmte.view.CircularImageView
-                android:id="@+id/profilephoto"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_alignParentTop="true"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/defaultdriver"
-                app:border="true"
-                app:border_color="#EEEEEE"
-                app:border_width="2dp"
-                app:shadow="true" />
-
-            <TextView
-                android:id="@+id/TopName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="50dp"
-                android:layout_toEndOf="@+id/profilephoto"
-                android:layout_toRightOf="@+id/profilephoto"
-                android:text="@string/not_set"
-                android:textSize="21sp"
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:id="@+id/NationalityEnName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/TopName"
-                android:layout_alignStart="@+id/TopName"
-                android:layout_below="@+id/TopName"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="5dp"
-                android:padding="5dp"
-                android:text="@string/not_set"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:visibility="invisible" />
-
-            <TextView
-                android:id="@+id/Driver_profile_Item_rate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/TopName"
-                android:layout_alignStart="@+id/TopName"
-                android:layout_below="@+id/TopName"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="5dp"
-                android:padding="2dp"
-                android:text=""
-                android:textSize="16sp" />
-
-
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_alignBottom="@+id/Driver_profile_Item_rate"
-                android:layout_toEndOf="@+id/Driver_profile_Item_rate"
-                android:layout_toRightOf="@+id/Driver_profile_Item_rate"
-                android:src="@drawable/rate"
-
-                />
-
-
-            <LinearLayout
-                android:id="@+id/GreenPoint_Linear"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/profile_call"
-                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingStart="10dp">
 
-                >
+
+                <com.pkmmte.view.CircularImageView
+                    android:id="@+id/profilephoto"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/defaultdriver"
+                    app:border="true"
+                    app:border_color="#EEEEEE"
+                    app:border_width="2dp"
+                    app:shadow="true" />
+
+                <TextView
+                    android:id="@+id/TopName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_toEndOf="@+id/profilephoto"
+                    android:layout_toRightOf="@+id/profilephoto"
+                    android:text="@string/not_set"
+                    android:textSize="21sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/NationalityEnName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/TopName"
+                    android:layout_alignStart="@+id/TopName"
+                    android:layout_below="@+id/TopName"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="5dp"
+                    android:padding="5dp"
+                    android:text="@string/not_set"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/Driver_profile_Item_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/TopName"
+                    android:layout_alignStart="@+id/TopName"
+                    android:layout_below="@+id/TopName"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="5dp"
+                    android:padding="2dp"
+                    android:text=""
+                    android:textSize="16sp" />
+
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignBottom="@+id/Driver_profile_Item_rate"
+                    android:layout_toEndOf="@+id/Driver_profile_Item_rate"
+                    android:layout_toRightOf="@+id/Driver_profile_Item_rate"
+                    android:src="@drawable/rate"
+
+                    />
+
 
                 <LinearLayout
+                    android:id="@+id/GreenPoint_Linear"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:layout_weight="2"
-                    android:orientation="horizontal">
+                    android:layout_below="@+id/profile_call"
+                    android:orientation="horizontal"
 
+                    >
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:layout_weight="2"
+                        android:orientation="horizontal">
 
-                        >
 
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="25dp"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginBottom="-8dp"
-                            android:src="@drawable/leaf" />
-
-                        <View
-                            android:id="@+id/GreenLine"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="4dp"
-                            android:background="#4a7e03" />
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+
+                            >
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="25dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="-8dp"
+                                android:src="@drawable/leaf" />
+
+                            <View
+                                android:id="@+id/GreenLine"
+                                android:layout_width="match_parent"
+                                android:layout_height="4dp"
+                                android:background="#4a7e03" />
 
 
-                        <View
-                            android:id="@+id/GreenLine2"
-                            android:layout_width="0.5dp"
-                            android:layout_height="10dp"
-                            android:layout_gravity="center_horizontal"
-                            android:background="#4a7e03" />
+                            <View
+                                android:id="@+id/GreenLine2"
+                                android:layout_width="0.5dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_horizontal"
+                                android:background="#4a7e03" />
 
-                        <TextView
-                            android:id="@+id/Green_Points_txt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:text=""
-                            android:textColor="#4a7e03"
+                            <TextView
+                                android:id="@+id/Green_Points_txt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:lines="1"
+                                android:maxLines="1"
+                                android:text=""
+                                android:textColor="#4a7e03"
+
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="5dp"
+                                android:lines="1"
+                                android:maxLines="1"
+                                android:text="@string/points_str"
+                                android:textSize="13sp" />
 
 
-                            />
+                        </LinearLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="5dp"
-                            android:lines="1"
-                            android:maxLines="1"
-                            android:text="@string/points_str"
-                            android:textSize="13sp" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+
+                            >
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="25dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="-8dp"
+                                android:src="@drawable/leaf" />
+
+                            <View
+                                android:id="@+id/GreenLine3"
+                                android:layout_width="match_parent"
+                                android:layout_height="4dp"
+                                android:background="#4a7e03" />
+
+
+                            <View
+                                android:id="@+id/GreenLine4"
+                                android:layout_width="0.5dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_horizontal"
+                                android:background="#4a7e03" />
+
+                            <TextView
+                                android:id="@+id/Green_Km_txt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:lines="1"
+                                android:maxLines="1"
+                                android:text=""
+                                android:textColor="#4a7e03" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="5dp"
+                                android:lines="1"
+                                android:maxLines="1"
+                                android:text="@string/km_str"
+                                android:textSize="13sp"
+
+                                />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+
+                            >
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="25dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="-8dp"
+                                android:src="@drawable/leaf" />
+
+                            <View
+                                android:id="@+id/GreenLine5"
+                                android:layout_width="match_parent"
+                                android:layout_height="4dp"
+                                android:background="#4a7e03" />
+
+
+                            <View
+                                android:id="@+id/GreenLine6"
+                                android:layout_width="0.5dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_horizontal"
+                                android:background="#4a7e03" />
+
+                            <TextView
+                                android:id="@+id/Green_Routes_txt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:lines="1"
+                                android:maxLines="1"
+                                android:text=""
+                                android:textColor="#4a7e03" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="5dp"
+                                android:lines="1"
+                                android:maxLines="1"
+                                android:text="@string/routes_str"
+                                android:textSize="13sp" />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+
+                            >
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="25dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="-8dp"
+                                android:src="@drawable/leaf" />
+
+                            <View
+                                android:id="@+id/GreenLine7"
+                                android:layout_width="match_parent"
+                                android:layout_height="4dp"
+                                android:background="#4a7e03" />
+
+
+                            <View
+                                android:id="@+id/GreenLine8"
+                                android:layout_width="0.5dp"
+                                android:layout_height="10dp"
+                                android:layout_gravity="center_horizontal"
+                                android:background="#4a7e03" />
+
+                            <TextView
+                                android:id="@+id/Green_Vehicles_txt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:lines="1"
+                                android:maxLines="1"
+                                android:text=""
+                                android:textColor="#4a7e03" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="5dp"
+                                android:lines="1"
+                                android:maxLines="1"
+                                android:text="@string/vehicles_str"
+                                android:textSize="13sp" />
+
+
+                        </LinearLayout>
 
 
                     </LinearLayout>
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="3.3"
+                        android:background="@drawable/green_point_border"
+                        android:orientation="horizontal">
 
-                        >
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="25dp"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginBottom="-8dp"
-                            android:src="@drawable/leaf" />
-
-                        <View
-                            android:id="@+id/GreenLine3"
-                            android:layout_width="match_parent"
-                            android:layout_height="4dp"
-                            android:background="#4a7e03" />
-
-
-                        <View
-                            android:id="@+id/GreenLine4"
-                            android:layout_width="0.5dp"
-                            android:layout_height="10dp"
-                            android:layout_gravity="center_horizontal"
-                            android:background="#4a7e03" />
-
-                        <TextView
-                            android:id="@+id/Green_Km_txt"
+                        <RelativeLayout
+                            android:id="@+id/Green1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:text=""
-                            android:textColor="#4a7e03" />
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="top">
 
-                        <TextView
+                            <ImageView
+                                android:id="@+id/GreenPointCar_im"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginEnd="-5dp"
+                                android:layout_marginRight="-5dp"
+                                android:src="@drawable/greenpointcar"
+
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="7dp"
+                                android:layout_toEndOf="@+id/GreenPointCar_im"
+                                android:layout_toRightOf="@+id/GreenPointCar_im"
+                                android:text="@string/co2_saving"
+                                android:textColor="#4a7e03"
+                                android:textSize="9sp" />
+
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="5dp"
-                            android:lines="1"
-                            android:maxLines="1"
-                            android:text="@string/km_str"
-                            android:textSize="13sp"
+                            android:layout_below="@+id/Green1"
+                            android:layout_centerHorizontal="true">
 
-                            />
+                            <TextView
+                                android:id="@+id/Green_co2_saving_txt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="2dp"
+                                android:layout_marginStart="2dp"
+                                android:lines="1"
+                                android:maxLines="1"
+                                android:text=""
+                                android:textSize="13sp" />
 
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@+id/Green_co2_saving_txt"
+                                android:layout_gravity="center_vertical"
+                                android:layout_toEndOf="@+id/Green_co2_saving_txt"
+                                android:layout_toRightOf="@+id/Green_co2_saving_txt"
+                                android:lines="1"
+                                android:maxLines="1"
+                                android:text="@string/kg_str"
+                                android:textSize="12sp" />
 
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-
-                        >
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="25dp"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginBottom="-8dp"
-                            android:src="@drawable/leaf" />
-
-                        <View
-                            android:id="@+id/GreenLine5"
-                            android:layout_width="match_parent"
-                            android:layout_height="4dp"
-                            android:background="#4a7e03" />
+                        </RelativeLayout>
 
 
-                        <View
-                            android:id="@+id/GreenLine6"
-                            android:layout_width="0.5dp"
-                            android:layout_height="10dp"
-                            android:layout_gravity="center_horizontal"
-                            android:background="#4a7e03" />
-
-                        <TextView
-                            android:id="@+id/Green_Routes_txt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:text=""
-                            android:textColor="#4a7e03" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="5dp"
-                            android:lines="1"
-                            android:maxLines="1"
-                            android:text="@string/routes_str"
-                            android:textSize="13sp" />
-
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-
-                        >
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="25dp"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginBottom="-8dp"
-                            android:src="@drawable/leaf" />
-
-                        <View
-                            android:id="@+id/GreenLine7"
-                            android:layout_width="match_parent"
-                            android:layout_height="4dp"
-                            android:background="#4a7e03" />
-
-
-                        <View
-                            android:id="@+id/GreenLine8"
-                            android:layout_width="0.5dp"
-                            android:layout_height="10dp"
-                            android:layout_gravity="center_horizontal"
-                            android:background="#4a7e03" />
-
-                        <TextView
-                            android:id="@+id/Green_Vehicles_txt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:text=""
-                            android:textColor="#4a7e03"
-
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="5dp"
-                            android:lines="1"
-                            android:maxLines="1"
-                            android:text="@string/vehicles_str"
-                            android:textSize="13sp" />
-
-
-                    </LinearLayout>
+                    </RelativeLayout>
 
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="25dp"
-                    android:layout_weight="3.3"
-                    android:background="@drawable/green_point_border"
-                    android:orientation="horizontal">
 
-                    <ImageView
-                        android:id="@+id/GreenPointCar_im"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="bottom"
-                        android:layout_marginEnd="-13dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="-5dp"
-                        android:layout_marginStart="5dp"
-                        android:src="@drawable/greenpointcar"
-
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="@string/co2_saving"
-                        android:textColor="#4a7e03"
-                        android:textSize="10sp" />
-
-                    <TextView
-                        android:id="@+id/Green_co2_saving_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-
-                        android:layout_marginEnd="2dp"
-                        android:layout_marginLeft="2dp"
-
-                        android:layout_marginRight="2dp"
-                        android:layout_marginStart="2dp"
-
-                        android:text=""
-                        android:textSize="13sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginTop="4dp"
-                        android:lines="1"
-                        android:maxLines="1"
-                        android:text="@string/kg_str"
-                        android:textSize="12sp" />
+                <ImageView
+                    android:id="@+id/profile_msg"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/NationalityEnName"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/msg" />
 
 
-                </LinearLayout>
+                <ImageView
+                    android:id="@+id/profile_call"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/NationalityEnName"
+                    android:layout_toLeftOf="@+id/profile_msg"
+                    android:layout_toStartOf="@+id/profile_msg"
+                    android:paddingTop="5dp"
+                    android:src="@drawable/call" />
 
 
-            </LinearLayout>
+            </RelativeLayout>
 
 
-            <ImageView
-                android:id="@+id/profile_msg"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/NationalityEnName"
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp"
-                android:src="@drawable/msg" />
+            <View
+                android:id="@+id/view_underline"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:background="#a3a3a3" />
 
+            <ListView
+                android:id="@+id/user_rides"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:divider="@color/white"
+                android:fadeScrollbars="false">
 
-            <ImageView
-                android:id="@+id/profile_call"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_below="@+id/NationalityEnName"
-                android:layout_toLeftOf="@+id/profile_msg"
-                android:layout_toStartOf="@+id/profile_msg"
-                android:paddingTop="5dp"
-                android:src="@drawable/call" />
+            </ListView>
 
+        </LinearLayout>
 
-        </RelativeLayout>
-
-
-        <View
-            android:id="@+id/view_underline"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:background="#a3a3a3" />
-
-        <ListView
-            android:id="@+id/user_rides"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:divider="@color/white">
-
-        </ListView>
 
     </LinearLayout>
 
 
-</LinearLayout>
+</ScrollView>
 

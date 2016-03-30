@@ -256,8 +256,16 @@ public class QuickSearchResults extends AppCompatActivity {
 
                             // Production
 
-                            item.setGreenPoints(json.getString("GreenPoints"));
-                            item.setGreenCo2Saving(json.getString("CO2Saved"));
+                            int x1 = json.getInt("GreenPoints");
+                            int x3 = json.getInt("CO2Saved");
+                            x3 = x3/1000;
+
+                            item.setGreenPoints(String.valueOf(x1));
+                            item.setGreenCo2Saving(String.valueOf(x3));
+
+
+                         //   item.setGreenPoints(json.getString("GreenPoints"));
+                         //   item.setGreenCo2Saving(json.getString("CO2Saved"));
 
                             if (!json.getString("AccountPhoto").equals("NoImage.png")) {
                                 GetData gd = new GetData();
@@ -499,7 +507,7 @@ public class QuickSearchResults extends AppCompatActivity {
 //                    backTread2.cancel(true);
 //
 //                    finish();
-                    Toast.makeText(acivity, R.string.no_routes_available, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(acivity, R.string.No_passengers_Found, Toast.LENGTH_SHORT).show();
 
                     final Dialog dialog = new Dialog(acivity);
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -518,7 +526,7 @@ public class QuickSearchResults extends AppCompatActivity {
 
             } catch (NullPointerException e) {
 
-                Toast.makeText(acivity, R.string.no_routes_available, Toast.LENGTH_SHORT).show();
+                Toast.makeText(acivity, R.string.No_passengers_Found, Toast.LENGTH_SHORT).show();
 
                 final Dialog dialog = new Dialog(acivity);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -538,7 +546,7 @@ public class QuickSearchResults extends AppCompatActivity {
 
 
             if (error) {
-                Toast.makeText(QuickSearchResults.this, R.string.no_routes_available, Toast.LENGTH_SHORT).show();
+                Toast.makeText(QuickSearchResults.this, R.string.No_passengers_Found, Toast.LENGTH_SHORT).show();
 
             } else {
 
@@ -889,8 +897,16 @@ public class QuickSearchResults extends AppCompatActivity {
                                 item.setLastSeen(json.getString("LastSeen"));
                             }
 
-                            item.setGreenPoints(json.getString("GreenPoints"));
-                            item.setGreenCo2Saving(json.getString("CO2Saved"));
+                            int x1 = json.getInt("GreenPoints");
+                            int x3 = json.getInt("CO2Saved");
+                            x3 = x3/1000;
+
+                            item.setGreenPoints(String.valueOf(x1));
+                            item.setGreenCo2Saving(String.valueOf(x3));
+
+
+                          //  item.setGreenPoints(json.getString("GreenPoints"));
+                          //  item.setGreenCo2Saving(json.getString("CO2Saved"));
 
                             days = "";
 

@@ -669,7 +669,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
 
             public void onClick(View v) {
 
-                if (From_Em_Id_2 != -1 && From_Reg_Id_2 != -1) {
+                if (From_Em_Id_2 != -1 && From_Reg_Id_2 != -1 && From_Em_Id_2 != 0 && From_Reg_Id_2 != 0) {
 
                     Intent intent1 = new Intent(getBaseContext(), QuickSearchResults.class);
                     intent1.putExtra("From_Em_Id", From_Em_Id_2);
