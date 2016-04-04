@@ -501,10 +501,10 @@ public class PickUpActivity extends AppCompatActivity {
                             regions.setRegionLatitude(jsonObject.getDouble("RegionLatitude"));
 
                             // Testing
-                           // regions.setRegionLongitude(jsonObject.getDouble("RegionLongitude"));
+                           regions.setRegionLongitude(jsonObject.getDouble("RegionLongitude"));
 
                             // Production
-                              regions.setRegionLongitude(Double.valueOf(jsonObject.getString("RegionLongitude").split(",")[0]));
+                          //    regions.setRegionLongitude(Double.valueOf(jsonObject.getString("RegionLongitude").split(",")[0]));
                         } else {
                             regions.setRegionLatitude(0.0);
                             regions.setRegionLongitude(0.0);
@@ -608,9 +608,9 @@ public class PickUpActivity extends AppCompatActivity {
                             regions.setRegionLongitude(0.0);
                         } else {
                             //Testing Line
-                            //regions.setRegionLongitude(jsonObject.getDouble("RegionLongitude"));
+                            regions.setRegionLongitude(jsonObject.getDouble("RegionLongitude"));
                             //Production Line
-                            regions.setRegionLongitude(Double.valueOf(jsonObject.getString("RegionLongitude").split(",")[0]));
+                          //  regions.setRegionLongitude(Double.valueOf(jsonObject.getString("RegionLongitude").split(",")[0]));
                         }
                         arr_2.add(regions);
                     }
