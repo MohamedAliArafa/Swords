@@ -46,7 +46,7 @@
     <string name="title_activity_top_rides_after_login">TopRidesAfterLogin</string>
     <string name="title_activity_top_drivers_after_login">TopDriversAfterLogin</string>
     <string name="title_activity_most_rides_details">MostRidesDetails</string>
-    <string name="title_activity_forget_password">ForgetPassword</string>
+    <string name="title_activity_forget_password">ForgotPassword</string>
     <string name="title_activity_change_password_test">ChangePasswordTest</string>
     <string name="title_activity_my_profile_test">MyProfileTest</string>
     <string name="title_activity_edit_profile_test">EditProfileTest</string>
@@ -115,7 +115,7 @@
     <string name="loading">Loading</string>
     <string name="login_email_hint">example@gmail.com</string>
     <string name="login_pass_hint">Password</string>
-    <string name="login_check_user_pass">Check ur Username and Password</string>
+    <string name="login_check_user_pass">Check your Username and Password</string>
     <string name="login_wrong_user_pass">Wrong Username Or Password</string>
     <string name="login_network_error">Network Error !</string>
     <string name="nat_name">NationlityEnName</string>
@@ -138,7 +138,7 @@
     <string name="exit">Exit!</string>
     <string name="goBack">Go Back</string>
     <string name="reg_now">Register Now |</string>
-    <string name="forget_pass">Forget Password?</string>
+    <string name="forget_pass">Forgot Password?</string>
     <string name="start_point">(Start Point)</string>
     <string name="not_set">Not Specified</string>
     <string name="end_point">(End Point)</string>
@@ -265,7 +265,7 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="write_your_review">Write Your Review</string>
     <string name="your_review">Your Review</string>
-    <string name="forget_password">Forget Password</string>
+    <string name="forget_password">Forgot Password</string>
     <string name="check_user_pass">Check your Username and Password</string>
     <string name="enter_your_no">Enter your number</string>
     <string name="enter_your_email">Enter your email</string>

@@ -431,7 +431,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginStart="20dp"
                     android:contentDescription="@string/navy_List_image_content_Desc"
-                    android:src="@drawable/menulanguageicon"
+                    android:src="@drawable/menulanguageiconar"
 
                     />
 

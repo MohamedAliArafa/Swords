@@ -71,6 +71,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.TreeMap;
 
 import rta.ae.sharekni.Arafa.Classes.GetData;
@@ -107,6 +108,8 @@ public class EditProfileTest extends AppCompatActivity {
     ListView mListView;
     Button btn_Edit_Cancel;
     Boolean mobile_no_ver = false;
+    String Locale_Str;
+
 
     LinearLayout Edit_Profile_Nat_Linear;
 
@@ -285,21 +288,50 @@ public class EditProfileTest extends AppCompatActivity {
                 uploadedImage = "";
             }
 
-            if (j.getString("GenderEn").equals("Male")) {
-                femalemale.setVisibility(View.INVISIBLE);
-                malefemale.setVisibility(View.VISIBLE);
-                malefemale_txt.setTextColor(Color.RED);
-                femalemale_txt.setTextColor(Color.GRAY);
-                i = 'M';
-                Log.d("Account_Gender_1", String.valueOf(i));
+
+            Locale locale = Locale.getDefault();
+            Locale_Str = locale.toString();
+            Log.d("Home locale", Locale_Str);
+
+
+            if (Locale_Str.contains("en")) {
+
+                if (j.getString("GenderEn").equals("Male")) {
+                    femalemale.setVisibility(View.INVISIBLE);
+                    malefemale.setVisibility(View.VISIBLE);
+                    malefemale_txt.setTextColor(Color.RED);
+                    femalemale_txt.setTextColor(Color.GRAY);
+                    i = 'M';
+                    Log.d("Account_Gender_1", String.valueOf(i));
+                } else {
+                    malefemale.setVisibility(View.INVISIBLE);
+                    femalemale.setVisibility(View.VISIBLE);
+                    malefemale_txt.setTextColor(Color.GRAY);
+                    femalemale_txt.setTextColor(Color.RED);
+                    i = 'F';
+                    Log.d("Account_Gender_1", String.valueOf(i));
+                }
+
             } else {
-                malefemale.setVisibility(View.INVISIBLE);
-                femalemale.setVisibility(View.VISIBLE);
-                malefemale_txt.setTextColor(Color.GRAY);
-                femalemale_txt.setTextColor(Color.RED);
-                i = 'F';
-                Log.d("Account_Gender_1", String.valueOf(i));
+
+                if (j.getString("GenderEn").equals("Male")) {
+                    femalemale.setVisibility(View.VISIBLE);
+                    malefemale.setVisibility(View.INVISIBLE);
+                    malefemale_txt.setTextColor(Color.RED);
+                    femalemale_txt.setTextColor(Color.GRAY);
+                    i = 'M';
+                    Log.d("Account_Gender_1", String.valueOf(i));
+                } else {
+                    malefemale.setVisibility(View.VISIBLE);
+                    femalemale.setVisibility(View.INVISIBLE);
+                    malefemale_txt.setTextColor(Color.GRAY);
+                    femalemale_txt.setTextColor(Color.RED);
+                    i = 'F';
+                    Log.d("Account_Gender_1", String.valueOf(i));
+                }
             }
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -455,61 +487,121 @@ public class EditProfileTest extends AppCompatActivity {
             }
         });
 
-        malefemale.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                malefemale.setVisibility(View.INVISIBLE);
-                femalemale.setVisibility(View.VISIBLE);
-                malefemale_txt.setTextColor(Color.GRAY);
-                femalemale_txt.setTextColor(Color.RED);
-                i = 'F';
-                Log.d("Account_Gender_2", String.valueOf(i));
+
+        if (Locale_Str.contains("en")) {
+
+            malefemale.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    malefemale.setVisibility(View.INVISIBLE);
+                    femalemale.setVisibility(View.VISIBLE);
+                    malefemale_txt.setTextColor(Color.GRAY);
+                    femalemale_txt.setTextColor(Color.RED);
+                    i = 'F';
+                    Log.d("Account_Gender_2", String.valueOf(i));
 
 
-            }
-        });
+                }
+            });
 
 
-        femalemale.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                femalemale.setVisibility(View.INVISIBLE);
-                malefemale.setVisibility(View.VISIBLE);
-                malefemale_txt.setTextColor(Color.RED);
-                femalemale_txt.setTextColor(Color.GRAY);
-                i = 'M';
-                Log.d("Account_Gender_2", String.valueOf(i));
-            }
-        });
+            femalemale.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    femalemale.setVisibility(View.INVISIBLE);
+                    malefemale.setVisibility(View.VISIBLE);
+                    malefemale_txt.setTextColor(Color.RED);
+                    femalemale_txt.setTextColor(Color.GRAY);
+                    i = 'M';
+                    Log.d("Account_Gender_2", String.valueOf(i));
+                }
+            });
 
 
-        femalemale_txt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                malefemale_txt.setTextColor(Color.GRAY);
-                femalemale_txt.setTextColor(Color.RED);
+            femalemale_txt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    malefemale_txt.setTextColor(Color.GRAY);
+                    femalemale_txt.setTextColor(Color.RED);
+                    malefemale.setVisibility(View.INVISIBLE);
+                    femalemale.setVisibility(View.VISIBLE);
+                    i = 'M';
+                    Log.d("Account_Gender_2", String.valueOf(i));
 
-                malefemale.setVisibility(View.INVISIBLE);
-                femalemale.setVisibility(View.VISIBLE);
-                i = 'M';
-                Log.d("Account_Gender_2", String.valueOf(i));
-
-            }
-        });
+                }
+            });
 
 
-        malefemale_txt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                i = 'F';
-                malefemale_txt.setTextColor(Color.RED);
-                femalemale_txt.setTextColor(Color.GRAY);
+            malefemale_txt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    i = 'F';
+                    malefemale_txt.setTextColor(Color.RED);
+                    femalemale_txt.setTextColor(Color.GRAY);
 
-                malefemale.setVisibility(View.VISIBLE);
-                femalemale.setVisibility(View.INVISIBLE);
-                Log.d("Account_Gender_2", String.valueOf(i));
-            }
-        });
+                    malefemale.setVisibility(View.VISIBLE);
+                    femalemale.setVisibility(View.INVISIBLE);
+                    Log.d("Account_Gender_2", String.valueOf(i));
+                }
+            });
+        } else {
+
+            malefemale.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    malefemale.setVisibility(View.INVISIBLE);
+                    femalemale.setVisibility(View.VISIBLE);
+                    malefemale_txt.setTextColor(Color.RED);
+                    femalemale_txt.setTextColor(Color.GRAY);
+                    i = 'M';
+                    Log.d("Account_Gender_2", String.valueOf(i));
+
+
+                }
+            });
+
+
+            femalemale.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    femalemale.setVisibility(View.INVISIBLE);
+                    malefemale.setVisibility(View.VISIBLE);
+                    malefemale_txt.setTextColor(Color.GRAY);
+                    femalemale_txt.setTextColor(Color.RED);
+                    i = 'F';
+                    Log.d("Account_Gender_2", String.valueOf(i));
+                }
+            });
+
+
+            femalemale_txt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    malefemale_txt.setTextColor(Color.GRAY);
+                    femalemale_txt.setTextColor(Color.RED);
+                    malefemale.setVisibility(View.VISIBLE);
+                    femalemale.setVisibility(View.INVISIBLE);
+                    i = 'F';
+                    Log.d("Account_Gender_2", String.valueOf(i));
+
+                }
+            });
+
+
+            malefemale_txt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    i = 'M';
+                    malefemale_txt.setTextColor(Color.RED);
+                    femalemale_txt.setTextColor(Color.GRAY);
+
+                    malefemale.setVisibility(View.INVISIBLE);
+                    femalemale.setVisibility(View.VISIBLE);
+                    Log.d("Account_Gender_2", String.valueOf(i));
+                }
+            });
+        }
+
 
         // get Languages
         new lang().execute();
