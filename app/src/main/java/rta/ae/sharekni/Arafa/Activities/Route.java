@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -96,6 +97,7 @@ public class Route extends AppCompatActivity {
     loadingBasicInfo loadingBasicInfo;
     loadingReviews loadingReviews;
     Activity c;
+    ImageView shareIcon;
 
     String FromRegionEnName_Str, ToRegionEnName_Str, FromEmirateEnName_Str, ToEmirateEnName_Str;
     int FromEmirateId, ToEmirateId, FromRegionId, ToRegionId;
@@ -165,7 +167,6 @@ public class Route extends AppCompatActivity {
         REaltive_Passengers_1 = (RelativeLayout) findViewById(R.id.REaltive_Passengers_1);
         passenger_relative_2 = (LinearLayout) findViewById(R.id.passenger_relative_2);
         Route_Driver_Send_invite = (Button) findViewById(R.id.Route_Driver_Send_invite);
-
         loadingBasicInfo = new loadingBasicInfo();
         loadingReviews = new loadingReviews();
 
@@ -750,7 +751,21 @@ public class Route extends AppCompatActivity {
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
         textView.setText(getString(R.string.ride_details));
+        shareIcon = (ImageView) toolbar.findViewById(R.id.Driver_Share);
 //        toolbar.setElevation(10);
+
+        shareIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+
+            }
+        });
 
         setSupportActionBar(toolbar);
 
