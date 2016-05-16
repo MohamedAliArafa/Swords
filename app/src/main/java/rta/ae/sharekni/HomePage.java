@@ -659,7 +659,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     @Override
     public void onClick(View v) {
 
-        if (AccountType.equals("D")) {
+        if (AccountType.equals("false")) {
+            Log.d("Hello I'm Driver:",AccountType);
+
             if (v == btn_create) {
 
                 Log.d("Driver Rides Count", String.valueOf(Driver_Rides_Count));
@@ -849,7 +851,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 assert AccountType != null;
 
 
-                if (!AccountType.equals("D")) {
+                if (!AccountType.equals("false")) {
+                    Log.d("Hello I'm Passenger :",AccountType);
+
                     // btn_create.setBackgroundColor(Color.LTGRAY);
 //                    Home_Relative_Permit.setBackgroundColor(Color.LTGRAY);
                     Rides_joined_txt_1.setText(R.string.rides_joined);

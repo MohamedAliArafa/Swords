@@ -231,9 +231,10 @@ public class LoginApproved extends AppCompatActivity {
                                         SharedPreferences.Editor editor = myPrefs.edit();
 
                                         editor.putString("account_id", String.valueOf(json.getInt("ID")));
-                                        editor.putString("account_type", json.getString("AccountStatus"));
+                                        editor.putString("account_type", json.getString("IsPassenger"));
                                         editor.putString("account_user", String.valueOf(user));
                                         editor.putString("account_pass", String.valueOf(pass));
+                                        Log.d("New Account Type:",json.getString("IsPassenger"));
 
                                         editor.commit();
                                         item.setID(json.getInt("ID"));
