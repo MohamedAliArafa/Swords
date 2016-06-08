@@ -3,6 +3,7 @@ package rta.ae.sharekni.MainNavigationDrawerFragment;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
@@ -18,6 +19,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.pkmmte.view.CircularImageView;
+
+import java.util.Locale;
 
 import rta.ae.sharekni.Arafa.Activities.BestDriversBeforeLogin;
 import rta.ae.sharekni.Arafa.Activities.BestRideBeforeLogin;
@@ -39,6 +42,7 @@ public class NavigationDrawerFragment extends Fragment {
     private RecyclerView mrecyclerView;
 
     public  static  RelativeLayout  navy_Change_lang;
+    String Locale_Str;
 
 
 
@@ -58,6 +62,7 @@ public class NavigationDrawerFragment extends Fragment {
 
    public static TextView Convert_txt_id;
     public static ImageView menuicon12;
+    ImageView LanguageMenuIcon;
    public  static  RelativeLayout navy_My_vehicles;
     RelativeLayout navy_homePage,navy_TopRides,navy_BestDrivers,navy_SearchOptions,navy_MyProfile,navy_Logout,navy_Edit_Profile;
   public static   TextView tv_name_home ,nat_home;
@@ -95,6 +100,7 @@ public class NavigationDrawerFragment extends Fragment {
         navy_My_vehicles= (RelativeLayout) layout.findViewById(R.id.navy_My_vehicles);
         menuicon12= (ImageView) layout.findViewById(R.id.menuicon12);
         Convert_txt_id = (TextView) layout.findViewById(R.id.Convert_txt_id);
+        LanguageMenuIcon  = (ImageView) layout.findViewById(R.id.menuicon20);
 
 
 
@@ -176,6 +182,29 @@ public class NavigationDrawerFragment extends Fragment {
         circularImageView.setSelectorStrokeWidth(5);
         circularImageView.addShadow();
 
+
+
+
+
+        Locale locale = Locale.getDefault();
+        Locale_Str = locale.toString();
+        Log.d("Home locale", Locale_Str);
+
+
+        if (Locale_Str.contains("en")) {
+
+        LanguageMenuIcon.setBackgroundResource(R.drawable.menulanguageiconar);
+
+        } else {
+
+            LanguageMenuIcon.setBackgroundResource(R.drawable.menulanguageiconen);
+
+
+        }
+
+
+
+
 //        if (!HomePage.ImagePhotoPath.equals("")) {
 //            Navy_Photo_Path = HomePage.ImagePhotoPath;
 //            ImageDecoder im = new ImageDecoder();
@@ -252,6 +281,9 @@ public class NavigationDrawerFragment extends Fragment {
 //
 
         return layout;
+
+
+
 
 
 

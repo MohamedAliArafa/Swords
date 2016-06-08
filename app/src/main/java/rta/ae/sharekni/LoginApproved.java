@@ -250,12 +250,12 @@ public class LoginApproved extends AppCompatActivity {
                                         e.printStackTrace();
                                     }
                                 } catch (StringIndexOutOfBoundsException e) {
-                                    Toast.makeText(getBaseContext(), R.string.login_wrong_user_pass, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getBaseContext(), R.string.login_check_user_pass, Toast.LENGTH_SHORT).show();
                                     LoginApproved.pDialog.dismiss();
                                     e.printStackTrace();
                                 } catch (JSONException e) {
                                     e.printStackTrace();
-                                    Toast.makeText(getBaseContext(), R.string.login_wrong_user_pass, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getBaseContext(), R.string.login_check_user_pass, Toast.LENGTH_SHORT).show();
                                     LoginApproved.pDialog.dismiss();
 
 

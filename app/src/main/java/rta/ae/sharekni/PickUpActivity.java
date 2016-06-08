@@ -244,6 +244,7 @@ public class PickUpActivity extends AppCompatActivity {
                         in.putExtra("Start_Longitude", Start_Longitude);
                         in.putExtra("End_Latitude", End_Latitude);
                         in.putExtra("End_Longitude", End_Longitude);
+                        in.putExtra("options",b);
                         Log.d("From_Em_Id_1", String.valueOf(From_Em_Id));
                         Log.d("From_Reg_Id_1", String.valueOf(From_Reg_Id));
                         Log.d("To_Em_Id_1", String.valueOf(To_Em_Id));
