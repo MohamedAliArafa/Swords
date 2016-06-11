@@ -5,22 +5,31 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Color;
+import android.graphics.Rect;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -30,6 +39,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareButton;
+import com.facebook.share.widget.ShareDialog;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -49,8 +61,10 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import rta.ae.sharekni.Arafa.Classes.AppAdapter;
 import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.DriverEditCarPool;
 import rta.ae.sharekni.DriverGetReviewAdapter;
@@ -99,7 +113,7 @@ public class Route extends AppCompatActivity {
     Activity c;
     ImageView shareIcon;
 
-    String FromRegionEnName_Str, ToRegionEnName_Str, FromEmirateEnName_Str, ToEmirateEnName_Str;
+    public String FromRegionEnName_Str, ToRegionEnName_Str, FromEmirateEnName_Str, ToEmirateEnName_Str, RideLink;
     int FromEmirateId, ToEmirateId, FromRegionId, ToRegionId;
 
     Button Route_Driver_Send_invite;
@@ -107,6 +121,7 @@ public class Route extends AppCompatActivity {
 
     int Vehicle_Id_Permit;
     GetData j = new GetData();
+    AppAdapter adapter;
 
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
@@ -133,7 +148,7 @@ public class Route extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ride_details_new);
-     //   setContentView(R.layout.ride_details_2);
+        //   setContentView(R.layout.ride_details_2);
 
         initToolbar();
         con = this;
@@ -221,7 +236,7 @@ public class Route extends AppCompatActivity {
                     startActivity(intent1);
 
 
-                }else {
+                } else {
                     Toast.makeText(Route.this, R.string.no_available_seats, Toast.LENGTH_SHORT).show();
                 }
 
@@ -320,10 +335,11 @@ public class Route extends AppCompatActivity {
                         FromEmirateEnName_Str = (json.getString(getString(R.string.from_em_en_name)));
                         ToEmirateEnName_Str = (json.getString(getString(R.string.to_em_en_name)));
                         No_OF_Seats = json.getInt("NoOfSeats");
-
+                        RideLink = json.getString("ShareLink");
                         str_StartFromTime = json.getString("StartFromTime");
 
                         str_EndToTime_ = json.getString("EndToTime_");
+
 
                         str_StartFromTime = str_StartFromTime.substring(Math.max(0, str_StartFromTime.length() - 7));
                         Log.d("string", str_StartFromTime);
@@ -375,8 +391,8 @@ public class Route extends AppCompatActivity {
                             Smokers_str = getString(R.string.Accept_Smokers_txt);
                         } else if (Smokers_str.equals("false")) {
                             Smokers_str = getString(R.string.not_set);
-                        }else  {
-                            Smokers_str=getString(R.string.not_set);
+                        } else {
+                            Smokers_str = getString(R.string.not_set);
                         }
                         IsSmoking.setText(Smokers_str);
                         StartLat = json.getDouble("StartLat");
@@ -758,13 +774,14 @@ public class Route extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent sendIntent = new Intent();
-                sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
-                sendIntent.setType("text/plain");
-                startActivity(Intent.createChooser(sendIntent, "Share your thoughts"));
+//                Intent sendIntent = new Intent();
+//                sendIntent.setAction(Intent.ACTION_SEND);
+//                sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+//                sendIntent.setType("text/plain");
+//                startActivity(Intent.createChooser(sendIntent, "Share your thoughts"));
 
 
+                showAlertDialog();
             }
         });
 
@@ -785,6 +802,66 @@ public class Route extends AppCompatActivity {
         }
         finish();
 
+    }
+
+
+    private void showAlertDialog() {
+
+        PackageManager pm = getPackageManager();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        GridView gridView = new GridView(this);
+        final Intent sendIntent = new Intent(Intent.ACTION_SEND);
+        sendIntent.setType("text/plain");
+        sendIntent.putExtra(Intent.EXTRA_TEXT, RideLink);
+        List<ResolveInfo> launchables = pm.queryIntentActivities(sendIntent, 0);
+
+
+
+        Collections
+                .sort(launchables, new ResolveInfo.DisplayNameComparator(pm));
+
+        adapter = new AppAdapter(getBaseContext(), pm, launchables);
+        gridView.setNumColumns(2);
+        gridView.setAdapter(adapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1,
+                                    int position, long arg3) {
+                // TODO Auto-generated method stub
+                ResolveInfo launchable = adapter.getItem(position);
+                ActivityInfo activity = launchable.activityInfo;
+                ComponentName name = new ComponentName(
+                        activity.applicationInfo.packageName, activity.name);
+                sendIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+                sendIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                        | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+
+
+                if (name.toString().equals("ComponentInfo{com.facebook.katana/com.facebook.composer.shareintent.ImplicitShareIntentHandlerDefaultAlias}")) {
+
+                    Log.d("inside faceboook", "share facebook link");
+                    ShareLinkContent content = new ShareLinkContent.Builder()
+                            .setContentUrl(Uri.parse(RideLink))
+                            .setQuote("Connect on a global scale.")
+                            .build();
+
+                    ShareDialog.show(Route.this, content);
+                } else {
+
+
+                    Log.d("Comp Name", name.toString());
+
+                    sendIntent.setComponent(name);
+                    startActivity(sendIntent);
+                }
+
+            }
+        });
+
+
+        builder.setView(gridView);
+        builder.setTitle("Share your Ride");
+        builder.show();
     }
 
 }

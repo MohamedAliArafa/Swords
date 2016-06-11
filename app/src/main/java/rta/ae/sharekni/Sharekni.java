@@ -17,6 +17,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 import com.tune.Tune;
 
 import org.json.JSONArray;
@@ -90,6 +92,9 @@ public class Sharekni extends Activity {
                 // Do something after 5s = 5000ms
             }
         }, 8000);
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this);
 
 
         tune = Tune.init(getApplicationContext(),

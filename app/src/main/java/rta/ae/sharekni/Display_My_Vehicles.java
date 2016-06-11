@@ -134,7 +134,7 @@ public class Display_My_Vehicles extends AppCompatActivity {
 
 
                 }else {
-                    Toast.makeText(Display_My_Vehicles.this, R.string.plese_check_file_number_first, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Display_My_Vehicles.this, R.string.Updating_vehicles_str, Toast.LENGTH_SHORT).show();
                 }
 
             }
