@@ -660,7 +660,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     public void onClick(View v) {
 
         if (AccountType.equals("false")) {
-            Log.d("Hello I'm Driver:",AccountType);
+            Log.d("Hello I'm Driver:", AccountType);
 
             if (v == btn_create) {
 
@@ -765,6 +765,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         @Override
         protected void onPostExecute(Object o) {
             try {
+
+                AccountType = jsonArray.getString("IsPassenger");
+                Log.d("Account Type : ", AccountType);
                 All_Alerts = jsonArray.getInt("DriverMyAlertsCount") + jsonArray.getInt("PassengerMyAlertsCount") + jsonArray.getInt("PendingRequestsCount") + jsonArray.getInt("PendingInvitationCount") + jsonArray.getInt("Passenger_Invitation_Count");
                 name_str = "";
                 nat_str = "";
@@ -852,7 +855,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
 
                 if (!AccountType.equals("false")) {
-                    Log.d("Hello I'm Passenger :",AccountType);
+                    Log.d("Hello I'm Passenger :", AccountType);
 
                     // btn_create.setBackgroundColor(Color.LTGRAY);
 //                    Home_Relative_Permit.setBackgroundColor(Color.LTGRAY);

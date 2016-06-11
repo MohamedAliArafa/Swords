@@ -444,7 +444,7 @@ public class EditProfileTest extends AppCompatActivity {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!edit_fname.getText().toString().equals("") && !edit_fname.getText().toString().equals(getString(R.string.Reg_FirstN)) && !edit_lname.getText().toString().equals("") && !edit_lname.getText().toString().equals(getString(R.string.Reg_LastN)) && !edit_reg_mob.getText().toString().equals("") && !edit_reg_mob.getText().toString().equals(getString(R.string.REg_Mobile)) && !txt_country.getText().toString().equals("") && !txt_country.getText().toString().equals(getString(R.string.Reg_Nat)) && !txt_lang.getText().toString().equals("") && !txt_lang.getText().toString().equals(getString(R.string.Reg_PrefLang)) && full_date != null) {
+                if (!edit_fname.getText().toString().equals("") && !edit_fname.getText().toString().equals(getString(R.string.Reg_FirstN)) && !edit_lname.getText().toString().equals("") && !edit_lname.getText().toString().equals(getString(R.string.Reg_LastN)) && !edit_reg_mob.getText().toString().equals("") && !edit_reg_mob.getText().toString().equals(getString(R.string.REg_Mobile))  && !txt_lang.getText().toString().equals("") && !txt_lang.getText().toString().equals(getString(R.string.Reg_PrefLang)) && full_date != null) {
                     ArrayList codes = new ArrayList();
                     codes.add("50");
                     codes.add("52");
@@ -490,6 +490,7 @@ public class EditProfileTest extends AppCompatActivity {
 
         if (Locale_Str.contains("en")) {
 
+            Log.d("Change Gender","English Language");
             malefemale.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -498,7 +499,7 @@ public class EditProfileTest extends AppCompatActivity {
                     malefemale_txt.setTextColor(Color.GRAY);
                     femalemale_txt.setTextColor(Color.RED);
                     i = 'F';
-                    Log.d("Account_Gender_2", String.valueOf(i));
+                    Log.d("Account_Gender_En ", String.valueOf(i));
 
 
                 }
@@ -513,7 +514,7 @@ public class EditProfileTest extends AppCompatActivity {
                     malefemale_txt.setTextColor(Color.RED);
                     femalemale_txt.setTextColor(Color.GRAY);
                     i = 'M';
-                    Log.d("Account_Gender_2", String.valueOf(i));
+                    Log.d("Account_Gender_En ", String.valueOf(i));
                 }
             });
 
@@ -525,8 +526,8 @@ public class EditProfileTest extends AppCompatActivity {
                     femalemale_txt.setTextColor(Color.RED);
                     malefemale.setVisibility(View.INVISIBLE);
                     femalemale.setVisibility(View.VISIBLE);
-                    i = 'M';
-                    Log.d("Account_Gender_2", String.valueOf(i));
+                    i = 'F';
+                    Log.d("Account_Gender_En ", String.valueOf(i));
 
                 }
             });
@@ -535,16 +536,16 @@ public class EditProfileTest extends AppCompatActivity {
             malefemale_txt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    i = 'F';
+                    i = 'M';
                     malefemale_txt.setTextColor(Color.RED);
                     femalemale_txt.setTextColor(Color.GRAY);
-
                     malefemale.setVisibility(View.VISIBLE);
                     femalemale.setVisibility(View.INVISIBLE);
-                    Log.d("Account_Gender_2", String.valueOf(i));
+                    Log.d("Account_Gender_En ", String.valueOf(i));
                 }
             });
         } else {
+            Log.d("Change Gender","Arabic Language");
 
             malefemale.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -554,7 +555,7 @@ public class EditProfileTest extends AppCompatActivity {
                     malefemale_txt.setTextColor(Color.RED);
                     femalemale_txt.setTextColor(Color.GRAY);
                     i = 'M';
-                    Log.d("Account_Gender_2", String.valueOf(i));
+                    Log.d("Account_Gender_Ar ", String.valueOf(i));
 
 
                 }
@@ -569,7 +570,7 @@ public class EditProfileTest extends AppCompatActivity {
                     malefemale_txt.setTextColor(Color.GRAY);
                     femalemale_txt.setTextColor(Color.RED);
                     i = 'F';
-                    Log.d("Account_Gender_2", String.valueOf(i));
+                    Log.d("Account_Gender_Ar ", String.valueOf(i));
                 }
             });
 
@@ -582,7 +583,7 @@ public class EditProfileTest extends AppCompatActivity {
                     malefemale.setVisibility(View.VISIBLE);
                     femalemale.setVisibility(View.INVISIBLE);
                     i = 'F';
-                    Log.d("Account_Gender_2", String.valueOf(i));
+                    Log.d("Account_Gender_Ar ", String.valueOf(i));
 
                 }
             });
@@ -597,7 +598,7 @@ public class EditProfileTest extends AppCompatActivity {
 
                     malefemale.setVisibility(View.INVISIBLE);
                     femalemale.setVisibility(View.VISIBLE);
-                    Log.d("Account_Gender_2", String.valueOf(i));
+                    Log.d("Account_Gender_Ar ", String.valueOf(i));
                 }
             });
         }
