@@ -54,6 +54,7 @@ import rta.ae.sharekni.Arafa.Classes.AppController;
 import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.Arafa.Classes.ImageDecoder;
 import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
+import rta.ae.sharekni.Arafa.DataModel.BestDriverDataModel;
 import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
 import rta.ae.sharekni.MainNavigationDrawerFragment.NavigationDrawerFragment;
 import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
@@ -768,6 +769,12 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
                 AccountType = jsonArray.getString("IsPassenger");
                 Log.d("Account Type : ", AccountType);
+
+                SharedPreferences myPrefs = getBaseContext().getSharedPreferences("myPrefs", 0);
+                SharedPreferences.Editor editor = myPrefs.edit();
+
+                editor.putString("account_type", jsonArray.getString("IsPassenger"));
+
                 All_Alerts = jsonArray.getInt("DriverMyAlertsCount") + jsonArray.getInt("PassengerMyAlertsCount") + jsonArray.getInt("PendingRequestsCount") + jsonArray.getInt("PendingInvitationCount") + jsonArray.getInt("Passenger_Invitation_Count");
                 name_str = "";
                 nat_str = "";

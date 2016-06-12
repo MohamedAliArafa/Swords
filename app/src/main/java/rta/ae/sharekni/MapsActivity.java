@@ -154,7 +154,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         AccountType = myPrefs.getString("account_type", "");
         Log.d("Account Type Map", AccountType);
         assert AccountType != null;
-        if (AccountType.equals("D")) {
+        if (AccountType.equals("false")) {
 
             //  MapRelative.setVisibility(View.VISIBLE);
             pass_icon_trigger_btn.setVisibility(View.VISIBLE);
