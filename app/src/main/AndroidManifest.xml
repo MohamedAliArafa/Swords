@@ -48,7 +48,7 @@
 
         <provider
             android:name="com.facebook.FacebookContentProvider"
-            android:authorities="com.facebook.app.FacebookContentProvider1234"
+            android:authorities="rta.ae.sharekni.FacebookContentProviderSharekni"
             android:exported="true" />
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
