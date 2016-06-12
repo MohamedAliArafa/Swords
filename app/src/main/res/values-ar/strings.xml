@@ -328,6 +328,7 @@
     <string name="Emirate_Dubai">دبي</string>
     <string name="No_Vehicles">لا توجد مركبات</string>
     <string name="taken_mobile">لا يمكن التسجيل , رقم الهاتف مسجل بالفعل</string>
+    <string name="taken_mobile_2"> رقم الهاتف مسجل بالفعل</string>
     <string name="taken_username">لا يمكن التسجيل , هذا البريد الألكترونى مسجل بالفعل</string>
     <string name="choose_birth_date">إختر تاريخ الميلاد</string>
     <string name="Delete_Passenger_dialog_str">حذف راكب</string>
@@ -431,6 +432,8 @@
     <string name="kg_str">كج</string>
     <string name="co2_saving">CO2 توفير</string>
     <string name="ok_2">موافق</string>
+    <string name="forget_password_complete">تم ارسال رابط استعادة كلمة المرور علي بريدك الاكتروني. هذا الرابط صالح لمدة 24 ساعه</string>
+
 
 
 </resources>

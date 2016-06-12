@@ -58,9 +58,9 @@ public class GetData {
     // public static final String NonOpDomain = "http://sharekni.sdgstaff.com/_mobfiles/CLS_MobAndroid.asmx";
     //  public static final String PhotoURL = "http://sharekni.sdgstaff.com/uploads/personalphoto/";
 
-    //  public static final String DOMAIN = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx/";
-    //public static final String NonOpDomain = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx";
-    // public static final String PhotoURL = "http://213.42.51.219/uploads/personalphoto/";
+    public static final String DOMAIN = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx/";
+    public static final String NonOpDomain = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx";
+    public static final String PhotoURL = "http://213.42.51.219/uploads/personalphoto/";
 
     final JSONArray[] myJsonArray = new JSONArray[1];
 
@@ -69,9 +69,9 @@ public class GetData {
     //public static final String PhotoURL = "http://sharekni-web.sdg.ae/uploads/personalphoto/";
 
 
-    public static final String DOMAIN = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx/";
-    public static final String NonOpDomain = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx";
-    public static final String PhotoURL = "https://www.sharekni.ae/uploads/personalphoto/";
+    // public static final String DOMAIN = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx/";
+    // public static final String NonOpDomain = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx";
+    // public static final String PhotoURL = "https://www.sharekni.ae/uploads/personalphoto/";
 
 
     //    String data;
@@ -1401,6 +1401,9 @@ public class GetData {
                                 context.startActivity(in);
                             } else if (data.equals("\"0\"")) {
                                 Toast.makeText(context, "please try again", Toast.LENGTH_SHORT).show();
+                            }else if (data.equals("\"3\"")){
+                                Toast.makeText(context, R.string.taken_mobile_2, Toast.LENGTH_SHORT).show();
+
                             }
                         } catch (StringIndexOutOfBoundsException e) {
                             Toast.makeText(context, "Edit profile 2", Toast.LENGTH_SHORT).show();

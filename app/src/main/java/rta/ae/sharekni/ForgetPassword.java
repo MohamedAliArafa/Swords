@@ -100,7 +100,7 @@ public class ForgetPassword extends AppCompatActivity {
                 Button btn = (Button) dialog.findViewById(R.id.noroute_id);
                 TextView Text_3 = (TextView) dialog.findViewById(R.id.Text_3);
                 dialog.show();
-                Text_3.setText("A reset password link has been sent to your email\\nPlease note that this link is valid for one day only.");
+                Text_3.setText(R.string.forget_password_complete);
 
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override

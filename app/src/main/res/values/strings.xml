@@ -344,6 +344,7 @@
     <string name="choose_birth_date">Choose your Birth Date</string>
     <string name="taken_username">Email Already Exist, Please choose another</string>
     <string name="taken_mobile">Mobile No. already exist, Please choose another</string>
+    <string name="taken_mobile_2">Mobile No. already exist, Please choose another</string>
     <string name="Write_review_first">Please write a review first</string>
     <string name="Delete_Review_Str">Delete Review</string>
     <string name="Leave_Ride_Str">Leave Ride</string>
@@ -431,6 +432,7 @@
     <string name="kg_str">Kg</string>
     <string name="co2_saving">CO2 Saving</string>
     <string name="ok_2">Ok</string>
+    <string name="forget_password_complete">A reset password link has been sent to your email. Please note that this link is valid for one day only.</string>
 
 
 </resources>
