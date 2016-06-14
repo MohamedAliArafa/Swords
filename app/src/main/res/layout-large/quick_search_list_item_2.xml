@@ -14,7 +14,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:text="@string/starting_time"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textStyle="bold"
 
         />
@@ -29,7 +29,7 @@
         android:layout_toEndOf="@+id/Starting_Time_txt"
         android:layout_toRightOf="@+id/Starting_Time_txt"
         android:text="06:30 Am"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
 
@@ -40,7 +40,7 @@
         android:layout_below="@+id/SDG_Route_Start_FromTime"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
-        android:textSize="16sp" />
+        android:textSize="20sp" />
 
 
     <com.pkmmte.view.CircularImageView
@@ -60,14 +60,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/search_results_days"
-        android:layout_marginBottom="5dp"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_toEndOf="@+id/search_list_photo"
         android:layout_toRightOf="@+id/search_list_photo"
         android:text="@string/not_set"
-        android:textSize="19sp"
+        android:textSize="21sp"
         android:textStyle="bold" />
 
 
@@ -82,7 +81,8 @@
         android:layout_toEndOf="@+id/search_list_photo"
         android:layout_toRightOf="@+id/search_list_photo"
         android:text="@string/not_set"
-        android:textSize="15sp" />
+        android:textSize="19sp"
+        android:visibility="invisible" />
 
 
     <TextView
@@ -91,48 +91,232 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/Nationality_en"
         android:layout_alignStart="@+id/Nationality_en"
-        android:layout_below="@+id/Nationality_en"
+        android:layout_below="@+id/DriverEnName"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
         android:padding="2dp"
-        android:text="4.3"
-        android:textSize="16sp" />
+        android:text=""
+        android:textSize="20sp" />
 
 
     <ImageView
         android:id="@+id/rate_pic"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_alignBottom="@+id/Best_Drivers_Item_rate"
         android:layout_toEndOf="@+id/Best_Drivers_Item_rate"
         android:layout_toRightOf="@+id/Best_Drivers_Item_rate"
-        android:src="@drawable/rate" />
+        android:src="@drawable/rate"
+
+        />
+
+    <TextView
+        android:id="@+id/LastSeenText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/Nationality_en"
+        android:layout_alignStart="@+id/Nationality_en"
+        android:layout_below="@+id/rate_pic"
+        android:layout_marginTop="10dp"
+        android:text="@string/last_seen_textview"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/LastSeenTvValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/LastSeenText"
+        android:layout_below="@+id/rate_pic"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/LastSeenText"
+        android:layout_toRightOf="@+id/LastSeenText"
+        android:text=""
+        android:textSize="18sp"
+
+        />
 
 
-    <!--<ImageView-->
-    <!--android:id="@+id/driver_add_pic"-->
-    <!--android:layout_width="40dp"-->
-    <!--android:layout_height="40dp"-->
-    <!--android:layout_below="@+id/im5"-->
-    <!--android:layout_alignStart="@+id/im5"-->
-    <!--android:layout_alignLeft="@+id/im5"-->
-    <!--android:layout_marginTop="10dp"-->
-    <!--android:src="@drawable/add" />-->
+    <LinearLayout
+        android:id="@+id/GreenPoint_Linear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search_list_photo"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:orientation="horizontal"
 
-    <!--<ImageView-->
-    <!--android:id="@+id/driver_review"-->
-    <!--android:layout_width="40dp"-->
-    <!--android:layout_height="40dp"-->
-    <!--android:layout_alignStart="@+id/im1"-->
-    <!--android:layout_alignLeft="@+id/im1"-->
-    <!--android:layout_below="@+id/im1"-->
-    <!--android:layout_marginTop="10dp"-->
-    <!--android:src="@drawable/chat" />-->
+        >
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_weight="2"
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+
+                >
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="-15dp"
+                    android:src="@drawable/leaf" />
+
+                <View
+                    android:id="@+id/GreenLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:background="#4a7e03" />
+
+
+                <View
+                    android:id="@+id/GreenLine2"
+                    android:layout_width="0.5dp"
+                    android:layout_height="10dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="#4a7e03" />
+
+                <TextView
+                    android:id="@+id/Green_Points_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text=""
+                    android:textColor="#4a7e03"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:text="@string/points_str"
+                    android:textSize="17sp"
+
+                    />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/green_point_border"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+
+            >
+
+            <RelativeLayout
+                android:id="@+id/Green1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="top">
+
+                <ImageView
+                    android:id="@+id/GreenPointCar_im"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginEnd="-5dp"
+                    android:layout_marginRight="-5dp"
+                    android:src="@drawable/greenpointcar"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="7dp"
+                    android:layout_toEndOf="@+id/GreenPointCar_im"
+                    android:layout_toRightOf="@+id/GreenPointCar_im"
+                    android:text="@string/co2_saving"
+                    android:textColor="#4a7e03"
+                    android:textSize="13sp" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Green1"
+                android:layout_centerHorizontal="true">
+
+                <TextView
+                    android:id="@+id/Green_co2_saving_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginStart="2dp"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:text="12054815"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/Green_co2_saving_txt"
+                    android:layout_gravity="center_vertical"
+                    android:layout_toEndOf="@+id/Green_co2_saving_txt"
+                    android:layout_toRightOf="@+id/Green_co2_saving_txt"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:text="@string/kg_str"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/PassengerSendInvite"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/Nationality_en"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bordersbuttom"
+        android:padding="10dp"
+        android:text="Send Invitation"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:visibility="invisible" />
 
     <ImageView
 
         android:id="@+id/im1"
-        android:layout_width="50dp"
-        android:layout_height="40dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/DriverEnName"
@@ -146,8 +330,8 @@
 
     <ImageView
         android:id="@+id/im5"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignBottom="@+id/im1"
         android:layout_toLeftOf="@+id/im1"
         android:layout_toStartOf="@+id/im1"

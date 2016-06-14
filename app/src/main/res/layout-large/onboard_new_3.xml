@@ -41,19 +41,6 @@
         </ImageView>
 
 
-
-        <!--<ImageView-->
-        <!--android:layout_width="160dp"-->
-        <!--android:layout_height="45dp"-->
-        <!--android:src="@drawable/onboardbestdrivers"-->
-        <!--android:layout_marginBottom="45dp"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:id="@+id/im_best_drivers"-->
-
-        <!--/>-->
-
-
         <RelativeLayout
             android:id="@+id/im_best_drivers"
             android:layout_width="220dp"
@@ -100,17 +87,6 @@
 
 
         </RelativeLayout>
-
-        <!--<ImageView-->
-        <!--android:layout_width="240dp"-->
-        <!--android:layout_height="65dp"-->
-        <!--android:src="@drawable/onboardbestrides"-->
-        <!--android:layout_above="@+id/im_best_drivers"-->
-        <!--android:layout_alignLeft="@+id/im_best_drivers"-->
-        <!--android:layout_alignStart="@+id/im_best_drivers"-->
-        <!--android:layout_marginBottom="3dp"-->
-        <!--android:id="@+id/im_best_rides"-->
-        <!--/>-->
 
 
         <RelativeLayout

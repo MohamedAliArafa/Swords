@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <com.pkmmte.view.CircularImageView
         android:id="@+id/ivProfile"
@@ -13,11 +13,11 @@
         android:layout_marginRight="10dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="20dp"
+        android:padding="3dp"
+        android:src="@drawable/defaultdriver"
         app:border="true"
         app:border_color="#EEEEEE"
-        app:border_width="2dp"
-        android:padding="3dp"
-        android:src="@drawable/defaultdriver" />
+        app:border_width="2dp" />
 
 
     <TextView
@@ -29,8 +29,7 @@
         android:layout_toRightOf="@+id/ivProfile"
         android:padding="5dp"
         android:text="Khaled Farouq"
-        android:textSize="16sp"
-         />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/tvNat"
@@ -44,20 +43,22 @@
         android:layout_toRightOf="@+id/ivProfile"
         android:padding="5dp"
         android:text="Nationality"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+
+        />
 
 
     <TextView
         android:id="@+id/LastSeenText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvNat"
         android:layout_alignLeft="@+id/tvNat"
         android:layout_alignStart="@+id/tvNat"
-        android:text="@string/last_seen_textview"
+        android:layout_below="@+id/tvNat"
         android:layout_marginTop="0dp"
-        android:textSize="15sp"
         android:padding="5dp"
+        android:text="@string/last_seen_textview"
+        android:textSize="15sp"
 
         />
 
@@ -65,14 +66,14 @@
         android:id="@+id/LastSeenTvValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/LastSeenText"
-        android:layout_toEndOf="@+id/LastSeenText"
         android:layout_alignBottom="@+id/LastSeenText"
         android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp"
-        android:text=""
         android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/LastSeenText"
+        android:layout_toRightOf="@+id/LastSeenText"
         android:padding="5dp"
+        android:text=""
         android:textSize="15sp"
 
         />
@@ -83,10 +84,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/LastSeenText"
-        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
 
         >
 
@@ -140,12 +141,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="@string/points_str"
-                    android:textSize="13sp"
                     android:layout_marginTop="5dp"
                     android:lines="1"
                     android:maxLines="1"
-                    />
+                    android:text="@string/points_str"
+                    android:textSize="13sp" />
 
 
             </LinearLayout>
@@ -156,82 +156,77 @@
         <RelativeLayout
             android:layout_width="125dp"
             android:layout_height="50dp"
-            android:background="@drawable/green_point_border"
-            android:orientation="horizontal"
             android:layout_marginTop="20dp"
-            >
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:id="@+id/Green1"
-            android:layout_centerHorizontal="true"
-            >
-            <ImageView
-                android:id="@+id/GreenPointCar_im"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="-5dp"
-                android:layout_marginRight="-5dp"
-                android:src="@drawable/greenpointcar"
+            android:background="@drawable/green_point_border"
+            android:orientation="horizontal">
 
-                />
-
-            <TextView
+            <RelativeLayout
+                android:id="@+id/Green1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:layout_marginTop="7dp"
-                android:layout_toEndOf="@+id/GreenPointCar_im"
-                android:layout_toRightOf="@+id/GreenPointCar_im"
-                android:text="@string/co2_saving"
-                android:textColor="#4a7e03"
-                android:textSize="9sp" />
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="top">
 
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/GreenPointCar_im"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="-5dp"
+                    android:layout_marginRight="-5dp"
+                    android:src="@drawable/greenpointcar"
 
+                    />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="7dp"
+                    android:layout_toEndOf="@+id/GreenPointCar_im"
+                    android:layout_toRightOf="@+id/GreenPointCar_im"
+                    android:text="@string/co2_saving"
+                    android:textColor="#4a7e03"
+                    android:textSize="9sp" />
 
+            </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/Green1"
-            android:layout_centerHorizontal="true"
-            >
-            <TextView
-                android:id="@+id/Green_co2_saving_txt"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="2dp"
-                android:layout_marginStart="2dp"
-                android:lines="1"
-                android:maxLines="1"
-                android:text="12054815"
-                android:textSize="13sp" />
+                android:layout_below="@+id/Green1"
+                android:layout_centerHorizontal="true">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/Green_co2_saving_txt"
-                android:layout_gravity="center_vertical"
-                android:layout_toEndOf="@+id/Green_co2_saving_txt"
-                android:layout_toRightOf="@+id/Green_co2_saving_txt"
-                android:lines="1"
-                android:maxLines="1"
-                android:text="@string/kg_str"
-                android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/Green_co2_saving_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginStart="2dp"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:text="12054815"
+                    android:textSize="13sp" />
 
-        </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/Green_co2_saving_txt"
+                    android:layout_gravity="center_vertical"
+                    android:layout_toEndOf="@+id/Green_co2_saving_txt"
+                    android:layout_toRightOf="@+id/Green_co2_saving_txt"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:text="@string/kg_str"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
 
     </LinearLayout>
-
-
 
     <TextView
         android:id="@+id/Best_Drivers_Item_rate"
@@ -255,82 +250,29 @@
 
         />
 
-
     <ImageView
 
         android:id="@+id/im1"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_alignBottom="@+id/tvNat"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
-        android:layout_centerVertical="true"
-        android:src="@drawable/msg"
         android:paddingTop="10dp"
-        android:layout_alignBottom="@+id/tvNat"
-        />
-
+        android:src="@drawable/msg" />
 
     <ImageView
         android:id="@+id/im5"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_alignBottom="@+id/tvNat"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/im1"
         android:layout_toStartOf="@+id/im1"
         android:paddingTop="10dp"
-        android:src="@drawable/call"
-        android:layout_alignBottom="@+id/tvNat"
-        />
-
-
-    <!--<Button-->
-    <!--android:id="@+id/Best_Drivers_Item_Details"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="30dp"-->
-    <!--android:layout_alignParentEnd="true"-->
-    <!--android:layout_alignParentRight="true"-->
-    <!--android:layout_below="@+id/im1"-->
-    <!--android:background="@drawable/user_register_border_button"-->
-    <!--android:text="Details"-->
-    <!--android:textAllCaps="false"-->
-    <!--android:textColor="#FFFFFF"-->
-    <!--android:layout_marginTop="10dp"-->
-    <!--/>-->
-
-    <!--<ImageView-->
-    <!--android:id="@+id/im3"-->
-    <!--android:layout_width="25dp"-->
-    <!--android:layout_height="25dp"-->
-    <!--android:layout_alignLeft="@+id/Best_Drivers_Item_Details"-->
-    <!--android:layout_alignStart="@+id/Best_Drivers_Item_Details"-->
-    <!--android:layout_below="@+id/Best_Drivers_Item_Details"-->
-    <!--android:layout_marginTop="5dp"-->
-    <!--android:src="@drawable/add"-->
-
-    <!--/>-->
-
-    <!--<ImageView-->
-    <!--android:id="@+id/im4"-->
-    <!--android:layout_width="25dp"-->
-    <!--android:layout_height="25dp"-->
-    <!--android:layout_alignEnd="@+id/Best_Drivers_Item_Details"-->
-    <!--android:layout_alignRight="@+id/Best_Drivers_Item_Details"-->
-    <!--android:layout_below="@+id/Best_Drivers_Item_Details"-->
-    <!--android:layout_marginTop="5dp"-->
-    <!--android:src="@drawable/chat" />-->
-
-
-    <!--<ImageView-->
-    <!--android:layout_width="25dp"-->
-    <!--android:layout_height="25dp"-->
-    <!--android:src="@drawable/rate"-->
-    <!--android:layout_above="@+id/Best_Drivers_Item_Details"-->
-    <!--android:layout_alignEnd="@+id/Best_Drivers_Item_Details"-->
-    <!--android:layout_alignRight="@+id/Best_Drivers_Item_Details"-->
-
-    <!--/>-->
-
+        android:src="@drawable/call" />
 
 </RelativeLayout>

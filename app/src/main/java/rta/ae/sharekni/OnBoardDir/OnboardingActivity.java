@@ -51,6 +51,7 @@ public class OnboardingActivity extends FragmentActivity {
         setContentView(R.layout.activity_log_in_form_concept_one);
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
 
+
         ImageView btn_register = (ImageView) findViewById(R.id.fr_register);
         ImageView btn_search = (ImageView) findViewById(R.id.fr_search);
         ImageView btn_top_rides = (ImageView) findViewById(R.id.fr_top_rides_id);
