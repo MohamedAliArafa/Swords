@@ -1,4 +1,4 @@
-package rta.ae.sharekni.Arafa.Activities;
+package rta.ae.sharekni.RideDetails;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -13,7 +13,6 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -21,7 +20,6 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,7 +38,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.share.model.ShareLinkContent;
-import com.facebook.share.widget.ShareButton;
 import com.facebook.share.widget.ShareDialog;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -77,7 +74,7 @@ import rta.ae.sharekni.Ride_Details_Passengers_Adapter;
 import rta.ae.sharekni.Ride_Details_Passengers_DataModel;
 import rta.ae.sharekni.Route_Get_Accepted_Requests_DataModel;
 
-public class Route extends AppCompatActivity {
+public class RideDetailsAsDriver extends AppCompatActivity {
 
     TextView FromRegionEnName, ToRegionEnName, FromEmirateEnName, ToEmirateEnName, StartFromTime, EndToTime_, AgeRange, PreferredGender, IsSmoking, ride_details_day_of_week, NationalityEnName, PrefLanguageEnName;
     String str_StartFromTime, str_EndToTime_, Smokers_str;
@@ -237,7 +234,7 @@ public class Route extends AppCompatActivity {
 
 
                 } else {
-                    Toast.makeText(Route.this, R.string.no_available_seats, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RideDetailsAsDriver.this, R.string.no_available_seats, Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -258,15 +255,15 @@ public class Route extends AppCompatActivity {
                                 try {
                                     String response = j.Driver_DeleteRoute(Route_ID);
                                     if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
-                                        Toast.makeText(Route.this, R.string.cannot_delete_route, Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(RideDetailsAsDriver.this, R.string.cannot_delete_route, Toast.LENGTH_SHORT).show();
                                     } else {
-                                        Intent in = new Intent(Route.this, HomePage.class);
+                                        Intent in = new Intent(RideDetailsAsDriver.this, HomePage.class);
                                         in.putExtra("RouteID", Route_ID);
                                         in.putExtra("DriverID", Driver_ID);
                                         in.putExtra("RouteName", Route_name);
                                         startActivity(in);
                                         finish();
-                                        Toast.makeText(Route.this, R.string.route_deleted, Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(RideDetailsAsDriver.this, R.string.route_deleted, Toast.LENGTH_SHORT).show();
                                     }
                                     Log.d("join ride res", String.valueOf(response));
                                 } catch (JSONException e) {
@@ -299,7 +296,7 @@ public class Route extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            pDialog = new ProgressDialog(Route.this);
+            pDialog = new ProgressDialog(RideDetailsAsDriver.this);
             pDialog.setMessage(getString(R.string.loading) + "...");
             pDialog.show();
             super.onPreExecute();
@@ -432,12 +429,12 @@ public class Route extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 } else {
-                    Dialog dialog = new Dialog(Route.this);
+                    Dialog dialog = new Dialog(RideDetailsAsDriver.this);
                     dialog.setTitle(R.string.some_thing_is_wrong);
                     dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                         @Override
                         public void onCancel(DialogInterface dialog) {
-                            Intent in = new Intent(Route.this, HomePage.class);
+                            Intent in = new Intent(RideDetailsAsDriver.this, HomePage.class);
                             startActivity(in);
                         }
                     });
@@ -446,7 +443,7 @@ public class Route extends AppCompatActivity {
                 Route_Edit_Btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent in = new Intent(Route.this, DriverEditCarPool.class);
+                        Intent in = new Intent(RideDetailsAsDriver.this, DriverEditCarPool.class);
                         Bundle b = new Bundle();
                         in.putExtra("Data", b);
                         in.putExtra("RouteID", Route_ID);
@@ -476,7 +473,7 @@ public class Route extends AppCompatActivity {
                 e.printStackTrace();
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        new AlertDialog.Builder(Route.this)
+                        new AlertDialog.Builder(RideDetailsAsDriver.this)
                                 .setTitle(getString(R.string.connection_problem))
                                 .setMessage(getString(R.string.con_problem_message))
                                 .setPositiveButton(getString(R.string.con_problem_message), new DialogInterface.OnClickListener() {
@@ -495,7 +492,7 @@ public class Route extends AppCompatActivity {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(Route.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RideDetailsAsDriver.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -696,7 +693,7 @@ public class Route extends AppCompatActivity {
                 Route_permit_Btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        permitJsonParse.stringRequest(GetData.DOMAIN + "Permit_Insert?AccountId=" + Driver_ID + "&RouteId=" + Route_ID + "&VehicleId=" + Vehicle_Id_Permit + "&_passengerIDs=" + Passengers_Ids, Route.this);
+                        permitJsonParse.stringRequest(GetData.DOMAIN + "Permit_Insert?AccountId=" + Driver_ID + "&RouteId=" + Route_ID + "&VehicleId=" + Vehicle_Id_Permit + "&_passengerIDs=" + Passengers_Ids, RideDetailsAsDriver.this);
                     }
                 });
 
@@ -845,7 +842,7 @@ public class Route extends AppCompatActivity {
                             .setQuote("Connect on a global scale.")
                             .build();
 
-                    ShareDialog.show(Route.this, content);
+                    ShareDialog.show(RideDetailsAsDriver.this, content);
                 } else {
 
 

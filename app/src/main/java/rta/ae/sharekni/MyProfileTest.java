@@ -29,14 +29,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
-import rta.ae.sharekni.Arafa.Activities.Route;
+import rta.ae.sharekni.RideDetails.RideDetailsAsDriver;
 import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.Arafa.Classes.ImageDecoder;
 import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
 import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
 import rta.ae.sharekni.Arafa.DataModelAdapter.BestRouteDataModelAdapter;
 
-import rta.ae.sharekni.R;
 import com.pkmmte.view.CircularImageView;
 
 import org.json.JSONArray;
@@ -192,7 +191,7 @@ public class MyProfileTest extends AppCompatActivity {
                                         lv_driver.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                             @Override
                                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                                Intent in = new Intent(MyProfileTest.this, Route.class);
+                                                Intent in = new Intent(MyProfileTest.this, RideDetailsAsDriver.class);
                                                 in.putExtra("RouteID", item.getID());
                                                 in.putExtra("PassengerID",Passenger_ID);
                                                 in.putExtra("DriverID",Driver_ID);

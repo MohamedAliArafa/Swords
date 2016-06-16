@@ -15,9 +15,10 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 
-import rta.ae.sharekni.Arafa.Activities.Profile;
+import rta.ae.sharekni.Arafa.Activities.DriverDetails;
 import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
+import rta.ae.sharekni.RideDetails.RideDetailsAsPassenger;
 
 /**
  * Created by Nezar Saleh on 10/13/2015.
@@ -65,7 +66,7 @@ public class PassngerApprovedRidesAdapter extends ArrayAdapter<BestRouteDataMode
             vh.Relative_Driver.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(activity, Profile.class);
+                    Intent intent = new Intent(activity, DriverDetails.class);
                     intent.putExtra("DriverID", vh.Driver_Id);
                     activity.startActivity(intent);
                 }
@@ -114,7 +115,7 @@ public class PassngerApprovedRidesAdapter extends ArrayAdapter<BestRouteDataMode
             vh.Relative_Details.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(activity, RideDetailsPassenger.class);
+                    Intent intent = new Intent(activity, RideDetailsAsPassenger.class);
                     intent.putExtra("RouteID", bestRouteDataModel.getRoute_id());
                     intent.putExtra("PassengerID", bestRouteDataModel.getPassenger_ID());
                     intent.putExtra("DriverID", vh.Driver_Id);

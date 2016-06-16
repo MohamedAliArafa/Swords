@@ -121,7 +121,7 @@ public class PickUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (FLAG_ID == 1) {
-                    Intent in = new Intent(PickUpActivity.this, QSearch.class);
+                    Intent in = new Intent(PickUpActivity.this, QuickSearch.class);
                     if (From_Em_Id != -1 && From_Reg_Id != -1) {
 
                         if (To_Em_Id == -1 && To_Reg_Id == -1) {

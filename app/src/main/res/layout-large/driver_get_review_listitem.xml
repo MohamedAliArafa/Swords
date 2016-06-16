@@ -40,6 +40,7 @@
         android:layout_alignLeft="@+id/Driver_Get_Review_AccountName"
         android:layout_marginTop="5dp"
         android:maxLength="17"
+        android:visibility="invisible"
         android:id="@+id/Driver_Get_Review_Nat"
         />
 
@@ -71,6 +72,16 @@
         android:layout_marginEnd="10dp"
 
         />
+    <ImageView
+        android:id="@+id/Edit_Review_Im"
+        android:layout_toLeftOf="@+id/Driver_Delete_Review"
+        android:layout_toStartOf="@+id/Driver_Delete_Review"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/newedit" />
 
 
 

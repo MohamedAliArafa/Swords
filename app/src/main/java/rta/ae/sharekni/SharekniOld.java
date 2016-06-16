@@ -11,12 +11,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import rta.ae.sharekni.Arafa.Activities.BestDriversBeforeLogin;
-import rta.ae.sharekni.Arafa.Activities.BestRideBeforeLogin;
+import rta.ae.sharekni.Arafa.Activities.BestDrivers;
+import rta.ae.sharekni.Arafa.Activities.MostRides;
 import rta.ae.sharekni.MainNavigationDrawerFragment.NavigationDrawerFragment;
-import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
-
-import rta.ae.sharekni.R;
+import rta.ae.sharekni.StartScreen.StartScreenActivity;
 
 
 public class SharekniOld extends ActionBarActivity {
@@ -38,7 +36,7 @@ public class SharekniOld extends ActionBarActivity {
 
         if(!preferences.getBoolean("onboarding_complete",false)){
 
-            Intent onboarding = new Intent(this, OnboardingActivity.class);
+            Intent onboarding = new Intent(this, StartScreenActivity.class);
             startActivity(onboarding);
 
             finish();
@@ -86,14 +84,14 @@ public class SharekniOld extends ActionBarActivity {
         TopDRiversBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(getApplicationContext(), BestDriversBeforeLogin.class);
+                Intent intent2 = new Intent(getApplicationContext(), BestDrivers.class);
                 startActivity(intent2);
             }
         });
         TopRIDebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), BestRideBeforeLogin.class);
+                Intent intent = new Intent(getApplicationContext(), MostRides.class);
                 startActivity(intent);
             }
         });

@@ -39,9 +39,10 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.TreeMap;
 
-import rta.ae.sharekni.Arafa.Activities.BestRideBeforeLogin;
+import rta.ae.sharekni.Arafa.Activities.MostRides;
+import rta.ae.sharekni.TakeATour.TakeATour;
 
-public class QSearch extends AppCompatActivity implements View.OnClickListener {
+public class QuickSearch extends AppCompatActivity implements View.OnClickListener {
 
     int From_Em_Id=-1;
     int From_Reg_Id=-1;
@@ -292,7 +293,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
                     save_search_txt.setTextColor(Color.RED);
                     savefind = 1;
                 }else {
-                    Toast.makeText(QSearch.this, R.string.saveSearch_Error, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(QuickSearch.this, R.string.saveSearch_Error, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -358,7 +359,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
         MostRides_Relative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(getBaseContext(), BestRideBeforeLogin.class);
+                Intent intent1 = new Intent(getBaseContext(), MostRides.class);
                 startActivity(intent1);
             }
         });
@@ -435,7 +436,7 @@ public class QSearch extends AppCompatActivity implements View.OnClickListener {
                     startActivity(intent1);
                     i = 1;
                 }else {
-                    Toast.makeText(QSearch.this, R.string.select_start_point, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(QuickSearch.this, R.string.select_start_point, Toast.LENGTH_SHORT).show();
                 }
             }
         });

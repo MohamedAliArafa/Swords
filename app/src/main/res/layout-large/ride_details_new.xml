@@ -1,32 +1,25 @@
-
-<LinearLayout
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    >
+    android:background="#FFFFFF"
+    android:fadeScrollbars="false">
 
-    <include
-        android:id="@+id/app_bar"
-        layout="@layout/app_bar" />
-
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/map_ride_details"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        tools:context="rta.ae.sharekni.MapsActivity" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/app_bar_3" />
 
-
-
-
-
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFFFFF">
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map_ride_details"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            tools:context="rta.ae.sharekni.MapsActivity" />
 
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -42,14 +35,14 @@
                 android:orientation="vertical">
 
 
-
                 <RelativeLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:background="#576274"
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
-                    android:layout_marginBottom="10dp"
                     android:paddingRight="10dp"
                     android:paddingStart="10dp">
 
@@ -312,23 +305,20 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#FFFFFF"
-                    >
+                    android:background="#FFFFFF">
 
 
                     <RelativeLayout
+                        android:id="@+id/Prefernces_Relative_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/Prefernces_Relative_id"
-                        android:background="@drawable/borders"
                         android:layout_marginEnd="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="20dp"
-                        android:padding="15dp"
-                        >
-
+                        android:background="@drawable/borders"
+                        android:padding="15dp">
 
 
                         <TextView
@@ -346,10 +336,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignBottom="@+id/ride_details_lang_txt"
-                            android:layout_marginEnd="25dp"
-                            android:layout_marginRight="25dp"
                             android:layout_alignLeft="@+id/AgeRange"
                             android:layout_alignStart="@+id/AgeRange"
+                            android:layout_marginEnd="25dp"
+                            android:layout_marginRight="25dp"
                             android:layout_toEndOf="@+id/ride_details_lang_txt"
                             android:layout_toRightOf="@+id/ride_details_lang_txt"
                             android:text="Language"
@@ -374,12 +364,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignBottom="@+id/ride_details_age_range_txt"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginRight="10dp"
                             android:layout_toEndOf="@+id/ride_details_age_range_txt"
                             android:layout_toRightOf="@+id/ride_details_age_range_txt"
                             android:lines="1"
                             android:maxLines="1"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginEnd="10dp"
                             android:text="AgeRange"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -392,9 +382,9 @@
                             android:layout_alignLeft="@+id/ride_details_lang_txt"
                             android:layout_alignStart="@+id/ride_details_lang_txt"
                             android:layout_below="@+id/ride_details_lang_txt"
-                            android:layout_marginTop="15dp"
                             android:layout_marginEnd="30dp"
                             android:layout_marginRight="30dp"
+                            android:layout_marginTop="15dp"
                             android:text="@string/gender"
                             android:textSize="16sp" />
 
@@ -416,12 +406,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/ride_details_age_range_txt"
-                            android:text="@string/smokers"
-                            android:textSize="16sp"
-                            android:layout_marginTop="15dp"
                             android:layout_marginEnd="30dp"
                             android:layout_marginRight="30dp"
-                            />
+                            android:layout_marginTop="15dp"
+                            android:text="@string/smokers"
+                            android:textSize="16sp" />
 
 
                         <TextView
@@ -447,9 +436,9 @@
                             android:layout_alignStart="@+id/ride_details_Gender_txt"
                             android:layout_below="@+id/ride_details_Gender_txt"
                             android:layout_marginBottom="20dp"
-                            android:layout_marginTop="15dp"
                             android:layout_marginEnd="30dp"
                             android:layout_marginRight="30dp"
+                            android:layout_marginTop="15dp"
                             android:text="@string/nationality"
                             android:textSize="16sp" />
 
@@ -485,19 +474,34 @@
                         android:textSize="17sp" />
 
 
+                    <Button
+                        android:id="@+id/Route_Driver_Send_invite"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@id/Prefernces_Relative_id"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/user_register_border_button"
+                        android:text="@string/matched_search_results"
+                        android:textAllCaps="false"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp" />
 
 
                     <RelativeLayout
                         android:id="@+id/REaltive_Passengers_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/Prefernces_Relative_id"
-                        android:layout_marginTop="30dp"
+                        android:layout_below="@+id/Route_Driver_Send_invite"
                         android:layout_marginEnd="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginStart="10dp"
-                        >
+                        android:layout_marginTop="10dp"
+                        android:visibility="invisible">
 
                         <TextView
                             android:id="@+id/ride_details_pref_txt"
@@ -526,7 +530,8 @@
                             android:text="@string/nationality"
                             android:textColor="@color/primaryColor"
                             android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:visibility="invisible" />
 
 
                         <View
@@ -546,13 +551,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/REaltive_Passengers_1"
-                        android:orientation="vertical"
                         android:layout_marginEnd="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginStart="10dp"
-
-                        >
+                        android:orientation="vertical"
+                        android:visibility="invisible">
 
                         <ListView
                             android:id="@+id/ride_details_passengers"
@@ -613,10 +617,11 @@
                 </RelativeLayout>
 
 
-
             </LinearLayout>
 
 
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

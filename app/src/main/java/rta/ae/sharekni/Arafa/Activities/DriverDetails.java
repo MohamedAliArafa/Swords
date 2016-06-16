@@ -53,9 +53,10 @@ import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
 import rta.ae.sharekni.Arafa.DataModelAdapter.ProfileRideAdapter;
 import rta.ae.sharekni.LoginApproved;
 import rta.ae.sharekni.R;
-import rta.ae.sharekni.RideDetailsPassenger;
+import rta.ae.sharekni.RideDetails.RideDetailsAsDriver;
+import rta.ae.sharekni.RideDetails.RideDetailsAsPassenger;
 
-public class Profile extends AppCompatActivity {
+public class DriverDetails extends AppCompatActivity {
     public static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 2;
 
     TextView TopName, NationalityEnName;
@@ -217,7 +218,7 @@ public class Profile extends AppCompatActivity {
 
             NationalityEnName.setText(json.getString(getString(R.string.nat_name2)));
             ImageDecoder im = new ImageDecoder();
-            im.stringRequest(json.getString("PhotoPath"), Photo, Profile.this);
+            im.stringRequest(json.getString("PhotoPath"), Photo, DriverDetails.this);
 //            Photo.setImageUrl(URL_Photo + json.getString("PhotoPath"), imageLoader);
             Driver_profile_Item_rate.setText(json.getString("AccountRating"));
 
@@ -262,10 +263,10 @@ public class Profile extends AppCompatActivity {
 
                     } else if (IsMobileVerified.equals("true")) {
 
-                        if (ActivityCompat.checkSelfPermission(Profile.this, Manifest.permission.CALL_PHONE)
+                        if (ActivityCompat.checkSelfPermission(DriverDetails.this, Manifest.permission.CALL_PHONE)
                                 != PackageManager.PERMISSION_GRANTED) {
                             // Request missing location permission.
-                            ActivityCompat.requestPermissions(Profile.this,
+                            ActivityCompat.requestPermissions(DriverDetails.this,
                                     new String[]{Manifest.permission.CALL_PHONE},
                                     MY_PERMISSIONS_REQUEST_CALL_PHONE
                             );
@@ -354,7 +355,7 @@ public class Profile extends AppCompatActivity {
         @Override
         protected void onPostExecute(Object o) {
             if (exists) {
-                ProfileRideAdapter arrayAdapter = new ProfileRideAdapter(Profile.this, R.layout.driver_profile_rides, driver);
+                ProfileRideAdapter arrayAdapter = new ProfileRideAdapter(DriverDetails.this, R.layout.driver_profile_rides, driver);
                 lv.setAdapter(arrayAdapter);
                 setListViewHeightBasedOnChildren(lv);
                 lv.requestLayout();
@@ -366,29 +367,29 @@ public class Profile extends AppCompatActivity {
                         assert AccountType != null;
                         if (Passenger_ID != 0) {
                             if (Driver_ID != Passenger_ID) {
-                                Intent in = new Intent(Profile.this, RideDetailsPassenger.class);
+                                Intent in = new Intent(DriverDetails.this, RideDetailsAsPassenger.class);
                                 in.putExtra("RouteID", driver[i].getID());
                                 in.putExtra("PassengerID", Passenger_ID);
                                 Log.d("Last 4", String.valueOf(Passenger_ID));
                                 in.putExtra("DriverID", Driver_ID);
                                 Log.d("inside intent", String.valueOf(Passenger_ID));
-                                Profile.this.startActivity(in);
+                                DriverDetails.this.startActivity(in);
                             } else {
-                                Intent in = new Intent(Profile.this, Route.class);
+                                Intent in = new Intent(DriverDetails.this, RideDetailsAsDriver.class);
                                 in.putExtra("RouteID", driver[i].getID());
                                 in.putExtra("RouteName", driver[i].getRouteName());
                                 in.putExtra("PassengerID", Passenger_ID);
                                 Log.d("Last 3", String.valueOf(Passenger_ID));
                                 in.putExtra("DriverID", Driver_ID);
-                                Profile.this.startActivity(in);
+                                DriverDetails.this.startActivity(in);
                             }
                         } else {
-                            Intent in = new Intent(Profile.this, RideDetailsPassenger.class);
+                            Intent in = new Intent(DriverDetails.this, RideDetailsAsPassenger.class);
                             in.putExtra("RouteID", driver[i].getID());
                             in.putExtra("PassengerID", Passenger_ID);
                             Log.d("Last 2", String.valueOf(Passenger_ID));
                             in.putExtra("DriverID", Driver_ID);
-                            Profile.this.startActivity(in);
+                            DriverDetails.this.startActivity(in);
                         }
                     }
                 });
@@ -415,7 +416,7 @@ public class Profile extends AppCompatActivity {
                 e.printStackTrace();
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        new AlertDialog.Builder(Profile.this)
+                        new AlertDialog.Builder(DriverDetails.this)
                                 .setTitle(getString(R.string.connection_problem))
                                 .setMessage(getString(R.string.con_problem_message))
                                 .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
@@ -431,7 +432,7 @@ public class Profile extends AppCompatActivity {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(Profile.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DriverDetails.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -539,7 +540,7 @@ public class Profile extends AppCompatActivity {
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
 
-                    if (ActivityCompat.checkSelfPermission(Profile.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    if (ActivityCompat.checkSelfPermission(DriverDetails.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                         // TODO: Consider calling
                         //    ActivityCompat#requestPermissions
                         // here to request the missing permissions, and then overriding

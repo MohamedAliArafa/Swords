@@ -43,18 +43,17 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
 
-import rta.ae.sharekni.Arafa.Activities.Profile;
-import rta.ae.sharekni.Arafa.Activities.Route;
+import rta.ae.sharekni.Arafa.Activities.DriverDetails;
+import rta.ae.sharekni.RideDetails.RideDetailsAsDriver;
 import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
 import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
 
 
-
 public class HistoryNew extends AppCompatActivity {
 
     String url = GetData.DOMAIN + "GetDriverDetailsByAccountId?AccountId=";
-    String url2 =  GetData.DOMAIN + "Passenger_MyApprovedRides?AccountId=";
+    String url2 = GetData.DOMAIN + "Passenger_MyApprovedRides?AccountId=";
 
     ListView Passenger_Approved_Rides_Lv;
 
@@ -68,8 +67,8 @@ public class HistoryNew extends AppCompatActivity {
     SharedPreferences myPrefs;
     int FLAG_DRIVER_CREATED;
     int FLAG_DRIVER_JOINED;
-    Boolean CREATED=false;
-    Boolean JOINED=false;
+    Boolean CREATED = false;
+    Boolean JOINED = false;
 
     String AccountType;
     Activity c;
@@ -80,9 +79,8 @@ public class HistoryNew extends AppCompatActivity {
 
     RelativeLayout history_created_rides_realtive;
     RelativeLayout history_joined_rides_realtive;
-        TextView driver_profile_RouteEnName;
+    TextView driver_profile_RouteEnName;
     TextView driver_profile_RouteEnName2;
-
 
 
     public static void setListViewHeightBasedOnChildren(ListView listView) {
@@ -109,67 +107,63 @@ public class HistoryNew extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if (rideJson.getStatus()== AsyncTask.Status.RUNNING) {
+        if (rideJson.getStatus() == AsyncTask.Status.RUNNING) {
             rideJson.cancel(true);
         }
-        if (rideJson2.getStatus()== AsyncTask.Status.RUNNING) {
+        if (rideJson2.getStatus() == AsyncTask.Status.RUNNING) {
             rideJson2.cancel(true);
         }
-        if (rideJson3.getStatus()== AsyncTask.Status.RUNNING) {
+        if (rideJson3.getStatus() == AsyncTask.Status.RUNNING) {
             rideJson3.cancel(true);
         }
         finish();
 
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_new);
 
         user_ride_created = (ListView) findViewById(R.id.user_ride_created);
-        Passenger_Approved_Rides_Lv= (ListView) findViewById(R.id.Passenger_Approved_Rides_Lv);
+        Passenger_Approved_Rides_Lv = (ListView) findViewById(R.id.Passenger_Approved_Rides_Lv);
         history_created_rides_realtive = (RelativeLayout) findViewById(R.id.history_created_rides_realtive);
-        driver_profile_RouteEnName= (TextView) findViewById(R.id.driver_profile_RouteEnName);
-        history_joined_rides_realtive= (RelativeLayout) findViewById(R.id.history_joined_rides_realtive);
-        driver_profile_RouteEnName2= (TextView) findViewById(R.id.driver_profile_RouteEnName2);
+        driver_profile_RouteEnName = (TextView) findViewById(R.id.driver_profile_RouteEnName);
+        history_joined_rides_realtive = (RelativeLayout) findViewById(R.id.history_joined_rides_realtive);
+        driver_profile_RouteEnName2 = (TextView) findViewById(R.id.driver_profile_RouteEnName2);
 
 
         initToolbar();
         myPrefs = this.getSharedPreferences("myPrefs", 0);
-        String ID = myPrefs.getString("account_id",null);
+        String ID = myPrefs.getString("account_id", null);
 //        Bundle in = getIntent().getExtras();
 //        Log.d("Intent Id :", String.valueOf(in.getInt("DriverID")));
         Driver_ID = Integer.parseInt(ID);
         AccountType = myPrefs.getString("account_type", null);
         Log.d("Driver Id", String.valueOf(Driver_ID));
-        Log.d("Type",AccountType);
+        Log.d("Type", AccountType);
 
 
         rideJson = new rideJson();
-        rideJson2 = new  rideJson2();
-        rideJson3 = new  rideJson3();
+        rideJson2 = new rideJson2();
+        rideJson3 = new rideJson3();
 
 
+        c = this;
 
-        c=this;
-
-        if (AccountType.equals("D")) {
+        if (AccountType.equals("false")) {
 
             rideJson.execute();
             rideJson2.execute();
 
 
-
-
-
-
-        }else if (AccountType.equals("P")){
-            user_ride_created.setVisibility(View.INVISIBLE);
-            driver_profile_RouteEnName.setVisibility(View.INVISIBLE);
-            history_created_rides_realtive.setVisibility(View.INVISIBLE);
+        } else if (AccountType.equals("true")) {
+            user_ride_created.setVisibility(View.GONE);
+            driver_profile_RouteEnName.setVisibility(View.GONE);
+            history_created_rides_realtive.setVisibility(View.GONE);
             rideJson3.execute();
 
-            }
+        }
 
 
         Log.d("create flag 1", String.valueOf(FLAG_DRIVER_CREATED));
@@ -177,9 +171,6 @@ public class HistoryNew extends AppCompatActivity {
 
 
     }
-
-
-
 
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -196,7 +187,6 @@ public class HistoryNew extends AppCompatActivity {
     }
 
 
-
     private class rideJson extends AsyncTask {
         boolean exists = false;
         ProgressDialog pDialog;
@@ -204,7 +194,7 @@ public class HistoryNew extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Object o) {
-            CREATED=true;
+            CREATED = true;
             hidePDialog();
             super.onPostExecute(o);
         }
@@ -269,14 +259,14 @@ public class HistoryNew extends AppCompatActivity {
                                     JSONArray jArray = new JSONArray(data);
                                     final BestRouteDataModel[] driver = new BestRouteDataModel[jArray.length()];
                                     JSONObject json;
-                                    if (jArray.length()==0){
-                                        Log.d("Error 3 ","Error3");
+                                    if (jArray.length() == 0) {
+                                        Log.d("Error 3 ", "Error3");
 
-                                        FLAG_DRIVER_CREATED=1;
+                                        FLAG_DRIVER_CREATED = 1;
 
-                                        user_ride_created.setVisibility(View.INVISIBLE);
-                                        driver_profile_RouteEnName.setVisibility(View.INVISIBLE);
-                                        history_created_rides_realtive.setVisibility(View.INVISIBLE);
+                                        user_ride_created.setVisibility(View.GONE);
+                                        driver_profile_RouteEnName.setVisibility(View.GONE);
+                                        history_created_rides_realtive.setVisibility(View.GONE);
 
 //                                        final Dialog dialog = new Dialog(c);
 //                                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -348,11 +338,10 @@ public class HistoryNew extends AppCompatActivity {
                                             Log.d("ToReglv", json.getString("ToRegionEnName"));
 
 
-
                                             user_ride_created.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                                 @Override
                                                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                                    Intent in = new Intent(HistoryNew.this, Route.class);
+                                                    Intent in = new Intent(HistoryNew.this, RideDetailsAsDriver.class);
                                                     in.putExtra("RouteID", driver[i].getID());
                                                     in.putExtra("DriverID", Driver_ID);
                                                     HistoryNew.this.startActivity(in);
@@ -363,15 +352,13 @@ public class HistoryNew extends AppCompatActivity {
                                             });
                                         } catch (JSONException e) {
                                             e.printStackTrace();
-                                            Log.d("Error 1 ",e.toString());
+                                            Log.d("Error 1 ", e.toString());
                                         }
                                     }
 
                                     HistoryNewAdapter arrayAdapter = new HistoryNewAdapter(HistoryNew.this, R.layout.history_created_joined_rides_list_item, driver);
                                     user_ride_created.setAdapter(arrayAdapter);
                                     setListViewHeightBasedOnChildren(user_ride_created);
-
-
 
 
                                 } catch (JSONException e) {
@@ -392,18 +379,12 @@ public class HistoryNew extends AppCompatActivity {
     }
 
 
-
-
-
-
-
-
     private class rideJson2 extends AsyncTask {
         ProgressDialog pDialog;
 
         @Override
         protected void onPostExecute(Object o) {
-            JOINED=true;
+            JOINED = true;
             Log.d("create flag", String.valueOf(FLAG_DRIVER_CREATED));
             Log.d("join flag", String.valueOf(FLAG_DRIVER_JOINED));
             hidePDialog();
@@ -411,8 +392,8 @@ public class HistoryNew extends AppCompatActivity {
 
             if (FLAG_DRIVER_JOINED == 1 && FLAG_DRIVER_CREATED == 1) {
 
-                CREATED=false;
-                JOINED=false;
+                CREATED = false;
+                JOINED = false;
 
                 final Dialog dialog = new Dialog(c);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -499,11 +480,11 @@ public class HistoryNew extends AppCompatActivity {
                                     JSONObject json;
 
 
-                                    if (jArray.length()==0){
-                                        Log.d("Error 3 ","Error3");
+                                    if (jArray.length() == 0) {
+                                        Log.d("Error 3 ", "Error3");
 
 
-                                        FLAG_DRIVER_JOINED=1;
+                                        FLAG_DRIVER_JOINED = 1;
                                         Passenger_Approved_Rides_Lv.setVisibility(View.INVISIBLE);
                                         history_joined_rides_realtive.setVisibility(View.INVISIBLE);
                                         driver_profile_RouteEnName2.setVisibility(View.INVISIBLE);
@@ -511,8 +492,8 @@ public class HistoryNew extends AppCompatActivity {
 
                                         if (FLAG_DRIVER_JOINED == 1 && FLAG_DRIVER_CREATED == 1) {
 
-                                            CREATED=false;
-                                            JOINED=false;
+                                            CREATED = false;
+                                            JOINED = false;
 
                                             final Dialog dialog = new Dialog(c);
                                             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -551,7 +532,6 @@ public class HistoryNew extends AppCompatActivity {
                                     }
 
 
-
                                     for (int i = 0; i < jArray.length(); i++) {
                                         try {
                                             BestRouteDataModel item = new BestRouteDataModel(Parcel.obtain());
@@ -574,8 +554,8 @@ public class HistoryNew extends AppCompatActivity {
                                             item.setToEm(jsonObject.getString(getString(R.string.to_em_en_name)));
                                             item.setToReg(jsonObject.getString(getString(R.string.to_reg_en_name)));
                                             item.setRouteName(jsonObject.getString(getString(R.string.route_name)));
-                                  //          item.setStartFromTime(jsonObject.getString("StartFromTime"));
-                                    //        item.setEndToTime_(jsonObject.getString("EndToTime_"));
+                                            //          item.setStartFromTime(jsonObject.getString("StartFromTime"));
+                                            //        item.setEndToTime_(jsonObject.getString("EndToTime_"));
 
                                             item.setDriver_ID(Driver_Account);
 
@@ -584,9 +564,9 @@ public class HistoryNew extends AppCompatActivity {
                                             Passenger_Approved_Rides_Lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                                 @Override
                                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                                    Intent intent = new Intent(HistoryNew.this, Profile.class);
-                                                    intent.putExtra("DriverID",passenger[position].getDriver_ID() );
-                                                   HistoryNew.this.startActivity(intent);
+                                                    Intent intent = new Intent(HistoryNew.this, DriverDetails.class);
+                                                    intent.putExtra("DriverID", passenger[position].getDriver_ID());
+                                                    HistoryNew.this.startActivity(intent);
                                                 }
                                             });
 
@@ -621,8 +601,6 @@ public class HistoryNew extends AppCompatActivity {
 
 
     } //  Ride Json
-
-
 
 
     private class rideJson3 extends AsyncTask {
@@ -698,8 +676,8 @@ public class HistoryNew extends AppCompatActivity {
                                     JSONObject json;
 
 
-                                    if (jArray.length()==0){
-                                        Log.d("Error 3 ","Error3");
+                                    if (jArray.length() == 0) {
+                                        Log.d("Error 3 ", "Error3");
 
                                         final Dialog dialog = new Dialog(c);
                                         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -718,8 +696,6 @@ public class HistoryNew extends AppCompatActivity {
                                         });
 
                                     }
-
-
 
 
                                     for (int i = 0; i < jArray.length(); i++) {
@@ -754,8 +730,8 @@ public class HistoryNew extends AppCompatActivity {
                                             Passenger_Approved_Rides_Lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                                 @Override
                                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                                    Intent intent = new Intent(HistoryNew.this, Profile.class);
-                                                    intent.putExtra("DriverID",passenger[position].getDriver_ID() );
+                                                    Intent intent = new Intent(HistoryNew.this, DriverDetails.class);
+                                                    intent.putExtra("DriverID", passenger[position].getDriver_ID());
                                                     HistoryNew.this.startActivity(intent);
                                                 }
                                             });
@@ -793,7 +769,6 @@ public class HistoryNew extends AppCompatActivity {
     } //  Ride Json
 
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -816,9 +791,6 @@ public class HistoryNew extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
-
 
 
 }

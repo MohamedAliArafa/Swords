@@ -1,4 +1,4 @@
-package rta.ae.sharekni;
+package rta.ae.sharekni.RideDetails;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -54,9 +54,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rta.ae.sharekni.Arafa.Classes.GetData;
+import rta.ae.sharekni.DriverGetReviewAdapter;
+import rta.ae.sharekni.DriverGetReviewDataModel;
+import rta.ae.sharekni.LoginApproved;
+import rta.ae.sharekni.R;
+import rta.ae.sharekni.Ride_Details_Passengers_DataModel;
 
 
-public class RideDetailsPassenger extends AppCompatActivity {
+public class RideDetailsAsPassenger extends AppCompatActivity {
 
 
     final List<Ride_Details_Passengers_DataModel> Passengers_arr = new ArrayList<>();
@@ -220,9 +225,9 @@ public class RideDetailsPassenger extends AppCompatActivity {
             super.onPostExecute(o);
             Log.d("res", res);
             if (res.equals("\"1\"")) {
-                Toast.makeText(RideDetailsPassenger.this, R.string.rate_submitted, Toast.LENGTH_SHORT).show();
+                Toast.makeText(RideDetailsAsPassenger.this, R.string.rate_submitted, Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(RideDetailsPassenger.this, R.string.rate_submit_failed, Toast.LENGTH_SHORT).show();
+                Toast.makeText(RideDetailsAsPassenger.this, R.string.rate_submit_failed, Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -255,7 +260,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            pDialog = new ProgressDialog(RideDetailsPassenger.this);
+            pDialog = new ProgressDialog(RideDetailsAsPassenger.this);
             pDialog.setMessage(getString(R.string.loading) + "...");
             pDialog.show();
         }
@@ -300,7 +305,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (Passenger_ID == 0) {
-                        final Dialog dialog = new Dialog(RideDetailsPassenger.this);
+                        final Dialog dialog = new Dialog(RideDetailsAsPassenger.this);
                         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                         dialog.setContentView(R.layout.please_log_in_dialog);
                         Button btn = (Button) dialog.findViewById(R.id.noroute_id);
@@ -318,8 +323,8 @@ public class RideDetailsPassenger extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
                                 dialog.dismiss();
-                                Intent intent = new Intent(RideDetailsPassenger.this, LoginApproved.class);
-                                RideDetailsPassenger.this.startActivity(intent);
+                                Intent intent = new Intent(RideDetailsAsPassenger.this, LoginApproved.class);
+                                RideDetailsAsPassenger.this.startActivity(intent);
                             }
                         });
                     } else {
@@ -343,9 +348,9 @@ public class RideDetailsPassenger extends AppCompatActivity {
                                     try {
                                         String response = j.Passenger_Review_Driver(Driver_ID, Passenger_ID, Route_ID, URLEncoder.encode(Review_str));
                                         if (response.equals("\"-1\"") || response.equals("\"-2\'")) {
-                                            Toast.makeText(RideDetailsPassenger.this, getString(R.string.cannot_review), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(RideDetailsAsPassenger.this, getString(R.string.cannot_review), Toast.LENGTH_SHORT).show();
                                         } else {
-                                            Toast.makeText(RideDetailsPassenger.this, getString(R.string.done), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(RideDetailsAsPassenger.this, getString(R.string.done), Toast.LENGTH_SHORT).show();
                                             con.recreate();
                                         }
                                         dialog.dismiss();
@@ -494,7 +499,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         if (Passenger_ID == 0) {
-                            final Dialog dialog = new Dialog(RideDetailsPassenger.this);
+                            final Dialog dialog = new Dialog(RideDetailsAsPassenger.this);
                             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                             dialog.setContentView(R.layout.please_log_in_dialog);
                             Button btn = (Button) dialog.findViewById(R.id.noroute_id);
@@ -512,8 +517,8 @@ public class RideDetailsPassenger extends AppCompatActivity {
                                 @Override
                                 public void onClick(View v) {
                                     dialog.dismiss();
-                                    Intent intent = new Intent(RideDetailsPassenger.this, LoginApproved.class);
-                                    RideDetailsPassenger.this.startActivity(intent);
+                                    Intent intent = new Intent(RideDetailsAsPassenger.this, LoginApproved.class);
+                                    RideDetailsAsPassenger.this.startActivity(intent);
                                 }
                             });
                         } else {
@@ -541,15 +546,15 @@ public class RideDetailsPassenger extends AppCompatActivity {
                                     assert response != null;
                                     switch (response) {
                                         case "\"-1\"":
-                                            Toast.makeText(RideDetailsPassenger.this, getString(R.string.already_sent_request), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(RideDetailsAsPassenger.this, getString(R.string.already_sent_request), Toast.LENGTH_SHORT).show();
                                             dialog.dismiss();
                                             break;
                                         case "\"0\"":
-                                            Toast.makeText(RideDetailsPassenger.this, getString(R.string.login_network_error), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(RideDetailsAsPassenger.this, getString(R.string.login_network_error), Toast.LENGTH_SHORT).show();
                                             dialog.dismiss();
                                             break;
                                         default:
-                                            Toast.makeText(RideDetailsPassenger.this, R.string.req_sent_succ, Toast.LENGTH_LONG).show();
+                                            Toast.makeText(RideDetailsAsPassenger.this, R.string.req_sent_succ, Toast.LENGTH_LONG).show();
                                             dialog.dismiss();
                                             Join_Ride_btn.setVisibility(View.INVISIBLE);
                                             finish();
@@ -715,7 +720,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
                 e.printStackTrace();
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        new AlertDialog.Builder(RideDetailsPassenger.this)
+                        new AlertDialog.Builder(RideDetailsAsPassenger.this)
                                 .setTitle(getString(R.string.connection_problem))
                                 .setMessage(getString(R.string.con_problem_message))
                                 .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
@@ -729,7 +734,7 @@ public class RideDetailsPassenger extends AppCompatActivity {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(RideDetailsPassenger.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RideDetailsAsPassenger.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }

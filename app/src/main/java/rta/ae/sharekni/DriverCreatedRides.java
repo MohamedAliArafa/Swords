@@ -37,7 +37,7 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
 
-import rta.ae.sharekni.Arafa.Activities.Route;
+import rta.ae.sharekni.RideDetails.RideDetailsAsDriver;
 import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
 import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
@@ -230,7 +230,7 @@ public class DriverCreatedRides extends AppCompatActivity {
                                             user_ride_created.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                                 @Override
                                                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                                    Intent in = new Intent(DriverCreatedRides.this, Route.class);
+                                                    Intent in = new Intent(DriverCreatedRides.this, RideDetailsAsDriver.class);
                                                     in.putExtra("RouteID", driver[i].getID());
                                                     in.putExtra("DriverID", Driver_ID);
                                                     DriverCreatedRides.this.startActivity(in);

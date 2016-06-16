@@ -1,4 +1,4 @@
-package rta.ae.sharekni;
+package rta.ae.sharekni.MainActivityClass;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -36,7 +36,8 @@ import java.net.URLEncoder;
 
 import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
-import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
+import rta.ae.sharekni.R;
+import rta.ae.sharekni.StartScreen.StartScreenActivity;
 
 //import com.mobileapptracker.MobileAppTracker;
 // Tune Tracker
@@ -86,7 +87,7 @@ public class Sharekni extends Activity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent in = new Intent(Sharekni.this, OnboardingActivity.class);
+                Intent in = new Intent(Sharekni.this, StartScreenActivity.class);
                 startActivity(in);
 //                finish();
                 // Do something after 5s = 5000ms

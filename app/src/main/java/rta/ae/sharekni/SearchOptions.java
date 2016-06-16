@@ -15,9 +15,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import rta.ae.sharekni.Arafa.Activities.BestRideBeforeLogin;
-
-import rta.ae.sharekni.R;
+import rta.ae.sharekni.Arafa.Activities.MostRides;
 
 public class SearchOptions extends AppCompatActivity {
 
@@ -50,7 +48,7 @@ public class SearchOptions extends AppCompatActivity {
         search_top_rides.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 =  new Intent(getBaseContext(), BestRideBeforeLogin.class);
+                Intent intent1 =  new Intent(getBaseContext(), MostRides.class);
                 startActivity(intent1);
 
             }
@@ -68,7 +66,7 @@ public class SearchOptions extends AppCompatActivity {
         im_quickSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 =  new Intent(getBaseContext(),QSearch.class);
+                Intent intent1 =  new Intent(getBaseContext(),QuickSearch.class);
                 intent1.putExtra("ID",MyID);
                 startActivity(intent1);
                 Log.d("test search id 2 ", String.valueOf(MyID));

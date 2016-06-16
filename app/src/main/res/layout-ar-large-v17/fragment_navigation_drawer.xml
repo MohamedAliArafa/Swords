@@ -66,12 +66,12 @@
     </RelativeLayout>
 
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/container_drawer_image"
-        android:fadeScrollbars="false"
-        >
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/container_drawer_image"
+            android:fadeScrollbars="false"
+            >
 
 
 
@@ -85,42 +85,42 @@
             >
 
             <!--<RelativeLayout-->
-            <!--android:id="@+id/navy_homePage"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="@dimen/navy_list_item_relative_height">-->
+                <!--android:id="@+id/navy_homePage"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/navy_list_item_relative_height">-->
 
 
-            <!--<ImageView-->
-            <!--android:id="@+id/menuicon1"-->
-            <!--android:layout_width="@dimen/navy_image_width_height"-->
-            <!--android:layout_height="@dimen/navy_image_width_height"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_marginLeft="20dp"-->
-            <!--android:layout_marginStart="20dp"-->
-            <!--android:src="@drawable/menuhomeicon"-->
-            <!--android:contentDescription="@string/navy_List_image_content_Desc"-->
-            <!--/>-->
+                <!--<ImageView-->
+                    <!--android:id="@+id/menuicon1"-->
+                    <!--android:layout_width="@dimen/navy_image_width_height"-->
+                    <!--android:layout_height="@dimen/navy_image_width_height"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginLeft="20dp"-->
+                    <!--android:layout_marginStart="20dp"-->
+                    <!--android:src="@drawable/menuhomeicon"-->
+                    <!--android:contentDescription="@string/navy_List_image_content_Desc"-->
+                    <!--/>-->
 
-            <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_marginLeft="20dp"-->
-            <!--android:layout_marginStart="20dp"-->
-            <!--android:layout_toEndOf="@+id/menuicon1"-->
-            <!--android:layout_toRightOf="@+id/menuicon1"-->
-            <!--android:text="@string/navy_Home_Page_txt"-->
-            <!--android:textColor="@color/primaryColor"-->
-            <!--android:textSize="18sp"-->
-            <!--/>-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginLeft="20dp"-->
+                    <!--android:layout_marginStart="20dp"-->
+                    <!--android:layout_toEndOf="@+id/menuicon1"-->
+                    <!--android:layout_toRightOf="@+id/menuicon1"-->
+                    <!--android:text="@string/navy_Home_Page_txt"-->
+                    <!--android:textColor="@color/primaryColor"-->
+                    <!--android:textSize="18sp"-->
+                    <!--/>-->
 
 
-            <!--<View-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="2dp"-->
-            <!--android:background="#FFFFFF"-->
+                <!--<View-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="2dp"-->
+                    <!--android:background="#FFFFFF"-->
 
-            <!--/>-->
+                    <!--/>-->
 
 
             <!--</RelativeLayout>-->
@@ -168,7 +168,6 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginStart="20dp"
                     android:layout_toEndOf="@+id/menuicon9"
-                    android:layout_toRightOf="@+id/menuicon9"
                     android:text="@string/edit_profile"
                     android:textColor="@color/primaryColor"
                     android:textSize="18sp"
@@ -216,7 +215,6 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginStart="20dp"
                     android:layout_toEndOf="@+id/menuicon12"
-                    android:layout_toRightOf="@+id/menuicon12"
                     android:text="@string/My_vehicles_str"
                     android:textColor="@color/primaryColor"
                     android:textSize="18sp"
@@ -269,11 +267,10 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginStart="20dp"
                     android:layout_toEndOf="@+id/menuicon2"
-                    android:layout_toRightOf="@+id/menuicon2"
                     android:text="@string/navy_Most_Rides_str"
                     android:textColor="@color/primaryColor"
                     android:textSize="18sp"
-                    />
+                   />
 
 
             </RelativeLayout>
@@ -317,11 +314,10 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginStart="20dp"
                     android:layout_toEndOf="@+id/menuicon3"
-                    android:layout_toRightOf="@+id/menuicon3"
                     android:text="@string/navy_Best_Drivers_str"
                     android:textColor="@color/primaryColor"
                     android:textSize="18sp"
-                    />
+                  />
 
 
             </RelativeLayout>
@@ -365,11 +361,10 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginStart="20dp"
                     android:layout_toEndOf="@+id/menuicon4"
-                    android:layout_toRightOf="@+id/menuicon4"
                     android:text="@string/navy_Search_Options_str"
                     android:textColor="@color/primaryColor"
                     android:textSize="18sp"
-                    />
+                   />
 
 
             </RelativeLayout>
@@ -413,7 +408,6 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginStart="20dp"
                     android:layout_toEndOf="@+id/menuicon5"
-                    android:layout_toRightOf="@+id/menuicon5"
                     android:text="@string/navy_Notifications_str"
                     android:textColor="@color/primaryColor"
                     android:textSize="18sp" />
@@ -448,7 +442,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="20dp"
                     android:layout_marginStart="20dp"
-                    android:background="@drawable/menulanguageiconar"
+                    android:background="@drawable/menulanguageiconen"
                     android:contentDescription="@string/navy_List_image_content_Desc"
 
                     />
@@ -460,7 +454,6 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginStart="20dp"
                     android:layout_toEndOf="@+id/menuicon20"
-                    android:layout_toRightOf="@+id/menuicon20"
                     android:text="@string/navy_change_language"
                     android:textColor="@color/primaryColor"
                     android:textSize="18sp"
@@ -512,7 +505,6 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginStart="20dp"
                     android:layout_toEndOf="@+id/menuicon6"
-                    android:layout_toRightOf="@+id/menuicon6"
                     android:text="@string/navy_Logout_str"
                     android:textColor="@color/primaryColor"
                     android:textSize="18sp"
@@ -538,7 +530,7 @@
         </LinearLayout>
 
 
-    </ScrollView>
+        </ScrollView>
 
 
 

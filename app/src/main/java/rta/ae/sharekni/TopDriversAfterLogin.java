@@ -16,12 +16,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import rta.ae.sharekni.Arafa.Activities.Profile;
+import rta.ae.sharekni.Arafa.Activities.DriverDetails;
 import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.Arafa.DataModel.BestDriverDataModel;
 import rta.ae.sharekni.Arafa.DataModelAdapter.BestDriverDataModelAdapter;
-
-import rta.ae.sharekni.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -82,7 +80,7 @@ public class TopDriversAfterLogin extends AppCompatActivity {
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    Intent in = new Intent(con, Profile.class);
+                    Intent in = new Intent(con, DriverDetails.class);
                     in.putExtra("ID", arr.get(i).getID());
                     Log.d("Array Id :", String.valueOf(arr.get(i).getID()));
                     in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -1,4 +1,4 @@
-package rta.ae.sharekni;
+package rta.ae.sharekni.TakeATour;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

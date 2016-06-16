@@ -1,14 +1,18 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:fadeScrollbars="false"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_below="@+id/app_bar"
-    android:background="@drawable/registerbackgroundtest">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:fadeScrollbars="false"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/app_bar"
+        android:background="@drawable/registerbackgroundtest">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
 
 
         <include
@@ -302,10 +306,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="25dp"
-                    android:layout_marginRight="25dp"
-                    android:layout_toLeftOf="@+id/singleRide_Periodic"
-                    android:layout_toStartOf="@+id/singleRide_Periodic"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_toEndOf="@+id/Periodic_SingleRide"
+                    android:layout_toRightOf="@+id/Periodic_SingleRide"
+
                     android:text="@string/single"
                     android:textColor="@color/primaryColor"
                     android:textSize="16sp" />
@@ -315,10 +320,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_toEndOf="@+id/Periodic_SingleRide"
-                    android:layout_toRightOf="@+id/Periodic_SingleRide"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_toLeftOf="@+id/singleRide_Periodic"
+                    android:layout_toStartOf="@+id/singleRide_Periodic"
+
+
                     android:text="@string/periodic"
                     android:textColor="@color/gray_before_login"
                     android:textSize="16sp" />
@@ -346,7 +353,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/saveoff" />
+                    android:src="@drawable/saveoffar" />
 
                 <ImageView
                     android:id="@+id/save_on"
@@ -356,7 +363,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/slidefemale"
+                    android:src="@drawable/slidefemalear"
                     android:visibility="invisible" />
 
 
@@ -551,6 +558,7 @@
                 >
 
 
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -612,7 +620,8 @@
 
         </RelativeLayout>
 
-    </LinearLayout>
-</ScrollView>
+
+        </LinearLayout>
+    </ScrollView>
 
 

@@ -1,4 +1,4 @@
-package rta.ae.sharekni;
+package rta.ae.sharekni.TakeATour;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,9 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
-
+import rta.ae.sharekni.LoginApproved;
+import rta.ae.sharekni.QuickSearch;
 import rta.ae.sharekni.R;
+import rta.ae.sharekni.RegisterNewTest;
+import rta.ae.sharekni.StartScreen.StartScreenActivity;
 
 /**
  * Created by Nezar Saleh on 10/17/2015.
@@ -52,7 +54,7 @@ public class TakeATourFragment7 extends Fragment {
         fr7_btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), OnboardingActivity.class);
+                Intent intent = new Intent(getContext(), StartScreenActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK  | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
@@ -85,7 +87,7 @@ public class TakeATourFragment7 extends Fragment {
         fr7_btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), QSearch.class);
+                Intent intent = new Intent(getContext(), QuickSearch.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }

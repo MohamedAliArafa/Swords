@@ -77,7 +77,7 @@ import java.util.TreeMap;
 import rta.ae.sharekni.Arafa.Classes.GetData;
 
 
-public class EditProfileTest extends AppCompatActivity {
+public class EditProfile extends AppCompatActivity {
 
 
     static final int DILOG_ID = 0;
@@ -140,7 +140,7 @@ public class EditProfileTest extends AppCompatActivity {
                 Log.d("Calendar test", full_date);
             } else {
                 txt_dayOfWeek.setText(R.string.must_be_more_18);
-                Toast.makeText(EditProfileTest.this, R.string.too_young, Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditProfile.this, R.string.too_young, Toast.LENGTH_SHORT).show();
             }
         }
     };
@@ -342,7 +342,7 @@ public class EditProfileTest extends AppCompatActivity {
                     edit_reg_mob.setHint(getString(R.string.REg_Mobile));
                     if (edit_reg_mob != null) {
                         if (edit_reg_mob.length() < 9) {
-                            Toast.makeText(EditProfileTest.this, getString(R.string.short_mobile), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditProfile.this, getString(R.string.short_mobile), Toast.LENGTH_SHORT).show();
 //                            MobileNumber_Linear.setBackgroundResource(R.drawable.user_register_border_error);
                         } else {
 //                            MobileNumber_Linear.setBackgroundResource(R.drawable.user_register_border);
@@ -368,7 +368,7 @@ public class EditProfileTest extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final CharSequence[] items = {getString(R.string.take_photo), getString(R.string.choose_from_library), getString(R.string.cancel)};
-                android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(EditProfileTest.this);
+                android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(EditProfile.this);
                 builder.setTitle(getString(R.string.add_photo));
                 builder.setItems(items, new DialogInterface.OnClickListener() {
                     @Override
@@ -404,7 +404,7 @@ public class EditProfileTest extends AppCompatActivity {
                         }
                     }
                     if (!result) {
-                        Toast.makeText(EditProfileTest.this, getString(R.string.unknown_country), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditProfile.this, getString(R.string.unknown_country), Toast.LENGTH_SHORT).show();
 
                     }
 
@@ -432,11 +432,11 @@ public class EditProfileTest extends AppCompatActivity {
                             }
                         }
                         if (!result) {
-                            Toast.makeText(EditProfileTest.this, getString(R.string.unknown_language), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditProfile.this, getString(R.string.unknown_language), Toast.LENGTH_SHORT).show();
                         }
                     }
                 } catch (NullPointerException e) {
-                    Toast.makeText(EditProfileTest.this, getString(R.string.unknown_language), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditProfile.this, getString(R.string.unknown_language), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -452,7 +452,7 @@ public class EditProfileTest extends AppCompatActivity {
                     codes.add("56");
                     String code = edit_reg_mob.getText().toString().substring(0, 2);
                     if (!codes.contains(code)) {
-                        Toast.makeText(EditProfileTest.this, getString(R.string.short_mobile), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditProfile.this, getString(R.string.short_mobile), Toast.LENGTH_SHORT).show();
                     } else {
                         String Fname = edit_fname.getText().toString();
                         String Lname = edit_lname.getText().toString();
@@ -479,10 +479,10 @@ public class EditProfileTest extends AppCompatActivity {
                         String x = String.valueOf(Language_ID);
                         String y = String.valueOf(Nationality_ID);
                         GetData gd = new GetData();
-                        gd.EditProfileForm(MyID, Fname, Lname, mobile, String.valueOf(gender), birthdate, y, x, uploadedImage, EditProfileTest.this);
+                        gd.EditProfileForm(MyID, Fname, Lname, mobile, String.valueOf(gender), birthdate, y, x, uploadedImage, EditProfile.this);
                     }
                 } else {
-                    Toast.makeText(EditProfileTest.this, getString(R.string.fill_all_error), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditProfile.this, getString(R.string.fill_all_error), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -827,12 +827,12 @@ public class EditProfileTest extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Object o) {
-            final SimpleAdapter adapter2 = new SimpleAdapter(EditProfileTest.this, Lang_List
+            final SimpleAdapter adapter2 = new SimpleAdapter(EditProfile.this, Lang_List
                     , R.layout.autocomplete_row
                     , new String[]{"LanguageId", "LanguageEnName"}
                     , new int[]{R.id.row_id, R.id.row_name});
 
-            list_dialog = new Dialog(EditProfileTest.this);
+            list_dialog = new Dialog(EditProfile.this);
             list_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             list_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
             list_dialog.setContentView(R.layout.language_dialog);
@@ -870,7 +870,7 @@ public class EditProfileTest extends AppCompatActivity {
                 e.printStackTrace();
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        new AlertDialog.Builder(EditProfileTest.this)
+                        new AlertDialog.Builder(EditProfile.this)
                                 .setTitle(getString(R.string.connection_problem))
                                 .setMessage(getString(R.string.con_problem_message))
                                 .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
@@ -884,7 +884,7 @@ public class EditProfileTest extends AppCompatActivity {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(EditProfileTest.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditProfile.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -914,7 +914,7 @@ public class EditProfileTest extends AppCompatActivity {
         @Override
         protected void onPostExecute(Object o) {
             if (exists) {
-                SimpleAdapter adapterCountry = new SimpleAdapter(EditProfileTest.this, Country_List
+                SimpleAdapter adapterCountry = new SimpleAdapter(EditProfile.this, Country_List
                         , R.layout.autocomplete_row
                         , new String[]{"ID", "NationalityEnName"}
                         , new int[]{R.id.row_id, R.id.row_name});
@@ -945,7 +945,7 @@ public class EditProfileTest extends AppCompatActivity {
                 e.printStackTrace();
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        new AlertDialog.Builder(EditProfileTest.this)
+                        new AlertDialog.Builder(EditProfile.this)
                                 .setTitle(getString(R.string.connection_problem))
                                 .setMessage(getString(R.string.con_problem_message))
                                 .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
@@ -959,7 +959,7 @@ public class EditProfileTest extends AppCompatActivity {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(EditProfileTest.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditProfile.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -988,7 +988,7 @@ public class EditProfileTest extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            pDialog = new ProgressDialog(EditProfileTest.this);
+            pDialog = new ProgressDialog(EditProfile.this);
             pDialog.setMessage(getString(R.string.loading) + "...");
             pDialog.show();
             super.onPreExecute();

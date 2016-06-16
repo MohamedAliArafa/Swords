@@ -26,7 +26,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import rta.ae.sharekni.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,6 +38,7 @@ import java.net.URLEncoder;
 import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
 import rta.ae.sharekni.Arafa.DataModel.BestDriverDataModel;
+import rta.ae.sharekni.TakeATour.TakeATour;
 
 public class LoginApproved extends AppCompatActivity {
     //http://sharekni.sdgstaff.com/

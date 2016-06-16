@@ -6,9 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
-import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
-
-import rta.ae.sharekni.R;
+import rta.ae.sharekni.StartScreen.StartScreenActivity;
 
 
 public class SplashActivity extends AppCompatActivity {
@@ -58,7 +56,7 @@ public class SplashActivity extends AppCompatActivity {
 //do not intend to allow users to skip the splash
         if (isFinishing())
             return;
-        startActivity(new Intent(this, OnboardingActivity.class));
+        startActivity(new Intent(this, StartScreenActivity.class));
         finish();
     }
 

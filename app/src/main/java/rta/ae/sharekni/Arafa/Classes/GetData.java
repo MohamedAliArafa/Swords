@@ -33,7 +33,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-import rta.ae.sharekni.Arafa.Activities.Profile;
+import rta.ae.sharekni.Arafa.Activities.DriverDetails;
 import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModelDetails;
 import rta.ae.sharekni.Arafa.DataModelAdapter.BestRouteDataModelAdapterDetails;
 import rta.ae.sharekni.DriverCreatedRides;
@@ -331,7 +331,7 @@ public class GetData {
     public JSONArray Search(int myId, char gender, String time
             , int fromEmId, int fromRegId, int toEmId, int toRegId
             , int pref_lnag, String pref_nat, int age_Ranged_id
-            , String startDate, int saveFind, int Single_Periodic_ID, String Smokers, final Activity activity) throws JSONException {
+            , String startDate, int saveFind, int Single_Periodic_ID, String Smokers,int Start_Lat ,int Start_Lng,int End_Lat,int End_Lng,final Activity activity) throws JSONException {
         HandleXML obj = new HandleXML(QuickSearchUrl
                 + "AccountID=" + myId
                 + "&PreferredGender=" + gender
@@ -346,7 +346,11 @@ public class GetData {
                 + "&StartDate="
                 + "&SaveFind=" + saveFind
                 + "&IsPeriodic=" + Single_Periodic_ID
-                + "&IsSmoking=" + Smokers);
+                + "&IsSmoking=" + Smokers
+                + "&Start_Lat="+Start_Lat
+                + "&Start_Lng=" + Start_Lng
+                + "&End_Lat=" + End_Lat
+                + "&End_Lng=" + End_Lng);
         obj.fetchXML();
         while ((obj.parsingComplete && !obj.error)) ;
         Log.d("Test big", obj.getData());
@@ -883,7 +887,7 @@ public class GetData {
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Intent in = new Intent(context, Profile.class);
+                            Intent in = new Intent(context, DriverDetails.class);
                             in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             in.putExtra("DriverID", searchArray.get(position).getDriverId());
                             in.putExtra("PassengerID", Passenger_ID);
@@ -1006,7 +1010,7 @@ public class GetData {
 //                            if (ID != null) {
 //                                assert AccountType != null;
 
-                            Intent in = new Intent(context, Profile.class);
+                            Intent in = new Intent(context, DriverDetails.class);
                             in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             in.putExtra("DriverID", driver[i].getDriverId());
                             in.putExtra("PassengerID", Passenger_ID);

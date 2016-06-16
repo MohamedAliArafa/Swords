@@ -3,7 +3,6 @@ package rta.ae.sharekni.MainNavigationDrawerFragment;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
@@ -22,12 +21,12 @@ import com.pkmmte.view.CircularImageView;
 
 import java.util.Locale;
 
-import rta.ae.sharekni.Arafa.Activities.BestDriversBeforeLogin;
-import rta.ae.sharekni.Arafa.Activities.BestRideBeforeLogin;
+import rta.ae.sharekni.Arafa.Activities.BestDrivers;
+import rta.ae.sharekni.Arafa.Activities.MostRides;
 import rta.ae.sharekni.DriverAlertsForRequest;
-import rta.ae.sharekni.EditProfileTest;
-import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
-import rta.ae.sharekni.QSearch;
+import rta.ae.sharekni.EditProfile;
+import rta.ae.sharekni.StartScreen.StartScreenActivity;
+import rta.ae.sharekni.QuickSearch;
 import rta.ae.sharekni.R;
 
 
@@ -111,7 +110,7 @@ public class NavigationDrawerFragment extends Fragment {
         navy_TopRides.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), BestRideBeforeLogin.class);
+                Intent intent = new Intent(getContext(), MostRides.class);
                 startActivity(intent);
             }
         });
@@ -121,7 +120,7 @@ public class NavigationDrawerFragment extends Fragment {
         navy_BestDrivers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), BestDriversBeforeLogin.class);
+                Intent intent = new Intent(getContext(), BestDrivers.class);
                 startActivity(intent);
             }
         });
@@ -130,7 +129,7 @@ public class NavigationDrawerFragment extends Fragment {
         navy_SearchOptions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), QSearch.class);
+                Intent intent = new Intent(getContext(), QuickSearch.class);
                 startActivity(intent);
             }
         });
@@ -149,7 +148,7 @@ public class NavigationDrawerFragment extends Fragment {
         navy_Edit_Profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), EditProfileTest.class);
+                Intent intent = new Intent(getContext(), EditProfile.class);
                 startActivity(intent);
             }
         });
@@ -165,7 +164,7 @@ public class NavigationDrawerFragment extends Fragment {
                 editor.putString("account_id", null);
                 editor.putString("account_type","");
                 editor.commit();
-                Intent in = new Intent(getContext(), OnboardingActivity.class);
+                Intent in = new Intent(getContext(), StartScreenActivity.class);
                 in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(in);
             }

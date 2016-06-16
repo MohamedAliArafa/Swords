@@ -1,4 +1,4 @@
-package rta.ae.sharekni.OnBoardDir;
+package rta.ae.sharekni.StartScreen;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -14,8 +14,8 @@ import android.widget.RelativeLayout;
 
 import java.util.Locale;
 
-import rta.ae.sharekni.Arafa.Activities.BestDriversBeforeLogin;
-import rta.ae.sharekni.Arafa.Activities.BestRideBeforeLogin;
+import rta.ae.sharekni.Arafa.Activities.BestDrivers;
+import rta.ae.sharekni.Arafa.Activities.MostRides;
 import rta.ae.sharekni.R;
 
 
@@ -24,7 +24,7 @@ import rta.ae.sharekni.R;
  */
 
 
-public class OnboardingFragment2 extends Fragment {
+public class StartScreenFragment extends Fragment {
 
     RelativeLayout im_best_rides;
     RelativeLayout im_best_drivers;
@@ -96,7 +96,7 @@ public class OnboardingFragment2 extends Fragment {
         im_best_rides.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), BestRideBeforeLogin.class);
+                Intent intent = new Intent(getActivity(), MostRides.class);
                 startActivity(intent);
             }
         });
@@ -104,7 +104,7 @@ public class OnboardingFragment2 extends Fragment {
         im_best_drivers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), BestDriversBeforeLogin.class);
+                Intent intent = new Intent(getActivity(), BestDrivers.class);
                 startActivity(intent);
             }
         });

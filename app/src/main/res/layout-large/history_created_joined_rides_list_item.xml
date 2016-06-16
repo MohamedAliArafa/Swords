@@ -137,59 +137,59 @@
             android:textSize="15sp" />
 
         <!--<TextView-->
-            <!--android:id="@+id/StartFromTime"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignLeft="@+id/em_to"-->
-            <!--android:layout_alignStart="@+id/em_to"-->
-            <!--android:layout_below="@+id/em_to"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:lines="1"-->
-            <!--android:maxLength="8"-->
-            <!--android:maxLines="1"-->
-            <!--android:text="00:00 AM"-->
-            <!--android:textSize="16sp"-->
+        <!--android:id="@+id/StartFromTime"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignLeft="@+id/em_to"-->
+        <!--android:layout_alignStart="@+id/em_to"-->
+        <!--android:layout_below="@+id/em_to"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:lines="1"-->
+        <!--android:maxLength="8"-->
+        <!--android:maxLines="1"-->
+        <!--android:text="00:00 AM"-->
+        <!--android:textSize="16sp"-->
 
-            <!--/>-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/comma6"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignBottom="@+id/StartFromTime"-->
-            <!--android:layout_marginLeft="5dp"-->
-            <!--android:layout_marginRight="5dp"-->
-            <!--android:layout_toEndOf="@+id/StartFromTime"-->
-            <!--android:layout_toRightOf="@+id/StartFromTime"-->
-            <!--android:text="-"-->
-            <!--android:textSize="16sp"-->
-
-
-            <!--/>-->
+        <!--/>-->
 
         <!--<TextView-->
-            <!--android:id="@+id/EndToTime_"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignBottom="@+id/StartFromTime"-->
-            <!--android:layout_toEndOf="@+id/comma6"-->
-            <!--android:layout_toRightOf="@+id/comma6"-->
-            <!--android:lines="1"-->
-            <!--android:maxLength="8"-->
-            <!--android:maxLines="1"-->
-            <!--android:text="00:24 PM"-->
-            <!--android:textSize="16sp" />-->
+        <!--android:id="@+id/comma6"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignBottom="@+id/StartFromTime"-->
+        <!--android:layout_marginLeft="5dp"-->
+        <!--android:layout_marginRight="5dp"-->
+        <!--android:layout_toEndOf="@+id/StartFromTime"-->
+        <!--android:layout_toRightOf="@+id/StartFromTime"-->
+        <!--android:text="-"-->
+        <!--android:textSize="16sp"-->
+
+
+        <!--/>-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/EndToTime_"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignBottom="@+id/StartFromTime"-->
+        <!--android:layout_toEndOf="@+id/comma6"-->
+        <!--android:layout_toRightOf="@+id/comma6"-->
+        <!--android:lines="1"-->
+        <!--android:maxLength="8"-->
+        <!--android:maxLines="1"-->
+        <!--android:text="00:24 PM"-->
+        <!--android:textSize="16sp" />-->
 
 
         <!--<TextView-->
-            <!--android:id="@+id/driver_profile_dayWeek"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignLeft="@+id/StartFromTime"-->
-            <!--android:layout_alignStart="@+id/StartFromTime"-->
-            <!--android:layout_below="@+id/StartFromTime"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:textSize="16sp" />-->
+        <!--android:id="@+id/driver_profile_dayWeek"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignLeft="@+id/StartFromTime"-->
+        <!--android:layout_alignStart="@+id/StartFromTime"-->
+        <!--android:layout_below="@+id/StartFromTime"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:textSize="16sp" />-->
 
 
         <!--<RelativeLayout-->

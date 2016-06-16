@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="rta.ae.sharekni.HistoryNew"
     android:background="@color/white"
-    >
+    tools:context="rta.ae.sharekni.HistoryNew">
 
     <include
         android:id="@+id/app_bar"
@@ -18,117 +17,125 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/app_bar"
-        android:background="@color/white"
-        >
+        android:background="@color/white">
 
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
 
             <RelativeLayout
-                android:id="@+id/history_created_rides_realtive"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/borders">
+                android:layout_height="wrap_content">
 
-                <ListView
-                    android:id="@+id/user_ride_created"
+
+                <RelativeLayout
+                    android:id="@+id/history_created_rides_realtive"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="40dp"
-                    android:layout_marginTop="20dp"
-                    android:divider="@color/primaryColor"
-                    android:dividerHeight="0.5dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/borders">
 
-                    >
+                    <ListView
+                        android:id="@+id/user_ride_created"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="40dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="20dp"
+                        android:divider="@color/primaryColor"
+                        android:dividerHeight="0.5dp"
 
-                </ListView>
+                        >
 
+                    </ListView>
+
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/driver_profile_RouteEnName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="19dp"
+                    android:background="@drawable/testborder1"
+                    android:gravity="center_horizontal|center"
+                    android:paddingEnd="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingStart="20dp"
+                    android:text="@string/created_rides"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
-
-            <TextView
-                android:id="@+id/driver_profile_RouteEnName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="19dp"
-                android:background="@drawable/testborder1"
-                android:gravity="center_horizontal|center"
-                android:paddingEnd="20dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:paddingStart="20dp"
-                android:text="@string/created_rides"
-                android:textSize="20sp"
-                android:textStyle="bold" />
 
 
             <RelativeLayout
-                android:id="@+id/history_joined_rides_realtive"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/history_created_rides_realtive"
-                android:layout_marginEnd="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/borders">
+                android:layout_height="wrap_content">
 
-
-                <ListView
-                    android:id="@+id/Passenger_Approved_Rides_Lv"
+                <RelativeLayout
+                    android:id="@+id/history_joined_rides_realtive"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="40dp"
-                    android:divider="@color/primaryColor"
-                    android:dividerHeight="0.5dp"
-                    >
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/borders">
 
 
-                </ListView>
+                    <ListView
+                        android:id="@+id/Passenger_Approved_Rides_Lv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="40dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:divider="@color/primaryColor"
+                        android:dividerHeight="0.5dp">
 
+
+                    </ListView>
+
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/driver_profile_RouteEnName2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="19dp"
+                    android:background="@drawable/testborder1"
+                    android:gravity="center_horizontal|center"
+                    android:paddingEnd="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingStart="20dp"
+                    android:text="@string/joined_rides"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
 
-
-            <TextView
-                android:id="@+id/driver_profile_RouteEnName2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/history_created_rides_realtive"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="19dp"
-                android:background="@drawable/testborder1"
-                android:gravity="center_horizontal|center"
-                android:paddingEnd="20dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:paddingStart="20dp"
-                android:text="@string/joined_rides"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-
-        </RelativeLayout>
-
+        </LinearLayout>
 
     </ScrollView>
 

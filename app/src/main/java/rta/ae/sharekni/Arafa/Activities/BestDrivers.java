@@ -36,7 +36,7 @@ import rta.ae.sharekni.Arafa.DataModel.BestDriverDataModel;
 import rta.ae.sharekni.Arafa.DataModelAdapter.BestDriverDataModelAdapter;
 import rta.ae.sharekni.R;
 
-public class BestDriversBeforeLogin extends AppCompatActivity {
+public class BestDrivers extends AppCompatActivity {
 
     TextView tv;
     ListView lv;
@@ -45,7 +45,7 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_arafa);
+        setContentView(R.layout.best_drivers);
 
         tv = (TextView) findViewById(R.id.info);
         lv = (ListView) findViewById(R.id.lvMain);
@@ -69,9 +69,9 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            adapter = new BestDriverDataModelAdapter(BestDriversBeforeLogin.this, arr);
+            adapter = new BestDriverDataModelAdapter(BestDrivers.this, arr);
             lv.setAdapter(adapter);
-            pDialog = new ProgressDialog(BestDriversBeforeLogin.this);
+            pDialog = new ProgressDialog(BestDrivers.this);
             pDialog.setMessage(getString(R.string.loading) + "...");
             pDialog.setIndeterminate(false);
             pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -84,11 +84,11 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        Intent in = new Intent(BestDriversBeforeLogin.this, Profile.class);
+                        Intent in = new Intent(BestDrivers.this, DriverDetails.class);
                         in.putExtra("DriverID", arr.get(i).getID());
                         Log.d("Array Id :", String.valueOf(arr.get(i).getID()));
                         in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        BestDriversBeforeLogin.this.startActivity(in);
+                        BestDrivers.this.startActivity(in);
                     }
                 });
             }
@@ -121,7 +121,7 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
                 e.printStackTrace();
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        new AlertDialog.Builder(BestDriversBeforeLogin.this)
+                        new AlertDialog.Builder(BestDrivers.this)
                                 .setTitle(getString(R.string.connection_problem))
                                 .setMessage(getString(R.string.con_problem_message))
                                 .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
@@ -135,7 +135,7 @@ public class BestDriversBeforeLogin extends AppCompatActivity {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(BestDriversBeforeLogin.this,getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BestDrivers.this,getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }

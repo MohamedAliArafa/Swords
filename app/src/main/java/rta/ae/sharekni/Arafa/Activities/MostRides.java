@@ -33,7 +33,7 @@ import rta.ae.sharekni.Arafa.DataModelAdapter.BestRouteDataModelAdapter;
 import rta.ae.sharekni.MostRidesDetails;
 import rta.ae.sharekni.R;
 
-public class BestRideBeforeLogin extends AppCompatActivity {
+public class MostRides extends AppCompatActivity {
 
 
     ListView lv;
@@ -60,7 +60,7 @@ public class BestRideBeforeLogin extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
 
-            pDialog = new ProgressDialog(BestRideBeforeLogin.this);
+            pDialog = new ProgressDialog(MostRides.this);
             pDialog.setMessage(getString(R.string.loading) + "...");
             pDialog.setIndeterminate(false);
             pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -70,18 +70,18 @@ public class BestRideBeforeLogin extends AppCompatActivity {
         @Override
         protected void onPostExecute(Object o) {
             if (exists){
-                BestRouteDataModelAdapter arrayAdapter = new BestRouteDataModelAdapter(BestRideBeforeLogin.this, R.layout.top_rides_custom_row, driver);
+                BestRouteDataModelAdapter arrayAdapter = new BestRouteDataModelAdapter(MostRides.this, R.layout.top_rides_custom_row, driver);
                 lv.setAdapter(arrayAdapter);
                 lv.requestLayout();
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        Intent in = new Intent(BestRideBeforeLogin.this, MostRidesDetails.class);
+                        Intent in = new Intent(MostRides.this, MostRidesDetails.class);
                         in.putExtra("ID", i);
                         Bundle b = new Bundle();
                         b.putParcelable("Data", driver[i]);
                         in.putExtras(b);
-                        BestRideBeforeLogin.this.startActivity(in);
+                        MostRides.this.startActivity(in);
                     }
                 });
             }
@@ -107,7 +107,7 @@ public class BestRideBeforeLogin extends AppCompatActivity {
                 e.printStackTrace();
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        new AlertDialog.Builder(BestRideBeforeLogin.this)
+                        new AlertDialog.Builder(MostRides.this)
                                 .setTitle(getString(R.string.connection_problem))
                                 .setMessage(getString(R.string.con_problem_message))
                                 .setPositiveButton(getString(R.string.retry), new DialogInterface.OnClickListener() {
@@ -121,7 +121,7 @@ public class BestRideBeforeLogin extends AppCompatActivity {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(BestRideBeforeLogin.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MostRides.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }

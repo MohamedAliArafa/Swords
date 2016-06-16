@@ -36,7 +36,7 @@ import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.List;
 
-import rta.ae.sharekni.Arafa.Activities.Profile;
+import rta.ae.sharekni.Arafa.Activities.DriverDetails;
 import rta.ae.sharekni.Arafa.Classes.GetData;
 
 
@@ -318,7 +318,7 @@ public class QuickSearchResults extends AppCompatActivity {
                             lvResult.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                    Intent in = new Intent(QuickSearchResults.this, Profile.class);
+                                    Intent in = new Intent(QuickSearchResults.this, DriverDetails.class);
                                     in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                     in.putExtra("DriverID", searchArray.get(position).getDriverId());
                                     in.putExtra("PassengerID", ID);
@@ -939,7 +939,7 @@ public class QuickSearchResults extends AppCompatActivity {
                             lvResult.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                    Intent in = new Intent(QuickSearchResults.this, Profile.class);
+                                    Intent in = new Intent(QuickSearchResults.this, DriverDetails.class);
                                     in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                     in.putExtra("DriverID", searchArray.get(position).getDriverId());
                                     in.putExtra("PassengerID", ID);
@@ -1032,7 +1032,7 @@ public class QuickSearchResults extends AppCompatActivity {
                         try {
                             jArray = j.Search(0, Gender, Time, From_Em_Id
                                     , From_Reg_Id, To_Em_Id, To_Reg_Id, Language_ID, Nat_ID
-                                    , Advanced_Search_Age_Range_ID, StartDate, saveFind, Single_Periodic_ID, Smokers, acivity);
+                                    , Advanced_Search_Age_Range_ID, StartDate, saveFind, Single_Periodic_ID, Smokers,0,0,0,0, acivity);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -1041,7 +1041,7 @@ public class QuickSearchResults extends AppCompatActivity {
                         try {
                             jArray = j.Search(0, Gender, Time, From_Em_Id
                                     , From_Reg_Id, To_Em_Id, To_Reg_Id, Language_ID, Nat_ID
-                                    , Advanced_Search_Age_Range_ID, StartDate, saveFind, Single_Periodic_ID, Smokers, acivity);
+                                    , Advanced_Search_Age_Range_ID, StartDate, saveFind, Single_Periodic_ID, Smokers,0,0,0,0, acivity);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -1053,7 +1053,7 @@ public class QuickSearchResults extends AppCompatActivity {
                     try {
                         jArray = j.Search(Integer.parseInt(ID), Gender, Time, From_Em_Id
                                 , From_Reg_Id, To_Em_Id, To_Reg_Id, Language_ID, Nat_ID
-                                , Advanced_Search_Age_Range_ID, StartDate, saveFind, Single_Periodic_ID, Smokers, acivity);
+                                , Advanced_Search_Age_Range_ID, StartDate, saveFind, Single_Periodic_ID, Smokers,0,0,0,0, acivity);
                     } catch (JSONException e) {
                         error = true;
                         e.printStackTrace();

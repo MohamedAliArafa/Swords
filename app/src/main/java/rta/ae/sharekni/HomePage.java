@@ -54,10 +54,10 @@ import rta.ae.sharekni.Arafa.Classes.AppController;
 import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.Arafa.Classes.ImageDecoder;
 import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
-import rta.ae.sharekni.Arafa.DataModel.BestDriverDataModel;
 import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
+import rta.ae.sharekni.MainActivityClass.Sharekni;
 import rta.ae.sharekni.MainNavigationDrawerFragment.NavigationDrawerFragment;
-import rta.ae.sharekni.OnBoardDir.OnboardingActivity;
+import rta.ae.sharekni.StartScreen.StartScreenActivity;
 
 
 public class HomePage extends AppCompatActivity implements View.OnClickListener {
@@ -149,8 +149,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
         }
         try {
-            if (OnboardingActivity.getInstance() != null) {
-                OnboardingActivity.getInstance().finish();
+            if (StartScreenActivity.getInstance() != null) {
+                StartScreenActivity.getInstance().finish();
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -1060,7 +1060,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
             Edit_Profile_Im.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(getBaseContext(), EditProfileTest.class);
+                    Intent intent = new Intent(getBaseContext(), EditProfile.class);
                     startActivity(intent);
                 }
             });
@@ -1142,7 +1142,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
             Relative_quickSearch.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(getBaseContext(), QSearch.class);
+                    Intent intent = new Intent(getBaseContext(), QuickSearch.class);
                     intent.putExtra("PassengerId", ID);
                     startActivity(intent);
 

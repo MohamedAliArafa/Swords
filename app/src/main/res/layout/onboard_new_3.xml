@@ -26,32 +26,18 @@
             android:src="@drawable/shareknilogo" />
 
 
-
         <ImageView
+            android:id="@+id/OnBoard_Changelanguae"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:id="@+id/OnBoard_Changelanguae"
-            android:src="@drawable/aricon"
-            >
+            android:layout_marginTop="10dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:src="@drawable/aricon">
+
         </ImageView>
-
-
-
-        <!--<ImageView-->
-        <!--android:layout_width="160dp"-->
-        <!--android:layout_height="45dp"-->
-        <!--android:src="@drawable/onboardbestdrivers"-->
-        <!--android:layout_marginBottom="45dp"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:id="@+id/im_best_drivers"-->
-
-        <!--/>-->
 
 
         <RelativeLayout
@@ -62,10 +48,8 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="45dp"
             android:background="@drawable/bestdrivers_border"
-            android:paddingRight="5dp"
             android:paddingLeft="5dp"
-            >
-
+            android:paddingRight="5dp">
 
 
             <ImageView
@@ -86,32 +70,17 @@
                 android:layout_marginStart="5dp"
                 android:layout_toEndOf="@+id/splash_best_drivers_im"
                 android:layout_toRightOf="@+id/splash_best_drivers_im"
+                android:lines="1"
+                android:maxLines="1"
+                android:singleLine="true"
                 android:text="@string/onboard_best_drivers"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                android:singleLine="true"
-                android:lines="1"
-                android:maxLines="1"
                 android:textStyle="bold"
 
                 />
 
-
-
-
-            </RelativeLayout>
-
-        <!--<ImageView-->
-        <!--android:layout_width="240dp"-->
-        <!--android:layout_height="65dp"-->
-        <!--android:src="@drawable/onboardbestrides"-->
-        <!--android:layout_above="@+id/im_best_drivers"-->
-        <!--android:layout_alignLeft="@+id/im_best_drivers"-->
-        <!--android:layout_alignStart="@+id/im_best_drivers"-->
-        <!--android:layout_marginBottom="3dp"-->
-        <!--android:id="@+id/im_best_rides"-->
-        <!--/>-->
-
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/im_best_rides"
@@ -149,12 +118,9 @@
                 android:text="@string/onboard_most_rides"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                />
-
+                android:textStyle="bold" />
 
         </RelativeLayout>
-
 
     </RelativeLayout>
 

@@ -31,7 +31,7 @@ import java.net.Socket;
 import java.net.SocketAddress;
 import java.util.ArrayList;
 
-import rta.ae.sharekni.Arafa.Activities.Profile;
+import rta.ae.sharekni.Arafa.Activities.DriverDetails;
 import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
 import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModelDetails;
@@ -212,7 +212,7 @@ public class MostRidesDetails extends AppCompatActivity {
                             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                    Intent in = new Intent(MostRidesDetails.this, Profile.class);
+                                    Intent in = new Intent(MostRidesDetails.this, DriverDetails.class);
                                     in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                     in.putExtra("DriverID", driver[i].getDriverId());
                                     in.putExtra("PassengerID", ID);

@@ -81,6 +81,7 @@ import java.util.regex.Pattern;
 
 import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.LogIN.RegisterJsonParse;
+import rta.ae.sharekni.TakeATour.TakeATour;
 
 public class RegisterNewTest extends AppCompatActivity implements View.OnClickListener {
 
