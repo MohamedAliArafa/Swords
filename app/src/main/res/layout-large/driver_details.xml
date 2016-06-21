@@ -125,10 +125,10 @@
                             >
 
                             <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="25dp"
+                                android:layout_width="40dp"
+                                android:layout_height="45dp"
                                 android:layout_gravity="center_horizontal"
-                                android:layout_marginBottom="-8dp"
+                                android:layout_marginBottom="-15dp"
                                 android:src="@drawable/leaf" />
 
                             <View
@@ -154,6 +154,7 @@
                                 android:maxLines="1"
                                 android:text=""
                                 android:textColor="#4a7e03"
+                                android:textSize="19sp"
 
                                 />
 
@@ -165,7 +166,7 @@
                                 android:lines="1"
                                 android:maxLines="1"
                                 android:text="@string/points_str"
-                                android:textSize="13sp" />
+                                android:textSize="17sp" />
 
 
                         </LinearLayout>
@@ -179,10 +180,10 @@
                             >
 
                             <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="25dp"
+                                android:layout_width="40dp"
+                                android:layout_height="45dp"
                                 android:layout_gravity="center_horizontal"
-                                android:layout_marginBottom="-8dp"
+                                android:layout_marginBottom="-15dp"
                                 android:src="@drawable/leaf" />
 
                             <View
@@ -207,6 +208,8 @@
                                 android:lines="1"
                                 android:maxLines="1"
                                 android:text=""
+                                android:textSize="19sp"
+
                                 android:textColor="#4a7e03" />
 
                             <TextView
@@ -217,7 +220,7 @@
                                 android:lines="1"
                                 android:maxLines="1"
                                 android:text="@string/km_str"
-                                android:textSize="13sp"
+                                android:textSize="17sp"
 
                                 />
 
@@ -234,10 +237,10 @@
                             >
 
                             <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="25dp"
+                                android:layout_width="40dp"
+                                android:layout_height="45dp"
                                 android:layout_gravity="center_horizontal"
-                                android:layout_marginBottom="-8dp"
+                                android:layout_marginBottom="-15dp"
                                 android:src="@drawable/leaf" />
 
                             <View
@@ -262,6 +265,8 @@
                                 android:lines="1"
                                 android:maxLines="1"
                                 android:text=""
+                                android:textSize="19sp"
+
                                 android:textColor="#4a7e03" />
 
                             <TextView
@@ -272,7 +277,7 @@
                                 android:lines="1"
                                 android:maxLines="1"
                                 android:text="@string/routes_str"
-                                android:textSize="13sp" />
+                                android:textSize="17sp" />
 
 
                         </LinearLayout>
@@ -287,10 +292,10 @@
                             >
 
                             <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="25dp"
+                                android:layout_width="40dp"
+                                android:layout_height="45dp"
                                 android:layout_gravity="center_horizontal"
-                                android:layout_marginBottom="-8dp"
+                                android:layout_marginBottom="-15dp"
                                 android:src="@drawable/leaf" />
 
                             <View
@@ -315,6 +320,8 @@
                                 android:lines="1"
                                 android:maxLines="1"
                                 android:text=""
+                                android:textSize="19sp"
+
                                 android:textColor="#4a7e03" />
 
                             <TextView
@@ -325,7 +332,7 @@
                                 android:lines="1"
                                 android:maxLines="1"
                                 android:text="@string/vehicles_str"
-                                android:textSize="13sp" />
+                                android:textSize="17sp" />
 
 
                         </LinearLayout>
@@ -335,11 +342,15 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:layout_weight="3.3"
                         android:background="@drawable/green_point_border"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        >
 
                         <RelativeLayout
                             android:id="@+id/Green1"
@@ -350,8 +361,8 @@
 
                             <ImageView
                                 android:id="@+id/GreenPointCar_im"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
                                 android:layout_marginEnd="-5dp"
                                 android:layout_marginRight="-5dp"
                                 android:src="@drawable/greenpointcar"
@@ -367,7 +378,7 @@
                                 android:layout_toRightOf="@+id/GreenPointCar_im"
                                 android:text="@string/co2_saving"
                                 android:textColor="#4a7e03"
-                                android:textSize="9sp" />
+                                android:textSize="13sp" />
 
                         </RelativeLayout>
 
@@ -389,7 +400,7 @@
                                 android:lines="1"
                                 android:maxLines="1"
                                 android:text=""
-                                android:textSize="13sp" />
+                                android:textSize="16sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -401,7 +412,7 @@
                                 android:lines="1"
                                 android:maxLines="1"
                                 android:text="@string/kg_str"
-                                android:textSize="12sp" />
+                                android:textSize="15sp" />
 
                         </RelativeLayout>
 
@@ -414,8 +425,8 @@
 
                 <ImageView
                     android:id="@+id/profile_msg"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_below="@+id/NationalityEnName"
@@ -426,8 +437,8 @@
 
                 <ImageView
                     android:id="@+id/profile_call"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_below="@+id/NationalityEnName"
                     android:layout_toLeftOf="@+id/profile_msg"
                     android:layout_toStartOf="@+id/profile_msg"

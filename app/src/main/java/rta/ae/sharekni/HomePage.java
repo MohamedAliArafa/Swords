@@ -337,14 +337,6 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                     DriverMyRidesCount_str += ")";
                     DriverMyRidesCount.setText(DriverMyRidesCount_str);
                     DriverMyAlertsCount.setText(String.valueOf(All_Alerts));
-
-//                if (DRIVER_ALERTS_COUNT>0){
-//
-//
-//
-//                }
-
-
                     DriverMyAlertsCount.setText(String.valueOf(All_Alerts));
 
                 } catch (JSONException e) {

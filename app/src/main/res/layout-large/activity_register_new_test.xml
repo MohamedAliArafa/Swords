@@ -16,7 +16,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="90dp"
             android:layout_marginTop="10dp">
 
 
@@ -24,6 +24,7 @@
                 android:id="@+id/both_toggle"
                 android:layout_width="@dimen/Register_UserTypre_Image_Width"
                 android:layout_height="@dimen/Register_UserType_Image_Height"
+
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
@@ -95,19 +96,18 @@
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/FirstName_Linear"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/Register_Input_Fields_Height"
-                android:background="@drawable/user_register_border"
-                android:orientation="horizontal"
-                android:layout_weight="1"
-                android:layout_marginRight="5dp"
                 android:layout_marginEnd="5dp"
-                >
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/user_register_border"
+                android:orientation="horizontal">
 
 
                 <EditText
@@ -139,11 +139,10 @@
                 android:id="@+id/LastName_Linear"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/Register_Input_Fields_Height"
-                android:background="@drawable/user_register_border"
-                android:layout_weight="1"
-                android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
-                >
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/user_register_border">
 
 
                 <EditText
@@ -183,7 +182,7 @@
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/user_register_border"
             android:orientation="horizontal">
 
@@ -226,7 +225,7 @@
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/user_register_border">
 
             <EditText
@@ -258,7 +257,7 @@
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/user_register_border">
 
             <EditText
@@ -320,11 +319,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -332,8 +331,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/Register_Input_Fields_Height"
                 android:layout_marginBottom="10dp"
-                android:layout_marginRight="5dp"
                 android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/user_register_border">
@@ -344,6 +343,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/borders_edit_txt_user_register"
+                    android:gravity="center_vertical"
                     android:hint="@string/Reg_PrefLang"
                     android:lines="1"
                     android:maxLines="1"
@@ -355,7 +355,7 @@
                     android:singleLine="true"
                     android:textColor="@color/primaryColor"
                     android:textColorHint="@color/primaryColor"
-                    android:textSize="14sp" />
+                    android:textSize="15sp" />
 
 
             </LinearLayout>
@@ -368,9 +368,8 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/user_register_border"
                 android:layout_weight="1"
-                >
+                android:background="@drawable/user_register_border">
 
                 <CheckBox
                     android:id="@+id/AgeCheckBox"
@@ -394,7 +393,7 @@
                     android:layout_toRightOf="@id/AgeCheckBox"
                     android:text="+18 years"
                     android:textColor="@color/primaryColor"
-                    android:textSize="15sp" />
+                    android:textSize="16sp" />
 
 
                 <!--<ImageView-->
@@ -470,9 +469,7 @@
             </RelativeLayout>
 
 
-
         </LinearLayout>
-
 
 
         <RelativeLayout
@@ -481,7 +478,7 @@
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/user_register_border">
 
 
@@ -537,15 +534,16 @@
         <Button
             android:id="@+id/btnUploadPhotoReg"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/user_register_border_button"
             android:text="@string/reg_upload_photo"
             android:textAllCaps="false"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
 
 
         <RelativeLayout
@@ -554,7 +552,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="10dp">
 
 
             <RelativeLayout
@@ -571,7 +569,7 @@
                     android:layout_marginTop="10dp"
                     android:text="@string/reg_accept_rta"
 
-                    android:textSize="13sp"
+                    android:textSize="15sp"
 
                     />
 
@@ -584,7 +582,7 @@
                     android:layout_toEndOf="@+id/txt_terms"
                     android:layout_toRightOf="@+id/txt_terms"
                     android:textColor="@color/primaryColor"
-                    android:textSize="13sp" />
+                    android:textSize="15sp" />
 
 
                 <TextView
@@ -595,7 +593,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
                     android:text=""
-                    android:textSize="13sp" />
+                    android:textSize="15sp" />
 
             </RelativeLayout>
 
@@ -603,14 +601,15 @@
             <Button
                 android:id="@+id/btn_register_id"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_below="@+id/terms_relative"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/user_register_border_button"
                 android:text="@string/reg_save"
                 android:textAllCaps="false"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
 
         </RelativeLayout>
 

@@ -85,7 +85,6 @@ public class NavigationDrawerFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
-//        navy_homePage= (RelativeLayout) layout.findViewById(R.id.navy_homePage);
         navy_TopRides= (RelativeLayout) layout.findViewById(R.id.navy_TopRides);
         navy_BestDrivers= (RelativeLayout) layout.findViewById(R.id.navy_BestDrivers);
         navy_SearchOptions= (RelativeLayout) layout.findViewById(R.id.navy_SearchOptions);
@@ -201,83 +200,6 @@ public class NavigationDrawerFragment extends Fragment {
 
         }
 
-
-
-
-//        if (!HomePage.ImagePhotoPath.equals("")) {
-//            Navy_Photo_Path = HomePage.ImagePhotoPath;
-//            ImageDecoder im = new ImageDecoder();
-//            im.stringRequest(Navy_Photo_Path, circularImageView, getContext());
-//            Log.d("test navy", Navy_Photo_Path);
-//
-//        }else {
-//            Log.d("test navy","blank");
-//
-//        }
-
-
-
-
-        //mrecyclerView = (RecyclerView) layout.findViewById(R.id.drawer_list);
-
-      //  mrecyclerView.setHasFixedSize(true);
-//
-//        // use a linear layout manager
-//        mLayoutManager = new LinearLayoutManager(getActivity());
-//        mrecyclerView.setLayoutManager(mLayoutManager);
-//
-//        final DataListModel[] dataListModel = new DataListModel[7];
-//3
-//        DataListModel object1 = new DataListModel();
-//        object1.setTitle("Top Rides");
-//        object1.setImage(R.drawable.ic_launcher);
-//        dataListModel[0]=object1;
-//
-//
-//        DataListModel object2 =  new DataListModel();
-//        object2.setTitle("Top Drivers");
-//        object2.setImage(R.drawable.ic_launcher);
-//        dataListModel[1]=object2;
-//
-//
-//        DataListModel object3 =  new DataListModel();
-//        object3.setTitle("My Profile");
-//        object3.setImage(R.drawable.ic_launcher);
-//        dataListModel[2]=object3;
-//
-//        DataListModel object4 =  new DataListModel();
-//        object4.setTitle("Nezar");
-//        object4.setImage(R.drawable.ic_launcher);
-//        dataListModel[3]=object4;
-//
-//
-//        DataListModel object5 =  new DataListModel();
-//        object5.setTitle("Nezar");
-//        object5.setImage(R.drawable.ic_launcher);
-//        dataListModel[4]=object5;
-//
-//
-//        DataListModel objecct6 =  new DataListModel();
-//        objecct6.setTitle("Nezar");
-//        objecct6.setImage(R.drawable.ic_launcher);
-//        dataListModel[5]=objecct6;
-//
-//        DataListModel object7 =  new DataListModel();
-//        object7.setTitle("Nezar");
-//        object7.setImage(R.drawable.ic_launcher);
-//        dataListModel[6]=object7;
-//
-//
-//
-//
-//
-//
-//        // specify an adapter (see also next example)
-//        mAdapter = new MyAdapter(dataListModel);
-//        mrecyclerView.setAdapter(mAdapter);
-//
-//
-//
 
         return layout;
 

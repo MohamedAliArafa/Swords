@@ -13,7 +13,6 @@
 
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:map="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/map_ride_details"
         android:name="com.google.android.gms.maps.SupportMapFragment"
@@ -275,6 +274,7 @@
                         android:layout_marginBottom="10dp"
                         android:background="@drawable/driver_details_btn"
                         android:text="@string/review"
+                        android:textSize="18sp"
                         android:textAllCaps="false" />
                     <RatingBar
                         android:layout_width="wrap_content"
@@ -344,7 +344,7 @@
                             android:layout_marginRight="30dp"
                             android:layout_marginTop="20dp"
                             android:text="@string/language"
-                            android:textSize="14sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/PrefLanguageEnName"
@@ -358,7 +358,7 @@
                             android:layout_toEndOf="@+id/ride_details_lang_txt"
                             android:layout_toRightOf="@+id/ride_details_lang_txt"
                             android:text="Languag"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                             android:textStyle="bold"
 
                             />
@@ -371,7 +371,7 @@
                             android:layout_marginEnd="40dp"
                             android:layout_marginRight="40dp"
                             android:text="@string/age_range"
-                            android:textSize="14sp" />
+                            android:textSize="16sp" />
 
 
                         <TextView
@@ -384,7 +384,7 @@
                             android:lines="1"
                             android:maxLines="1"
                             android:text="AgeRange"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                             android:textStyle="bold" />
 
 
@@ -397,7 +397,7 @@
                             android:layout_below="@+id/ride_details_lang_txt"
                             android:layout_marginTop="15dp"
                             android:text="@string/gender"
-                            android:textSize="14sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/PreferredGender"
@@ -409,7 +409,7 @@
                             android:layout_toEndOf="@+id/ride_details_Gender_txt"
                             android:layout_toRightOf="@+id/ride_details_Gender_txt"
                             android:text="Gender"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                             android:textStyle="bold"
 
                             />
@@ -419,7 +419,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/ride_details_age_range_txt"
                             android:text="@string/smokers"
-                            android:textSize="14sp"
+                            android:textSize="16sp"
                             android:layout_marginTop="15dp"
                             android:id="@+id/ride_details_smokers_txt"
                             />
@@ -434,7 +434,7 @@
                             android:lines="1"
                             android:maxLines="1"
                             android:text="IsSmoking"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                             android:textStyle="bold"
 
                             />
@@ -449,7 +449,7 @@
                             android:layout_marginBottom="15dp"
                             android:layout_marginTop="15dp"
                             android:text="@string/nationality"
-                            android:textSize="14sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/NationalityEnName"
@@ -459,7 +459,7 @@
                             android:layout_alignLeft="@+id/AgeRange"
                             android:layout_alignStart="@+id/AgeRange"
                             android:text="@string/nat_name2"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                             android:textStyle="bold"
 
                             />
@@ -481,7 +481,7 @@
                         android:paddingStart="20dp"
                         android:text="@string/pref"
                         android:textColor="@color/primaryColor"
-                        android:textSize="17sp" />
+                        android:textSize="19sp" />
 
 
                     <RelativeLayout
@@ -524,7 +524,7 @@
                         android:paddingStart="20dp"
                         android:text="@string/reviews"
                         android:textColor="@color/primaryColor"
-                        android:textSize="17sp" />
+                        android:textSize="19sp" />
 
 
                     <RelativeLayout
@@ -538,12 +538,13 @@
                         >
                         <Button
                             android:id="@+id/Join_Ride_btn"
-                            android:layout_width="100dp"
-                            android:layout_height="40dp"
+                            android:layout_width="160dp"
+                            android:layout_height="60dp"
                             android:layout_marginBottom="10dp"
                             android:layout_marginTop="20dp"
                             android:background="@drawable/user_register_border_button"
                             android:text="@string/join_ride"
+                            android:textSize="18sp"
                             android:textAllCaps="false"
                             android:textColor="#FFFFFF" />
 

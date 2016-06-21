@@ -39,12 +39,12 @@
 
                 <com.pkmmte.view.CircularImageView
                     android:id="@+id/profilepic"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="70dp"
                     android:src="@drawable/defaultdriver"
                     app:border="true"
                     app:border_color="#EEEEEE"
@@ -54,8 +54,8 @@
 
                 <ImageView
                     android:id="@+id/Edit_Profile_Im"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
@@ -66,8 +66,8 @@
 
                 <ImageView
                     android:id="@+id/Home_rate_icon"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_alignBottom="@+id/Edit_Profile_Im"
                     android:layout_marginEnd="5dp"
                     android:layout_marginRight="5dp"
@@ -75,18 +75,6 @@
                     android:layout_toStartOf="@+id/Edit_Profile_Im"
 
                     android:src="@drawable/rate" />
-
-                <!--<ImageView-->
-                <!--android:id="@+id/Home_rate_icon"-->
-                <!--android:layout_width="30dp"-->
-                <!--android:layout_height="30dp"-->
-                <!--android:layout_alignBottom="@+id/Edit_Profile_Im"-->
-                <!--android:layout_marginEnd="5dp"-->
-                <!--android:layout_marginRight="5dp"-->
-                <!--android:layout_toLeftOf="@+id/Edit_Profile_Im"-->
-                <!--android:layout_toStartOf="@+id/Edit_Profile_Im"-->
-
-                <!--android:src="@drawable/rate" />-->
 
                 <TextView
                     android:id="@+id/textView"
@@ -99,7 +87,7 @@
                     android:layout_toStartOf="@+id/Home_rate_icon"
                     android:text="4.3"
                     android:textColor="@color/gray_before_login"
-                    android:textSize="20sp" />
+                    android:textSize="21sp" />
 
 
                 <RelativeLayout
@@ -114,8 +102,8 @@
 
 
                     <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="40dp"
+                        android:layout_width="90dp"
+                        android:layout_height="60dp"
                         android:src="@drawable/notifications" />
 
                     <TextView
@@ -127,7 +115,7 @@
                         android:gravity="center"
                         android:text=""
                         android:textColor="@color/primaryColor"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
 
@@ -142,7 +130,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
                     android:text=""
-                    android:textSize="20sp"
+                    android:textSize="22sp"
                     android:textStyle="bold"
 
                     />
@@ -174,7 +162,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:textSize="14sp"
+                        android:textSize="16sp"
 
                         />
 
@@ -195,14 +183,14 @@
                     android:layout_toEndOf="@+id/Mobile_Number_Relative"
                     android:layout_toRightOf="@+id/Mobile_Number_Relative"
                     android:text="@string/Verify_str"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     android:textColor="@color/primaryColor"
                     />
 
                 <ImageView
                     android:id="@+id/Verified_Im"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_alignBottom="@+id/Mobile_Number_Relative"
                     android:layout_marginLeft="5dp"
                     android:layout_marginStart="5dp"
@@ -220,7 +208,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/Mobile_Number_Relative"
                     android:text=""
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     android:id="@+id/Account_Email"
                     />
 
@@ -230,15 +218,15 @@
                 <RelativeLayout
                     android:id="@+id/linearLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="80dp"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
 
                     <RelativeLayout
                         android:id="@+id/driver_rides_Created"
-                        android:layout_width="105dp"
-                        android:layout_height="60dp"
+                        android:layout_width="135dp"
+                        android:layout_height="90dp"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
@@ -247,8 +235,8 @@
 
                         <ImageView
                             android:id="@+id/imageView3"
-                            android:layout_width="105dp"
-                            android:layout_height="40dp"
+                            android:layout_width="135dp"
+                            android:layout_height="50dp"
                             android:src="@drawable/homeridecreated" />
 
 
@@ -256,7 +244,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="35dp"
+                            android:layout_marginTop="55dp"
 
                             >
 
@@ -267,7 +255,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/ride_created"
                                 android:textColor="@color/gray_before_login"
-                                android:textSize="12sp"
+                                android:textSize="15sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -281,7 +269,7 @@
                                 android:layout_toRightOf="@+id/RidesCreated_txt"
                                 android:text=""
                                 android:textColor="@color/gray_before_login"
-                                android:textSize="13sp"
+                                android:textSize="15sp"
                                 android:textStyle="bold" />
 
 
@@ -293,8 +281,8 @@
 
                     <RelativeLayout
                         android:id="@+id/Rides_joined_Relative"
-                        android:layout_width="105dp"
-                        android:layout_height="60dp"
+                        android:layout_width="135dp"
+                        android:layout_height="90dp"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
                         android:src="@drawable/homeridejoined">
@@ -302,8 +290,8 @@
 
                         <ImageView
                             android:id="@+id/RideJoined_im"
-                            android:layout_width="105dp"
-                            android:layout_height="40dp"
+                            android:layout_width="135dp"
+                            android:layout_height="50dp"
                             android:layout_alignParentTop="true"
                             android:layout_centerHorizontal="true"
                             android:src="@drawable/homeridejoined" />
@@ -313,7 +301,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="35dp">
+                            android:layout_marginTop="55dp">
 
                             <TextView
                                 android:id="@+id/Rides_joined_txt"
@@ -321,7 +309,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/ride_joined"
                                 android:textColor="@color/gray_before_login"
-                                android:textSize="12sp"
+                                android:textSize="15sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -335,7 +323,7 @@
                                 android:layout_toRightOf="@+id/Rides_joined_txt"
                                 android:text=""
                                 android:textColor="@color/gray_before_login"
-                                android:textSize="13sp"
+                                android:textSize="15sp"
                                 android:textStyle="bold" />
 
 
@@ -346,8 +334,8 @@
 
                     <RelativeLayout
                         android:id="@+id/Home_Realtive_Vehicles"
-                        android:layout_width="105dp"
-                        android:layout_height="60dp"
+                        android:layout_width="135dp"
+                        android:layout_height="90dp"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
                         android:layout_alignParentTop="true"
@@ -357,15 +345,15 @@
 
                         <ImageView
                             android:id="@+id/Vehicles_im"
-                            android:layout_width="105dp"
-                            android:layout_height="40dp"
+                            android:layout_width="135dp"
+                            android:layout_height="50dp"
                             android:src="@drawable/homevehicles" />
 
                         <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="35dp">
+                            android:layout_marginTop="55dp">
 
                             <TextView
                                 android:id="@+id/Vehicles_txt"
@@ -373,7 +361,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/vehicles"
                                 android:textColor="@color/gray_before_login"
-                                android:textSize="12sp"
+                                android:textSize="15dp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -387,7 +375,7 @@
                                 android:layout_toRightOf="@+id/Vehicles_txt"
                                 android:text=""
                                 android:textColor="@color/gray_before_login"
-                                android:textSize="13sp"
+                                android:textSize="15sp"
                                 android:textStyle="bold" />
 
 
@@ -445,10 +433,10 @@
 
                         <ImageView
                             android:id="@+id/im12"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="20dp"
+                            android:layout_marginTop="25dp"
                             android:src="@drawable/homefindridepic" />
 
 
@@ -457,10 +445,10 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/im12"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="10dp"
                             android:text="@string/search"
                             android:textColor="#FFFFFF"
-                            android:textSize="16sp" />
+                            android:textSize="19sp" />
 
 
                     </RelativeLayout>
@@ -482,10 +470,10 @@
 
                         <ImageView
                             android:id="@+id/im11"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="20dp"
+                            android:layout_marginTop="25dp"
                             android:src="@drawable/homehistory" />
 
 
@@ -497,7 +485,7 @@
                             android:layout_marginTop="5dp"
                             android:text="@string/history"
                             android:textColor="#FFFFFF"
-                            android:textSize="16sp" />
+                            android:textSize="19sp" />
 
 
                     </RelativeLayout>
@@ -531,10 +519,10 @@
 
                         <ImageView
                             android:id="@+id/im10"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="20dp"
+                            android:layout_marginTop="25dp"
                             android:src="@drawable/homecreateridebtn" />
 
 
@@ -544,10 +532,10 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/im10"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="10dp"
                             android:text="@string/create_ride"
                             android:textColor="#FFFFFF"
-                            android:textSize="16sp"
+                            android:textSize="19sp"
 
                             />
 
@@ -571,10 +559,10 @@
 
                         <ImageView
                             android:id="@+id/im13"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="20dp"
+                            android:layout_marginTop="25dp"
                             android:src="@drawable/homepermit" />
 
 
@@ -584,10 +572,10 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/im13"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="10dp"
                             android:text="@string/permit"
                             android:textColor="#FFFFFF"
-                            android:textSize="16sp" />
+                            android:textSize="19sp" />
 
 
                     </RelativeLayout>
