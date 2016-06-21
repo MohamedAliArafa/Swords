@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:paddingBottom="10dp">
+
+    <com.pkmmte.view.CircularImageView
+        android:id="@+id/search_list_photo"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_below="@+id/search_results_days"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/defaultdriver" />
+
+
+    <TextView
+        android:id="@+id/DriverEnName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search_results_days"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@+id/search_list_photo"
+        android:layout_toRightOf="@+id/search_list_photo"
+        android:text="@string/not_set"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/Nationality_en"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/DriverEnName"
+        android:layout_alignStart="@+id/DriverEnName"
+        android:layout_below="@+id/DriverEnName"
+        android:layout_marginBottom="5dp"
+        android:layout_toEndOf="@+id/search_list_photo"
+        android:layout_toRightOf="@+id/search_list_photo"
+        android:text="@string/not_set"
+        android:textSize="18sp" />
+
+
+    <TextView
+        android:id="@+id/Best_Drivers_Item_rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/Nationality_en"
+        android:layout_alignStart="@+id/Nationality_en"
+        android:layout_below="@+id/Nationality_en"
+        android:padding="2dp"
+        android:text="4.3"
+        android:textSize="18sp"
+        android:layout_marginBottom="5dp"
+        />
+
+
+    <ImageView
+        android:id="@+id/rate_pic"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignBottom="@+id/Best_Drivers_Item_rate"
+        android:layout_toEndOf="@+id/Best_Drivers_Item_rate"
+        android:layout_toRightOf="@+id/Best_Drivers_Item_rate"
+        android:src="@drawable/rate"
+
+        />
+
+    <TextView
+        android:id="@+id/LastSeenText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rate_pic"
+        android:layout_alignLeft="@+id/Nationality_en"
+        android:layout_alignStart="@+id/Nationality_en"
+        android:text="@string/last_seen_textview"
+        android:layout_marginTop="5dp"
+        android:textSize="18sp"
+        />
+
+    <TextView
+        android:id="@+id/LastSeenTvValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rate_pic"
+        android:layout_toRightOf="@+id/LastSeenText"
+        android:layout_toEndOf="@+id/LastSeenText"
+        android:layout_alignBottom="@+id/LastSeenText"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:text=""
+        android:textSize="18sp"
+        android:layout_marginTop="5dp"
+        />
+
+    <!--<ImageView-->
+    <!--android:id="@+id/driver_add_pic"-->
+    <!--android:layout_width="40dp"-->
+    <!--android:layout_height="40dp"-->
+    <!--android:layout_below="@+id/im5"-->
+    <!--android:layout_alignStart="@+id/im5"-->
+    <!--android:layout_alignLeft="@+id/im5"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:src="@drawable/add" />-->
+
+    <!--<ImageView-->
+    <!--android:id="@+id/driver_review"-->
+    <!--android:layout_width="40dp"-->
+    <!--android:layout_height="40dp"-->
+    <!--android:layout_alignStart="@+id/im1"-->
+    <!--android:layout_alignLeft="@+id/im1"-->
+    <!--android:layout_below="@+id/im1"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:src="@drawable/chat" />-->
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:text="@string/invite_"
+       android:layout_above="@+id/LastSeenText"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:background="@drawable/bordersbuttom"
+        android:visibility="invisible"
+        android:id="@+id/PassengerSendInvite"
+
+        />
+
+
+
+
+
+
+</RelativeLayout>
+

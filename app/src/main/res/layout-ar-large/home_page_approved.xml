@@ -454,10 +454,10 @@
 
                     <ImageView
                         android:id="@+id/im12"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="25dp"
                         android:src="@drawable/homefindridepic" />
 
 
@@ -466,10 +466,10 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/im12"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="10dp"
                         android:text="@string/search"
                         android:textColor="#FFFFFF"
-                        android:textSize="16sp" />
+                        android:textSize="19sp" />
 
 
                 </RelativeLayout>
@@ -491,10 +491,10 @@
 
                     <ImageView
                         android:id="@+id/im11"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="25dp"
                         android:src="@drawable/homehistory" />
 
 
@@ -503,10 +503,10 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/im11"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="10dp"
                         android:text="@string/history"
                         android:textColor="#FFFFFF"
-                        android:textSize="16sp" />
+                        android:textSize="19sp" />
 
 
                 </RelativeLayout>
@@ -541,10 +541,10 @@
 
                     <ImageView
                         android:id="@+id/im10"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="25dp"
                         android:src="@drawable/homecreateridebtn" />
 
 
@@ -553,10 +553,10 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/im10"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="10dp"
                         android:text="@string/create_ride"
                         android:textColor="#FFFFFF"
-                        android:textSize="16sp"
+                        android:textSize="19sp"
                         android:id="@+id/txt_55"
 
                         />
@@ -587,10 +587,10 @@
 
                     <ImageView
                         android:id="@+id/im13"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="25dp"
                         android:src="@drawable/homepermit" />
 
 
@@ -599,10 +599,10 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/im13"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="10dp"
                         android:text="@string/permit"
                         android:textColor="#FFFFFF"
-                        android:textSize="16sp"
+                        android:textSize="19sp"
                         android:id="@+id/txt_56"
                         />
 

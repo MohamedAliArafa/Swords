@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="rta.ae.sharekni.DriverRequestDetails"
     android:background="@drawable/registerbackgroundtest"
-    >
-
-
+    tools:context="rta.ae.sharekni.PendingRequestDetails">
 
 
     <include
@@ -21,12 +16,12 @@
         android:id="@+id/AccountPhoto"
         android:layout_width="90dp"
         android:layout_height="90dp"
+        android:layout_below="@+id/app_bar"
         android:layout_marginEnd="10dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="10dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/app_bar"
         android:padding="3dp"
         android:src="@android:drawable/ic_menu_camera" />
 
@@ -34,12 +29,11 @@
         android:id="@+id/PassengerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/app_bar"
         android:layout_marginTop="30dp"
         android:layout_toEndOf="@+id/AccountPhoto"
         android:layout_toRightOf="@+id/AccountPhoto"
         android:text="PassengerName"
-
-        android:layout_below="@+id/app_bar"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -151,34 +145,16 @@
 
 
     <Button
-        android:id="@+id/Alert_Decline"
-        android:layout_width="140dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/txt_request_Remarks"
-        android:layout_marginLeft="50dp"
-        android:layout_marginStart="50sp"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/borders_quicksearch_btn"
-        android:text="@string/decline"
-        android:textSize="18sp"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-
-        />
-
-
-    <Button
         android:id="@+id/Alert_Accept"
         android:layout_width="140dp"
         android:layout_height="50dp"
-        android:layout_alignBottom="@+id/Alert_Decline"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="50dp"
-        android:layout_marginRight="50dp"
-        android:background="@drawable/borders_quicksearch_btn"
-        android:text="@string/accept"
+        android:padding="5dp"
         android:textSize="18sp"
+        android:layout_below="@+id/txt_request_Remarks"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/borders_quicksearch_btn"
+        android:text="@string/delete_request_Str"
         android:textAllCaps="false"
         android:textColor="#FFFFFF" />
 

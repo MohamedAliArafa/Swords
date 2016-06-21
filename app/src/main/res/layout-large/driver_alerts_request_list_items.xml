@@ -5,8 +5,8 @@
     >
     <com.pkmmte.view.CircularImageView
         android:id="@+id/AccountPhoto"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginEnd="10dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="10dp"
@@ -25,6 +25,7 @@
         android:layout_toRightOf="@+id/AccountPhoto"
         android:text="Abd El Rahman Tarek"
         android:layout_marginTop="30dp"
+        android:textSize="18sp"
         />
 
     <TextView
@@ -32,6 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Send you a join request"
+        android:textSize="18sp"
 
         android:layout_below="@+id/PassengerName"
         android:layout_alignLeft="@+id/PassengerName"
@@ -42,7 +44,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/NationalityEnName"
         android:text="Egypt"
-
+        android:textSize="18sp"
         android:layout_below="@+id/txt_Accepted_or_Rejected"
         android:layout_toRightOf="@+id/AccountPhoto"
         android:layout_toEndOf="@+id/AccountPhoto" />
@@ -56,6 +58,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginTop="30dp"
+        android:textSize="18sp"
         android:src="@drawable/deletered"
         android:visibility="invisible"
         android:id="@+id/Delete_Notification_im"
