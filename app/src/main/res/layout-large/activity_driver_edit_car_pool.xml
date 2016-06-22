@@ -1,0 +1,958 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+
+        >
+
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/app_bar" />
+
+        <RelativeLayout
+            android:id="@+id/createCarPool_Relative_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/app_bar"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/borders">
+
+
+            <LinearLayout
+                android:id="@+id/createCarPool_RideName"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/createCarPool_dropOff_relative"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/user_register_border"
+                android:orientation="horizontal">
+
+
+                <EditText
+                    android:id="@+id/createCarPool_EnName"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/borders_edit_txt_user_register"
+                    android:cursorVisible="true"
+                    android:hint="@string/ride_name"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:paddingEnd="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingStart="10dp"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:textColorHint="@color/primaryColor"
+                    android:textSize="18sp" />
+
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/createCarPool_Destination"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/borders_quicksearch_btn"
+                android:text="@string/set_direction"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+            <RelativeLayout
+                android:id="@+id/createCarPool_pickup_relative"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/createCarPool_Destination"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/user_register_border_quicksearch"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/createCarPool_pickUp"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="@string/pickup"
+                    android:textAllCaps="false"
+                    android:textColor="#9e9e9e"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/createCarPool_txt_Selecet_Start_Point"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_toEndOf="@+id/createCarPool_pickUp"
+                    android:layout_toRightOf="@+id/createCarPool_pickUp"
+                    android:gravity="center_vertical"
+                    android:text="@string/start_point"
+                    android:textColor="#9e9e9e"
+                    android:textSize="18sp"
+
+                    />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/createCarPool_dropOff_relative"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/createCarPool_pickup_relative"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/user_register_border_quicksearch"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/createCarPool_search__Dropoff"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="@string/dropoff"
+                    android:textColor="#9e9e9e"
+                    android:textSize="18sp"
+
+                    />
+
+                <TextView
+                    android:id="@+id/createCarPool_txt_Select_Dest"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_toEndOf="@+id/createCarPool_search__Dropoff"
+                    android:layout_toRightOf="@+id/createCarPool_search__Dropoff"
+                    android:gravity="center_vertical"
+                    android:text="@string/end_point"
+                    android:textColor="#9e9e9e"
+                    android:textSize="18sp"
+
+                    />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/createCarPool_calendar_relative"
+                android:layout_width="160dp"
+                android:layout_height="80dp"
+                android:layout_below="@+id/create_single_periodic_relative"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/user_register_border_quicksearch"
+                android:gravity="center"
+
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center_horizontal|center_vertical">
+
+                    <TextView
+                        android:id="@+id/createCarPool_textview50"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_toEndOf="@+id/imageview_search"
+                        android:layout_toRightOf="@+id/imageview_search"
+                        android:lines="1"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="@string/start_date"
+                        android:textColor="@color/primaryColor"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+
+                        />
+
+
+                    <ImageView
+                        android:id="@+id/imageview_search"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/calicon" />
+
+
+                    <TextView
+                        android:id="@+id/createCarPool_search_txt_yaer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_toEndOf="@+id/imageview_search"
+                        android:layout_toRightOf="@+id/imageview_search"
+                        android:lines="1"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="@color/primaryColor"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/createCarPool_time_relative"
+                android:layout_width="160dp"
+                android:layout_height="80dp"
+                android:layout_alignEnd="@+id/create_single_periodic_relative"
+                android:layout_alignRight="@+id/create_single_periodic_relative"
+                android:layout_below="@+id/create_single_periodic_relative"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/user_register_border_quicksearch"
+                android:gravity="center">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center_horizontal|center_vertical">
+
+                    <TextView
+                        android:id="@+id/createCarPool_textview51"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_toEndOf="@+id/imageview_search_time"
+                        android:layout_toRightOf="@+id/imageview_search_time"
+                        android:lines="1"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="@string/start_time"
+                        android:textColor="@color/primaryColor"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+
+                    <ImageView
+                        android:id="@+id/imageview_search_time"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/timeicon"
+
+                        />
+
+
+                    <TextView
+                        android:id="@+id/createCarPool_txt_time_selected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_toEndOf="@+id/imageview_search_time"
+                        android:layout_toRightOf="@+id/imageview_search_time"
+                        android:lines="1"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="@color/primaryColor"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/create_single_periodic_relative"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/createCarPool_RideName"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/user_register_border">
+
+                <ImageView
+                    android:id="@+id/createCarPool_singleRide_Periodic"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/slidemale" />
+
+                <ImageView
+                    android:id="@+id/createCarPool_Periodic_SingleRide"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/slidefemale"
+                    android:visibility="invisible"
+
+                    />
+
+
+                <TextView
+                    android:id="@+id/createCarPool_malefemale_txt2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_toLeftOf="@+id/createCarPool_singleRide_Periodic"
+                    android:layout_toStartOf="@+id/createCarPool_singleRide_Periodic"
+                    android:text="@string/single"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/createCarPool_femalemale_txt2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_toEndOf="@+id/createCarPool_Periodic_SingleRide"
+                    android:layout_toRightOf="@+id/createCarPool_Periodic_SingleRide"
+                    android:text="@string/periodic"
+                    android:textColor="@color/gray_before_login"
+                    android:textSize="18sp" />
+
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/createCarPool_Vehicles"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_below="@+id/createCarPool_calendar_relative"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/borders_quicksearch"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:text="@string/change_vehicle"
+                android:textColor="@color/primaryColor"
+                android:textColorHint="@color/primaryColor">
+
+
+            </TextView>
+
+
+            <RelativeLayout
+                android:id="@+id/createCarPool_No_OF_Seats"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_below="@+id/createCarPool_Vehicles"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/user_register_border">
+
+
+                <TextView
+                    android:id="@+id/createCarPool_seats_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@string/available_seats"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/createCarPool_seats_txt"
+                    android:layout_toRightOf="@+id/createCarPool_seats_txt">
+
+                    <ImageView
+                        android:id="@+id/seat1_off"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/seatoff" />
+
+
+                    <ImageView
+                        android:id="@+id/seat2_off"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_toEndOf="@+id/seat1_off"
+                        android:layout_toRightOf="@+id/seat1_off"
+                        android:src="@drawable/seatoff"
+
+                        />
+
+                    <ImageView
+                        android:id="@+id/seat3_off"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_toEndOf="@+id/seat2_off"
+                        android:layout_toRightOf="@+id/seat2_off"
+                        android:src="@drawable/seatoff"
+
+                        />
+
+                    <ImageView
+                        android:id="@+id/seat4_off"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_toEndOf="@+id/seat3_off"
+                        android:layout_toRightOf="@+id/seat3_off"
+                        android:src="@drawable/seatoff"
+
+                        />
+
+
+                    <ImageView
+                        android:id="@+id/seat1_on"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/seaton"
+                        android:visibility="invisible" />
+
+
+                    <ImageView
+                        android:id="@+id/seat2_on"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_toEndOf="@+id/seat1_on"
+                        android:layout_toRightOf="@+id/seat1_on"
+                        android:src="@drawable/seaton"
+                        android:visibility="invisible" />
+
+                    <ImageView
+                        android:id="@+id/seat3_on"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_toEndOf="@+id/seat2_on"
+                        android:layout_toRightOf="@+id/seat2_on"
+                        android:src="@drawable/seaton"
+                        android:visibility="invisible" />
+
+                    <ImageView
+                        android:id="@+id/seat4_on"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_toEndOf="@+id/seat3_on"
+                        android:layout_toRightOf="@+id/seat3_on"
+                        android:src="@drawable/seaton"
+                        android:visibility="invisible"
+
+
+                        />
+
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@+id/app_bar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/testborder1"
+            android:gravity="center_horizontal|center"
+            android:paddingEnd="20dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingStart="20dp"
+            android:text="@string/ride_details"
+            android:textColor="@color/primaryColor"
+            android:textSize="22sp" />
+
+
+        <RelativeLayout
+            android:id="@+id/createCarPool_Relative_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/createCarPool_Relative_1"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/borders">
+
+
+            <AutoCompleteTextView
+                android:id="@+id/createCarPool_search_Nat"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginEnd="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/borders_quicksearch"
+                android:cursorVisible="false"
+                android:gravity="center"
+                android:hint="@string/select_pref_nat"
+                android:imeOptions="actionDone"
+                android:lines="1"
+                android:maxLines="1"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingStart="10dp"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textAllCaps="false"
+                android:textColor="@color/primaryColor"
+                android:textColorHint="@color/primaryColor"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/createCarPool_Preferred_Lang_txt"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_below="@+id/createCarPool_search_Nat"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="18sp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/borders_quicksearch"
+                android:gravity="center"
+                android:hint="@string/select_pref_lang"
+                android:textColor="@color/primaryColor"
+                android:textColorHint="@color/primaryColor" />
+
+
+            <TextView
+                android:id="@+id/createCarPool_Age_Range_txt"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_below="@+id/createCarPool_Preferred_Lang_txt"
+                android:layout_marginBottom="10dp"
+                android:textSize="18sp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/borders_quicksearch"
+                android:gravity="center"
+                android:hint="@string/choose_age"
+                android:textColor="@color/primaryColor"
+                android:textColorHint="@color/primaryColor" />
+
+
+            <LinearLayout
+                android:id="@+id/createCarPool_Male_Female"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/createCarPool_Age_Range_txt"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/user_register_border"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/preferred_gender_Str"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="20sp"
+
+
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/check_Both"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/reg_gender_both"
+                        android:textColor="@color/primaryColor"
+                        android:textSize="18sp" />
+
+                    <CheckBox
+                        android:id="@+id/Check_Male"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/reg_gender_male"
+                        android:textColor="@color/primaryColor"
+                        android:textSize="18sp" />
+
+                    <CheckBox
+                        android:id="@+id/Check_Female"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/reg_gender_female"
+                        android:textColor="@color/primaryColor"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/createCarPool_Smokers_NotSmokers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/createCarPool_Male_Female"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/user_register_border"
+                android:orientation="vertical"
+
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/is_smoking_Str"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="20sp"
+
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/Check_Smoking"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/accept_smokers_str"
+                        android:textColor="@color/primaryColor"
+                        android:textSize="18sp" />
+
+                    <CheckBox
+                        android:id="@+id/Check_NotSmoking"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/not_accept_smokers_str"
+                        android:textColor="@color/primaryColor"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/createCarPool_DaysOFWeek"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_below="@+id/createCarPool_Smokers_NotSmokers"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/user_register_border">
+
+                <TextView
+                    android:id="@+id/daysofweek_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@string/days_of_week"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="20sp" />
+
+
+                <RelativeLayout
+                    android:id="@+id/createCarPool_Sat_Day"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_below="@+id/daysofweek_txt"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/days_of_week_circular_off">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/Sat"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/createCarPool_Sun_Day"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_below="@+id/daysofweek_txt"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@+id/createCarPool_Sat_Day"
+                    android:layout_toRightOf="@+id/createCarPool_Sat_Day"
+                    android:background="@drawable/days_of_week_circular_off">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/Sun"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/createCarPool_Mon_Day"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_below="@+id/daysofweek_txt"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@+id/createCarPool_Sun_Day"
+                    android:layout_toRightOf="@+id/createCarPool_Sun_Day"
+                    android:background="@drawable/days_of_week_circular_off">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/Mon"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/createCarPool_Tues_Day"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_below="@+id/daysofweek_txt"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toEndOf="@+id/createCarPool_Mon_Day"
+                    android:layout_toRightOf="@+id/createCarPool_Mon_Day"
+                    android:background="@drawable/days_of_week_circular_off">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/Tue"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/createCarPool_Wed_Day"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_alignLeft="@+id/createCarPool_Sat_Day"
+                    android:layout_alignStart="@+id/createCarPool_Sat_Day"
+                    android:layout_below="@+id/createCarPool_Sat_Day"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/days_of_week_circular_off">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/Wed"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/createCarPool_Thu_Day"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_alignLeft="@id/createCarPool_Sun_Day"
+                    android:layout_alignStart="@+id/createCarPool_Sun_Day"
+                    android:layout_below="@+id/createCarPool_Sun_Day"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/days_of_week_circular_off">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/Thu"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/createCarPool_Fri_Day"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_alignLeft="@+id/createCarPool_Mon_Day"
+                    android:layout_alignStart="@+id/createCarPool_Mon_Day"
+                    android:layout_below="@+id/createCarPool_Mon_Day"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/days_of_week_circular_off">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/Fri"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@id/createCarPool_Relative_1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/testborder1"
+            android:gravity="center_horizontal|center"
+            android:paddingEnd="20dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingStart="20dp"
+            android:text="@string/pref_optional"
+            android:textColor="@color/primaryColor"
+            android:textSize="22sp" />
+
+
+        <Button
+            android:id="@+id/createCarPool"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/createCarPool_Relative_2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/user_register_border_button"
+            android:padding="10dp"
+            android:textSize="18sp"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF" />
+
+
+    </RelativeLayout>
+
+
+</ScrollView>
+
+
+
+
+
+
+
