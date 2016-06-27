@@ -55,6 +55,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
 
     Double Start_Latitude = 1.0, Start_Longitude = 1.0, End_Latitude = 1.0, End_Longitude = 1.0;
+    int Distance,Duration;
     static final int DILOG_ID = 0;
     static final int TIME_DIALOG_ID = 999;
     int id = 1;
@@ -208,12 +209,17 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                 Start_Longitude = intent.getDoubleExtra("Start_Longitude", 0);
                 End_Latitude = intent.getDoubleExtra("End_Latitude", 0);
                 End_Longitude = intent.getDoubleExtra("End_Longitude", 0);
+                Distance = intent.getIntExtra("Distance", 0);
+                Duration = intent.getIntExtra("Duration", 0);
 
-                Log.d("Start lat", String.valueOf(End_Latitude));
-                Log.d("Start lat", String.valueOf(End_Longitude));
+                Log.d("End lat", String.valueOf(End_Latitude));
+                Log.d("End lng", String.valueOf(End_Longitude));
+                Log.d("Distance Create ", String.valueOf(Distance));
+                Log.d("Duration Create", String.valueOf(Duration));
+
 
                 Log.d("Start lat", String.valueOf(Start_Latitude));
-                Log.d("Start lat", String.valueOf(Start_Longitude));
+                Log.d("Start Lng", String.valueOf(Start_Longitude));
 
 //                in.putExtra("Start_Latitude",Start_Latitude);
 //                in.putExtra("Start_Longitude",Start_Longitude);
@@ -515,57 +521,6 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                 singleRide_Periodic.setVisibility(View.VISIBLE);
             }
         });
-
-//        //Create_CarPool
-//        Create_CarPool_malefemale1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                gender = 'F';
-//                Create_CarPool_malefemale1.setVisibility(View.INVISIBLE);
-//                Create_CarPool_femalemale2.setVisibility(View.VISIBLE);
-//                maleFemaleTxt.setTextColor(Color.GRAY);
-//                FemaleMaleTxt.setTextColor(Color.RED);
-//                Log.d("gender", String.valueOf(gender));
-//            }
-//        });
-
-//        Create_CarPool_femalemale2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                gender = 'M';
-//                Create_CarPool_femalemale2.setVisibility(View.INVISIBLE);
-//                Create_CarPool_malefemale1.setVisibility(View.VISIBLE);
-//                maleFemaleTxt.setTextColor(Color.RED);
-//                FemaleMaleTxt.setTextColor(Color.GRAY);
-//                Log.d("gender", String.valueOf(gender));
-//
-//            }
-//        });
-
-//        FemaleMaleTxt.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                gender = 'F';
-//                maleFemaleTxt.setTextColor(Color.GRAY);
-//                FemaleMaleTxt.setTextColor(Color.RED);
-//                Create_CarPool_malefemale1.setVisibility(View.INVISIBLE);
-//                Create_CarPool_femalemale2.setVisibility(View.VISIBLE);
-//                Log.d("gender", String.valueOf(gender));
-//            }
-//        });
-//
-//        maleFemaleTxt.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                gender = 'M';
-//                maleFemaleTxt.setTextColor(Color.RED);
-//                FemaleMaleTxt.setTextColor(Color.GRAY);
-//                Create_CarPool_malefemale1.setVisibility(View.VISIBLE);
-//                Create_CarPool_femalemale2.setVisibility(View.INVISIBLE);
-//                Log.d("gender", String.valueOf(gender));
-//
-//            }
-//        });
 
         seat1_on.setOnClickListener(this);
         seat2_on.setOnClickListener(this);

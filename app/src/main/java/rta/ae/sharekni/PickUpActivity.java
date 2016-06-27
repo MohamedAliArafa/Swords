@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -26,6 +27,11 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,6 +46,7 @@ import java.util.List;
 import java.util.TreeMap;
 
 import rta.ae.sharekni.Arafa.Classes.GetData;
+import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
 
 public class PickUpActivity extends AppCompatActivity {
 
@@ -48,6 +55,8 @@ public class PickUpActivity extends AppCompatActivity {
     int To_Em_Id = -1;
     int To_Reg_Id = -1;
     int FLAG_ID;
+     int DistanceValue = 0;
+     int DurationValue = 0;
 
     Double Start_Latitude, Start_Longitude, End_Latitude, End_Longitude;
 
@@ -128,7 +137,7 @@ public class PickUpActivity extends AppCompatActivity {
 
                             To_Em_Id = 0;
                             To_Reg_Id = 0;
-                            Log.d("TO id's","Zero");
+                            Log.d("TO id's", "Zero");
 
                             in.putExtra("From_Em_Id", From_Em_Id);
                             in.putExtra("From_EmirateEnName", From_EmirateEnName);
@@ -167,7 +176,7 @@ public class PickUpActivity extends AppCompatActivity {
                             back1.cancel(true);
                             back2.cancel(true);
                             finish();
-                            Log.d("TO id's","Values");
+                            Log.d("TO id's", "Values");
 
                         }
 
@@ -230,30 +239,64 @@ public class PickUpActivity extends AppCompatActivity {
                 } //  else if 2
 
                 else if (FLAG_ID == 3) {
-                    Intent in = new Intent(PickUpActivity.this, DriverCreateCarPool.class);
                     if (From_Em_Id != -1 && From_Reg_Id != -1 && To_Em_Id != -1 && To_Reg_Id != -1) {
-                        in.putExtra("From_Em_Id", From_Em_Id);
-                        in.putExtra("From_EmirateEnName", From_EmirateEnName);
-                        in.putExtra("From_RegionEnName", From_RegionEnName);
-                        in.putExtra("From_Reg_Id", From_Reg_Id);
-                        in.putExtra("To_Em_Id", To_Em_Id);
-                        in.putExtra("To_EmirateEnName", To_EmirateEnName);
-                        in.putExtra("To_RegionEnName", To_RegionEnName);
-                        in.putExtra("To_Reg_Id", To_Reg_Id);
-                        in.putExtra("Start_Latitude", Start_Latitude);
-                        in.putExtra("Start_Longitude", Start_Longitude);
-                        in.putExtra("End_Latitude", End_Latitude);
-                        in.putExtra("End_Longitude", End_Longitude);
-                        in.putExtra("options",b);
-                        Log.d("From_Em_Id_1", String.valueOf(From_Em_Id));
-                        Log.d("From_Reg_Id_1", String.valueOf(From_Reg_Id));
-                        Log.d("To_Em_Id_1", String.valueOf(To_Em_Id));
-                        Log.d("To_Reg_Id_1", String.valueOf(To_Reg_Id));
-                        startActivity(in);
-                        back1.cancel(true);
-                        back2.cancel(true);
+                       String url = "https://maps.googleapis.com/maps/api/distancematrix/json?";
+                        url += "origins=" + Start_Latitude + "," + Start_Longitude + "&destinations=" + End_Latitude + "," + End_Longitude
+                                + "&key=" + "AIzaSyDjDfEe3c7xfwpLqVhktVa9Nkoh2fB9Z_I";
+                        Log.d("Dustance URl ", url);
+                        // Request a string response from the provided URL.
+                        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                                new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        Log.d("Distance Api ", response);
+                                        try {
+                                            JSONObject json = new JSONObject(response);
+                                            Log.d("Distance String ", json.toString());
+                                            int Distance = (int) json.getJSONArray("rows").getJSONObject(0).getJSONArray("elements")
+                                                    .getJSONObject(0).getJSONObject("distance").get("value");
+                                            int Duration = (int) json.getJSONArray("rows").getJSONObject(0).getJSONArray("elements")
+                                                    .getJSONObject(0).getJSONObject("duration").get("value");
+                                            Log.d("Distance value", String.valueOf(Distance));
+                                            Log.d("Duration Value ", String.valueOf(Duration));
+                                            Intent in = new Intent(PickUpActivity.this, DriverCreateCarPool.class);
+                                            in.putExtra("From_Em_Id", From_Em_Id);
+                                            in.putExtra("From_EmirateEnName", From_EmirateEnName);
+                                            in.putExtra("From_RegionEnName", From_RegionEnName);
+                                            in.putExtra("From_Reg_Id", From_Reg_Id);
+                                            in.putExtra("To_Em_Id", To_Em_Id);
+                                            in.putExtra("To_EmirateEnName", To_EmirateEnName);
+                                            in.putExtra("To_RegionEnName", To_RegionEnName);
+                                            in.putExtra("To_Reg_Id", To_Reg_Id);
+                                            in.putExtra("Start_Latitude", Start_Latitude);
+                                            in.putExtra("Start_Longitude", Start_Longitude);
+                                            in.putExtra("End_Latitude", End_Latitude);
+                                            in.putExtra("End_Longitude", End_Longitude);
+                                            in.putExtra("Distance", Distance);
+                                            in.putExtra("Duration", Duration);
+                                            in.putExtra("options", b);
+                                            Log.d("From_Em_Id_1", String.valueOf(From_Em_Id));
+                                            Log.d("From_Reg_Id_1", String.valueOf(From_Reg_Id));
+                                            Log.d("To_Em_Id_1", String.valueOf(To_Em_Id));
+                                            Log.d("To_Reg_Id_1", String.valueOf(To_Reg_Id));
+                                            startActivity(in);
+                                            back1.cancel(true);
+                                            back2.cancel(true);
 
-                        finish();
+                                            finish();
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.d("Error : ", error.toString());
+                            }
+                        });
+                        VolleySingleton.getInstance(getBaseContext()
+                        ).addToRequestQueue(stringRequest);
+
 
 
                     } else {
@@ -502,10 +545,10 @@ public class PickUpActivity extends AppCompatActivity {
                             regions.setRegionLatitude(jsonObject.getDouble("RegionLatitude"));
 
                             // Testing
-                          // regions.setRegionLongitude(jsonObject.getDouble("RegionLongitude"));
+                            // regions.setRegionLongitude(jsonObject.getDouble("RegionLongitude"));
 
                             // Production
-                              regions.setRegionLongitude(Double.valueOf(jsonObject.getString("RegionLongitude").split(",")[0]));
+                            regions.setRegionLongitude(Double.valueOf(jsonObject.getString("RegionLongitude").split(",")[0]));
                         } else {
                             regions.setRegionLatitude(0.0);
                             regions.setRegionLongitude(0.0);
@@ -609,7 +652,7 @@ public class PickUpActivity extends AppCompatActivity {
                             regions.setRegionLongitude(0.0);
                         } else {
                             //Testing Line
-                           // regions.setRegionLongitude(jsonObject.getDouble("RegionLongitude"));
+                            // regions.setRegionLongitude(jsonObject.getDouble("RegionLongitude"));
                             //Production Line
                             regions.setRegionLongitude(Double.valueOf(jsonObject.getString("RegionLongitude").split(",")[0]));
                         }
