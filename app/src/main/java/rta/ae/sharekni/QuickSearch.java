@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -44,11 +45,11 @@ import rta.ae.sharekni.TakeATour.TakeATour;
 
 public class QuickSearch extends AppCompatActivity implements View.OnClickListener {
 
-    int From_Em_Id=-1;
-    int From_Reg_Id=-1;
+    int From_Em_Id = -1;
+    int From_Reg_Id = -1;
     int To_Em_Id;
     int To_Reg_Id;
-    String IS_Smoking ="";
+    String IS_Smoking = "";
 
     String To_EmirateEnName, From_EmirateEnName, To_RegionEnName, From_RegionEnName;
 
@@ -62,7 +63,7 @@ public class QuickSearch extends AppCompatActivity implements View.OnClickListen
     RelativeLayout pickup_relative;
     SimpleAdapter EmAdapter;
     Button btn_submit_pickUp;
-    String txt_PickUp= String.valueOf(R.string.start_point);
+    String txt_PickUp = String.valueOf(R.string.start_point);
     JSONArray Regions = null;
     JSONArray Emirates = null;
 
@@ -86,7 +87,7 @@ public class QuickSearch extends AppCompatActivity implements View.OnClickListen
     int i = 0;
     private int hour;
     private int minute;
-    int savefind=0;
+    int savefind = 0;
 
     static final int TIME_DIALOG_ID = 999;
 
@@ -107,8 +108,8 @@ public class QuickSearch extends AppCompatActivity implements View.OnClickListen
 
 
     String From_EmirateEnName_str, From_RegionEnName_str, To_EmirateEnName_str, To_RegionEnName_str;
-    int From_Em_Id_2=-1, From_Reg_Id_2=-1, To_Em_Id_2 = -1, To_Reg_Id_2 = -1;
-    ImageView save_off,save_on;
+    int From_Em_Id_2 = -1, From_Reg_Id_2 = -1, To_Em_Id_2 = -1, To_Reg_Id_2 = -1;
+    ImageView save_off, save_on;
     TextView save_search_txt;
 
     @Override
@@ -135,13 +136,13 @@ public class QuickSearch extends AppCompatActivity implements View.OnClickListen
         Advanced_Search_Relative_2 = (RelativeLayout) findViewById(R.id.advanced_search);
         quick_Destination = (Button) findViewById(R.id.quick_Destination);
 
-        save_off= (ImageView) findViewById(R.id.save_off);
-        save_on= (ImageView) findViewById(R.id.save_on);
-        save_search_txt= (TextView) findViewById(R.id.save_search_txt);
+        save_off = (ImageView) findViewById(R.id.save_off);
+        save_on = (ImageView) findViewById(R.id.save_on);
+        save_search_txt = (TextView) findViewById(R.id.save_search_txt);
 
         i = 0;
 
-      //  txt_PickUp = getString(R.string.start_point);
+        //  txt_PickUp = getString(R.string.start_point);
 
         try {
             if (TakeATour.getInstance() != null) {
@@ -262,8 +263,6 @@ public class QuickSearch extends AppCompatActivity implements View.OnClickListen
         }
 
 
-
-
         final Calendar cal = Calendar.getInstance();
         year_x = cal.get(Calendar.YEAR);
         month_x = cal.get(Calendar.MONTH);
@@ -273,15 +272,9 @@ public class QuickSearch extends AppCompatActivity implements View.OnClickListen
         showTimeDialogOnButtonClick();
 
 
-
-
         initToolbar();
         myPrefs = this.getSharedPreferences("myPrefs", 0);
         MyId = Integer.parseInt(myPrefs.getString("account_id", "0"));
-
-
-
-
 
 
         save_off.setOnClickListener(new View.OnClickListener() {
@@ -292,7 +285,7 @@ public class QuickSearch extends AppCompatActivity implements View.OnClickListen
                     save_on.setVisibility(View.VISIBLE);
                     save_search_txt.setTextColor(Color.RED);
                     savefind = 1;
-                }else {
+                } else {
                     Toast.makeText(QuickSearch.this, R.string.saveSearch_Error, Toast.LENGTH_SHORT).show();
                 }
             }
@@ -304,19 +297,17 @@ public class QuickSearch extends AppCompatActivity implements View.OnClickListen
                 save_on.setVisibility(View.INVISIBLE);
                 save_off.setVisibility(View.VISIBLE);
                 save_search_txt.setTextColor(Color.GRAY);
-                savefind=0;
+                savefind = 0;
             }
         });
 
 
-
-
-        if (i==0) {
+        if (i == 0) {
             txt_Selecet_Start_Point.setText(getString(R.string.start_point));
             Log.d("pick 1", txt_PickUp);
 
 
-        } else if (i==1){
+        } else if (i == 1) {
 
 
             txt_Selecet_Start_Point.setText(txt_PickUp);
@@ -324,11 +315,11 @@ public class QuickSearch extends AppCompatActivity implements View.OnClickListen
         }
 
 
-        if (i==0) {
+        if (i == 0) {
             txt_Select_Dest.setText(getString(R.string.end_point));
 //            Log.d("drop off 1 ", txt_Drop_Off);
 
-        } else if (i==1){
+        } else if (i == 1) {
 
 
             txt_Select_Dest.setText(txt_Drop_Off);
@@ -343,13 +334,13 @@ public class QuickSearch extends AppCompatActivity implements View.OnClickListen
                 Bundle b = new Bundle();
                 b.putInt("savefind", savefind);
                 b.putString("IS_Smoking", IS_Smoking);
-                b.putString("full_date",full_date);
-                if (txt_time_selected.getText() != getString(R.string.start_time)){
-                    b.putString("time",txt_time_selected.getText().toString());
+                b.putString("full_date", full_date);
+                if (txt_time_selected.getText() != getString(R.string.start_time)) {
+                    b.putString("time", txt_time_selected.getText().toString());
                 }
                 Intent intent = new Intent(getBaseContext(), PickUpActivity.class);
-                intent.putExtra("FALG_SEARCH",1);
-                intent.putExtra("options",b);
+                intent.putExtra("FALG_SEARCH", 1);
+                intent.putExtra("options", b);
                 startActivity(intent);
                 finish();
             }
@@ -416,7 +407,7 @@ public class QuickSearch extends AppCompatActivity implements View.OnClickListen
             @Override
 
             public void onClick(View v) {
-                if (From_Em_Id_2 != -1  && From_Reg_Id_2!=-1 && From_Em_Id_2 != 0  && From_Reg_Id_2!=0 ) {
+                if (From_Em_Id_2 != -1 && From_Reg_Id_2 != -1 && From_Em_Id_2 != 0 && From_Reg_Id_2 != 0) {
 
                     Intent intent1 = new Intent(getBaseContext(), QuickSearchResults.class);
                     intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -429,13 +420,13 @@ public class QuickSearch extends AppCompatActivity implements View.OnClickListen
                     intent1.putExtra("To_EmirateEnName", To_EmirateEnName_str);
                     intent1.putExtra("To_RegionEnName", To_RegionEnName_str);
                     intent1.putExtra("SaveFind", savefind);
-                    intent1.putExtra("Smokers",IS_Smoking);
-                    intent1.putExtra("MapKey","QSearch");
-                    intent1.putExtra("InviteType","");
+                    intent1.putExtra("Smokers", IS_Smoking);
+                    intent1.putExtra("MapKey", "QSearch");
+                    intent1.putExtra("InviteType", "");
                     Log.d("Test", From_EmirateEnName + From_RegionEnName + To_EmirateEnName + To_RegionEnName);
                     startActivity(intent1);
                     i = 1;
-                }else {
+                } else {
                     Toast.makeText(QuickSearch.this, R.string.select_start_point, Toast.LENGTH_SHORT).show();
                 }
             }
@@ -871,14 +862,14 @@ public class QuickSearch extends AppCompatActivity implements View.OnClickListen
     DatePicker d;
 
     protected void onPrepareDialog(int id, Dialog dialog) {
-        if (id==DILOG_ID) {
+        if (id == DILOG_ID) {
             DatePickerDialog datePickerDialog = (DatePickerDialog) dialog;
             // Get the current date
             datePickerDialog.updateDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
-        }else if (id==TIME_DIALOG_ID){
+        } else if (id == TIME_DIALOG_ID) {
 
             TimePickerDialog timePickerDialog = (TimePickerDialog) dialog;
-            timePickerDialog.updateTime(cal.get(Calendar.HOUR_OF_DAY),cal.get(Calendar.MINUTE) );
+            timePickerDialog.updateTime(cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE));
 
         }
 
@@ -958,17 +949,24 @@ public class QuickSearch extends AppCompatActivity implements View.OnClickListen
         });
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.app_bar);
+
         toolbar.setTitle("");
         toolbar.setTitleTextColor(Color.WHITE);
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
         textView.setText(R.string.quick_search);
 //        toolbar.setElevation(10);
+//        getSupportActionBar().setHomeButtonEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
+
     }
 
 

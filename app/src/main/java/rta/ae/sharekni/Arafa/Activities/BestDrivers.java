@@ -6,10 +6,12 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -20,6 +22,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +48,7 @@ public class BestDrivers extends AppCompatActivity {
     ListView lv;
     Toolbar toolbar;
     jsoning jsoning;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,14 +56,14 @@ public class BestDrivers extends AppCompatActivity {
 
         tv = (TextView) findViewById(R.id.info);
         lv = (ListView) findViewById(R.id.lvMain);
-       initToolbar();
+        initToolbar();
         jsoning = new jsoning();
 
         setSupportActionBar(toolbar);
-       // getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         jsoning.execute();
     }
+
 
     public class jsoning extends AsyncTask {
 
@@ -80,7 +87,7 @@ public class BestDrivers extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Object o) {
-            if (exists){
+            if (exists) {
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -135,7 +142,7 @@ public class BestDrivers extends AppCompatActivity {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(BestDrivers.this,getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BestDrivers.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -159,18 +166,17 @@ public class BestDrivers extends AppCompatActivity {
 
                         int x1 = obj.getInt("GreenPoints");
                         int x3 = obj.getInt("CO2Saved");
-                        x3 = x3/1000;
+                        x3 = x3 / 1000;
 
                         driver.setGreenPoints(String.valueOf(x1));
                         driver.setCO2Saved(String.valueOf(x3));
 
 
+                        // driver.setGreenPoints(obj.getString("GreenPoints"));
+                        //   driver.setCO2Saved(obj.getString("CO2Saved"));
 
-                       // driver.setGreenPoints(obj.getString("GreenPoints"));
-                     //   driver.setCO2Saved(obj.getString("CO2Saved"));
 
-
-                        if (!obj.getString("AccountPhoto").equals("NoImage.png")){
+                        if (!obj.getString("AccountPhoto").equals("NoImage.png")) {
                             GetData gd = new GetData();
                             driver.setPhoto(gd.GetImage(obj.getString("AccountPhoto")));
                         }
@@ -178,7 +184,7 @@ public class BestDrivers extends AppCompatActivity {
 
 
                         arr.add(driver);
-                        publishProgress((int)(i*100/response.length()));
+                        publishProgress((int) (i * 100 / response.length()));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -187,6 +193,7 @@ public class BestDrivers extends AppCompatActivity {
             return null;
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -200,7 +207,7 @@ public class BestDrivers extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id==android.R.id.home){
+        if (id == android.R.id.home) {
             onBackPressed();
             return true;
         }
@@ -209,9 +216,6 @@ public class BestDrivers extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
-
 
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -225,14 +229,17 @@ public class BestDrivers extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
 
     @Override
     public void onBackPressed() {
-        if (jsoning.getStatus() == AsyncTask.Status.RUNNING){
+        if (jsoning.getStatus() == AsyncTask.Status.RUNNING) {
             jsoning.cancel(true);
         }
         finish();

@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -63,7 +64,7 @@ public class DriverRequestDetails extends AppCompatActivity {
         InviteState = intent.getStringExtra("InviteState");
         Log.d("RouteName", RouteName);
         Log.d("PassengerName", PassengerName);
-        Log.d("Invite Status " , InviteState);
+        Log.d("Invite Status ", InviteState);
 
 
         RouteName_txt = (TextView) findViewById(R.id.RouteName);
@@ -251,7 +252,6 @@ public class DriverRequestDetails extends AppCompatActivity {
     ///////////////////////////////////////////////////////////////////////////////////////////
 
 
-
     private class decline2 extends AsyncTask {
 
         @Override
@@ -379,7 +379,6 @@ public class DriverRequestDetails extends AppCompatActivity {
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.app_bar);
@@ -395,8 +394,11 @@ public class DriverRequestDetails extends AppCompatActivity {
 //        mytext.setText("Most Rides");
 
 
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
 

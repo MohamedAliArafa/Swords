@@ -433,6 +433,46 @@
     <string name="co2_saving">CO2 Saving</string>
     <string name="ok_2">Ok</string>
     <string name="forget_password_complete">A reset password link has been sent to your email. Please note that this link is valid for one day only.</string>
+    <string name="FAQ_Answer_1">1- Contribute to reducing overall traffic congestion and reduce number of cars during rush hours.
+2- Contribute to resolving parking problem around work locations.
+3- Reduce your transport expenses.
+4- Build a strong social connection and make new friends.
+</string>
+    <string name="FAQ_Question_1">What is the benefits of Sharekni?</string>
+    <string name="FAQ_Question_2">Is the service free?</string>
+    <string name="FAQ_Question_3">How many passengers are allowed in one permission?</string>
+    <string name="FAQ_Question_4">What is the validity of the permission?</string>
+    <string name="FAQ_Question_5">How many rides can the driver obtain?</string>
+    <string name="FAQ_Question_6">How to register in sharekni?</string>
+    <string name="FAQ_Question_7">Can the permit be used in other emirates?</string>
+    <string name="FAQ_Question_8">How to issue Sharekni Electronic Permit</string>
+    <string name="FAQ_Question_9">How do I register my vehicle?</string>
+    <string name="FAQ_Question_10">How do I edit my profile?</string>
+
+    <string name="FAQ_Answer_2">Yes, it is. </string>
+    <string name="FAQ_Answer_3"> Allowed 4 passengers as maximum.</string>
+    <string name="FAQ_Answer_4">The permission is valid for 6 months.</string>
+    <string name="FAQ_Answer_5">Allowed 2 rides as maximum.</string>
+    <string name="FAQ_Answer_6">1- Open the application
+2- Click register
+3- Enter all required information
+4- Accept terms and conditions
+5- Click save button
+</string>
+
+
+    <string name="FAQ_Answer_7">The permit is effective only in Dubai.</string>
+
+    <string name="FAQ_Answer_8">1- After you accept other\'s invitations or if your invitation is accepted by others click on permit button to generate the permit.2- Print the permit and keep it  in your car during the trip
+</string>
+
+    <string name="FAQ_Answer_9">1- After you register as a driver click on vehicles
+2- Enter your birthdate and traffic file number
+3- Click submit button to view your vehicle plate number
+4- Click on the plate number
+5- Click save button
+</string>
+    <string name="FAQ_Answer_10">The stored profile is available on the main menu. Open menu > Edit profile and enter the updated input</string>
 
 
 </resources>

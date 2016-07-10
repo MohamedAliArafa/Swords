@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -33,46 +34,45 @@ import rta.ae.sharekni.Arafa.Classes.GetData;
 public class ForgetPassword extends AppCompatActivity {
 
     Activity c;
-    String mobileNumber="",Email="";
+    String mobileNumber = "", Email = "";
     EditText edit_number;
     EditText edit_mail;
     Button btn_submit;
     TextView txt_submit;
-    String url=GetData.DOMAIN + "/ForgetPassword?";
+    String url = GetData.DOMAIN + "/ForgetPassword?";
     Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
-       // edit_number = (EditText) findViewById(R.id.edit_Forgetpass_mobile);
+        // edit_number = (EditText) findViewById(R.id.edit_Forgetpass_mobile);
         edit_mail = (EditText) findViewById(R.id.edit_Forgetpass_email);
         btn_submit = (Button) findViewById(R.id.btn_Forgetpass_submit);
         txt_submit = (TextView) findViewById(R.id.txt_submit);
         initToolbar();
-        c=this;
-
+        c = this;
 
 
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                mobileNumber =edit_number.getText().toString();
-                Email =edit_mail.getText().toString();
+                Email = edit_mail.getText().toString();
 
                 if (Email.equals("")) {
                     Toast.makeText(getBaseContext(), R.string.fill_Email, Toast.LENGTH_SHORT).show();
-                }else if (!Email.equals("") ){
+                } else if (!Email.equals("")) {
 
                     new back().execute();
 
                 }
-                }
+            }
 
         });
 
 
     }
-
 
 
     private class back extends AsyncTask {
@@ -93,7 +93,7 @@ public class ForgetPassword extends AppCompatActivity {
         protected void onPostExecute(Object o) {
 
             if (data.equals("\"A reset password link has been sent to your email\\nPlease note that this link is valid for one day only.\"")) {
-                Toast.makeText(getBaseContext(),"Email Sent", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "Email Sent", Toast.LENGTH_LONG).show();
                 final Dialog dialog = new Dialog(c);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.noroutesdialog);
@@ -111,8 +111,7 @@ public class ForgetPassword extends AppCompatActivity {
                 });
 
 
-
-            }else if (data.equals("null")){
+            } else if (data.equals("null")) {
 
                 Toast.makeText(c, R.string.check_mobile_and_email, Toast.LENGTH_SHORT).show();
             }
@@ -158,7 +157,7 @@ public class ForgetPassword extends AppCompatActivity {
                 try {
 
 
-                  data=  j.ForgetPasswordForm2("", Email);
+                    data = j.ForgetPasswordForm2("", Email);
 
                 } catch (JSONException e) {
                     hidePDialog();
@@ -178,7 +177,6 @@ public class ForgetPassword extends AppCompatActivity {
         }
 
     }
-
 
 
     @Override
@@ -202,7 +200,6 @@ public class ForgetPassword extends AppCompatActivity {
     }
 
 
-
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.app_bar);
@@ -214,10 +211,12 @@ public class ForgetPassword extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
-
 
 
 }

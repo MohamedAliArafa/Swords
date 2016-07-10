@@ -13,6 +13,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -451,7 +452,7 @@ public class RideDetailsAsPassenger extends AppCompatActivity {
                         Smokers_str = getString(R.string.Accept_Smokers_txt);
                     } else if (Smokers_str.equals("false")) {
                         Smokers_str = getString(R.string.not_set);
-                    }else {
+                    } else {
                         Smokers_str = getString(R.string.not_set);
                     }
 
@@ -684,13 +685,13 @@ public class RideDetailsAsPassenger extends AppCompatActivity {
 //                        item.setAccountPhoto(obj.getString("AccountPhoto"));
                         Log.d("Passenger id", String.valueOf(Passenger_ID));
                         Log.d("Pass list id", String.valueOf(obj.getInt("AccountId")));
-                        if (Passenger_ID == obj.getInt("AccountId") && obj.getString("RequestStatus").equals("true") )  {
+                        if (Passenger_ID == obj.getInt("AccountId") && obj.getString("RequestStatus").equals("true")) {
                             FLAG_HIDE_JOIN = 2;
                         }
 
                         if (Passenger_ID == obj.getInt("AccountId")) {
-                            if (obj.getString("RequestStatus").equals("null") || obj.getString("RequestStatus").equals("false")){
-                                FLAG_HIDE_JOIN=5;
+                            if (obj.getString("RequestStatus").equals("null") || obj.getString("RequestStatus").equals("false")) {
+                                FLAG_HIDE_JOIN = 5;
                             }
                         }
 
@@ -799,8 +800,11 @@ public class RideDetailsAsPassenger extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     public static void setListViewHeightBasedOnChildren(ListView listView) {

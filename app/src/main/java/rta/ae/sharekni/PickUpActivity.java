@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -55,8 +56,8 @@ public class PickUpActivity extends AppCompatActivity {
     int To_Em_Id = -1;
     int To_Reg_Id = -1;
     int FLAG_ID;
-     int DistanceValue = 0;
-     int DurationValue = 0;
+    int DistanceValue = 0;
+    int DurationValue = 0;
 
     Double Start_Latitude, Start_Longitude, End_Latitude, End_Longitude;
 
@@ -240,7 +241,7 @@ public class PickUpActivity extends AppCompatActivity {
 
                 else if (FLAG_ID == 3) {
                     if (From_Em_Id != -1 && From_Reg_Id != -1 && To_Em_Id != -1 && To_Reg_Id != -1) {
-                       String url = "https://maps.googleapis.com/maps/api/distancematrix/json?";
+                        String url = "https://maps.googleapis.com/maps/api/distancematrix/json?";
                         url += "origins=" + Start_Latitude + "," + Start_Longitude + "&destinations=" + End_Latitude + "," + End_Longitude
                                 + "&key=" + "AIzaSyDjDfEe3c7xfwpLqVhktVa9Nkoh2fB9Z_I";
                         Log.d("Dustance URl ", url);
@@ -296,7 +297,6 @@ public class PickUpActivity extends AppCompatActivity {
                         });
                         VolleySingleton.getInstance(getBaseContext()
                         ).addToRequestQueue(stringRequest);
-
 
 
                     } else {
@@ -713,8 +713,12 @@ public class PickUpActivity extends AppCompatActivity {
         textView.setText(R.string.set_direction);
 //        toolbar.setElevation(10);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
     }
 
 

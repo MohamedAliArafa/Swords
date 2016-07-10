@@ -13,6 +13,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -258,14 +259,14 @@ public class QuickSearchResults extends AppCompatActivity {
 
                             int x1 = json.getInt("GreenPoints");
                             int x3 = json.getInt("CO2Saved");
-                            x3 = x3/1000;
+                            x3 = x3 / 1000;
 
                             item.setGreenPoints(String.valueOf(x1));
                             item.setGreenCo2Saving(String.valueOf(x3));
 
 
-                         //   item.setGreenPoints(json.getString("GreenPoints"));
-                         //   item.setGreenCo2Saving(json.getString("CO2Saved"));
+                            //   item.setGreenPoints(json.getString("GreenPoints"));
+                            //   item.setGreenCo2Saving(json.getString("CO2Saved"));
 
                             if (!json.getString("AccountPhoto").equals("NoImage.png")) {
                                 GetData gd = new GetData();
@@ -787,8 +788,11 @@ public class QuickSearchResults extends AppCompatActivity {
         }
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
 
@@ -899,14 +903,14 @@ public class QuickSearchResults extends AppCompatActivity {
 
                             int x1 = json.getInt("GreenPoints");
                             int x3 = json.getInt("CO2Saved");
-                            x3 = x3/1000;
+                            x3 = x3 / 1000;
 
                             item.setGreenPoints(String.valueOf(x1));
                             item.setGreenCo2Saving(String.valueOf(x3));
 
 
-                          //  item.setGreenPoints(json.getString("GreenPoints"));
-                          //  item.setGreenCo2Saving(json.getString("CO2Saved"));
+                            //  item.setGreenPoints(json.getString("GreenPoints"));
+                            //  item.setGreenCo2Saving(json.getString("CO2Saved"));
 
                             days = "";
 
@@ -1032,7 +1036,7 @@ public class QuickSearchResults extends AppCompatActivity {
                         try {
                             jArray = j.Search(0, Gender, Time, From_Em_Id
                                     , From_Reg_Id, To_Em_Id, To_Reg_Id, Language_ID, Nat_ID
-                                    , Advanced_Search_Age_Range_ID, StartDate, saveFind, Single_Periodic_ID, Smokers,0,0,0,0, acivity);
+                                    , Advanced_Search_Age_Range_ID, StartDate, saveFind, Single_Periodic_ID, Smokers, 0, 0, 0, 0, acivity);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -1041,7 +1045,7 @@ public class QuickSearchResults extends AppCompatActivity {
                         try {
                             jArray = j.Search(0, Gender, Time, From_Em_Id
                                     , From_Reg_Id, To_Em_Id, To_Reg_Id, Language_ID, Nat_ID
-                                    , Advanced_Search_Age_Range_ID, StartDate, saveFind, Single_Periodic_ID, Smokers,0,0,0,0, acivity);
+                                    , Advanced_Search_Age_Range_ID, StartDate, saveFind, Single_Periodic_ID, Smokers, 0, 0, 0, 0, acivity);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -1053,7 +1057,7 @@ public class QuickSearchResults extends AppCompatActivity {
                     try {
                         jArray = j.Search(Integer.parseInt(ID), Gender, Time, From_Em_Id
                                 , From_Reg_Id, To_Em_Id, To_Reg_Id, Language_ID, Nat_ID
-                                , Advanced_Search_Age_Range_ID, StartDate, saveFind, Single_Periodic_ID, Smokers,0,0,0,0, acivity);
+                                , Advanced_Search_Age_Range_ID, StartDate, saveFind, Single_Periodic_ID, Smokers, 0, 0, 0, 0, acivity);
                     } catch (JSONException e) {
                         error = true;
                         e.printStackTrace();

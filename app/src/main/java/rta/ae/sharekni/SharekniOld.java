@@ -101,7 +101,7 @@ public class SharekniOld extends ActionBarActivity {
         setSupportActionBar(toolbar);
 
 
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+       // getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
         NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)

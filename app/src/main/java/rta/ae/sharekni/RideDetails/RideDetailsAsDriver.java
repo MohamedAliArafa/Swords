@@ -18,7 +18,9 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -775,17 +777,21 @@ public class RideDetailsAsDriver extends AppCompatActivity {
 //                sendIntent.setAction(Intent.ACTION_SEND);
 //                sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
 //                sendIntent.setType("text/plain");
-//                startActivity(Intent.createChooser(sendIntent, "Share your thoughts"));
+//                startActivity(Intent.createChooser(sendIntent, "Share your Ride"));
 
+                //ShareSub();
 
-                showAlertDialog();
+                 showAlertDialog();
             }
         });
 
         setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 
@@ -813,12 +819,11 @@ public class RideDetailsAsDriver extends AppCompatActivity {
         List<ResolveInfo> launchables = pm.queryIntentActivities(sendIntent, 0);
 
 
-
         Collections
                 .sort(launchables, new ResolveInfo.DisplayNameComparator(pm));
 
         adapter = new AppAdapter(getBaseContext(), pm, launchables);
-        gridView.setNumColumns(2);
+        gridView.setNumColumns(1);
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -839,7 +844,7 @@ public class RideDetailsAsDriver extends AppCompatActivity {
                     Log.d("inside faceboook", "share facebook link");
                     ShareLinkContent content = new ShareLinkContent.Builder()
                             .setContentUrl(Uri.parse(RideLink))
-                            .setQuote("Connect on a global scale.")
+                            .setQuote("Join My Ride.")
                             .build();
 
                     ShareDialog.show(RideDetailsAsDriver.this, content);
@@ -859,6 +864,40 @@ public class RideDetailsAsDriver extends AppCompatActivity {
         builder.setView(gridView);
         builder.setTitle("Share your Ride");
         builder.show();
+    }
+
+
+    private void ShareSub() {
+        final Intent i = new Intent(Intent.ACTION_SEND);
+        i.setType("text/plain");
+        i.putExtra(Intent.EXTRA_TEXT, "text");
+
+        final List<ResolveInfo> activities = getPackageManager().queryIntentActivities(i, 0);
+
+        List<String> appNames = new ArrayList<String>();
+        for (ResolveInfo info : activities) {
+            appNames.add(info.loadLabel(getPackageManager()).toString());
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Complete Action using...");
+        builder.setItems(appNames.toArray(new CharSequence[appNames.size()]), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+                ResolveInfo info = activities.get(item);
+                if (info.activityInfo.packageName.equals("com.facebook.katana")) {
+                    // Facebook was chosen
+                    Toast.makeText(RideDetailsAsDriver.this, "FaceBook", Toast.LENGTH_SHORT).show();
+                } else if (info.activityInfo.packageName.equals("com.twitter.android")) {
+                    // Twitter was chosen
+                }
+
+                // start the selected activity
+                i.setPackage(info.activityInfo.packageName);
+                startActivity(i);
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
 }

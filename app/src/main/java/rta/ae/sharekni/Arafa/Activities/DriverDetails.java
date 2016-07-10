@@ -16,6 +16,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -76,7 +77,7 @@ public class DriverDetails extends AppCompatActivity {
     TextView Driver_profile_Item_rate;
     String IsMobileVerified, IsPhotoVerified;
     ImageView GreenPointCar_im;
-    TextView Green_Points_txt,Green_Km_txt,Green_Routes_txt,Green_Vehicles_txt,Green_co2_saving_txt;
+    TextView Green_Points_txt, Green_Km_txt, Green_Routes_txt, Green_Vehicles_txt, Green_co2_saving_txt;
 
     String Locale_Str;
 
@@ -126,14 +127,12 @@ public class DriverDetails extends AppCompatActivity {
         profile_call = (ImageView) findViewById(R.id.profile_call);
         Driver_profile_Item_rate = (TextView) findViewById(R.id.Driver_profile_Item_rate);
 
-        Green_Points_txt= (TextView) findViewById(R.id.Green_Points_txt);
-        Green_Km_txt= (TextView) findViewById(R.id.Green_Km_txt);
+        Green_Points_txt = (TextView) findViewById(R.id.Green_Points_txt);
+        Green_Km_txt = (TextView) findViewById(R.id.Green_Km_txt);
         Green_Routes_txt = (TextView) findViewById(R.id.Green_Routes_txt);
         Green_Vehicles_txt = (TextView) findViewById(R.id.Green_Vehicles_txt);
         Green_co2_saving_txt = (TextView) findViewById(R.id.Green_co2_saving_txt);
         GreenPointCar_im = (ImageView) findViewById(R.id.GreenPointCar_im);
-
-
 
 
         Locale locale = Locale.getDefault();
@@ -152,7 +151,6 @@ public class DriverDetails extends AppCompatActivity {
             GreenPointCar_im.setImageResource(R.drawable.greencarar);
 
         }
-
 
 
         myPrefs = this.getSharedPreferences("myPrefs", 0);
@@ -229,29 +227,24 @@ public class DriverDetails extends AppCompatActivity {
             int x2 = json.getInt("TotalDistance");
 
             int x3 = json.getInt("CO2Saved");
-            x3 = x3/1000;
+            x3 = x3 / 1000;
 
             Green_co2_saving_txt.setText(String.valueOf(x3));
             Green_Points_txt.setText(String.valueOf(x1));
             Green_Km_txt.setText(String.valueOf(x2));
 
 
-            if (json.getInt("DriverMyRidesCount")>2) {
+            if (json.getInt("DriverMyRidesCount") > 2) {
 
                 Green_Routes_txt.setText("2");
-            }else {
+            } else {
                 Green_Routes_txt.setText(json.getString("DriverMyRidesCount"));
             }
 
 
-
             Green_Vehicles_txt.setText(json.getString("VehiclesCount"));
 
-           // Green_co2_saving_txt.setText(json.getString("CO2Saved"));
-
-
-
-
+            // Green_co2_saving_txt.setText(json.getString("CO2Saved"));
 
 
             profile_call.setOnClickListener(new View.OnClickListener() {
@@ -259,7 +252,7 @@ public class DriverDetails extends AppCompatActivity {
                 public void onClick(View v) {
 
                     if (IsMobileVerified.equals("false")) {
-                        Toast.makeText(getBaseContext(), R.string.No_Phone_number , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), R.string.No_Phone_number, Toast.LENGTH_SHORT).show();
 
                     } else if (IsMobileVerified.equals("true")) {
 
@@ -295,7 +288,7 @@ public class DriverDetails extends AppCompatActivity {
                 public void onClick(View v) {
 
                     if (IsMobileVerified.equals("false")) {
-                        Toast.makeText(getBaseContext(), R.string.No_Phone_number , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), R.string.No_Phone_number, Toast.LENGTH_SHORT).show();
 
                     } else if (IsMobileVerified.equals("true")) {
 
@@ -331,8 +324,11 @@ public class DriverDetails extends AppCompatActivity {
 //        toolbar.setElevation(10);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     public class jsoning extends AsyncTask {

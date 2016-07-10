@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -160,8 +161,8 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
     load load;
     int Number_Of_Seats = 0;
     CheckBox check_Both, Check_Male, Check_Female;
-    CheckBox Check_Smoking,Check_NotSmoking;
-    String IS_Smoking ="";
+    CheckBox Check_Smoking, Check_NotSmoking;
+    String IS_Smoking = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -342,20 +343,18 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
 //
 
 
-
-
         check_Both = (CheckBox) findViewById(R.id.check_Both);
         Check_Male = (CheckBox) findViewById(R.id.Check_Male);
         Check_Female = (CheckBox) findViewById(R.id.Check_Female);
 
         Check_Smoking = (CheckBox) findViewById(R.id.Check_Smoking);
-        Check_NotSmoking= (CheckBox) findViewById(R.id.Check_NotSmoking);
+        Check_NotSmoking = (CheckBox) findViewById(R.id.Check_NotSmoking);
 
         Check_Smoking.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    IS_Smoking="1";
+                if (isChecked) {
+                    IS_Smoking = "1";
                     Check_NotSmoking.setChecked(false);
                 }
             }
@@ -365,13 +364,12 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
         Check_NotSmoking.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    IS_Smoking="0";
+                if (isChecked) {
+                    IS_Smoking = "0";
                     Check_Smoking.setChecked(false);
                 }
             }
         });
-
 
 
         check_Both.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -408,10 +406,6 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                 }
             }
         });
-
-
-
-
 
 
         seat1_on.setOnClickListener(this);
@@ -592,7 +586,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                     Check_Female.setChecked(true);
                     Check_Male.setChecked(false);
                     check_Both.setChecked(false);
-                }else if (j.getString("PreferredGender").equals("F")){
+                } else if (j.getString("PreferredGender").equals("F")) {
                     gender = 'N';
                     Check_Female.setChecked(false);
                     Check_Male.setChecked(false);
@@ -600,18 +594,16 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                 }
 
                 if (j.getString("IsSmoking").equals("true")) {
-                    IS_Smoking="1";
+                    IS_Smoking = "1";
                     Check_Smoking.setChecked(true);
                     Check_NotSmoking.setChecked(false);
                 } else if (j.getString("IsSmoking").equals("false")) {
-                    IS_Smoking="0";
+                    IS_Smoking = "0";
                     Check_Smoking.setChecked(false);
                     Check_NotSmoking.setChecked(true);
 
 
                 }
-
-
 
 
                 if (j.getBoolean("Saturday")) {
@@ -1078,8 +1070,11 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
         textView.setText(R.string.edit_ride);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override
@@ -1130,7 +1125,7 @@ public class DriverEditCarPool extends AppCompatActivity implements View.OnClick
                 j.DriverEditCarPoolFrom(RouteId, EnName, FromEmId, ToEmId, FromRegId, ToRegId
                         , is_Rounded, URLEncoder.encode(Time), Saturday, Sunday, Monday, Tuesday, Wednesday, Thursday, Friday
                         , gender, Vehicle_ID, No_OF_Seats, Start_Lat, Start_Lng, End_Lat, End_Lng
-                        , pref_lnag, pref_nat, Age_Ranged_id, StartDate,IS_Smoking, this);
+                        , pref_lnag, pref_nat, Age_Ranged_id, StartDate, IS_Smoking, this);
             } else {
                 Toast.makeText(DriverEditCarPool.this, getString(R.string.fill_all_error), Toast.LENGTH_SHORT).show();
             }

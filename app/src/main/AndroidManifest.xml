@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     package="rta.ae.sharekni">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -44,12 +43,11 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Base">
-
-
         <provider
             android:name="com.facebook.FacebookContentProvider"
             android:authorities="rta.ae.sharekni.FacebookContentProviderSharekni"
             android:exported="true" />
+
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -59,7 +57,6 @@
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
         <activity
             android:name=".SharekniOld"
             android:label="@string/title_activity_main"
@@ -97,7 +94,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="rta.ae.sharekni.SharekniOld" />
         </activity>
-
         <activity
             android:name=".Arafa.Activities.ImageUp"
             android:label="@string/title_activity_home_page_test"
@@ -210,6 +206,7 @@
         <activity
             android:name=".QuickSearch"
             android:label="@string/title_activity_qsearch"
+            android:parentActivityName=".StartScreen.StartScreenActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Advanced_Search"
@@ -384,12 +381,12 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <!--<receiver android:name=".MyMobileAppTrackerReceiver"-->
-        <!--android:exported="false">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="com.android.vending.INSTALL_REFERRER" />-->
-        <!--</intent-filter>-->
-        <!--</receiver>-->
+        <!-- <receiver android:name=".MyMobileAppTrackerReceiver" -->
+        <!-- android:exported="false"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.android.vending.INSTALL_REFERRER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
 
         <receiver
             android:name="com.tune.TuneTracker"
@@ -407,6 +404,17 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="rta.ae.sharekni.DriverAlertsForRequest" />
+        </activity>
+        <activity android:name=".FAQ">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="rta.ae.sharekni.HomePage" />
+        </activity>
+
+        <activity android:name=".FAQ_Details">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".FAQ" />
 
         </activity>
     </application>

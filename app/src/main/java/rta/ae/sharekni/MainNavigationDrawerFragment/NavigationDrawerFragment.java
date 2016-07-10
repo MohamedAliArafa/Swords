@@ -25,6 +25,7 @@ import rta.ae.sharekni.Arafa.Activities.BestDrivers;
 import rta.ae.sharekni.Arafa.Activities.MostRides;
 import rta.ae.sharekni.DriverAlertsForRequest;
 import rta.ae.sharekni.EditProfile;
+import rta.ae.sharekni.FAQ;
 import rta.ae.sharekni.StartScreen.StartScreenActivity;
 import rta.ae.sharekni.QuickSearch;
 import rta.ae.sharekni.R;
@@ -63,7 +64,7 @@ public class NavigationDrawerFragment extends Fragment {
     public static ImageView menuicon12;
     ImageView LanguageMenuIcon;
    public  static  RelativeLayout navy_My_vehicles;
-    RelativeLayout navy_homePage,navy_TopRides,navy_BestDrivers,navy_SearchOptions,navy_MyProfile,navy_Logout,navy_Edit_Profile;
+    RelativeLayout happy_meter_relative,navy_homePage,navy_TopRides,navy_BestDrivers,navy_SearchOptions,navy_MyProfile,navy_Logout,navy_Edit_Profile;
   public static   TextView tv_name_home ,nat_home;
 
 
@@ -94,6 +95,8 @@ public class NavigationDrawerFragment extends Fragment {
         nat_home= (TextView) layout.findViewById(R.id.nat_home);
         navy_Edit_Profile= (RelativeLayout) layout.findViewById(R.id.navy_Edit_Profile);
         navy_Change_lang = (RelativeLayout) layout.findViewById(R.id.navy_Change_lang);
+        happy_meter_relative = (RelativeLayout) layout.findViewById(R.id.happy_meter_relative);
+
 
         navy_My_vehicles= (RelativeLayout) layout.findViewById(R.id.navy_My_vehicles);
         menuicon12= (ImageView) layout.findViewById(R.id.menuicon12);
@@ -104,6 +107,15 @@ public class NavigationDrawerFragment extends Fragment {
 
 
 
+
+
+        happy_meter_relative.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), FAQ.class);
+                startActivity(intent);
+            }
+        });
 
 
         navy_TopRides.setOnClickListener(new View.OnClickListener() {

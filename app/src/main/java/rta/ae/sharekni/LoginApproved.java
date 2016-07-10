@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -47,7 +48,7 @@ public class LoginApproved extends AppCompatActivity {
     Button loginBtn;
     String user, pass;
     TextView txt_forgetpass, txt_noaccountsignup;
-    String url = GetData.DOMAIN +"CheckLogin?";
+    String url = GetData.DOMAIN + "CheckLogin?";
     static LoginApproved loginActivity;
     private Toolbar toolbar;
     protected static ProgressDialog pDialog;
@@ -56,11 +57,10 @@ public class LoginApproved extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
 
-
         super.onCreate(savedInstanceState);
         loginActivity = this;
         setContentView(R.layout.login_design_approved);
-       initToolbar();
+        initToolbar();
 
         try {
             if (TakeATour.getInstance() != null) {
@@ -102,9 +102,9 @@ public class LoginApproved extends AppCompatActivity {
         password.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus){
+                if (hasFocus) {
                     password.setHint("");
-                }else {
+                } else {
                     password.setHint(getString(R.string.password));
                 }
             }
@@ -206,7 +206,7 @@ public class LoginApproved extends AppCompatActivity {
 //                                        startActivity(mainIntent);
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(LoginApproved.this,R.string.connection_problem, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginApproved.this, R.string.connection_problem, Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -234,7 +234,7 @@ public class LoginApproved extends AppCompatActivity {
                                         editor.putString("account_type", json.getString("IsPassenger"));
                                         editor.putString("account_user", String.valueOf(user));
                                         editor.putString("account_pass", String.valueOf(pass));
-                                        Log.d("New Account Type:",json.getString("IsPassenger"));
+                                        Log.d("New Account Type:", json.getString("IsPassenger"));
 
                                         editor.commit();
                                         item.setID(json.getInt("ID"));
@@ -288,7 +288,7 @@ public class LoginApproved extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id==android.R.id.home){
+        if (id == android.R.id.home) {
             onBackPressed();
             return true;
         }
@@ -306,8 +306,6 @@ public class LoginApproved extends AppCompatActivity {
     }
 
 
-
-
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.app_bar);
@@ -319,8 +317,11 @@ public class LoginApproved extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
 

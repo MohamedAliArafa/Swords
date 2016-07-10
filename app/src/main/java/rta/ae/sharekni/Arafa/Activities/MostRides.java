@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -40,6 +41,7 @@ public class MostRides extends AppCompatActivity {
     ProgressDialog pDialog;
     private Toolbar toolbar;
     jsoning jsoning;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +71,7 @@ public class MostRides extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Object o) {
-            if (exists){
+            if (exists) {
                 BestRouteDataModelAdapter arrayAdapter = new BestRouteDataModelAdapter(MostRides.this, R.layout.top_rides_custom_row, driver);
                 lv.setAdapter(arrayAdapter);
                 lv.requestLayout();
@@ -132,20 +134,20 @@ public class MostRides extends AppCompatActivity {
                     assert response != null;
                     driver = new BestRouteDataModel[response.length()];
                     for (int i = 0; i < response.length(); i++) {
-                            JSONObject json = response.getJSONObject(i);
-                            final BestRouteDataModel item = new BestRouteDataModel(Parcel.obtain());
-                            item.setFromEm(json.getString(getString(R.string.from_em_name_en)));
-                            item.setFromReg(json.getString(getString(R.string.from_reg_name_en)));
-                            item.setToEm(json.getString(getString(R.string.to_em_name_en)));
-                            item.setToReg(json.getString(getString(R.string.to_reg_name_en)));
-                            item.setFromEmId(json.getInt("FromEmirateId"));
-                            item.setFromRegid(json.getInt("FromRegionId"));
-                            item.setToEmId(json.getInt("ToEmirateId"));
-                            item.setToRegId(json.getInt("ToRegionId"));
-                            item.setRouteName(json.getString("RoutesCount"));
+                        JSONObject json = response.getJSONObject(i);
+                        final BestRouteDataModel item = new BestRouteDataModel(Parcel.obtain());
+                        item.setFromEm(json.getString(getString(R.string.from_em_name_en)));
+                        item.setFromReg(json.getString(getString(R.string.from_reg_name_en)));
+                        item.setToEm(json.getString(getString(R.string.to_em_name_en)));
+                        item.setToReg(json.getString(getString(R.string.to_reg_name_en)));
+                        item.setFromEmId(json.getInt("FromEmirateId"));
+                        item.setFromRegid(json.getInt("FromRegionId"));
+                        item.setToEmId(json.getInt("ToEmirateId"));
+                        item.setToRegId(json.getInt("ToRegionId"));
+                        item.setRouteName(json.getString("RoutesCount"));
 //                    arr.add(item);
-                            driver[i] = item;
-                        publishProgress((int)(i*100/response.length()));
+                        driver[i] = item;
+                        publishProgress((int) (i * 100 / response.length()));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -155,10 +157,6 @@ public class MostRides extends AppCompatActivity {
             return null;
         }
     }
-
-
-
-
 
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -172,8 +170,11 @@ public class MostRides extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
     }
 
@@ -188,7 +189,7 @@ public class MostRides extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
 
 
-        if (id==android.R.id.home){
+        if (id == android.R.id.home) {
             onBackPressed();
             return true;
         }
@@ -199,7 +200,7 @@ public class MostRides extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (jsoning.getStatus()== AsyncTask.Status.RUNNING) {
+        if (jsoning.getStatus() == AsyncTask.Status.RUNNING) {
             jsoning.cancel(true);
         }
         finish();
