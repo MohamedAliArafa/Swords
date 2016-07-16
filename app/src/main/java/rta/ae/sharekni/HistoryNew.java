@@ -43,6 +43,7 @@ import org.json.JSONObject;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.util.Locale;
 
 import rta.ae.sharekni.Arafa.Activities.DriverDetails;
 import rta.ae.sharekni.RideDetails.RideDetailsAsDriver;
@@ -183,7 +184,17 @@ public class HistoryNew extends AppCompatActivity {
         textView.setText(getString(R.string.history));
 //        toolbar.setElevation(10);
         setSupportActionBar(toolbar);
- ActionBar actionBar = getSupportActionBar(); if (actionBar != null) { actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back); actionBar.setDisplayHomeAsUpEnabled(true); }
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            Locale locale = Locale.getDefault();
+            String Locale_Str2 = locale.toString();
+            if (Locale_Str2.contains("en")) {
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
+            } else {
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_forward);
+            }
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
 

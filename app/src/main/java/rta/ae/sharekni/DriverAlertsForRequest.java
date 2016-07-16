@@ -31,6 +31,7 @@ import java.net.Socket;
 import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import rta.ae.sharekni.Arafa.Classes.GetData;
 
@@ -54,7 +55,7 @@ public class DriverAlertsForRequest extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        if (jsoning.getStatus()!= AsyncTask.Status.RUNNING || jsoning.getStatus()!= AsyncTask.Status.PENDING) {
+        if (jsoning.getStatus() != AsyncTask.Status.RUNNING || jsoning.getStatus() != AsyncTask.Status.PENDING) {
             ProgressDialog pDialog = new ProgressDialog(this);
             pDialog.setMessage(getString(R.string.loading) + "...");
             pDialog.show();
@@ -122,7 +123,7 @@ public class DriverAlertsForRequest extends AppCompatActivity {
 //                    in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                    con.startActivity(in);
 
-                    if (arr.get(i).getDriverAccept().equals("DriverToPassenger") ){
+                    if (arr.get(i).getDriverAccept().equals("DriverToPassenger")) {
                         Intent in = new Intent(con, DriverRequestDetails.class);
                         in.putExtra("PassengerName", arr.get(i).getPassengerName());
                         in.putExtra("RouteName", arr.get(i).getRouteName());
@@ -132,10 +133,10 @@ public class DriverAlertsForRequest extends AppCompatActivity {
                         in.putExtra("Remarks", arr.get(i).getRemarks());
                         in.putExtra("RequestId", arr.get(i).getRequestId());
                         in.putExtra("RequestDate", arr.get(i).getRequestDate());
-                        in.putExtra("InviteState","DriverToPassenger");
+                        in.putExtra("InviteState", "DriverToPassenger");
                         jsoning.cancel(true);
                         con.startActivity(in);
-                    } else if (arr.get(i).getDriverAccept().equals("PassengerToDriver") ){
+                    } else if (arr.get(i).getDriverAccept().equals("PassengerToDriver")) {
                         Intent in = new Intent(con, DriverRequestDetails.class);
                         in.putExtra("PassengerName", arr.get(i).getPassengerName());
                         in.putExtra("RouteName", arr.get(i).getRouteName());
@@ -145,13 +146,13 @@ public class DriverAlertsForRequest extends AppCompatActivity {
                         in.putExtra("Remarks", arr.get(i).getRemarks());
                         in.putExtra("RequestId", arr.get(i).getRequestId());
                         in.putExtra("RequestDate", arr.get(i).getRequestDate());
-                        in.putExtra("InviteState","PassengerToDriver");
+                        in.putExtra("InviteState", "PassengerToDriver");
                         jsoning.cancel(true);
                         con.startActivity(in);
-                    }else if (arr.get(i).getDriverAccept().equals("null")  ){
+                    } else if (arr.get(i).getDriverAccept().equals("null")) {
 
 
-                        if (arr.get(i).getDriverPending().equals("Driver_Pending_Request")){
+                        if (arr.get(i).getDriverPending().equals("Driver_Pending_Request")) {
                             Intent in = new Intent(con, PendingRequestDetails.class);
                             in.putExtra("PassengerName", arr.get(i).getPassengerName());
                             in.putExtra("RouteName", arr.get(i).getRouteName());
@@ -161,11 +162,11 @@ public class DriverAlertsForRequest extends AppCompatActivity {
                             in.putExtra("Remarks", arr.get(i).getRemarks());
                             in.putExtra("RequestId", arr.get(i).getRequestId());
                             in.putExtra("RequestDate", arr.get(i).getRequestDate());
-                            in.putExtra("Driver_Pending_Request","Driver_Pending_Request");
+                            in.putExtra("Driver_Pending_Request", "Driver_Pending_Request");
                             jsoning.cancel(true);
                             con.startActivity(in);
 
-                        }else {
+                        } else {
                             Intent in = new Intent(con, PendingRequestDetails.class);
                             in.putExtra("PassengerName", arr.get(i).getPassengerName());
                             in.putExtra("RouteName", arr.get(i).getRouteName());
@@ -175,11 +176,10 @@ public class DriverAlertsForRequest extends AppCompatActivity {
                             in.putExtra("Remarks", arr.get(i).getRemarks());
                             in.putExtra("RequestId", arr.get(i).getRequestId());
                             in.putExtra("RequestDate", arr.get(i).getRequestDate());
-                            in.putExtra("Driver_Pending_Request","null");
+                            in.putExtra("Driver_Pending_Request", "null");
                             jsoning.cancel(true);
                             con.startActivity(in);
                         }
-
 
 
 //                        final String[] res = new String[1];
@@ -381,7 +381,6 @@ public class DriverAlertsForRequest extends AppCompatActivity {
                 }
 
 
-
                 try {
                     response = new GetData().Passenger_AlertsForInvitation(Driver_Id);
                 } catch (JSONException e) {
@@ -446,13 +445,11 @@ public class DriverAlertsForRequest extends AppCompatActivity {
                 }
 
 
-
             }
 
             return null;
         }
     }
-
 
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -466,7 +463,17 @@ public class DriverAlertsForRequest extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
- ActionBar actionBar = getSupportActionBar(); if (actionBar != null) { actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back); actionBar.setDisplayHomeAsUpEnabled(true); }
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            Locale locale = Locale.getDefault();
+            String Locale_Str2 = locale.toString();
+            if (Locale_Str2.contains("en")) {
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
+            } else {
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_forward);
+            }
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
 

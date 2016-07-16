@@ -27,6 +27,7 @@ import org.json.JSONException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.util.Locale;
 
 import rta.ae.sharekni.Arafa.Classes.GetData;
 
@@ -213,8 +214,13 @@ public class ForgetPassword extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
-            actionBar.setDisplayHomeAsUpEnabled(true);
+            Locale locale = Locale.getDefault();
+            String Locale_Str2 = locale.toString();
+            if (Locale_Str2.contains("en")) {
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
+            } else {
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_forward);
+            }            actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
 

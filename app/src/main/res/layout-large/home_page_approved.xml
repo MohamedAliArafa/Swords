@@ -474,7 +474,7 @@
                             android:layout_height="45dp"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="25dp"
-                            android:src="@drawable/homehistory" />
+                            android:src="@drawable/homehappymeter" />
 
 
                         <TextView

@@ -36,6 +36,7 @@ import org.json.JSONObject;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.util.Locale;
 
 import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
@@ -188,12 +189,9 @@ public class SavedSearch extends AppCompatActivity {
 
                                             if (json.getString("Nationalites") != null && !json.getString("Nationalites").equals("")) {
                                                 item.setNationality_ID(json.getString("Nationalites"));
-                                            }else {
+                                            } else {
                                                 item.setNationality_ID("0");
                                             }
-
-
-
 
 
                                             item.setLanguage_ID(Integer.parseInt(json.getString("PrefLanguageId")));
@@ -287,7 +285,8 @@ public class SavedSearch extends AppCompatActivity {
                                                     intent1.putExtra("IsRounded", driver[i].Single_Periodic_ID);
                                                     intent1.putExtra("Gende" +
                                                             "r", driver[i].Gender.charAt(0));
-                                                    intent1.putExtra("InviteType", "Search");;
+                                                    intent1.putExtra("InviteType", "Search");
+                                                    ;
                                                     startActivity(intent1);
 
 
@@ -327,7 +326,17 @@ public class SavedSearch extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
- ActionBar actionBar = getSupportActionBar(); if (actionBar != null) { actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back); actionBar.setDisplayHomeAsUpEnabled(true); }
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            Locale locale = Locale.getDefault();
+            String Locale_Str2 = locale.toString();
+            if (Locale_Str2.contains("en")) {
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
+            } else {
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_forward);
+            }
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
 }

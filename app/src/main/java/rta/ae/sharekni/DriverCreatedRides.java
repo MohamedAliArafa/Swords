@@ -37,6 +37,7 @@ import org.json.JSONObject;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.util.Locale;
 
 import rta.ae.sharekni.RideDetails.RideDetailsAsDriver;
 import rta.ae.sharekni.Arafa.Classes.GetData;
@@ -61,6 +62,7 @@ public class DriverCreatedRides extends AppCompatActivity {
     rideJson rideJson;
 
     Activity c;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +70,7 @@ public class DriverCreatedRides extends AppCompatActivity {
         user_ride_created = (ListView) findViewById(R.id.user_ride_created);
         initToolbar();
         myPrefs = this.getSharedPreferences("myPrefs", 0);
-        String ID = myPrefs.getString("account_id",null);
+        String ID = myPrefs.getString("account_id", null);
 //        Bundle in = getIntent().getExtras();
 //        Log.d("Intent Id :", String.valueOf(in.getInt("DriverID")));
         Driver_ID = Integer.parseInt(ID);
@@ -77,7 +79,7 @@ public class DriverCreatedRides extends AppCompatActivity {
         rideJson = new rideJson();
         rideJson.execute();
 
-        c=this;
+        c = this;
     }
 
 
@@ -152,8 +154,8 @@ public class DriverCreatedRides extends AppCompatActivity {
                                     JSONArray jArray = new JSONArray(data);
                                     final BestRouteDataModel[] driver = new BestRouteDataModel[jArray.length()];
                                     JSONObject json;
-                                    if (jArray.length()==0){
-                                        Log.d("Error 3 ","Error3");
+                                    if (jArray.length() == 0) {
+                                        Log.d("Error 3 ", "Error3");
 
                                         final Dialog dialog = new Dialog(c);
                                         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -186,7 +188,7 @@ public class DriverCreatedRides extends AppCompatActivity {
                                             item.setToReg(json.getString(getString(R.string.to_reg_en_name)));
                                             item.setRouteName(json.getString(getString(R.string.route_name)));
 
-                                           // item.setStartFromTime(json.getString("StartFromTime"));
+                                            // item.setStartFromTime(json.getString("StartFromTime"));
                                             str_StartFromTime = json.getString("StartFromTime");
                                             str_StartFromTime = str_StartFromTime.substring(Math.max(0, str_StartFromTime.length() - 7));
                                             Log.d("string", str_StartFromTime);
@@ -241,7 +243,7 @@ public class DriverCreatedRides extends AppCompatActivity {
                                             });
                                         } catch (JSONException e) {
                                             e.printStackTrace();
-                                           Log.d("Error 1 ",e.toString());
+                                            Log.d("Error 1 ", e.toString());
                                         }
                                     }
                                 } catch (JSONException e) {
@@ -272,12 +274,22 @@ public class DriverCreatedRides extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
- ActionBar actionBar = getSupportActionBar(); if (actionBar != null) { actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back); actionBar.setDisplayHomeAsUpEnabled(true); }
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            Locale locale = Locale.getDefault();
+            String Locale_Str2 = locale.toString();
+            if (Locale_Str2.contains("en")) {
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
+            } else {
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_forward);
+            }            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if (rideJson.getStatus()== AsyncTask.Status.RUNNING) {
+        if (rideJson.getStatus() == AsyncTask.Status.RUNNING) {
             rideJson.cancel(true);
         }
         finish();

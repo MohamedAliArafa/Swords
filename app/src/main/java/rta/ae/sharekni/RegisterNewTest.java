@@ -76,6 +76,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -134,7 +135,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
     TextView Terms_And_Cond_txt;
 
     DatePicker d;
-    Boolean vailedEmail=false;
+    Boolean vailedEmail = false;
     RelativeLayout txt_terms;
     TextView Terms_And_Cond_txt_2;
     TextView Privacy_and_poolicy;
@@ -176,7 +177,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                 //Date_Relative.setBackgroundResource(R.drawable.user_register_border);
                 Log.d("Calendar test", full_date);
             } else {
-               // Date_Relative.setBackgroundResource(R.drawable.user_register_border_error);
+                // Date_Relative.setBackgroundResource(R.drawable.user_register_border_error);
                 txt_dayOfWeek.setText(R.string.must_be_more_18);
                 Toast.makeText(RegisterNewTest.this, R.string.too_young, Toast.LENGTH_SHORT).show();
             }
@@ -262,7 +263,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         MobileNumber_Linear = (LinearLayout) findViewById(R.id.MobileNumber_Linear);
         UserName_Linear = (LinearLayout) findViewById(R.id.UserName_Linear);
         Password_Linear = (LinearLayout) findViewById(R.id.Password_Linear);
-     //   Nat_Linear = (LinearLayout) findViewById(R.id.Nat_Linear);
+        //   Nat_Linear = (LinearLayout) findViewById(R.id.Nat_Linear);
         Language_Linear = (LinearLayout) findViewById(R.id.Language_Linear);
         Date_Relative = (RelativeLayout) findViewById(R.id.datepicker_id);
 
@@ -521,7 +522,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                     Toast.makeText(RegisterNewTest.this, R.string.fill_all_error, Toast.LENGTH_SHORT).show();
                     Date_Relative.setBackgroundResource(R.drawable.user_register_border_error);
                 } else {
-                    if (edit_fname.getText() != null && !edit_fname.getText().toString().equals(getString(R.string.Reg_FirstN)) && edit_lname.getText() != null && !edit_lname.getText().toString().equals(getString(R.string.Reg_LastN)) && edit_phone.getText() != null && !edit_phone.getText().toString().equals(getString(R.string.REg_Mobile)) && edit_pass.getText() != null && !edit_pass.getText().toString().equals(getString(R.string.Reg_pass)) && edit_user.getText() != null && !edit_user.getText().toString().equals(getString(R.string.Reg_Email)) &&!edit_lname.getText().toString().equals(getString(R.string.Reg_Nat)) && Language_ID != -1 && vailedEmail == true) {
+                    if (edit_fname.getText() != null && !edit_fname.getText().toString().equals(getString(R.string.Reg_FirstN)) && edit_lname.getText() != null && !edit_lname.getText().toString().equals(getString(R.string.Reg_LastN)) && edit_phone.getText() != null && !edit_phone.getText().toString().equals(getString(R.string.REg_Mobile)) && edit_pass.getText() != null && !edit_pass.getText().toString().equals(getString(R.string.Reg_pass)) && edit_user.getText() != null && !edit_user.getText().toString().equals(getString(R.string.Reg_Email)) && !edit_lname.getText().toString().equals(getString(R.string.Reg_Nat)) && Language_ID != -1 && vailedEmail == true) {
                         ArrayList codes = new ArrayList();
                         codes.add("50");
                         codes.add("52");
@@ -529,49 +530,49 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                         codes.add("56");
                         String code = edit_phone.getText().toString().substring(0, 2);
 
-                       if (edit_pass.getText().length()<5){
-                           Toast.makeText(RegisterNewTest.this, R.string.Password_sould_be_more_than_five_chars, Toast.LENGTH_SHORT).show();
-                       }else {
-                           if (!codes.contains(code)) {
-                               Toast.makeText(RegisterNewTest.this, getString(R.string.short_mobile), Toast.LENGTH_SHORT).show();
+                        if (edit_pass.getText().length() < 5) {
+                            Toast.makeText(RegisterNewTest.this, R.string.Password_sould_be_more_than_five_chars, Toast.LENGTH_SHORT).show();
+                        } else {
+                            if (!codes.contains(code)) {
+                                Toast.makeText(RegisterNewTest.this, getString(R.string.short_mobile), Toast.LENGTH_SHORT).show();
 
 
-                           } else {
-                               String Fname = edit_fname.getText().toString();
-                               String Lname = edit_lname.getText().toString();
-                               String phone = edit_phone.getText().toString();
-                               String pass = edit_pass.getText().toString();
-                               String user = edit_user.getText().toString();
-                               // String country = txt_country.getText().toString();
-                               String country = "0";
+                            } else {
+                                String Fname = edit_fname.getText().toString();
+                                String Lname = edit_lname.getText().toString();
+                                String phone = edit_phone.getText().toString();
+                                String pass = edit_pass.getText().toString();
+                                String user = edit_user.getText().toString();
+                                // String country = txt_country.getText().toString();
+                                String country = "0";
 //                        String lang = txt_lang.getText().toString();
-                               char gender = i;
-                               //    String birthdate = full_date;
-                               int x = Language_ID;
+                                char gender = i;
+                                //    String birthdate = full_date;
+                                int x = Language_ID;
 //                            int y = Nationality_ID;
-                               RegisterJsonParse registerJsonParse = new RegisterJsonParse();
+                                RegisterJsonParse registerJsonParse = new RegisterJsonParse();
 
-                               switch (usertype) {
-                                   case "Passenger":
-                                       registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterPassenger?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + "&NationalityId=0" + "&PreferredLanguageId=" + x + "&photoName=" + uploadedImage, RegisterNewTest.this, country, "P");
-                                       Log.d("Registration :", GetData.DOMAIN + "RegisterPassenger?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + "&NationalityId=0" + "&PreferredLanguageId=" + x + "&photoName=" + uploadedImage);
-                                       break;
-                                   case "1":
-                                       Toast.makeText(RegisterNewTest.this, R.string.select_type_first_error, Toast.LENGTH_SHORT).show();
+                                switch (usertype) {
+                                    case "Passenger":
+                                        registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterPassenger?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + "&NationalityId=0" + "&PreferredLanguageId=" + x + "&photoName=" + uploadedImage, RegisterNewTest.this, country, "P");
+                                        Log.d("Registration :", GetData.DOMAIN + "RegisterPassenger?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + "&NationalityId=0" + "&PreferredLanguageId=" + x + "&photoName=" + uploadedImage);
+                                        break;
+                                    case "1":
+                                        Toast.makeText(RegisterNewTest.this, R.string.select_type_first_error, Toast.LENGTH_SHORT).show();
 
-                                       break;
-                                   case "Driver":
+                                        break;
+                                    case "Driver":
 
-                                       registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=0" + "&PreferredLanguageId=" + x, RegisterNewTest.this, country, "D");
-                                       Log.d("Reg Driver", GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=0" + "&PreferredLanguageId=" + x);
-                                       break;
-                                   case "Both":
-                                       registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=0" + "&PreferredLanguageId=" + x, RegisterNewTest.this, country, "D");
-                                       break;
-                               }
-                           }
+                                        registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=0" + "&PreferredLanguageId=" + x, RegisterNewTest.this, country, "D");
+                                        Log.d("Reg Driver", GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=0" + "&PreferredLanguageId=" + x);
+                                        break;
+                                    case "Both":
+                                        registerJsonParse.stringRequest(GetData.DOMAIN + "RegisterDriver?firstName=" + URLEncoder.encode(Fname) + "&lastName=" + URLEncoder.encode(Lname) + "&mobile=" + phone + "&username=" + URLEncoder.encode(user) + "&password=" + URLEncoder.encode(pass) + "&gender=" + gender + "&BirthDate=" + "&licenseScannedFileName=nofile.jpg" + "&TrafficFileNo=nofile.jpg" + "&photoName=" + uploadedImage + "&NationalityId=0" + "&PreferredLanguageId=" + x, RegisterNewTest.this, country, "D");
+                                        break;
+                                }
+                            }
 
-                       }
+                        }
                     } else {
                         Toast.makeText(RegisterNewTest.this, R.string.fill_all_error, Toast.LENGTH_SHORT).show();
                     }
@@ -1197,7 +1198,17 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
         textView.setText(R.string.Reg_appBar_name);
         setSupportActionBar(toolbar);
- ActionBar actionBar = getSupportActionBar(); if (actionBar != null) { actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back); actionBar.setDisplayHomeAsUpEnabled(true); }
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            Locale locale = Locale.getDefault();
+            String Locale_Str2 = locale.toString();
+            if (Locale_Str2.contains("en")) {
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
+            } else {
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_forward);
+            }
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
 }

@@ -59,8 +59,8 @@ public class RegisterVehicle extends AppCompatActivity {
 
     RelativeLayout btn_datepicker_id;
 
-    public static  String  TRAFFIC_FILE_NUMBER="a";
-    public static  String  TRAFFIC_BIRTH_DATE="a";
+    public static String TRAFFIC_FILE_NUMBER = "a";
+    public static String TRAFFIC_BIRTH_DATE = "a";
 
 
     EditText File_num_edit;
@@ -115,15 +115,14 @@ public class RegisterVehicle extends AppCompatActivity {
 
 
                 GetData j = new GetData();
-                if (!full_date.equals("") && !File_num_edit.getText().toString().equals(getString(R.string.enter_licence)) && (File_num_edit.length()>0)) {
+                if (!full_date.equals("") && !File_num_edit.getText().toString().equals(getString(R.string.enter_licence)) && (File_num_edit.length() > 0)) {
                     File_NO_Str = File_num_edit.getText().toString();
                     back.execute();
-                }else if (File_num_edit.length()<=0){
+                } else if (File_num_edit.length() <= 0) {
                     Toast.makeText(RegisterVehicle.this, R.string.enter_file_no, Toast.LENGTH_SHORT).show();
-                }else if (full_date.equals("")){
+                } else if (full_date.equals("")) {
                     Toast.makeText(RegisterVehicle.this, R.string.enter_DOB, Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     Toast.makeText(RegisterVehicle.this, R.string.enter_file_DOB, Toast.LENGTH_SHORT).show();
                 }
 
@@ -229,7 +228,7 @@ public class RegisterVehicle extends AppCompatActivity {
                 Log.d("license no json", data + " Error in Connection with the DataBase Server");
                 c.finish();
             } else if (data.equals("\"-2\"")) {
-                Toast.makeText(getBaseContext(),getString( R.string.cant_user_file_number) , Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), getString(R.string.cant_user_file_number), Toast.LENGTH_LONG).show();
                 c.finish();
             }
             hidePDialog();
@@ -294,7 +293,7 @@ public class RegisterVehicle extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if (back.getStatus() == AsyncTask.Status.RUNNING){
+        if (back.getStatus() == AsyncTask.Status.RUNNING) {
             back.cancel(true);
         }
         finish();
@@ -311,7 +310,18 @@ public class RegisterVehicle extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
- ActionBar actionBar = getSupportActionBar(); if (actionBar != null) { actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back); actionBar.setDisplayHomeAsUpEnabled(true); }
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            Locale locale = Locale.getDefault();
+            String Locale_Str2 = locale.toString();
+            if (Locale_Str2.contains("en")) {
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
+            } else {
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_forward);
+            }
+
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
 

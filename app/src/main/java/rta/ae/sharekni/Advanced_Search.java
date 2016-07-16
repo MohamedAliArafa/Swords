@@ -50,6 +50,7 @@ import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.TreeMap;
 
 import rta.ae.sharekni.Arafa.Classes.GetData;
@@ -57,7 +58,7 @@ import rta.ae.sharekni.Arafa.Classes.GetData;
 public class Advanced_Search extends AppCompatActivity implements View.OnClickListener {
 
     char i = 'N';
-    String IS_Smoking ="";
+    String IS_Smoking = "";
     static final int DILOG_ID = 0;
     static final int TIME_DIALOG_ID = 999;
     int Single_Periodic_ID;
@@ -129,7 +130,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
     int savefind = 0;
 
     CheckBox check_Both, Check_Male, Check_Female;
-    CheckBox Check_Smoking,Check_NotSmoking;
+    CheckBox Check_Smoking, Check_NotSmoking;
 
     private Toolbar toolbar;
     private DatePickerDialog.OnDateSetListener dPickerListener = new DatePickerDialog.OnDateSetListener() {
@@ -218,7 +219,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
         Check_Female = (CheckBox) findViewById(R.id.Check_Female);
 
         Check_Smoking = (CheckBox) findViewById(R.id.Check_Smoking);
-        Check_NotSmoking= (CheckBox) findViewById(R.id.Check_NotSmoking);
+        Check_NotSmoking = (CheckBox) findViewById(R.id.Check_NotSmoking);
 
         i2 = 0;
         try {
@@ -391,8 +392,8 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
         Check_Smoking.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    IS_Smoking="1";
+                if (isChecked) {
+                    IS_Smoking = "1";
                     Check_NotSmoking.setChecked(false);
                 }
             }
@@ -402,13 +403,12 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
         Check_NotSmoking.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    IS_Smoking="0";
+                if (isChecked) {
+                    IS_Smoking = "0";
                     Check_Smoking.setChecked(false);
                 }
             }
         });
-
 
 
         check_Both.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -478,27 +478,27 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                 b.putInt("savefind", savefind);
                 b.putString("IS_Smoking", IS_Smoking);
                 b.putString("full_date", Advanced_full_date);
-                if (!Advanced_txt_time_selected.getText().toString().equals(getString(R.string.start_time))){
+                if (!Advanced_txt_time_selected.getText().toString().equals(getString(R.string.start_time))) {
                     b.putString("time", Advanced_txt_time_selected.getText().toString());
                 }
                 b.putInt("Single_Periodic_ID", Single_Periodic_ID);
-                if (!advanced_search_Nat.getText().toString().equals(getString(R.string.pref_nat))){
+                if (!advanced_search_Nat.getText().toString().equals(getString(R.string.pref_nat))) {
                     b.putString("advanced_search_Nat", advanced_search_Nat.getText().toString());
-                    b.putInt("Nationality_ID",Nationality_ID);
+                    b.putInt("Nationality_ID", Nationality_ID);
                 }
-                if (!advanced_search_Preferred_Lang_txt.getText().toString().equals(getString(R.string.choose_lang))){
+                if (!advanced_search_Preferred_Lang_txt.getText().toString().equals(getString(R.string.choose_lang))) {
                     b.putString("advanced_search_Preferred_Lang_txt", advanced_search_Preferred_Lang_txt.getText().toString());
-                    b.putInt("Nationality_ID",Nationality_ID);
+                    b.putInt("Nationality_ID", Nationality_ID);
                 }
                 if (!advanced_search_Age_Range_txt.getText().toString().equals(getString(R.string.choose_age))) {
                     b.putString("advanced_search_Age_Range_txt", advanced_search_Age_Range_txt.getText().toString());
-                    b.putInt("Advanced_Search_Age_Range_ID",Advanced_Search_Age_Range_ID);
+                    b.putInt("Advanced_Search_Age_Range_ID", Advanced_Search_Age_Range_ID);
                 }
                 b.putChar("Gender", i);
 
                 Intent intent = new Intent(getBaseContext(), PickUpActivity.class);
                 intent.putExtra("FALG_SEARCH", 2);
-                intent.putExtra("options",b);
+                intent.putExtra("options", b);
                 networkCheck.cancel(true);
                 nat.cancel(true);
                 lan.cancel(true);
@@ -615,7 +615,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                     save_on.setVisibility(View.VISIBLE);
                     save_search_txt.setTextColor(Color.RED);
                     savefind = 1;
-                }else {
+                } else {
                     Toast.makeText(Advanced_Search.this, R.string.saveSearch_Error, Toast.LENGTH_SHORT).show();
                 }
             }
@@ -684,12 +684,12 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                     intent1.putExtra("Gender", i);
                     intent1.putExtra("SaveFind", savefind);
                     intent1.putExtra("Smokers", IS_Smoking);
-                    intent1.putExtra("IsRounded",Single_Periodic_ID);
+                    intent1.putExtra("IsRounded", Single_Periodic_ID);
                     intent1.putExtra("MapKey", "Advanced_Search");
-                    intent1.putExtra("AgeRange",Advanced_Search_Age_Range_ID);
-                    intent1.putExtra("Nationality_ID",Nationality_ID);
-                    intent1.putExtra("Language_ID",Language_ID);
-                    intent1.putExtra("InviteType","");
+                    intent1.putExtra("AgeRange", Advanced_Search_Age_Range_ID);
+                    intent1.putExtra("Nationality_ID", Nationality_ID);
+                    intent1.putExtra("Language_ID", Language_ID);
+                    intent1.putExtra("InviteType", "");
 
                     networkCheck.cancel(true);
                     nat.cancel(true);
@@ -870,9 +870,9 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                 TextView txt_lang_name = (TextView) view.findViewById(R.id.row_name);
                                 TextView txt_lang_id = (TextView) view.findViewById(R.id.row_id);
-                                   Language_ID = Integer.parseInt(txt_lang_id.getText().toString());
+                                Language_ID = Integer.parseInt(txt_lang_id.getText().toString());
                                 advanced_search_Preferred_Lang_txt.setText(txt_lang_name.getText().toString());
-                                 Log.d("id of lang", "" + Language_ID);
+                                Log.d("id of lang", "" + Language_ID);
                                 Languages_Dilaog.dismiss();
                             }
                         });
@@ -981,7 +981,7 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
                                 TextView txt_lang_id = (TextView) view.findViewById(R.id.row_id);
                                 Advanced_Search_Age_Range_ID = Integer.parseInt(txt_lang_id.getText().toString());
                                 advanced_search_Age_Range_txt.setText(txt_lang_name.getText().toString());
-                                 Log.d("id of lang", "" + Advanced_Search_Age_Range_ID);
+                                Log.d("id of lang", "" + Advanced_Search_Age_Range_ID);
                                 Languages_Dilaog.dismiss();
                             }
                         });
@@ -1123,7 +1123,13 @@ public class Advanced_Search extends AppCompatActivity implements View.OnClickLi
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
+            Locale locale = Locale.getDefault();
+            String Locale_Str2 = locale.toString();
+            if (Locale_Str2.contains("en")) {
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
+            } else {
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_forward);
+            }
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 

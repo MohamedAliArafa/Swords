@@ -41,6 +41,7 @@ import org.json.JSONObject;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.util.Locale;
 
 import rta.ae.sharekni.Arafa.Classes.GetData;
 import rta.ae.sharekni.Arafa.Classes.VolleySingleton;
@@ -52,15 +53,15 @@ public class Display_My_Vehicles extends AppCompatActivity {
     Activity c;
 
     rideJson rideJson;
-    Boolean CREATED=false;
-    Boolean JOINED=false;
+    Boolean CREATED = false;
+    Boolean JOINED = false;
     String GetVehiclesUrl = GetData.DOMAIN + "GetByDriverId?id=";
     SharedPreferences myPrefs;
     int Driver_ID;
     back back;
     Button Refresh_vehicles_Btn;
-    public static  String  TRAFFIC_FILE_NUMBER="";
-    public static  String  TRAFFIC_BIRTH_DATE="";
+    public static String TRAFFIC_FILE_NUMBER = "";
+    public static String TRAFFIC_BIRTH_DATE = "";
 
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
@@ -89,15 +90,14 @@ public class Display_My_Vehicles extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display__my__vehicles);
         initToolbar();
-        c=this;
+        c = this;
         back = new back();
 
         user_vehicles = (ListView) findViewById(R.id.user_vehicles);
-        Refresh_vehicles_Btn= (Button) findViewById(R.id.Refresh_vehicles_Btn);
+        Refresh_vehicles_Btn = (Button) findViewById(R.id.Refresh_vehicles_Btn);
 
         myPrefs = this.getSharedPreferences("myPrefs", 0);
-        String ID = myPrefs.getString("account_id",null);
-
+        String ID = myPrefs.getString("account_id", null);
 
 
 //        Bundle in = getIntent().getExtras();
@@ -106,35 +106,32 @@ public class Display_My_Vehicles extends AppCompatActivity {
         Log.d("Driver Id", String.valueOf(Driver_ID));
 
 
-        Intent in =  getIntent();
+        Intent in = getIntent();
 
-        TRAFFIC_FILE_NUMBER =  in.getStringExtra("TRAFFIC_FILE_NUMBER");
-        TRAFFIC_BIRTH_DATE =  in.getStringExtra("TRAFFIC_BIRTH_DATE");
+        TRAFFIC_FILE_NUMBER = in.getStringExtra("TRAFFIC_FILE_NUMBER");
+        TRAFFIC_BIRTH_DATE = in.getStringExtra("TRAFFIC_BIRTH_DATE");
         Log.d("traffic birthdate 3", TRAFFIC_BIRTH_DATE);
-        Log.d("traffic file num 3",TRAFFIC_FILE_NUMBER);
-
+        Log.d("traffic file num 3", TRAFFIC_FILE_NUMBER);
 
 
         rideJson = new rideJson();
         rideJson.execute();
 
 
-
-
         Refresh_vehicles_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if ( !TRAFFIC_BIRTH_DATE.equals("")  &&  !TRAFFIC_FILE_NUMBER.equals("")  ){
+                if (!TRAFFIC_BIRTH_DATE.equals("") && !TRAFFIC_FILE_NUMBER.equals("")) {
 
                     Toast.makeText(Display_My_Vehicles.this, R.string.Updating_vehicles_str, Toast.LENGTH_SHORT).show();
                     Log.d("traffic birthdate", TRAFFIC_BIRTH_DATE);
-                    Log.d("traffic file num",TRAFFIC_FILE_NUMBER);
+                    Log.d("traffic file num", TRAFFIC_FILE_NUMBER);
                     back = new back();
                     back.execute();
 
 
-                }else {
+                } else {
                     Toast.makeText(Display_My_Vehicles.this, R.string.Updating_vehicles_str, Toast.LENGTH_SHORT).show();
                 }
 
@@ -145,7 +142,6 @@ public class Display_My_Vehicles extends AppCompatActivity {
     }
 
 
-
     private class rideJson extends AsyncTask {
         boolean exists = false;
         ProgressDialog pDialog;
@@ -153,7 +149,7 @@ public class Display_My_Vehicles extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Object o) {
-            CREATED=true;
+            CREATED = true;
             hidePDialog();
             super.onPostExecute(o);
         }
@@ -220,9 +216,8 @@ public class Display_My_Vehicles extends AppCompatActivity {
                                     JSONArray jArray = new JSONArray(data);
                                     final User_Vehicles_Data_Model[] driver = new User_Vehicles_Data_Model[jArray.length()];
                                     JSONObject json;
-                                    if (jArray.length()==0){
+                                    if (jArray.length() == 0) {
                                         Log.d("Error 3 ", "Error3");
-
 
 
                                         final Dialog dialog = new Dialog(c);
@@ -250,20 +245,19 @@ public class Display_My_Vehicles extends AppCompatActivity {
 
                                             json = jArray.getJSONObject(i);
 
-                                            if (json.getString("PlateCode").equals("null")){
+                                            if (json.getString("PlateCode").equals("null")) {
                                                 item.setPlateCode(" ");
-                                            }else {
+                                            } else {
 
                                                 item.setPlateCode(json.getString("PlateCode"));
 
                                             }
 
-                                            if (json.getString("PlateNumber").equals("null")){
+                                            if (json.getString("PlateNumber").equals("null")) {
                                                 item.setPlateNumber(" ");
-                                            }else {
+                                            } else {
                                                 item.setPlateNumber(json.getString("PlateNumber"));
                                             }
-
 
 
                                             driver[i] = item;
@@ -272,11 +266,9 @@ public class Display_My_Vehicles extends AppCompatActivity {
                                             Log.d("PlateNumber", json.getString("PlateNumber"));
 
 
-
-
                                         } catch (JSONException e) {
                                             e.printStackTrace();
-                                            Log.d("Error 1 ",e.toString());
+                                            Log.d("Error 1 ", e.toString());
                                         }
                                     }
 
@@ -291,7 +283,6 @@ public class Display_My_Vehicles extends AppCompatActivity {
                                 }
 
 
-
                             }
                         }, new Response.ErrorListener() {
                     @Override
@@ -303,10 +294,6 @@ public class Display_My_Vehicles extends AppCompatActivity {
             return null;
         }
     }
-
-
-
-
 
 
     private class back extends AsyncTask {
@@ -345,7 +332,7 @@ public class Display_My_Vehicles extends AppCompatActivity {
                 Log.d("license no json", data + " Error in Connection with the DataBase Server");
 
             } else if (data.equals("\"-2\"")) {
-                Toast.makeText(getBaseContext(),getString( R.string.cant_user_file_number) , Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), getString(R.string.cant_user_file_number), Toast.LENGTH_LONG).show();
 
             }
 
@@ -411,14 +398,13 @@ public class Display_My_Vehicles extends AppCompatActivity {
     }
 
 
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if (rideJson.getStatus()== AsyncTask.Status.RUNNING) {
+        if (rideJson.getStatus() == AsyncTask.Status.RUNNING) {
             rideJson.cancel(true);
         }
-        if (back.getStatus() == AsyncTask.Status.RUNNING){
+        if (back.getStatus() == AsyncTask.Status.RUNNING) {
             back.cancel(true);
         }
 
@@ -426,13 +412,6 @@ public class Display_My_Vehicles extends AppCompatActivity {
         finish();
 
     }
-
-
-
-
-
-
-
 
 
     @Override
@@ -455,20 +434,14 @@ public class Display_My_Vehicles extends AppCompatActivity {
         }
 
 
-
 //        if (id == R.id.test_vehicles){
 //            Intent intent = new Intent(getBaseContext(),RegisterVehicle.class);
 //            startActivity(intent);
 //        }
 
 
-
-
-
         return super.onOptionsItemSelected(item);
     }
-    
-
 
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -480,6 +453,15 @@ public class Display_My_Vehicles extends AppCompatActivity {
         textView.setText(getString(R.string.vehicles));
 //        toolbar.setElevation(10);
         setSupportActionBar(toolbar);
- ActionBar actionBar = getSupportActionBar(); if (actionBar != null) { actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back); actionBar.setDisplayHomeAsUpEnabled(true); }
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            Locale locale = Locale.getDefault();
+            String Locale_Str2 = locale.toString();
+            if (Locale_Str2.contains("en")) {
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
+            } else {
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_forward);
+            }            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 }

@@ -17,6 +17,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -62,6 +63,8 @@ import rta.ae.sharekni.StartScreen.StartScreenActivity;
 
 public class HomePage extends AppCompatActivity implements View.OnClickListener {
 
+
+    public static DialogFragment newFragment;
 
     int Driver_Rides_Count = 0;
     String urlPermit = GetData.DOMAIN + "GetPermitByDriverId?id=";
@@ -1033,6 +1036,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 }
 
             } catch (JSONException e) {
+
                 hidePDialog();
                 e.printStackTrace();
             } catch (NullPointerException e) {
@@ -1043,8 +1047,12 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
             btn_history.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(getBaseContext(), HistoryNew.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(getBaseContext(), HistoryNew.class);
+//                    startActivity(intent);
+                    newFragment = new HappyMeterDialogFragment();
+                    newFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.theme_sms_receive_dialog);
+                    newFragment.show(getSupportFragmentManager(), "missiles");
+
 
                 }
             });

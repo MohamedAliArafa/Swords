@@ -24,7 +24,8 @@ import rta.ae.sharekni.R;
  */
 
 
-public class StartScreenFragment extends Fragment {
+public class
+StartScreenFragment extends Fragment {
 
     RelativeLayout im_best_rides;
     RelativeLayout im_best_drivers;

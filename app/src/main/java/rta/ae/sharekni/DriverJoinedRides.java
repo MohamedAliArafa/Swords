@@ -10,18 +10,21 @@ import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 import rta.ae.sharekni.R;
 
 public class DriverJoinedRides extends AppCompatActivity {
     Toolbar toolbar;
 
     ListView user_ride_joined;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_joined_rides);
         initToolbar();
-        user_ride_joined= (ListView) findViewById(R.id.user_ride_joined);
+        user_ride_joined = (ListView) findViewById(R.id.user_ride_joined);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -35,6 +38,15 @@ public class DriverJoinedRides extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
- ActionBar actionBar = getSupportActionBar(); if (actionBar != null) { actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back); actionBar.setDisplayHomeAsUpEnabled(true); }
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            Locale locale = Locale.getDefault();
+            String Locale_Str2 = locale.toString();
+            if (Locale_Str2.contains("en")) {
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
+            } else {
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_forward);
+            }            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 }

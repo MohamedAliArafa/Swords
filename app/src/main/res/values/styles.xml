@@ -33,9 +33,10 @@
         <item name="android:childDivider">@drawable/testredline</item>
         <item name="android:textColor">@color/primaryColor</item>
     </style>
-    <style name="AppTheme.Base.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-    <style name="AppTheme.Base.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="AppTheme.Base.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.Base.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
     <style name="sharekniRatingBar" parent="@android:style/Widget.RatingBar">
@@ -45,6 +46,11 @@
     </style>
 
 
+    <style name="theme_sms_receive_dialog" parent="android:style/Theme.Dialog">
+        <item name="@android:windowBackground">@color/white</item>
+        <item name="android:windowMinWidthMajor">100%</item>
+        <item name="android:windowMinWidthMinor">100%</item>
+    </style>
 
 
 </resources>

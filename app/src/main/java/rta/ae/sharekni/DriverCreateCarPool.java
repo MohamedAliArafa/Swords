@@ -47,6 +47,7 @@ import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.TreeMap;
 
 import rta.ae.sharekni.Arafa.Classes.GetData;
@@ -56,7 +57,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
 
 
     Double Start_Latitude = 1.0, Start_Longitude = 1.0, End_Latitude = 1.0, End_Longitude = 1.0;
-    int Distance,Duration;
+    int Distance, Duration;
     static final int DILOG_ID = 0;
     static final int TIME_DIALOG_ID = 999;
     int id = 1;
@@ -664,7 +665,16 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
         TextView textView = (TextView) toolbar.findViewById(R.id.mytext_appbar);
         textView.setText(getString(R.string.create_ride));
         setSupportActionBar(toolbar);
- ActionBar actionBar = getSupportActionBar(); if (actionBar != null) { actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back); actionBar.setDisplayHomeAsUpEnabled(true); }
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            Locale locale = Locale.getDefault();
+            String Locale_Str2 = locale.toString();
+            if (Locale_Str2.contains("en")) {
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
+            } else {
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_forward);
+            }            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override
@@ -708,7 +718,7 @@ public class DriverCreateCarPool extends AppCompatActivity implements View.OnCli
                     int Vehicle_ID = Vehicle_Id;
 
                     //  For Testing
-                  //   int Vehicle_ID = 4;
+                    //   int Vehicle_ID = 4;
 
                     int No_OF_Seats = Number_Of_Seats;
                     double Start_Lat = Start_Latitude;

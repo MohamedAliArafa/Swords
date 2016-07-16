@@ -31,6 +31,7 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import rta.ae.sharekni.Arafa.Activities.DriverDetails;
 import rta.ae.sharekni.Arafa.Classes.GetData;
@@ -43,7 +44,7 @@ public class MostRidesDetails extends AppCompatActivity {
 
     Toolbar toolbar;
     ListView lv;
-    int FromEmirateId,ToEmirateId,FromRegionId,ToRegionId;
+    int FromEmirateId, ToEmirateId, FromRegionId, ToRegionId;
 
     SharedPreferences myPrefs;
     BestRouteDataModel data;
@@ -61,7 +62,7 @@ public class MostRidesDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_most_rides_details);
         lv = (ListView) findViewById(R.id.lv_most_rides_details);
-        txt_FromEm= (TextView) findViewById(R.id.From_Emirate_best);
+        txt_FromEm = (TextView) findViewById(R.id.From_Emirate_best);
         txt_FromReg = (TextView) findViewById(R.id.From_Reg_best);
         txt_ToEm = (TextView) findViewById(R.id.To_Emirate_best);
         txt_ToReg = (TextView) findViewById(R.id.To_Reg_best);
@@ -69,37 +70,34 @@ public class MostRidesDetails extends AppCompatActivity {
         initToolbar();
 
         Bundle in = getIntent().getExtras();
-        data= (BestRouteDataModel) in.getParcelableArrayList("Data");
+        data = (BestRouteDataModel) in.getParcelableArrayList("Data");
 
         myPrefs = this.getSharedPreferences("myPrefs", 0);
         ID = myPrefs.getString("account_id", null);
 
 
-
-
-
         assert data != null;
-        Log.d("Emirate name from",data.getFromEm());
-        Log.d("Emirate name to",data.getToEm());
-        Log.d("REg nameto ",data.getToReg());
-        Log.d("REg From",data.getFromReg());
+        Log.d("Emirate name from", data.getFromEm());
+        Log.d("Emirate name to", data.getToEm());
+        Log.d("REg nameto ", data.getToReg());
+        Log.d("REg From", data.getFromReg());
 
         try {
             assert data != null;
-            FromEmirateId=data.getFromEmId();
-            FromRegionId=data.getFromRegid();
+            FromEmirateId = data.getFromEmId();
+            FromRegionId = data.getFromRegid();
 
-            ToEmirateId=data.getToEmId();
-            ToRegionId=data.getToRegId();
+            ToEmirateId = data.getToEmId();
+            ToRegionId = data.getToRegId();
 
-            Log.d("test most Em From: ",String.valueOf(FromEmirateId));
-            Log.d("test most Reg From: ",String.valueOf(FromRegionId));
-            Log.d("test most  To Emirate: ",String.valueOf(ToEmirateId));
-            Log.d("test most : To Region ",String.valueOf(ToRegionId));
+            Log.d("test most Em From: ", String.valueOf(FromEmirateId));
+            Log.d("test most Reg From: ", String.valueOf(FromRegionId));
+            Log.d("test most  To Emirate: ", String.valueOf(ToEmirateId));
+            Log.d("test most : To Region ", String.valueOf(ToRegionId));
 
 
-        }catch (NullPointerException e){
-        Toast.makeText(MostRidesDetails.this, e.toString(), Toast.LENGTH_SHORT).show();
+        } catch (NullPointerException e) {
+            Toast.makeText(MostRidesDetails.this, e.toString(), Toast.LENGTH_SHORT).show();
         }
 
         back = new back();
@@ -112,7 +110,7 @@ public class MostRidesDetails extends AppCompatActivity {
         txt_ToReg.setText(data.getToEm());
     }
 
-    private class back extends AsyncTask{
+    private class back extends AsyncTask {
         JSONArray jsonArray;
         boolean exists = false;
         ProgressDialog pDialog;
@@ -133,6 +131,7 @@ public class MostRidesDetails extends AppCompatActivity {
                 pDialog = null;
             }
         }
+
         @Override
         protected void onPostExecute(Object o) {
             String days = "";
@@ -161,21 +160,21 @@ public class MostRidesDetails extends AppCompatActivity {
                             item.setPhotoURl(json.getString("DriverPhoto"));
                             // Testing Line
                             item.setLastSeen(json.getString("LastSeen"));
-                            if (!json.getString("DriverPhoto").equals("NoImage.png")){
+                            if (!json.getString("DriverPhoto").equals("NoImage.png")) {
                                 GetData gd = new GetData();
-                                item.setDriverPhoto(gd.GetImage(json.getString("DriverPhoto").replaceAll(" ","")));
+                                item.setDriverPhoto(gd.GetImage(json.getString("DriverPhoto").replaceAll(" ", "")));
                             }
                             days = "";
 
                             int x1 = json.getInt("GreenPoints");
                             int x3 = json.getInt("CO2Saved");
-                            x3 = x3/1000;
+                            x3 = x3 / 1000;
 
                             item.setGreenPoints(String.valueOf(x1));
                             item.setGreenCo2Saving(String.valueOf(x3));
 
-                          //  item.setGreenPoints(json.getString("GreenPoints"));
-                          //  item.setGreenCo2Saving(json.getString("CO2Saved"));
+                            //  item.setGreenPoints(json.getString("GreenPoints"));
+                            //  item.setGreenCo2Saving(json.getString("CO2Saved"));
 
                             if (json.getString("Saturday").equals("true")) {
                                 days += getString(R.string.sat);
@@ -260,24 +259,24 @@ public class MostRidesDetails extends AppCompatActivity {
                                         finish();
                                     }
                                 }).setIcon(android.R.drawable.ic_dialog_alert).show();
-                        Toast.makeText(MostRidesDetails.this,getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MostRidesDetails.this, getString(R.string.connection_problem), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
             if (exists) {
                 GetData j = new GetData();
 
-                if (ID== null) {
+                if (ID == null) {
                     String url = GetData.DOMAIN + "GetMostDesiredRideDetails?AccountID=" + 0 + "&FromEmirateID=" + FromEmirateId + "&FromRegionID=" + FromRegionId + "&ToEmirateID=" + ToEmirateId + "&ToRegionID=" + ToRegionId;
-                    Log.d("Url",url);
+                    Log.d("Url", url);
                     try {
                         jsonArray = j.MostRidesDetails(url);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }else {
+                } else {
                     String url = GetData.DOMAIN + "GetMostDesiredRideDetails?AccountID=" + ID + "&FromEmirateID=" + FromEmirateId + "&FromRegionID=" + FromRegionId + "&ToEmirateID=" + ToEmirateId + "&ToRegionID=" + ToRegionId;
-                    Log.d("Url",url);
+                    Log.d("Url", url);
                     try {
                         jsonArray = j.MostRidesDetails(url);
                     } catch (JSONException e) {
@@ -303,7 +302,7 @@ public class MostRidesDetails extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id==android.R.id.home){
+        if (id == android.R.id.home) {
             onBackPressed();
             return true;
         }
@@ -312,7 +311,6 @@ public class MostRidesDetails extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -326,15 +324,24 @@ public class MostRidesDetails extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
- ActionBar actionBar = getSupportActionBar(); if (actionBar != null) { actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back); actionBar.setDisplayHomeAsUpEnabled(true); }
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            Locale locale = Locale.getDefault();
+            String Locale_Str2 = locale.toString();
+            if (Locale_Str2.contains("en")) {
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
+            } else {
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_forward);
+            }
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
-
 
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if (back.getStatus()== AsyncTask.Status.RUNNING) {
+        if (back.getStatus() == AsyncTask.Status.RUNNING) {
             back.cancel(true);
         }
         finish();

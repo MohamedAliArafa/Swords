@@ -445,7 +445,7 @@ public class EditProfile extends AppCompatActivity {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!edit_fname.getText().toString().equals("") && !edit_fname.getText().toString().equals(getString(R.string.Reg_FirstN)) && !edit_lname.getText().toString().equals("") && !edit_lname.getText().toString().equals(getString(R.string.Reg_LastN)) && !edit_reg_mob.getText().toString().equals("") && !edit_reg_mob.getText().toString().equals(getString(R.string.REg_Mobile))  && !txt_lang.getText().toString().equals("") && !txt_lang.getText().toString().equals(getString(R.string.Reg_PrefLang)) && full_date != null) {
+                if (!edit_fname.getText().toString().equals("") && !edit_fname.getText().toString().equals(getString(R.string.Reg_FirstN)) && !edit_lname.getText().toString().equals("") && !edit_lname.getText().toString().equals(getString(R.string.Reg_LastN)) && !edit_reg_mob.getText().toString().equals("") && !edit_reg_mob.getText().toString().equals(getString(R.string.REg_Mobile)) && !txt_lang.getText().toString().equals("") && !txt_lang.getText().toString().equals(getString(R.string.Reg_PrefLang)) && full_date != null) {
                     ArrayList codes = new ArrayList();
                     codes.add("50");
                     codes.add("52");
@@ -491,7 +491,7 @@ public class EditProfile extends AppCompatActivity {
 
         if (Locale_Str.contains("en")) {
 
-            Log.d("Change Gender","English Language");
+            Log.d("Change Gender", "English Language");
             malefemale.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -546,7 +546,7 @@ public class EditProfile extends AppCompatActivity {
                 }
             });
         } else {
-            Log.d("Change Gender","Arabic Language");
+            Log.d("Change Gender", "Arabic Language");
 
             malefemale.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -780,7 +780,16 @@ public class EditProfile extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
- ActionBar actionBar = getSupportActionBar(); if (actionBar != null) { actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back); actionBar.setDisplayHomeAsUpEnabled(true); }
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            Locale locale = Locale.getDefault();
+            String Locale_Str2 = locale.toString();
+            if (Locale_Str2.contains("en")) {
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
+            } else {
+                actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_forward);
+            }            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override
