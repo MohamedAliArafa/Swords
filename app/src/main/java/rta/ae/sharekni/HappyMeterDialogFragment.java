@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebView;
@@ -35,6 +36,9 @@ public class HappyMeterDialogFragment extends DialogFragment {
      */
 
 
+    public static DialogFragment newFragment;
+
+
     private static final String SECRET = "aaaf179f5f4b852f"; //TODO: To be replaced by one provided by DSG.
     private static final String SERVICE_PROVIDER = "DSG"; //TODO: To be replaced by the spName e.g. RTA, DEWA.
     private static final String CLIENT_ID = "dsg123"; //TODO: Replace with your own client id
@@ -59,7 +63,21 @@ public class HappyMeterDialogFragment extends DialogFragment {
         super.onViewCreated(view, savedInstanceState);
         webView = (WebView) view.findViewById(R.id.webView);
         webView.setVisibility(View.VISIBLE);
+        webView.setTag(webView.getVisibility());
         load(VotingManager.TYPE.TRANSACTION);
+
+        webView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                int newVis = webView.getVisibility();
+                if ((int) webView.getTag() != newVis) {
+                    webView.setTag(webView.getVisibility());
+                    HappyMeterDialogFragment.newFragment.dismiss();
+                    //visibility has changed
+                }
+
+            }
+        });
 
 
     }

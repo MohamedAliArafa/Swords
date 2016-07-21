@@ -214,7 +214,7 @@
     <string name="rides_joined">الرحلات المشترك فيها</string>
     <string name="saved_search">حفظ البحث</string>
     <string name="create_ride">إنشاء رحلة</string>
-    <string name="history">التاريخ</string>
+    <string name="history">مؤشر السعادة</string>
     <string name="permit">التصاريح</string>
     <string name="ride_created">الرحلات المنشأه</string>
     <string name="ride_joined">الرحلات المشتركة</string>
@@ -474,6 +474,7 @@
 5- Click save button
 </string>
     <string name="FAQ_Answer_10">The stored profile is available on the main menu. Open menu > Edit profile and enter the updated input</string>
+    <string name="help_and_faq">الاسئلة الشائعة</string>
 
 
 

@@ -455,7 +455,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_toEndOf="@+id/happymetericon"
                     android:layout_toRightOf="@+id/happymetericon"
-                    android:text="Help And FAQ"
+                    android:text="@string/help_and_faq"
                     android:textColor="@color/primaryColor"
                     android:textSize="18sp" />
 

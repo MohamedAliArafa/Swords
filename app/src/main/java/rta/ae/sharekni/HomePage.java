@@ -1049,9 +1049,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 public void onClick(View v) {
 //                    Intent intent = new Intent(getBaseContext(), HistoryNew.class);
 //                    startActivity(intent);
-                    newFragment = new HappyMeterDialogFragment();
-                    newFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.theme_sms_receive_dialog);
-                    newFragment.show(getSupportFragmentManager(), "missiles");
+                    HappyMeterDialogFragment.newFragment = new HappyMeterDialogFragment();
+                    HappyMeterDialogFragment.newFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.theme_sms_receive_dialog);
+                    HappyMeterDialogFragment.newFragment.show(getSupportFragmentManager(), "missiles");
 
 
                 }

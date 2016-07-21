@@ -619,6 +619,7 @@
 
     </LinearLayout>
 
+
     <fragment
         android:id="@+id/fragment_navigation_drawwer"
         android:name="rta.ae.sharekni.MainNavigationDrawerFragment.NavigationDrawerFragment"

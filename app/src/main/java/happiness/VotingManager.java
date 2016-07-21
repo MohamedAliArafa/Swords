@@ -111,8 +111,7 @@ public class VotingManager {
                 if (url.contains("happiness://done")) {
                     if (webView.getParent() != null)
                         webView.setVisibility(View.GONE);
-                    HappyMeterDialogFragment.webView.setVisibility(View.GONE);
-                    StartScreenActivity.newFragment.dismiss();
+
 
                     return true;
 

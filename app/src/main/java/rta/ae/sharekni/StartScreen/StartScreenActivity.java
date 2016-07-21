@@ -37,8 +37,6 @@ public class StartScreenActivity extends FragmentActivity {
 
     static StartScreenActivity onboardingActivity;
 
-    public static  DialogFragment newFragment;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,15 +100,16 @@ public class StartScreenActivity extends FragmentActivity {
 //                Intent intent = new Intent(getBaseContext(), TakeATour.class);
 //                startActivity(intent);
 
-                newFragment = new HappyMeterDialogFragment();
-                newFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.theme_sms_receive_dialog);
-                newFragment.show(getSupportFragmentManager(), "missiles");
-
-
-
+                HappyMeterDialogFragment.newFragment = new HappyMeterDialogFragment();
+                HappyMeterDialogFragment.newFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.theme_sms_receive_dialog);
+                HappyMeterDialogFragment.newFragment.show(getSupportFragmentManager(), "missiles");
 
             }
         });
+
+
+
+
 
         FragmentStatePagerAdapter adapter = new FragmentStatePagerAdapter(getSupportFragmentManager()) {
             @Override
@@ -128,7 +127,6 @@ public class StartScreenActivity extends FragmentActivity {
 
 
     }//oncreate
-
 
 
     public static StartScreenActivity getInstance() {
