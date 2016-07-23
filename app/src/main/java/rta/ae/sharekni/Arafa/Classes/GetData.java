@@ -249,7 +249,7 @@ public class GetData {
             , String Time, String sat, String sun, String mon, String tue, String wed
             , String thu, String fri, char gender, int VehicleID, int NoOfSeats
             , double StartLat, double StartLng, double EndLat, double EndLng
-            , int Pref_Lang, String Nat, int AgeRangedId, String Start_Date, String IsSmoking, String From_EmirateEnName_str, String From_RegionEnName_str, String To_EmirateEnName_str, String To_RegionEnName_str, Activity context) {
+            , int Pref_Lang, String Nat, int AgeRangedId, String Start_Date, String IsSmoking, String From_EmirateEnName_str, String From_RegionEnName_str, String To_EmirateEnName_str, String To_RegionEnName_str, int Distance ,int Duration,Activity context) {
 
         DriverCreateCarPoolStringRequest(DriverCreateCarPoolUrl + "AccountID=" + myId
                         + "&EnName=" + URLEncoder.encode(En_Name)
@@ -278,6 +278,9 @@ public class GetData {
                         + "&AgeRangeId=" + AgeRangedId
                         + "&StartDate=" + Start_Date
                         + "&IsSmoking=" + IsSmoking
+                        + "&Distance=" + Distance
+                        + "&Duration=" + Duration
+
                 , context, From_EmID, From_RegId, To_EmID, To_RegId, myId, From_EmirateEnName_str, From_RegionEnName_str
                 , To_EmirateEnName_str, To_RegionEnName_str);
     }
