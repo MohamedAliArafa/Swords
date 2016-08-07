@@ -2,10 +2,10 @@
     <string name="app_name">Sharekni</string>
     <string name="facebook_app_id" translatable="false">1034250206610118</string>
 
-    <string name="title_activity_main">Sharekni</string>
+    <string name="title_activity_main" translatable="false">Sharekni</string>
 
-    <string name="hello_world">Hello </string>
-    <string name="action_settings">Settings</string>
+    <string name="hello_world" translatable="false">Hello </string>
+    <string name="action_settings" translatable="false">Settings</string>
     <string name="next">Next</string>
     <string name="title_activity_sub_navigate">sharekni</string>
     <string name="drawer_open">Open</string>
@@ -19,54 +19,54 @@
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="title_activity_maps">Map</string>
-    <string name="title_activity_top_rides">TopRidesActivity</string>
-    <string name="title_activity_top_drivers">TopDrivers</string>
+    <string name="title_activity_top_rides" translatable="false">TopRidesActivity</string>
+    <string name="title_activity_top_drivers">Top Drivers</string>
     <string name="title_activity_On_Boarding">Sharekni</string>
-    <string name="title_activity_view_profile">ViewProfileActivity</string>
-    <string name="txt_yo_yo">yo yo</string>
+    <string name="title_activity_view_profile" translatable="false">ViewProfileActivity</string>
+    <string name="txt_yo_yo" translatable="false">yo yo</string>
     <string name="from_text_top_ride">From :</string>
     <string name="to_text_top_ride">To   :</string>
-    <string name="city_from_txt">City Name</string>
-    <string name="city_to_txt">City Name2</string>
-    <string name="Distreict_name_txt">District Name</string>
-    <string name="district_name_2">District Name 2</string>
-    <string name="txt_arabic">عربي</string>
+    <string name="city_from_txt" translatable="false">City Name</string>
+    <string name="city_to_txt" translatable="false">City Name2</string>
+    <string name="Distreict_name_txt" translatable="false">District Name</string>
+    <string name="district_name_2" translatable="false">District Name 2</string>
+    <string name="txt_arabic" translatable="false">عربي</string>
     <string name="fragment_one_login_txt">LOGIN</string>
     <string name="txt_best_drivers">Best Drivers</string>
     <string name="txt_top_rides">Most Rides</string>
     <string name="txt_about_us">About Us</string>
-    <string name="title_activity_home_page_test">HomePageTest</string>
-    <string name="title_activity_login_approved">LoginApproved</string>
-    <string name="title_activity_search_options">SearchOptions</string>
+    <string name="title_activity_home_page_test" translatable="false">HomePageTest</string>
+    <string name="title_activity_login_approved" translatable="false">LoginApproved</string>
+    <string name="title_activity_search_options" translatable="false">SearchOptions</string>
     <string name="title_activity_register_approved">Register</string>
-    <string name="title_activity_route_teset">RouteTesetActiv</string>
+    <string name="title_activity_route_teset" translatable="false">RouteTesetActiv</string>
     <string name="title_activity_register_new_test">User Registration</string>
-    <string name="title_activity_my_profile_tet">MyProfileTet</string>
-    <string name="title_activity_top_rides_after_login">TopRidesAfterLogin</string>
-    <string name="title_activity_top_drivers_after_login">TopDriversAfterLogin</string>
-    <string name="title_activity_most_rides_details">MostRidesDetails</string>
-    <string name="title_activity_forget_password">ForgotPassword</string>
-    <string name="title_activity_change_password_test">ChangePasswordTest</string>
-    <string name="title_activity_my_profile_test">MyProfileTest</string>
-    <string name="title_activity_edit_profile_test">EditProfileTest</string>
+    <string name="title_activity_my_profile_tet" translatable="false">MyProfileTet</string>
+    <string name="title_activity_top_rides_after_login" translatable="false">TopRidesAfterLogin</string>
+    <string name="title_activity_top_drivers_after_login" translatable="false">TopDriversAfterLogin</string>
+    <string name="title_activity_most_rides_details" translatable="false">MostRidesDetails</string>
+    <string name="title_activity_forget_password" translatable="false">ForgotPassword</string>
+    <string name="title_activity_change_password_test" translatable="false">ChangePasswordTest</string>
+    <string name="title_activity_my_profile_test" translatable="false">MyProfileTest</string>
+    <string name="title_activity_edit_profile_test" translatable="false">EditProfileTest</string>
     <string name="btn_login_text">Login</string>
-    <string name="title_activity_quick_search">QuickSearch</string>
-    <string name="title_activity_quick_search_results">QuickSearchResults</string>
-    <string name="title_activity_driver_create_car_pool">DriverCreateCarPool</string>
-    <string name="title_activity_qsearch">QSearch</string>
+    <string name="title_activity_quick_search" translatable="false">QuickSearch</string>
+    <string name="title_activity_quick_search_results" translatable="false">QuickSearchResults</string>
+    <string name="title_activity_driver_create_car_pool" translatable="false">DriverCreateCarPool</string>
+    <string name="title_activity_qsearch" translatable="false">QSearch</string>
     <string name="title_activity_advanced__search">Advanced_Search</string>
-    <string name="title_activity_driver_alerts_for_request">DriverAlertsForRequest</string>
-    <string name="title_activity_ride_details_passenger">RideDetailsPassenger</string>
-    <string name="title_activity_driver_request_details">DriverRequestDetails</string>
-    <string name="title_activity_driver_created_rides">DriverCreatedRides</string>
-    <string name="title_activity_driver_joined_rides">DriverJoinedRides</string>
-    <string name="title_activity_splash">SplashActivity</string>
+    <string name="title_activity_driver_alerts_for_request" translatable="false">DriverAlertsForRequest</string>
+    <string name="title_activity_ride_details_passenger" translatable="false">RideDetailsPassenger</string>
+    <string name="title_activity_driver_request_details" translatable="false">DriverRequestDetails</string>
+    <string name="title_activity_driver_created_rides" translatable="false">DriverCreatedRides</string>
+    <string name="title_activity_driver_joined_rides" translatable="false">DriverJoinedRides</string>
+    <string name="title_activity_splash" translatable="false">SplashActivity</string>
     <string name="title_activity_test_vedio">Sharekni</string>
-    <string name="title_activity_passenger_my_approved_rides">PassengerMyApprovedRides</string>
+    <string name="title_activity_passenger_my_approved_rides" translatable="false">PassengerMyApprovedRides</string>
     <string name="title_activity_history">History</string>
-    <string name="title_activity_take_atour">TakeATour</string>
+    <string name="title_activity_take_atour" translatable="false">TakeATour</string>
 
     <string name="navy_Home_Page_txt">Home Page</string>
     <string name="navy_Most_Rides_str">Most Rides</string>
@@ -74,7 +74,7 @@
     <string name="navy_Search_Options_str">Search</string>
     <string name="navy_Notifications_str">Notifications</string>
     <string name="navy_Logout_str">Logout</string>
-    <string name="navy_List_image_content_Desc">navy_image_icon</string>
+    <string name="navy_List_image_content_Desc" translatable="false">navy_image_icon</string>
 
     <string name="Reg_appBar_name">Registration</string>
     <string name="fill_all_error">Fill all the required fields</string>
@@ -86,23 +86,23 @@
     <string name="Reg_pass">Password</string>
     <string name="Reg_Nat">Nationality</string>
     <string name="Reg_PrefLang">Preferred Language</string>
-    <string name="title_activity_pick_up">PickUpActivity</string>
+    <string name="title_activity_pick_up" translatable="false">PickUpActivity</string>
     <string name="title_activity_terms_and_cond">TermsAndCond</string>
 
 
-    <string name="title_activity_register_vehicle">RegisterVehicle</string>
+    <string name="title_activity_register_vehicle" translatable="false">RegisterVehicle</string>
     <string name="Register_Vehicle_Driving_License_No">Traffic File No.</string>
     <string name="Select_Emirate_txt">Select Emirate</string>
     <string name="Ok_txt">Ok</string>
     <string name="Register_Vehicle_Trraffic_Number_Border_Title_">Register Vehicles</string>
-    <string name="Pick_Emirate_arrow_content_Desc">pick emirate arrow image</string>
+    <string name="Pick_Emirate_arrow_content_Desc" translatable="false">pick emirate arrow image</string>
     <string name="Btn_Submit_txt">Submit</string>
-    <string name="title_activity_register__vehicle__verify">Register_Vehicle_Verify</string>
+    <string name="title_activity_register__vehicle__verify" translatable="false">Register_Vehicle_Verify</string>
     <string name="register_vehicle_verify_border_title">Verification</string>
     <string name="btn_verify_txt">Verify</string>
     <string name="verify_Unified_ID">Unified ID</string>
     <string name="verify_passport_number_txt">Please enter the passport number</string>
-    <string name="mobile_number_const">+971 -</string>
+    <string name="mobile_number_const" translatable="false">+971 -</string>
     <string name="onboard_most_rides">Most Rides</string>
     <string name="onboard_best_drivers">Best Drivers</string>
     <string name="reg_DateOfBirth">Date of Birth</string>
@@ -180,7 +180,7 @@
     <string name="thu">, Thu</string>
     <string name="fri">, Fri </string>
     <string name="driver_details">Driver Details</string>
-    <string name="route_name">RouteEnName</string>
+    <string name="route_name" translatable="false">RouteEnName</string>
     <string name="time">Time </string>
     <string name="ride_days">Ride Days</string>
     <string name="review">Review</string>
@@ -231,7 +231,7 @@
     <string name="old_password">Old Password</string>
     <string name="new_password">New Password</string>
     <string name="verified">Verified</string>
-    <string name="invalid_dob">Date  of birth invalid</string>
+    <string name="invalid_dob">Date of birth invalid</string>
     <string name="lic_ver_but_no_cars">License verified, but no cars found</string>
     <string name="invalid_data">Invalid data, please check again</string>
     <string name="notification">Notifications</string>
@@ -280,7 +280,7 @@
     <string name="created_rides">Created Rides</string>
     <string name="joined_rides">Joined Rides</string>
     <string name="passenger_name">Passenger Name</string>
-    <string name="route_name2">RouteName</string>
+    <string name="route_name2" translatable="false">RouteName</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="Preferences">Preferences</string>
@@ -324,8 +324,8 @@
     <string name="Account_Approved_rides_Details">Details</string>
     <string name="Account_Approved_rides_Driver">Driver</string>
     <string name="Account_Approved_rides_leave">Leave</string>
-    <string name="enter_file_no">Enter File Number</string>
-    <string name="enter_DOB">Enter Birth Date</string>
+    <string name="enter_file_no">Enter File Number Please</string>
+    <string name="enter_DOB">Enter Birth Date Please</string>
     <string name="enter_file_DOB">Enter File Number and Birth Date Please</string>
     <string name="route_name_exist">Route Name Exists!!</string>
     <string name="reached_max_rides">You Have Reached Max Rides Allowable!!</string>
@@ -386,7 +386,7 @@
     <string name="region_identical">From and To Regions Can\'t Be Identical!</string>
     <string name="choose_oneday">Please choose at least one day</string>
     <string name="reg_gender_both">Both</string>
-    <string name="accept_smoking_Str">Accept Smoking</string>
+    <string name="accept_smoking_Str" translatable="false">Accept Smoking</string>
     <string name="accept_smokers_str">Accept</string>
     <string name="not_accept_smokers_str">Not Accept</string>
     <string name="is_smoking_Str">Smokers</string>
@@ -433,27 +433,27 @@
     <string name="co2_saving">CO2 Saving</string>
     <string name="ok_2">Ok</string>
     <string name="forget_password_complete">A reset password link has been sent to your email. Please note that this link is valid for one day only.</string>
-    <string name="FAQ_Answer_1">1- Contribute to reducing overall traffic congestion and reduce number of cars during rush hours.
+    <string name="FAQ_Answer_1" translatable="false">1- Contribute to reducing overall traffic congestion and reduce number of cars during rush hours.
 2- Contribute to resolving parking problem around work locations.
 3- Reduce your transport expenses.
 4- Build a strong social connection and make new friends.
 </string>
-    <string name="FAQ_Question_1">What is the benefits of Sharekni?</string>
-    <string name="FAQ_Question_2">Is the service free?</string>
-    <string name="FAQ_Question_3">How many passengers are allowed in one permission?</string>
-    <string name="FAQ_Question_4">What is the validity of the permission?</string>
-    <string name="FAQ_Question_5">How many rides can the driver obtain?</string>
-    <string name="FAQ_Question_6">How to register in sharekni?</string>
-    <string name="FAQ_Question_7">Can the permit be used in other emirates?</string>
-    <string name="FAQ_Question_8">How to issue Sharekni Electronic Permit</string>
-    <string name="FAQ_Question_9">How do I register my vehicle?</string>
-    <string name="FAQ_Question_10">How do I edit my profile?</string>
+    <string name="FAQ_Question_1" translatable="false">What is the benefits of Sharekni?</string>
+    <string name="FAQ_Question_2" translatable="false">Is the service free?</string>
+    <string name="FAQ_Question_3" translatable="false">How many passengers are allowed in one permission?</string>
+    <string name="FAQ_Question_4" translatable="false">What is the validity of the permission?</string>
+    <string name="FAQ_Question_5" translatable="false">How many rides can the driver obtain?</string>
+    <string name="FAQ_Question_6" translatable="false">How to register in sharekni?</string>
+    <string name="FAQ_Question_7" translatable="false">Can the permit be used in other emirates?</string>
+    <string name="FAQ_Question_8" translatable="false">How to issue Sharekni Electronic Permit</string>
+    <string name="FAQ_Question_9" translatable="false">How do I register my vehicle?</string>
+    <string name="FAQ_Question_10" translatable="false">How do I edit my profile?</string>
 
-    <string name="FAQ_Answer_2">Yes, it is. </string>
-    <string name="FAQ_Answer_3"> Allowed 4 passengers as maximum.</string>
-    <string name="FAQ_Answer_4">The permission is valid for 6 months.</string>
-    <string name="FAQ_Answer_5">Allowed 2 rides as maximum.</string>
-    <string name="FAQ_Answer_6">1- Open the application
+    <string name="FAQ_Answer_2" translatable="false">Yes, it is. </string>
+    <string name="FAQ_Answer_3" translatable="false"> Allowed 4 passengers as maximum.</string>
+    <string name="FAQ_Answer_4" translatable="false">The permission is valid for 6 months.</string>
+    <string name="FAQ_Answer_5" translatable="false">Allowed 2 rides as maximum.</string>
+    <string name="FAQ_Answer_6" translatable="false">1- Open the application
 2- Click register
 3- Enter all required information
 4- Accept terms and conditions
@@ -461,19 +461,21 @@
 </string>
 
 
-    <string name="FAQ_Answer_7">The permit is effective only in Dubai.</string>
+    <string name="FAQ_Answer_7" translatable="false">The permit is effective only in Dubai.</string>
 
-    <string name="FAQ_Answer_8">1- After you accept other\'s invitations or if your invitation is accepted by others click on permit button to generate the permit.2- Print the permit and keep it  in your car during the trip
+    <string name="FAQ_Answer_8" translatable="false">1- After you accept other\'s invitations or if your invitation is accepted by others click on permit button to generate the permit.2- Print the permit and keep it  in your car during the trip
 </string>
 
-    <string name="FAQ_Answer_9">1- After you register as a driver click on vehicles
+    <string name="FAQ_Answer_9" translatable="false">1- After you register as a driver click on vehicles
 2- Enter your birthdate and traffic file number
 3- Click submit button to view your vehicle plate number
 4- Click on the plate number
 5- Click save button
 </string>
-    <string name="FAQ_Answer_10">The stored profile is available on the main menu. Open menu > Edit profile and enter the updated input</string>
+    <string name="FAQ_Answer_10" translatable="false">The stored profile is available on the main menu. Open menu > Edit profile and enter the updated input</string>
     <string name="help_and_faq">Help And FAQ</string>
+    <!--<string name="ga_trackingId">UA-70176053-1</string>-->
+    <!--<string name="google_app_id">1:780076415361:android:c101984c52985d9b</string>-->
 
 
 </resources>

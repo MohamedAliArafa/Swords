@@ -1,10 +1,6 @@
 <resources>
     <string name="app_name">شاركني</string>
 
-    <string name="title_activity_main">Sharekni2</string>
-
-    <string name="hello_world">مرحبا</string>
-    <string name="action_settings">الإعدادات</string>
     <string name="next">التالى</string>
     <string name="title_activity_sub_navigate">شاركني</string>
     <string name="drawer_open">فتح</string>
@@ -18,54 +14,21 @@
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_maps">خريطة</string>
-    <string name="title_activity_top_rides">TopRidesActivity</string>
     <string name="title_activity_top_drivers">أفضل السائقين</string>
     <string name="title_activity_On_Boarding">شاركني</string>
-    <string name="title_activity_view_profile">ViewProfileActivity</string>
-    <string name="txt_yo_yo">yo yo</string>
     <string name="from_text_top_ride">من :</string>
     <string name="to_text_top_ride">إلى   :</string>
-    <string name="city_from_txt">City Name</string>
-    <string name="city_to_txt">City Name2</string>
-    <string name="Distreict_name_txt">District Name</string>
-    <string name="district_name_2">District Name 2</string>
-    <string name="txt_arabic">عربي</string>
     <string name="fragment_one_login_txt">تسجيل الدخول</string>
     <string name="txt_best_drivers">أفضل السائقين</string>
     <string name="txt_top_rides">أكثر الرحلات</string>
-    <string name="txt_about_us">About Us</string>
-    <string name="title_activity_home_page_test">HomePageTest</string>
-    <string name="title_activity_login_approved">LoginApproved</string>
-    <string name="title_activity_search_options">SearchOptions</string>
+    <string name="txt_about_us">عنا</string>
     <string name="title_activity_register_approved">التسجيل</string>
-    <string name="title_activity_route_teset">RouteTesetActiv</string>
     <string name="title_activity_register_new_test">تسجيل مستخدم جديد</string>
-    <string name="title_activity_my_profile_tet">MyProfileTet</string>
-    <string name="title_activity_top_rides_after_login">TopRidesAfterLogin</string>
-    <string name="title_activity_top_drivers_after_login">TopDriversAfterLogin</string>
-    <string name="title_activity_most_rides_details">MostRidesDetails</string>
-    <string name="title_activity_forget_password">ForgetPassword</string>
-    <string name="title_activity_change_password_test">ChangePasswordTest</string>
-    <string name="title_activity_my_profile_test">MyProfileTest</string>
-    <string name="title_activity_edit_profile_test">EditProfileTest</string>
     <string name="btn_login_text">تسجيل الدخول</string>
-    <string name="title_activity_quick_search">QuickSearch</string>
-    <string name="title_activity_quick_search_results">QuickSearchResults</string>
-    <string name="title_activity_driver_create_car_pool">DriverCreateCarPool</string>
-    <string name="title_activity_qsearch">QSearch</string>
     <string name="title_activity_advanced__search">البحث المتقدم</string>
-    <string name="title_activity_driver_alerts_for_request">DriverAlertsForRequest</string>
-    <string name="title_activity_ride_details_passenger">RideDetailsPassenger</string>
-    <string name="title_activity_driver_request_details">DriverRequestDetails</string>
-    <string name="title_activity_driver_created_rides">DriverCreatedRides</string>
-    <string name="title_activity_driver_joined_rides">DriverJoinedRides</string>
-    <string name="title_activity_splash">SplashActivity</string>
     <string name="title_activity_test_vedio">شاركني</string>
-    <string name="title_activity_passenger_my_approved_rides">PassengerMyApprovedRides</string>
     <string name="title_activity_history">البحث</string>
-    <string name="title_activity_take_atour">TakeATour</string>
 
     <string name="navy_Home_Page_txt">الصفحة الرئيسية</string>
     <string name="navy_Most_Rides_str">أكثر الرحلات طلبا</string>
@@ -73,7 +36,6 @@
     <string name="navy_Search_Options_str">بحث</string>
     <string name="navy_Notifications_str">التنبيهات</string>
     <string name="navy_Logout_str">تسجيل خروج</string>
-    <string name="navy_List_image_content_Desc">navy_image_icon</string>
 
     <string name="Reg_appBar_name">التسجيل</string>
     <string name="fill_all_error">يرجى تعبئة جميع الحقول الإلزامية</string>
@@ -84,23 +46,18 @@
     <string name="Reg_pass">كلمة المرور</string>
     <string name="Reg_Nat">الجنسية</string>
     <string name="Reg_PrefLang">اللغة المفضلة</string>
-    <string name="title_activity_pick_up">PickUpActivity</string>
     <string name="title_activity_terms_and_cond">الشروط و الأحكام</string>
 
 
-    <string name="title_activity_register_vehicle">RegisterVehicle</string>
     <string name="Register_Vehicle_Driving_License_No">رقم الملف المروري</string>
     <string name="Select_Emirate_txt">إختر الإمارة</string>
     <string name="Ok_txt">حسنا</string>
     <string name="Register_Vehicle_Trraffic_Number_Border_Title_">تسجيل المركبات</string>
-    <string name="Pick_Emirate_arrow_content_Desc">pick emirate arrow image</string>
     <string name="Btn_Submit_txt">تأكيد</string>
-    <string name="title_activity_register__vehicle__verify">Register_Vehicle_Verify</string>
     <string name="register_vehicle_verify_border_title">تأكيد</string>
     <string name="btn_verify_txt">تأكيد</string>
     <string name="verify_Unified_ID">تحقيق شخصية غير مؤكد</string>
     <string name="verify_passport_number_txt">من فضلك ادخل رقم جواز السفر</string>
-    <string name="mobile_number_const">+ 971 -</string>
     <string name="onboard_most_rides">أكثر الرحلات طلبا</string>
     <string name="onboard_best_drivers">افضل السائقين</string>
     <string name="reg_gender_female">أنثى</string>
@@ -177,7 +134,6 @@
     <string name="thu">, الخميس</string>
     <string name="fri">, الجمعة</string>
     <string name="driver_details">بيانات السائق</string>
-    <string name="route_name">RouteEnName</string>
     <string name="time">الوقت</string>
     <string name="ride_days">ايام الرحلة</string>
     <string name="review">التعليق</string>
@@ -269,7 +225,6 @@
     <string name="no_routes_available">لا يوجد طرق متوفرة</string>
     <string name="passenger_name">إسم الراكب</string>
     <string name="passengers">الركاب:</string>
-    <string name="route_name2">RouteName</string>
     <string name="search_results">نتائج البحث</string>
     <string name="write_your_review">أكتب تعليق</string>
     <string name="your_review">تعليقك</string>
@@ -379,15 +334,12 @@
     <string name="region_identical">لا يمكن أن تكون نقطتا الانطلاق والوصول متطابقتين</string>
     <string name="choose_oneday">من فضلك اختر على الأقل يوماً واحداً</string>
     <string name="reg_gender_both">كلاهما</string>
-    <string name="accept_smoking_Str">Accept Smoking</string>
     <string name="accept_smokers_str">أقبل</string>
     <string name="not_accept_smokers_str">لا أقبل</string>
     <string name="is_smoking_Str">مدخنين</string>
     <string name="preferred_gender_Str">الجنس المفضل</string>
     <string name="Review_updated">تم تحديث التعليق</string>
     <string name="pending_request">إستلم طلبك و فى انتظار موافقته</string>
-    <string name="google_app_id">1:780076415361:android:c101984c52985d9b</string>
-    <string name="ga_trackingId">UA-70176053-1</string>
     <string name="request_removed">تم حذف الطلب</string>
     <string name="please_confirm_to_cancel">هل تريد حذف الطلب؟ </string>
     <string name="delete_request_Str">إلغاء الطلب</string>
@@ -434,49 +386,10 @@
     <string name="ok_2">موافق</string>
     <string name="forget_password_complete">تم إرسال رابط استعادة كلمة المرور على بريدك الإلكتروني. هذا الرابط صالح لمدة
 24 ساعة </string>
-<string name="FAQ_Answer_1">1- Contribute to reducing overall traffic congestion and reduce number of cars during rush hours.
-2- Contribute to resolving parking problem around work locations.
-3- Reduce your transport expenses.
-4- Build a strong social connection and make new friends.
-</string>
-    <string name="FAQ_Question_1">What is the benefits of Sharekni?</string>
-    <string name="FAQ_Question_2">Is the service free?</string>
-    <string name="FAQ_Question_3">How many passengers are allowed in one permission?</string>
-    <string name="FAQ_Question_4">What is the validity of the permission?</string>
-    <string name="FAQ_Question_5">How many rides can the driver obtain?</string>
-    <string name="FAQ_Question_6">How to register in sharekni?</string>
-    <string name="FAQ_Question_7">Can the permit be used in other emirates?</string>
-    <string name="FAQ_Question_8">How to issue Sharekni Electronic Permit</string>
-    <string name="FAQ_Question_9">How do I register my vehicle?</string>
-    <string name="FAQ_Question_10">How do I edit my profile?</string>
-
-    <string name="FAQ_Answer_2">Yes, it is. </string>
-    <string name="FAQ_Answer_3"> Allowed 4 passengers as maximum.</string>
-    <string name="FAQ_Answer_4">The permission is valid for 6 months.</string>
-    <string name="FAQ_Answer_5">Allowed 2 rides as maximum.</string>
-    <string name="FAQ_Answer_6">1- Open the application
-2- Click register
-3- Enter all required information
-4- Accept terms and conditions
-5- Click save button
-</string>
-
-
-    <string name="FAQ_Answer_7">The permit is effective only in Dubai.</string>
-
-    <string name="FAQ_Answer_8">1- After you accept other\'s invitations or if your invitation is accepted by others click on permit button to generate the permit.2- Print the permit and keep it  in your car during the trip
-</string>
-
-    <string name="FAQ_Answer_9">1- After you register as a driver click on vehicles
-2- Enter your birthdate and traffic file number
-3- Click submit button to view your vehicle plate number
-4- Click on the plate number
-5- Click save button
-</string>
-    <string name="FAQ_Answer_10">The stored profile is available on the main menu. Open menu > Edit profile and enter the updated input</string>
     <string name="help_and_faq">الاسئلة الشائعة</string>
-
-
+    <string name="google_app_id">1:780076415361:android:c101984c52985d9b</string>
+    <string name="google_maps_key">AIzaSyC96BsF58OVudOuUb2jsVBU23F7DLY1MK0</string>
+    <string name="ga_trackingId">UA-70176053-1</string>
 
 
 </resources>
