@@ -477,5 +477,11 @@
     <!--<string name="ga_trackingId">UA-70176053-1</string>-->
     <!--<string name="google_app_id">1:780076415361:android:c101984c52985d9b</string>-->
 
+    <array name="Languages">
+        <item>Arabic</item>
+        <item>English</item>
+        <item>Chinese</item>
+        <item>filippine</item>
+    </array>
 
 </resources>
