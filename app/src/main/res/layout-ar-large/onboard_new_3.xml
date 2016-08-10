@@ -26,18 +26,17 @@
             android:src="@drawable/shareknilogo" />
 
 
-
         <ImageView
+            android:id="@+id/OnBoard_Changelanguae"
             android:layout_width="65dp"
             android:layout_height="65dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:id="@+id/OnBoard_Changelanguae"
-            android:src="@drawable/enicon"
-            >
+            android:layout_marginTop="10dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:src="@drawable/pick_language">
+
         </ImageView>
 
 
@@ -49,10 +48,8 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="45dp"
             android:background="@drawable/bestdrivers_border"
-            android:paddingRight="5dp"
             android:paddingLeft="5dp"
-            >
-
+            android:paddingRight="5dp">
 
 
             <ImageView
@@ -73,17 +70,15 @@
                 android:layout_marginStart="5dp"
                 android:layout_toEndOf="@+id/splash_best_drivers_im"
                 android:layout_toRightOf="@+id/splash_best_drivers_im"
+                android:lines="1"
+                android:maxLines="1"
+                android:singleLine="true"
                 android:text="@string/onboard_best_drivers"
                 android:textColor="@color/white"
                 android:textSize="22sp"
-                android:singleLine="true"
-                android:lines="1"
-                android:maxLines="1"
                 android:textStyle="bold"
 
                 />
-
-
 
 
         </RelativeLayout>
@@ -125,8 +120,7 @@
                 android:text="@string/onboard_most_rides"
                 android:textColor="@color/white"
                 android:textSize="22sp"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
 
 
         </RelativeLayout>

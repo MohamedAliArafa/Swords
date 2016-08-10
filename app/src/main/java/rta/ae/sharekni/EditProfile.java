@@ -295,7 +295,7 @@ public class EditProfile extends AppCompatActivity {
             Log.d("Home locale", Locale_Str);
 
 
-            if (Locale_Str.contains("en")) {
+            if (!Locale_Str.contains("ar")) {
 
                 if (j.getString("GenderEn").equals("Male")) {
                     femalemale.setVisibility(View.INVISIBLE);
@@ -489,7 +489,7 @@ public class EditProfile extends AppCompatActivity {
         });
 
 
-        if (Locale_Str.contains("en")) {
+        if (!Locale_Str.contains("ar")) {
 
             Log.d("Change Gender", "English Language");
             malefemale.setOnClickListener(new View.OnClickListener() {
@@ -784,7 +784,7 @@ public class EditProfile extends AppCompatActivity {
         if (actionBar != null) {
             Locale locale = Locale.getDefault();
             String Locale_Str2 = locale.toString();
-            if (Locale_Str2.contains("en")) {
+            if (!Locale_Str2.contains("ar")) {
                 actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
             } else {
                 actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_forward);

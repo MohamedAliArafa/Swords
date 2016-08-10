@@ -35,7 +35,7 @@
             android:layout_marginTop="10dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:src="@drawable/enicon">
+            android:src="@drawable/pick_language">
 
 
         </ImageView>

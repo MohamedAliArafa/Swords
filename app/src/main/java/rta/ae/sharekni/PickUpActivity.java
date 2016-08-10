@@ -372,7 +372,7 @@ public class PickUpActivity extends AppCompatActivity {
                 Emirates_Dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 Emirates_Dialog.setContentView(R.layout.languages_dialog);
                 TextView Lang_Dialog_txt_id = (TextView) Emirates_Dialog.findViewById(R.id.Lang_Dialog_txt_id);
-                Lang_Dialog_txt_id.setText("Emirates");
+                Lang_Dialog_txt_id.setText(R.string.Emirates_Str);
                 Emirates_lv = (ListView) Emirates_Dialog.findViewById(R.id.Langs_list);
                 Emirates_lv.setAdapter(Create_CarPool_EmAdapter);
                 Emirates_Dialog.show();
@@ -406,7 +406,7 @@ public class PickUpActivity extends AppCompatActivity {
                 Emirates_Dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 Emirates_Dialog.setContentView(R.layout.languages_dialog);
                 TextView Lang_Dialog_txt_id = (TextView) Emirates_Dialog.findViewById(R.id.Lang_Dialog_txt_id);
-                Lang_Dialog_txt_id.setText("Emirates");
+                Lang_Dialog_txt_id.setText(R.string.Emirates_Str);
                 Emirates_lv = (ListView) Emirates_Dialog.findViewById(R.id.Langs_list);
                 Emirates_lv.setAdapter(Create_CarPool_EmAdapter);
                 Emirates_Dialog.show();
@@ -718,7 +718,7 @@ public class PickUpActivity extends AppCompatActivity {
         if (actionBar != null) {
             Locale locale = Locale.getDefault();
             String Locale_Str2 = locale.toString();
-            if (Locale_Str2.contains("en")) {
+            if (!Locale_Str2.contains("ar")) {
                 actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
             } else {
                 actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_forward);

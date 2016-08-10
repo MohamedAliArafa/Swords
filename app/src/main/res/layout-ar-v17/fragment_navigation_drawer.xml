@@ -482,7 +482,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="20dp"
                     android:layout_marginStart="20dp"
-                    android:background="@drawable/menulanguageiconen"
+                    android:background="@drawable/pick_language_navigation"
                     android:contentDescription="@string/navy_List_image_content_Desc"
 
                     />

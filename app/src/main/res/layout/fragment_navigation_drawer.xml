@@ -470,7 +470,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginStart="20dp"
                     android:contentDescription="@string/navy_List_image_content_Desc"
-                    android:background="@drawable/menulanguageiconar"
+                    android:background="@drawable/pick_language_navigation"
 
                     />
 
@@ -482,7 +482,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_toEndOf="@+id/menuicon20"
                     android:layout_toRightOf="@+id/menuicon20"
-                    android:text="@string/navy_change_language"
+                    android:text="@string/change_language"
                     android:textColor="@color/primaryColor"
                     android:textSize="18sp" />
 

@@ -474,6 +474,8 @@
 </string>
     <string name="FAQ_Answer_10" translatable="false">The stored profile is available on the main menu. Open menu > Edit profile and enter the updated input</string>
     <string name="help_and_faq">Help And FAQ</string>
+    <string name="Emirates_Str">Emirates</string>
+    <string name="change_language">Change Language</string>
     <!--<string name="ga_trackingId">UA-70176053-1</string>-->
     <!--<string name="google_app_id">1:780076415361:android:c101984c52985d9b</string>-->
 

@@ -340,7 +340,6 @@
     <string name="title_activity_On_Boarding">Sharekni</string>
     <string name="title_activity_advanced__search">高級搜尋</string>
     <string name="title_activity_history">歷史</string>
-    <string name="title_activity_main" translatable="false"></string>
     <string name="title_activity_maps">历史</string>
     <string name="title_activity_register_approved">註冊</string>
     <string name="title_activity_register_new_test">用户注册</string>
@@ -374,7 +373,11 @@
     <string name="no_created_rides"> 有没有尚未创建游乐设施</string>
     <string name="policy_file">file:///android_asset/policy.html</string>
     <string name="terms_file">file:///android_asset/terms_en.html</string>
-    <string name="google_app_id">1:780076415361:android:c101984c52985d9b</string>
-    <string name="google_maps_key">AIzaSyC96BsF58OVudOuUb2jsVBU23F7DLY1MK0</string>
-    <string name="ga_trackingId">UA-70176053-1</string>
+    <string-array name="tabs">
+        <item>Tab 1</item>
+        <item>Tab 2</item>
+        <item>Tab 3</item>
+    </string-array>
+    <string name="Emirates_Str"> 酋长国</string>
+    <string name="change_language"> 改变语言</string>
 </resources>

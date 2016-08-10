@@ -373,7 +373,11 @@
     <string name="no_created_rides">Walang mga rides nilikha pa</string>
     <string name="policy_file">file:///android_asset/policy.html</string>
     <string name="terms_file">file:///android_asset/terms_en.html</string>
-    <string name="google_app_id">1:780076415361:android:c101984c52985d9b</string>
-    <string name="google_maps_key">AIzaSyC96BsF58OVudOuUb2jsVBU23F7DLY1MK0</string>
-    <string name="ga_trackingId">UA-70176053-1</string>
+    <string-array name="tabs">
+        <item>Tab 1</item>
+        <item>Tab 2</item>
+        <item>Tab 3</item>
+    </string-array>
+    <string name="Emirates_Str">Emirates</string>
+    <string name="change_language">baguhin ang lengguwahe</string>
 </resources>

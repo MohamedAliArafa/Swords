@@ -387,9 +387,8 @@
     <string name="forget_password_complete">تم إرسال رابط استعادة كلمة المرور على بريدك الإلكتروني. هذا الرابط صالح لمدة
 24 ساعة </string>
     <string name="help_and_faq">الاسئلة الشائعة</string>
-    <string name="google_app_id">1:780076415361:android:c101984c52985d9b</string>
-    <string name="google_maps_key">AIzaSyC96BsF58OVudOuUb2jsVBU23F7DLY1MK0</string>
-    <string name="ga_trackingId">UA-70176053-1</string>
+    <string name="Emirates_Str">الإمارات</string>
+    <string name="change_language">تغيير اللغة</string>
 
 
 </resources>

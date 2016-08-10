@@ -2,6 +2,7 @@ package rta.ae.sharekni.StartScreen;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,8 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import java.util.Locale;
 
 import happiness.Application;
 import happiness.Header;
@@ -36,6 +39,7 @@ import rta.ae.sharekni.TakeATour.TakeATour;
 public class StartScreenActivity extends FragmentActivity {
 
     static StartScreenActivity onboardingActivity;
+    private String Locale_Str;
 
 
     @Override
@@ -108,9 +112,6 @@ public class StartScreenActivity extends FragmentActivity {
         });
 
 
-
-
-
         FragmentStatePagerAdapter adapter = new FragmentStatePagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
@@ -125,6 +126,42 @@ public class StartScreenActivity extends FragmentActivity {
 
         pager.setAdapter(adapter);
 
+        Locale locale = Locale.getDefault();
+        Locale_Str = locale.toString();
+        Log.d("test locale", Locale_Str);
+
+        switch (Locale_Str){
+            case "en":
+                btn_register.setImageResource(R.drawable.frregisternew);
+                btn_log_in.setImageResource(R.drawable.frloginnew);
+                btn_search.setImageResource(R.drawable.frsearchnew);
+                btn_top_rides.setImageResource(R.drawable.frhapppymeternew);
+                break;
+            case "ar":
+                btn_register.setImageResource(R.drawable.frregsiterarabic);
+                btn_log_in.setImageResource(R.drawable.frloginarabic);
+                btn_search.setImageResource(R.drawable.frsearcharabic);
+                btn_top_rides.setImageResource(R.drawable.happymeterarabic);
+                break;
+
+            case "zh":
+                btn_register.setImageResource(R.drawable.frregisternew_ch);
+                btn_log_in.setImageResource(R.drawable.frloginnew_ch);
+                btn_search.setImageResource(R.drawable.frsearchnew_ch);
+                btn_top_rides.setImageResource(R.drawable.frhapppymeternew_ch);
+                break;
+
+            case "fil":
+                btn_register.setImageResource(R.drawable.frregisternew_fi);
+                btn_log_in.setImageResource(R.drawable.frloginnew);
+                btn_search.setImageResource(R.drawable.frsearchnew_fi);
+                btn_top_rides.setImageResource(R.drawable.frhapppymeternew_fi);
+                break;
+            default:
+
+                break;
+
+        }
 
     }//oncreate
 

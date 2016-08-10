@@ -141,7 +141,7 @@ public class DriverDetails extends AppCompatActivity {
         Log.d("test locale", Locale_Str);
 
 
-        if (Locale_Str.contains("en")) {
+        if (!Locale_Str.contains("ar")) {
 
 
             GreenPointCar_im.setImageResource(R.drawable.greenpointcar);
@@ -328,7 +328,7 @@ public class DriverDetails extends AppCompatActivity {
         if (actionBar != null) {
             Locale locale = Locale.getDefault();
             String Locale_Str2 = locale.toString();
-            if (Locale_Str2.contains("en")) {
+            if (!Locale_Str2.contains("ar")) {
                 actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
             } else {
                 actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_forward);

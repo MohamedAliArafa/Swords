@@ -88,37 +88,6 @@ StartScreenFragment extends Fragment {
 
                 showAlertDialog();
 
-
-//                Configuration config = new Configuration();
-//                Locale locale = Locale.getDefault();
-//                Locale_Str = locale.toString();
-//                Log.d("test locale", Locale_Str);
-//
-//
-//               if (Locale_Str.contains("en")){
-//
-//                   Locale locale2 = new Locale("ar");
-//                   Locale.setDefault(locale2);
-//                   Configuration config2 = new Configuration();
-//                   config2.locale = locale2;
-//                   getActivity().getApplicationContext().getResources().updateConfiguration(config2, null);
-//                   getActivity().finish();
-//                   startActivity(getActivity().getIntent());
-//
-//
-//               }else {
-//
-//
-//                   Locale locale3 = new Locale("en");
-//                   Locale.setDefault(locale3);
-//                   Configuration config3 = new Configuration();
-//                   config3.locale = locale3;
-//                   getActivity().getApplicationContext().getResources().updateConfiguration(config3, null);
-//                   getActivity().finish();
-//                   startActivity(getActivity().getIntent());
-//               }
-
-
             }
         });
 

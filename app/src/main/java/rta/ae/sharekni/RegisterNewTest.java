@@ -100,9 +100,9 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
     EditText edit_pass;
     EditText edit_user;
     String usertype = "1";
-    ImageView driver_toggle;
-    ImageView passenger_toogle;
-    ImageView both_toggle;
+    ImageView driver_toggle_off;
+    ImageView passenger_toggle_off;
+    ImageView both_toggle_off;
     ImageView both_toggle_active;
     ImageView passenger_toggle_active;
     ImageView driver_toggle_active;
@@ -188,6 +188,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+    private String Locale_Str;
 
 
     public static RegisterNewTest getInstance() {
@@ -225,9 +226,9 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         txt_dayOfWeek = (TextView) findViewById(R.id.txt_dayOfWeek);
         showDialogOnButtonClick();
 
-        driver_toggle = (ImageView) findViewById(R.id.driver_toggle);
-        passenger_toogle = (ImageView) findViewById(R.id.passenger_toggle);
-        both_toggle = (ImageView) findViewById(R.id.both_toggle);
+        driver_toggle_off = (ImageView) findViewById(R.id.driver_toggle_off);
+        passenger_toggle_off = (ImageView) findViewById(R.id.passenger_toggle_off);
+        both_toggle_off = (ImageView) findViewById(R.id.both_toggle_off);
         both_toggle_active = (ImageView) findViewById(R.id.both_toggle_active);
         driver_toggle_active = (ImageView) findViewById(R.id.driver_toggle_active);
         passenger_toggle_active = (ImageView) findViewById(R.id.passenger_toggle_active);
@@ -460,9 +461,9 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
             }
         });
 
-        both_toggle.setOnClickListener(this);
-        driver_toggle.setOnClickListener(this);
-        passenger_toogle.setOnClickListener(this);
+        both_toggle_off.setOnClickListener(this);
+        driver_toggle_off.setOnClickListener(this);
+        passenger_toggle_off.setOnClickListener(this);
         both_toggle_active.setOnClickListener(this);
         passenger_toggle_active.setOnClickListener(this);
         driver_toggle_active.setOnClickListener(this);
@@ -642,6 +643,52 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+        Locale locale = Locale.getDefault();
+        Locale_Str = locale.toString();
+        Log.d("test locale", Locale_Str);
+
+        switch (Locale_Str) {
+            case "en":
+                driver_toggle_off.setImageResource(R.drawable.driveroff);
+                driver_toggle_active.setImageResource(R.drawable.driveractive);
+                passenger_toggle_off.setImageResource(R.drawable.passengeroff);
+                passenger_toggle_active.setImageResource(R.drawable.passengeractive);
+                both_toggle_off.setImageResource(R.drawable.bothoff);
+                both_toggle_active.setImageResource(R.drawable.bothactive);
+                break;
+            case "ar":
+                driver_toggle_off.setImageResource(R.drawable.driveroffarabic);
+                driver_toggle_active.setImageResource(R.drawable.driveractivearabic);
+                passenger_toggle_off.setImageResource(R.drawable.passengeroffarbic);
+                passenger_toggle_active.setImageResource(R.drawable.passengeractivearabic);
+                both_toggle_off.setImageResource(R.drawable.bothoffarabic);
+                both_toggle_active.setImageResource(R.drawable.bothactivearabic);
+                break;
+
+            case "zh":
+                driver_toggle_off.setImageResource(R.drawable.driveroff_ch);
+                driver_toggle_active.setImageResource(R.drawable.driveractive_ch);
+                passenger_toggle_off.setImageResource(R.drawable.passengeroff_ch);
+                passenger_toggle_active.setImageResource(R.drawable.passengeractive_ch);
+                both_toggle_off.setImageResource(R.drawable.bothoff_ch);
+                both_toggle_active.setImageResource(R.drawable.bothactive_ch);
+                break;
+
+            case "fil":
+                driver_toggle_off.setImageResource(R.drawable.driveroff_fi);
+                driver_toggle_active.setImageResource(R.drawable.driveractive_fi);
+                passenger_toggle_off.setImageResource(R.drawable.passengeroff_fi);
+                passenger_toggle_active.setImageResource(R.drawable.passengeractive_fi);
+                both_toggle_off.setImageResource(R.drawable.bothoff_fi);
+                both_toggle_active.setImageResource(R.drawable.bothactive_fi);
+                break;
+            default:
+
+                break;
+
+        }
+
     }
 
     @Override
@@ -946,21 +993,21 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
 
-        if (v == both_toggle) {
+        if (v == both_toggle_off) {
             both_toggle_active.setVisibility(View.VISIBLE);
             passenger_toggle_active.setVisibility(View.INVISIBLE);
             driver_toggle_active.setVisibility(View.INVISIBLE);
             usertype = "Both";
         }
 
-        if (v == passenger_toogle) {
+        if (v == passenger_toggle_off) {
             passenger_toggle_active.setVisibility(View.VISIBLE);
             driver_toggle_active.setVisibility(View.INVISIBLE);
             both_toggle_active.setVisibility(View.INVISIBLE);
             usertype = "Passenger";
         }
 
-        if (v == driver_toggle) {
+        if (v == driver_toggle_off) {
             driver_toggle_active.setVisibility(View.VISIBLE);
             passenger_toggle_active.setVisibility(View.INVISIBLE);
             both_toggle_active.setVisibility(View.INVISIBLE);
@@ -1202,7 +1249,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         if (actionBar != null) {
             Locale locale = Locale.getDefault();
             String Locale_Str2 = locale.toString();
-            if (Locale_Str2.contains("en")) {
+            if (!Locale_Str2.contains("ar")) {
                 actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
             } else {
                 actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_forward);
