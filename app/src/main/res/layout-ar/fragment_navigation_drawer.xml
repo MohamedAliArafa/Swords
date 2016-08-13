@@ -428,6 +428,53 @@
                 android:background="#EDEDED"
 
                 />
+            <RelativeLayout
+                android:id="@+id/happy_meter_relative"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/navy_list_item_relative_height">
+
+
+                <ImageView
+                    android:id="@+id/happymetericon"
+                    android:layout_width="@dimen/navy_image_width_height"
+                    android:layout_height="@dimen/navy_image_width_height"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:contentDescription="@string/navy_List_image_content_Desc"
+                    android:src="@drawable/menusearchicon"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/happymetericon"
+                    android:layout_toRightOf="@+id/happymetericon"
+                    android:text="@string/help_and_faq"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="18sp" />
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#C3C3C3"
+
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#EDEDED"
+
+                />
+
 
             <RelativeLayout
                 android:id="@+id/navy_Change_lang"
@@ -454,7 +501,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginStart="20dp"
                     android:layout_toEndOf="@+id/menuicon20"
-                    android:text="@string/navy_change_language"
+                    android:text="@string/change_language"
                     android:textColor="@color/primaryColor"
                     android:textSize="18sp"
                     />

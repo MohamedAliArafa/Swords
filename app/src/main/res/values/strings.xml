@@ -219,7 +219,7 @@
     <string name="rides_joined">Rides Joined</string>
     <string name="create_ride">Create Ride</string>
     <string name="permit">Permit</string>
-    <string name="history">Happy Meter</string>
+    <string name="history">Happiness</string>
     <string name="ride_created">Ride Created</string>
     <string name="ride_created2">Ride Created!</string>
     <string name="ride_joined">Ride Joined</string>
@@ -476,6 +476,10 @@
     <string name="help_and_faq">Help And FAQ</string>
     <string name="Emirates_Str">Emirates</string>
     <string name="change_language">Change Language</string>
+    <string name="language_arabic">Arabic</string>
+    <string name="language_english">English</string>
+    <string name="language_chinese">Chinese</string>
+    <string name="language_filipino">filipino</string>
     <!--<string name="ga_trackingId">UA-70176053-1</string>-->
     <!--<string name="google_app_id">1:780076415361:android:c101984c52985d9b</string>-->
 

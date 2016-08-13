@@ -24,7 +24,6 @@ import happiness.User;
 import happiness.Utils;
 import happiness.VotingManager;
 import happiness.VotingRequest;
-import rta.ae.sharekni.MainNavigationDrawerFragment.NavigationDrawerFragment;
 
 /**
  * Created by nezar on 7/16/16.
@@ -64,7 +63,7 @@ public class HappyMeterDialogFragment extends DialogFragment {
         webView = (WebView) view.findViewById(R.id.webView);
         webView.setVisibility(View.VISIBLE);
         webView.setTag(webView.getVisibility());
-        load(VotingManager.TYPE.TRANSACTION);
+        load(VotingManager.TYPE.WITH_MICROAPP);
 
         webView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override

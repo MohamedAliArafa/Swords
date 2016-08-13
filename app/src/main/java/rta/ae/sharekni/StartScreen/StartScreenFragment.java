@@ -1,17 +1,10 @@
 package rta.ae.sharekni.StartScreen;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.ComponentName;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,25 +14,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import com.facebook.share.model.ShareLinkContent;
-import com.facebook.share.widget.ShareDialog;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.TreeMap;
 
 import rta.ae.sharekni.Arafa.Activities.BestDrivers;
 import rta.ae.sharekni.Arafa.Activities.MostRides;
-import rta.ae.sharekni.Arafa.Classes.AppAdapter;
 import rta.ae.sharekni.R;
 
 
@@ -116,19 +103,19 @@ StartScreenFragment extends Fragment {
         Lang_List.clear();
         TreeMap<String, String> valuePairs = new TreeMap<>();
         valuePairs.put("LanguageId", "1");
-        valuePairs.put("LanguageEnName", "Arabic");
+        valuePairs.put("LanguageEnName", getActivity().getString(R.string.language_arabic));
         Lang_List.add(valuePairs);
         TreeMap<String, String> valuePairs2 = new TreeMap<>();
         valuePairs2.put("LanguageId", "2");
-        valuePairs2.put("LanguageEnName", "English");
+        valuePairs2.put("LanguageEnName", getActivity().getString(R.string.language_english));
         Lang_List.add(valuePairs2);
         TreeMap<String, String> valuePairs3 = new TreeMap<>();
         valuePairs3.put("LanguageId", "3");
-        valuePairs3.put("LanguageEnName", "Chinese");
+        valuePairs3.put("LanguageEnName", getActivity().getString(R.string.language_chinese));
         Lang_List.add(valuePairs3);
         TreeMap<String, String> valuePairs4 = new TreeMap<>();
         valuePairs4.put("LanguageId", "4");
-        valuePairs4.put("LanguageEnName", "filippine");
+        valuePairs4.put("LanguageEnName", getActivity().getString(R.string.language_filipino));
         Lang_List.add(valuePairs4);
 
         final SimpleAdapter adapter2 = new SimpleAdapter(getActivity(), Lang_List

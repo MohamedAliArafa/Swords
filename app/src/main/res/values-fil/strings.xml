@@ -174,7 +174,7 @@
     <string name="goBack">Bumalik</string>
     <string name="help_and_faq">Help And FAQ</string>
     <string name="home_page">Tahanang Pahina</string>
-    <string name="history">Happy Meter</string>
+    <string name="history">Happiness</string>
     <string name="i_like_join_ride">Gusto kong sumali sa iyong pagsakay</string>
     <string name="invalid_data">Di-wastong data, mangyaring suriin muli</string>
     <string name="invalid_dob">Petsa ng kapanganakan hindi wastong</string>
@@ -380,4 +380,8 @@
     </string-array>
     <string name="Emirates_Str">Emirates</string>
     <string name="change_language">baguhin ang lengguwahe</string>
+    <string name="language_arabic">Arabe</string>
+    <string name="language_chinese">Tsino</string>
+    <string name="language_filipino">filipino</string>
+    <string name="language_english">Ingles</string>
 </resources>

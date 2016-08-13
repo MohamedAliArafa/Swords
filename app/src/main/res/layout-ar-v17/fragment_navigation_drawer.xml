@@ -494,7 +494,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginStart="20dp"
                     android:layout_toEndOf="@+id/menuicon20"
-                    android:text="@string/navy_change_language"
+                    android:text="@string/change_language"
                     android:textColor="@color/primaryColor"
                     android:textSize="18sp"
                     />
