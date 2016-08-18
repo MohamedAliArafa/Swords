@@ -20,7 +20,6 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -791,7 +790,7 @@ public class RideDetailsAsDriver extends AppCompatActivity {
         if (actionBar != null) {
             Locale locale = Locale.getDefault();
             String Locale_Str2 = locale.toString();
-            if (!Locale_Str2.contains("ar")) {
+            if (!Locale_Str2.contains("ar")&&!Locale_Str2.contains("ur")) {
                 actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
             } else {
                 actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_forward);

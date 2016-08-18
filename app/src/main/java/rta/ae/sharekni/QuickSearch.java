@@ -1,13 +1,11 @@
 package rta.ae.sharekni;
 
-import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -965,7 +963,7 @@ public class QuickSearch extends AppCompatActivity implements View.OnClickListen
         if (actionBar != null) {
             Locale locale = Locale.getDefault();
             String Locale_Str2 = locale.toString();
-            if (!Locale_Str2.contains("ar")) {
+            if (!Locale_Str2.contains("ar")&&!Locale_Str2.contains("ur")) {
                 actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
             } else {
                 actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_forward);

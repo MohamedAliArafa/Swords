@@ -644,14 +644,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 item.setLatitude(jsonObject.getDouble("FromLat"));
                             }
 
-                            if (item.latitude != 0.0 && item.longitude != 0.0) {
-                                data[i] = item;
-                                final Marker markerZero = mMap.addMarker(new MarkerOptions().
-                                        title(String.valueOf(i)).
-                                        position(new LatLng(item.latitude, item.longitude))
-                                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.pindriver))
+                                if (item.latitude != 0.0 && item.longitude != 0.0) {
+                                    data[i] = item;
+                                    final Marker markerZero = mMap.addMarker(new MarkerOptions().
+                                            title(String.valueOf(i)).
+                                            position(new LatLng(item.latitude, item.longitude))
+                                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.pindriver))
 
-                                );
+                                    );
 
 //                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom
 //                                        (new LatLng(data[i].latitude, data[i].longitude), 12.0f));

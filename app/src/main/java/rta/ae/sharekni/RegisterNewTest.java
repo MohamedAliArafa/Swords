@@ -674,7 +674,6 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                 both_toggle_off.setImageResource(R.drawable.bothoff_ch);
                 both_toggle_active.setImageResource(R.drawable.bothactive_ch);
                 break;
-
             case "fil":
                 driver_toggle_off.setImageResource(R.drawable.driveroff_fi);
                 driver_toggle_active.setImageResource(R.drawable.driveractive_fi);
@@ -682,6 +681,14 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                 passenger_toggle_active.setImageResource(R.drawable.passengeractive_fi);
                 both_toggle_off.setImageResource(R.drawable.bothoff_fi);
                 both_toggle_active.setImageResource(R.drawable.bothactive_fi);
+                break;
+            case "ur":
+                driver_toggle_off.setImageResource(R.drawable.driveroff_ur);
+                driver_toggle_active.setImageResource(R.drawable.driveractive_ur);
+                passenger_toggle_off.setImageResource(R.drawable.passengeroff_ur);
+                passenger_toggle_active.setImageResource(R.drawable.passengeractive_ur);
+                both_toggle_off.setImageResource(R.drawable.bothoff_ur);
+                both_toggle_active.setImageResource(R.drawable.bothactive_ur);
                 break;
             default:
 
@@ -1249,7 +1256,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
         if (actionBar != null) {
             Locale locale = Locale.getDefault();
             String Locale_Str2 = locale.toString();
-            if (!Locale_Str2.contains("ar")) {
+            if (!Locale_Str2.contains("ar") && !Locale_Str2.contains("ur")) {
                 actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
             } else {
                 actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_forward);

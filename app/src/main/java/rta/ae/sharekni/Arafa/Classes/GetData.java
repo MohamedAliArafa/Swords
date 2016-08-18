@@ -58,9 +58,9 @@ public class GetData {
     // public static final String NonOpDomain = "http://sharekni.sdgstaff.com/_mobfiles/CLS_MobAndroid.asmx";
     //  public static final String PhotoURL = "http://sharekni.sdgstaff.com/uploads/personalphoto/";
 
-    public static final String DOMAIN = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx/";
-    public static final String NonOpDomain = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx";
-    public static final String PhotoURL = "http://213.42.51.219/uploads/personalphoto/";
+//    public static final String DOMAIN = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx/";
+//    public static final String NonOpDomain = "http://213.42.51.219/_mobfiles/CLS_MobAndroid.asmx";
+//    public static final String PhotoURL = "http://213.42.51.219/uploads/personalphoto/";
 
     final JSONArray[] myJsonArray = new JSONArray[1];
 
@@ -69,9 +69,9 @@ public class GetData {
     //public static final String PhotoURL = "http://sharekni-web.sdg.ae/uploads/personalphoto/";
 
 
-    // public static final String DOMAIN = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx/";
-    // public static final String NonOpDomain = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx";
-    // public static final String PhotoURL = "https://www.sharekni.ae/uploads/personalphoto/";
+    public static final String DOMAIN = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx/";
+    public static final String NonOpDomain = "https://www.sharekni.ae/_mobfiles/CLS_MobAndroid.asmx";
+    public static final String PhotoURL = "https://www.sharekni.ae/uploads/personalphoto/";
 
 
     //    String data;
@@ -249,7 +249,7 @@ public class GetData {
             , String Time, String sat, String sun, String mon, String tue, String wed
             , String thu, String fri, char gender, int VehicleID, int NoOfSeats
             , double StartLat, double StartLng, double EndLat, double EndLng
-            , int Pref_Lang, String Nat, int AgeRangedId, String Start_Date, String IsSmoking, String From_EmirateEnName_str, String From_RegionEnName_str, String To_EmirateEnName_str, String To_RegionEnName_str, int Distance ,int Duration,Activity context) {
+            , int Pref_Lang, String Nat, int AgeRangedId, String Start_Date, String IsSmoking, String From_EmirateEnName_str, String From_RegionEnName_str, String To_EmirateEnName_str, String To_RegionEnName_str, int Distance, int Duration, Activity context) {
 
         DriverCreateCarPoolStringRequest(DriverCreateCarPoolUrl + "AccountID=" + myId
                         + "&EnName=" + URLEncoder.encode(En_Name)
@@ -334,7 +334,7 @@ public class GetData {
     public JSONArray Search(int myId, char gender, String time
             , int fromEmId, int fromRegId, int toEmId, int toRegId
             , int pref_lnag, String pref_nat, int age_Ranged_id
-            , String startDate, int saveFind, int Single_Periodic_ID, String Smokers,int Start_Lat ,int Start_Lng,int End_Lat,int End_Lng,final Activity activity) throws JSONException {
+            , String startDate, int saveFind, int Single_Periodic_ID, String Smokers, int Start_Lat, int Start_Lng, int End_Lat, int End_Lng, final Activity activity) throws JSONException {
         HandleXML obj = new HandleXML(QuickSearchUrl
                 + "AccountID=" + myId
                 + "&PreferredGender=" + gender
@@ -350,7 +350,7 @@ public class GetData {
                 + "&SaveFind=" + saveFind
                 + "&IsPeriodic=" + Single_Periodic_ID
                 + "&IsSmoking=" + Smokers
-                + "&Start_Lat="+Start_Lat
+                + "&Start_Lat=" + Start_Lat
                 + "&Start_Lng=" + Start_Lng
                 + "&End_Lat=" + End_Lat
                 + "&End_Lng=" + End_Lng);
@@ -1408,7 +1408,7 @@ public class GetData {
                                 context.startActivity(in);
                             } else if (data.equals("\"0\"")) {
                                 Toast.makeText(context, "please try again", Toast.LENGTH_SHORT).show();
-                            }else if (data.equals("\"3\"")){
+                            } else if (data.equals("\"3\"")) {
                                 Toast.makeText(context, R.string.taken_mobile_2, Toast.LENGTH_SHORT).show();
 
                             }

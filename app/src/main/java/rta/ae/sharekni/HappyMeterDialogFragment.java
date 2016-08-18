@@ -145,8 +145,11 @@ public class HappyMeterDialogFragment extends DialogFragment {
         Log.d("Main  Home locale", Locale_Str);
         if (Locale_Str.contains("en")) {
             LANGUAGE = "en";
-        } else {
+        } else if (Locale_Str.contains("ar")) {
             LANGUAGE = "ar";
+        } else {
+            LANGUAGE = "en";
+
         }
 
         if (type == VotingManager.TYPE.WITH_MICROAPP) {

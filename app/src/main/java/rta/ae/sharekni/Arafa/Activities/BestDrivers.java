@@ -6,7 +6,6 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,10 +21,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -234,7 +229,7 @@ public class BestDrivers extends AppCompatActivity {
         if (actionBar != null) {
             Locale locale = Locale.getDefault();
             String Locale_Str2 = locale.toString();
-            if (!Locale_Str2.contains("ar")) {
+            if (!Locale_Str2.contains("ar")&&!Locale_Str2.contains("ur")) {
                 actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
             } else {
                 actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_forward);

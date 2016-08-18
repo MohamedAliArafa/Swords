@@ -257,7 +257,7 @@
     <string name="click_to_select">إضغط للإختبار</string>
     <string name="edit_ride">تعديل الرحلة</string>
     <string name="error">خطأ</string>
-    <string name="man_en_name">ManufacturingEnName</string>
+    <string name="man_en_name">ManufacturingArName</string>
     <string name="no_result_criteria">لاتوجد نتائج توافق مدخلات البحث</string>
     <string name="password">كلمة المرور</string>
     <string name="must_be_more_18">يجب ان تكون اكبر من 18 سنه</string>
@@ -390,9 +390,10 @@
     <string name="Emirates_Str">الإمارات</string>
     <string name="change_language">تغيير اللغة</string>
     <string name="language_arabic">العربية</string>
-    <string name="language_chinese">الصينية</string>
-    <string name="language_english">الإنجليزية</string>
-    <string name="language_filipino">الفلبينية</string>
+    <string name="language_chinese">中文</string>
+    <string name="language_english">English</string>
+    <string name="language_filipino">filipino</string>
+    <string name="language_urdu">اردو</string>
 
 
 </resources>

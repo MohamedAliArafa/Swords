@@ -976,6 +976,19 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
                         }
 
+                    }else if (Locale_Str.contains("ur")) {
+
+                        if (jsonArray.getString("GenderEn").equals("Male")) {
+                            circularImageView.setImageResource(R.drawable.imageafteredit_ur);
+                            NavigationDrawerFragment.circularImageView.setImageResource(R.drawable.imageafteredit_ur);
+
+
+                        } else {
+                            circularImageView.setImageResource(R.drawable.imageaftereditfemale_ur);
+                            NavigationDrawerFragment.circularImageView.setImageResource(R.drawable.imageaftereditfemale_ur);
+
+                        }
+
                     }
 
                 } else if (jsonArray.getString("IsPhotoVerified").toLowerCase().equals("")) {

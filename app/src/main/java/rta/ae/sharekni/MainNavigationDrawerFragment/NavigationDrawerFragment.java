@@ -292,6 +292,25 @@ public class NavigationDrawerFragment extends Fragment {
         valuePairs4.put("LanguageId", "4");
         valuePairs4.put("LanguageEnName", getActivity().getString(R.string.language_filipino));
         Lang_List.add(valuePairs4);
+        TreeMap<String, String> valuePairs5 = new TreeMap<>();
+        valuePairs5.put("LanguageId", "5");
+        valuePairs5.put("LanguageEnName", getActivity().getString(R.string.language_urdu));
+        Lang_List.add(valuePairs5);
+
+        Locale locale = Locale.getDefault();
+        Locale_Str = locale.toString();
+        if (Locale_Str.contains("en")) {
+            Lang_List.remove(1);
+        } else if (Locale_Str.contains("ar")) {
+            Lang_List.remove(0);
+        } else if (Locale_Str.contains("zh")) {
+            Lang_List.remove(2);
+        } else if (Locale_Str.contains("fil")) {
+            Lang_List.remove(3);
+        }else if (Locale_Str.contains("ur")) {
+            Lang_List.remove(4);
+        }
+
 
         final SimpleAdapter adapter2 = new SimpleAdapter(getActivity(), Lang_List
                 , R.layout.autocomplete_row
@@ -348,6 +367,15 @@ public class NavigationDrawerFragment extends Fragment {
                         Configuration config5 = new Configuration();
                         config5.locale = locale5;
                         getActivity().getApplicationContext().getResources().updateConfiguration(config5, null);
+                        getActivity().finish();
+                        startActivity(getActivity().getIntent());
+                        break;
+                    case 5:
+                        Locale locale6 = new Locale("ur");
+                        Locale.setDefault(locale6);
+                        Configuration config6 = new Configuration();
+                        config6.locale = locale6;
+                        getActivity().getApplicationContext().getResources().updateConfiguration(config6, null);
                         getActivity().finish();
                         startActivity(getActivity().getIntent());
                         break;

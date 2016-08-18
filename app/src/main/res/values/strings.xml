@@ -12,7 +12,7 @@
     <string name="drawer_colse">Close</string>
 
 
-    <string-array name="tabs">
+    <string-array name="tabs" translatable="false">
         <item>Tab 1</item>
         <item>Tab 2</item>
         <item>Tab 3</item>
@@ -476,13 +476,13 @@
     <string name="help_and_faq">Help And FAQ</string>
     <string name="Emirates_Str">Emirates</string>
     <string name="change_language">Change Language</string>
-    <string name="language_arabic">Arabic</string>
+    <string name="language_arabic">العربية</string>
     <string name="language_english">English</string>
-    <string name="language_chinese">Chinese</string>
+    <string name="language_chinese">中文</string>
     <string name="language_filipino">filipino</string>
+    <string name="language_urdu">اردو</string>
     <!--<string name="ga_trackingId">UA-70176053-1</string>-->
     <!--<string name="google_app_id">1:780076415361:android:c101984c52985d9b</string>-->
-
     <array name="Languages">
         <item>Arabic</item>
         <item>English</item>

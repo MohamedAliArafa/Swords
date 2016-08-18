@@ -19,13 +19,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-
-import rta.ae.sharekni.Arafa.Classes.GetData;
-import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
-import rta.ae.sharekni.Arafa.DataModelAdapter.BestRouteDataModelAdapter;
-
-import rta.ae.sharekni.R;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,6 +26,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import rta.ae.sharekni.Arafa.Classes.GetData;
+import rta.ae.sharekni.Arafa.DataModel.BestRouteDataModel;
+import rta.ae.sharekni.Arafa.DataModelAdapter.BestRouteDataModelAdapter;
 
 public class TopRidesAfterLogin extends AppCompatActivity {
 
@@ -170,7 +167,7 @@ public class TopRidesAfterLogin extends AppCompatActivity {
         if (actionBar != null) {
             Locale locale = Locale.getDefault();
             String Locale_Str2 = locale.toString();
-            if (!Locale_Str2.contains("ar")) {
+            if (!Locale_Str2.contains("ar")&&!Locale_Str2.contains("ur")) {
                 actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_back);
             } else {
                 actionBar.setHomeAsUpIndicator(R.drawable.ic_action_navigation_arrow_forward);

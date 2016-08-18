@@ -2,7 +2,6 @@ package rta.ae.sharekni.StartScreen;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -11,27 +10,17 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.util.Locale;
 
-import happiness.Application;
-import happiness.Header;
-import happiness.Transaction;
-import happiness.User;
-import happiness.Utils;
-import happiness.VotingManager;
-import happiness.VotingRequest;
 import rta.ae.sharekni.HappyMeterDialogFragment;
 import rta.ae.sharekni.HomePage;
 import rta.ae.sharekni.LoginApproved;
+import rta.ae.sharekni.MainActivityClass.Sharekni;
 import rta.ae.sharekni.QuickSearch;
 import rta.ae.sharekni.R;
 import rta.ae.sharekni.RegisterNewTest;
-import rta.ae.sharekni.MainActivityClass.Sharekni;
-import rta.ae.sharekni.TakeATour.TakeATour;
 
 /*
  * Created by nezar on 8/11/2015.
@@ -130,7 +119,7 @@ public class StartScreenActivity extends FragmentActivity {
         Locale_Str = locale.toString();
         Log.d("test locale", Locale_Str);
 
-        switch (Locale_Str){
+        switch (Locale_Str) {
             case "en":
                 btn_register.setImageResource(R.drawable.frregisternew);
                 btn_log_in.setImageResource(R.drawable.frloginnew);
@@ -157,6 +146,13 @@ public class StartScreenActivity extends FragmentActivity {
                 btn_search.setImageResource(R.drawable.frsearchnew_fi);
                 btn_top_rides.setImageResource(R.drawable.frhapppymeternew_fi);
                 break;
+            case "ur":
+                btn_register.setImageResource(R.drawable.frregisternew_ur);
+                btn_log_in.setImageResource(R.drawable.frloginnew_ur);
+                btn_search.setImageResource(R.drawable.frsearchnew_ur);
+                btn_top_rides.setImageResource(R.drawable.frhapppymeternew_ur);
+                break;
+
             default:
 
                 break;
