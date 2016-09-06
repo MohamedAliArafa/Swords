@@ -12,7 +12,7 @@
     <string name="drawer_colse">Close</string>
 
 
-    <string-array name="tabs" translatable="false">
+    <string-array name="tabs">
         <item>Tab 1</item>
         <item>Tab 2</item>
         <item>Tab 3</item>

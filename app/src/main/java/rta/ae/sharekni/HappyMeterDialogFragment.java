@@ -38,9 +38,9 @@ public class HappyMeterDialogFragment extends DialogFragment {
     public static DialogFragment newFragment;
 
 
-    private static final String SECRET = "aaaf179f5f4b852f"; //TODO: To be replaced by one provided by DSG.
-    private static final String SERVICE_PROVIDER = "DSG"; //TODO: To be replaced by the spName e.g. RTA, DEWA.
-    private static final String CLIENT_ID = "dsg123"; //TODO: Replace with your own client id
+    private static final String SECRET = "D124C5D81A472969"; //TODO: To be replaced by one provided by DSG.
+    private static final String SERVICE_PROVIDER = "RTA"; //TODO: To be replaced by the spName e.g. RTA, DEWA.
+    private static final String CLIENT_ID = "rtabeatuser"; //TODO: Replace with your own client id
     private static final String MICRO_APP = "SharekniDEmo123"; //TODO: To be replaced by the name of your microapp.
     private static String LANGUAGE = "en"; //TODO: set your preferred language accordingly.
 

@@ -11,7 +11,6 @@ import org.json.JSONException;
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
-import rta.ae.sharekni.HappyMeterDialogFragment;
 import rta.ae.sharekni.StartScreen.StartScreenActivity;
 
 /**
@@ -22,7 +21,7 @@ public class VotingManager {
     /**
      * This is QA URL. Replace it with production once it is ready for production.
      */
-    private static final String HAPPINESS_URL = "https://happinessmeterqa.dubai.gov.ae/MobileSubmitFeedback";
+    private static final String HAPPINESS_URL = "https://happinessmeter.dubai.gov.ae/MobileSubmitFeedback";
     public static StartScreenActivity startScreenActivity = new StartScreenActivity();
 
     public enum TYPE {

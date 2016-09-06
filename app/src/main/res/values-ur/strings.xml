@@ -330,7 +330,7 @@
     <string name="short_mobile">درست موبائل نمبر درج کریں</string>
     <string name="short_pass">پاس ورڈ میں کم از کم 5 حروف ہونا ضروری ہے</string>
     <string name="single">سنگل</string>
-    <string name="smokers">تمباکو نوشی کرنے</string>
+    <string name="smokers">تمباکو نوش</string>
     <string name="some_thing_is_wrong">کچھ غلط ہے!؟</string>
     <string name="start_date">شروع کرنے کی تاریخ</string>
     <string name="start_point">(شروع پوائنٹ)</string>
@@ -355,7 +355,6 @@
     <string name="title_activity_terms_and_cond">شرائط و صورتحال</string>
     <string name="title_activity_test_vedio">Sharekni</string>
     <string name="title_activity_top_drivers">اوپر ڈرائیور</string>
-    <string name="title_activity_view_profile" translatable="false"></string>
     <string name="to_em_en_name">ToEmirateUrName</string>
     <string name="to_em_name_en">ToEmirateNameUr</string>
     <string name="to_reg_en_name">ToRegionUrName</string>
@@ -381,4 +380,11 @@
     <string name="your_remarks">آپ کے ریمارکس.</string>
     <string name="your_review">آپ کی جائزہ</string>
     <string name="please_enter_code_first">سب سے پہلے اپنے کوڈ درج کریں</string>
+
+    <string-array name="tabs">
+        <item>Tab 1</item>
+        <item>Tab 2</item>
+        <item>Tab 3</item>
+    </string-array>
+
 </resources>
