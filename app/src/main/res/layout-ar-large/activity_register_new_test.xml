@@ -22,7 +22,7 @@
 
 
             <ImageView
-                android:id="@+id/both_toggle"
+                android:id="@+id/both_toggle_off"
                 android:layout_width="@dimen/Register_UserTypre_Image_Width"
                 android:layout_height="@dimen/Register_UserType_Image_Height"
 
@@ -48,11 +48,11 @@
                 android:visibility="invisible" />
 
             <ImageView
-                android:id="@+id/passenger_toggle"
+                android:id="@+id/passenger_toggle_off"
                 android:layout_width="@dimen/Register_UserTypre_Image_Width"
                 android:layout_height="@dimen/Register_UserType_Image_Height"
 
-                android:layout_alignTop="@+id/both_toggle"
+                android:layout_alignTop="@+id/both_toggle_off"
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/passengeroffarbic" />
 
@@ -61,22 +61,22 @@
                 android:layout_width="@dimen/Register_UserTypre_Image_Width"
                 android:layout_height="@dimen/Register_UserType_Image_Height"
 
-                android:layout_alignTop="@+id/both_toggle"
+                android:layout_alignTop="@+id/both_toggle_off"
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/passengeractivearabic"
                 android:visibility="invisible" />
 
 
             <ImageView
-                android:id="@+id/driver_toggle"
+                android:id="@+id/driver_toggle_off"
                 android:layout_width="@dimen/Register_UserTypre_Image_Width"
                 android:layout_height="@dimen/Register_UserType_Image_Height"
 
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_toLeftOf="@+id/passenger_toggle"
-                android:layout_toStartOf="@+id/passenger_toggle"
+                android:layout_toLeftOf="@+id/passenger_toggle_off"
+                android:layout_toStartOf="@+id/passenger_toggle_off"
 
                 android:src="@drawable/driveroffarabic" />
 
@@ -88,8 +88,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_toLeftOf="@+id/passenger_toggle"
-                android:layout_toStartOf="@+id/passenger_toggle"
+                android:layout_toLeftOf="@+id/passenger_toggle_off"
+                android:layout_toStartOf="@+id/passenger_toggle_off"
 
                 android:src="@drawable/driveractivearabic"
                 android:visibility="invisible" />
