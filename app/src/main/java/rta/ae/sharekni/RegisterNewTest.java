@@ -356,7 +356,18 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                             Toast.makeText(RegisterNewTest.this, getString(R.string.short_mobile), Toast.LENGTH_SHORT).show();
                             MobileNumber_Linear.setBackgroundResource(R.drawable.user_register_border_error);
                         } else {
-                            MobileNumber_Linear.setBackgroundResource(R.drawable.user_register_border);
+                            ArrayList codes = new ArrayList();
+                            codes.add("50");
+                            codes.add("52");
+                            codes.add("55");
+                            codes.add("56");
+                            codes.add("58");
+                            String code = edit_phone.getText().toString().substring(0, 2);
+                            if (!codes.contains(code)) {
+                                Toast.makeText(RegisterNewTest.this, getString(R.string.short_mobile), Toast.LENGTH_SHORT).show();
+                            } else {
+                                MobileNumber_Linear.setBackgroundResource(R.drawable.user_register_border);
+                            }
                         }
                     } else {
                         MobileNumber_Linear.setBackgroundResource(R.drawable.user_register_border);
@@ -529,6 +540,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                         codes.add("52");
                         codes.add("55");
                         codes.add("56");
+                        codes.add("58");
                         String code = edit_phone.getText().toString().substring(0, 2);
 
                         if (edit_pass.getText().length() < 5) {
@@ -536,8 +548,6 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                         } else {
                             if (!codes.contains(code)) {
                                 Toast.makeText(RegisterNewTest.this, getString(R.string.short_mobile), Toast.LENGTH_SHORT).show();
-
-
                             } else {
                                 String Fname = edit_fname.getText().toString();
                                 String Lname = edit_lname.getText().toString();

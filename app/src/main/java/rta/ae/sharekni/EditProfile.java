@@ -451,6 +451,7 @@ public class EditProfile extends AppCompatActivity {
                     codes.add("52");
                     codes.add("55");
                     codes.add("56");
+                    codes.add("58");
                     String code = edit_reg_mob.getText().toString().substring(0, 2);
                     if (!codes.contains(code)) {
                         Toast.makeText(EditProfile.this, getString(R.string.short_mobile), Toast.LENGTH_SHORT).show();
