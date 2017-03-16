@@ -63,7 +63,7 @@ public class HappyMeterDialogFragment extends DialogFragment {
         webView = (WebView) view.findViewById(R.id.webView);
         webView.setVisibility(View.VISIBLE);
         webView.setTag(webView.getVisibility());
-        load(VotingManager.TYPE.WITH_MICROAPP);
+        load(VotingManager.TYPE.WITHOUT_MICROAPP);
 
         webView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -130,7 +130,7 @@ public class HappyMeterDialogFragment extends DialogFragment {
             request.setTransaction(transaction);
         } else {
             //TODO: Set the below values accordingly.
-            Application application = new Application("12345", "http://mpay.qa.adeel.dubai.ae", "SMARTAPP", "ANDROID");
+            Application application = new Application("sharekni", "https://happinessmeter.dubai.gov.ae/MobileSubmitFeedbacke", "SMARTAPP", "ANDROID");
             application.setNotes("MobileSDK Vote");
             request.setApplication(application);
         }

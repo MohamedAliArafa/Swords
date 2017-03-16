@@ -87,7 +87,8 @@ public class Sharekni extends Activity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent in = new Intent(Sharekni.this, StartScreenActivity.class);
+                Intent in = new Intent(Sharekni.this, StartScreenActivity.class)
+                        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(in);
 //                finish();
                 // Do something after 5s = 5000ms

@@ -365,6 +365,7 @@ public class RegisterNewTest extends AppCompatActivity implements View.OnClickLi
                             String code = edit_phone.getText().toString().substring(0, 2);
                             if (!codes.contains(code)) {
                                 Toast.makeText(RegisterNewTest.this, getString(R.string.short_mobile), Toast.LENGTH_SHORT).show();
+                                MobileNumber_Linear.setBackgroundResource(R.drawable.user_register_border_error);
                             } else {
                                 MobileNumber_Linear.setBackgroundResource(R.drawable.user_register_border);
                             }
